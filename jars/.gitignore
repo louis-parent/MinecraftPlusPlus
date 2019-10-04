@@ -1,0 +1,10 @@
+assets/
+crash-reports/
+libraries/
+logs/
+resourcepacks/
+
+minecraft_server.jar
+server.properties
+server.dat
+usercache.json
