@@ -6,5 +6,6 @@ resourcepacks/
 
 minecraft_server.jar
 server.properties
-server.dat
+servers.dat
 usercache.json
+options.txt
