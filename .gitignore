@@ -1,0 +1,14 @@
+*.sh
+*.bat
+
+temp/
+runtime/
+reobf/
+mappingviewer/
+logs/
+lib/
+eclipse/
+docs/
+conf/
+bin/
+assets/default_minecraft/
