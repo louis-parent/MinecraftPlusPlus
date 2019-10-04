@@ -1,6 +1,9 @@
 *.sh
 *.bat
 
+CHANGELOG
+LICENSE.txt
+
 temp/
 runtime/
 reobf/
@@ -12,3 +15,12 @@ docs/
 conf/
 bin/
 assets/default_minecraft/
+jars/assets/
+jars/crash-reports/
+jars/libraries/
+jars/logs/
+jars/resourcepacks/
+jars/minecraft_server.jar
+jars/server.properties
+jars/server.dat
+jars/usercache.json
