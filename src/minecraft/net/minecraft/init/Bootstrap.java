@@ -1,14 +1,15 @@
 package net.minecraft.init;
 
-import com.mojang.authlib.GameProfile;
-
-import fr.minecraftpp.block.ModBlocks;
-import fr.minecraftpp.item.crafting.ModFuel;
-
 import java.io.File;
 import java.io.PrintStream;
 import java.util.Random;
 import java.util.UUID;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
@@ -71,8 +72,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class Bootstrap
 {
@@ -512,11 +511,6 @@ public class Bootstrap
             EntityList.init();
             Biome.registerBiomes();
             registerDispenserBehaviors();
-            
-            /**
-             * MOD FUEL
-             */
-            ModFuel.registerBurnTime();
 
             if (!CraftingManager.func_193377_a())
             {

@@ -95,20 +95,20 @@ public class BlockTNT extends Block
         }
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing face, float hitX, float hitY, float hitZ)
     {
-        ItemStack itemstack = playerIn.getHeldItem(hand);
+        ItemStack itemstack = player.getHeldItem(hand);
 
-        if (!itemstack.isNotValid() && (itemstack.getItem() == Items.FLINT_AND_STEEL || itemstack.getItem() == Items.FIRE_CHARGE))
+        if (!itemstack.isNotValid() && itemstack.getItem().canSetFire())
         {
-            this.explode(worldIn, pos, state.withProperty(EXPLODE, Boolean.valueOf(true)), playerIn);
-            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
+            this.explode(world, pos, state.withProperty(EXPLODE, Boolean.valueOf(true)), player);
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 
-            if (itemstack.getItem() == Items.FLINT_AND_STEEL)
+            if (itemstack.getItem().isDamageable())
             {
-                itemstack.damageItem(1, playerIn);
+                itemstack.damageItem(1, player);
             }
-            else if (!playerIn.capabilities.isCreativeMode)
+            else if (!player.capabilities.isCreativeMode)
             {
                 itemstack.decreaseStackSize(1);
             }
@@ -117,7 +117,7 @@ public class BlockTNT extends Block
         }
         else
         {
-            return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY);
+            return super.onBlockActivated(world, pos, state, player, hand, face, hitX, hitY, hitZ);
         }
     }
 

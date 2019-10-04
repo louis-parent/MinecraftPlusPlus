@@ -12,6 +12,7 @@ public class ModItem extends Item
 	public static void registerBlockItems()
 	{
         registerItemBlock(ModBlocks.SCENARITE_ORE);
+        registerItemBlock(ModBlocks.SCENARIUM_BLOCK);
 	}
 	
 	public static void registerItems()

@@ -3,8 +3,10 @@ package fr.minecraftpp.block;
 import fr.minecraftpp.anotation.Mod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 
@@ -20,5 +22,7 @@ public class ModBlock extends Block
 	
 	{
 		registerBlock(1000, "scenarite_ore", new BlockScenariteOre());
+        registerBlock(1001, "scenarium_block", new BlockScenarium());
+
 	}
 }

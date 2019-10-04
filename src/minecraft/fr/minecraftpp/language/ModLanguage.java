@@ -14,6 +14,7 @@ public class ModLanguage
 		
 		translation.put("tile.scenariteOre.name", "Scenarite Ore");
 		translation.put("item.scenarium.name", "Scenarium");
+		translation.put("tile.blockScenarium.name", "Scenarium Block");
 		
 		return translation;
 	}

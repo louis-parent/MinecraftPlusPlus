@@ -28,6 +28,12 @@ public class ItemScenarium extends ItemFood
 	}
 	
 	@Override
+	public int getBurnTime()
+	{
+		return 1600;
+	}
+	
+	@Override
 	public boolean hasEffect(ItemStack stack)
 	{
 		return true;
@@ -69,4 +75,10 @@ public class ItemScenarium extends ItemFood
             return EnumActionResult.FAIL;
         }
     }
+	
+	@Override
+	public boolean canSetFire()
+	{
+		return true;
+	}
 }

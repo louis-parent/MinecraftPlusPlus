@@ -1,17 +1,18 @@
 package net.minecraft.item;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
-
-import fr.minecraftpp.block.ModBlocks;
-import fr.minecraftpp.item.ModItem;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
+
+import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.item.ModItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;
@@ -561,6 +562,26 @@ public class Item
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
         return false;
+    }
+    
+    /**
+     * Method to be overridden by fuel items
+     * @return the burn time of item
+     */
+    @Mod("Minecraftpp")
+    public int getBurnTime()
+    {
+    	return 0;
+    }
+    
+    /**
+     * Method to be overridden by items that can set fire
+     * @return true if the item can set fire, false otherwise
+     */
+    @Mod("Minecraftpp")
+    public boolean canSetFire()
+    {
+    	return false;
     }
 
     public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)

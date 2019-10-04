@@ -11,11 +11,12 @@ import net.minecraft.client.renderer.texture.TextureManager;
 @Mod("minecraftpp")
 public class ModRenderItem extends RenderItem
 {
-	public ModRenderItem(TextureManager p_i46552_1_, ModelManager p_i46552_2_, ItemColors p_i46552_3_) { super(p_i46552_1_, p_i46552_2_, p_i46552_3_); }
+	public ModRenderItem(TextureManager textureManager, ModelManager modelManager, ItemColors colors) { super(textureManager, modelManager, colors); }
 	
 	public static void registerBlockItemRender(RenderItem renderer)
 	{
 		renderer.registerBlock(ModBlocks.SCENARITE_ORE, "scenarite_ore");
+		renderer.registerBlock(ModBlocks.SCENARIUM_BLOCK, "scenarium_block");
 	}
 
 	public static void registerItemRender(RenderItem renderer)

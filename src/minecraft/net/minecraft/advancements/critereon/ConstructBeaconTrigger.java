@@ -85,7 +85,7 @@ public class ConstructBeaconTrigger implements ICriterionTrigger<ConstructBeacon
 
         public boolean func_192252_a(TileEntityBeacon p_192252_1_)
         {
-            return this.field_192253_a.func_192514_a((float)p_192252_1_.func_191979_s());
+            return this.field_192253_a.func_192514_a((float)p_192252_1_.getLevels());
         }
     }
 

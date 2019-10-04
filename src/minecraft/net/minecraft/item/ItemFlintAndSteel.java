@@ -1,5 +1,6 @@
 package net.minecraft.item;
 
+import fr.minecraftpp.anotation.Mod;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -51,5 +52,12 @@ public class ItemFlintAndSteel extends Item
             itemstack.damageItem(1, stack);
             return EnumActionResult.SUCCESS;
         }
+    }
+    
+    @Mod("Minecraftpp")
+    @Override
+    public boolean canSetFire()
+    {
+    	return true;
     }
 }

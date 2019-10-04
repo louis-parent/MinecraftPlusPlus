@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Sets;
 import com.google.common.collect.UnmodifiableIterator;
 
+import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.block.ModBlock;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.MapColor;
@@ -354,14 +355,14 @@ public class Block
         return this;
     }
 
-    protected static boolean func_193384_b(Block p_193384_0_)
+    protected static boolean func_193384_b(Block block)
     {
-        return p_193384_0_ instanceof BlockShulkerBox || p_193384_0_ instanceof BlockLeaves || p_193384_0_ instanceof BlockTrapDoor || p_193384_0_ == Blocks.BEACON || p_193384_0_ == Blocks.CAULDRON || p_193384_0_ == Blocks.GLASS || p_193384_0_ == Blocks.GLOWSTONE || p_193384_0_ == Blocks.ICE || p_193384_0_ == Blocks.SEA_LANTERN || p_193384_0_ == Blocks.STAINED_GLASS;
+        return block instanceof BlockShulkerBox || block instanceof BlockLeaves || block instanceof BlockTrapDoor || block == Blocks.BEACON || block == Blocks.CAULDRON || block == Blocks.GLASS || block == Blocks.GLOWSTONE || block == Blocks.ICE || block == Blocks.SEA_LANTERN || block == Blocks.STAINED_GLASS;
     }
 
-    protected static boolean func_193382_c(Block p_193382_0_)
+    protected static boolean func_193382_c(Block block)
     {
-        return func_193384_b(p_193382_0_) || p_193382_0_ == Blocks.PISTON || p_193382_0_ == Blocks.STICKY_PISTON || p_193382_0_ == Blocks.PISTON_HEAD;
+        return func_193384_b(block) || block == Blocks.PISTON || block == Blocks.STICKY_PISTON || block == Blocks.PISTON_HEAD;
     }
 
     @Deprecated
@@ -1159,6 +1160,56 @@ public class Block
     public SoundType getSoundType()
     {
         return this.blockSoundType;
+    }
+    
+    /**
+     * Method to be overridden by fuel blocks
+     * @return the burn time of block
+     */
+    @Mod("Minecraftpp")
+    public int getBurnTime()
+    {
+    	return 0;
+    }
+    
+    /**
+     * Method to be overridden by flammable blocks
+     * @return true if the block is flammable
+     */
+    @Mod("Minecraftpp")
+    public boolean isFlammable()
+    {
+    	return false;
+    }
+    
+    /**
+     * Method to be overridden by infinitely flammable blocks
+     * @return true if the block is infinitely flammable
+     */
+    @Mod("Minecraftpp")
+    public boolean canFireStayOn()
+    {
+    	return false;
+    }
+    
+    /**
+     * Method to be overridden by flammable blocks
+     * @return the encouragement for fire to go on the block
+     */
+    @Mod("Minecraftpp")
+    public int getFireEncouragement()
+    {
+    	return 0;
+    }
+    
+    /**
+     * Method to be overridden by flammable blocks
+     * @return the flammability of block
+     */
+    @Mod("Minecraftpp")
+    public int getFlammability()
+    {
+    	return 0;
     }
 
     public String toString()

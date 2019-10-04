@@ -255,7 +255,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
         }
     }
 
-    public int func_191979_s()
+    public int getLevels()
     {
         return this.levels;
     }
@@ -277,9 +277,9 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
     }
 
     @Nullable
-    private static Potion isBeaconEffect(int p_184279_0_)
+    private static Potion isBeaconEffect(int potionId)
     {
-        Potion potion = Potion.getPotionById(p_184279_0_);
+        Potion potion = Potion.getPotionById(potionId);
         return VALID_EFFECTS.contains(potion) ? potion : null;
     }
 

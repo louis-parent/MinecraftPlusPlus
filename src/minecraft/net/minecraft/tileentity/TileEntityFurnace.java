@@ -1,6 +1,5 @@
 package net.minecraft.tileentity;
 
-import fr.minecraftpp.item.crafting.ModFuel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
@@ -359,9 +358,9 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
         {
             return 0;
         }
-        else if(ModFuel.isFuel(stack.getItem()))
+        else if(stack.getItem().getBurnTime() != 0)
         {
-        	return ModFuel.getBurnTimeFor(stack.getItem());
+        	return stack.getItem().getBurnTime();
         }
         else
         {

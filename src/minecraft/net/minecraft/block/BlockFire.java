@@ -1,9 +1,16 @@
 package net.minecraft.block;
 
-import com.google.common.collect.Maps;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Map;
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Maps;
+
+import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.block.ModBlocks;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -53,6 +60,9 @@ public class BlockFire extends Block
 
     public static void init()
     {
+    	initFlammableStaticBlocksFrom(Blocks.class);
+    	initFlammableStaticBlocksFrom(ModBlocks.class);
+    	
         Blocks.FIRE.setFireInfo(Blocks.PLANKS, 5, 20);
         Blocks.FIRE.setFireInfo(Blocks.DOUBLE_WOODEN_SLAB, 5, 20);
         Blocks.FIRE.setFireInfo(Blocks.WOODEN_SLAB, 5, 20);
@@ -91,6 +101,43 @@ public class BlockFire extends Block
         Blocks.FIRE.setFireInfo(Blocks.HAY_BLOCK, 60, 20);
         Blocks.FIRE.setFireInfo(Blocks.CARPET, 60, 20);
     }
+
+    /**
+     * Searches for every static attribute of the Class blockList and tests for flammability if the attribute is an instance of the class or subclass of Block 
+     * If the Block is flammable then adds the fire info
+     * @param blockList : the Class to search all the fields
+     */
+    @Mod("Minecraftpp")
+    private static void initFlammableStaticBlocksFrom(Class blockList)
+    {
+    	for(Field field : blockList.getDeclaredFields())
+    	{
+    		try
+    		{
+    			if(Modifier.isPublic(field.getModifiers()))
+    			{
+					Object objectOfField = field.get(null);
+					boolean isFieldStatic = Modifier.isStatic(field.getModifiers());
+					boolean isFieldInstanceOrSubclassOfBlock = objectOfField instanceof Block;
+					
+					if(isFieldStatic && isFieldInstanceOrSubclassOfBlock)
+					{
+						Block block = ((Block) objectOfField);
+						if(block.isFlammable())
+						{
+							Blocks.FIRE.setFireInfo(block, block.getFireEncouragement(), block.getFlammability());
+						}
+					}
+    			}
+			} 
+    		catch (IllegalArgumentException | IllegalAccessException e)
+    		{
+				e.printStackTrace();
+			}
+    	}
+    }
+    
+    
 
     public void setFireInfo(Block blockIn, int encouragement, int flammability)
     {
@@ -143,7 +190,7 @@ public class BlockFire extends Block
             }
 
             Block block = worldIn.getBlockState(pos.down()).getBlock();
-            boolean flag = block == Blocks.NETHERRACK || block == Blocks.MAGMA;
+            boolean flag = block.canFireStayOn();
 
             if (worldIn.provider instanceof WorldProviderEnd && block == Blocks.BEDROCK)
             {

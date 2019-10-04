@@ -1,6 +1,8 @@
 package net.minecraft.block;
 
 import java.util.Random;
+
+import fr.minecraftpp.anotation.Mod;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -32,7 +34,7 @@ public class BlockMagma extends Block
     /**
      * Get the MapColor for this Block and the given BlockState
      */
-    public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
+    public MapColor getMapColor(IBlockState state, IBlockAccess access, BlockPos pos)
     {
         return MapColor.NETHERRACK;
     }
@@ -40,14 +42,14 @@ public class BlockMagma extends Block
     /**
      * Triggered whenever an entity collides with this block (enters into the block)
      */
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
+    public void onEntityWalk(World world, BlockPos pos, Entity entity)
     {
-        if (!entityIn.isImmuneToFire() && entityIn instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase)entityIn))
+        if (!entity.isImmuneToFire() && entity instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase)entity))
         {
-            entityIn.attackEntityFrom(DamageSource.hotFloor, 1.0F);
+            entity.attackEntityFrom(DamageSource.hotFloor, 1.0F);
         }
 
-        super.onEntityWalk(worldIn, pos, entityIn);
+        super.onEntityWalk(world, pos, entity);
     }
 
     public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -75,5 +77,12 @@ public class BlockMagma extends Block
     public boolean canEntitySpawn(IBlockState state, Entity entityIn)
     {
         return entityIn.isImmuneToFire();
+    }
+    
+    @Mod("Minecraftpp")
+    @Override
+    public boolean canFireStayOn()
+    {
+    	return true;
     }
 }

@@ -1,5 +1,6 @@
 package net.minecraft.block;
 
+import fr.minecraftpp.anotation.Mod;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -21,5 +22,12 @@ public class BlockNetherrack extends Block
     public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
     {
         return MapColor.NETHERRACK;
+    }
+    
+    @Mod("Minecraftpp")
+    @Override
+    public boolean canFireStayOn()
+    {
+    	return true;
     }
 }

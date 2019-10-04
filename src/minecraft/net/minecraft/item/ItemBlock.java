@@ -174,6 +174,12 @@ public class ItemBlock extends Item
             this.block.getSubBlocks(itemIn, tab);
         }
     }
+    
+    @Override
+    public int getBurnTime()
+    {
+    	return this.block.getBurnTime();
+    }
 
     /**
      * allows items to add custom lines of information to the mouseover description
