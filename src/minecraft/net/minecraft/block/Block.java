@@ -10,6 +10,7 @@ import com.google.common.collect.Sets;
 import com.google.common.collect.UnmodifiableIterator;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.block.FlammabilityOf;
 import fr.minecraftpp.block.ModBlock;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.MapColor;
@@ -1177,39 +1178,9 @@ public class Block
      * @return true if the block is flammable
      */
     @Mod("Minecraftpp")
-    public boolean isFlammable()
+    public FlammabilityOf getFlammability()
     {
-    	return false;
-    }
-    
-    /**
-     * Method to be overridden by infinitely flammable blocks
-     * @return true if the block is infinitely flammable
-     */
-    @Mod("Minecraftpp")
-    public boolean canFireStayOn()
-    {
-    	return false;
-    }
-    
-    /**
-     * Method to be overridden by flammable blocks
-     * @return the encouragement for fire to go on the block
-     */
-    @Mod("Minecraftpp")
-    public int getFireEncouragement()
-    {
-    	return 0;
-    }
-    
-    /**
-     * Method to be overridden by flammable blocks
-     * @return the flammability of block
-     */
-    @Mod("Minecraftpp")
-    public int getFlammability()
-    {
-    	return 0;
+    	return FlammabilityOf.STONE;
     }
 
     public String toString()

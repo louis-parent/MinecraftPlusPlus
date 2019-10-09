@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Maps;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.block.FlammabilityOf;
 import fr.minecraftpp.block.ModBlocks;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -86,20 +87,20 @@ public class BlockFire extends Block
         Blocks.FIRE.setFireInfo(Blocks.DARK_OAK_STAIRS, 5, 20);
         Blocks.FIRE.setFireInfo(Blocks.LOG, 5, 5);
         Blocks.FIRE.setFireInfo(Blocks.LOG2, 5, 5);
+        Blocks.FIRE.setFireInfo(Blocks.COAL_BLOCK, 5, 5);
         Blocks.FIRE.setFireInfo(Blocks.LEAVES, 30, 60);
         Blocks.FIRE.setFireInfo(Blocks.LEAVES2, 30, 60);
-        Blocks.FIRE.setFireInfo(Blocks.BOOKSHELF, 30, 20);
-        Blocks.FIRE.setFireInfo(Blocks.TNT, 15, 100);
+        Blocks.FIRE.setFireInfo(Blocks.WOOL, 30, 60);
         Blocks.FIRE.setFireInfo(Blocks.TALLGRASS, 60, 100);
         Blocks.FIRE.setFireInfo(Blocks.DOUBLE_PLANT, 60, 100);
         Blocks.FIRE.setFireInfo(Blocks.YELLOW_FLOWER, 60, 100);
         Blocks.FIRE.setFireInfo(Blocks.RED_FLOWER, 60, 100);
         Blocks.FIRE.setFireInfo(Blocks.DEADBUSH, 60, 100);
-        Blocks.FIRE.setFireInfo(Blocks.WOOL, 30, 60);
-        Blocks.FIRE.setFireInfo(Blocks.VINE, 15, 100);
-        Blocks.FIRE.setFireInfo(Blocks.COAL_BLOCK, 5, 5);
         Blocks.FIRE.setFireInfo(Blocks.HAY_BLOCK, 60, 20);
         Blocks.FIRE.setFireInfo(Blocks.CARPET, 60, 20);
+        Blocks.FIRE.setFireInfo(Blocks.VINE, 15, 100);
+        Blocks.FIRE.setFireInfo(Blocks.TNT, 15, 100);
+        Blocks.FIRE.setFireInfo(Blocks.BOOKSHELF, 30, 20);
     }
 
     /**
@@ -123,9 +124,9 @@ public class BlockFire extends Block
 					if(isFieldStatic && isFieldInstanceOrSubclassOfBlock)
 					{
 						Block block = ((Block) objectOfField);
-						if(block.isFlammable())
+						if(block.getFlammability().isFlammable())
 						{
-							Blocks.FIRE.setFireInfo(block, block.getFireEncouragement(), block.getFlammability());
+							Blocks.FIRE.setFireInfo(block, block.getFlammability().getFlammability(), block.getFlammability().getEncouragement());
 						}
 					}
     			}
@@ -190,7 +191,7 @@ public class BlockFire extends Block
             }
 
             Block block = worldIn.getBlockState(pos.down()).getBlock();
-            boolean flag = block.canFireStayOn();
+            boolean flag = block.getFlammability().isInfinite();
 
             if (worldIn.provider instanceof WorldProviderEnd && block == Blocks.BEDROCK)
             {

@@ -37,10 +37,10 @@ public class BlockScenarium extends BlockFalling
 	}
 	
 	@Override
-	public boolean canFireStayOn()
-	{
-		return true;
-	}
+    public FlammabilityOf getFlammability()
+    {
+    	return FlammabilityOf.LEAVES;
+    }
 	
 	@Override
 	public void onEntityWalk(World world, BlockPos pos, Entity entity)
