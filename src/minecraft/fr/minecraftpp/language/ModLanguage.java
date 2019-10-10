@@ -15,7 +15,7 @@ public class ModLanguage
 		translation.put("tile.scenariteOre.name", "Scenarite Ore");
 		translation.put("item.scenarium.name", "Scenarium");
 		translation.put("tile.blockScenarium.name", "Scenarium Block");
-		
+		translation.put("death.attack.scenarium", "%1$s tried to know the truth but couldn't bear it");
 		return translation;
 	}
 }

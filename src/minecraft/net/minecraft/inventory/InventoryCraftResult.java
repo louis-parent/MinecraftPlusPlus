@@ -22,7 +22,7 @@ public class InventoryCraftResult implements IInventory
         return 1;
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
         for (ItemStack itemstack : this.stackResult)
         {

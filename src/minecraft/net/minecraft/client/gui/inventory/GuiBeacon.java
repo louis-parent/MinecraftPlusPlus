@@ -1,7 +1,12 @@
 package net.minecraft.client.gui.inventory;
 
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -9,10 +14,10 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.ContainerBeacon;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.CPacketCloseWindow;
@@ -20,11 +25,9 @@ import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.util.ResourceLocation;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class GuiBeacon extends GuiContainer
-{
+{	
     private static final Logger LOGGER = LogManager.getLogger();
     private static final ResourceLocation BEACON_GUI_TEXTURES = new ResourceLocation("textures/gui/container/beacon.png");
     private final IInventory tileBeacon;
@@ -217,10 +220,12 @@ public class GuiBeacon extends GuiContainer
         int j = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
         this.itemRender.zLevel = 100.0F;
-        this.itemRender.renderItemAndEffectIntoGUI(new ItemStack(Items.EMERALD), i + 42, j + 109);
-        this.itemRender.renderItemAndEffectIntoGUI(new ItemStack(Items.DIAMOND), i + 42 + 22, j + 109);
-        this.itemRender.renderItemAndEffectIntoGUI(new ItemStack(Items.GOLD_INGOT), i + 42 + 44, j + 109);
-        this.itemRender.renderItemAndEffectIntoGUI(new ItemStack(Items.IRON_INGOT), i + 42 + 66, j + 109);
+        
+        for(int k = 0; k < TileEntityBeacon.paymentItems.size(); k++)
+        {
+            this.itemRender.renderItemAndEffectIntoGUI(new ItemStack(TileEntityBeacon.paymentItems.get(k)), i + 42 + 66 - (k * 22), j + 109);
+        }
+
         this.itemRender.zLevel = 0.0F;
     }
 

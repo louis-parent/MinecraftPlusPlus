@@ -38,20 +38,20 @@ public class BlockBeacon extends BlockContainer
         return new TileEntityBeacon();
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (worldIn.isRemote)
+        if (world.isRemote)
         {
             return true;
         }
         else
         {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+            TileEntity tileentity = world.getTileEntity(pos);
 
             if (tileentity instanceof TileEntityBeacon)
             {
-                playerIn.displayGUIChest((TileEntityBeacon)tileentity);
-                playerIn.addStat(StatList.BEACON_INTERACTION);
+                player.displayGUIChest((TileEntityBeacon)tileentity);
+                player.addStat(StatList.BEACON_INTERACTION);
             }
 
             return true;

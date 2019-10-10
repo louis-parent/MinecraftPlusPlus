@@ -219,7 +219,7 @@ public class EntityFireworkRocket extends Entity
         {
             if (this.field_191513_e != null)
             {
-                this.field_191513_e.attackEntityFrom(DamageSource.field_191552_t, (float)(5 + nbttaglist.tagCount() * 2));
+                this.field_191513_e.attackEntityFrom(DamageSource.fireworks, (float)(5 + nbttaglist.tagCount() * 2));
             }
 
             double d0 = 5.0D;
@@ -245,7 +245,7 @@ public class EntityFireworkRocket extends Entity
                     if (flag)
                     {
                         float f1 = f * (float)Math.sqrt((5.0D - (double)this.getDistanceToEntity(entitylivingbase)) / 5.0D);
-                        entitylivingbase.attackEntityFrom(DamageSource.field_191552_t, f1);
+                        entitylivingbase.attackEntityFrom(DamageSource.fireworks, f1);
                     }
                 }
             }

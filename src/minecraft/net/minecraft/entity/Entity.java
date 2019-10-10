@@ -1,8 +1,5 @@
 package net.minecraft.entity;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -10,7 +7,17 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
+import fr.minecraftpp.anotation.Mod;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
@@ -80,8 +87,6 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public abstract class Entity implements ICommandSender
 {
@@ -3572,5 +3577,12 @@ public abstract class Entity implements ICommandSender
     protected int func_190531_bD()
     {
         return 1;
+    }
+    
+    @Mod("Minecraftpp")
+    public void multiplyHorizontalSpeedBy(double aFactor)
+    {
+    	this.motionX *= aFactor;
+    	this.motionZ *= aFactor;
     }
 }

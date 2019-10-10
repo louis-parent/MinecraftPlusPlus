@@ -67,7 +67,8 @@
   },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
-      "beaches": "2019-10-03 20:29:01 +0200"
+      "beaches": "2019-10-03 20:29:01 +0200",
+      "ocean": "2019-10-09 13:44:02 +0200"
     },
     "done": false
   },
@@ -125,6 +126,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/transportation/birch_boat": {
+    "criteria": {
+      "entered_water": "2019-10-09 13:44:01 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/magenta_stained_glass_pane": {
     "criteria": {
       "has_glass": "2019-10-03 20:30:35 +0200"
@@ -146,6 +153,12 @@
   "minecraft:recipes/building_blocks/white_stained_glass": {
     "criteria": {
       "has_glass": "2019-10-03 20:30:35 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/acacia_boat": {
+    "criteria": {
+      "entered_water": "2019-10-09 13:44:01 +0200"
     },
     "done": true
   },
@@ -191,15 +204,33 @@
     },
     "done": true
   },
+  "minecraft:recipes/transportation/boat": {
+    "criteria": {
+      "entered_water": "2019-10-09 13:44:01 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/sign": {
     "criteria": {
       "has_planks": "2019-10-03 20:29:24 +0200"
     },
     "done": true
   },
+  "minecraft:recipes/transportation/jungle_boat": {
+    "criteria": {
+      "entered_water": "2019-10-09 13:44:01 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/green_stained_glass": {
     "criteria": {
       "has_glass": "2019-10-03 20:30:35 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/spruce_boat": {
+    "criteria": {
+      "entered_water": "2019-10-09 13:44:01 +0200"
     },
     "done": true
   },
@@ -242,6 +273,12 @@
   "minecraft:recipes/decorations/spruce_fence": {
     "criteria": {
       "has_planks": "2019-10-03 20:29:24 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/dark_oak_boat": {
+    "criteria": {
+      "entered_water": "2019-10-09 13:44:01 +0200"
     },
     "done": true
   },

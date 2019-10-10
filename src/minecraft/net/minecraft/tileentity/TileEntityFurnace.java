@@ -56,7 +56,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
         return this.furnaceItemStacks.size();
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
         for (ItemStack itemstack : this.furnaceItemStacks)
         {

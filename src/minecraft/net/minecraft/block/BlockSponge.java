@@ -1,6 +1,9 @@
 package net.minecraft.block;
 
 import com.google.common.collect.Lists;
+
+import fr.minecraftpp.block.IAbsorbingBlock;
+
 import java.util.List;
 import java.util.Queue;
 import java.util.Random;
@@ -20,7 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
-public class BlockSponge extends Block
+public class BlockSponge extends Block implements IAbsorbingBlock
 {
     public static final PropertyBool WET = PropertyBool.create("wet");
 
@@ -67,58 +70,7 @@ public class BlockSponge extends Block
         super.neighborChanged(state, worldIn, pos, blockIn, p_189540_5_);
     }
 
-    protected void tryAbsorb(World worldIn, BlockPos pos, IBlockState state)
-    {
-        if (!((Boolean)state.getValue(WET)).booleanValue() && this.absorb(worldIn, pos))
-        {
-            worldIn.setBlockState(pos, state.withProperty(WET, Boolean.valueOf(true)), 2);
-            worldIn.playEvent(2001, pos, Block.getIdFromBlock(Blocks.WATER));
-        }
-    }
-
-    private boolean absorb(World worldIn, BlockPos pos)
-    {
-        Queue<Tuple<BlockPos, Integer>> queue = Lists.<Tuple<BlockPos, Integer>>newLinkedList();
-        List<BlockPos> list = Lists.<BlockPos>newArrayList();
-        queue.add(new Tuple(pos, Integer.valueOf(0)));
-        int i = 0;
-
-        while (!queue.isEmpty())
-        {
-            Tuple<BlockPos, Integer> tuple = (Tuple)queue.poll();
-            BlockPos blockpos = tuple.getFirst();
-            int j = ((Integer)tuple.getSecond()).intValue();
-
-            for (EnumFacing enumfacing : EnumFacing.values())
-            {
-                BlockPos blockpos1 = blockpos.offset(enumfacing);
-
-                if (worldIn.getBlockState(blockpos1).getMaterial() == Material.WATER)
-                {
-                    worldIn.setBlockState(blockpos1, Blocks.AIR.getDefaultState(), 2);
-                    list.add(blockpos1);
-                    ++i;
-
-                    if (j < 6)
-                    {
-                        queue.add(new Tuple(blockpos1, j + 1));
-                    }
-                }
-            }
-
-            if (i > 64)
-            {
-                break;
-            }
-        }
-
-        for (BlockPos blockpos2 : list)
-        {
-            worldIn.notifyNeighborsOfStateChange(blockpos2, Blocks.AIR, false);
-        }
-
-        return i > 0;
-    }
+    
 
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
@@ -203,5 +155,19 @@ public class BlockSponge extends Block
                 worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
             }
         }
+    }
+    
+    @Override
+    public boolean tryAbsorb(World world, BlockPos pos, IBlockState state)
+    {
+    	if (!((Boolean)state.getValue(WET)).booleanValue() && IAbsorbingBlock.super.tryAbsorb(world, pos, state))
+        {
+            world.setBlockState(pos, state.withProperty(WET, Boolean.valueOf(true)), 2);
+            return true;
+        }
+    	else
+    	{
+    		return false;
+    	}
     }
 }

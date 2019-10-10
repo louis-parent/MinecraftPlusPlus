@@ -343,7 +343,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
         return this.field_190596_f;
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
         for (ItemStack itemstack : this.field_190596_f)
         {
@@ -421,7 +421,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 
     public boolean func_190582_F()
     {
-        return !this.func_190581_E() || !this.func_191420_l() || this.hasCustomName() || this.lootTable != null;
+        return !this.func_190581_E() || !this.isStackNotValid() || this.hasCustomName() || this.lootTable != null;
     }
 
     static

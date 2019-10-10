@@ -157,7 +157,7 @@ public class InventoryBasic implements IInventory
         return this.slotsCount;
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
         for (ItemStack itemstack : this.inventoryContents)
         {

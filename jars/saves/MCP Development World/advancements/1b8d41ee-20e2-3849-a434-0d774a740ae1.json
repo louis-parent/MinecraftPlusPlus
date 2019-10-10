@@ -1,0 +1,14 @@
+{
+  "minecraft:recipes/misc/slime_ball": {
+    "criteria": {
+      "has_slime": "2019-10-09 16:45:51 +0200"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "beaches": "2019-10-09 16:45:01 +0200"
+    },
+    "done": false
+  }
+}

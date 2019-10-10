@@ -56,7 +56,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
         }
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
         for (ItemStack itemstack : this.minecartContainerItems)
         {

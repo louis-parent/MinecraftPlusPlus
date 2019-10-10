@@ -1,6 +1,10 @@
 package fr.minecraftpp.block;
 
+import java.util.Random;
+
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.damageSource.ModDamageSource;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -9,14 +13,17 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 @Mod("Minecraftpp")
-public class BlockScenarium extends BlockFalling
+public class BlockScenarium extends BlockFalling implements IAbsorbingBlock
 {	
     public static final PropertyBool EXPLODE = PropertyBool.create("explode");
 
@@ -45,7 +52,9 @@ public class BlockScenarium extends BlockFalling
 	@Override
 	public void onEntityWalk(World world, BlockPos pos, Entity entity)
 	{
-        entity.attackEntityFrom(DamageSource.cactus, 5.0F);
+		super.onEntityWalk(world, pos, entity);
+		
+        entity.attackEntityFrom(ModDamageSource.scenarium, 5.0F);
 	}
 	
 	@Override
@@ -65,10 +74,29 @@ public class BlockScenarium extends BlockFalling
 	{
 		return MapColor.MAGENTA;
 	}
-    
+	
 	@Override
-    public int getDustColor(IBlockState state)
+	public double getAcceleration()
+	{
+		return 1.2D;
+	}
+	
+	@Override
+	public boolean isBaseForBeacon()
+	{
+		return true;
+	}
+	
+	@Override
+	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
-        return -16777216;
+        this.tryAbsorb(worldIn, pos, state);
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos)
+    {
+        this.tryAbsorb(world, pos, state);
+        super.neighborChanged(state, world, pos, block, neighborPos);
     }
 }

@@ -125,17 +125,17 @@
     },
     "done": true
   },
-  "minecraft:adventure/adventuring_time": {
-    "criteria": {
-      "beaches": "2019-10-03 19:58:44 +0200"
-    },
-    "done": false
-  },
   "minecraft:recipes/redstone/iron_door": {
     "criteria": {
       "has_iron_ingot": "2019-10-03 19:58:42 +0200"
     },
     "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "beaches": "2019-10-03 19:58:44 +0200"
+    },
+    "done": false
   },
   "minecraft:recipes/combat/diamond_leggings": {
     "criteria": {

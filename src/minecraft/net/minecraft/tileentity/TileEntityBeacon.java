@@ -1,12 +1,18 @@
 package net.minecraft.tileentity;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
+import fr.minecraftpp.util.UniqueArrayList;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStainedGlass;
@@ -22,6 +28,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerBeacon;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -34,6 +41,8 @@ import net.minecraft.util.math.BlockPos;
 
 public class TileEntityBeacon extends TileEntityLockable implements ITickable, ISidedInventory
 {
+	public static ArrayList<Item> paymentItems = new UniqueArrayList();
+	
     /** List of effects that Beacon can apply */
     public static final Potion[][] EFFECTS_LIST = new Potion[][] {{MobEffects.SPEED, MobEffects.HASTE}, {MobEffects.RESISTANCE, MobEffects.JUMP_BOOST}, {MobEffects.STRENGTH}, {MobEffects.REGENERATION}};
     private static final Set<Potion> VALID_EFFECTS = Sets.<Potion>newHashSet();
@@ -56,6 +65,11 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
     /** Item given to this beacon as payment. */
     private ItemStack payment = ItemStack.EMPTY_ITEM_STACK;
     private String customName;
+    
+    public TileEntityBeacon()
+    {
+    	paymentItems.addAll(Arrays.asList(Items.IRON_INGOT, Items.GOLD_INGOT, Items.EMERALD, Items.DIAMOND));
+    }
 
     /**
      * Like the old updateEntity(), except more generic.
@@ -189,7 +203,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
                     {
                         Block block = this.world.getBlockState(new BlockPos(j1, i2, k1)).getBlock();
 
-                        if (block != Blocks.EMERALD_BLOCK && block != Blocks.GOLD_BLOCK && block != Blocks.DIAMOND_BLOCK && block != Blocks.IRON_BLOCK)
+                        if (block != Blocks.EMERALD_BLOCK && block != Blocks.GOLD_BLOCK && block != Blocks.DIAMOND_BLOCK && block != Blocks.IRON_BLOCK && !block.isBaseForBeacon())
                         {
                             flag1 = false;
                             break;
@@ -308,7 +322,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
         return 1;
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
         return this.payment.isNotValid();
     }
@@ -431,7 +445,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
      */
     public boolean isItemValidForSlot(int index, ItemStack stack)
     {
-        return stack.getItem() == Items.EMERALD || stack.getItem() == Items.DIAMOND || stack.getItem() == Items.GOLD_INGOT || stack.getItem() == Items.IRON_INGOT;
+        return paymentItems.contains(stack.getItem());
     }
 
     public String getGuiID()

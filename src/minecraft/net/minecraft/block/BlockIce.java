@@ -19,7 +19,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 public class BlockIce extends BlockBreakable
-{
+{	
     public BlockIce()
     {
         super(Material.ICE, false);

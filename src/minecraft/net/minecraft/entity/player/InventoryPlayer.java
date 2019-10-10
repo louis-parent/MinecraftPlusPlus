@@ -709,7 +709,7 @@ public class InventoryPlayer implements IInventory
         return this.mainInventory.size() + this.armorInventory.size() + this.offHandInventory.size();
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
         for (ItemStack itemstack : this.mainInventory)
         {

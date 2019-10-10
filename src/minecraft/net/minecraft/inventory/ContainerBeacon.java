@@ -1,9 +1,11 @@
 package net.minecraft.inventory;
 
+import fr.minecraftpp.item.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityBeacon;
 
 public class ContainerBeacon extends Container
 {
@@ -148,15 +150,14 @@ public class ContainerBeacon extends Container
 
     class BeaconSlot extends Slot
     {
-        public BeaconSlot(IInventory inventoryIn, int index, int xIn, int yIn)
+        public BeaconSlot(IInventory inventory, int index, int x, int y)
         {
-            super(inventoryIn, index, xIn, yIn);
+            super(inventory, index, x, y);
         }
 
         public boolean isItemValid(ItemStack stack)
         {
-            Item item = stack.getItem();
-            return item == Items.EMERALD || item == Items.DIAMOND || item == Items.GOLD_INGOT || item == Items.IRON_INGOT;
+            return TileEntityBeacon.paymentItems.contains(stack.getItem());
         }
 
         public int getSlotStackLimit()

@@ -75,7 +75,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
         return this.brewingItemStacks.size();
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
         for (ItemStack itemstack : this.brewingItemStacks)
         {

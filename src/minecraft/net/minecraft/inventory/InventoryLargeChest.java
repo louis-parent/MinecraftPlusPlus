@@ -55,9 +55,9 @@ public class InventoryLargeChest implements ILockableContainer
         return this.upperChest.getSizeInventory() + this.lowerChest.getSizeInventory();
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
-        return this.upperChest.func_191420_l() && this.lowerChest.func_191420_l();
+        return this.upperChest.isStackNotValid() && this.lowerChest.isStackNotValid();
     }
 
     /**

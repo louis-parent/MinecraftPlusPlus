@@ -32,7 +32,7 @@ public class InventoryMerchant implements IInventory
         return this.theInventory.size();
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
         for (ItemStack itemstack : this.theInventory)
         {

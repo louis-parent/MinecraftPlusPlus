@@ -33,8 +33,9 @@ public class DamageSource
     public static final DamageSource anvil = new DamageSource("anvil");
     public static final DamageSource fallingBlock = new DamageSource("fallingBlock");
     public static final DamageSource dragonBreath = (new DamageSource("dragonBreath")).setDamageBypassesArmor();
-    public static final DamageSource field_191552_t = (new DamageSource("fireworks")).setExplosion();
-
+    public static final DamageSource fireworks = (new DamageSource("fireworks")).setExplosion();
+    
+    
     /** This kind of damage can be blocked or not. */
     private boolean isUnblockable;
     private boolean isDamageAllowedInCreativeMode;

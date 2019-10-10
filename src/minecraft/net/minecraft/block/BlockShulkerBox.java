@@ -234,10 +234,10 @@ public class BlockShulkerBox extends BlockContainer
         super.breakBlock(worldIn, pos, state);
     }
 
-    public void func_190948_a(ItemStack p_190948_1_, @Nullable World p_190948_2_, List<String> p_190948_3_, ITooltipFlag p_190948_4_)
+    public void func_190948_a(ItemStack stack, @Nullable World world, List<String> itemNames, ITooltipFlag flag)
     {
-        super.func_190948_a(p_190948_1_, p_190948_2_, p_190948_3_, p_190948_4_);
-        NBTTagCompound nbttagcompound = p_190948_1_.getTagCompound();
+        super.func_190948_a(stack, world, itemNames, flag);
+        NBTTagCompound nbttagcompound = stack.getTagCompound();
 
         if (nbttagcompound != null && nbttagcompound.hasKey("BlockEntityTag", 10))
         {
@@ -245,7 +245,7 @@ public class BlockShulkerBox extends BlockContainer
 
             if (nbttagcompound1.hasKey("LootTable", 8))
             {
-                p_190948_3_.add("???????");
+                itemNames.add("???????");
             }
 
             if (nbttagcompound1.hasKey("Items", 9))
@@ -264,14 +264,14 @@ public class BlockShulkerBox extends BlockContainer
                         if (i <= 4)
                         {
                             ++i;
-                            p_190948_3_.add(String.format("%s x%d", itemstack.getDisplayName(), itemstack.getStackSize()));
+                            itemNames.add(String.format("%s x%d", itemstack.getDisplayName(), itemstack.getStackSize()));
                         }
                     }
                 }
 
                 if (j - i > 0)
                 {
-                    p_190948_3_.add(String.format(TextFormatting.ITALIC + I18n.translateToLocal("container.shulkerBox.more"), j - i));
+                    itemNames.add(String.format(TextFormatting.ITALIC + I18n.translateToLocal("container.shulkerBox.more"), j - i));
                 }
             }
         }

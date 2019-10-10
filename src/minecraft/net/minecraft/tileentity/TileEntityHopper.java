@@ -189,7 +189,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
         return true;
     }
 
-    public boolean func_191420_l()
+    public boolean isStackNotValid()
     {
         return this.isEmpty();
     }
@@ -489,7 +489,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
         if (canInsertItemInSlot(stack, index, side, p_174916_4_))
         {
             boolean flag = false;
-            boolean flag1 = stack.func_191420_l();
+            boolean flag1 = stack.isStackNotValid();
 
             if (itemstack.isNotValid())
             {

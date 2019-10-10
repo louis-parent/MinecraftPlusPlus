@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "group": "scenarium",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:scenarium_block"
+    }
+  },
+  "result": {
+    "item": "minecraft:scenarium",
+    "count": 9
+  }
+}

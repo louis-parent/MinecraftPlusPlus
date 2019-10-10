@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -25,6 +26,8 @@ public class ItemScenarium extends ItemFood
 		
 		this.setUnlocalizedName("scenarium");
 		this.setCreativeTab(CreativeTabs.MATERIALS);
+		
+		TileEntityBeacon.paymentItems.add(this);
 	}
 	
 	@Override
