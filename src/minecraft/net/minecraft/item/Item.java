@@ -13,6 +13,7 @@ import com.google.common.collect.Multimap;
 
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.item.ModItem;
+import fr.minecraftpp.item.tool.IToolMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;
@@ -1148,31 +1149,33 @@ public class Item
         REGISTRY.register(id, textualID, itemIn);
     }
 
-    public ItemStack func_190903_i()
+    public ItemStack getAsStack()
     {
         return new ItemStack(this);
     }
 
-    public static enum ToolMaterial
+    public static enum ToolMaterial implements IToolMaterial
     {
-        WOOD(0, 59, 2.0F, 0.0F, 15),
-        STONE(1, 131, 4.0F, 1.0F, 5),
-        IRON(2, 250, 6.0F, 2.0F, 14),
-        DIAMOND(3, 1561, 8.0F, 3.0F, 10),
-        GOLD(0, 32, 12.0F, 0.0F, 22);
+        WOOD(0, 59, 2.0F, new float[]{0.0F, 0.0F, 6.0F, 0.0F, 0.0F}, new float[]{0.0F, 0.0F, -3.2F, 0.0F, 0.0F}, 15),
+        STONE(1, 131, 4.0F, new float[]{1.0F, 1.0F, 8.0F, 1.0F, 0.0F}, new float[]{0.0F, 0.0F, -3.2F, 0.0F, 0.0F}, 5),
+        IRON(2, 250, 6.0F, new float[]{2.0F, 2.0F, 8.0F, 2.0F, 0.0F}, new float[]{0.0F, 0.0F, -3.1F, 0.0F, 0.0F}, 14),
+        DIAMOND(3, 1561, 8.0F, new float[]{3.0F, 3.0F, 8.0F, 3.0F, 0.0F}, new float[]{0.0F, 0.0F, -3.0F, 0.0F, 0.0F}, 10),
+        GOLD(0, 32, 12.0F, new float[]{0.0F, 0.0F, 6.0F, 0.0F, 0.0F}, new float[]{0.0F, 0.0F, -3.0F, 0.0F, 0.0F}, 22);
 
         private final int harvestLevel;
         private final int maxUses;
         private final float efficiencyOnProperMaterial;
-        private final float damageVsEntity;
+        private final float damageVsEntity[];
         private final int enchantability;
+        private final float attackSpeed[];
 
-        private ToolMaterial(int harvestLevel, int maxUses, float efficiency, float damageVsEntity, int enchantability)
+        private ToolMaterial(int harvestLevel, int maxUses, float efficiency, float[] damageVsEntity, float[] attackSpeed, int enchantability)
         {
             this.harvestLevel = harvestLevel;
             this.maxUses = maxUses;
             this.efficiencyOnProperMaterial = efficiency;
             this.damageVsEntity = damageVsEntity;
+            this.attackSpeed = attackSpeed;
             this.enchantability = enchantability;
         }
 
@@ -1184,11 +1187,6 @@ public class Item
         public float getEfficiencyOnProperMaterial()
         {
             return this.efficiencyOnProperMaterial;
-        }
-
-        public float getDamageVsEntity()
-        {
-            return this.damageVsEntity;
         }
 
         public int getHarvestLevel()
@@ -1224,5 +1222,21 @@ public class Item
                 return this == DIAMOND ? Items.DIAMOND : null;
             }
         }
+
+		@Override
+		public float getDamageVsEntity(ToolType toolType)
+		{
+			return this.damageVsEntity[toolType.ordinal()];
+		}
+
+		@Override
+		public float getAttackSpeed(ToolType toolType)
+		{
+			return this.attackSpeed[toolType.ordinal()];
+		}
     }
+
+	public boolean allowEnchanting() {
+		return false;
+	}
 }

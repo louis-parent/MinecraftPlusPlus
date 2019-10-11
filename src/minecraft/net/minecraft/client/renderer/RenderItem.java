@@ -353,15 +353,15 @@ public class RenderItem implements IResourceManagerReloadListener
         this.renderItemAndEffectIntoGUI(Minecraft.getMinecraft().player, stack, xPosition, yPosition);
     }
 
-    public void renderItemAndEffectIntoGUI(@Nullable EntityLivingBase p_184391_1_, final ItemStack p_184391_2_, int p_184391_3_, int p_184391_4_)
+    public void renderItemAndEffectIntoGUI(@Nullable EntityLivingBase entity, final ItemStack stack, int p_184391_3_, int p_184391_4_)
     {
-        if (!p_184391_2_.isNotValid())
+        if (!stack.isNotValid())
         {
             this.zLevel += 50.0F;
 
             try
             {
-                this.func_191962_a(p_184391_2_, p_184391_3_, p_184391_4_, this.getItemModelWithOverrides(p_184391_2_, (World)null, p_184391_1_));
+                this.func_191962_a(stack, p_184391_3_, p_184391_4_, this.getItemModelWithOverrides(stack, (World)null, entity));
             }
             catch (Throwable throwable)
             {
@@ -371,28 +371,28 @@ public class RenderItem implements IResourceManagerReloadListener
                 {
                     public String call() throws Exception
                     {
-                        return String.valueOf((Object)p_184391_2_.getItem());
+                        return String.valueOf((Object)stack.getItem());
                     }
                 });
                 crashreportcategory.setDetail("Item Aux", new ICrashReportDetail<String>()
                 {
                     public String call() throws Exception
                     {
-                        return String.valueOf(p_184391_2_.getMetadata());
+                        return String.valueOf(stack.getMetadata());
                     }
                 });
                 crashreportcategory.setDetail("Item NBT", new ICrashReportDetail<String>()
                 {
                     public String call() throws Exception
                     {
-                        return String.valueOf((Object)p_184391_2_.getTagCompound());
+                        return String.valueOf((Object)stack.getTagCompound());
                     }
                 });
                 crashreportcategory.setDetail("Item Foil", new ICrashReportDetail<String>()
                 {
                     public String call() throws Exception
                     {
-                        return String.valueOf(p_184391_2_.hasEffect());
+                        return String.valueOf(stack.hasEffect());
                     }
                 });
                 throw new ReportedException(crashreport);

@@ -1,3 +1,5 @@
+package fr.minecraftpp.util;
+
 import java.util.Random;
 
 public class NameGenerator {
@@ -6,7 +8,7 @@ public class NameGenerator {
 
 	public static String generateName() {
 
-		int nbChars = 3 + rand.nextInt(5);
+		int nbChars = 3 + rand.nextInt(4);
 
 		return startRecursiveGeneration(nbChars);
 	}

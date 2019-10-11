@@ -1,6 +1,9 @@
 package net.minecraft.item;
 
 import com.google.common.collect.Multimap;
+
+import fr.minecraftpp.item.tool.IToolMaterial;
+import fr.minecraftpp.item.tool.IToolMaterial.ToolType;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,18 +16,12 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemSword extends Item
+public class ItemSword extends ItemTool
 {
-    private final float attackDamage;
-    private final Item.ToolMaterial material;
-
-    public ItemSword(Item.ToolMaterial material)
+    public ItemSword(IToolMaterial material)
     {
-        this.material = material;
-        this.maxStackSize = 1;
-        this.setMaxDamage(material.getMaxUses());
+    	super(3.0F, 0.0F, material);
         this.setCreativeTab(CreativeTabs.COMBAT);
-        this.attackDamage = 3.0F + material.getDamageVsEntity();
     }
 
     /**
@@ -32,7 +29,7 @@ public class ItemSword extends Item
      */
     public float getDamageVsEntity()
     {
-        return this.material.getDamageVsEntity();
+        return this.damageVsEntity;
     }
 
     public float getStrVsBlock(ItemStack stack, IBlockState state)
@@ -94,7 +91,7 @@ public class ItemSword extends Item
      */
     public int getItemEnchantability()
     {
-        return this.material.getEnchantability();
+        return this.toolMaterial.getEnchantability();
     }
 
     /**
@@ -102,7 +99,7 @@ public class ItemSword extends Item
      */
     public String getToolMaterialName()
     {
-        return this.material.toString();
+        return this.toolMaterial.toString();
     }
 
     /**
@@ -110,7 +107,7 @@ public class ItemSword extends Item
      */
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        return this.material.getRepairItem() == repair.getItem() ? true : super.getIsRepairable(toRepair, repair);
+        return this.toolMaterial.getRepairItem() == repair.getItem() ? true : super.getIsRepairable(toRepair, repair);
     }
 
     public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
@@ -119,10 +116,16 @@ public class ItemSword extends Item
 
         if (equipmentSlot == EntityEquipmentSlot.MAINHAND)
         {
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double)this.attackDamage, 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double)this.damageVsEntity, 0));
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.4000000953674316D, 0));
         }
 
         return multimap;
     }
+
+	@Override
+	public ToolType getToolType()
+	{
+		return ToolType.SWORD;
+	}
 }

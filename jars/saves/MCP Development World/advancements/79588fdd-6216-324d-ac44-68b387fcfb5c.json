@@ -1,8 +1,32 @@
 {
+  "minecraft:story/enchant_item": {
+    "criteria": {
+      "enchanted_item": "2019-10-11 13:48:49 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/carrot_on_a_stick": {
+    "criteria": {
+      "has_carrot": "2019-10-11 13:48:38 +0200"
+    },
+    "done": true
+  },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
       "beaches": "2019-10-02 19:14:12 +0200"
     },
     "done": false
+  },
+  "minecraft:recipes/building_blocks/bookshelf": {
+    "criteria": {
+      "has_book": "2019-10-11 13:48:38 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/writable_book": {
+    "criteria": {
+      "has_book": "2019-10-11 13:48:38 +0200"
+    },
+    "done": true
   }
 }

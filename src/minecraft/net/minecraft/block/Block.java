@@ -1205,6 +1205,15 @@ public class Block
     {
     	return false;
     }
+    
+    /**
+     * @return the harvest level for the {@link Block}
+     */
+    @Mod("Minecraftpp")
+    public int getRequiredHarvestLevel()
+    {
+    	return 0;
+    }
 
     public String toString()
     {

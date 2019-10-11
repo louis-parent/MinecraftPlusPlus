@@ -22,5 +22,10 @@ public class ModRenderItem extends RenderItem
 	public static void registerItemRender(RenderItem renderer)
 	{
 		renderer.registerItem(ModItems.SCENARIUM, "scenarium");
+		renderer.registerItem(ModItems.SCENARIUM_SWORD, "scenarium_sword");
+		renderer.registerItem(ModItems.SCENARIUM_PICKAXE, "scenarium_pickaxe");
+		renderer.registerItem(ModItems.SCENARIUM_AXE, "scenarium_axe");
+		renderer.registerItem(ModItems.SCENARIUM_SPADE, "scenarium_spade");
+		renderer.registerItem(ModItems.SCENARIUM_HOE, "scenarium_hoe");
 	}
 }

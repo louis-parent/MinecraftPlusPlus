@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "group": "scenarium",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:scenarium"
+    }
+  },
+  "result": {
+    "item": "minecraft:dye",
+    "data": 4,
+    "count": 1
+  }
+}

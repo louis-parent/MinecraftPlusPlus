@@ -1,6 +1,9 @@
 package net.minecraft.item;
 
 import com.google.common.collect.Multimap;
+
+import fr.minecraftpp.item.tool.IToolMaterial;
+import fr.minecraftpp.item.tool.IToolMaterial.ToolType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.material.Material;
@@ -20,18 +23,11 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemHoe extends Item
+public class ItemHoe extends ItemTool 
 {
-    private final float speed;
-    protected Item.ToolMaterial theToolMaterial;
-
-    public ItemHoe(Item.ToolMaterial material)
+    public ItemHoe(IToolMaterial material)
     {
-        this.theToolMaterial = material;
-        this.maxStackSize = 1;
-        this.setMaxDamage(material.getMaxUses());
-        this.setCreativeTab(CreativeTabs.TOOLS);
-        this.speed = material.getDamageVsEntity() + 1.0F;
+    	super(material);
     }
 
     @SuppressWarnings("incomplete-switch")
@@ -114,7 +110,7 @@ public class ItemHoe extends Item
      */
     public String getMaterialName()
     {
-        return this.theToolMaterial.toString();
+        return this.toolMaterial.toString();
     }
 
     public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
@@ -124,9 +120,21 @@ public class ItemHoe extends Item
         if (equipmentSlot == EntityEquipmentSlot.MAINHAND)
         {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 0.0D, 0));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)(this.speed - 4.0F), 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)(this.attackSpeed - 4.0F), 0));
         }
 
         return multimap;
     }
+
+	@Override
+	public ToolType getToolType()
+	{
+		return ToolType.HOE;
+	}
+
+	@Override
+	public float getStrVsBlock(ItemStack stack, IBlockState state)
+	{
+		return 1.0F;
+	}
 }

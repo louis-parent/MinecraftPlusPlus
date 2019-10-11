@@ -29,9 +29,9 @@ public class ItemPotion extends Item
         this.setCreativeTab(CreativeTabs.BREWING);
     }
 
-    public ItemStack func_190903_i()
+    public ItemStack getAsStack()
     {
-        return PotionUtils.addPotionToItemStack(super.func_190903_i(), PotionTypes.WATER);
+        return PotionUtils.addPotionToItemStack(super.getAsStack(), PotionTypes.WATER);
     }
 
     /**

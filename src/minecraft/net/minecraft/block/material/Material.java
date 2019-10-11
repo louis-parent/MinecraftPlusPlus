@@ -1,5 +1,7 @@
 package net.minecraft.block.material;
 
+import fr.minecraftpp.anotation.Mod;
+
 public class Material
 {
     public static final Material AIR = new MaterialTransparent(MapColor.AIR);
@@ -48,6 +50,10 @@ public class Material
     public static final Material PISTON = (new Material(MapColor.STONE)).setImmovableMobility();
     public static final Material BARRIER = (new Material(MapColor.AIR)).setRequiresTool().setImmovableMobility();
     public static final Material STRUCTURE_VOID = new MaterialTransparent(MapColor.AIR);
+    
+    @Mod("Minecraftpp")
+    public static final Material RAIL = (new MaterialLogic(MapColor.AIR));
+
 
     /** Bool defining if the block can burn or not. */
     private boolean canBurn;

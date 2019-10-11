@@ -2,7 +2,12 @@ package net.minecraft.entity.passive;
 
 import java.util.Locale;
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
@@ -88,8 +93,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration;
 import net.minecraft.world.storage.loot.LootTableList;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class EntityVillager extends EntityAgeable implements INpc, IMerchant
 {
@@ -123,6 +126,8 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
     private boolean isLookingForHome;
     private boolean areAdditionalTasksSet;
     private final InventoryBasic villagerInventory;
+    
+    public static Item money;
 
     /**
      * A multi-dimensional array mapping the various professions, careers and career levels that a Villager may offer
@@ -610,7 +615,7 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
             i += 5;
         }
 
-        if (recipe.getItemToBuy().getItem() == Items.EMERALD)
+        if (recipe.getItemToBuy().getItem() == money)
         {
             this.wealth += recipe.getItemToBuy().getStackSize();
         }
@@ -1067,7 +1072,7 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                 i = this.price.getPrice(p_190888_3_);
             }
 
-            p_190888_2_.add(new MerchantRecipe(new ItemStack(this.buyingItem, i, 0), Items.EMERALD));
+            p_190888_2_.add(new MerchantRecipe(new ItemStack(this.buyingItem, i, 0), money));
         }
     }
 
@@ -1095,7 +1100,7 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
         {
             int i = this.buyingPriceInfo.getPrice(p_190888_3_);
             int j = this.sellingPriceInfo.getPrice(p_190888_3_);
-            p_190888_2_.add(new MerchantRecipe(new ItemStack(this.buyingItemStack.getItem(), i, this.buyingItemStack.getMetadata()), new ItemStack(Items.EMERALD), new ItemStack(this.sellingItemstack.getItem(), j, this.sellingItemstack.getMetadata())));
+            p_190888_2_.add(new MerchantRecipe(new ItemStack(this.buyingItemStack.getItem(), i, this.buyingItemStack.getMetadata()), new ItemStack(money), new ItemStack(this.sellingItemstack.getItem(), j, this.sellingItemstack.getMetadata())));
         }
     }
 
@@ -1118,7 +1123,7 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                 j = 64;
             }
 
-            p_190888_2_.add(new MerchantRecipe(new ItemStack(Items.BOOK), new ItemStack(Items.EMERALD, j), itemstack));
+            p_190888_2_.add(new MerchantRecipe(new ItemStack(Items.BOOK), new ItemStack(money, j), itemstack));
         }
     }
 
@@ -1142,7 +1147,7 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                 i = this.priceInfo.getPrice(p_190888_3_);
             }
 
-            ItemStack itemstack = new ItemStack(Items.EMERALD, i, 0);
+            ItemStack itemstack = new ItemStack(money, i, 0);
             ItemStack itemstack1 = EnchantmentHelper.addRandomEnchantment(p_190888_3_, new ItemStack(this.enchantedItemStack.getItem(), 1, this.enchantedItemStack.getMetadata()), 5 + p_190888_3_.nextInt(15), false);
             p_190888_2_.add(new MerchantRecipe(itemstack, itemstack1));
         }
@@ -1179,12 +1184,12 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
 
             if (i < 0)
             {
-                itemstack = new ItemStack(Items.EMERALD);
+                itemstack = new ItemStack(money);
                 itemstack1 = new ItemStack(this.itemToBuy.getItem(), -i, this.itemToBuy.getMetadata());
             }
             else
             {
-                itemstack = new ItemStack(Items.EMERALD, i, 0);
+                itemstack = new ItemStack(money, i, 0);
                 itemstack1 = new ItemStack(this.itemToBuy.getItem(), 1, this.itemToBuy.getMetadata());
             }
 
@@ -1235,8 +1240,13 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                 ItemMap.func_190905_a(world, itemstack);
                 MapData.func_191094_a(itemstack, blockpos, "+", this.field_190891_c);
                 itemstack.func_190924_f("filled_map." + this.field_190890_b.toLowerCase(Locale.ROOT));
-                p_190888_2_.add(new MerchantRecipe(new ItemStack(Items.EMERALD, i), new ItemStack(Items.COMPASS), itemstack));
+                p_190888_2_.add(new MerchantRecipe(new ItemStack(money, i), new ItemStack(Items.COMPASS), itemstack));
             }
         }
     }
+
+	public static void setMoney(Item item) 
+	{
+		money = item;
+	}
 }

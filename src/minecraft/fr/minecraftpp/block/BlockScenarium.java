@@ -82,6 +82,12 @@ public class BlockScenarium extends BlockFalling implements IAbsorbingBlock
 	}
 	
 	@Override
+	public int getRequiredHarvestLevel()
+	{
+		return 2;
+	}
+	
+	@Override
 	public boolean isBaseForBeacon()
 	{
 		return true;

@@ -1,18 +1,26 @@
 package net.minecraft.client.gui;
 
-import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
+
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.Project;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.ContainerEnchantment;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnchantmentNameParts;
 import net.minecraft.util.ResourceLocation;
@@ -20,7 +28,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IWorldNameable;
 import net.minecraft.world.World;
-import org.lwjgl.util.glu.Project;
 
 public class GuiEnchantment extends GuiContainer
 {
@@ -224,6 +231,15 @@ public class GuiEnchantment extends GuiContainer
                 fontrenderer.drawStringWithShadow(s, (float)(j1 + 86 - fontrenderer.getStringWidth(s)), (float)(j + 16 + 19 * l + 7), i2);
             }
         }
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(i + 35 - 70, j + 47, 0.5F);
+        GlStateManager.scale(5, 5, 5);
+        //TODO Isaac
+        //this.itemRender.renderItemAndEffectIntoGUI(new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getDyeDamage()), i + 35, j + 47);
+        ItemStack stack = new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getDyeDamage());
+        IBakedModel model = this.itemRender.getItemModelWithOverrides(stack, null, null);
+		this.itemRender.renderItem(stack, model);
+        GlStateManager.popMatrix();
     }
 
     /**

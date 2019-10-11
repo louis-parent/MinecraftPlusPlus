@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.mojang.authlib.GameProfile;
 
+import fr.minecraftpp.init.ModBootstrap;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
@@ -50,6 +51,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemMonsterPlacer;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.nbt.NBTTagCompound;
@@ -536,6 +538,8 @@ public class Bootstrap
                     LOGGER.error("Errors with built-in loot tables");
                 }
             }
+            
+            ModBootstrap.launchMeBaby();
         }
     }
 

@@ -1,7 +1,11 @@
 package net.minecraft.item;
 
-import com.google.common.collect.Sets;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
+
+import fr.minecraftpp.item.tool.IToolMaterial;
+import fr.minecraftpp.item.tool.IToolMaterial.ToolType;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,9 +23,9 @@ public class ItemSpade extends ItemTool
 {
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.CLAY, Blocks.DIRT, Blocks.FARMLAND, Blocks.GRASS, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SOUL_SAND, Blocks.GRASS_PATH, Blocks.field_192444_dS);
 
-    public ItemSpade(Item.ToolMaterial material)
+    public ItemSpade(IToolMaterial material)
     {
-        super(1.5F, -3.0F, material, EFFECTIVE_ON);
+        super(1.5F, -3.0F, material);
     }
 
     /**
@@ -76,4 +80,16 @@ public class ItemSpade extends ItemTool
             }
         }
     }
+
+	@Override
+	public float getStrVsBlock(ItemStack stack, IBlockState state)
+	{
+		return EFFECTIVE_ON.contains(state.getBlock()) ? this.efficiencyOnProperMaterial : 1.0F;
+	}
+
+	@Override
+	public ToolType getToolType()
+	{
+		return ToolType.SPADE;
+	}
 }

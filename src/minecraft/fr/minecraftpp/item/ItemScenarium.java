@@ -3,10 +3,12 @@ package fr.minecraftpp.item;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityBeacon;
@@ -28,6 +30,8 @@ public class ItemScenarium extends ItemFood
 		this.setCreativeTab(CreativeTabs.MATERIALS);
 		
 		TileEntityBeacon.paymentItems.add(this);
+		
+		//EntityVillager.setMoney(this);
 	}
 	
 	@Override
@@ -83,5 +87,16 @@ public class ItemScenarium extends ItemFood
 	public boolean canSetFire()
 	{
 		return true;
+	}
+	
+	@Override
+	public boolean allowEnchanting()
+	{
+		return true;
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack) {
+		return EnumRarity.EPIC;
 	}
 }

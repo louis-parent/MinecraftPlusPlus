@@ -1,8 +1,10 @@
 package net.minecraft.item;
 
 import com.google.common.collect.Multimap;
-import java.util.Set;
-import net.minecraft.block.Block;
+
+import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.item.tool.IToolMaterial;
+import fr.minecraftpp.item.tool.IToolMaterial.ToolType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,9 +14,8 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemTool extends Item
+public abstract class ItemTool extends Item
 {
-    private final Set<Block> effectiveBlocks;
     protected float efficiencyOnProperMaterial;
 
     /** Damage versus entities. */
@@ -22,30 +23,30 @@ public class ItemTool extends Item
     protected float attackSpeed;
 
     /** The material this tool is made from. */
-    protected Item.ToolMaterial toolMaterial;
+    protected IToolMaterial toolMaterial;
 
-    protected ItemTool(float attackDamageIn, float attackSpeedIn, Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn)
+    protected ItemTool(float attackDamage, float attackSpeed, IToolMaterial material)
     {
         this.efficiencyOnProperMaterial = 4.0F;
-        this.toolMaterial = materialIn;
-        this.effectiveBlocks = effectiveBlocksIn;
+        this.toolMaterial = material;
         this.maxStackSize = 1;
-        this.setMaxDamage(materialIn.getMaxUses());
-        this.efficiencyOnProperMaterial = materialIn.getEfficiencyOnProperMaterial();
-        this.damageVsEntity = attackDamageIn + materialIn.getDamageVsEntity();
-        this.attackSpeed = attackSpeedIn;
+        this.setMaxDamage(material.getMaxUses());
+        this.efficiencyOnProperMaterial = material.getEfficiencyOnProperMaterial();
+        this.damageVsEntity = attackDamage + material.getDamageVsEntity(this.getToolType());
+        this.attackSpeed = attackSpeed + material.getAttackSpeed(this.getToolType());
         this.setCreativeTab(CreativeTabs.TOOLS);
     }
 
-    protected ItemTool(Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn)
+    protected ItemTool(IToolMaterial materialIn)
     {
-        this(0.0F, 0.0F, materialIn, effectiveBlocksIn);
+        this(0.0F, 0.0F, materialIn);
     }
+    
+    @Mod("Minecraftpp")
+    public abstract ToolType getToolType();
 
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
-    {
-        return this.effectiveBlocks.contains(state.getBlock()) ? this.efficiencyOnProperMaterial : 1.0F;
-    }
+    @Mod("Minecraftpp")
+    public abstract float getStrVsBlock(ItemStack stack, IBlockState state);
 
     /**
      * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise

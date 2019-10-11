@@ -3168,22 +3168,22 @@ public abstract class World implements IBlockAccess
         this.unloadedEntityList.addAll(entityCollection);
     }
 
-    public boolean func_190527_a(Block p_190527_1_, BlockPos p_190527_2_, boolean p_190527_3_, EnumFacing p_190527_4_, @Nullable Entity p_190527_5_)
+    public boolean func_190527_a(Block block, BlockPos pos, boolean p_190527_3_, EnumFacing side, @Nullable Entity entity)
     {
-        IBlockState iblockstate = this.getBlockState(p_190527_2_);
-        AxisAlignedBB axisalignedbb = p_190527_3_ ? null : p_190527_1_.getDefaultState().getCollisionBoundingBox(this, p_190527_2_);
+        IBlockState iblockstate = this.getBlockState(pos);
+        AxisAlignedBB axisalignedbb = p_190527_3_ ? null : block.getDefaultState().getCollisionBoundingBox(this, pos);
 
-        if (axisalignedbb != Block.NULL_AABB && !this.checkNoEntityCollision(axisalignedbb.offset(p_190527_2_), p_190527_5_))
+        if (axisalignedbb != Block.NULL_AABB && !this.checkNoEntityCollision(axisalignedbb.offset(pos), entity))
         {
             return false;
         }
-        else if (iblockstate.getMaterial() == Material.CIRCUITS && p_190527_1_ == Blocks.ANVIL)
+        else if ((iblockstate.getMaterial() == Material.CIRCUITS || iblockstate.getMaterial() == Material.RAIL) && block == Blocks.ANVIL)
         {
             return true;
         }
         else
         {
-            return iblockstate.getMaterial().isReplaceable() && p_190527_1_.canPlaceBlockOnSide(this, p_190527_2_, p_190527_4_);
+            return iblockstate.getMaterial().isReplaceable() && block.canPlaceBlockOnSide(this, pos, side);
         }
     }
 

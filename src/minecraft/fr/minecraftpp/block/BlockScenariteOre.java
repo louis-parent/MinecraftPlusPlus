@@ -45,6 +45,12 @@ public class BlockScenariteOre extends BlockOre
     }
 	
 	@Override
+	public int getRequiredHarvestLevel()
+	{
+		return 2;
+	}
+	
+	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) 
 	{
 		if (!worldIn.isRemote)

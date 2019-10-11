@@ -1,4 +1,10 @@
 {
+  "minecraft:recipes/tools/flint_and_steel": {
+    "criteria": {
+      "has_obsidian": "2019-10-11 17:45:00 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/item_frame": {
     "criteria": {
       "has_leather": "2019-10-04 14:10:00 +0200"
@@ -17,15 +23,21 @@
     },
     "done": true
   },
+  "minecraft:story/form_obsidian": {
+    "criteria": {
+      "obsidian": "2019-10-11 17:45:00 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/combat/leather_helmet": {
     "criteria": {
       "has_leather": "2019-10-04 14:10:00 +0200"
     },
     "done": true
   },
-  "minecraft:recipes/combat/leather_leggings": {
+  "minecraft:recipes/decorations/enchanting_table": {
     "criteria": {
-      "has_leather": "2019-10-04 14:10:00 +0200"
+      "has_obsidian": "2019-10-11 17:45:00 +0200"
     },
     "done": true
   },
@@ -34,5 +46,11 @@
       "beaches": "2019-10-04 14:08:44 +0200"
     },
     "done": false
+  },
+  "minecraft:recipes/combat/leather_leggings": {
+    "criteria": {
+      "has_leather": "2019-10-04 14:10:00 +0200"
+    },
+    "done": true
   }
 }

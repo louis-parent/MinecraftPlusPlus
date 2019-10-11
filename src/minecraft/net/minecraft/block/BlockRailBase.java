@@ -37,7 +37,7 @@ public abstract class BlockRailBase extends Block
 
     protected BlockRailBase(boolean isPowered)
     {
-        super(Material.CIRCUITS);
+        super(Material.RAIL);
         this.isPowered = isPowered;
         this.setCreativeTab(CreativeTabs.TRANSPORTATION);
     }
@@ -146,11 +146,6 @@ public abstract class BlockRailBase extends Block
     protected IBlockState updateDir(World worldIn, BlockPos pos, IBlockState state, boolean p_176564_4_)
     {
         return worldIn.isRemote ? state : (new BlockRailBase.Rail(worldIn, pos, state)).place(worldIn.isBlockPowered(pos), p_176564_4_).getBlockState();
-    }
-
-    public EnumPushReaction getMobilityFlag(IBlockState state)
-    {
-        return EnumPushReaction.NORMAL;
     }
 
     public BlockRenderLayer getBlockLayer()
