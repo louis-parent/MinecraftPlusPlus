@@ -38,7 +38,7 @@ public class BlockScenarium extends BlockFalling implements IAbsorbingBlock
 		
 		this.setSoundType(SoundType.METAL);
 		
-		this.setUnlocalizedName("blockScenarium");
+		this.setUnlocalizedName("scenariumBlock");
 		
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}

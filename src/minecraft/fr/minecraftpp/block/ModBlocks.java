@@ -1,8 +1,13 @@
 package fr.minecraftpp.block;
 
+import java.lang.reflect.Field;
+
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.item.ModItems;
+import fr.minecraftpp.language.ModLanguage;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 
 @Mod("minecraftpp")
 public class ModBlocks extends Blocks
@@ -18,5 +23,21 @@ public class ModBlocks extends Blocks
 	{
         SCENARITE_ORE = getRegisteredBlock("scenarite_ore");
         SCENARIUM_BLOCK = getRegisteredBlock("scenarium_block");
+        
+        doNames();
+	}
+
+	private static void doNames() {
+		for(Field field : ModBlocks.class.getDeclaredFields())
+    	{
+    		try {
+				if(field.get(null) instanceof Block)
+				{
+					Block block = (Block) field.get(null);
+					ModLanguage.addTranslation(block);
+					
+				}
+			} catch (IllegalArgumentException | IllegalAccessException e) {e.printStackTrace();}
+    	}
 	}
 }
