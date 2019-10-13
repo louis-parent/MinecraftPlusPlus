@@ -5,6 +5,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+
+import fr.minecraftpp.block.ModBlocks;
+import fr.minecraftpp.crafting.RecipeBlock;
+
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
@@ -20,6 +24,8 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Iterator;
 import javax.annotation.Nullable;
+
+import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
@@ -53,6 +59,7 @@ public class CraftingManager
             registerRecipe("banneraddpattern", new RecipesBanners.RecipeAddPattern());
             registerRecipe("shielddecoration", new ShieldRecipes.Decoration());
             registerRecipe("shulkerboxcoloring", new ShulkerBoxRecipes.ShulkerBoxColoring());
+            registerRecipe("scenarite_ore", new RecipeBlock(Items.CLOCK, ModBlocks.SCENARITE_ORE));
             return buildAllRecipesFromFiles();
         }
         catch (Throwable var1)

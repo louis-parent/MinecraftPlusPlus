@@ -233,7 +233,7 @@ public class GuiRecipeOverlay extends Gui
                 l = shapedrecipes.func_192404_g();
             }
 
-            Iterator<Ingredient> iterator = this.field_193924_p.func_192400_c().iterator();
+            Iterator<Ingredient> iterator = this.field_193924_p.getListOfIngredients().iterator();
 
             for (int i1 = 0; i1 < l; ++i1)
             {

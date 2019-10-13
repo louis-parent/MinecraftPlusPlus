@@ -1199,8 +1199,21 @@ public class Item
             return this.enchantability;
         }
 
-        public Item getRepairItem()
-        {
+		@Override
+		public float getDamageVsEntity(ToolType toolType)
+		{
+			return this.damageVsEntity[toolType.ordinal()];
+		}
+
+		@Override
+		public float getAttackSpeed(ToolType toolType)
+		{
+			return this.attackSpeed[toolType.ordinal()];
+		}
+
+		@Override
+		public Item getMaterialItem() 
+		{
             if (this == WOOD)
             {
                 return Item.getItemFromBlock(Blocks.PLANKS);
@@ -1221,18 +1234,6 @@ public class Item
             {
                 return this == DIAMOND ? Items.DIAMOND : null;
             }
-        }
-
-		@Override
-		public float getDamageVsEntity(ToolType toolType)
-		{
-			return this.damageVsEntity[toolType.ordinal()];
-		}
-
-		@Override
-		public float getAttackSpeed(ToolType toolType)
-		{
-			return this.attackSpeed[toolType.ordinal()];
 		}
     }
 

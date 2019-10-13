@@ -6,6 +6,8 @@ import net.minecraft.item.Item;
 @Mod("Minecraftpp")
 public interface IToolMaterial
 {
+	public abstract Item getMaterialItem();
+	
 	public abstract int getMaxUses();
 
     public abstract float getEfficiencyOnProperMaterial();
@@ -18,7 +20,9 @@ public interface IToolMaterial
 
     public abstract int getEnchantability();
 
-    public abstract Item getRepairItem();
+    default public Item getRepairItem() {
+    	return getMaterialItem();
+    }
     
     @Mod("Minecraftpp")
     public static enum ToolType

@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 
 public class Ingredient implements Predicate<ItemStack>
 {
-    public static final Ingredient field_193370_a = new Ingredient(new ItemStack[0])
+    public static final Ingredient INGREDIENT_AIR = new Ingredient(new ItemStack[0])
     {
         public boolean apply(@Nullable ItemStack p_apply_1_)
         {
@@ -75,7 +75,7 @@ public class Ingredient implements Predicate<ItemStack>
 
     public static Ingredient func_193367_a(Item p_193367_0_)
     {
-        return func_193369_a(new ItemStack(p_193367_0_, 1, 32767));
+        return getIngredientFromItemStack(new ItemStack(p_193367_0_, 1, 32767));
     }
 
     public static Ingredient func_193368_a(Item... p_193368_0_)
@@ -87,10 +87,10 @@ public class Ingredient implements Predicate<ItemStack>
             aitemstack[i] = new ItemStack(p_193368_0_[i]);
         }
 
-        return func_193369_a(aitemstack);
+        return getIngredientFromItemStack(aitemstack);
     }
 
-    public static Ingredient func_193369_a(ItemStack... p_193369_0_)
+    public static Ingredient getIngredientFromItemStack(ItemStack... p_193369_0_)
     {
         if (p_193369_0_.length > 0)
         {
@@ -103,6 +103,6 @@ public class Ingredient implements Predicate<ItemStack>
             }
         }
 
-        return field_193370_a;
+        return INGREDIENT_AIR;
     }
 }

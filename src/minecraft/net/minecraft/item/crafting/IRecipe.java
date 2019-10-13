@@ -21,9 +21,24 @@ public interface IRecipe
 
     ItemStack getRecipeOutput();
 
-    NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv);
+    default NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) 
+    {
+    	NonNullList<ItemStack> list = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
 
-    default NonNullList<Ingredient> func_192400_c()
+        for (int i = 0; i < list.size(); ++i)
+        {
+            ItemStack itemstack = inv.getStackInSlot(i);
+
+            if (itemstack.getItem().hasContainerItem())
+            {
+                list.set(i, new ItemStack(itemstack.getItem().getContainerItem()));
+            }
+        }
+
+        return list;
+    }
+
+    default NonNullList<Ingredient> getListOfIngredients()
     {
         return NonNullList.<Ingredient>getInstance();
     }
@@ -33,7 +48,7 @@ public interface IRecipe
         return false;
     }
 
-    default String getRecipeResultName()
+    default String getRecipeGroup()
     {
         return "";
     }

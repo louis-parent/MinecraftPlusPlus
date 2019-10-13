@@ -53,15 +53,15 @@ public class ModItem extends Item
 		}
 
 		@Override
-		public Item getRepairItem()
-		{
-			return ModItems.SCENARIUM;
-		}
-
-		@Override
 		public float getAttackSpeed(ToolType toolType)
 		{
 			return toolType == ToolType.AXE ? -2.8F : 0.0F;
+		}
+
+		@Override
+		public Item getMaterialItem() 
+		{
+			return ModItems.SCENARIUM;
 		}
 	};
 	

@@ -244,23 +244,6 @@ public class RecipeFireworks implements IRecipe
         return this.resultItem;
     }
 
-    public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
-    {
-        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
-
-        for (int i = 0; i < nonnulllist.size(); ++i)
-        {
-            ItemStack itemstack = inv.getStackInSlot(i);
-
-            if (itemstack.getItem().hasContainerItem())
-            {
-                nonnulllist.set(i, new ItemStack(itemstack.getItem().getContainerItem()));
-            }
-        }
-
-        return nonnulllist;
-    }
-
     public boolean hideInCraftingTabs()
     {
         return true;

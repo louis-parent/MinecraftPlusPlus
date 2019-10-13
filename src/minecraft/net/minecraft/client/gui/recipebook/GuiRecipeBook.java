@@ -799,12 +799,12 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
     {
         ItemStack itemstack = p_193951_1_.getRecipeOutput();
         this.field_191915_z.func_192685_a(p_193951_1_);
-        this.field_191915_z.func_194187_a(Ingredient.func_193369_a(itemstack), (p_193951_2_.get(0)).xDisplayPosition, (p_193951_2_.get(0)).yDisplayPosition);
+        this.field_191915_z.func_194187_a(Ingredient.getIngredientFromItemStack(itemstack), (p_193951_2_.get(0)).xDisplayPosition, (p_193951_2_.get(0)).yDisplayPosition);
         int i = this.craftingMatrix.getWidth();
         int j = this.craftingMatrix.getHeight();
         int k = p_193951_1_ instanceof ShapedRecipes ? ((ShapedRecipes)p_193951_1_).func_192403_f() : i;
         int l = 1;
-        Iterator<Ingredient> iterator = p_193951_1_.func_192400_c().iterator();
+        Iterator<Ingredient> iterator = p_193951_1_.getListOfIngredients().iterator();
 
         for (int i1 = 0; i1 < j; ++i1)
         {
@@ -817,7 +817,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
                 Ingredient ingredient = iterator.next();
 
-                if (ingredient != Ingredient.field_193370_a)
+                if (ingredient != Ingredient.INGREDIENT_AIR)
                 {
                     Slot slot = p_193951_2_.get(l);
                     this.field_191915_z.func_194187_a(ingredient, slot.xDisplayPosition, slot.yDisplayPosition);

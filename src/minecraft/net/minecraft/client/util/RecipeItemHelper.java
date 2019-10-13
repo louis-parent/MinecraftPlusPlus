@@ -107,10 +107,10 @@ public class RecipeItemHelper
         public RecipePicker(IRecipe p_i47608_2_)
         {
             this.field_194105_b = p_i47608_2_;
-            this.field_194106_c.addAll(p_i47608_2_.func_192400_c());
+            this.field_194106_c.addAll(p_i47608_2_.getListOfIngredients());
             this.field_194106_c.removeIf((p_194103_0_) ->
             {
-                return p_194103_0_ == Ingredient.field_193370_a;
+                return p_194103_0_ == Ingredient.INGREDIENT_AIR;
             });
             this.field_194107_d = this.field_194106_c.size();
             this.field_194108_e = this.func_194097_a();
@@ -166,11 +166,11 @@ public class RecipeItemHelper
 
                 this.field_194110_g.clear(0, this.field_194107_d + this.field_194109_f + this.field_194107_d);
                 int j1 = 0;
-                List<Ingredient> list = this.field_194105_b.func_192400_c();
+                List<Ingredient> list = this.field_194105_b.getListOfIngredients();
 
                 for (int k1 = 0; k1 < list.size(); ++k1)
                 {
-                    if (flag1 && list.get(k1) == Ingredient.field_193370_a)
+                    if (flag1 && list.get(k1) == Ingredient.INGREDIENT_AIR)
                     {
                         p_194092_2_.add(0);
                     }

@@ -25,7 +25,7 @@ public class ShapelessRecipes implements IRecipe
         this.recipeItems = p_i47500_3_;
     }
 
-    public String getRecipeResultName()
+    public String getRecipeGroup()
     {
         return this.field_194138_c;
     }
@@ -35,26 +35,9 @@ public class ShapelessRecipes implements IRecipe
         return this.recipeOutput;
     }
 
-    public NonNullList<Ingredient> func_192400_c()
+    public NonNullList<Ingredient> getListOfIngredients()
     {
         return this.recipeItems;
-    }
-
-    public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
-    {
-        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
-
-        for (int i = 0; i < nonnulllist.size(); ++i)
-        {
-            ItemStack itemstack = inv.getStackInSlot(i);
-
-            if (itemstack.getItem().hasContainerItem())
-            {
-                nonnulllist.set(i, new ItemStack(itemstack.getItem().getContainerItem()));
-            }
-        }
-
-        return nonnulllist;
     }
 
     /**
@@ -118,7 +101,7 @@ public class ShapelessRecipes implements IRecipe
         }
         else
         {
-            ItemStack itemstack = ShapedRecipes.func_192405_a(JsonUtils.getJsonObject(p_193363_0_, "result"), true);
+            ItemStack itemstack = ShapedRecipes.getResult(JsonUtils.getJsonObject(p_193363_0_, "result"), true);
             return new ShapelessRecipes(s, itemstack, nonnulllist);
         }
     }
@@ -131,7 +114,7 @@ public class ShapelessRecipes implements IRecipe
         {
             Ingredient ingredient = ShapedRecipes.func_193361_a(p_193364_0_.get(i));
 
-            if (ingredient != Ingredient.field_193370_a)
+            if (ingredient != Ingredient.INGREDIENT_AIR)
             {
                 nonnulllist.add(ingredient);
             }

@@ -58,7 +58,7 @@ public class RecipeBookClient extends RecipeBook
             if (!irecipe.hideInCraftingTabs())
             {
                 CreativeTabs creativetabs = func_194084_a(irecipe.getRecipeOutput());
-                String s = irecipe.getRecipeResultName();
+                String s = irecipe.getRecipeGroup();
                 RecipeList recipelist1;
 
                 if (s.isEmpty())
