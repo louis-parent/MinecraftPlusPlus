@@ -1,0 +1,15 @@
+{
+  "minecraft:recipes/misc/book": {
+    "criteria": {
+      "has_paper": "2019-10-13 11:46:31 +0200"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "beaches": "2019-10-13 11:46:33 +0200",
+      "ocean": "2019-10-13 11:46:47 +0200"
+    },
+    "done": false
+  }
+}

@@ -22,7 +22,7 @@ public class InventoryBasic implements IInventory
         this.inventoryTitle = title;
         this.hasCustomName = customName;
         this.slotsCount = slotCount;
-        this.inventoryContents = NonNullList.<ItemStack>func_191197_a(slotCount, ItemStack.EMPTY_ITEM_STACK);
+        this.inventoryContents = NonNullList.<ItemStack>getInstanceFilledWith(slotCount, ItemStack.EMPTY_ITEM_STACK);
     }
 
     public InventoryBasic(ITextComponent title, int slotCount)

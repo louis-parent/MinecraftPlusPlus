@@ -11,7 +11,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class InventoryCraftResult implements IInventory
 {
-    private final NonNullList<ItemStack> stackResult = NonNullList.<ItemStack>func_191197_a(1, ItemStack.EMPTY_ITEM_STACK);
+    private final NonNullList<ItemStack> stackResult = NonNullList.<ItemStack>getInstanceFilledWith(1, ItemStack.EMPTY_ITEM_STACK);
     private IRecipe field_193057_b;
 
     /**

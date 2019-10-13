@@ -25,7 +25,7 @@ public class ShapelessRecipes implements IRecipe
         this.recipeItems = p_i47500_3_;
     }
 
-    public String func_193358_e()
+    public String getRecipeResultName()
     {
         return this.field_194138_c;
     }
@@ -42,7 +42,7 @@ public class ShapelessRecipes implements IRecipe
 
     public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
     {
-        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>func_191197_a(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
+        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
 
         for (int i = 0; i < nonnulllist.size(); ++i)
         {
@@ -125,7 +125,7 @@ public class ShapelessRecipes implements IRecipe
 
     private static NonNullList<Ingredient> func_193364_a(JsonArray p_193364_0_)
     {
-        NonNullList<Ingredient> nonnulllist = NonNullList.<Ingredient>func_191196_a();
+        NonNullList<Ingredient> nonnulllist = NonNullList.<Ingredient>getInstance();
 
         for (int i = 0; i < p_193364_0_.size(); ++i)
         {
@@ -140,7 +140,7 @@ public class ShapelessRecipes implements IRecipe
         return nonnulllist;
     }
 
-    public boolean func_194133_a(int p_194133_1_, int p_194133_2_)
+    public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
     {
         return p_194133_1_ * p_194133_2_ >= this.recipeItems.size();
     }

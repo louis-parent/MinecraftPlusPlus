@@ -26,7 +26,7 @@ import net.minecraft.world.storage.loot.LootTable;
 
 public abstract class EntityMinecartContainer extends EntityMinecart implements ILockableContainer, ILootContainer
 {
-    private NonNullList<ItemStack> minecartContainerItems = NonNullList.<ItemStack>func_191197_a(36, ItemStack.EMPTY_ITEM_STACK);
+    private NonNullList<ItemStack> minecartContainerItems = NonNullList.<ItemStack>getInstanceFilledWith(36, ItemStack.EMPTY_ITEM_STACK);
 
     /**
      * When set to true, the minecart will drop all items when setDead() is called. When false (such as when travelling
@@ -230,7 +230,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
     protected void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        this.minecartContainerItems = NonNullList.<ItemStack>func_191197_a(this.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
+        this.minecartContainerItems = NonNullList.<ItemStack>getInstanceFilledWith(this.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
 
         if (compound.hasKey("LootTable", 8))
         {

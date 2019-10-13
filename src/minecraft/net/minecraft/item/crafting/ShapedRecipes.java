@@ -42,7 +42,7 @@ public class ShapedRecipes implements IRecipe
         this.recipeOutput = p_i47501_5_;
     }
 
-    public String func_193358_e()
+    public String getRecipeResultName()
     {
         return this.field_194137_e;
     }
@@ -54,7 +54,7 @@ public class ShapedRecipes implements IRecipe
 
     public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
     {
-        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>func_191197_a(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
+        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
 
         for (int i = 0; i < nonnulllist.size(); ++i)
         {
@@ -74,7 +74,7 @@ public class ShapedRecipes implements IRecipe
         return this.recipeItems;
     }
 
-    public boolean func_194133_a(int p_194133_1_, int p_194133_2_)
+    public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
     {
         return p_194133_1_ >= this.recipeWidth && p_194133_2_ >= this.recipeHeight;
     }
@@ -170,7 +170,7 @@ public class ShapedRecipes implements IRecipe
 
     private static NonNullList<Ingredient> func_192402_a(String[] p_192402_0_, Map<String, Ingredient> p_192402_1_, int p_192402_2_, int p_192402_3_)
     {
-        NonNullList<Ingredient> nonnulllist = NonNullList.<Ingredient>func_191197_a(p_192402_2_ * p_192402_3_, Ingredient.field_193370_a);
+        NonNullList<Ingredient> nonnulllist = NonNullList.<Ingredient>getInstanceFilledWith(p_192402_2_ * p_192402_3_, Ingredient.field_193370_a);
         Set<String> set = Sets.newHashSet(p_192402_1_.keySet());
         set.remove(" ");
 

@@ -30,7 +30,7 @@ import net.minecraft.world.World;
 
 public class TileEntityHopper extends TileEntityLockableLoot implements IHopper, ITickable
 {
-    private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>func_191197_a(5, ItemStack.EMPTY_ITEM_STACK);
+    private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>getInstanceFilledWith(5, ItemStack.EMPTY_ITEM_STACK);
     private int transferCooldown = -1;
     private long field_190578_g;
 
@@ -42,7 +42,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        this.inventory = NonNullList.<ItemStack>func_191197_a(this.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
+        this.inventory = NonNullList.<ItemStack>getInstanceFilledWith(this.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
 
         if (!this.checkLootAndRead(compound))
         {

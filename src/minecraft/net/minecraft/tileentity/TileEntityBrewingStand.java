@@ -31,7 +31,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 
     /** an array of the output slot indices */
     private static final int[] OUTPUT_SLOTS = new int[] {0, 1, 2, 4};
-    private NonNullList<ItemStack> brewingItemStacks = NonNullList.<ItemStack>func_191197_a(5, ItemStack.EMPTY_ITEM_STACK);
+    private NonNullList<ItemStack> brewingItemStacks = NonNullList.<ItemStack>getInstanceFilledWith(5, ItemStack.EMPTY_ITEM_STACK);
     private int brewTime;
 
     /**
@@ -244,7 +244,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        this.brewingItemStacks = NonNullList.<ItemStack>func_191197_a(this.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
+        this.brewingItemStacks = NonNullList.<ItemStack>getInstanceFilledWith(this.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
         ItemStackHelper.func_191283_b(compound, this.brewingItemStacks);
         this.brewTime = compound.getShort("BrewTime");
 

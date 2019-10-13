@@ -10,25 +10,25 @@ import org.apache.commons.lang3.Validate;
 
 public class NonNullList<E> extends AbstractList<E>
 {
-    private final List<E> field_191198_a;
-    private final E field_191199_b;
+    private final List<E> list;
+    private final E element;
 
-    public static <E> NonNullList<E> func_191196_a()
+    public static <E> NonNullList<E> getInstance()
     {
         return new NonNullList<E>();
     }
 
-    public static <E> NonNullList<E> func_191197_a(int p_191197_0_, E p_191197_1_)
+    public static <E> NonNullList<E> getInstanceFilledWith(int nbOf, E element)
     {
-        Validate.notNull(p_191197_1_);
-        Object[] aobject = new Object[p_191197_0_];
-        Arrays.fill(aobject, p_191197_1_);
-        return new NonNullList<E>(Arrays.asList((E[])aobject), p_191197_1_);
+        Validate.notNull(element);
+        Object[] aobject = new Object[nbOf];
+        Arrays.fill(aobject, element);
+        return new NonNullList<E>(Arrays.asList((E[])aobject), element);
     }
 
-    public static <E> NonNullList<E> func_193580_a(E p_193580_0_, E... p_193580_1_)
+    public static <E> NonNullList<E> getInstanceWith(E firstElement, E... otherElements)
     {
-        return new NonNullList<E>(Arrays.asList(p_193580_1_), p_193580_0_);
+        return new NonNullList<E>(Arrays.asList(otherElements), firstElement);
     }
 
     protected NonNullList()
@@ -36,43 +36,43 @@ public class NonNullList<E> extends AbstractList<E>
         this(new ArrayList(), null);
     }
 
-    protected NonNullList(List<E> p_i47327_1_, @Nullable E p_i47327_2_)
+    protected NonNullList(List<E> list, @Nullable E elements)
     {
-        this.field_191198_a = p_i47327_1_;
-        this.field_191199_b = p_i47327_2_;
+        this.list = list;
+        this.element = elements;
     }
 
     @Nonnull
-    public E get(int p_get_1_)
+    public E get(int ind)
     {
-        return this.field_191198_a.get(p_get_1_);
+        return this.list.get(ind);
     }
 
-    public E set(int p_set_1_, E p_set_2_)
+    public E set(int ind, E element)
     {
-        Validate.notNull(p_set_2_);
-        return this.field_191198_a.set(p_set_1_, p_set_2_);
+        Validate.notNull(element);
+        return this.list.set(ind, element);
     }
 
-    public void add(int p_add_1_, E p_add_2_)
+    public void add(int ind, E element)
     {
-        Validate.notNull(p_add_2_);
-        this.field_191198_a.add(p_add_1_, p_add_2_);
+        Validate.notNull(element);
+        this.list.add(ind, element);
     }
 
-    public E remove(int p_remove_1_)
+    public E remove(int ind)
     {
-        return this.field_191198_a.remove(p_remove_1_);
+        return this.list.remove(ind);
     }
 
     public int size()
     {
-        return this.field_191198_a.size();
+        return this.list.size();
     }
 
     public void clear()
     {
-        if (this.field_191199_b == null)
+        if (this.element == null)
         {
             super.clear();
         }
@@ -80,7 +80,7 @@ public class NonNullList<E> extends AbstractList<E>
         {
             for (int i = 0; i < this.size(); ++i)
             {
-                this.set(i, this.field_191199_b);
+                this.set(i, this.element);
             }
         }
     }

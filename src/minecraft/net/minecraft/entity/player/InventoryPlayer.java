@@ -27,9 +27,9 @@ import net.minecraft.world.World;
 
 public class InventoryPlayer implements IInventory
 {
-    public final NonNullList<ItemStack> mainInventory = NonNullList.<ItemStack>func_191197_a(36, ItemStack.EMPTY_ITEM_STACK);
-    public final NonNullList<ItemStack> armorInventory = NonNullList.<ItemStack>func_191197_a(4, ItemStack.EMPTY_ITEM_STACK);
-    public final NonNullList<ItemStack> offHandInventory = NonNullList.<ItemStack>func_191197_a(1, ItemStack.EMPTY_ITEM_STACK);
+    public final NonNullList<ItemStack> mainInventory = NonNullList.<ItemStack>getInstanceFilledWith(36, ItemStack.EMPTY_ITEM_STACK);
+    public final NonNullList<ItemStack> armorInventory = NonNullList.<ItemStack>getInstanceFilledWith(4, ItemStack.EMPTY_ITEM_STACK);
+    public final NonNullList<ItemStack> offHandInventory = NonNullList.<ItemStack>getInstanceFilledWith(1, ItemStack.EMPTY_ITEM_STACK);
     private final List<NonNullList<ItemStack>> allInventories;
 
     /** The index of the currently held item (0-8). */

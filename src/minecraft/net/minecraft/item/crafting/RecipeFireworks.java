@@ -246,7 +246,7 @@ public class RecipeFireworks implements IRecipe
 
     public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
     {
-        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>func_191197_a(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
+        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
 
         for (int i = 0; i < nonnulllist.size(); ++i)
         {
@@ -261,13 +261,13 @@ public class RecipeFireworks implements IRecipe
         return nonnulllist;
     }
 
-    public boolean func_192399_d()
+    public boolean hideInCraftingTabs()
     {
         return true;
     }
 
-    public boolean func_194133_a(int p_194133_1_, int p_194133_2_)
+    public boolean checkIfCraftingMatrixSizeIsCorrect(int craftingMatrixWidth, int craftingMatrixHeight)
     {
-        return p_194133_1_ * p_194133_2_ >= 1;
+        return craftingMatrixWidth * craftingMatrixHeight >= 1;
     }
 }

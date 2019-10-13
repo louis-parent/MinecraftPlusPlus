@@ -30,12 +30,12 @@ public class RecipeList
         }
     }
 
-    public void func_194210_a(RecipeItemHelper p_194210_1_, int p_194210_2_, int p_194210_3_, RecipeBook p_194210_4_)
+    public void func_194210_a(RecipeItemHelper p_194210_1_, int craftingMatrixWidth, int craftingMatrixHeight, RecipeBook p_194210_4_)
     {
         for (int i = 0; i < this.field_192713_b.size(); ++i)
         {
             IRecipe irecipe = this.field_192713_b.get(i);
-            boolean flag = irecipe.func_194133_a(p_194210_2_, p_194210_3_) && p_194210_4_.func_193830_f(irecipe);
+            boolean flag = irecipe.checkIfCraftingMatrixSizeIsCorrect(craftingMatrixWidth, craftingMatrixHeight) && p_194210_4_.func_193830_f(irecipe);
             this.field_194216_c.set(i, flag);
             this.field_194215_b.set(i, flag && p_194210_1_.func_194116_a(irecipe, (IntList)null));
         }

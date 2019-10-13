@@ -514,7 +514,7 @@ public class Bootstrap
             Biome.registerBiomes();
             registerDispenserBehaviors();
 
-            if (!CraftingManager.createCraftingRecipes())
+            if (!CraftingManager.buildAllRecipes())
             {
                 field_194219_b = true;
                 LOGGER.error("Errors with built-in recipes!");

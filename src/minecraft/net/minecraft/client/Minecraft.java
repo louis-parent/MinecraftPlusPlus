@@ -646,7 +646,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         {
             return Collections.singleton(Item.REGISTRY.getNameForObject(p_193985_0_.getItem()));
         });
-        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>func_191196_a();
+        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstance();
 
         for (Item item : Item.REGISTRY)
         {

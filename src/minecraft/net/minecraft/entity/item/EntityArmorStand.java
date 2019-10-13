@@ -79,8 +79,8 @@ public class EntityArmorStand extends EntityLivingBase
     public EntityArmorStand(World worldIn)
     {
         super(worldIn);
-        this.handItems = NonNullList.<ItemStack>func_191197_a(2, ItemStack.EMPTY_ITEM_STACK);
-        this.armorItems = NonNullList.<ItemStack>func_191197_a(4, ItemStack.EMPTY_ITEM_STACK);
+        this.handItems = NonNullList.<ItemStack>getInstanceFilledWith(2, ItemStack.EMPTY_ITEM_STACK);
+        this.armorItems = NonNullList.<ItemStack>getInstanceFilledWith(4, ItemStack.EMPTY_ITEM_STACK);
         this.headRotation = DEFAULT_HEAD_ROTATION;
         this.bodyRotation = DEFAULT_BODY_ROTATION;
         this.leftArmRotation = DEFAULT_LEFTARM_ROTATION;

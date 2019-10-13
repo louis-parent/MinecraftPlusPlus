@@ -17,23 +17,23 @@ public interface IRecipe
      */
     ItemStack getCraftingResult(InventoryCrafting inv);
 
-    boolean func_194133_a(int p_194133_1_, int p_194133_2_);
+    boolean checkIfCraftingMatrixSizeIsCorrect(int craftingMatrixWidth, int craftingMatrixHeight);
 
     ItemStack getRecipeOutput();
 
     NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv);
 
-default NonNullList<Ingredient> func_192400_c()
+    default NonNullList<Ingredient> func_192400_c()
     {
-        return NonNullList.<Ingredient>func_191196_a();
+        return NonNullList.<Ingredient>getInstance();
     }
 
-default boolean func_192399_d()
+    default boolean hideInCraftingTabs()
     {
         return false;
     }
 
-default String func_193358_e()
+    default String getRecipeResultName()
     {
         return "";
     }

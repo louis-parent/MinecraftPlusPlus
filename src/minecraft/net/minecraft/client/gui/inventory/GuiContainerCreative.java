@@ -933,7 +933,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 
     public static class ContainerCreative extends Container
     {
-        public NonNullList<ItemStack> itemList = NonNullList.<ItemStack>func_191196_a();
+        public NonNullList<ItemStack> itemList = NonNullList.<ItemStack>getInstance();
 
         public ContainerCreative(EntityPlayer player)
         {

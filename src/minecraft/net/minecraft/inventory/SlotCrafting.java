@@ -78,7 +78,7 @@ public class SlotCrafting extends Slot
         InventoryCraftResult inventorycraftresult = (InventoryCraftResult)this.inventory;
         IRecipe irecipe = inventorycraftresult.func_193055_i();
 
-        if (irecipe != null && !irecipe.func_192399_d())
+        if (irecipe != null && !irecipe.hideInCraftingTabs())
         {
             this.thePlayer.func_192021_a(Lists.newArrayList(irecipe));
             inventorycraftresult.func_193056_a((IRecipe)null);

@@ -52,14 +52,14 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
     private int field_191903_n;
     private int field_191904_o;
     private int field_191905_p;
-    private static final Logger field_193959_i = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
     private final GhostRecipe field_191915_z = new GhostRecipe();
     private final List<GuiButtonRecipeTab> field_193018_j = Lists.newArrayList(new GuiButtonRecipeTab(0, CreativeTabs.SEARCH), new GuiButtonRecipeTab(0, CreativeTabs.TOOLS), new GuiButtonRecipeTab(0, CreativeTabs.BUILDING_BLOCKS), new GuiButtonRecipeTab(0, CreativeTabs.MISC), new GuiButtonRecipeTab(0, CreativeTabs.REDSTONE));
     private GuiButtonRecipeTab field_191913_x;
     private GuiButtonToggle field_193960_m;
     private Container field_191908_s;
-    private InventoryCrafting field_193961_o;
-    private Minecraft field_191888_F;
+    private InventoryCrafting craftingMatrix;
+    private Minecraft minecraft;
     private GuiTextField field_193962_q;
     private String field_193963_r = "";
     private RecipeBook field_193964_s;
@@ -69,11 +69,11 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
     public void func_191856_a(int p_191856_1_, int p_191856_2_, Minecraft p_191856_3_, boolean p_191856_4_, Container p_191856_5_, InventoryCrafting p_191856_6_)
     {
-        this.field_191888_F = p_191856_3_;
+        this.minecraft = p_191856_3_;
         this.field_191904_o = p_191856_1_;
         this.field_191905_p = p_191856_2_;
         this.field_191908_s = p_191856_5_;
-        this.field_193961_o = p_191856_6_;
+        this.craftingMatrix = p_191856_6_;
         this.field_193964_s = p_191856_3_.player.func_192035_E();
         this.field_193966_v = p_191856_3_.player.inventory.func_194015_p();
         this.field_191913_x = this.field_193018_j.get(0);
@@ -93,14 +93,14 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
         int i = (this.field_191904_o - 147) / 2 - this.field_191903_n;
         int j = (this.field_191905_p - 166) / 2;
         this.field_193965_u.func_194119_a();
-        this.field_191888_F.player.inventory.func_194016_a(this.field_193965_u, false);
+        this.minecraft.player.inventory.func_194016_a(this.field_193965_u, false);
         p_193014_2_.func_194018_a(this.field_193965_u);
-        this.field_193962_q = new GuiTextField(0, this.field_191888_F.fontRendererObj, i + 25, j + 14, 80, this.field_191888_F.fontRendererObj.FONT_HEIGHT + 5);
+        this.field_193962_q = new GuiTextField(0, this.minecraft.fontRendererObj, i + 25, j + 14, 80, this.minecraft.fontRendererObj.FONT_HEIGHT + 5);
         this.field_193962_q.setMaxStringLength(50);
         this.field_193962_q.setEnableBackgroundDrawing(false);
         this.field_193962_q.setVisible(true);
         this.field_193962_q.setTextColor(16777215);
-        this.field_193022_s.func_194194_a(this.field_191888_F, i, j);
+        this.field_193022_s.func_194194_a(this.minecraft, i, j);
         this.field_193022_s.func_193732_a(this);
         this.field_193960_m = new GuiButtonToggle(0, i + 110, j + 12, 26, 16, this.field_193964_s.func_192815_c());
         this.field_193960_m.func_191751_a(152, 41, 28, 18, field_191894_a);
@@ -169,7 +169,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
         List<RecipeList> list = (List)RecipeBookClient.field_194086_e.get(this.field_191913_x.func_191764_e());
         list.forEach((p_193944_1_) ->
         {
-            p_193944_1_.func_194210_a(this.field_193965_u, this.field_193961_o.getWidth(), this.field_193961_o.getHeight(), this.field_193964_s);
+            p_193944_1_.func_194210_a(this.field_193965_u, this.craftingMatrix.getWidth(), this.craftingMatrix.getHeight(), this.field_193964_s);
         });
         List<RecipeList> list1 = Lists.newArrayList(list);
         list1.removeIf((p_193952_0_) ->
@@ -184,7 +184,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
         if (!s.isEmpty())
         {
-            ObjectSet<RecipeList> objectset = new ObjectLinkedOpenHashSet<RecipeList>(this.field_191888_F.func_193987_a(SearchTreeManager.field_194012_b).func_194038_a(s.toLowerCase(Locale.ROOT)));
+            ObjectSet<RecipeList> objectset = new ObjectLinkedOpenHashSet<RecipeList>(this.minecraft.func_193987_a(SearchTreeManager.field_194012_b).func_194038_a(s.toLowerCase(Locale.ROOT)));
             list1.removeIf((p_193947_1_) ->
             {
                 return !objectset.contains(p_193947_1_);
@@ -221,7 +221,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
             else if (guibuttonrecipetab.func_193919_e())
             {
                 guibuttonrecipetab.func_191752_c(i, j + 27 * l++);
-                guibuttonrecipetab.func_193918_a(this.field_191888_F);
+                guibuttonrecipetab.func_193918_a(this.minecraft);
             }
         }
     }
@@ -230,10 +230,10 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
     {
         if (this.func_191878_b())
         {
-            if (this.field_193966_v != this.field_191888_F.player.inventory.func_194015_p())
+            if (this.field_193966_v != this.minecraft.player.inventory.func_194015_p())
             {
                 this.func_193942_g();
-                this.field_193966_v = this.field_191888_F.player.inventory.func_194015_p();
+                this.field_193966_v = this.minecraft.player.inventory.func_194015_p();
             }
         }
     }
@@ -241,8 +241,8 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
     private void func_193942_g()
     {
         this.field_193965_u.func_194119_a();
-        this.field_191888_F.player.inventory.func_194016_a(this.field_193965_u, false);
-        this.field_193961_o.func_194018_a(this.field_193965_u);
+        this.minecraft.player.inventory.func_194016_a(this.field_193965_u, false);
+        this.craftingMatrix.func_194018_a(this.field_193965_u);
         this.func_193003_g(false);
     }
 
@@ -254,7 +254,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
             GlStateManager.disableLighting();
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.0F, 0.0F, 100.0F);
-            this.field_191888_F.getTextureManager().bindTexture(field_191894_a);
+            this.minecraft.getTextureManager().bindTexture(field_191894_a);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             int i = (this.field_191904_o - 147) / 2 - this.field_191903_n;
             int j = (this.field_191905_p - 166) / 2;
@@ -264,10 +264,10 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
             for (GuiButtonRecipeTab guibuttonrecipetab : this.field_193018_j)
             {
-                guibuttonrecipetab.func_191745_a(this.field_191888_F, p_191861_1_, p_191861_2_, p_191861_3_);
+                guibuttonrecipetab.func_191745_a(this.minecraft, p_191861_1_, p_191861_2_, p_191861_3_);
             }
 
-            this.field_193960_m.func_191745_a(this.field_191888_F, p_191861_1_, p_191861_2_, p_191861_3_);
+            this.field_193960_m.func_191745_a(this.minecraft, p_191861_1_, p_191861_2_, p_191861_3_);
             this.field_193022_s.func_194191_a(i, j, p_191861_1_, p_191861_2_, p_191861_3_);
             GlStateManager.popMatrix();
         }
@@ -283,9 +283,9 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
             {
                 String s1 = I18n.format(this.field_193960_m.func_191754_c() ? "gui.recipebook.toggleRecipes.craftable" : "gui.recipebook.toggleRecipes.all");
 
-                if (this.field_191888_F.currentScreen != null)
+                if (this.minecraft.currentScreen != null)
                 {
-                    this.field_191888_F.currentScreen.drawCreativeTabHoveringText(s1, p_191876_3_, p_191876_4_);
+                    this.minecraft.currentScreen.drawCreativeTabHoveringText(s1, p_191876_3_, p_191876_4_);
                 }
             }
 
@@ -309,20 +309,20 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
             }
         }
 
-        if (itemstack != null && this.field_191888_F.currentScreen != null)
+        if (itemstack != null && this.minecraft.currentScreen != null)
         {
-            this.field_191888_F.currentScreen.drawHoveringText(this.field_191888_F.currentScreen.func_191927_a(itemstack), p_193015_3_, p_193015_4_);
+            this.minecraft.currentScreen.drawHoveringText(this.minecraft.currentScreen.func_191927_a(itemstack), p_193015_3_, p_193015_4_);
         }
     }
 
     public void func_191864_a(int p_191864_1_, int p_191864_2_, boolean p_191864_3_, float p_191864_4_)
     {
-        this.field_191915_z.func_194188_a(this.field_191888_F, p_191864_1_, p_191864_2_, p_191864_3_, p_191864_4_);
+        this.field_191915_z.func_194188_a(this.minecraft, p_191864_1_, p_191864_2_, p_191864_3_, p_191864_4_);
     }
 
     public boolean func_191862_a(int p_191862_1_, int p_191862_2_, int p_191862_3_)
     {
-        if (this.func_191878_b() && !this.field_191888_F.player.isSpectator())
+        if (this.func_191878_b() && !this.minecraft.player.isSpectator())
         {
             if (this.field_193022_s.func_194196_a(p_191862_1_, p_191862_2_, p_191862_3_, (this.field_191904_o - 147) / 2 - this.field_191903_n, (this.field_191905_p - 166) / 2, 147, 166))
             {
@@ -349,12 +349,12 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
             {
                 return true;
             }
-            else if (this.field_193960_m.mousePressed(this.field_191888_F, p_191862_1_, p_191862_2_))
+            else if (this.field_193960_m.mousePressed(this.minecraft, p_191862_1_, p_191862_2_))
             {
                 boolean flag = !this.field_193964_s.func_192815_c();
                 this.field_193964_s.func_192810_b(flag);
                 this.field_193960_m.func_191753_b(flag);
-                this.field_193960_m.playPressSound(this.field_191888_F.getSoundHandler());
+                this.field_193960_m.playPressSound(this.minecraft.getSoundHandler());
                 this.func_193956_j();
                 this.func_193003_g(false);
                 return true;
@@ -363,11 +363,11 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
             {
                 for (GuiButtonRecipeTab guibuttonrecipetab : this.field_193018_j)
                 {
-                    if (guibuttonrecipetab.mousePressed(this.field_191888_F, p_191862_1_, p_191862_2_))
+                    if (guibuttonrecipetab.mousePressed(this.minecraft, p_191862_1_, p_191862_2_))
                     {
                         if (this.field_191913_x != guibuttonrecipetab)
                         {
-                            guibuttonrecipetab.playPressSound(this.field_191888_F.getSoundHandler());
+                            guibuttonrecipetab.playPressSound(this.minecraft.getSoundHandler());
                             this.field_191913_x.func_191753_b(false);
                             this.field_191913_x = guibuttonrecipetab;
                             this.field_191913_x.func_191753_b(true);
@@ -397,13 +397,13 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
         {
             boolean flag = p_193955_1_ < p_193955_3_ || p_193955_2_ < p_193955_4_ || p_193955_1_ >= p_193955_3_ + p_193955_5_ || p_193955_2_ >= p_193955_4_ + p_193955_6_;
             boolean flag1 = p_193955_3_ - 147 < p_193955_1_ && p_193955_1_ < p_193955_3_ && p_193955_4_ < p_193955_2_ && p_193955_2_ < p_193955_4_ + p_193955_6_;
-            return flag && !flag1 && !this.field_191913_x.mousePressed(this.field_191888_F, p_193955_1_, p_193955_2_);
+            return flag && !flag1 && !this.field_191913_x.mousePressed(this.minecraft, p_193955_1_, p_193955_2_);
         }
     }
 
     public boolean func_191859_a(char p_191859_1_, int p_191859_2_)
     {
-        if (this.func_191878_b() && !this.field_191888_F.player.isSpectator())
+        if (this.func_191878_b() && !this.minecraft.player.isSpectator())
         {
             if (p_191859_2_ == 1 && !this.func_191880_f())
             {
@@ -412,7 +412,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
             }
             else
             {
-                if (GameSettings.isKeyDown(this.field_191888_F.gameSettings.keyBindChat) && !this.field_193962_q.isFocused())
+                if (GameSettings.isKeyDown(this.minecraft.gameSettings.keyBindChat) && !this.field_193962_q.isFocused())
                 {
                     this.field_193962_q.setFocused(true);
                 }
@@ -443,7 +443,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
     {
         if ("excitedze".equals(p_193716_1_))
         {
-            LanguageManager languagemanager = this.field_191888_F.getLanguageManager();
+            LanguageManager languagemanager = this.minecraft.getLanguageManager();
             Language language = languagemanager.func_191960_a("en_pt");
 
             if (languagemanager.getCurrentLanguage().compareTo(language) == 0)
@@ -452,11 +452,11 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
             }
 
             languagemanager.setCurrentLanguage(language);
-            this.field_191888_F.gameSettings.language = language.getLanguageCode();
-            this.field_191888_F.refreshResources();
-            this.field_191888_F.fontRendererObj.setUnicodeFlag(this.field_191888_F.getLanguageManager().isCurrentLocaleUnicode() || this.field_191888_F.gameSettings.forceUnicodeFont);
-            this.field_191888_F.fontRendererObj.setBidiFlag(languagemanager.isCurrentLanguageBidirectional());
-            this.field_191888_F.gameSettings.saveOptions();
+            this.minecraft.gameSettings.language = language.getLanguageCode();
+            this.minecraft.refreshResources();
+            this.minecraft.fontRendererObj.setUnicodeFlag(this.minecraft.getLanguageManager().isCurrentLocaleUnicode() || this.minecraft.gameSettings.forceUnicodeFont);
+            this.minecraft.fontRendererObj.setBidiFlag(languagemanager.isCurrentLanguageBidirectional());
+            this.minecraft.gameSettings.saveOptions();
         }
     }
 
@@ -479,7 +479,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
     {
         for (IRecipe irecipe : p_193001_1_)
         {
-            this.field_191888_F.player.func_193103_a(irecipe);
+            this.minecraft.player.func_193103_a(irecipe);
         }
     }
 
@@ -504,7 +504,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
                 return;
             }
 
-            if (!this.func_193941_i() && !this.field_191888_F.player.isCreative())
+            if (!this.func_193941_i() && !this.minecraft.player.isCreative())
             {
                 return;
             }
@@ -520,11 +520,11 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
                 if (!list2.isEmpty())
                 {
-                    this.field_191888_F.playerController.func_192831_a(this.field_191908_s.windowId, list2, Lists.newArrayList(), this.field_191888_F.player);
+                    this.minecraft.playerController.func_192831_a(this.field_191908_s.windowId, list2, Lists.newArrayList(), this.minecraft.player);
 
                     if (this.field_193964_s.func_192815_c())
                     {
-                        this.field_191888_F.player.inventory.markDirty();
+                        this.minecraft.player.inventory.markDirty();
                     }
                 }
             }
@@ -538,16 +538,16 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
     private void func_193950_a(IRecipe p_193950_1_, List<Slot> p_193950_2_, int p_193950_3_, InventoryCraftResult p_193950_4_)
     {
-        boolean flag = p_193950_1_.matches(this.field_193961_o, this.field_191888_F.world);
+        boolean flag = p_193950_1_.matches(this.craftingMatrix, this.minecraft.world);
         int i = this.field_193965_u.func_194114_b(p_193950_1_, (IntList)null);
 
         if (flag)
         {
             boolean flag1 = true;
 
-            for (int j = 0; j < this.field_193961_o.getSizeInventory(); ++j)
+            for (int j = 0; j < this.craftingMatrix.getSizeInventory(); ++j)
             {
-                ItemStack itemstack = this.field_193961_o.getStackInSlot(j);
+                ItemStack itemstack = this.craftingMatrix.getStackInSlot(j);
 
                 if (!itemstack.isNotValid() && i > itemstack.getStackSize())
                 {
@@ -585,8 +585,8 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
                 List<CPacketRecipePlacement.ItemMove> list2 = this.func_193954_a(p_193950_4_);
                 List<CPacketRecipePlacement.ItemMove> list3 = Lists.<CPacketRecipePlacement.ItemMove>newArrayList();
                 this.func_193013_a(p_193950_1_, p_193950_2_, j1, intlist, list3);
-                this.field_191888_F.playerController.func_192831_a(p_193950_3_, list2, list3, this.field_191888_F.player);
-                this.field_191888_F.player.inventory.markDirty();
+                this.minecraft.playerController.func_192831_a(p_193950_3_, list2, list3, this.minecraft.player);
+                this.minecraft.player.inventory.markDirty();
             }
         }
     }
@@ -594,12 +594,12 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
     private List<CPacketRecipePlacement.ItemMove> func_193954_a(InventoryCraftResult p_193954_1_)
     {
         this.field_191915_z.func_192682_a();
-        InventoryPlayer inventoryplayer = this.field_191888_F.player.inventory;
+        InventoryPlayer inventoryplayer = this.minecraft.player.inventory;
         List<CPacketRecipePlacement.ItemMove> list2 = Lists.<CPacketRecipePlacement.ItemMove>newArrayList();
 
-        for (int i = 0; i < this.field_193961_o.getSizeInventory(); ++i)
+        for (int i = 0; i < this.craftingMatrix.getSizeInventory(); ++i)
         {
-            ItemStack itemstack = this.field_193961_o.getStackInSlot(i);
+            ItemStack itemstack = this.craftingMatrix.getStackInSlot(i);
 
             if (!itemstack.isNotValid())
             {
@@ -621,17 +621,17 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
                     }
                     else
                     {
-                        field_193959_i.error("Can't find any space for item in inventory");
+                        logger.error("Can't find any space for item in inventory");
                     }
 
-                    this.field_193961_o.decrStackSize(i, 1);
+                    this.craftingMatrix.decrStackSize(i, 1);
                     int k = i + 1;
                     list2.add(new CPacketRecipePlacement.ItemMove(itemstack1.copy(), k, j));
                 }
             }
         }
 
-        this.field_193961_o.clear();
+        this.craftingMatrix.clear();
         p_193954_1_.clear();
         return list2;
     }
@@ -648,9 +648,9 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
         {
             i = 64;
 
-            for (int j = 0; j < this.field_193961_o.getSizeInventory(); ++j)
+            for (int j = 0; j < this.craftingMatrix.getSizeInventory(); ++j)
             {
-                ItemStack itemstack = this.field_193961_o.getStackInSlot(j);
+                ItemStack itemstack = this.craftingMatrix.getStackInSlot(j);
 
                 if (!itemstack.isNotValid() && i > itemstack.getStackSize())
                 {
@@ -669,8 +669,8 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
     private void func_193013_a(IRecipe p_193013_1_, List<Slot> p_193013_2_, int p_193013_3_, IntList p_193013_4_, List<CPacketRecipePlacement.ItemMove> p_193013_5_)
     {
-        int i = this.field_193961_o.getWidth();
-        int j = this.field_193961_o.getHeight();
+        int i = this.craftingMatrix.getWidth();
+        int j = this.craftingMatrix.getHeight();
 
         if (p_193013_1_ instanceof ShapedRecipes)
         {
@@ -682,13 +682,13 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
         int j1 = 1;
         Iterator<Integer> iterator = p_193013_4_.iterator();
 
-        for (int k = 0; k < this.field_193961_o.getWidth() && j != k; ++k)
+        for (int k = 0; k < this.craftingMatrix.getWidth() && j != k; ++k)
         {
-            for (int l = 0; l < this.field_193961_o.getHeight(); ++l)
+            for (int l = 0; l < this.craftingMatrix.getHeight(); ++l)
             {
                 if (i == l || !iterator.hasNext())
                 {
-                    j1 += this.field_193961_o.getWidth() - l;
+                    j1 += this.craftingMatrix.getWidth() - l;
                     break;
                 }
 
@@ -725,7 +725,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
     @Nullable
     private CPacketRecipePlacement.ItemMove func_193946_a(int p_193946_1_, Slot p_193946_2_, ItemStack p_193946_3_)
     {
-        InventoryPlayer inventoryplayer = this.field_191888_F.player.inventory;
+        InventoryPlayer inventoryplayer = this.minecraft.player.inventory;
         int i = inventoryplayer.func_194014_c(p_193946_3_);
 
         if (i == -1)
@@ -738,7 +738,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
             if (itemstack.isNotValid())
             {
-                field_193959_i.error("Matched: " + p_193946_3_.getUnlocalizedName() + " with empty item.");
+                logger.error("Matched: " + p_193946_3_.getUnlocalizedName() + " with empty item.");
                 return null;
             }
             else
@@ -770,11 +770,11 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
     private boolean func_193941_i()
     {
-        InventoryPlayer inventoryplayer = this.field_191888_F.player.inventory;
+        InventoryPlayer inventoryplayer = this.minecraft.player.inventory;
 
-        for (int i = 0; i < this.field_193961_o.getSizeInventory(); ++i)
+        for (int i = 0; i < this.craftingMatrix.getSizeInventory(); ++i)
         {
-            ItemStack itemstack = this.field_193961_o.getStackInSlot(i);
+            ItemStack itemstack = this.craftingMatrix.getStackInSlot(i);
 
             if (!itemstack.isNotValid())
             {
@@ -800,8 +800,8 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
         ItemStack itemstack = p_193951_1_.getRecipeOutput();
         this.field_191915_z.func_192685_a(p_193951_1_);
         this.field_191915_z.func_194187_a(Ingredient.func_193369_a(itemstack), (p_193951_2_.get(0)).xDisplayPosition, (p_193951_2_.get(0)).yDisplayPosition);
-        int i = this.field_193961_o.getWidth();
-        int j = this.field_193961_o.getHeight();
+        int i = this.craftingMatrix.getWidth();
+        int j = this.craftingMatrix.getHeight();
         int k = p_193951_1_ instanceof ShapedRecipes ? ((ShapedRecipes)p_193951_1_).func_192403_f() : i;
         int l = 1;
         Iterator<Ingredient> iterator = p_193951_1_.func_192400_c().iterator();
@@ -835,9 +835,9 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
     private void func_193956_j()
     {
-        if (this.field_191888_F.getConnection() != null)
+        if (this.minecraft.getConnection() != null)
         {
-            this.field_191888_F.getConnection().sendPacket(new CPacketRecipeInfo(this.func_191878_b(), this.field_193964_s.func_192815_c()));
+            this.minecraft.getConnection().sendPacket(new CPacketRecipeInfo(this.func_191878_b(), this.field_193964_s.func_192815_c()));
         }
     }
 }

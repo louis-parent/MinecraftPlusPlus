@@ -55,10 +55,10 @@ public class RecipeBookClient extends RecipeBook
 
         for (IRecipe irecipe : CraftingManager.recipeMap)
         {
-            if (!irecipe.func_192399_d())
+            if (!irecipe.hideInCraftingTabs())
             {
                 CreativeTabs creativetabs = func_194084_a(irecipe.getRecipeOutput());
-                String s = irecipe.func_193358_e();
+                String s = irecipe.getRecipeResultName();
                 RecipeList recipelist1;
 
                 if (s.isEmpty())

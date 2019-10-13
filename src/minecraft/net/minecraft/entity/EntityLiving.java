@@ -82,11 +82,11 @@ public abstract class EntityLiving extends EntityLivingBase
     /** The active target the Task system uses for tracking */
     private EntityLivingBase attackTarget;
     private final EntitySenses senses;
-    private final NonNullList<ItemStack> inventoryHands = NonNullList.<ItemStack>func_191197_a(2, ItemStack.EMPTY_ITEM_STACK);
+    private final NonNullList<ItemStack> inventoryHands = NonNullList.<ItemStack>getInstanceFilledWith(2, ItemStack.EMPTY_ITEM_STACK);
 
     /** Chances for equipment in hands dropping when this entity dies. */
     protected float[] inventoryHandsDropChances = new float[2];
-    private final NonNullList<ItemStack> inventoryArmor = NonNullList.<ItemStack>func_191197_a(4, ItemStack.EMPTY_ITEM_STACK);
+    private final NonNullList<ItemStack> inventoryArmor = NonNullList.<ItemStack>getInstanceFilledWith(4, ItemStack.EMPTY_ITEM_STACK);
 
     /** Chances for armor dropping when this entity dies. */
     protected float[] inventoryArmorDropChances = new float[4];

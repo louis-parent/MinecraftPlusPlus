@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 public abstract class Container
 {
-    public NonNullList<ItemStack> inventoryItemStacks = NonNullList.<ItemStack>func_191196_a();
+    public NonNullList<ItemStack> inventoryItemStacks = NonNullList.<ItemStack>getInstance();
     public List<Slot> inventorySlots = Lists.<Slot>newArrayList();
     public int windowId;
     private short transactionID;
@@ -70,7 +70,7 @@ public abstract class Container
 
     public NonNullList<ItemStack> getInventory()
     {
-        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>func_191196_a();
+        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstance();
 
         for (int i = 0; i < this.inventorySlots.size(); ++i)
         {
@@ -871,7 +871,7 @@ public abstract class Container
             ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
             IRecipe irecipe = CraftingManager.findMatchingRecipe(p_192389_3_, p_192389_1_);
 
-            if (irecipe != null && (irecipe.func_192399_d() || !p_192389_1_.getGameRules().getBoolean("doLimitedCrafting") || entityplayermp.func_192037_E().func_193830_f(irecipe)))
+            if (irecipe != null && (irecipe.hideInCraftingTabs() || !p_192389_1_.getGameRules().getBoolean("doLimitedCrafting") || entityplayermp.func_192037_E().func_193830_f(irecipe)))
             {
                 p_192389_4_.func_193056_a(irecipe);
                 itemstack = irecipe.getCraftingResult(p_192389_3_);

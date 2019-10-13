@@ -88,8 +88,8 @@ public abstract class EntityLivingBase extends Entity
     private AbstractAttributeMap attributeMap;
     private final CombatTracker _combatTracker = new CombatTracker(this);
     private final Map<Potion, PotionEffect> activePotionsMap = Maps.<Potion, PotionEffect>newHashMap();
-    private final NonNullList<ItemStack> handInventory = NonNullList.<ItemStack>func_191197_a(2, ItemStack.EMPTY_ITEM_STACK);
-    private final NonNullList<ItemStack> armorArray = NonNullList.<ItemStack>func_191197_a(4, ItemStack.EMPTY_ITEM_STACK);
+    private final NonNullList<ItemStack> handInventory = NonNullList.<ItemStack>getInstanceFilledWith(2, ItemStack.EMPTY_ITEM_STACK);
+    private final NonNullList<ItemStack> armorArray = NonNullList.<ItemStack>getInstanceFilledWith(4, ItemStack.EMPTY_ITEM_STACK);
 
     /** Whether an arm swing is currently in progress. */
     public boolean isSwingInProgress;

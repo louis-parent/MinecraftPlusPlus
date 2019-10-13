@@ -38,7 +38,7 @@ public class CraftingManager
     private static int numberOfRecipes;
     public static final RegistryNamespaced<ResourceLocation, IRecipe> recipeMap = new RegistryNamespaced<ResourceLocation, IRecipe>();
 
-    public static boolean createCraftingRecipes()
+    public static boolean buildAllRecipes()
     {
         try
         {
@@ -230,7 +230,7 @@ public class CraftingManager
             }
         }
 
-        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>func_191197_a(craftingMatrix.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
+        NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(craftingMatrix.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
 
         for (int i = 0; i < nonnulllist.size(); ++i)
         {

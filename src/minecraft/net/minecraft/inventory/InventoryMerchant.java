@@ -13,7 +13,7 @@ import net.minecraft.village.MerchantRecipeList;
 public class InventoryMerchant implements IInventory
 {
     private final IMerchant theMerchant;
-    private final NonNullList<ItemStack> theInventory = NonNullList.<ItemStack>func_191197_a(3, ItemStack.EMPTY_ITEM_STACK);
+    private final NonNullList<ItemStack> theInventory = NonNullList.<ItemStack>getInstanceFilledWith(3, ItemStack.EMPTY_ITEM_STACK);
     private final EntityPlayer thePlayer;
     private MerchantRecipe currentRecipe;
     private int currentRecipeIndex;

@@ -25,7 +25,7 @@ public class RecipeBookServer extends RecipeBook
 
         for (IRecipe irecipe : p_193835_1_)
         {
-            if (!this.field_194077_a.get(func_194075_d(irecipe)) && !irecipe.func_192399_d())
+            if (!this.field_194077_a.get(func_194075_d(irecipe)) && !irecipe.hideInCraftingTabs())
             {
                 this.func_194073_a(irecipe);
                 this.func_193825_e(irecipe);

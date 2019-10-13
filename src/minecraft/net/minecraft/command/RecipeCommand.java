@@ -81,7 +81,7 @@ public class RecipeCommand extends CommandBase
                             throw new CommandException("commands.recipe.unknownrecipe", new Object[] {args[2]});
                         }
 
-                        if (irecipe.func_192399_d())
+                        if (irecipe.hideInCraftingTabs())
                         {
                             throw new CommandException("commands.recipe.unsupported", new Object[] {args[2]});
                         }

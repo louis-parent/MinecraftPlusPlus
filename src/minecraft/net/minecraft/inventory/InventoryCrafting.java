@@ -23,7 +23,7 @@ public class InventoryCrafting implements IInventory
 
     public InventoryCrafting(Container eventHandlerIn, int width, int height)
     {
-        this.stackList = NonNullList.<ItemStack>func_191197_a(width * height, ItemStack.EMPTY_ITEM_STACK);
+        this.stackList = NonNullList.<ItemStack>getInstanceFilledWith(width * height, ItemStack.EMPTY_ITEM_STACK);
         this.eventHandler = eventHandlerIn;
         this.inventoryWidth = width;
         this.inventoryHeight = height;

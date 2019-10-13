@@ -21,7 +21,7 @@ public class RecipeBook
 
     public void func_194073_a(IRecipe p_194073_1_)
     {
-        if (!p_194073_1_.func_192399_d())
+        if (!p_194073_1_.hideInCraftingTabs())
         {
             this.field_194077_a.set(func_194075_d(p_194073_1_));
         }

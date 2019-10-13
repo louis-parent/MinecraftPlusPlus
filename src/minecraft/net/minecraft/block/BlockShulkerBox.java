@@ -250,7 +250,7 @@ public class BlockShulkerBox extends BlockContainer
 
             if (nbttagcompound1.hasKey("Items", 9))
             {
-                NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>func_191197_a(27, ItemStack.EMPTY_ITEM_STACK);
+                NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(27, ItemStack.EMPTY_ITEM_STACK);
                 ItemStackHelper.func_191283_b(nbttagcompound1, nonnulllist);
                 int i = 0;
                 int j = 0;
