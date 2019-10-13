@@ -53,7 +53,7 @@ public class RecipeBookClient extends RecipeBook
     {
         Table<CreativeTabs, String, RecipeList> table = HashBasedTable.<CreativeTabs, String, RecipeList>create();
 
-        for (IRecipe irecipe : CraftingManager.field_193380_a)
+        for (IRecipe irecipe : CraftingManager.recipeMap)
         {
             if (!irecipe.func_192399_d())
             {

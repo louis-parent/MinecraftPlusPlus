@@ -156,7 +156,7 @@ public class ShapedRecipes implements IRecipe
         return this.recipeHeight;
     }
 
-    public static ShapedRecipes func_193362_a(JsonObject p_193362_0_)
+    public static ShapedRecipes buildRecipe(JsonObject p_193362_0_)
     {
         String s = JsonUtils.getString(p_193362_0_, "group", "");
         Map<String, Ingredient> map = func_192408_a(JsonUtils.getJsonObject(p_193362_0_, "key"));

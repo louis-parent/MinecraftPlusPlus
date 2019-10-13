@@ -74,7 +74,7 @@ public class RecipeCommand extends CommandBase
                     }
                     else
                     {
-                        IRecipe irecipe = CraftingManager.func_193373_a(new ResourceLocation(args[2]));
+                        IRecipe irecipe = CraftingManager.getRecipeByLocation(new ResourceLocation(args[2]));
 
                         if (irecipe == null)
                         {
@@ -112,7 +112,7 @@ public class RecipeCommand extends CommandBase
 
     private List<IRecipe> func_192556_d()
     {
-        return Lists.newArrayList(CraftingManager.field_193380_a);
+        return Lists.newArrayList(CraftingManager.recipeMap);
     }
 
     public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
@@ -127,7 +127,7 @@ public class RecipeCommand extends CommandBase
         }
         else
         {
-            return args.length == 3 ? getListOfStringsMatchingLastWord(args, CraftingManager.field_193380_a.getKeys()) : Collections.emptyList();
+            return args.length == 3 ? getListOfStringsMatchingLastWord(args, CraftingManager.recipeMap.getKeys()) : Collections.emptyList();
         }
     }
 }

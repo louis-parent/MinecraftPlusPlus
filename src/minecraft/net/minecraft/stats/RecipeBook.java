@@ -41,7 +41,7 @@ public class RecipeBook
 
     protected static int func_194075_d(IRecipe p_194075_0_)
     {
-        return CraftingManager.field_193380_a.getIDForObject(p_194075_0_);
+        return CraftingManager.recipeMap.getIDForObject(p_194075_0_);
     }
 
     public boolean func_194076_e(IRecipe p_194076_1_)

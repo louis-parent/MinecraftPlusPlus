@@ -67,7 +67,7 @@ public class RecipeBookServer extends RecipeBook
 
         for (IRecipe irecipe : this.func_194079_d())
         {
-            nbttaglist.appendTag(new NBTTagString(((ResourceLocation)CraftingManager.field_193380_a.getNameForObject(irecipe)).toString()));
+            nbttaglist.appendTag(new NBTTagString(((ResourceLocation)CraftingManager.recipeMap.getNameForObject(irecipe)).toString()));
         }
 
         nbttagcompound.setTag("recipes", nbttaglist);
@@ -75,7 +75,7 @@ public class RecipeBookServer extends RecipeBook
 
         for (IRecipe irecipe1 : this.func_194080_e())
         {
-            nbttaglist1.appendTag(new NBTTagString(((ResourceLocation)CraftingManager.field_193380_a.getNameForObject(irecipe1)).toString()));
+            nbttaglist1.appendTag(new NBTTagString(((ResourceLocation)CraftingManager.recipeMap.getNameForObject(irecipe1)).toString()));
         }
 
         nbttagcompound.setTag("toBeDisplayed", nbttaglist1);
@@ -91,7 +91,7 @@ public class RecipeBookServer extends RecipeBook
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             ResourceLocation resourcelocation = new ResourceLocation(nbttaglist.getStringTagAt(i));
-            IRecipe irecipe = CraftingManager.func_193373_a(resourcelocation);
+            IRecipe irecipe = CraftingManager.getRecipeByLocation(resourcelocation);
 
             if (irecipe == null)
             {
@@ -108,7 +108,7 @@ public class RecipeBookServer extends RecipeBook
         for (int j = 0; j < nbttaglist1.tagCount(); ++j)
         {
             ResourceLocation resourcelocation1 = new ResourceLocation(nbttaglist1.getStringTagAt(j));
-            IRecipe irecipe1 = CraftingManager.func_193373_a(resourcelocation1);
+            IRecipe irecipe1 = CraftingManager.getRecipeByLocation(resourcelocation1);
 
             if (irecipe1 == null)
             {
@@ -127,7 +127,7 @@ public class RecipeBookServer extends RecipeBook
 
         for (int i = this.field_194077_a.nextSetBit(0); i >= 0; i = this.field_194077_a.nextSetBit(i + 1))
         {
-            list.add(CraftingManager.field_193380_a.getObjectById(i));
+            list.add(CraftingManager.recipeMap.getObjectById(i));
         }
 
         return list;
@@ -139,7 +139,7 @@ public class RecipeBookServer extends RecipeBook
 
         for (int i = this.field_194078_b.nextSetBit(0); i >= 0; i = this.field_194078_b.nextSetBit(i + 1))
         {
-            list.add(CraftingManager.field_193380_a.getObjectById(i));
+            list.add(CraftingManager.recipeMap.getObjectById(i));
         }
 
         return list;

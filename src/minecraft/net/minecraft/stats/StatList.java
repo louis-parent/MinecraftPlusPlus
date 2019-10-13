@@ -155,7 +155,7 @@ public class StatList
     {
         Set<Item> set = Sets.<Item>newHashSet();
 
-        for (IRecipe irecipe : CraftingManager.field_193380_a)
+        for (IRecipe irecipe : CraftingManager.recipeMap)
         {
             ItemStack itemstack = irecipe.getRecipeOutput();
 

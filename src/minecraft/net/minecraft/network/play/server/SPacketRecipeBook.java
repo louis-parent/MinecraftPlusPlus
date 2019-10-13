@@ -51,7 +51,7 @@ public class SPacketRecipeBook implements Packet<INetHandlerPlayClient>
 
         for (int j = 0; j < i; ++j)
         {
-            this.field_192596_a.add(CraftingManager.func_193374_a(buf.readVarIntFromBuffer()));
+            this.field_192596_a.add(CraftingManager.getRecipeById(buf.readVarIntFromBuffer()));
         }
 
         if (this.field_193646_a == SPacketRecipeBook.State.INIT)
@@ -61,7 +61,7 @@ public class SPacketRecipeBook implements Packet<INetHandlerPlayClient>
 
             for (int k = 0; k < i; ++k)
             {
-                this.field_193647_c.add(CraftingManager.func_193374_a(buf.readVarIntFromBuffer()));
+                this.field_193647_c.add(CraftingManager.getRecipeById(buf.readVarIntFromBuffer()));
             }
         }
     }
@@ -78,7 +78,7 @@ public class SPacketRecipeBook implements Packet<INetHandlerPlayClient>
 
         for (IRecipe irecipe : this.field_192596_a)
         {
-            buf.writeVarIntToBuffer(CraftingManager.func_193375_a(irecipe));
+            buf.writeVarIntToBuffer(CraftingManager.getIdByRecipe(irecipe));
         }
 
         if (this.field_193646_a == SPacketRecipeBook.State.INIT)
@@ -87,7 +87,7 @@ public class SPacketRecipeBook implements Packet<INetHandlerPlayClient>
 
             for (IRecipe irecipe1 : this.field_193647_c)
             {
-                buf.writeVarIntToBuffer(CraftingManager.func_193375_a(irecipe1));
+                buf.writeVarIntToBuffer(CraftingManager.getIdByRecipe(irecipe1));
             }
         }
     }

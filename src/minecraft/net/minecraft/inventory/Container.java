@@ -869,7 +869,7 @@ public abstract class Container
         {
             EntityPlayerMP entityplayermp = (EntityPlayerMP)p_192389_2_;
             ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
-            IRecipe irecipe = CraftingManager.func_192413_b(p_192389_3_, p_192389_1_);
+            IRecipe irecipe = CraftingManager.findMatchingRecipe(p_192389_3_, p_192389_1_);
 
             if (irecipe != null && (irecipe.func_192399_d() || !p_192389_1_.getGameRules().getBoolean("doLimitedCrafting") || entityplayermp.func_192037_E().func_193830_f(irecipe)))
             {

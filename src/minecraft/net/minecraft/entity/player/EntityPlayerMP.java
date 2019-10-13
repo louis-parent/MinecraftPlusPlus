@@ -1171,7 +1171,7 @@ public class EntityPlayerMP extends EntityPlayer implements IContainerListener
 
         for (ResourceLocation resourcelocation : p_193102_1_)
         {
-            list.add(CraftingManager.func_193373_a(resourcelocation));
+            list.add(CraftingManager.getRecipeByLocation(resourcelocation));
         }
 
         this.func_192021_a(list);

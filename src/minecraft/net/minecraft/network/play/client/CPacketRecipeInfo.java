@@ -40,7 +40,7 @@ public class CPacketRecipeInfo implements Packet<INetHandlerPlayServer>
 
         if (this.field_194157_a == CPacketRecipeInfo.Purpose.SHOWN)
         {
-            this.field_193649_d = CraftingManager.func_193374_a(buf.readInt());
+            this.field_193649_d = CraftingManager.getRecipeById(buf.readInt());
         }
         else if (this.field_194157_a == CPacketRecipeInfo.Purpose.SETTINGS)
         {
@@ -58,7 +58,7 @@ public class CPacketRecipeInfo implements Packet<INetHandlerPlayServer>
 
         if (this.field_194157_a == CPacketRecipeInfo.Purpose.SHOWN)
         {
-            buf.writeInt(CraftingManager.func_193375_a(this.field_193649_d));
+            buf.writeInt(CraftingManager.getIdByRecipe(this.field_193649_d));
         }
         else if (this.field_194157_a == CPacketRecipeInfo.Purpose.SETTINGS)
         {

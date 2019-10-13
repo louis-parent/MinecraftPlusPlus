@@ -45,7 +45,7 @@ public class ItemKnowledgeBook extends Item
                 for (int i = 0; i < nbttaglist.tagCount(); ++i)
                 {
                     String s = nbttaglist.getStringTagAt(i);
-                    IRecipe irecipe = CraftingManager.func_193373_a(new ResourceLocation(s));
+                    IRecipe irecipe = CraftingManager.getRecipeByLocation(new ResourceLocation(s));
 
                     if (irecipe == null)
                     {

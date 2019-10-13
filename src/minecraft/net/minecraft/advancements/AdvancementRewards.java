@@ -164,7 +164,7 @@ public class AdvancementRewards
             for (int k = 0; k < aresourcelocation1.length; ++k)
             {
                 aresourcelocation1[k] = new ResourceLocation(JsonUtils.getString(jsonarray1.get(k), "recipes[" + k + "]"));
-                IRecipe irecipe = CraftingManager.func_193373_a(aresourcelocation1[k]);
+                IRecipe irecipe = CraftingManager.getRecipeByLocation(aresourcelocation1[k]);
 
                 if (irecipe == null)
                 {

@@ -103,7 +103,7 @@ public class ShapelessRecipes implements IRecipe
         return this.recipeOutput.copy();
     }
 
-    public static ShapelessRecipes func_193363_a(JsonObject p_193363_0_)
+    public static ShapelessRecipes buildRecipe(JsonObject p_193363_0_)
     {
         String s = JsonUtils.getString(p_193363_0_, "group", "");
         NonNullList<Ingredient> nonnulllist = func_193364_a(JsonUtils.getJsonArray(p_193363_0_, "ingredients"));

@@ -63,7 +63,7 @@ public class RecipeUnlockedTrigger implements ICriterionTrigger<RecipeUnlockedTr
     public RecipeUnlockedTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
     {
         ResourceLocation resourcelocation = new ResourceLocation(JsonUtils.getString(p_192166_1_, "recipe"));
-        IRecipe irecipe = CraftingManager.func_193373_a(resourcelocation);
+        IRecipe irecipe = CraftingManager.getRecipeByLocation(resourcelocation);
 
         if (irecipe == null)
         {
