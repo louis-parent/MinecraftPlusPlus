@@ -38,7 +38,7 @@ public interface IRecipe
         return list;
     }
 
-    default NonNullList<Ingredient> getListOfIngredients()
+	default NonNullList<Ingredient> getListOfIngredients()
     {
         return NonNullList.<Ingredient>getInstance();
     }

@@ -13,12 +13,14 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 @Mod("Minecraftpp")
-public class RecipeBlock extends GenericRecipe {
-	
+public class RecipeBlock extends GenericRecipe
+{
+
 	private Item material;
 	private Block recipeResult;
-	
-	public RecipeBlock(Item material, Block result) {
+
+	public RecipeBlock(Item material, Block result)
+	{
 		super();
 		this.material = material;
 		this.recipeResult = result;
@@ -26,65 +28,71 @@ public class RecipeBlock extends GenericRecipe {
 	}
 
 	@Override
-	public boolean matches(InventoryCrafting inv, World worldIn) {
+	public boolean matches(InventoryCrafting inv, World worldIn)
+	{
 		if (inv.getWidth() == 3 && inv.getHeight() == 3)
-        {
-            for (int i = 0; i < inv.getWidth(); i++)
-            {
-                for (int j = 0; j < inv.getHeight(); j++)
-                {
-                    ItemStack itemstack = inv.getStackInRowAndColumn(i, j);
+		{
+			for (int i = 0; i < inv.getWidth(); i++)
+			{
+				for (int j = 0; j < inv.getHeight(); j++)
+				{
+					ItemStack itemstack = inv.getStackInRowAndColumn(i, j);
 
-                    if (itemstack.isNotValid())
-                    {
-                        return false;
-                    }
+					if (itemstack.isNotValid())
+					{
+						return false;
+					}
 
-                    Item item = itemstack.getItem();
+					Item item = itemstack.getItem();
 
-                    if (item != material)
-                    {
-                        return false;
-                    }
-                }
-            }
+					if (item != material)
+					{
+						return false;
+					}
+				}
+			}
 
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	@Override
-	public ItemStack getCraftingResult(InventoryCrafting inv) {
+	public ItemStack getCraftingResult(InventoryCrafting inv)
+	{
 		return new ItemStack(recipeResult);
 	}
 
 	@Override
-	public boolean checkIfCraftingMatrixSizeIsCorrect(int craftingMatrixWidth, int craftingMatrixHeight) {
+	public boolean checkIfCraftingMatrixSizeIsCorrect(int craftingMatrixWidth, int craftingMatrixHeight)
+	{
 		return craftingMatrixHeight >= 3 && craftingMatrixWidth >= 3;
 	}
 
 	@Override
-	public ItemStack getRecipeOutput() {
+	public ItemStack getRecipeOutput()
+	{
 		return new ItemStack(recipeResult);
 	}
 
 	@Override
-    public String getRecipeGroup()
-    {
-        return recipeResult.getLocalizedName();
-    }
-	
+	public String getRecipeGroup()
+	{
+		return recipeResult.getLocalizedName();
+	}
+
 	@Override
-	public NonNullList<Ingredient> getListOfIngredients() {
+	public NonNullList<Ingredient> getListOfIngredients()
+	{
 		return NonNullList.<Ingredient>getInstanceFilledWith(9, Ingredient.getIngredientFromItemStack(new ItemStack(material)));
 	}
 
 	@Override
-	public String getRecipePath() {
+	public String getRecipePath()
+	{
 		return "from" + material.getItemStackDisplayName(new ItemStack(material)) + "To" + recipeResult.getLocalizedName();
 	}
 
