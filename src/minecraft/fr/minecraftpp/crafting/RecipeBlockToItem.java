@@ -13,53 +13,51 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 @Mod("Minecraftpp")
-public class RecipeBlock extends GenericRecipe {
+public class RecipeBlockToItem extends GenericRecipe {
 	
-	private Item material;
-	private Block recipeResult;
+	private Block material;
+	private Item recipeResult;
 	
-	public RecipeBlock(Item material, Block result) {
+	public RecipeBlockToItem(Block material, Item result) {
 		super();
 		this.material = material;
 		this.recipeResult = result;
-		new RecipeBlockToItem(result, material);
 	}
 
 	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn) {
-		if (inv.getWidth() == 3 && inv.getHeight() == 3)
+		int counter = 0;
+        for (int i = 0; i < inv.getWidth(); i++)
         {
-            for (int i = 0; i < inv.getWidth(); i++)
+            for (int j = 0; j < inv.getHeight(); j++)
             {
-                for (int j = 0; j < inv.getHeight(); j++)
+                ItemStack itemstack = inv.getStackInRowAndColumn(i, j);
+
+                if (!itemstack.isNotValid())
                 {
-                    ItemStack itemstack = inv.getStackInRowAndColumn(i, j);
+                	Item item = itemstack.getItem();
+                    Block block = Block.getBlockFromItem(item);
 
-                    if (itemstack.isNotValid())
+                    if (block == material)
                     {
-                        return false;
+                        counter++;
                     }
-
-                    Item item = itemstack.getItem();
-
-                    if (item != material)
-                    {
-                        return false;
-                    }
-                }
+                }	
             }
-
-            return true;
         }
-        else
+        if (counter == 1) 
         {
-            return false;
+        	return true;
+        }
+        else 
+        {
+        	return false;
         }
 	}
 
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv) {
-		return new ItemStack(recipeResult);
+		return new ItemStack(recipeResult, 9);
 	}
 
 	@Override
@@ -69,23 +67,23 @@ public class RecipeBlock extends GenericRecipe {
 
 	@Override
 	public ItemStack getRecipeOutput() {
-		return new ItemStack(recipeResult);
+		return new ItemStack(recipeResult, 9);
 	}
 
 	@Override
     public String getRecipeGroup()
     {
-        return recipeResult.getLocalizedName();
+        return recipeResult.getItemStackDisplayName(new ItemStack(recipeResult));
     }
 	
 	@Override
 	public NonNullList<Ingredient> getListOfIngredients() {
-		return NonNullList.<Ingredient>getInstanceFilledWith(9, Ingredient.getIngredientFromItemStack(new ItemStack(material)));
+		return NonNullList.<Ingredient>getInstanceFilledWith(1, Ingredient.getIngredientFromItemStack(new ItemStack(material)));
 	}
 
 	@Override
 	public String getRecipePath() {
-		return "from" + material.getItemStackDisplayName(new ItemStack(material)) + "To" + recipeResult.getLocalizedName();
+		return "from" + material.getLocalizedName() + "To" + recipeResult.getItemStackDisplayName(new ItemStack(recipeResult));
 	}
 
 }

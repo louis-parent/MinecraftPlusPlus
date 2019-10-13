@@ -7,6 +7,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
 import fr.minecraftpp.block.ModBlocks;
+import fr.minecraftpp.crafting.GenericRecipe;
 import fr.minecraftpp.crafting.RecipeBlock;
 
 import java.io.BufferedReader;
@@ -59,7 +60,13 @@ public class CraftingManager
             registerRecipe("banneraddpattern", new RecipesBanners.RecipeAddPattern());
             registerRecipe("shielddecoration", new ShieldRecipes.Decoration());
             registerRecipe("shulkerboxcoloring", new ShulkerBoxRecipes.ShulkerBoxColoring());
-            registerRecipe("scenarite_ore", new RecipeBlock(Items.CLOCK, ModBlocks.SCENARITE_ORE));
+            
+            /**
+             * MOD Minecraftpp
+             */
+            new RecipeBlock(Items.CLOCK, ModBlocks.SCENARITE_ORE);
+            GenericRecipe.registerRecipes();
+            
             return buildAllRecipesFromFiles();
         }
         catch (Throwable var1)
