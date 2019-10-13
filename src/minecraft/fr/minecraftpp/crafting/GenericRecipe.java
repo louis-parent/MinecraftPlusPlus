@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.block.ModBlocks;
+import fr.minecraftpp.item.ModItems;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 
@@ -19,6 +21,7 @@ public abstract class GenericRecipe implements IRecipe {
 	public abstract String getRecipePath();
 	
 	public static void registerRecipes() {
+        new RecipeBlock(ModItems.SCENARIUM, ModBlocks.SCENARIUM_BLOCK);
 		for (GenericRecipe recipe : recipeList) {
 			CraftingManager.registerRecipe(recipe.getRecipePath(), recipe);
 		}

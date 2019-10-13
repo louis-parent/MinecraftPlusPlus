@@ -64,7 +64,6 @@ public class CraftingManager
             /**
              * MOD Minecraftpp
              */
-            new RecipeBlock(Items.CLOCK, ModBlocks.SCENARITE_ORE);
             GenericRecipe.registerRecipes();
             
             return buildAllRecipesFromFiles();
