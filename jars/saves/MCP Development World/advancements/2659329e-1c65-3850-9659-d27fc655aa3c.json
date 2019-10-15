@@ -1,13 +1,7 @@
 {
-  "minecraft:recipes/redstone/hopper": {
+  "minecraft:recipes/combat/wooden_sword": {
     "criteria": {
-      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/tools/iron_hoe": {
-    "criteria": {
-      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
+      "has_stick": "2019-10-15 13:01:43 +0200"
     },
     "done": true
   },
@@ -17,15 +11,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/misc/iron_nugget": {
+  "minecraft:recipes/tools/wooden_axe": {
     "criteria": {
-      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/misc/diamond": {
-    "criteria": {
-      "has_diamond_block": "2019-10-10 22:01:02 +0200"
+      "has_stick": "2019-10-15 13:01:43 +0200"
     },
     "done": true
   },
@@ -47,39 +35,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/tools/iron_shovel": {
-    "criteria": {
-      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/combat/iron_chestplate": {
-    "criteria": {
-      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/iron_trapdoor": {
-    "criteria": {
-      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
-    },
-    "done": true
-  },
   "minecraft:recipes/tools/iron_axe": {
     "criteria": {
       "has_iron_ingot": "2019-10-10 22:01:02 +0200"
     },
     "done": true
   },
-  "minecraft:story/smelt_iron": {
+  "minecraft:recipes/tools/wooden_hoe": {
     "criteria": {
-      "iron": "2019-10-10 22:01:02 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/tools/shears": {
-    "criteria": {
-      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
+      "has_stick": "2019-10-15 13:01:43 +0200"
     },
     "done": true
   },
@@ -120,6 +84,90 @@
     "done": false
   },
   "minecraft:recipes/redstone/iron_door": {
+    "criteria": {
+      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/hopper": {
+    "criteria": {
+      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/iron_hoe": {
+    "criteria": {
+      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_pickaxe": {
+    "criteria": {
+      "has_stick": "2019-10-15 13:01:43 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/ladder": {
+    "criteria": {
+      "has_stick": "2019-10-15 13:01:43 +0200"
+    },
+    "done": true
+  },
+  "minecraft:story/iron_tools": {
+    "criteria": {
+      "iron_pickaxe": "2019-10-15 13:01:43 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/iron_nugget": {
+    "criteria": {
+      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/diamond": {
+    "criteria": {
+      "has_diamond_block": "2019-10-10 22:01:02 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/iron_block": {
+    "criteria": {
+      "has_at_least_9_iron_ingot": "2019-10-15 13:01:43 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/wooden_shovel": {
+    "criteria": {
+      "has_stick": "2019-10-15 13:01:43 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/iron_shovel": {
+    "criteria": {
+      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/iron_chestplate": {
+    "criteria": {
+      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/iron_trapdoor": {
+    "criteria": {
+      "has_iron_ingot": "2019-10-10 22:01:02 +0200"
+    },
+    "done": true
+  },
+  "minecraft:story/smelt_iron": {
+    "criteria": {
+      "iron": "2019-10-10 22:01:02 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/shears": {
     "criteria": {
       "has_iron_ingot": "2019-10-10 22:01:02 +0200"
     },

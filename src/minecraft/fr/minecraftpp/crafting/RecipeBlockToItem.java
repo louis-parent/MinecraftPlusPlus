@@ -13,17 +13,15 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 @Mod("Minecraftpp")
-public class RecipeBlockToItem extends GenericRecipe
+public class RecipeBlockToItem extends AbstractRecipe
 {
 
 	private Block material;
-	private Item recipeResult;
 
 	public RecipeBlockToItem(Block material, Item result)
 	{
-		super();
+		super(result);
 		this.material = material;
-		this.recipeResult = result;
 	}
 
 	@Override
@@ -51,17 +49,10 @@ public class RecipeBlockToItem extends GenericRecipe
 		if (counter == 1)
 		{
 			return true;
-		}
-		else
+		} else
 		{
 			return false;
 		}
-	}
-
-	@Override
-	public ItemStack getCraftingResult(InventoryCrafting inv)
-	{
-		return new ItemStack(recipeResult, 9);
 	}
 
 	@Override
@@ -71,15 +62,9 @@ public class RecipeBlockToItem extends GenericRecipe
 	}
 
 	@Override
-	public ItemStack getRecipeOutput()
+	public int getRecipeOutputQuantity()
 	{
-		return new ItemStack(recipeResult, 9);
-	}
-
-	@Override
-	public String getRecipeGroup()
-	{
-		return recipeResult.getItemStackDisplayName(new ItemStack(recipeResult));
+		return 9;
 	}
 
 	@Override
@@ -87,11 +72,4 @@ public class RecipeBlockToItem extends GenericRecipe
 	{
 		return NonNullList.<Ingredient>getInstanceFilledWith(1, Ingredient.getIngredientFromItemStack(new ItemStack(material)));
 	}
-
-	@Override
-	public String getRecipePath()
-	{
-		return "from" + material.getLocalizedName() + "To" + recipeResult.getItemStackDisplayName(new ItemStack(recipeResult));
-	}
-
 }

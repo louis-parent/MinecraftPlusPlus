@@ -7,7 +7,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
 import fr.minecraftpp.block.ModBlocks;
-import fr.minecraftpp.crafting.GenericRecipe;
+import fr.minecraftpp.crafting.AbstractRecipe;
 import fr.minecraftpp.crafting.RecipeBlock;
 
 import java.io.BufferedReader;
@@ -64,7 +64,7 @@ public class CraftingManager
             /**
              * MOD Minecraftpp
              */
-            GenericRecipe.registerRecipes();
+            AbstractRecipe.registerRecipes();
             
             return buildAllRecipesFromFiles();
         }

@@ -13,17 +13,14 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 @Mod("Minecraftpp")
-public class RecipePickaxe extends GenericRecipe
+public class RecipePickaxe extends AbstractRecipe
 {
-
 	private Item material;
-	private Item recipeResult;
 
 	public RecipePickaxe(Item material, Item result)
 	{
-		super();
+		super(result);
 		this.material = material;
-		this.recipeResult = result;
 	}
 
 	@Override
@@ -69,27 +66,9 @@ public class RecipePickaxe extends GenericRecipe
 	}
 
 	@Override
-	public ItemStack getCraftingResult(InventoryCrafting inv)
-	{
-		return new ItemStack(recipeResult);
-	}
-
-	@Override
 	public boolean checkIfCraftingMatrixSizeIsCorrect(int craftingMatrixWidth, int craftingMatrixHeight)
 	{
 		return craftingMatrixHeight >= 3 && craftingMatrixWidth >= 3;
-	}
-
-	@Override
-	public ItemStack getRecipeOutput()
-	{
-		return new ItemStack(recipeResult);
-	}
-
-	@Override
-	public String getRecipeGroup()
-	{
-		return recipeResult.getItemStackDisplayName(new ItemStack(recipeResult));
 	}
 
 	@Override
@@ -97,11 +76,4 @@ public class RecipePickaxe extends GenericRecipe
 	{
 		return NonNullList.<Ingredient>getInstanceFilledWith(1, Ingredient.getIngredientFromItemStack(new ItemStack(material)));
 	}
-
-	@Override
-	public String getRecipePath()
-	{
-		return "from" + material.getItemStackDisplayName(new ItemStack(material)) + "To" + recipeResult.getItemStackDisplayName(new ItemStack(recipeResult));
-	}
-
 }

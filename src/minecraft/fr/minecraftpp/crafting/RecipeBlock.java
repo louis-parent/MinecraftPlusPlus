@@ -13,17 +13,15 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 @Mod("Minecraftpp")
-public class RecipeBlock extends GenericRecipe
+public class RecipeBlock extends AbstractRecipe
 {
 
 	private Item material;
-	private Block recipeResult;
 
 	public RecipeBlock(Item material, Block result)
 	{
-		super();
+		super(Item.getItemFromBlock(result));
 		this.material = material;
-		this.recipeResult = result;
 		new RecipeBlockToItem(result, material);
 	}
 
@@ -58,13 +56,7 @@ public class RecipeBlock extends GenericRecipe
 		{
 			return false;
 		}
-	}
-
-	@Override
-	public ItemStack getCraftingResult(InventoryCrafting inv)
-	{
-		return new ItemStack(recipeResult);
-	}
+	}	
 
 	@Override
 	public boolean checkIfCraftingMatrixSizeIsCorrect(int craftingMatrixWidth, int craftingMatrixHeight)
@@ -73,27 +65,8 @@ public class RecipeBlock extends GenericRecipe
 	}
 
 	@Override
-	public ItemStack getRecipeOutput()
-	{
-		return new ItemStack(recipeResult);
-	}
-
-	@Override
-	public String getRecipeGroup()
-	{
-		return recipeResult.getLocalizedName();
-	}
-
-	@Override
 	public NonNullList<Ingredient> getListOfIngredients()
 	{
 		return NonNullList.<Ingredient>getInstanceFilledWith(9, Ingredient.getIngredientFromItemStack(new ItemStack(material)));
 	}
-
-	@Override
-	public String getRecipePath()
-	{
-		return "from" + material.getItemStackDisplayName(new ItemStack(material)) + "To" + recipeResult.getLocalizedName();
-	}
-
 }
