@@ -13,14 +13,14 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 @Mod("Minecraftpp")
-public class RecipeBlockToItem extends AbstractRecipe
+public class RecipeBlockToItem extends ModRecipe
 {
 
 	private Block material;
 
 	public RecipeBlockToItem(Block material, Item result)
 	{
-		super(result);
+		super(null, result);
 		this.material = material;
 	}
 

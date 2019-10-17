@@ -4,12 +4,12 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-public class RecipeShovel extends AbstractRecipe 
+public class RecipeShovel extends ModRecipe 
 {
 
 	public RecipeShovel(Item result)
 	{
-		super(result);
+		super(null, result);
 	}
 
 	@Override

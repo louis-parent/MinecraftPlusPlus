@@ -11,7 +11,7 @@ import org.apache.commons.lang3.Validate;
 public class NonNullList<E> extends AbstractList<E>
 {
     private final List<E> list;
-    private final E element;
+    private final E emptyElement;
 
     public static <E> NonNullList<E> getInstance()
     {
@@ -26,9 +26,9 @@ public class NonNullList<E> extends AbstractList<E>
         return new NonNullList<E>(Arrays.asList((E[])aobject), element);
     }
 
-    public static <E> NonNullList<E> getInstanceWith(E firstElement, E... otherElements)
+    public static <E> NonNullList<E> getInstanceWith(E emptyElement, E... containingElement)
     {
-        return new NonNullList<E>(Arrays.asList(otherElements), firstElement);
+        return new NonNullList<E>(Arrays.asList(containingElement), emptyElement);
     }
 
     protected NonNullList()
@@ -36,10 +36,10 @@ public class NonNullList<E> extends AbstractList<E>
         this(new ArrayList(), null);
     }
 
-    protected NonNullList(List<E> list, @Nullable E elements)
+    protected NonNullList(List<E> list, @Nullable E emptyElements)
     {
         this.list = list;
-        this.element = elements;
+        this.emptyElement = emptyElements;
     }
 
     @Nonnull
@@ -72,7 +72,7 @@ public class NonNullList<E> extends AbstractList<E>
 
     public void clear()
     {
-        if (this.element == null)
+        if (this.emptyElement == null)
         {
             super.clear();
         }
@@ -80,7 +80,7 @@ public class NonNullList<E> extends AbstractList<E>
         {
             for (int i = 0; i < this.size(); ++i)
             {
-                this.set(i, this.element);
+                this.set(i, this.emptyElement);
             }
         }
     }

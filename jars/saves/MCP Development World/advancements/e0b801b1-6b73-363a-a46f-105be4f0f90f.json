@@ -1,0 +1,20 @@
+{
+  "minecraft:story/smelt_iron": {
+    "criteria": {
+      "iron": "2019-10-17 11:32:11 +0200"
+    },
+    "done": true
+  },
+  "minecraft:story/iron_tools": {
+    "criteria": {
+      "iron_pickaxe": "2019-10-17 11:32:11 +0200"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "beaches": "2019-10-17 11:32:13 +0200"
+    },
+    "done": false
+  }
+}
