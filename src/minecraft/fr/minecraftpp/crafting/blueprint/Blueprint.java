@@ -86,7 +86,10 @@ public class Blueprint
 				int length = itemMatrix[i].length;
 				i++;
 				
-				isCorrect &= length == itemMatrix[i].length && length > 0 && length < 4;
+				if(itemMatrix.length > 1)
+				{
+					isCorrect &= length == itemMatrix[i].length && length > 0 && length < 4;
+				}
 			} while(i < (itemMatrix.length - 1));
 		}
 		
@@ -212,14 +215,21 @@ public class Blueprint
 	
 	public Ingredient[] toIngredients()
 	{
-		Ingredient[] ingredients = new Ingredient[this.width * this.height];
+		Ingredient[] ingredients = new Ingredient[9];
 		int next = 0;
 		
-		for (int i = 0; i < this.matrix.length; i++)
+		for (int i = 0; i < 3; i++)
 		{
-			for (int j = 0; j < this.matrix[i].length; j++)
+			for (int j = 0; j < 3; j++)
 			{
-				ingredients[next] = Ingredient.getIngredientFromItemStack(new ItemStack(this.matrix[i][j]));
+				if(i < this.matrix.length && j < this.matrix[i].length)
+				{
+					ingredients[next] = Ingredient.getIngredientFromItemStack(this.matrix[i][j].getAsStack());
+				}
+				else
+				{
+					ingredients[next] = Ingredient.INGREDIENT_AIR;
+				}
 				next++;
 			}
 		}

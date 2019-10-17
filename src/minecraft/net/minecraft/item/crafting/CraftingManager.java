@@ -1,15 +1,5 @@
 package net.minecraft.item.crafting;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
-
-import fr.minecraftpp.block.ModBlocks;
-import fr.minecraftpp.crafting.ModRecipe;
-import fr.minecraftpp.crafting.RecipeBlock;
-
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
@@ -24,9 +14,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Iterator;
+
 import javax.annotation.Nullable;
 
-import net.minecraft.init.Items;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
+
+import fr.minecraftpp.crafting.ModCraftingManager;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
@@ -34,10 +36,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.RegistryNamespaced;
 import net.minecraft.world.World;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class CraftingManager
 {
@@ -64,7 +62,7 @@ public class CraftingManager
             /**
              * MOD Minecraftpp
              */
-            ModRecipe.registerRecipes();
+            ModCraftingManager.registerRecipes();
             
             return buildAllRecipesFromFiles();
         }
