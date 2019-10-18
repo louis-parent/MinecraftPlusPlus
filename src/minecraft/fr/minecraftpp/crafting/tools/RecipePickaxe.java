@@ -1,12 +1,13 @@
 package fr.minecraftpp.crafting.tools;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.crafting.RecipeEquipment;
 import fr.minecraftpp.crafting.blueprint.Blueprint;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 @Mod("Minecraftpp")
-public class RecipePickaxe extends RecipeTool
+public class RecipePickaxe extends RecipeEquipment
 {
 	public RecipePickaxe(Item material, Item result)
 	{

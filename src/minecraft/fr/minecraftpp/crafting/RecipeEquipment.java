@@ -1,16 +1,15 @@
-package fr.minecraftpp.crafting.tools;
+package fr.minecraftpp.crafting;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.crafting.ShapedRecipe;
 import fr.minecraftpp.crafting.blueprint.Blueprint;
 import net.minecraft.item.Item;
 
 @Mod("Minecraftpp")
-public abstract class RecipeTool extends ShapedRecipe
+public abstract class RecipeEquipment extends ShapedRecipe
 {
 	protected Item material;
 	
-	public RecipeTool(Item material, Item result)
+	public RecipeEquipment(Item material, Item result)
 	{
 		super(result);
 		

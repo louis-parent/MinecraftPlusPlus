@@ -5,6 +5,10 @@ import java.util.List;
 
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.block.ModBlocks;
+import fr.minecraftpp.crafting.armor.RecipeBoots;
+import fr.minecraftpp.crafting.armor.RecipeChestplate;
+import fr.minecraftpp.crafting.armor.RecipeHelmet;
+import fr.minecraftpp.crafting.armor.RecipeLeggings;
 import fr.minecraftpp.crafting.tools.RecipeAxe;
 import fr.minecraftpp.crafting.tools.RecipeHoe;
 import fr.minecraftpp.crafting.tools.RecipePickaxe;
@@ -32,11 +36,17 @@ public class ModCraftingManager
 		try
 		{
 			new RecipeBlock(ModItems.SCENARIUM, ModBlocks.SCENARIUM_BLOCK);
+			
 			new RecipeSword(ModItems.SCENARIUM, ModItems.SCENARIUM_SWORD);
 			new RecipePickaxe(ModItems.SCENARIUM, ModItems.SCENARIUM_PICKAXE);
 			new RecipeAxe(ModItems.SCENARIUM, ModItems.SCENARIUM_AXE);
 			new RecipeShovel(ModItems.SCENARIUM, ModItems.SCENARIUM_SPADE);
 			new RecipeHoe(ModItems.SCENARIUM, ModItems.SCENARIUM_HOE);
+			
+			new RecipeHelmet(ModItems.SCENARIUM, ModItems.SCENARIUM_HELMET);
+			new RecipeChestplate(ModItems.SCENARIUM, ModItems.SCENARIUM_CHESTPLATE);
+			new RecipeLeggings(ModItems.SCENARIUM, ModItems.SCENARIUM_LEGGINGS);
+			new RecipeBoots(ModItems.SCENARIUM, ModItems.SCENARIUM_BOOTS);
 		}
 		catch(Exception e)
 		{

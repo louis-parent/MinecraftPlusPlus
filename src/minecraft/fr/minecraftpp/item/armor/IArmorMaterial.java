@@ -1,14 +1,14 @@
 package fr.minecraftpp.item.armor;
 
+import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.inventory.EntityArmorSlot;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 
+@Mod("minecraftpp")
 public interface IArmorMaterial
 {
-	public int getRenderIndex();
-
-    public int getDurability(EntityArmorSlot armorType);
+    public int getArmorDurabilityFactor();
 
     public int getDamageReductionAmount(EntityArmorSlot armorType);
 
@@ -21,4 +21,9 @@ public interface IArmorMaterial
     public String getName();
 
     public float getToughness();
+    
+    public default int getDurability(EntityArmorSlot armorType)
+    {
+        return armorType.getBaseDurability() * getArmorDurabilityFactor();
+    }
 }

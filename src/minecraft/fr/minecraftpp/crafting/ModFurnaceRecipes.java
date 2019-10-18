@@ -1,4 +1,4 @@
-package fr.minecraftpp.item.crafting;
+package fr.minecraftpp.crafting;
 
 import fr.minecraftpp.block.ModBlocks;
 import fr.minecraftpp.item.ModItems;

@@ -63,7 +63,7 @@ public enum ToolMaterial implements IToolMaterial
 	}
 
 	@Override
-	public Item getMaterialItem() 
+	public Item getRepairItem() 
 	{
         if (this == WOOD)
         {

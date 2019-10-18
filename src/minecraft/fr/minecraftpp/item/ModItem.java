@@ -2,8 +2,13 @@ package fr.minecraftpp.item;
 
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.block.ModBlocks;
+import fr.minecraftpp.item.armor.ItemBoots;
+import fr.minecraftpp.item.armor.ItemChestplate;
+import fr.minecraftpp.item.armor.ItemHelmet;
+import fr.minecraftpp.item.armor.ItemLeggings;
 import fr.minecraftpp.item.tool.IToolMaterial;
 import fr.minecraftpp.item.tool.ToolType;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemHoe;
@@ -13,58 +18,8 @@ import net.minecraft.item.ItemSword;
 
 @Mod("minecraftpp")
 public class ModItem extends Item
-{
-	public static final IToolMaterial SCENARIUM_TOOL_MATERIAL = new IToolMaterial() {
-
-		@Override
-		public int getMaxUses()
-		{
-			return 2160;
-		}
-
-		@Override
-		public float getEfficiencyOnProperMaterial()
-		{
-			return 12.0F;
-		}
-
-		@Override
-		public float getDamageVsEntity(ToolType toolType) 
-		{
-			switch (toolType) {
-			case AXE:
-				return 10.0F;
-			case HOE:
-				return 0.0F;
-			default:
-				return 5.0F;
-			}
-		}
-
-		@Override
-		public int getHarvestLevel()
-		{
-			return 4;
-		}
-
-		@Override
-		public int getEnchantability() 
-		{
-			return 25;
-		}
-
-		@Override
-		public float getAttackSpeed(ToolType toolType)
-		{
-			return toolType == ToolType.AXE ? -2.8F : 0.0F;
-		}
-
-		@Override
-		public Item getMaterialItem() 
-		{
-			return ModItems.SCENARIUM;
-		}
-	};
+{	
+	public static MaterialScenarium MATERIA_SCENARIUM = new MaterialScenarium();
 	
 	public static void registerBlockItems()
 	{
@@ -75,10 +30,16 @@ public class ModItem extends Item
 	public static void registerItems()
 	{
 		registerItem(1256, "scenarium", new ItemScenarium());
-		registerItem(1257, "scenarium_sword", new ItemSword(SCENARIUM_TOOL_MATERIAL).setUnlocalizedName("scenariumSword"));
-		registerItem(1258, "scenarium_pickaxe", new ItemPickaxe(SCENARIUM_TOOL_MATERIAL).setUnlocalizedName("scenariumPickaxe"));
-		registerItem(1259, "scenarium_axe", new ItemAxe(SCENARIUM_TOOL_MATERIAL).setUnlocalizedName("scenariumAxe"));
-		registerItem(1260, "scenarium_spade", new ItemSpade(SCENARIUM_TOOL_MATERIAL).setUnlocalizedName("scenariumShovel"));
-		registerItem(1261, "scenarium_hoe", new ItemHoe(SCENARIUM_TOOL_MATERIAL).setUnlocalizedName("scenariumHoe"));
+		
+		registerItem(1257, "scenarium_sword", new ItemSword(MATERIA_SCENARIUM).setUnlocalizedName("scenariumSword"));
+		registerItem(1258, "scenarium_pickaxe", new ItemPickaxe(MATERIA_SCENARIUM).setUnlocalizedName("scenariumPickaxe"));
+		registerItem(1259, "scenarium_axe", new ItemAxe(MATERIA_SCENARIUM).setUnlocalizedName("scenariumAxe"));
+		registerItem(1260, "scenarium_spade", new ItemSpade(MATERIA_SCENARIUM).setUnlocalizedName("scenariumShovel"));
+		registerItem(1261, "scenarium_hoe", new ItemHoe(MATERIA_SCENARIUM).setUnlocalizedName("scenariumHoe"));
+		
+		registerItem(1262, "scenarium_helmet", (new ItemHelmet(MATERIA_SCENARIUM)).setUnlocalizedName("scenariumHelmet"));
+        registerItem(1263, "scenarium_chestplate", (new ItemChestplate(MATERIA_SCENARIUM)).setUnlocalizedName("scenariumChestplate"));
+        registerItem(1264, "scenarium_leggings", (new ItemLeggings(MATERIA_SCENARIUM)).setUnlocalizedName("scenariumLeggings"));
+        registerItem(1265, "scenarium_boots", (new ItemBoots(MATERIA_SCENARIUM)).setUnlocalizedName("scenariumBoots"));
 	}
 }

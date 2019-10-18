@@ -1,12 +1,13 @@
 package fr.minecraftpp.crafting.tools;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.crafting.RecipeEquipment;
 import fr.minecraftpp.crafting.blueprint.Blueprint;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 @Mod("Minecraftpp")
-public class RecipeSword extends RecipeTool
+public class RecipeSword extends RecipeEquipment
 {
 
 	public RecipeSword(Item material, Item result)
