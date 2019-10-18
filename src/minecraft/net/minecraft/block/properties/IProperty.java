@@ -6,16 +6,16 @@ import com.google.common.base.Optional;
 
 public interface IProperty<T extends Comparable<T>>
 {
-    String getName();
+	String getName();
 
-    Collection<T> getAllowedValues();
+	Collection<T> getAllowedValues();
 
-    Class<T> getValueClass();
+	Class<T> getValueClass();
 
-    Optional<T> parseValue(String value);
+	Optional<T> parseValue(String value);
 
-    /**
-     * Get the name for the given value.
-     */
-    String getName(T value);
+	/**
+	 * Get the name for the given value.
+	 */
+	String getName(T value);
 }

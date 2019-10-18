@@ -15,49 +15,49 @@ import net.minecraft.util.ResourceLocation;
 
 public class SimpleTexture extends AbstractTexture
 {
-    private static final Logger LOG = LogManager.getLogger();
-    protected final ResourceLocation textureLocation;
+	private static final Logger LOG = LogManager.getLogger();
+	protected final ResourceLocation textureLocation;
 
-    public SimpleTexture(ResourceLocation textureResourceLocation)
-    {
-        this.textureLocation = textureResourceLocation;
-    }
+	public SimpleTexture(ResourceLocation textureResourceLocation)
+	{
+		this.textureLocation = textureResourceLocation;
+	}
 
-    public void loadTexture(IResourceManager resourceManager) throws IOException
-    {
-        this.deleteGlTexture();
-        IResource iresource = null;
+	public void loadTexture(IResourceManager resourceManager) throws IOException
+	{
+		this.deleteGlTexture();
+		IResource iresource = null;
 
-        try
-        {
-            iresource = resourceManager.getResource(this.textureLocation);
-            BufferedImage bufferedimage = TextureUtil.readBufferedImage(iresource.getInputStream());
-            boolean flag = false;
-            boolean flag1 = false;
+		try
+		{
+			iresource = resourceManager.getResource(this.textureLocation);
+			BufferedImage bufferedimage = TextureUtil.readBufferedImage(iresource.getInputStream());
+			boolean flag = false;
+			boolean flag1 = false;
 
-            if (iresource.hasMetadata())
-            {
-                try
-                {
-                    TextureMetadataSection texturemetadatasection = (TextureMetadataSection)iresource.getMetadata("texture");
+			if (iresource.hasMetadata())
+			{
+				try
+				{
+					TextureMetadataSection texturemetadatasection = (TextureMetadataSection) iresource.getMetadata("texture");
 
-                    if (texturemetadatasection != null)
-                    {
-                        flag = texturemetadatasection.getTextureBlur();
-                        flag1 = texturemetadatasection.getTextureClamp();
-                    }
-                }
-                catch (RuntimeException runtimeexception)
-                {
-                    LOG.warn("Failed reading metadata of: {}", this.textureLocation, runtimeexception);
-                }
-            }
+					if (texturemetadatasection != null)
+					{
+						flag = texturemetadatasection.getTextureBlur();
+						flag1 = texturemetadatasection.getTextureClamp();
+					}
+				}
+				catch (RuntimeException runtimeexception)
+				{
+					LOG.warn("Failed reading metadata of: {}", this.textureLocation, runtimeexception);
+				}
+			}
 
-            TextureUtil.uploadTextureImageAllocate(this.getGlTextureId(), bufferedimage, flag, flag1);
-        }
-        finally
-        {
-            IOUtils.closeQuietly((Closeable)iresource);
-        }
-    }
+			TextureUtil.uploadTextureImageAllocate(this.getGlTextureId(), bufferedimage, flag, flag1);
+		}
+		finally
+		{
+			IOUtils.closeQuietly((Closeable) iresource);
+		}
+	}
 }

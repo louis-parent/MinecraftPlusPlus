@@ -4,11 +4,11 @@ import net.minecraft.util.text.ITextComponent;
 
 public interface ISpectatorMenuObject
 {
-    void selectItem(SpectatorMenu menu);
+	void selectItem(SpectatorMenu menu);
 
-    ITextComponent getSpectatorName();
+	ITextComponent getSpectatorName();
 
-    void renderIcon(float p_178663_1_, int alpha);
+	void renderIcon(float p_178663_1_, int alpha);
 
-    boolean isEnabled();
+	boolean isEnabled();
 }

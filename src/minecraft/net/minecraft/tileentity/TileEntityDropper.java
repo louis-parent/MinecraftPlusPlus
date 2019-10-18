@@ -6,21 +6,21 @@ import net.minecraft.util.datafix.walkers.ItemStackDataLists;
 
 public class TileEntityDropper extends TileEntityDispenser
 {
-    public static void registerFixesDropper(DataFixer fixer)
-    {
-        fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityDropper.class, new String[] {"Items"}));
-    }
+	public static void registerFixesDropper(DataFixer fixer)
+	{
+		fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityDropper.class, new String[] { "Items" }));
+	}
 
-    /**
-     * Get the name of this object. For players this returns their username
-     */
-    public String getName()
-    {
-        return this.hasCustomName() ? this.field_190577_o : "container.dropper";
-    }
+	/**
+	 * Get the name of this object. For players this returns their username
+	 */
+	public String getName()
+	{
+		return this.hasCustomName() ? this.field_190577_o : "container.dropper";
+	}
 
-    public String getGuiID()
-    {
-        return "minecraft:dropper";
-    }
+	public String getGuiID()
+	{
+		return "minecraft:dropper";
+	}
 }

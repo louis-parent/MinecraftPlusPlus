@@ -14,15 +14,15 @@ public class RecipeBlock extends ShapedRecipe
 	public RecipeBlock(Item material, Block result)
 	{
 		super(Item.getItemFromBlock(result));
-		
+
 		this.material = material;
 		this.changeBlueprint(this.getBlueprint());
-		
+
 		new RecipeItemFromBlock(result, material);
 	}
 
 	private Blueprint getBlueprint()
 	{
-		return new Blueprint(new Item[][] {{this.material, this.material, this.material}, {this.material, this.material, this.material}, {this.material, this.material, this.material}});
+		return new Blueprint(new Item[][] { { this.material, this.material, this.material }, { this.material, this.material, this.material }, { this.material, this.material, this.material } });
 	}
 }

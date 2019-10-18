@@ -7,13 +7,13 @@ import net.minecraft.item.ItemStack;
 
 public class RenderPotion extends RenderSnowball<EntityPotion>
 {
-    public RenderPotion(RenderManager renderManagerIn, RenderItem itemRendererIn)
-    {
-        super(renderManagerIn, Items.POTIONITEM, itemRendererIn);
-    }
+	public RenderPotion(RenderManager renderManagerIn, RenderItem itemRendererIn)
+	{
+		super(renderManagerIn, Items.POTIONITEM, itemRendererIn);
+	}
 
-    public ItemStack getStackToRender(EntityPotion entityIn)
-    {
-        return entityIn.getPotion();
-    }
+	public ItemStack getStackToRender(EntityPotion entityIn)
+	{
+		return entityIn.getPotion();
+	}
 }

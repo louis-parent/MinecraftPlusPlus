@@ -4,16 +4,16 @@ import net.minecraft.client.renderer.vertex.VertexBuffer;
 
 public class VertexBufferUploader extends WorldVertexBufferUploader
 {
-    private VertexBuffer vertexBuffer;
+	private VertexBuffer vertexBuffer;
 
-    public void draw(BufferBuilder vertexBufferIn)
-    {
-        vertexBufferIn.reset();
-        this.vertexBuffer.bufferData(vertexBufferIn.getByteBuffer());
-    }
+	public void draw(BufferBuilder vertexBufferIn)
+	{
+		vertexBufferIn.reset();
+		this.vertexBuffer.bufferData(vertexBufferIn.getByteBuffer());
+	}
 
-    public void setVertexBuffer(VertexBuffer vertexBufferIn)
-    {
-        this.vertexBuffer = vertexBufferIn;
-    }
+	public void setVertexBuffer(VertexBuffer vertexBufferIn)
+	{
+		this.vertexBuffer = vertexBufferIn;
+	}
 }

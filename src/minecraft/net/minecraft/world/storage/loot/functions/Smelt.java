@@ -17,51 +17,51 @@ import net.minecraft.world.storage.loot.conditions.LootCondition;
 
 public class Smelt extends LootFunction
 {
-    private static final Logger LOGGER = LogManager.getLogger();
+	private static final Logger LOGGER = LogManager.getLogger();
 
-    public Smelt(LootCondition[] conditionsIn)
-    {
-        super(conditionsIn);
-    }
+	public Smelt(LootCondition[] conditionsIn)
+	{
+		super(conditionsIn);
+	}
 
-    public ItemStack apply(ItemStack stack, Random rand, LootContext context)
-    {
-        if (stack.isNotValid())
-        {
-            return stack;
-        }
-        else
-        {
-            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(stack);
+	public ItemStack apply(ItemStack stack, Random rand, LootContext context)
+	{
+		if (stack.isNotValid())
+		{
+			return stack;
+		}
+		else
+		{
+			ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(stack);
 
-            if (itemstack.isNotValid())
-            {
-                LOGGER.warn("Couldn't smelt {} because there is no smelting recipe", (Object)stack);
-                return stack;
-            }
-            else
-            {
-                ItemStack itemstack1 = itemstack.copy();
-                itemstack1.setStackSize(stack.getStackSize());
-                return itemstack1;
-            }
-        }
-    }
+			if (itemstack.isNotValid())
+			{
+				LOGGER.warn("Couldn't smelt {} because there is no smelting recipe", (Object) stack);
+				return stack;
+			}
+			else
+			{
+				ItemStack itemstack1 = itemstack.copy();
+				itemstack1.setStackSize(stack.getStackSize());
+				return itemstack1;
+			}
+		}
+	}
 
-    public static class Serializer extends LootFunction.Serializer<Smelt>
-    {
-        protected Serializer()
-        {
-            super(new ResourceLocation("furnace_smelt"), Smelt.class);
-        }
+	public static class Serializer extends LootFunction.Serializer<Smelt>
+	{
+		protected Serializer()
+		{
+			super(new ResourceLocation("furnace_smelt"), Smelt.class);
+		}
 
-        public void serialize(JsonObject object, Smelt functionClazz, JsonSerializationContext serializationContext)
-        {
-        }
+		public void serialize(JsonObject object, Smelt functionClazz, JsonSerializationContext serializationContext)
+		{
+		}
 
-        public Smelt deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn)
-        {
-            return new Smelt(conditionsIn);
-        }
-    }
+		public Smelt deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn)
+		{
+			return new Smelt(conditionsIn);
+		}
+	}
 }

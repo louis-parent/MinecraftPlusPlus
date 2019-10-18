@@ -1,4 +1,5 @@
 package mcp;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -11,4 +12,6 @@ import javax.annotation.meta.TypeQualifierDefault;
 @Nonnull
 @TypeQualifierDefault(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MethodsReturnNonnullByDefault {}
+public @interface MethodsReturnNonnullByDefault
+{
+}

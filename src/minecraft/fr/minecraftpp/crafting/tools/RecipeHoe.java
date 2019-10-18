@@ -17,6 +17,6 @@ public class RecipeHoe extends RecipeEquipment
 	@Override
 	protected Blueprint getBlueprint()
 	{
-		return new Blueprint(new Item[][] {{this.material, this.material}, {Items.EMPTY_ITEM, Items.STICK}, {Items.EMPTY_ITEM, Items.STICK}});
+		return new Blueprint(new Item[][] { { this.material, this.material }, { Items.EMPTY_ITEM, Items.STICK }, { Items.EMPTY_ITEM, Items.STICK } });
 	}
 }

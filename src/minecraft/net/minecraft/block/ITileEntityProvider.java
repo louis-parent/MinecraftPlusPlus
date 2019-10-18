@@ -7,10 +7,11 @@ import net.minecraft.world.World;
 
 public interface ITileEntityProvider
 {
-    @Nullable
+	@Nullable
 
-    /**
-     * Returns a new instance of a block's tile entity class. Called on placing the block.
-     */
-    TileEntity createNewTileEntity(World worldIn, int meta);
+	/**
+	 * Returns a new instance of a block's tile entity class. Called on placing
+	 * the block.
+	 */
+	TileEntity createNewTileEntity(World worldIn, int meta);
 }

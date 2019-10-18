@@ -11,31 +11,31 @@ import net.minecraft.util.ResourceLocation;
 
 public interface EntityProperty
 {
-    boolean testProperty(Random random, Entity entityIn);
+	boolean testProperty(Random random, Entity entityIn);
 
-    public abstract static class Serializer<T extends EntityProperty>
-    {
-        private final ResourceLocation name;
-        private final Class<T> propertyClass;
+	public abstract static class Serializer<T extends EntityProperty>
+	{
+		private final ResourceLocation name;
+		private final Class<T> propertyClass;
 
-        protected Serializer(ResourceLocation nameIn, Class<T> propertyClassIn)
-        {
-            this.name = nameIn;
-            this.propertyClass = propertyClassIn;
-        }
+		protected Serializer(ResourceLocation nameIn, Class<T> propertyClassIn)
+		{
+			this.name = nameIn;
+			this.propertyClass = propertyClassIn;
+		}
 
-        public ResourceLocation getName()
-        {
-            return this.name;
-        }
+		public ResourceLocation getName()
+		{
+			return this.name;
+		}
 
-        public Class<T> getPropertyClass()
-        {
-            return this.propertyClass;
-        }
+		public Class<T> getPropertyClass()
+		{
+			return this.propertyClass;
+		}
 
-        public abstract JsonElement serialize(T property, JsonSerializationContext serializationContext);
+		public abstract JsonElement serialize(T property, JsonSerializationContext serializationContext);
 
-        public abstract T deserialize(JsonElement element, JsonDeserializationContext deserializationContext);
-    }
+		public abstract T deserialize(JsonElement element, JsonDeserializationContext deserializationContext);
+	}
 }

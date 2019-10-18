@@ -8,50 +8,50 @@ import net.minecraft.util.registry.IRegistry;
 
 public class ModelManager implements IResourceManagerReloadListener
 {
-    private IRegistry<ModelResourceLocation, IBakedModel> modelRegistry;
-    private final TextureMap texMap;
-    private final BlockModelShapes modelProvider;
-    private IBakedModel defaultModel;
+	private IRegistry<ModelResourceLocation, IBakedModel> modelRegistry;
+	private final TextureMap texMap;
+	private final BlockModelShapes modelProvider;
+	private IBakedModel defaultModel;
 
-    public ModelManager(TextureMap textures)
-    {
-        this.texMap = textures;
-        this.modelProvider = new BlockModelShapes(this);
-    }
+	public ModelManager(TextureMap textures)
+	{
+		this.texMap = textures;
+		this.modelProvider = new BlockModelShapes(this);
+	}
 
-    public void onResourceManagerReload(IResourceManager resourceManager)
-    {
-        ModelBakery modelbakery = new ModelBakery(resourceManager, this.texMap, this.modelProvider);
-        this.modelRegistry = modelbakery.setupModelRegistry();
-        this.defaultModel = this.modelRegistry.getObject(ModelBakery.MODEL_MISSING);
-        this.modelProvider.reloadModels();
-    }
+	public void onResourceManagerReload(IResourceManager resourceManager)
+	{
+		ModelBakery modelbakery = new ModelBakery(resourceManager, this.texMap, this.modelProvider);
+		this.modelRegistry = modelbakery.setupModelRegistry();
+		this.defaultModel = this.modelRegistry.getObject(ModelBakery.MODEL_MISSING);
+		this.modelProvider.reloadModels();
+	}
 
-    public IBakedModel getModel(ModelResourceLocation modelLocation)
-    {
-        if (modelLocation == null)
-        {
-            return this.defaultModel;
-        }
-        else
-        {
-            IBakedModel ibakedmodel = this.modelRegistry.getObject(modelLocation);
-            return ibakedmodel == null ? this.defaultModel : ibakedmodel;
-        }
-    }
+	public IBakedModel getModel(ModelResourceLocation modelLocation)
+	{
+		if (modelLocation == null)
+		{
+			return this.defaultModel;
+		}
+		else
+		{
+			IBakedModel ibakedmodel = this.modelRegistry.getObject(modelLocation);
+			return ibakedmodel == null ? this.defaultModel : ibakedmodel;
+		}
+	}
 
-    public IBakedModel getMissingModel()
-    {
-        return this.defaultModel;
-    }
+	public IBakedModel getMissingModel()
+	{
+		return this.defaultModel;
+	}
 
-    public TextureMap getTextureMap()
-    {
-        return this.texMap;
-    }
+	public TextureMap getTextureMap()
+	{
+		return this.texMap;
+	}
 
-    public BlockModelShapes getBlockModelShapes()
-    {
-        return this.modelProvider;
-    }
+	public BlockModelShapes getBlockModelShapes()
+	{
+		return this.modelProvider;
+	}
 }

@@ -5,5 +5,5 @@ import net.minecraft.world.World;
 
 public interface IItemPropertyGetter
 {
-    float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn);
+	float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn);
 }

@@ -9,21 +9,22 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockCompressedPowered extends Block
 {
-    public BlockCompressedPowered(Material materialIn, MapColor color)
-    {
-        super(materialIn, color);
-    }
+	public BlockCompressedPowered(Material materialIn, MapColor color)
+	{
+		super(materialIn, color);
+	}
 
-    /**
-     * Can this block provide power. Only wire currently seems to have this change based on its state.
-     */
-    public boolean canProvidePower(IBlockState state)
-    {
-        return true;
-    }
+	/**
+	 * Can this block provide power. Only wire currently seems to have this
+	 * change based on its state.
+	 */
+	public boolean canProvidePower(IBlockState state)
+	{
+		return true;
+	}
 
-    public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
-        return 15;
-    }
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		return 15;
+	}
 }

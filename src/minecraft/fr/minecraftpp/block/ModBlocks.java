@@ -13,29 +13,35 @@ public class ModBlocks extends Blocks
 
 	public static Block SCENARITE_ORE;
 	public static Block SCENARIUM_BLOCK;
-	
+
 	/**
-	 * Sets the constants that are usually set in {@link Blocks} 
+	 * Sets the constants that are usually set in {@link Blocks}
 	 */
 	public static void staticSetter()
 	{
-        SCENARITE_ORE = getRegisteredBlock("scenarite_ore");
-        SCENARIUM_BLOCK = getRegisteredBlock("scenarium_block");
-        
-        doNames();
+		SCENARITE_ORE = getRegisteredBlock("scenarite_ore");
+		SCENARIUM_BLOCK = getRegisteredBlock("scenarium_block");
+
+		doNames();
 	}
 
-	private static void doNames() {
-		for(Field field : ModBlocks.class.getDeclaredFields())
-    	{
-    		try {
-				if(field.get(null) instanceof Block)
+	private static void doNames()
+	{
+		for (Field field : ModBlocks.class.getDeclaredFields())
+		{
+			try
+			{
+				if (field.get(null) instanceof Block)
 				{
 					Block block = (Block) field.get(null);
 					ModLanguage.addTranslation(block);
-					
+
 				}
-			} catch (IllegalArgumentException | IllegalAccessException e) {e.printStackTrace();}
-    	}
+			}
+			catch (IllegalArgumentException | IllegalAccessException e)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 }

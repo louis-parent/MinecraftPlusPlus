@@ -13,25 +13,25 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockObsidian extends Block
 {
-    public BlockObsidian()
-    {
-        super(Material.ROCK);
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    }
+	public BlockObsidian()
+	{
+		super(Material.ROCK);
+		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+	}
 
-    /**
-     * Get the Item that this Block should drop when harvested.
-     */
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return Item.getItemFromBlock(Blocks.OBSIDIAN);
-    }
+	/**
+	 * Get the Item that this Block should drop when harvested.
+	 */
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
+	{
+		return Item.getItemFromBlock(Blocks.OBSIDIAN);
+	}
 
-    /**
-     * Get the MapColor for this Block and the given BlockState
-     */
-    public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
-    {
-        return MapColor.BLACK;
-    }
+	/**
+	 * Get the MapColor for this Block and the given BlockState
+	 */
+	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
+	{
+		return MapColor.BLACK;
+	}
 }

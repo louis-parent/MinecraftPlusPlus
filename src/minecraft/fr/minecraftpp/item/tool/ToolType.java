@@ -5,9 +5,5 @@ import fr.minecraftpp.anotation.Mod;
 @Mod("Minecraftpp")
 public enum ToolType
 {
-	SWORD,
-	PICKAXE,
-	AXE,
-	SPADE,
-	HOE;
+	SWORD, PICKAXE, AXE, SPADE, HOE;
 }

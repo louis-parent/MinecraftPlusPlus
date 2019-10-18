@@ -16,7 +16,7 @@ public class RecipeBoots extends RecipeEquipment
 	@Override
 	protected Blueprint getBlueprint()
 	{
-		return new Blueprint(new Item[][] {{this.material, Items.EMPTY_ITEM, this.material}, {this.material, Items.EMPTY_ITEM, this.material}});
+		return new Blueprint(new Item[][] { { this.material, Items.EMPTY_ITEM, this.material }, { this.material, Items.EMPTY_ITEM, this.material } });
 	}
 
 }

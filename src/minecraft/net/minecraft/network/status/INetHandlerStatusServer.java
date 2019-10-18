@@ -6,7 +6,7 @@ import net.minecraft.network.status.client.CPacketServerQuery;
 
 public interface INetHandlerStatusServer extends INetHandler
 {
-    void processPing(CPacketPing packetIn);
+	void processPing(CPacketPing packetIn);
 
-    void processServerQuery(CPacketServerQuery packetIn);
+	void processServerQuery(CPacketServerQuery packetIn);
 }

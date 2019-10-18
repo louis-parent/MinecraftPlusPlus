@@ -17,13 +17,13 @@ import net.minecraft.world.World;
 public class ShapelessRecipe extends ModAbstractRecipe
 {
 	private List<Item> recipeRequirements;
-	
+
 	public ShapelessRecipe(Item result, List<Item> recipeRequirements)
 	{
 		super(result);
 		this.recipeRequirements = recipeRequirements;
 	}
-	
+
 	public ShapelessRecipe(Item result, Item... recipeRequirements)
 	{
 		this(result, Arrays.asList(recipeRequirements));
@@ -34,14 +34,14 @@ public class ShapelessRecipe extends ModAbstractRecipe
 	{
 		boolean match = true;
 		Map<Item, Integer> found = this.getItemMap();
-		
-		for(int i = 0; i < inv.getWidth(); i++)
+
+		for (int i = 0; i < inv.getWidth(); i++)
 		{
-			for(int j = 0; j < inv.getHeight(); j++)
+			for (int j = 0; j < inv.getHeight(); j++)
 			{
 				Item item = inv.getStackInRowAndColumn(i, j).getItem();
-				
-				if(this.recipeRequirements.contains(item))
+
+				if (this.recipeRequirements.contains(item))
 				{
 					found.replace(item, found.get(item) - 1);
 				}
@@ -51,17 +51,17 @@ public class ShapelessRecipe extends ModAbstractRecipe
 				}
 			}
 		}
-		
+
 		return match && this.areAllItemsFound(found);
 	}
 
 	private Map<Item, Integer> getItemMap()
 	{
 		HashMap<Item, Integer> map = new HashMap<Item, Integer>();
-		
+
 		for (Item item : this.recipeRequirements)
 		{
-			if(map.containsKey(item))
+			if (map.containsKey(item))
 			{
 				map.replace(item, map.get(item) + 1);
 			}
@@ -70,19 +70,19 @@ public class ShapelessRecipe extends ModAbstractRecipe
 				map.put(item, 1);
 			}
 		}
-		
+
 		return map;
 	}
-	
+
 	private boolean areAllItemsFound(Map<Item, Integer> found)
 	{
 		boolean allZero = true;
-		
+
 		for (Map.Entry<Item, Integer> entry : found.entrySet())
 		{
 			allZero &= entry.getValue() == 0;
 		}
-		
+
 		return allZero;
 	}
 
@@ -91,7 +91,7 @@ public class ShapelessRecipe extends ModAbstractRecipe
 	{
 		return (craftingMatrixWidth * craftingMatrixHeight) >= this.recipeRequirements.size();
 	}
-	
+
 	@Override
 	public NonNullList<Ingredient> getListOfIngredients()
 	{
@@ -101,12 +101,12 @@ public class ShapelessRecipe extends ModAbstractRecipe
 	private Ingredient[] getIngredientsArray()
 	{
 		Ingredient[] ingredients = new Ingredient[this.recipeRequirements.size()];
-		
+
 		for (int i = 0; i < this.recipeRequirements.size(); i++)
 		{
 			ingredients[i] = Ingredient.getIngredientFromItemStack(this.recipeRequirements.get(i).getAsStack());
 		}
-		
+
 		return ingredients;
 	}
 

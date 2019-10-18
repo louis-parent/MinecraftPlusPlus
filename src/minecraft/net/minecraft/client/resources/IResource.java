@@ -10,14 +10,14 @@ import net.minecraft.util.ResourceLocation;
 
 public interface IResource extends Closeable
 {
-    ResourceLocation getResourceLocation();
+	ResourceLocation getResourceLocation();
 
-    InputStream getInputStream();
+	InputStream getInputStream();
 
-    boolean hasMetadata();
+	boolean hasMetadata();
 
-    @Nullable
-    <T extends IMetadataSection> T getMetadata(String sectionName);
+	@Nullable
+	<T extends IMetadataSection> T getMetadata(String sectionName);
 
-    String getResourcePackName();
+	String getResourcePackName();
 }

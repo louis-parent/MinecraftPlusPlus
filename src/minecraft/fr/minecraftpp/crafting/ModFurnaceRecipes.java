@@ -9,27 +9,27 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 
 public class ModFurnaceRecipes
 {
-    private static FurnaceRecipes RECIPES_INSTANCE;
+	private static FurnaceRecipes RECIPES_INSTANCE;
 
 	public static void furnaceRecipes(FurnaceRecipes instance)
 	{
 		RECIPES_INSTANCE = instance;
-		
+
 		addSmeltingRecipeForBlock(ModBlocks.SCENARITE_ORE, new ItemStack(ModItems.SCENARIUM, 1), 1.2F);
 	}
-	
+
 	private static void addSmelting(Item input, ItemStack stack, float experience)
 	{
 		RECIPES_INSTANCE.addSmelting(input, stack, experience);
 	}
-	
+
 	private static void addSmeltingRecipe(ItemStack input, ItemStack stack, float experience)
-    {
+	{
 		RECIPES_INSTANCE.addSmeltingRecipe(input, stack, experience);
-    }
-    
+	}
+
 	private static void addSmeltingRecipeForBlock(Block input, ItemStack stack, float experience)
-    {
+	{
 		RECIPES_INSTANCE.addSmeltingRecipeForBlock(input, stack, experience);
-    }
+	}
 }

@@ -9,32 +9,32 @@ import net.minecraft.block.state.IBlockState;
 
 public interface ICondition
 {
-    ICondition TRUE = new ICondition()
-    {
-        public Predicate<IBlockState> getPredicate(BlockStateContainer blockState)
-        {
-            return new Predicate<IBlockState>()
-            {
-                public boolean apply(@Nullable IBlockState p_apply_1_)
-                {
-                    return true;
-                }
-            };
-        }
-    };
-    ICondition FALSE = new ICondition()
-    {
-        public Predicate<IBlockState> getPredicate(BlockStateContainer blockState)
-        {
-            return new Predicate<IBlockState>()
-            {
-                public boolean apply(@Nullable IBlockState p_apply_1_)
-                {
-                    return false;
-                }
-            };
-        }
-    };
+	ICondition TRUE = new ICondition()
+	{
+		public Predicate<IBlockState> getPredicate(BlockStateContainer blockState)
+		{
+			return new Predicate<IBlockState>()
+			{
+				public boolean apply(@Nullable IBlockState p_apply_1_)
+				{
+					return true;
+				}
+			};
+		}
+	};
+	ICondition FALSE = new ICondition()
+	{
+		public Predicate<IBlockState> getPredicate(BlockStateContainer blockState)
+		{
+			return new Predicate<IBlockState>()
+			{
+				public boolean apply(@Nullable IBlockState p_apply_1_)
+				{
+					return false;
+				}
+			};
+		}
+	};
 
-    Predicate<IBlockState> getPredicate(BlockStateContainer blockState);
+	Predicate<IBlockState> getPredicate(BlockStateContainer blockState);
 }

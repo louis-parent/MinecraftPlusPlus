@@ -8,11 +8,11 @@ import net.minecraft.item.Item;
 public abstract class RecipeEquipment extends ShapedRecipe
 {
 	protected Item material;
-	
+
 	public RecipeEquipment(Item material, Item result)
 	{
 		super(result);
-		
+
 		this.material = material;
 		this.changeBlueprint(this.getBlueprint());
 	}

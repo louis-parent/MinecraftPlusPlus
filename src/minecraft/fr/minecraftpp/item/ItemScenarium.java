@@ -24,78 +24,79 @@ public class ItemScenarium extends ItemFood
 	public ItemScenarium()
 	{
 		super(10, 1.2F, true);
-		
+
 		this.setUnlocalizedName("scenarium");
 		this.setCreativeTab(CreativeTabs.MATERIALS);
-		
+
 		TileEntityBeacon.paymentItems.add(this);
-		
-		//EntityVillager.setMoney(this);
+
+		// EntityVillager.setMoney(this);
 	}
-	
+
 	@Override
 	public int getBurnTime()
 	{
 		return 1600;
 	}
-	
+
 	@Override
 	public boolean hasEffect(ItemStack stack)
 	{
 		return true;
 	}
-	
+
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        pos = pos.offset(facing);
-        ItemStack itemstack = player.getHeldItem(hand);
+	{
+		pos = pos.offset(facing);
+		ItemStack itemstack = player.getHeldItem(hand);
 
-        if (player.canPlayerEdit(pos, facing, itemstack))
-        {
-            if (world.getBlockState(pos).getMaterial() == Material.AIR)
-            {
-                world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-                world.setBlockState(pos, Blocks.FIRE.getDefaultState(), 11);
-                
-                if(!player.isCreative())
-                {
-                    itemstack.decreaseStackSize(1);
-                }
-                
-                if (player instanceof EntityPlayerMP)
-                {
-                    CriteriaTriggers.field_193137_x.func_193173_a((EntityPlayerMP)player, pos, itemstack);
-                }
-                
-                return EnumActionResult.SUCCESS;
-            }
-            else
-            {
-                return EnumActionResult.FAIL;
-            }
+		if (player.canPlayerEdit(pos, facing, itemstack))
+		{
+			if (world.getBlockState(pos).getMaterial() == Material.AIR)
+			{
+				world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+				world.setBlockState(pos, Blocks.FIRE.getDefaultState(), 11);
 
-        } 
-        else 
-        {
-            return EnumActionResult.FAIL;
-        }
-    }
-	
+				if (!player.isCreative())
+				{
+					itemstack.decreaseStackSize(1);
+				}
+
+				if (player instanceof EntityPlayerMP)
+				{
+					CriteriaTriggers.field_193137_x.func_193173_a((EntityPlayerMP) player, pos, itemstack);
+				}
+
+				return EnumActionResult.SUCCESS;
+			}
+			else
+			{
+				return EnumActionResult.FAIL;
+			}
+
+		}
+		else
+		{
+			return EnumActionResult.FAIL;
+		}
+	}
+
 	@Override
 	public boolean canSetFire()
 	{
 		return true;
 	}
-	
+
 	@Override
 	public boolean allowEnchanting()
 	{
 		return true;
 	}
-	
+
 	@Override
-	public EnumRarity getRarity(ItemStack stack) {
+	public EnumRarity getRarity(ItemStack stack)
+	{
 		return EnumRarity.EPIC;
 	}
 }

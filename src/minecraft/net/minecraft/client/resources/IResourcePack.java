@@ -13,16 +13,16 @@ import net.minecraft.util.ResourceLocation;
 
 public interface IResourcePack
 {
-    InputStream getInputStream(ResourceLocation location) throws IOException;
+	InputStream getInputStream(ResourceLocation location) throws IOException;
 
-    boolean resourceExists(ResourceLocation location);
+	boolean resourceExists(ResourceLocation location);
 
-    Set<String> getResourceDomains();
+	Set<String> getResourceDomains();
 
-    @Nullable
-    <T extends IMetadataSection> T getPackMetadata(MetadataSerializer metadataSerializer, String metadataSectionName) throws IOException;
+	@Nullable
+	<T extends IMetadataSection> T getPackMetadata(MetadataSerializer metadataSerializer, String metadataSectionName) throws IOException;
 
-    BufferedImage getPackImage() throws IOException;
+	BufferedImage getPackImage() throws IOException;
 
-    String getPackName();
+	String getPackName();
 }

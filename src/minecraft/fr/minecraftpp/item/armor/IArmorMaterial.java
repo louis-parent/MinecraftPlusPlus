@@ -8,22 +8,22 @@ import net.minecraft.util.SoundEvent;
 @Mod("minecraftpp")
 public interface IArmorMaterial
 {
-    public int getArmorDurabilityFactor();
+	public int getArmorDurabilityFactor();
 
-    public int getDamageReductionAmount(EntityArmorSlot armorType);
+	public int getDamageReductionAmount(EntityArmorSlot armorType);
 
-    public int getEnchantability();
+	public int getEnchantability();
 
-    public SoundEvent getSoundEvent();
+	public SoundEvent getSoundEvent();
 
-    public Item getRepairItem();
+	public Item getRepairItem();
 
-    public String getName();
+	public String getName();
 
-    public float getToughness();
-    
-    public default int getDurability(EntityArmorSlot armorType)
-    {
-        return armorType.getBaseDurability() * getArmorDurabilityFactor();
-    }
+	public float getToughness();
+
+	public default int getDurability(EntityArmorSlot armorType)
+	{
+		return armorType.getBaseDurability() * getArmorDurabilityFactor();
+	}
 }

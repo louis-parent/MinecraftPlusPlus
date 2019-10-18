@@ -4,5 +4,5 @@ import net.minecraft.util.ITickable;
 
 public interface ITickableSound extends ISound, ITickable
 {
-    boolean isDonePlaying();
+	boolean isDonePlaying();
 }

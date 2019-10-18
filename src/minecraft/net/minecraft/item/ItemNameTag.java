@@ -8,31 +8,32 @@ import net.minecraft.util.EnumHand;
 
 public class ItemNameTag extends Item
 {
-    public ItemNameTag()
-    {
-        this.setCreativeTab(CreativeTabs.TOOLS);
-    }
+	public ItemNameTag()
+	{
+		this.setCreativeTab(CreativeTabs.TOOLS);
+	}
 
-    /**
-     * Returns true if the item can be used on the given entity, e.g. shears on sheep.
-     */
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand)
-    {
-        if (stack.hasDisplayName() && !(target instanceof EntityPlayer))
-        {
-            target.setCustomNameTag(stack.getDisplayName());
+	/**
+	 * Returns true if the item can be used on the given entity, e.g. shears on
+	 * sheep.
+	 */
+	public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand)
+	{
+		if (stack.hasDisplayName() && !(target instanceof EntityPlayer))
+		{
+			target.setCustomNameTag(stack.getDisplayName());
 
-            if (target instanceof EntityLiving)
-            {
-                ((EntityLiving)target).enablePersistence();
-            }
+			if (target instanceof EntityLiving)
+			{
+				((EntityLiving) target).enablePersistence();
+			}
 
-            stack.decreaseStackSize(1);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+			stack.decreaseStackSize(1);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

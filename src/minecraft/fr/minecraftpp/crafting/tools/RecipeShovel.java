@@ -7,7 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 @Mod("Minecraftpp")
-public class RecipeShovel extends RecipeEquipment 
+public class RecipeShovel extends RecipeEquipment
 {
 
 	public RecipeShovel(Item material, Item result)
@@ -18,6 +18,6 @@ public class RecipeShovel extends RecipeEquipment
 	@Override
 	protected Blueprint getBlueprint()
 	{
-		return new Blueprint(new Item[][] {{this.material}, {Items.STICK}, {Items.STICK}});
+		return new Blueprint(new Item[][] { { this.material }, { Items.STICK }, { Items.STICK } });
 	}
 }

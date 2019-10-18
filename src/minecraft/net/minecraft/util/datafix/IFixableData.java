@@ -4,7 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public interface IFixableData
 {
-    int getFixVersion();
+	int getFixVersion();
 
-    NBTTagCompound fixTagCompound(NBTTagCompound compound);
+	NBTTagCompound fixTagCompound(NBTTagCompound compound);
 }

@@ -17,82 +17,82 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 
 public class LootEntryItem extends LootEntry
 {
-    protected final Item item;
-    protected final LootFunction[] functions;
+	protected final Item item;
+	protected final LootFunction[] functions;
 
-    public LootEntryItem(Item itemIn, int weightIn, int qualityIn, LootFunction[] functionsIn, LootCondition[] conditionsIn)
-    {
-        super(weightIn, qualityIn, conditionsIn);
-        this.item = itemIn;
-        this.functions = functionsIn;
-    }
+	public LootEntryItem(Item itemIn, int weightIn, int qualityIn, LootFunction[] functionsIn, LootCondition[] conditionsIn)
+	{
+		super(weightIn, qualityIn, conditionsIn);
+		this.item = itemIn;
+		this.functions = functionsIn;
+	}
 
-    public void addLoot(Collection<ItemStack> stacks, Random rand, LootContext context)
-    {
-        ItemStack itemstack = new ItemStack(this.item);
+	public void addLoot(Collection<ItemStack> stacks, Random rand, LootContext context)
+	{
+		ItemStack itemstack = new ItemStack(this.item);
 
-        for (LootFunction lootfunction : this.functions)
-        {
-            if (LootConditionManager.testAllConditions(lootfunction.getConditions(), rand, context))
-            {
-                itemstack = lootfunction.apply(itemstack, rand, context);
-            }
-        }
+		for (LootFunction lootfunction : this.functions)
+		{
+			if (LootConditionManager.testAllConditions(lootfunction.getConditions(), rand, context))
+			{
+				itemstack = lootfunction.apply(itemstack, rand, context);
+			}
+		}
 
-        if (!itemstack.isNotValid())
-        {
-            if (itemstack.getStackSize() < this.item.getItemStackLimit())
-            {
-                stacks.add(itemstack);
-            }
-            else
-            {
-                int i = itemstack.getStackSize();
+		if (!itemstack.isNotValid())
+		{
+			if (itemstack.getStackSize() < this.item.getItemStackLimit())
+			{
+				stacks.add(itemstack);
+			}
+			else
+			{
+				int i = itemstack.getStackSize();
 
-                while (i > 0)
-                {
-                    ItemStack itemstack1 = itemstack.copy();
-                    itemstack1.setStackSize(Math.min(itemstack.getMaxStackSize(), i));
-                    i -= itemstack1.getStackSize();
-                    stacks.add(itemstack1);
-                }
-            }
-        }
-    }
+				while (i > 0)
+				{
+					ItemStack itemstack1 = itemstack.copy();
+					itemstack1.setStackSize(Math.min(itemstack.getMaxStackSize(), i));
+					i -= itemstack1.getStackSize();
+					stacks.add(itemstack1);
+				}
+			}
+		}
+	}
 
-    protected void serialize(JsonObject json, JsonSerializationContext context)
-    {
-        if (this.functions != null && this.functions.length > 0)
-        {
-            json.add("functions", context.serialize(this.functions));
-        }
+	protected void serialize(JsonObject json, JsonSerializationContext context)
+	{
+		if (this.functions != null && this.functions.length > 0)
+		{
+			json.add("functions", context.serialize(this.functions));
+		}
 
-        ResourceLocation resourcelocation = Item.REGISTRY.getNameForObject(this.item);
+		ResourceLocation resourcelocation = Item.REGISTRY.getNameForObject(this.item);
 
-        if (resourcelocation == null)
-        {
-            throw new IllegalArgumentException("Can't serialize unknown item " + this.item);
-        }
-        else
-        {
-            json.addProperty("name", resourcelocation.toString());
-        }
-    }
+		if (resourcelocation == null)
+		{
+			throw new IllegalArgumentException("Can't serialize unknown item " + this.item);
+		}
+		else
+		{
+			json.addProperty("name", resourcelocation.toString());
+		}
+	}
 
-    public static LootEntryItem deserialize(JsonObject object, JsonDeserializationContext deserializationContext, int weightIn, int qualityIn, LootCondition[] conditionsIn)
-    {
-        Item item = JsonUtils.getItem(object, "name");
-        LootFunction[] alootfunction;
+	public static LootEntryItem deserialize(JsonObject object, JsonDeserializationContext deserializationContext, int weightIn, int qualityIn, LootCondition[] conditionsIn)
+	{
+		Item item = JsonUtils.getItem(object, "name");
+		LootFunction[] alootfunction;
 
-        if (object.has("functions"))
-        {
-            alootfunction = (LootFunction[])JsonUtils.deserializeClass(object, "functions", deserializationContext, LootFunction[].class);
-        }
-        else
-        {
-            alootfunction = new LootFunction[0];
-        }
+		if (object.has("functions"))
+		{
+			alootfunction = (LootFunction[]) JsonUtils.deserializeClass(object, "functions", deserializationContext, LootFunction[].class);
+		}
+		else
+		{
+			alootfunction = new LootFunction[0];
+		}
 
-        return new LootEntryItem(item, weightIn, qualityIn, alootfunction, conditionsIn);
-    }
+		return new LootEntryItem(item, weightIn, qualityIn, alootfunction, conditionsIn);
+	}
 }

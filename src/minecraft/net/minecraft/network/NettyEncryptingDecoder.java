@@ -11,15 +11,15 @@ import io.netty.handler.codec.MessageToMessageDecoder;
 
 public class NettyEncryptingDecoder extends MessageToMessageDecoder<ByteBuf>
 {
-    private final NettyEncryptionTranslator decryptionCodec;
+	private final NettyEncryptionTranslator decryptionCodec;
 
-    public NettyEncryptingDecoder(Cipher cipher)
-    {
-        this.decryptionCodec = new NettyEncryptionTranslator(cipher);
-    }
+	public NettyEncryptingDecoder(Cipher cipher)
+	{
+		this.decryptionCodec = new NettyEncryptionTranslator(cipher);
+	}
 
-    protected void decode(ChannelHandlerContext p_decode_1_, ByteBuf p_decode_2_, List<Object> p_decode_3_) throws ShortBufferException, Exception
-    {
-        p_decode_3_.add(this.decryptionCodec.decipher(p_decode_1_, p_decode_2_));
-    }
+	protected void decode(ChannelHandlerContext p_decode_1_, ByteBuf p_decode_2_, List<Object> p_decode_3_) throws ShortBufferException, Exception
+	{
+		p_decode_3_.add(this.decryptionCodec.decipher(p_decode_1_, p_decode_2_));
+	}
 }

@@ -5,9 +5,9 @@ import net.minecraft.entity.EntityLiving;
 
 public class EntityAIWatchClosest2 extends EntityAIWatchClosest
 {
-    public EntityAIWatchClosest2(EntityLiving entitylivingIn, Class <? extends Entity > watchTargetClass, float maxDistance, float chanceIn)
-    {
-        super(entitylivingIn, watchTargetClass, maxDistance, chanceIn);
-        this.setMutexBits(3);
-    }
+	public EntityAIWatchClosest2(EntityLiving entitylivingIn, Class<? extends Entity> watchTargetClass, float maxDistance, float chanceIn)
+	{
+		super(entitylivingIn, watchTargetClass, maxDistance, chanceIn);
+		this.setMutexBits(3);
+	}
 }

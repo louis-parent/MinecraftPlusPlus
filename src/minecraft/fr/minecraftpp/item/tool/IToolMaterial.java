@@ -5,18 +5,18 @@ import net.minecraft.item.Item;
 
 @Mod("Minecraftpp")
 public interface IToolMaterial
-{	
+{
 	public abstract int getMaxUses();
 
-    public abstract float getEfficiencyOnProperMaterial();
+	public abstract float getEfficiencyOnProperMaterial();
 
-    public abstract float getDamageVsEntity(ToolType toolType);
-    
-    public abstract float getAttackSpeed(ToolType toolType);
+	public abstract float getDamageVsEntity(ToolType toolType);
 
-    public abstract int getHarvestLevel();
+	public abstract float getAttackSpeed(ToolType toolType);
 
-    public abstract int getEnchantability();
+	public abstract int getHarvestLevel();
 
-    public abstract Item getRepairItem();
+	public abstract int getEnchantability();
+
+	public abstract Item getRepairItem();
 }

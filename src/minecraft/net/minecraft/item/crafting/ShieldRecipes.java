@@ -9,126 +9,126 @@ import net.minecraft.world.World;
 
 public class ShieldRecipes
 {
-    public static class Decoration implements IRecipe
-    {
-        public boolean matches(InventoryCrafting inv, World worldIn)
-        {
-            ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
-            ItemStack itemstack1 = ItemStack.EMPTY_ITEM_STACK;
+	public static class Decoration implements IRecipe
+	{
+		public boolean matches(InventoryCrafting inv, World worldIn)
+		{
+			ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
+			ItemStack itemstack1 = ItemStack.EMPTY_ITEM_STACK;
 
-            for (int i = 0; i < inv.getSizeInventory(); ++i)
-            {
-                ItemStack itemstack2 = inv.getStackInSlot(i);
+			for (int i = 0; i < inv.getSizeInventory(); ++i)
+			{
+				ItemStack itemstack2 = inv.getStackInSlot(i);
 
-                if (!itemstack2.isNotValid())
-                {
-                    if (itemstack2.getItem() == Items.BANNER)
-                    {
-                        if (!itemstack1.isNotValid())
-                        {
-                            return false;
-                        }
+				if (!itemstack2.isNotValid())
+				{
+					if (itemstack2.getItem() == Items.BANNER)
+					{
+						if (!itemstack1.isNotValid())
+						{
+							return false;
+						}
 
-                        itemstack1 = itemstack2;
-                    }
-                    else
-                    {
-                        if (itemstack2.getItem() != Items.SHIELD)
-                        {
-                            return false;
-                        }
+						itemstack1 = itemstack2;
+					}
+					else
+					{
+						if (itemstack2.getItem() != Items.SHIELD)
+						{
+							return false;
+						}
 
-                        if (!itemstack.isNotValid())
-                        {
-                            return false;
-                        }
+						if (!itemstack.isNotValid())
+						{
+							return false;
+						}
 
-                        if (itemstack2.getSubCompound("BlockEntityTag") != null)
-                        {
-                            return false;
-                        }
+						if (itemstack2.getSubCompound("BlockEntityTag") != null)
+						{
+							return false;
+						}
 
-                        itemstack = itemstack2;
-                    }
-                }
-            }
+						itemstack = itemstack2;
+					}
+				}
+			}
 
-            if (!itemstack.isNotValid() && !itemstack1.isNotValid())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+			if (!itemstack.isNotValid() && !itemstack1.isNotValid())
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 
-        public ItemStack getCraftingResult(InventoryCrafting inv)
-        {
-            ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
-            ItemStack itemstack1 = ItemStack.EMPTY_ITEM_STACK;
+		public ItemStack getCraftingResult(InventoryCrafting inv)
+		{
+			ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
+			ItemStack itemstack1 = ItemStack.EMPTY_ITEM_STACK;
 
-            for (int i = 0; i < inv.getSizeInventory(); ++i)
-            {
-                ItemStack itemstack2 = inv.getStackInSlot(i);
+			for (int i = 0; i < inv.getSizeInventory(); ++i)
+			{
+				ItemStack itemstack2 = inv.getStackInSlot(i);
 
-                if (!itemstack2.isNotValid())
-                {
-                    if (itemstack2.getItem() == Items.BANNER)
-                    {
-                        itemstack = itemstack2;
-                    }
-                    else if (itemstack2.getItem() == Items.SHIELD)
-                    {
-                        itemstack1 = itemstack2.copy();
-                    }
-                }
-            }
+				if (!itemstack2.isNotValid())
+				{
+					if (itemstack2.getItem() == Items.BANNER)
+					{
+						itemstack = itemstack2;
+					}
+					else if (itemstack2.getItem() == Items.SHIELD)
+					{
+						itemstack1 = itemstack2.copy();
+					}
+				}
+			}
 
-            if (itemstack1.isNotValid())
-            {
-                return itemstack1;
-            }
-            else
-            {
-                NBTTagCompound nbttagcompound = itemstack.getSubCompound("BlockEntityTag");
-                NBTTagCompound nbttagcompound1 = nbttagcompound == null ? new NBTTagCompound() : nbttagcompound.copy();
-                nbttagcompound1.setInteger("Base", itemstack.getMetadata() & 15);
-                itemstack1.setTagInfo("BlockEntityTag", nbttagcompound1);
-                return itemstack1;
-            }
-        }
+			if (itemstack1.isNotValid())
+			{
+				return itemstack1;
+			}
+			else
+			{
+				NBTTagCompound nbttagcompound = itemstack.getSubCompound("BlockEntityTag");
+				NBTTagCompound nbttagcompound1 = nbttagcompound == null ? new NBTTagCompound() : nbttagcompound.copy();
+				nbttagcompound1.setInteger("Base", itemstack.getMetadata() & 15);
+				itemstack1.setTagInfo("BlockEntityTag", nbttagcompound1);
+				return itemstack1;
+			}
+		}
 
-        public ItemStack getRecipeOutput()
-        {
-            return ItemStack.EMPTY_ITEM_STACK;
-        }
+		public ItemStack getRecipeOutput()
+		{
+			return ItemStack.EMPTY_ITEM_STACK;
+		}
 
-        public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
-        {
-            NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
+		public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
+		{
+			NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
 
-            for (int i = 0; i < nonnulllist.size(); ++i)
-            {
-                ItemStack itemstack = inv.getStackInSlot(i);
+			for (int i = 0; i < nonnulllist.size(); ++i)
+			{
+				ItemStack itemstack = inv.getStackInSlot(i);
 
-                if (itemstack.getItem().hasContainerItem())
-                {
-                    nonnulllist.set(i, new ItemStack(itemstack.getItem().getContainerItem()));
-                }
-            }
+				if (itemstack.getItem().hasContainerItem())
+				{
+					nonnulllist.set(i, new ItemStack(itemstack.getItem().getContainerItem()));
+				}
+			}
 
-            return nonnulllist;
-        }
+			return nonnulllist;
+		}
 
-        public boolean hideInCraftingTabs()
-        {
-            return true;
-        }
+		public boolean hideInCraftingTabs()
+		{
+			return true;
+		}
 
-        public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
-        {
-            return p_194133_1_ * p_194133_2_ >= 2;
-        }
-    }
+		public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
+		{
+			return p_194133_1_ * p_194133_2_ >= 2;
+		}
+	}
 }

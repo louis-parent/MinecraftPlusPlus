@@ -19,149 +19,151 @@ import net.minecraft.world.World;
 
 public class BlockSponge extends Block implements IAbsorbingBlock
 {
-    public static final PropertyBool WET = PropertyBool.create("wet");
+	public static final PropertyBool WET = PropertyBool.create("wet");
 
-    protected BlockSponge()
-    {
-        super(Material.SPONGE);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(WET, Boolean.valueOf(false)));
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    }
+	protected BlockSponge()
+	{
+		super(Material.SPONGE);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(WET, Boolean.valueOf(false)));
+		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+	}
 
-    /**
-     * Gets the localized name of this block. Used for the statistics page.
-     */
-    public String getLocalizedName()
-    {
-        return I18n.translateToLocal(this.getUnlocalizedName() + ".dry.name");
-    }
+	/**
+	 * Gets the localized name of this block. Used for the statistics page.
+	 */
+	public String getLocalizedName()
+	{
+		return I18n.translateToLocal(this.getUnlocalizedName() + ".dry.name");
+	}
 
-    /**
-     * Gets the metadata of the item this Block can drop. This method is called when the block gets destroyed. It
-     * returns the metadata of the dropped item based on the old metadata of the block.
-     */
-    public int damageDropped(IBlockState state)
-    {
-        return ((Boolean)state.getValue(WET)).booleanValue() ? 1 : 0;
-    }
+	/**
+	 * Gets the metadata of the item this Block can drop. This method is called
+	 * when the block gets destroyed. It returns the metadata of the dropped
+	 * item based on the old metadata of the block.
+	 */
+	public int damageDropped(IBlockState state)
+	{
+		return ((Boolean) state.getValue(WET)).booleanValue() ? 1 : 0;
+	}
 
-    /**
-     * Called after the block is set in the Chunk data, but before the Tile Entity is set
-     */
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
-    {
-        this.tryAbsorb(worldIn, pos, state);
-    }
+	/**
+	 * Called after the block is set in the Chunk data, but before the Tile
+	 * Entity is set
+	 */
+	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+	{
+		this.tryAbsorb(worldIn, pos, state);
+	}
 
-    /**
-     * Called when a neighboring block was changed and marks that this state should perform any checks during a neighbor
-     * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
-     * block, etc.
-     */
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
-    {
-        this.tryAbsorb(worldIn, pos, state);
-        super.neighborChanged(state, worldIn, pos, blockIn, p_189540_5_);
-    }
+	/**
+	 * Called when a neighboring block was changed and marks that this state
+	 * should perform any checks during a neighbor change. Cases may include
+	 * when redstone power is updated, cactus blocks popping off due to a
+	 * neighboring solid block, etc.
+	 */
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
+	{
+		this.tryAbsorb(worldIn, pos, state);
+		super.neighborChanged(state, worldIn, pos, blockIn, p_189540_5_);
+	}
 
-    
+	/**
+	 * returns a list of blocks with the same ID, but different meta (eg: wood
+	 * returns 4 blocks)
+	 */
+	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
+	{
+		tab.add(new ItemStack(this, 1, 0));
+		tab.add(new ItemStack(this, 1, 1));
+	}
 
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
-    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
-    {
-        tab.add(new ItemStack(this, 1, 0));
-        tab.add(new ItemStack(this, 1, 1));
-    }
+	/**
+	 * Convert the given metadata into a BlockState for this Block
+	 */
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return this.getDefaultState().withProperty(WET, Boolean.valueOf((meta & 1) == 1));
+	}
 
-    /**
-     * Convert the given metadata into a BlockState for this Block
-     */
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(WET, Boolean.valueOf((meta & 1) == 1));
-    }
+	/**
+	 * Convert the BlockState into the correct metadata value
+	 */
+	public int getMetaFromState(IBlockState state)
+	{
+		return ((Boolean) state.getValue(WET)).booleanValue() ? 1 : 0;
+	}
 
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
-    public int getMetaFromState(IBlockState state)
-    {
-        return ((Boolean)state.getValue(WET)).booleanValue() ? 1 : 0;
-    }
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, new IProperty[] { WET });
+	}
 
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[] {WET});
-    }
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
+	{
+		if (((Boolean) stateIn.getValue(WET)).booleanValue())
+		{
+			EnumFacing enumfacing = EnumFacing.random(rand);
 
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-    {
-        if (((Boolean)stateIn.getValue(WET)).booleanValue())
-        {
-            EnumFacing enumfacing = EnumFacing.random(rand);
+			if (enumfacing != EnumFacing.UP && !worldIn.getBlockState(pos.offset(enumfacing)).isFullyOpaque())
+			{
+				double d0 = (double) pos.getX();
+				double d1 = (double) pos.getY();
+				double d2 = (double) pos.getZ();
 
-            if (enumfacing != EnumFacing.UP && !worldIn.getBlockState(pos.offset(enumfacing)).isFullyOpaque())
-            {
-                double d0 = (double)pos.getX();
-                double d1 = (double)pos.getY();
-                double d2 = (double)pos.getZ();
+				if (enumfacing == EnumFacing.DOWN)
+				{
+					d1 = d1 - 0.05D;
+					d0 += rand.nextDouble();
+					d2 += rand.nextDouble();
+				}
+				else
+				{
+					d1 = d1 + rand.nextDouble() * 0.8D;
 
-                if (enumfacing == EnumFacing.DOWN)
-                {
-                    d1 = d1 - 0.05D;
-                    d0 += rand.nextDouble();
-                    d2 += rand.nextDouble();
-                }
-                else
-                {
-                    d1 = d1 + rand.nextDouble() * 0.8D;
+					if (enumfacing.getAxis() == EnumFacing.Axis.X)
+					{
+						d2 += rand.nextDouble();
 
-                    if (enumfacing.getAxis() == EnumFacing.Axis.X)
-                    {
-                        d2 += rand.nextDouble();
+						if (enumfacing == EnumFacing.EAST)
+						{
+							++d0;
+						}
+						else
+						{
+							d0 += 0.05D;
+						}
+					}
+					else
+					{
+						d0 += rand.nextDouble();
 
-                        if (enumfacing == EnumFacing.EAST)
-                        {
-                            ++d0;
-                        }
-                        else
-                        {
-                            d0 += 0.05D;
-                        }
-                    }
-                    else
-                    {
-                        d0 += rand.nextDouble();
+						if (enumfacing == EnumFacing.SOUTH)
+						{
+							++d2;
+						}
+						else
+						{
+							d2 += 0.05D;
+						}
+					}
+				}
 
-                        if (enumfacing == EnumFacing.SOUTH)
-                        {
-                            ++d2;
-                        }
-                        else
-                        {
-                            d2 += 0.05D;
-                        }
-                    }
-                }
+				worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+			}
+		}
+	}
 
-                worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-            }
-        }
-    }
-    
-    @Override
-    public boolean tryAbsorb(World world, BlockPos pos, IBlockState state)
-    {
-    	if (!((Boolean)state.getValue(WET)).booleanValue() && IAbsorbingBlock.super.tryAbsorb(world, pos, state))
-        {
-            world.setBlockState(pos, state.withProperty(WET, Boolean.valueOf(true)), 2);
-            return true;
-        }
-    	else
-    	{
-    		return false;
-    	}
-    }
+	@Override
+	public boolean tryAbsorb(World world, BlockPos pos, IBlockState state)
+	{
+		if (!((Boolean) state.getValue(WET)).booleanValue() && IAbsorbingBlock.super.tryAbsorb(world, pos, state))
+		{
+			world.setBlockState(pos, state.withProperty(WET, Boolean.valueOf(true)), 2);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

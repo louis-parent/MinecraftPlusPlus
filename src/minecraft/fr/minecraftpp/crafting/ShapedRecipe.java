@@ -10,21 +10,21 @@ import net.minecraft.world.World;
 
 @Mod("Minecraftpp")
 public class ShapedRecipe extends ModAbstractRecipe
-{	
+{
 	protected Blueprint blueprint;
 
 	public ShapedRecipe(Item result)
 	{
 		super(result);
 	}
-	
+
 	public ShapedRecipe(Blueprint blueprint, Item result)
 	{
 		this(result);
 		this.blueprint = blueprint;
 	}
-	
-	@Override 
+
+	@Override
 	public boolean matches(InventoryCrafting inv, World world)
 	{
 		return this.blueprint.matches(inv);
@@ -35,13 +35,13 @@ public class ShapedRecipe extends ModAbstractRecipe
 	{
 		return craftingMatrixWidth >= this.blueprint.getWidth() && craftingMatrixHeight >= this.blueprint.getHeight();
 	}
-	
+
 	@Override
 	public NonNullList<Ingredient> getListOfIngredients()
 	{
 		return NonNullList.getInstanceWith(Ingredient.INGREDIENT_AIR, this.blueprint.toIngredients());
 	}
-	
+
 	public void changeBlueprint(Blueprint newBlueprint)
 	{
 		this.blueprint = newBlueprint;

@@ -6,11 +6,11 @@ import net.minecraft.client.resources.IResourceManager;
 
 public interface ITextureObject
 {
-    void setBlurMipmap(boolean blurIn, boolean mipmapIn);
+	void setBlurMipmap(boolean blurIn, boolean mipmapIn);
 
-    void restoreLastBlurMipmap();
+	void restoreLastBlurMipmap();
 
-    void loadTexture(IResourceManager resourceManager) throws IOException;
+	void loadTexture(IResourceManager resourceManager) throws IOException;
 
-    int getGlTextureId();
+	int getGlTextureId();
 }

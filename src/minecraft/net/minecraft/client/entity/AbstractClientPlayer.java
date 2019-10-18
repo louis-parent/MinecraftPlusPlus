@@ -24,153 +24,154 @@ import net.minecraft.world.World;
 
 public abstract class AbstractClientPlayer extends EntityPlayer
 {
-    private NetworkPlayerInfo playerInfo;
-    public float rotateElytraX;
-    public float rotateElytraY;
-    public float rotateElytraZ;
+	private NetworkPlayerInfo playerInfo;
+	public float rotateElytraX;
+	public float rotateElytraY;
+	public float rotateElytraZ;
 
-    public AbstractClientPlayer(World worldIn, GameProfile playerProfile)
-    {
-        super(worldIn, playerProfile);
-    }
+	public AbstractClientPlayer(World worldIn, GameProfile playerProfile)
+	{
+		super(worldIn, playerProfile);
+	}
 
-    /**
-     * Returns true if the player is in spectator mode.
-     */
-    public boolean isSpectator()
-    {
-        NetworkPlayerInfo networkplayerinfo = Minecraft.getMinecraft().getConnection().getPlayerInfo(this.getGameProfile().getId());
-        return networkplayerinfo != null && networkplayerinfo.getGameType() == GameType.SPECTATOR;
-    }
+	/**
+	 * Returns true if the player is in spectator mode.
+	 */
+	public boolean isSpectator()
+	{
+		NetworkPlayerInfo networkplayerinfo = Minecraft.getMinecraft().getConnection().getPlayerInfo(this.getGameProfile().getId());
+		return networkplayerinfo != null && networkplayerinfo.getGameType() == GameType.SPECTATOR;
+	}
 
-    public boolean isCreative()
-    {
-        NetworkPlayerInfo networkplayerinfo = Minecraft.getMinecraft().getConnection().getPlayerInfo(this.getGameProfile().getId());
-        return networkplayerinfo != null && networkplayerinfo.getGameType() == GameType.CREATIVE;
-    }
+	public boolean isCreative()
+	{
+		NetworkPlayerInfo networkplayerinfo = Minecraft.getMinecraft().getConnection().getPlayerInfo(this.getGameProfile().getId());
+		return networkplayerinfo != null && networkplayerinfo.getGameType() == GameType.CREATIVE;
+	}
 
-    /**
-     * Checks if this instance of AbstractClientPlayer has any associated player data.
-     */
-    public boolean hasPlayerInfo()
-    {
-        return this.getPlayerInfo() != null;
-    }
+	/**
+	 * Checks if this instance of AbstractClientPlayer has any associated player
+	 * data.
+	 */
+	public boolean hasPlayerInfo()
+	{
+		return this.getPlayerInfo() != null;
+	}
 
-    @Nullable
-    protected NetworkPlayerInfo getPlayerInfo()
-    {
-        if (this.playerInfo == null)
-        {
-            this.playerInfo = Minecraft.getMinecraft().getConnection().getPlayerInfo(this.getUniqueID());
-        }
+	@Nullable
+	protected NetworkPlayerInfo getPlayerInfo()
+	{
+		if (this.playerInfo == null)
+		{
+			this.playerInfo = Minecraft.getMinecraft().getConnection().getPlayerInfo(this.getUniqueID());
+		}
 
-        return this.playerInfo;
-    }
+		return this.playerInfo;
+	}
 
-    /**
-     * Returns true if the player has an associated skin.
-     */
-    public boolean hasSkin()
-    {
-        NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
-        return networkplayerinfo != null && networkplayerinfo.hasLocationSkin();
-    }
+	/**
+	 * Returns true if the player has an associated skin.
+	 */
+	public boolean hasSkin()
+	{
+		NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
+		return networkplayerinfo != null && networkplayerinfo.hasLocationSkin();
+	}
 
-    /**
-     * Returns true if the player instance has an associated skin.
-     */
-    public ResourceLocation getLocationSkin()
-    {
-        NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
-        return networkplayerinfo == null ? DefaultPlayerSkin.getDefaultSkin(this.getUniqueID()) : networkplayerinfo.getLocationSkin();
-    }
+	/**
+	 * Returns true if the player instance has an associated skin.
+	 */
+	public ResourceLocation getLocationSkin()
+	{
+		NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
+		return networkplayerinfo == null ? DefaultPlayerSkin.getDefaultSkin(this.getUniqueID()) : networkplayerinfo.getLocationSkin();
+	}
 
-    @Nullable
-    public ResourceLocation getLocationCape()
-    {
-        NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
-        return networkplayerinfo == null ? null : networkplayerinfo.getLocationCape();
-    }
+	@Nullable
+	public ResourceLocation getLocationCape()
+	{
+		NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
+		return networkplayerinfo == null ? null : networkplayerinfo.getLocationCape();
+	}
 
-    public boolean isPlayerInfoSet()
-    {
-        return this.getPlayerInfo() != null;
-    }
+	public boolean isPlayerInfoSet()
+	{
+		return this.getPlayerInfo() != null;
+	}
 
-    @Nullable
+	@Nullable
 
-    /**
-     * Gets the special Elytra texture for the player.
-     */
-    public ResourceLocation getLocationElytra()
-    {
-        NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
-        return networkplayerinfo == null ? null : networkplayerinfo.getLocationElytra();
-    }
+	/**
+	 * Gets the special Elytra texture for the player.
+	 */
+	public ResourceLocation getLocationElytra()
+	{
+		NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
+		return networkplayerinfo == null ? null : networkplayerinfo.getLocationElytra();
+	}
 
-    public static ThreadDownloadImageData getDownloadImageSkin(ResourceLocation resourceLocationIn, String username)
-    {
-        TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
-        ITextureObject itextureobject = texturemanager.getTexture(resourceLocationIn);
+	public static ThreadDownloadImageData getDownloadImageSkin(ResourceLocation resourceLocationIn, String username)
+	{
+		TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
+		ITextureObject itextureobject = texturemanager.getTexture(resourceLocationIn);
 
-        if (itextureobject == null)
-        {
-            itextureobject = new ThreadDownloadImageData((File)null, String.format("http://skins.minecraft.net/MinecraftSkins/%s.png", StringUtils.stripControlCodes(username)), DefaultPlayerSkin.getDefaultSkin(getOfflineUUID(username)), new ImageBufferDownload());
-            texturemanager.loadTexture(resourceLocationIn, itextureobject);
-        }
+		if (itextureobject == null)
+		{
+			itextureobject = new ThreadDownloadImageData((File) null, String.format("http://skins.minecraft.net/MinecraftSkins/%s.png", StringUtils.stripControlCodes(username)), DefaultPlayerSkin.getDefaultSkin(getOfflineUUID(username)), new ImageBufferDownload());
+			texturemanager.loadTexture(resourceLocationIn, itextureobject);
+		}
 
-        return (ThreadDownloadImageData)itextureobject;
-    }
+		return (ThreadDownloadImageData) itextureobject;
+	}
 
-    /**
-     * Returns true if the username has an associated skin.
-     */
-    public static ResourceLocation getLocationSkin(String username)
-    {
-        return new ResourceLocation("skins/" + StringUtils.stripControlCodes(username));
-    }
+	/**
+	 * Returns true if the username has an associated skin.
+	 */
+	public static ResourceLocation getLocationSkin(String username)
+	{
+		return new ResourceLocation("skins/" + StringUtils.stripControlCodes(username));
+	}
 
-    public String getSkinType()
-    {
-        NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
-        return networkplayerinfo == null ? DefaultPlayerSkin.getSkinType(this.getUniqueID()) : networkplayerinfo.getSkinType();
-    }
+	public String getSkinType()
+	{
+		NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
+		return networkplayerinfo == null ? DefaultPlayerSkin.getSkinType(this.getUniqueID()) : networkplayerinfo.getSkinType();
+	}
 
-    public float getFovModifier()
-    {
-        float f = 1.0F;
+	public float getFovModifier()
+	{
+		float f = 1.0F;
 
-        if (this.capabilities.isFlying)
-        {
-            f *= 1.1F;
-        }
+		if (this.capabilities.isFlying)
+		{
+			f *= 1.1F;
+		}
 
-        IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
-        f = (float)((double)f * ((iattributeinstance.getAttributeValue() / (double)this.capabilities.getWalkSpeed() + 1.0D) / 2.0D));
+		IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
+		f = (float) ((double) f * ((iattributeinstance.getAttributeValue() / (double) this.capabilities.getWalkSpeed() + 1.0D) / 2.0D));
 
-        if (this.capabilities.getWalkSpeed() == 0.0F || Float.isNaN(f) || Float.isInfinite(f))
-        {
-            f = 1.0F;
-        }
+		if (this.capabilities.getWalkSpeed() == 0.0F || Float.isNaN(f) || Float.isInfinite(f))
+		{
+			f = 1.0F;
+		}
 
-        if (this.isHandActive() && this.getActiveItemStack().getItem() == Items.BOW)
-        {
-            int i = this.getItemInUseMaxCount();
-            float f1 = (float)i / 20.0F;
+		if (this.isHandActive() && this.getActiveItemStack().getItem() == Items.BOW)
+		{
+			int i = this.getItemInUseMaxCount();
+			float f1 = (float) i / 20.0F;
 
-            if (f1 > 1.0F)
-            {
-                f1 = 1.0F;
-            }
-            else
-            {
-                f1 = f1 * f1;
-            }
+			if (f1 > 1.0F)
+			{
+				f1 = 1.0F;
+			}
+			else
+			{
+				f1 = f1 * f1;
+			}
 
-            f *= 1.0F - f1 * 0.15F;
-        }
+			f *= 1.0F - f1 * 0.15F;
+		}
 
-        return f;
-    }
+		return f;
+	}
 }

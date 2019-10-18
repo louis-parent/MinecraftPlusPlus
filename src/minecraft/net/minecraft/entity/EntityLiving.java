@@ -1148,100 +1148,100 @@ public abstract class EntityLiving extends EntityLivingBase
 	@Nullable
 	public static Item getArmorByChance(EntityEquipmentSlot slot, int chance)
 	{
-		if(slot instanceof EntityArmorSlot)
+		if (slot instanceof EntityArmorSlot)
 		{
 			switch ((EntityArmorSlot) slot)
 			{
-			case HEAD:
-				if (chance == 0)
-				{
-					return Items.LEATHER_HELMET;
-				}
-				else if (chance == 1)
-				{
-					return Items.GOLDEN_HELMET;
-				}
-				else if (chance == 2)
-				{
-					return Items.CHAINMAIL_HELMET;
-				}
-				else if (chance == 3)
-				{
-					return Items.IRON_HELMET;
-				}
-				else if (chance == 4)
-				{
-					return Items.DIAMOND_HELMET;
-				}
-	
-			case CHEST:
-				if (chance == 0)
-				{
-					return Items.LEATHER_CHESTPLATE;
-				}
-				else if (chance == 1)
-				{
-					return Items.GOLDEN_CHESTPLATE;
-				}
-				else if (chance == 2)
-				{
-					return Items.CHAINMAIL_CHESTPLATE;
-				}
-				else if (chance == 3)
-				{
-					return Items.IRON_CHESTPLATE;
-				}
-				else if (chance == 4)
-				{
-					return Items.DIAMOND_CHESTPLATE;
-				}
-	
-			case LEGS:
-				if (chance == 0)
-				{
-					return Items.LEATHER_LEGGINGS;
-				}
-				else if (chance == 1)
-				{
-					return Items.GOLDEN_LEGGINGS;
-				}
-				else if (chance == 2)
-				{
-					return Items.CHAINMAIL_LEGGINGS;
-				}
-				else if (chance == 3)
-				{
-					return Items.IRON_LEGGINGS;
-				}
-				else if (chance == 4)
-				{
-					return Items.DIAMOND_LEGGINGS;
-				}
-	
-			case FEET:
-				if (chance == 0)
-				{
-					return Items.LEATHER_BOOTS;
-				}
-				else if (chance == 1)
-				{
-					return Items.GOLDEN_BOOTS;
-				}
-				else if (chance == 2)
-				{
-					return Items.CHAINMAIL_BOOTS;
-				}
-				else if (chance == 3)
-				{
-					return Items.IRON_BOOTS;
-				}
-				else if (chance == 4)
-				{
-					return Items.DIAMOND_BOOTS;
-				}
-	
-			default:
-				return null;
+				case HEAD:
+					if (chance == 0)
+					{
+						return Items.LEATHER_HELMET;
+					}
+					else if (chance == 1)
+					{
+						return Items.GOLDEN_HELMET;
+					}
+					else if (chance == 2)
+					{
+						return Items.CHAINMAIL_HELMET;
+					}
+					else if (chance == 3)
+					{
+						return Items.IRON_HELMET;
+					}
+					else if (chance == 4)
+					{
+						return Items.DIAMOND_HELMET;
+					}
+
+				case CHEST:
+					if (chance == 0)
+					{
+						return Items.LEATHER_CHESTPLATE;
+					}
+					else if (chance == 1)
+					{
+						return Items.GOLDEN_CHESTPLATE;
+					}
+					else if (chance == 2)
+					{
+						return Items.CHAINMAIL_CHESTPLATE;
+					}
+					else if (chance == 3)
+					{
+						return Items.IRON_CHESTPLATE;
+					}
+					else if (chance == 4)
+					{
+						return Items.DIAMOND_CHESTPLATE;
+					}
+
+				case LEGS:
+					if (chance == 0)
+					{
+						return Items.LEATHER_LEGGINGS;
+					}
+					else if (chance == 1)
+					{
+						return Items.GOLDEN_LEGGINGS;
+					}
+					else if (chance == 2)
+					{
+						return Items.CHAINMAIL_LEGGINGS;
+					}
+					else if (chance == 3)
+					{
+						return Items.IRON_LEGGINGS;
+					}
+					else if (chance == 4)
+					{
+						return Items.DIAMOND_LEGGINGS;
+					}
+
+				case FEET:
+					if (chance == 0)
+					{
+						return Items.LEATHER_BOOTS;
+					}
+					else if (chance == 1)
+					{
+						return Items.GOLDEN_BOOTS;
+					}
+					else if (chance == 2)
+					{
+						return Items.CHAINMAIL_BOOTS;
+					}
+					else if (chance == 3)
+					{
+						return Items.IRON_BOOTS;
+					}
+					else if (chance == 4)
+					{
+						return Items.DIAMOND_BOOTS;
+					}
+
+				default:
+					return null;
 			}
 		}
 		else
@@ -1319,11 +1319,11 @@ public abstract class EntityLiving extends EntityLivingBase
 
 	public void setDropChance(EntityEquipmentSlot slot, float chance)
 	{
-		if(slot instanceof EntityHandSlot)
+		if (slot instanceof EntityHandSlot)
 		{
 			this.inventoryHandsDropChances[slot.getIndex()] = chance;
 		}
-		else if(slot instanceof EntityArmorSlot)
+		else if (slot instanceof EntityArmorSlot)
 		{
 			this.inventoryArmorDropChances[slot.getIndex()] = chance;
 		}

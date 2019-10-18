@@ -4,5 +4,5 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public interface IDataWalker
 {
-    NBTTagCompound process(IDataFixer fixer, NBTTagCompound compound, int versionIn);
+	NBTTagCompound process(IDataFixer fixer, NBTTagCompound compound, int versionIn);
 }

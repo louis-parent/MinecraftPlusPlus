@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 
 public class MaterialScenarium implements IToolMaterial, IArmorMaterial
-{	
+{
 	@Override
 	public int getDamageReductionAmount(EntityArmorSlot armorType)
 	{

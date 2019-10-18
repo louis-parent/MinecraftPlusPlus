@@ -8,16 +8,19 @@ import net.minecraft.block.material.Material;
 @Mod("minecraftpp")
 public class ModBlock extends Block
 {
-	public ModBlock(Material blockMaterialIn, MapColor blockMapColorIn) { super(blockMaterialIn, blockMapColorIn); }
-	
+	public ModBlock(Material blockMaterialIn, MapColor blockMapColorIn)
+	{
+		super(blockMaterialIn, blockMapColorIn);
+	}
+
 	/**
-	 * Registers the {@link Block}s that are usually registered in {@link Block} 
+	 * Registers the {@link Block}s that are usually registered in {@link Block}
 	 */
 	public static void registerBlocks()
-	
+
 	{
 		registerBlock(1000, "scenarite_ore", new BlockScenariteOre());
-        registerBlock(1001, "scenarium_block", new BlockScenarium());
+		registerBlock(1001, "scenarium_block", new BlockScenarium());
 
 	}
 }

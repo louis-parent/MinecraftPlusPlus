@@ -13,32 +13,32 @@ import net.minecraft.world.World;
 
 public class ItemEnderPearl extends Item
 {
-    public ItemEnderPearl()
-    {
-        this.maxStackSize = 16;
-        this.setCreativeTab(CreativeTabs.MISC);
-    }
+	public ItemEnderPearl()
+	{
+		this.maxStackSize = 16;
+		this.setCreativeTab(CreativeTabs.MISC);
+	}
 
-    public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
-    {
-        ItemStack itemstack = worldIn.getHeldItem(playerIn);
+	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
+	{
+		ItemStack itemstack = worldIn.getHeldItem(playerIn);
 
-        if (!worldIn.capabilities.isCreativeMode)
-        {
-            itemstack.decreaseStackSize(1);
-        }
+		if (!worldIn.capabilities.isCreativeMode)
+		{
+			itemstack.decreaseStackSize(1);
+		}
 
-        itemStackIn.playSound((EntityPlayer)null, worldIn.posX, worldIn.posY, worldIn.posZ, SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-        worldIn.getCooldownTracker().setCooldown(this, 20);
+		itemStackIn.playSound((EntityPlayer) null, worldIn.posX, worldIn.posY, worldIn.posZ, SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+		worldIn.getCooldownTracker().setCooldown(this, 20);
 
-        if (!itemStackIn.isRemote)
-        {
-            EntityEnderPearl entityenderpearl = new EntityEnderPearl(itemStackIn, worldIn);
-            entityenderpearl.setHeadingFromThrower(worldIn, worldIn.rotationPitch, worldIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-            itemStackIn.spawnEntityInWorld(entityenderpearl);
-        }
+		if (!itemStackIn.isRemote)
+		{
+			EntityEnderPearl entityenderpearl = new EntityEnderPearl(itemStackIn, worldIn);
+			entityenderpearl.setHeadingFromThrower(worldIn, worldIn.rotationPitch, worldIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+			itemStackIn.spawnEntityInWorld(entityenderpearl);
+		}
 
-        worldIn.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-    }
+		worldIn.addStat(StatList.getObjectUseStats(this));
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+	}
 }

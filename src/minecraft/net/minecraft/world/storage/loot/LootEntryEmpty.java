@@ -12,21 +12,21 @@ import net.minecraft.world.storage.loot.conditions.LootCondition;
 
 public class LootEntryEmpty extends LootEntry
 {
-    public LootEntryEmpty(int weightIn, int qualityIn, LootCondition[] conditionsIn)
-    {
-        super(weightIn, qualityIn, conditionsIn);
-    }
+	public LootEntryEmpty(int weightIn, int qualityIn, LootCondition[] conditionsIn)
+	{
+		super(weightIn, qualityIn, conditionsIn);
+	}
 
-    public void addLoot(Collection<ItemStack> stacks, Random rand, LootContext context)
-    {
-    }
+	public void addLoot(Collection<ItemStack> stacks, Random rand, LootContext context)
+	{
+	}
 
-    protected void serialize(JsonObject json, JsonSerializationContext context)
-    {
-    }
+	protected void serialize(JsonObject json, JsonSerializationContext context)
+	{
+	}
 
-    public static LootEntryEmpty deserialize(JsonObject object, JsonDeserializationContext deserializationContext, int weightIn, int qualityIn, LootCondition[] conditionsIn)
-    {
-        return new LootEntryEmpty(weightIn, qualityIn, conditionsIn);
-    }
+	public static LootEntryEmpty deserialize(JsonObject object, JsonDeserializationContext deserializationContext, int weightIn, int qualityIn, LootCondition[] conditionsIn)
+	{
+		return new LootEntryEmpty(weightIn, qualityIn, conditionsIn);
+	}
 }

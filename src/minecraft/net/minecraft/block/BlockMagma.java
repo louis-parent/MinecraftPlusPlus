@@ -24,66 +24,67 @@ import net.minecraft.world.WorldServer;
 
 public class BlockMagma extends Block
 {
-    public BlockMagma()
-    {
-        super(Material.ROCK);
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-        this.setLightLevel(0.2F);
-        this.setTickRandomly(true);
-    }
+	public BlockMagma()
+	{
+		super(Material.ROCK);
+		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+		this.setLightLevel(0.2F);
+		this.setTickRandomly(true);
+	}
 
-    /**
-     * Get the MapColor for this Block and the given BlockState
-     */
-    public MapColor getMapColor(IBlockState state, IBlockAccess access, BlockPos pos)
-    {
-        return MapColor.NETHERRACK;
-    }
+	/**
+	 * Get the MapColor for this Block and the given BlockState
+	 */
+	public MapColor getMapColor(IBlockState state, IBlockAccess access, BlockPos pos)
+	{
+		return MapColor.NETHERRACK;
+	}
 
-    /**
-     * Triggered whenever an entity collides with this block (enters into the block)
-     */
-    public void onEntityWalk(World world, BlockPos pos, Entity entity)
-    {
-        if (!entity.isImmuneToFire() && entity instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase)entity))
-        {
-            entity.attackEntityFrom(DamageSource.hotFloor, 1.0F);
-        }
+	/**
+	 * Triggered whenever an entity collides with this block (enters into the
+	 * block)
+	 */
+	public void onEntityWalk(World world, BlockPos pos, Entity entity)
+	{
+		if (!entity.isImmuneToFire() && entity instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity))
+		{
+			entity.attackEntityFrom(DamageSource.hotFloor, 1.0F);
+		}
 
-        super.onEntityWalk(world, pos, entity);
-    }
+		super.onEntityWalk(world, pos, entity);
+	}
 
-    public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return 15728880;
-    }
+	public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos)
+	{
+		return 15728880;
+	}
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        BlockPos blockpos = pos.up();
-        IBlockState iblockstate = worldIn.getBlockState(blockpos);
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+	{
+		BlockPos blockpos = pos.up();
+		IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-        if (iblockstate.getBlock() == Blocks.WATER || iblockstate.getBlock() == Blocks.FLOWING_WATER)
-        {
-            worldIn.setBlockToAir(blockpos);
-            worldIn.playSound((EntityPlayer)null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
+		if (iblockstate.getBlock() == Blocks.WATER || iblockstate.getBlock() == Blocks.FLOWING_WATER)
+		{
+			worldIn.setBlockToAir(blockpos);
+			worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
 
-            if (worldIn instanceof WorldServer)
-            {
-                ((WorldServer)worldIn).spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.25D, (double)blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
-            }
-        }
-    }
+			if (worldIn instanceof WorldServer)
+			{
+				((WorldServer) worldIn).spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 0.25D, (double) blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
+			}
+		}
+	}
 
-    public boolean canEntitySpawn(IBlockState state, Entity entityIn)
-    {
-        return entityIn.isImmuneToFire();
-    }
-    
-    @Mod("Minecraftpp")
-    @Override
-    public FlammabilityOf getFlammability()
-    {
-    	return FlammabilityOf.NETHERRACK;
-    }
+	public boolean canEntitySpawn(IBlockState state, Entity entityIn)
+	{
+		return entityIn.isImmuneToFire();
+	}
+
+	@Mod("Minecraftpp")
+	@Override
+	public FlammabilityOf getFlammability()
+	{
+		return FlammabilityOf.NETHERRACK;
+	}
 }

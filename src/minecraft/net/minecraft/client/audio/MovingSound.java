@@ -5,15 +5,15 @@ import net.minecraft.util.SoundEvent;
 
 public abstract class MovingSound extends PositionedSound implements ITickableSound
 {
-    protected boolean donePlaying;
+	protected boolean donePlaying;
 
-    protected MovingSound(SoundEvent soundIn, SoundCategory categoryIn)
-    {
-        super(soundIn, categoryIn);
-    }
+	protected MovingSound(SoundEvent soundIn, SoundCategory categoryIn)
+	{
+		super(soundIn, categoryIn);
+	}
 
-    public boolean isDonePlaying()
-    {
-        return this.donePlaying;
-    }
+	public boolean isDonePlaying()
+	{
+		return this.donePlaying;
+	}
 }

@@ -11,24 +11,24 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockNetherrack extends Block
 {
-    public BlockNetherrack()
-    {
-        super(Material.ROCK);
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    }
+	public BlockNetherrack()
+	{
+		super(Material.ROCK);
+		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+	}
 
-    /**
-     * Get the MapColor for this Block and the given BlockState
-     */
-    public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
-    {
-        return MapColor.NETHERRACK;
-    }
-    
-    @Mod("Minecraftpp")
-    @Override
-    public FlammabilityOf getFlammability()
-    {
-    	return FlammabilityOf.NETHERRACK;
-    }
+	/**
+	 * Get the MapColor for this Block and the given BlockState
+	 */
+	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
+	{
+		return MapColor.NETHERRACK;
+	}
+
+	@Mod("Minecraftpp")
+	@Override
+	public FlammabilityOf getFlammability()
+	{
+		return FlammabilityOf.NETHERRACK;
+	}
 }

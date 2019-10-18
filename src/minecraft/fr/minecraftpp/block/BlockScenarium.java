@@ -18,85 +18,85 @@ import net.minecraft.world.World;
 
 @Mod("Minecraftpp")
 public class BlockScenarium extends BlockFalling implements IAbsorbingBlock
-{	
-    public static final PropertyBool EXPLODE = PropertyBool.create("explode");
+{
+	public static final PropertyBool EXPLODE = PropertyBool.create("explode");
 
-	public BlockScenarium() 
+	public BlockScenarium()
 	{
 		super(Material.IRON);
-		
+
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);
-		
+
 		this.setLightLevel(1.0F);
-		
+
 		this.setSoundType(SoundType.METAL);
-		
+
 		this.setUnlocalizedName("scenariumBlock");
-		
+
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
-	
+
 	@Override
-    public FlammabilityOf getFlammability()
-    {
-    	return FlammabilityOf.LEAVES;
-    }
-	
+	public FlammabilityOf getFlammability()
+	{
+		return FlammabilityOf.LEAVES;
+	}
+
 	@Override
 	public void onEntityWalk(World world, BlockPos pos, Entity entity)
 	{
 		super.onEntityWalk(world, pos, entity);
-		
-        entity.attackEntityFrom(ModDamageSource.scenarium, 5.0F);
+
+		entity.attackEntityFrom(ModDamageSource.scenarium, 5.0F);
 	}
-	
+
 	@Override
 	public boolean canProvidePower(IBlockState state)
-    {
-        return true;
-    }
-	
+	{
+		return true;
+	}
+
 	@Override
 	public int getWeakPower(IBlockState state, IBlockAccess access, BlockPos pos, EnumFacing side)
-    {
-        return 15;
-    }
-	
+	{
+		return 15;
+	}
+
 	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess access, BlockPos pos)
 	{
 		return MapColor.MAGENTA;
 	}
-	
+
 	@Override
 	public double getAcceleration()
 	{
 		return 1.2D;
 	}
-	
+
 	@Override
 	public int getRequiredHarvestLevel()
 	{
 		return 2;
 	}
-	
+
 	@Override
 	public boolean isBaseForBeacon()
 	{
 		return true;
 	}
-	
+
 	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
-    {
-        this.tryAbsorb(worldIn, pos, state);
-    }
+	{
+		this.tryAbsorb(worldIn, pos, state);
+	}
 
-    @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos)
-    {
-        this.tryAbsorb(world, pos, state);
-        super.neighborChanged(state, world, pos, block, neighborPos);
-    }
+	@Override
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos)
+	{
+		this.tryAbsorb(world, pos, state);
+		super.neighborChanged(state, world, pos, block, neighborPos);
+	}
 }

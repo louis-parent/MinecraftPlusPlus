@@ -6,9 +6,9 @@ import javax.annotation.Nullable;
 
 public interface IEntityOwnable
 {
-    @Nullable
-    UUID getOwnerId();
+	@Nullable
+	UUID getOwnerId();
 
-    @Nullable
-    Entity getOwner();
+	@Nullable
+	Entity getOwner();
 }

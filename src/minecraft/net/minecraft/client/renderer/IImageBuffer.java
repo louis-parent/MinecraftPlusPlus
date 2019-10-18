@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public interface IImageBuffer
 {
-    BufferedImage parseUserSkin(BufferedImage image);
+	BufferedImage parseUserSkin(BufferedImage image);
 
-    void skinAvailable();
+	void skinAvailable();
 }

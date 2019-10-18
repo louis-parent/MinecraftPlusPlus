@@ -13,9 +13,9 @@ public class RecipePickaxe extends RecipeEquipment
 	{
 		super(material, result);
 	}
-	
+
 	public Blueprint getBlueprint()
 	{
-		return new Blueprint(new Item[][] {{this.material, this.material, this.material}, {Items.EMPTY_ITEM, Items.STICK, Items.EMPTY_ITEM}, {Items.EMPTY_ITEM, Items.STICK, Items.EMPTY_ITEM}});
+		return new Blueprint(new Item[][] { { this.material, this.material, this.material }, { Items.EMPTY_ITEM, Items.STICK, Items.EMPTY_ITEM }, { Items.EMPTY_ITEM, Items.STICK, Items.EMPTY_ITEM } });
 	}
 }
