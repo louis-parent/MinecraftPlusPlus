@@ -8,18 +8,17 @@ import org.lwjgl.util.glu.Project;
 
 import com.google.common.collect.Lists;
 
+import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.item.ModItems;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.ContainerEnchantment;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnchantmentNameParts;
 import net.minecraft.util.ResourceLocation;
@@ -60,6 +59,7 @@ public class GuiEnchantment extends GuiContainer
 	public float oOpen;
 	private ItemStack last = ItemStack.EMPTY_ITEM_STACK;
 	private final IWorldNameable nameable;
+	private int counter;
 
 	public GuiEnchantment(InventoryPlayer inventory, World worldIn, IWorldNameable nameable)
 	{
@@ -67,6 +67,7 @@ public class GuiEnchantment extends GuiContainer
 		this.playerInventory = inventory;
 		this.container = (ContainerEnchantment) this.inventorySlots;
 		this.nameable = nameable;
+		this.counter = 0;
 	}
 
 	/**
@@ -233,16 +234,25 @@ public class GuiEnchantment extends GuiContainer
 				fontrenderer.drawStringWithShadow(s, (float) (j1 + 86 - fontrenderer.getStringWidth(s)), (float) (j + 16 + 19 * l + 7), i2);
 			}
 		}
-		GlStateManager.pushMatrix();
-		GlStateManager.translate(i + 35 - 70, j + 47, 0.5F);
-		GlStateManager.scale(5, 5, 5);
-		// TODO Isaac
-		// this.itemRender.renderItemAndEffectIntoGUI(new ItemStack(Items.DYE,
-		// 1, EnumDyeColor.BLUE.getDyeDamage()), i + 35, j + 47);
-		ItemStack stack = new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getDyeDamage());
-		IBakedModel model = this.itemRender.getItemModelWithOverrides(stack, null, null);
-		this.itemRender.renderItem(stack, model);
-		GlStateManager.popMatrix();
+		this.renderItemsForEnchantingPayment(i, j);
+	}
+
+	@Mod("Minecraftpp")
+	private void renderItemsForEnchantingPayment(int x, int y)
+	{
+		final int SWITCH_TIME = 60;
+
+		if (this.container.getLapisAmount() == 0) {
+			int index = counter / SWITCH_TIME;
+			
+			this.itemRender.renderItemAndEffectIntoGUI(ModItems.enchantable.get(index), x + 35, y + 47);
+			counter++;
+	
+			if (counter == ModItems.enchantable.size() * SWITCH_TIME)
+			{
+				counter = 0;
+			}
+		}
 	}
 
 	/**

@@ -54,7 +54,6 @@ public class ItemPickaxe extends ItemTool
 		return EFFECTIVE_ON.contains(state.getMaterial()) && this.toolMaterial.getHarvestLevel() >= (HARVEST_LEVEL.containsKey(state.getBlock()) ? HARVEST_LEVEL.get(state.getBlock()) : state.getBlock().getRequiredHarvestLevel());
 	}
 
-	// TODO Réparer les différences
 	@Mod("Minecraftpp")
 	public void testHarvest()
 	{

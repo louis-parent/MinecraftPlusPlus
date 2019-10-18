@@ -28,9 +28,6 @@ public class ModCraftingManager
 		recipeList.add(recipe);
 	}
 
-	/*
-	 * TODO Try/Catch pour IllegalArgument des blueprints
-	 */
 	public static void registerRecipes()
 	{
 		try

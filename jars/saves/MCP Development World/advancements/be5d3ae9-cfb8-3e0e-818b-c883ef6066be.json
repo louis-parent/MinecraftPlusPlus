@@ -77,17 +77,17 @@
     },
     "done": true
   },
-  "minecraft:adventure/adventuring_time": {
-    "criteria": {
-      "beaches": "2019-10-16 20:06:08 +0200"
-    },
-    "done": false
-  },
   "minecraft:recipes/redstone/iron_door": {
     "criteria": {
       "has_iron_ingot": "2019-10-16 20:06:06 +0200"
     },
     "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "beaches": "2019-10-16 20:06:08 +0200"
+    },
+    "done": false
   },
   "minecraft:recipes/redstone/hopper": {
     "criteria": {

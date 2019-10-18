@@ -14,6 +14,7 @@ import com.google.common.collect.Multimap;
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.inventory.EntityEquipmentSlot;
 import fr.minecraftpp.item.ModItem;
+import fr.minecraftpp.item.ModItems;
 import fr.minecraftpp.item.armor.ItemBoots;
 import fr.minecraftpp.item.armor.ItemChestplate;
 import fr.minecraftpp.item.armor.ItemHelmet;
@@ -1159,9 +1160,9 @@ public class Item
 		BLOCK_TO_ITEM.put(blockIn, itemIn);
 	}
 
-	protected static void registerItem(int id, String textualID, Item itemIn)
+	protected static void registerItem(int id, String textualID, Item item)
 	{
-		registerItem(id, new ResourceLocation(textualID), itemIn);
+		registerItem(id, new ResourceLocation(textualID), item);
 	}
 
 	private static void registerItem(int id, ResourceLocation textualID, Item itemIn)

@@ -306,10 +306,10 @@ public class RenderItem implements IResourceManagerReloadListener
 
 	public void renderItemIntoGUI(ItemStack stack, int x, int y)
 	{
-		this.func_191962_a(stack, x, y, this.getItemModelWithOverrides(stack, (World) null, (EntityLivingBase) null));
+		this.renderItemWithModel(stack, x, y, this.getItemModelWithOverrides(stack, (World) null, (EntityLivingBase) null));
 	}
 
-	protected void func_191962_a(ItemStack p_191962_1_, int p_191962_2_, int p_191962_3_, IBakedModel p_191962_4_)
+	protected void renderItemWithModel(ItemStack item, int x, int y, IBakedModel model)
 	{
 		GlStateManager.pushMatrix();
 		this.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
@@ -318,11 +318,11 @@ public class RenderItem implements IResourceManagerReloadListener
 		GlStateManager.enableAlpha();
 		GlStateManager.alphaFunc(516, 0.1F);
 		GlStateManager.enableBlend();
-		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-		this.setupGuiTransform(p_191962_2_, p_191962_3_, p_191962_4_.isGui3d());
-		p_191962_4_.getItemCameraTransforms().applyTransform(ItemCameraTransforms.TransformType.GUI);
-		this.renderItem(p_191962_1_, p_191962_4_);
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		this.setupGuiTransform(x, y, model.isGui3d());
+		model.getItemCameraTransforms().applyTransform(ItemCameraTransforms.TransformType.GUI);
+		this.renderItem(item, model);
 		GlStateManager.disableAlpha();
 		GlStateManager.disableRescaleNormal();
 		GlStateManager.disableLighting();
@@ -353,7 +353,7 @@ public class RenderItem implements IResourceManagerReloadListener
 		this.renderItemAndEffectIntoGUI(Minecraft.getMinecraft().player, stack, xPosition, yPosition);
 	}
 
-	public void renderItemAndEffectIntoGUI(@Nullable EntityLivingBase entity, final ItemStack stack, int p_184391_3_, int p_184391_4_)
+	public void renderItemAndEffectIntoGUI(@Nullable EntityLivingBase entity, final ItemStack stack, int xPosition, int yPosition)
 	{
 		if (!stack.isNotValid())
 		{
@@ -361,7 +361,7 @@ public class RenderItem implements IResourceManagerReloadListener
 
 			try
 			{
-				this.func_191962_a(stack, p_184391_3_, p_184391_4_, this.getItemModelWithOverrides(stack, (World) null, entity));
+				this.renderItemWithModel(stack, xPosition, yPosition, this.getItemModelWithOverrides(stack, (World) null, entity));
 			}
 			catch (Throwable throwable)
 			{
