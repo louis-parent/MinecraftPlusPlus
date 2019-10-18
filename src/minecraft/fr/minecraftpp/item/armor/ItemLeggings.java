@@ -5,7 +5,7 @@ import net.minecraft.item.ItemArmor;
 
 public class ItemLeggings extends ItemArmor
 {
-	public ItemLeggings(ArmorMaterial material)
+	public ItemLeggings(IArmorMaterial material)
 	{
 		super(material, EntityArmorSlot.LEGS);
 	}

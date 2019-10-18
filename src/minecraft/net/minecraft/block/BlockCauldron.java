@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBanner;
@@ -203,7 +204,7 @@ public class BlockCauldron extends Block
                 {
                     ItemArmor itemarmor = (ItemArmor)item;
 
-                    if (itemarmor.getArmorMaterial() == ItemArmor.ArmorMaterial.LEATHER && itemarmor.hasColor(itemstack) && !worldIn.isRemote)
+                    if (itemarmor.getArmorMaterial() == ArmorMaterial.LEATHER && itemarmor.hasColor(itemstack) && !worldIn.isRemote)
                     {
                         itemarmor.removeColor(itemstack);
                         this.setWaterLevel(worldIn, pos, state, i - 1);

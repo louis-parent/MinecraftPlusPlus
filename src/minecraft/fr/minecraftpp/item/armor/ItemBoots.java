@@ -5,7 +5,7 @@ import net.minecraft.item.ItemArmor;
 
 public class ItemBoots extends ItemArmor
 {
-	public ItemBoots(ArmorMaterial material)
+	public ItemBoots(IArmorMaterial material)
 	{
 		super(material, EntityArmorSlot.FEET);
 	}

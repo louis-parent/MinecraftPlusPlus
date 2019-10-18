@@ -18,8 +18,6 @@ import fr.minecraftpp.item.armor.ItemBoots;
 import fr.minecraftpp.item.armor.ItemChestplate;
 import fr.minecraftpp.item.armor.ItemHelmet;
 import fr.minecraftpp.item.armor.ItemLeggings;
-import fr.minecraftpp.item.tool.IToolMaterial;
-import fr.minecraftpp.item.tool.ToolType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;
@@ -909,9 +907,9 @@ public class Item
         ModItem.registerBlockItems();
         
         
-        registerItem(256, "iron_shovel", (new ItemSpade(Item.ToolMaterial.IRON)).setUnlocalizedName("shovelIron"));
-        registerItem(257, "iron_pickaxe", (new ItemPickaxe(Item.ToolMaterial.IRON)).setUnlocalizedName("pickaxeIron"));
-        registerItem(258, "iron_axe", (new ItemAxe(Item.ToolMaterial.IRON)).setUnlocalizedName("hatchetIron"));
+        registerItem(256, "iron_shovel", (new ItemSpade(ToolMaterial.IRON)).setUnlocalizedName("shovelIron"));
+        registerItem(257, "iron_pickaxe", (new ItemPickaxe(ToolMaterial.IRON)).setUnlocalizedName("pickaxeIron"));
+        registerItem(258, "iron_axe", (new ItemAxe(ToolMaterial.IRON)).setUnlocalizedName("hatchetIron"));
         registerItem(259, "flint_and_steel", (new ItemFlintAndSteel()).setUnlocalizedName("flintAndSteel"));
         registerItem(260, "apple", (new ItemFood(4, 0.3F, false)).setUnlocalizedName("apple"));
         registerItem(261, "bow", (new ItemBow()).setUnlocalizedName("bow"));
@@ -920,57 +918,57 @@ public class Item
         registerItem(264, "diamond", (new Item()).setUnlocalizedName("diamond").setCreativeTab(CreativeTabs.MATERIALS));
         registerItem(265, "iron_ingot", (new Item()).setUnlocalizedName("ingotIron").setCreativeTab(CreativeTabs.MATERIALS));
         registerItem(266, "gold_ingot", (new Item()).setUnlocalizedName("ingotGold").setCreativeTab(CreativeTabs.MATERIALS));
-        registerItem(267, "iron_sword", (new ItemSword(Item.ToolMaterial.IRON)).setUnlocalizedName("swordIron"));
-        registerItem(268, "wooden_sword", (new ItemSword(Item.ToolMaterial.WOOD)).setUnlocalizedName("swordWood"));
-        registerItem(269, "wooden_shovel", (new ItemSpade(Item.ToolMaterial.WOOD)).setUnlocalizedName("shovelWood"));
-        registerItem(270, "wooden_pickaxe", (new ItemPickaxe(Item.ToolMaterial.WOOD)).setUnlocalizedName("pickaxeWood"));
-        registerItem(271, "wooden_axe", (new ItemAxe(Item.ToolMaterial.WOOD)).setUnlocalizedName("hatchetWood"));
-        registerItem(272, "stone_sword", (new ItemSword(Item.ToolMaterial.STONE)).setUnlocalizedName("swordStone"));
-        registerItem(273, "stone_shovel", (new ItemSpade(Item.ToolMaterial.STONE)).setUnlocalizedName("shovelStone"));
-        registerItem(274, "stone_pickaxe", (new ItemPickaxe(Item.ToolMaterial.STONE)).setUnlocalizedName("pickaxeStone"));
-        registerItem(275, "stone_axe", (new ItemAxe(Item.ToolMaterial.STONE)).setUnlocalizedName("hatchetStone"));
-        registerItem(276, "diamond_sword", (new ItemSword(Item.ToolMaterial.DIAMOND)).setUnlocalizedName("swordDiamond"));
-        registerItem(277, "diamond_shovel", (new ItemSpade(Item.ToolMaterial.DIAMOND)).setUnlocalizedName("shovelDiamond"));
-        registerItem(278, "diamond_pickaxe", (new ItemPickaxe(Item.ToolMaterial.DIAMOND)).setUnlocalizedName("pickaxeDiamond"));
-        registerItem(279, "diamond_axe", (new ItemAxe(Item.ToolMaterial.DIAMOND)).setUnlocalizedName("hatchetDiamond"));
+        registerItem(267, "iron_sword", (new ItemSword(ToolMaterial.IRON)).setUnlocalizedName("swordIron"));
+        registerItem(268, "wooden_sword", (new ItemSword(ToolMaterial.WOOD)).setUnlocalizedName("swordWood"));
+        registerItem(269, "wooden_shovel", (new ItemSpade(ToolMaterial.WOOD)).setUnlocalizedName("shovelWood"));
+        registerItem(270, "wooden_pickaxe", (new ItemPickaxe(ToolMaterial.WOOD)).setUnlocalizedName("pickaxeWood"));
+        registerItem(271, "wooden_axe", (new ItemAxe(ToolMaterial.WOOD)).setUnlocalizedName("hatchetWood"));
+        registerItem(272, "stone_sword", (new ItemSword(ToolMaterial.STONE)).setUnlocalizedName("swordStone"));
+        registerItem(273, "stone_shovel", (new ItemSpade(ToolMaterial.STONE)).setUnlocalizedName("shovelStone"));
+        registerItem(274, "stone_pickaxe", (new ItemPickaxe(ToolMaterial.STONE)).setUnlocalizedName("pickaxeStone"));
+        registerItem(275, "stone_axe", (new ItemAxe(ToolMaterial.STONE)).setUnlocalizedName("hatchetStone"));
+        registerItem(276, "diamond_sword", (new ItemSword(ToolMaterial.DIAMOND)).setUnlocalizedName("swordDiamond"));
+        registerItem(277, "diamond_shovel", (new ItemSpade(ToolMaterial.DIAMOND)).setUnlocalizedName("shovelDiamond"));
+        registerItem(278, "diamond_pickaxe", (new ItemPickaxe(ToolMaterial.DIAMOND)).setUnlocalizedName("pickaxeDiamond"));
+        registerItem(279, "diamond_axe", (new ItemAxe(ToolMaterial.DIAMOND)).setUnlocalizedName("hatchetDiamond"));
         registerItem(280, "stick", (new Item()).setFull3D().setUnlocalizedName("stick").setCreativeTab(CreativeTabs.MATERIALS));
         registerItem(281, "bowl", (new Item()).setUnlocalizedName("bowl").setCreativeTab(CreativeTabs.MATERIALS));
         registerItem(282, "mushroom_stew", (new ItemSoup(6)).setUnlocalizedName("mushroomStew"));
-        registerItem(283, "golden_sword", (new ItemSword(Item.ToolMaterial.GOLD)).setUnlocalizedName("swordGold"));
-        registerItem(284, "golden_shovel", (new ItemSpade(Item.ToolMaterial.GOLD)).setUnlocalizedName("shovelGold"));
-        registerItem(285, "golden_pickaxe", (new ItemPickaxe(Item.ToolMaterial.GOLD)).setUnlocalizedName("pickaxeGold"));
-        registerItem(286, "golden_axe", (new ItemAxe(Item.ToolMaterial.GOLD)).setUnlocalizedName("hatchetGold"));
+        registerItem(283, "golden_sword", (new ItemSword(ToolMaterial.GOLD)).setUnlocalizedName("swordGold"));
+        registerItem(284, "golden_shovel", (new ItemSpade(ToolMaterial.GOLD)).setUnlocalizedName("shovelGold"));
+        registerItem(285, "golden_pickaxe", (new ItemPickaxe(ToolMaterial.GOLD)).setUnlocalizedName("pickaxeGold"));
+        registerItem(286, "golden_axe", (new ItemAxe(ToolMaterial.GOLD)).setUnlocalizedName("hatchetGold"));
         registerItem(287, "string", (new ItemBlockSpecial(Blocks.TRIPWIRE)).setUnlocalizedName("string").setCreativeTab(CreativeTabs.MATERIALS));
         registerItem(288, "feather", (new Item()).setUnlocalizedName("feather").setCreativeTab(CreativeTabs.MATERIALS));
         registerItem(289, "gunpowder", (new Item()).setUnlocalizedName("sulphur").setCreativeTab(CreativeTabs.MATERIALS));
-        registerItem(290, "wooden_hoe", (new ItemHoe(Item.ToolMaterial.WOOD)).setUnlocalizedName("hoeWood"));
-        registerItem(291, "stone_hoe", (new ItemHoe(Item.ToolMaterial.STONE)).setUnlocalizedName("hoeStone"));
-        registerItem(292, "iron_hoe", (new ItemHoe(Item.ToolMaterial.IRON)).setUnlocalizedName("hoeIron"));
-        registerItem(293, "diamond_hoe", (new ItemHoe(Item.ToolMaterial.DIAMOND)).setUnlocalizedName("hoeDiamond"));
-        registerItem(294, "golden_hoe", (new ItemHoe(Item.ToolMaterial.GOLD)).setUnlocalizedName("hoeGold"));
+        registerItem(290, "wooden_hoe", (new ItemHoe(ToolMaterial.WOOD)).setUnlocalizedName("hoeWood"));
+        registerItem(291, "stone_hoe", (new ItemHoe(ToolMaterial.STONE)).setUnlocalizedName("hoeStone"));
+        registerItem(292, "iron_hoe", (new ItemHoe(ToolMaterial.IRON)).setUnlocalizedName("hoeIron"));
+        registerItem(293, "diamond_hoe", (new ItemHoe(ToolMaterial.DIAMOND)).setUnlocalizedName("hoeDiamond"));
+        registerItem(294, "golden_hoe", (new ItemHoe(ToolMaterial.GOLD)).setUnlocalizedName("hoeGold"));
         registerItem(295, "wheat_seeds", (new ItemSeeds(Blocks.WHEAT, Blocks.FARMLAND)).setUnlocalizedName("seeds"));
         registerItem(296, "wheat", (new Item()).setUnlocalizedName("wheat").setCreativeTab(CreativeTabs.MATERIALS));
         registerItem(297, "bread", (new ItemFood(5, 0.6F, false)).setUnlocalizedName("bread"));
-        registerItem(298, "leather_helmet", (new ItemHelmet(ItemArmor.ArmorMaterial.LEATHER)).setUnlocalizedName("helmetCloth"));
-        registerItem(299, "leather_chestplate", (new ItemChestplate(ItemArmor.ArmorMaterial.LEATHER)).setUnlocalizedName("chestplateCloth"));
-        registerItem(300, "leather_leggings", (new ItemLeggings(ItemArmor.ArmorMaterial.LEATHER)).setUnlocalizedName("leggingsCloth"));
-        registerItem(301, "leather_boots", (new ItemBoots(ItemArmor.ArmorMaterial.LEATHER)).setUnlocalizedName("bootsCloth"));
-        registerItem(302, "chainmail_helmet", (new ItemHelmet(ItemArmor.ArmorMaterial.CHAIN)).setUnlocalizedName("helmetChain"));
-        registerItem(303, "chainmail_chestplate", (new ItemChestplate(ItemArmor.ArmorMaterial.CHAIN)).setUnlocalizedName("chestplateChain"));
-        registerItem(304, "chainmail_leggings", (new ItemLeggings(ItemArmor.ArmorMaterial.CHAIN)).setUnlocalizedName("leggingsChain"));
-        registerItem(305, "chainmail_boots", (new ItemBoots(ItemArmor.ArmorMaterial.CHAIN)).setUnlocalizedName("bootsChain"));
-        registerItem(306, "iron_helmet", (new ItemHelmet(ItemArmor.ArmorMaterial.IRON)).setUnlocalizedName("helmetIron"));
-        registerItem(307, "iron_chestplate", (new ItemChestplate(ItemArmor.ArmorMaterial.IRON)).setUnlocalizedName("chestplateIron"));
-        registerItem(308, "iron_leggings", (new ItemLeggings(ItemArmor.ArmorMaterial.IRON)).setUnlocalizedName("leggingsIron"));
-        registerItem(309, "iron_boots", (new ItemBoots(ItemArmor.ArmorMaterial.IRON)).setUnlocalizedName("bootsIron"));
-        registerItem(310, "diamond_helmet", (new ItemHelmet(ItemArmor.ArmorMaterial.DIAMOND)).setUnlocalizedName("helmetDiamond"));
-        registerItem(311, "diamond_chestplate", (new ItemChestplate(ItemArmor.ArmorMaterial.DIAMOND)).setUnlocalizedName("chestplateDiamond"));
-        registerItem(312, "diamond_leggings", (new ItemLeggings(ItemArmor.ArmorMaterial.DIAMOND)).setUnlocalizedName("leggingsDiamond"));
-        registerItem(313, "diamond_boots", (new ItemBoots(ItemArmor.ArmorMaterial.DIAMOND)).setUnlocalizedName("bootsDiamond"));
-        registerItem(314, "golden_helmet", (new ItemHelmet(ItemArmor.ArmorMaterial.GOLD)).setUnlocalizedName("helmetGold"));
-        registerItem(315, "golden_chestplate", (new ItemChestplate(ItemArmor.ArmorMaterial.GOLD)).setUnlocalizedName("chestplateGold"));
-        registerItem(316, "golden_leggings", (new ItemLeggings(ItemArmor.ArmorMaterial.GOLD)).setUnlocalizedName("leggingsGold"));
-        registerItem(317, "golden_boots", (new ItemBoots(ItemArmor.ArmorMaterial.GOLD)).setUnlocalizedName("bootsGold"));
+        registerItem(298, "leather_helmet", (new ItemHelmet(ArmorMaterial.LEATHER)).setUnlocalizedName("helmetCloth"));
+        registerItem(299, "leather_chestplate", (new ItemChestplate(ArmorMaterial.LEATHER)).setUnlocalizedName("chestplateCloth"));
+        registerItem(300, "leather_leggings", (new ItemLeggings(ArmorMaterial.LEATHER)).setUnlocalizedName("leggingsCloth"));
+        registerItem(301, "leather_boots", (new ItemBoots(ArmorMaterial.LEATHER)).setUnlocalizedName("bootsCloth"));
+        registerItem(302, "chainmail_helmet", (new ItemHelmet(ArmorMaterial.CHAIN)).setUnlocalizedName("helmetChain"));
+        registerItem(303, "chainmail_chestplate", (new ItemChestplate(ArmorMaterial.CHAIN)).setUnlocalizedName("chestplateChain"));
+        registerItem(304, "chainmail_leggings", (new ItemLeggings(ArmorMaterial.CHAIN)).setUnlocalizedName("leggingsChain"));
+        registerItem(305, "chainmail_boots", (new ItemBoots(ArmorMaterial.CHAIN)).setUnlocalizedName("bootsChain"));
+        registerItem(306, "iron_helmet", (new ItemHelmet(ArmorMaterial.IRON)).setUnlocalizedName("helmetIron"));
+        registerItem(307, "iron_chestplate", (new ItemChestplate(ArmorMaterial.IRON)).setUnlocalizedName("chestplateIron"));
+        registerItem(308, "iron_leggings", (new ItemLeggings(ArmorMaterial.IRON)).setUnlocalizedName("leggingsIron"));
+        registerItem(309, "iron_boots", (new ItemBoots(ArmorMaterial.IRON)).setUnlocalizedName("bootsIron"));
+        registerItem(310, "diamond_helmet", (new ItemHelmet(ArmorMaterial.DIAMOND)).setUnlocalizedName("helmetDiamond"));
+        registerItem(311, "diamond_chestplate", (new ItemChestplate(ArmorMaterial.DIAMOND)).setUnlocalizedName("chestplateDiamond"));
+        registerItem(312, "diamond_leggings", (new ItemLeggings(ArmorMaterial.DIAMOND)).setUnlocalizedName("leggingsDiamond"));
+        registerItem(313, "diamond_boots", (new ItemBoots(ArmorMaterial.DIAMOND)).setUnlocalizedName("bootsDiamond"));
+        registerItem(314, "golden_helmet", (new ItemHelmet(ArmorMaterial.GOLD)).setUnlocalizedName("helmetGold"));
+        registerItem(315, "golden_chestplate", (new ItemChestplate(ArmorMaterial.GOLD)).setUnlocalizedName("chestplateGold"));
+        registerItem(316, "golden_leggings", (new ItemLeggings(ArmorMaterial.GOLD)).setUnlocalizedName("leggingsGold"));
+        registerItem(317, "golden_boots", (new ItemBoots(ArmorMaterial.GOLD)).setUnlocalizedName("bootsGold"));
         registerItem(318, "flint", (new Item()).setUnlocalizedName("flint").setCreativeTab(CreativeTabs.MATERIALS));
         registerItem(319, "porkchop", (new ItemFood(3, 0.3F, true)).setUnlocalizedName("porkchopRaw"));
         registerItem(320, "cooked_porkchop", (new ItemFood(8, 0.8F, true)).setUnlocalizedName("porkchopCooked"));
@@ -1159,90 +1157,8 @@ public class Item
         return new ItemStack(this);
     }
 
-    public static enum ToolMaterial implements IToolMaterial
-    {
-        WOOD(0, 59, 2.0F, new float[]{0.0F, 0.0F, 6.0F, 0.0F, 0.0F}, new float[]{0.0F, 0.0F, -3.2F, 0.0F, 0.0F}, 15),
-        STONE(1, 131, 4.0F, new float[]{1.0F, 1.0F, 8.0F, 1.0F, 0.0F}, new float[]{0.0F, 0.0F, -3.2F, 0.0F, 0.0F}, 5),
-        IRON(2, 250, 6.0F, new float[]{2.0F, 2.0F, 8.0F, 2.0F, 0.0F}, new float[]{0.0F, 0.0F, -3.1F, 0.0F, 0.0F}, 14),
-        DIAMOND(3, 1561, 8.0F, new float[]{3.0F, 3.0F, 8.0F, 3.0F, 0.0F}, new float[]{0.0F, 0.0F, -3.0F, 0.0F, 0.0F}, 10),
-        GOLD(0, 32, 12.0F, new float[]{0.0F, 0.0F, 6.0F, 0.0F, 0.0F}, new float[]{0.0F, 0.0F, -3.0F, 0.0F, 0.0F}, 22);
-
-        private final int harvestLevel;
-        private final int maxUses;
-        private final float efficiencyOnProperMaterial;
-        private final float damageVsEntity[];
-        private final int enchantability;
-        private final float attackSpeed[];
-
-        private ToolMaterial(int harvestLevel, int maxUses, float efficiency, float[] damageVsEntity, float[] attackSpeed, int enchantability)
-        {
-            this.harvestLevel = harvestLevel;
-            this.maxUses = maxUses;
-            this.efficiencyOnProperMaterial = efficiency;
-            this.damageVsEntity = damageVsEntity;
-            this.attackSpeed = attackSpeed;
-            this.enchantability = enchantability;
-        }
-
-        public int getMaxUses()
-        {
-            return this.maxUses;
-        }
-
-        public float getEfficiencyOnProperMaterial()
-        {
-            return this.efficiencyOnProperMaterial;
-        }
-
-        public int getHarvestLevel()
-        {
-            return this.harvestLevel;
-        }
-
-        public int getEnchantability()
-        {
-            return this.enchantability;
-        }
-
-		@Override
-		public float getDamageVsEntity(ToolType toolType)
-		{
-			return this.damageVsEntity[toolType.ordinal()];
-		}
-
-		@Override
-		public float getAttackSpeed(ToolType toolType)
-		{
-			return this.attackSpeed[toolType.ordinal()];
-		}
-
-		@Override
-		public Item getMaterialItem() 
-		{
-            if (this == WOOD)
-            {
-                return Item.getItemFromBlock(Blocks.PLANKS);
-            }
-            else if (this == STONE)
-            {
-                return Item.getItemFromBlock(Blocks.COBBLESTONE);
-            }
-            else if (this == GOLD)
-            {
-                return Items.GOLD_INGOT;
-            }
-            else if (this == IRON)
-            {
-                return Items.IRON_INGOT;
-            }
-            else
-            {
-                return this == DIAMOND ? Items.DIAMOND : null;
-            }
-		}
-    }
-
-	public boolean allowEnchanting() {
+	public boolean allowEnchanting() 
+	{
 		return false;
 	}
 }

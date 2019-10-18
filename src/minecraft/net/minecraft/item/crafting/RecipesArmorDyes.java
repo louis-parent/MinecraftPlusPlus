@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -32,7 +33,7 @@ public class RecipesArmorDyes implements IRecipe
                 {
                     ItemArmor itemarmor = (ItemArmor)itemstack1.getItem();
 
-                    if (itemarmor.getArmorMaterial() != ItemArmor.ArmorMaterial.LEATHER || !itemstack.isNotValid())
+                    if (itemarmor.getArmorMaterial() != ArmorMaterial.LEATHER || !itemstack.isNotValid())
                     {
                         return false;
                     }
@@ -75,7 +76,7 @@ public class RecipesArmorDyes implements IRecipe
                 {
                     itemarmor = (ItemArmor)itemstack1.getItem();
 
-                    if (itemarmor.getArmorMaterial() != ItemArmor.ArmorMaterial.LEATHER || !itemstack.isNotValid())
+                    if (itemarmor.getArmorMaterial() != ArmorMaterial.LEATHER || !itemstack.isNotValid())
                     {
                         return ItemStack.EMPTY_ITEM_STACK;
                     }

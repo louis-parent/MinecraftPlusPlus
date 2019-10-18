@@ -5,7 +5,7 @@ import net.minecraft.item.ItemArmor;
 
 public class ItemChestplate extends ItemArmor
 {
-	public ItemChestplate(ArmorMaterial material)
+	public ItemChestplate(IArmorMaterial material)
 	{
 		super(material, EntityArmorSlot.CHEST);
 	}

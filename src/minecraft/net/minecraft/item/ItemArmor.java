@@ -1,13 +1,12 @@
 package net.minecraft.item;
 
 import java.util.List;
-import java.util.UUID;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.Multimap;
 
 import fr.minecraftpp.inventory.EntityArmorSlot;
-import fr.minecraftpp.inventory.EntityArmorSlot;
+import fr.minecraftpp.item.armor.IArmorMaterial;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
@@ -18,20 +17,17 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemArmor extends Item
+public abstract class ItemArmor extends Item
 {       
     public static final IBehaviorDispenseItem DISPENSER_BEHAVIOR = new BehaviorDefaultDispenseItem()
     {
@@ -48,8 +44,8 @@ public class ItemArmor extends Item
     public final int damageReduceAmount;
     public final float toughness;
 
-    /** The EnumArmorMaterial used for this ItemArmor */
-    private final ItemArmor.ArmorMaterial material;
+    /** The EnumIArmorMaterial used for this ItemArmor */
+    private final IArmorMaterial material;
 
     public static ItemStack dispenseArmor(IBlockSource blockSource, ItemStack stack)
     {
@@ -76,7 +72,7 @@ public class ItemArmor extends Item
         }
     }
 
-    public ItemArmor(ItemArmor.ArmorMaterial material, EntityArmorSlot equipmentSlot)
+    public ItemArmor(IArmorMaterial material, EntityArmorSlot equipmentSlot)
     {
         this.material = material;
         this.armorType = equipmentSlot;
@@ -107,7 +103,7 @@ public class ItemArmor extends Item
     /**
      * Return the armor material for this armor item.
      */
-    public ItemArmor.ArmorMaterial getArmorMaterial()
+    public IArmorMaterial getArmorMaterial()
     {
         return this.material;
     }
@@ -117,7 +113,7 @@ public class ItemArmor extends Item
      */
     public boolean hasColor(ItemStack stack)
     {
-        if (this.material != ItemArmor.ArmorMaterial.LEATHER)
+        if (this.material != ArmorMaterial.LEATHER)
         {
             return false;
         }
@@ -133,7 +129,7 @@ public class ItemArmor extends Item
      */
     public int getColor(ItemStack stack)
     {
-        if (this.material != ItemArmor.ArmorMaterial.LEATHER)
+        if (this.material != ArmorMaterial.LEATHER)
         {
             return 16777215;
         }
@@ -160,7 +156,7 @@ public class ItemArmor extends Item
      */
     public void removeColor(ItemStack stack)
     {
-        if (this.material == ItemArmor.ArmorMaterial.LEATHER)
+        if (this.material == ArmorMaterial.LEATHER)
         {
             NBTTagCompound nbttagcompound = stack.getTagCompound();
 
@@ -181,7 +177,7 @@ public class ItemArmor extends Item
      */
     public void setColor(ItemStack stack, int color)
     {
-        if (this.material != ItemArmor.ArmorMaterial.LEATHER)
+        if (this.material != ArmorMaterial.LEATHER)
         {
             throw new UnsupportedOperationException("Can't dye non-leather!");
         }
@@ -243,92 +239,5 @@ public class ItemArmor extends Item
         }
 
         return multimap;
-    }
-    
-    public static enum ArmorMaterial
-    {
-        LEATHER("leather", 0, 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F),
-        CHAIN("chainmail", 1, 15, new int[]{1, 4, 5, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F),
-        IRON("iron", 15, 2, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F),
-        DIAMOND("diamond", 3, 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F),
-        GOLD("gold", 4, 7, new int[]{1, 3, 5, 2}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F);
-
-        private final String name;
-        private final int renderIndex;
-        private final int maxDamageFactor;
-        private final int[] damageReductionAmountArray;
-        private final int enchantability;
-        private final SoundEvent soundEvent;
-        private final float toughness;
-
-        private ArmorMaterial(String name, int renderIndex, int maxDamageFactor, int[] damageReductionAmountArray, int enchantability, SoundEvent soundEvent, float toughness)
-        {
-            this.name = name;
-            this.renderIndex = renderIndex;
-            this.maxDamageFactor = maxDamageFactor;
-            this.damageReductionAmountArray = damageReductionAmountArray;
-            this.enchantability = enchantability;
-            this.soundEvent = soundEvent;
-            this.toughness = toughness;
-        }
-        
-        public int getRenderIndex()
-        {
-        	return this.renderIndex;
-        }
-
-        public int getDurability(EntityArmorSlot armorType)
-        {
-            return armorType.getBaseDurability() * this.maxDamageFactor;
-        }
-
-        public int getDamageReductionAmount(EntityArmorSlot armorType)
-        {
-            return this.damageReductionAmountArray[armorType.getIndex()];
-        }
-
-        public int getEnchantability()
-        {
-            return this.enchantability;
-        }
-
-        public SoundEvent getSoundEvent()
-        {
-            return this.soundEvent;
-        }
-
-        public Item getRepairItem()
-        {
-            if (this == LEATHER)
-            {
-                return Items.LEATHER;
-            }
-            else if (this == CHAIN)
-            {
-                return Items.IRON_INGOT;
-            }
-            else if (this == GOLD)
-            {
-                return Items.GOLD_INGOT;
-            }
-            else if (this == IRON)
-            {
-                return Items.IRON_INGOT;
-            }
-            else
-            {
-                return this == DIAMOND ? Items.DIAMOND : null;
-            }
-        }
-
-        public String getName()
-        {
-            return this.name;
-        }
-
-        public float getToughness()
-        {
-            return this.toughness;
-        }
     }
 }

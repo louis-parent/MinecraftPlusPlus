@@ -11,6 +11,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -64,29 +65,32 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
                 boolean flag = this.isLegSlot(slotIn);
                 this.renderer.bindTexture(this.getArmorResource(itemarmor, flag));
 
-                switch (itemarmor.getArmorMaterial())
+                if(itemarmor.getArmorMaterial() instanceof ArmorMaterial)
                 {
-                    case LEATHER:
-                        int i = itemarmor.getColor(itemstack);
-                        float f = (float)(i >> 16 & 255) / 255.0F;
-                        float f1 = (float)(i >> 8 & 255) / 255.0F;
-                        float f2 = (float)(i & 255) / 255.0F;
-                        GlStateManager.color(this.colorR * f, this.colorG * f1, this.colorB * f2, this.alpha);
-                        t.render(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-                        this.renderer.bindTexture(this.getArmorResource(itemarmor, flag, "overlay"));
-
-                    case CHAIN:
-                    case IRON:
-                    case GOLD:
-                    case DIAMOND:
-                        GlStateManager.color(this.colorR, this.colorG, this.colorB, this.alpha);
-                        t.render(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-
-                    default:
-                        if (!this.skipRenderGlint && itemstack.isItemEnchanted())
-                        {
-                            renderEnchantedGlint(this.renderer, entityLivingBaseIn, t, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale);
-                        }
+	                switch ((ArmorMaterial) itemarmor.getArmorMaterial())
+	                {
+	                    case LEATHER:
+	                        int i = itemarmor.getColor(itemstack);
+	                        float f = (float)(i >> 16 & 255) / 255.0F;
+	                        float f1 = (float)(i >> 8 & 255) / 255.0F;
+	                        float f2 = (float)(i & 255) / 255.0F;
+	                        GlStateManager.color(this.colorR * f, this.colorG * f1, this.colorB * f2, this.alpha);
+	                        t.render(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+	                        this.renderer.bindTexture(this.getArmorResource(itemarmor, flag, "overlay"));
+	
+	                    case CHAIN:
+	                    case IRON:
+	                    case GOLD:
+	                    case DIAMOND:
+	                        GlStateManager.color(this.colorR, this.colorG, this.colorB, this.alpha);
+	                        t.render(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+	
+	                    default:
+	                        if (!this.skipRenderGlint && itemstack.isItemEnchanted())
+	                        {
+	                            renderEnchantedGlint(this.renderer, entityLivingBaseIn, t, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale);
+	                        }
+	                }
                 }
             }
         }

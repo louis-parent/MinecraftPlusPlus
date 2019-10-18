@@ -5,7 +5,7 @@ import net.minecraft.item.ItemArmor;
 
 public class ItemHelmet extends ItemArmor
 {
-	public ItemHelmet(ArmorMaterial material)
+	public ItemHelmet(IArmorMaterial material)
 	{
 		super(material, EntityArmorSlot.HEAD);
 	}

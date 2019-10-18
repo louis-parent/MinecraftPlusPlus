@@ -14,7 +14,7 @@ import net.minecraft.item.ItemSword;
 @Mod("minecraftpp")
 public class ModItem extends Item
 {
-	public static final IToolMaterial SCENARIUM_MATERIAL = new IToolMaterial() {
+	public static final IToolMaterial SCENARIUM_TOOL_MATERIAL = new IToolMaterial() {
 
 		@Override
 		public int getMaxUses()
@@ -75,10 +75,10 @@ public class ModItem extends Item
 	public static void registerItems()
 	{
 		registerItem(1256, "scenarium", new ItemScenarium());
-		registerItem(1257, "scenarium_sword", new ItemSword(SCENARIUM_MATERIAL).setUnlocalizedName("scenariumSword"));
-		registerItem(1258, "scenarium_pickaxe", new ItemPickaxe(SCENARIUM_MATERIAL).setUnlocalizedName("scenariumPickaxe"));
-		registerItem(1259, "scenarium_axe", new ItemAxe(SCENARIUM_MATERIAL).setUnlocalizedName("scenariumAxe"));
-		registerItem(1260, "scenarium_spade", new ItemSpade(SCENARIUM_MATERIAL).setUnlocalizedName("scenariumShovel"));
-		registerItem(1261, "scenarium_hoe", new ItemHoe(SCENARIUM_MATERIAL).setUnlocalizedName("scenariumHoe"));
+		registerItem(1257, "scenarium_sword", new ItemSword(SCENARIUM_TOOL_MATERIAL).setUnlocalizedName("scenariumSword"));
+		registerItem(1258, "scenarium_pickaxe", new ItemPickaxe(SCENARIUM_TOOL_MATERIAL).setUnlocalizedName("scenariumPickaxe"));
+		registerItem(1259, "scenarium_axe", new ItemAxe(SCENARIUM_TOOL_MATERIAL).setUnlocalizedName("scenariumAxe"));
+		registerItem(1260, "scenarium_spade", new ItemSpade(SCENARIUM_TOOL_MATERIAL).setUnlocalizedName("scenariumShovel"));
+		registerItem(1261, "scenarium_hoe", new ItemHoe(SCENARIUM_TOOL_MATERIAL).setUnlocalizedName("scenariumHoe"));
 	}
 }
