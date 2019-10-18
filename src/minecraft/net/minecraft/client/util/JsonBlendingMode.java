@@ -1,7 +1,9 @@
 package net.minecraft.client.util;
 
-import com.google.gson.JsonObject;
 import java.util.Locale;
+
+import com.google.gson.JsonObject;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.JsonUtils;
 

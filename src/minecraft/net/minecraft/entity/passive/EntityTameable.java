@@ -1,8 +1,11 @@
 package net.minecraft.entity.passive;
 
-import com.google.common.base.Optional;
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Optional;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

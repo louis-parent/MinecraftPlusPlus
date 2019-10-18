@@ -1,6 +1,7 @@
 package net.minecraft.client.settings;
 
 import java.util.ArrayList;
+
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

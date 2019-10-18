@@ -1,13 +1,17 @@
 package net.minecraft.item;
 
+import java.text.DecimalFormat;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
-import java.text.DecimalFormat;
-import java.util.List;
-import java.util.Random;
-import java.util.Map.Entry;
-import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -26,7 +30,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

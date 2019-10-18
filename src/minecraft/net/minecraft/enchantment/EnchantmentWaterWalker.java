@@ -1,7 +1,7 @@
 package net.minecraft.enchantment;
 
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
 import net.minecraft.init.Enchantments;
-import net.minecraft.inventory.EntityEquipmentSlot;
 
 public class EnchantmentWaterWalker extends Enchantment
 {

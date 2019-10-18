@@ -1,8 +1,10 @@
 package net.minecraft.network.play.client;
 
-import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;

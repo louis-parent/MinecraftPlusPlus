@@ -1,11 +1,14 @@
 package net.minecraft.client.gui;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
-import java.util.List;
-import javax.annotation.Nullable;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.IntHashMap;
 

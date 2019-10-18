@@ -1,7 +1,7 @@
 package net.minecraft.entity.ai;
 
+import fr.minecraftpp.inventory.EntityArmorSlot;
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.pathfinding.PathNavigateGround;
 
 public class EntityAIRestrictSun extends EntityAIBase
@@ -18,7 +18,7 @@ public class EntityAIRestrictSun extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        return this.theEntity.world.isDaytime() && this.theEntity.getItemStackFromSlot(EntityEquipmentSlot.HEAD).isNotValid();
+        return this.theEntity.world.isDaytime() && this.theEntity.getItemStackFromSlot(EntityArmorSlot.HEAD).isNotValid();
     }
 
     /**

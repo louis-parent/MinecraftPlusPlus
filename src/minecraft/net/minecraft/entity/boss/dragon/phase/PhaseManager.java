@@ -1,8 +1,9 @@
 package net.minecraft.entity.boss.dragon.phase;
 
-import net.minecraft.entity.boss.EntityDragon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import net.minecraft.entity.boss.EntityDragon;
 
 public class PhaseManager
 {

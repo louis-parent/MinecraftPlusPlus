@@ -1,11 +1,14 @@
 package net.minecraft.client.renderer.block.model;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.MathHelper;
+
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
+
+import com.google.common.collect.Maps;
+
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.MathHelper;
 
 public enum ModelRotation
 {

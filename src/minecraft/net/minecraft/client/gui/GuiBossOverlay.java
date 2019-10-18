@@ -1,8 +1,10 @@
 package net.minecraft.client.gui;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.UUID;
+
+import com.google.common.collect.Maps;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.network.play.server.SPacketUpdateBossInfo;

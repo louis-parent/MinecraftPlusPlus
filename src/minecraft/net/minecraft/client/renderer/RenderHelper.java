@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer;
 
 import java.nio.FloatBuffer;
+
 import net.minecraft.util.math.Vec3d;
 
 public class RenderHelper

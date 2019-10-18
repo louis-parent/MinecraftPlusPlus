@@ -1,8 +1,11 @@
 package net.minecraft.entity.item;
 
-import com.google.common.collect.Lists;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;

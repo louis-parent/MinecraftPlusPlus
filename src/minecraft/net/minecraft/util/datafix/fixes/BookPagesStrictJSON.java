@@ -1,6 +1,7 @@
 package net.minecraft.util.datafix.fixes;
 
 import com.google.gson.JsonParseException;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;

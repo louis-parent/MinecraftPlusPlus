@@ -1,7 +1,10 @@
 package net.minecraft.entity.monster;
 
-import com.google.common.base.Predicate;
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,7 +21,6 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -145,7 +147,7 @@ public class EntityVindicator extends AbstractIllager
      */
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_AXE));
+        this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.IRON_AXE));
     }
 
     protected void updateAITasks()

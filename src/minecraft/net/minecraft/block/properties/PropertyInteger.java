@@ -1,10 +1,11 @@
 package net.minecraft.block.properties;
 
+import java.util.Collection;
+import java.util.Set;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
-import java.util.Collection;
-import java.util.Set;
 
 public class PropertyInteger extends PropertyHelper<Integer>
 {

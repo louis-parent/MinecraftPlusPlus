@@ -23,14 +23,4 @@ public interface IToolMaterial
     default public Item getRepairItem() {
     	return getMaterialItem();
     }
-    
-    @Mod("Minecraftpp")
-    public static enum ToolType
-    {
-    	SWORD,
-    	PICKAXE,
-    	AXE,
-    	SPADE,
-    	HOE;
-    }
 }

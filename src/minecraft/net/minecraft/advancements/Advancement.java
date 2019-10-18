@@ -1,24 +1,28 @@
 package net.minecraft.advancements;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+
+import javax.annotation.Nullable;
+
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Function;
-import javax.annotation.Nullable;
+
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.event.HoverEvent;
-import org.apache.commons.lang3.ArrayUtils;
 
 public class Advancement
 {

@@ -1,11 +1,14 @@
 package net.minecraft.client.gui.advancements;
 
-import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.DisplayInfo;

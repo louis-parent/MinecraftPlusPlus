@@ -3,7 +3,9 @@ package net.minecraft.network.play.server;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;

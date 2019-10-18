@@ -1,11 +1,15 @@
 package net.minecraft.entity.ai;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+
+import fr.minecraftpp.inventory.EntityArmorSlot;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,7 +19,6 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -98,7 +101,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
                 @Nullable
                 public Double apply(@Nullable EntityPlayer p_apply_1_)
                 {
-                    ItemStack itemstack = p_apply_1_.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+                    ItemStack itemstack = p_apply_1_.getItemStackFromSlot(EntityArmorSlot.HEAD);
 
                     if (itemstack.getItem() == Items.SKULL)
                     {

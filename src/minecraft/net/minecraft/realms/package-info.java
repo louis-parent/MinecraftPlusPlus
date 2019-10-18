@@ -2,5 +2,6 @@
 @MethodsReturnNonnullByDefault
 package net.minecraft.realms;
 
-import mcp.MethodsReturnNonnullByDefault;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import mcp.MethodsReturnNonnullByDefault;

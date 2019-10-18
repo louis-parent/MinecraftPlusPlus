@@ -1,8 +1,11 @@
 package net.minecraft.util;
 
-import com.google.common.collect.Lists;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

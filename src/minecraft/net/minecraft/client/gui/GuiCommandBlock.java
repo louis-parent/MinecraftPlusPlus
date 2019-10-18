@@ -1,8 +1,12 @@
 package net.minecraft.client.gui;
 
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
+
 import javax.annotation.Nullable;
+
+import org.lwjgl.input.Keyboard;
+
+import io.netty.buffer.Unpooled;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.CPacketCustomPayload;
@@ -12,7 +16,6 @@ import net.minecraft.util.ITabCompleter;
 import net.minecraft.util.TabCompleter;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import org.lwjgl.input.Keyboard;
 
 public class GuiCommandBlock extends GuiScreen implements ITabCompleter
 {

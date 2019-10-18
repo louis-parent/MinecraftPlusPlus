@@ -1,8 +1,11 @@
 package net.minecraft.client.gui.advancements;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Maps;
+
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.client.Minecraft;

@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.debug;
 
 import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderGlobal;

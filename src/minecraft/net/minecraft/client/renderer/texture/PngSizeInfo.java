@@ -4,8 +4,10 @@ import java.io.Closeable;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import net.minecraft.client.resources.IResource;
+
 import org.apache.commons.io.IOUtils;
+
+import net.minecraft.client.resources.IResource;
 
 public class PngSizeInfo
 {

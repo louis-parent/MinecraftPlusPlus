@@ -1,11 +1,14 @@
 package net.minecraft.tileentity;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+
 import io.netty.buffer.ByteBuf;
-import java.util.List;
-import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStructure;
 import net.minecraft.block.state.IBlockState;

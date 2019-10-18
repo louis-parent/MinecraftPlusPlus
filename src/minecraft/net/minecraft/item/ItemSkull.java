@@ -1,7 +1,11 @@
 package net.minecraft.item;
 
-import com.mojang.authlib.GameProfile;
 import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSkull;
@@ -22,7 +26,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.StringUtils;
 
 public class ItemSkull extends Item
 {

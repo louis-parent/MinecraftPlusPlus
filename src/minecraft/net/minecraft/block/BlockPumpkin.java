@@ -1,7 +1,9 @@
 package net.minecraft.block;
 
-import com.google.common.base.Predicate;
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;

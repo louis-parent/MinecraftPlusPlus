@@ -1,6 +1,12 @@
 package net.minecraft.client.util;
 
+import java.util.BitSet;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.google.common.collect.Lists;
+
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntAVLTreeSet;
@@ -9,10 +15,6 @@ import it.unimi.dsi.fastutil.ints.IntCollection;
 import it.unimi.dsi.fastutil.ints.IntIterator;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntListIterator;
-import java.util.BitSet;
-import java.util.List;
-import java.util.function.Predicate;
-import javax.annotation.Nullable;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;

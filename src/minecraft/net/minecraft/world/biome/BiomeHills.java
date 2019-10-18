@@ -1,6 +1,7 @@
 package net.minecraft.world.biome;
 
 import java.util.Random;
+
 import net.minecraft.block.BlockSilverfish;
 import net.minecraft.entity.passive.EntityLlama;
 import net.minecraft.init.Blocks;

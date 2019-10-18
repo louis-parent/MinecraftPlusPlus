@@ -1,7 +1,9 @@
 package net.minecraft.entity.passive;
 
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;

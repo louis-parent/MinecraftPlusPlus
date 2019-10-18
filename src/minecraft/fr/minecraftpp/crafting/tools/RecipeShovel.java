@@ -1,11 +1,11 @@
 package fr.minecraftpp.crafting.tools;
 
+import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.crafting.blueprint.Blueprint;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
-import net.minecraft.world.World;
 
+@Mod("Minecraftpp")
 public class RecipeShovel extends RecipeTool 
 {
 

@@ -1,6 +1,7 @@
 package net.minecraft.entity.boss.dragon.phase;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.MultiPartEntityPart;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.item.EntityEnderCrystal;

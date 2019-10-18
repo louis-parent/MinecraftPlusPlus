@@ -2,7 +2,9 @@ package net.minecraft.command;
 
 import java.util.Collections;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;

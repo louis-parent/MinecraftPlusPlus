@@ -1,9 +1,14 @@
 package net.minecraft.client.gui.advancements;
 
-import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.util.Map;
+
 import javax.annotation.Nullable;
+
+import org.lwjgl.input.Mouse;
+
+import com.google.common.collect.Maps;
+
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.client.gui.GuiScreen;
@@ -14,7 +19,6 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.network.play.client.CPacketSeenAdvancements;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.input.Mouse;
 
 public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancementManager.IListener
 {

@@ -1,6 +1,8 @@
 package net.minecraft.entity.monster;
 
 import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,7 +23,6 @@ import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -87,7 +88,7 @@ public class EntityIllusionIllager extends EntitySpellcasterIllager implements I
      */
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata)
     {
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
+        this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.BOW));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 

@@ -1,6 +1,7 @@
 package net.minecraft.realms;
 
 import java.util.List;
+
 import net.minecraft.util.text.ITextComponent;
 
 public class DisconnectedRealmsScreen extends RealmsScreen

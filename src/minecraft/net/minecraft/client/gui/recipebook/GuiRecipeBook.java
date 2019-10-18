@@ -1,17 +1,22 @@
 package net.minecraft.client.gui.recipebook;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+
+import javax.annotation.Nullable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Keyboard;
+
 import com.google.common.collect.Lists;
+
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntListIterator;
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import javax.annotation.Nullable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButtonToggle;
@@ -42,9 +47,6 @@ import net.minecraft.network.play.client.CPacketRecipeInfo;
 import net.minecraft.network.play.client.CPacketRecipePlacement;
 import net.minecraft.stats.RecipeBook;
 import net.minecraft.util.ResourceLocation;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.input.Keyboard;
 
 public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 {

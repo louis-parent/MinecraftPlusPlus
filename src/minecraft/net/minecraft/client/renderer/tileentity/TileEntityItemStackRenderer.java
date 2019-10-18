@@ -1,7 +1,11 @@
 package net.minecraft.client.renderer.tileentity;
 
-import com.mojang.authlib.GameProfile;
 import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockShulkerBox;
@@ -23,7 +27,6 @@ import net.minecraft.tileentity.TileEntityEnderChest;
 import net.minecraft.tileentity.TileEntityShulkerBox;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.EnumFacing;
-import org.apache.commons.lang3.StringUtils;
 
 public class TileEntityItemStackRenderer
 {

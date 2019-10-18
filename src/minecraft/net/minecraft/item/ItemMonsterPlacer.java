@@ -2,7 +2,9 @@ package net.minecraft.item;
 
 import java.util.List;
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;

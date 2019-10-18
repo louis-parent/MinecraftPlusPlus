@@ -1,7 +1,7 @@
 package net.minecraft.enchantment;
 
+import fr.minecraftpp.inventory.EntityArmorSlot;
 import net.minecraft.block.BlockPumpkin;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBlock;
@@ -37,25 +37,25 @@ public enum EnumEnchantmentType
     ARMOR_FEET {
         public boolean canEnchantItem(Item itemIn)
         {
-            return itemIn instanceof ItemArmor && ((ItemArmor)itemIn).armorType == EntityEquipmentSlot.FEET;
+            return itemIn instanceof ItemArmor && ((ItemArmor)itemIn).armorType == EntityArmorSlot.FEET;
         }
     },
     ARMOR_LEGS {
         public boolean canEnchantItem(Item itemIn)
         {
-            return itemIn instanceof ItemArmor && ((ItemArmor)itemIn).armorType == EntityEquipmentSlot.LEGS;
+            return itemIn instanceof ItemArmor && ((ItemArmor)itemIn).armorType == EntityArmorSlot.LEGS;
         }
     },
     ARMOR_CHEST {
         public boolean canEnchantItem(Item itemIn)
         {
-            return itemIn instanceof ItemArmor && ((ItemArmor)itemIn).armorType == EntityEquipmentSlot.CHEST;
+            return itemIn instanceof ItemArmor && ((ItemArmor)itemIn).armorType == EntityArmorSlot.CHEST;
         }
     },
     ARMOR_HEAD {
         public boolean canEnchantItem(Item itemIn)
         {
-            return itemIn instanceof ItemArmor && ((ItemArmor)itemIn).armorType == EntityEquipmentSlot.HEAD;
+            return itemIn instanceof ItemArmor && ((ItemArmor)itemIn).armorType == EntityArmorSlot.HEAD;
         }
     },
     WEAPON {

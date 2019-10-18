@@ -1,8 +1,9 @@
 package net.minecraft.world.gen.structure;
 
 import java.util.Map;
-import java.util.Random;
 import java.util.Map.Entry;
+import java.util.Random;
+
 import net.minecraft.block.BlockFlowerPot;
 import net.minecraft.block.BlockLever;
 import net.minecraft.block.BlockPistonBase;

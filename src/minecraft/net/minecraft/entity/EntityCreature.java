@@ -1,6 +1,7 @@
 package net.minecraft.entity;
 
 import java.util.UUID;
+
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.pathfinding.PathNodeType;

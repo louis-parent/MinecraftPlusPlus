@@ -1,7 +1,9 @@
 package net.minecraft.item;
 
 import java.util.List;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockStandingSign;
 import net.minecraft.block.BlockWallSign;

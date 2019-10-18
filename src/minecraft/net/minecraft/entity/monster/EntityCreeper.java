@@ -1,7 +1,9 @@
 package net.minecraft.entity.monster;
 
 import java.util.Collection;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.EntityLiving;

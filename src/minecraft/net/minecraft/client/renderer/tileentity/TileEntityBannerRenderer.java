@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.tileentity;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.client.model.ModelBanner;
 import net.minecraft.client.renderer.BannerTextures;
 import net.minecraft.client.renderer.GlStateManager;

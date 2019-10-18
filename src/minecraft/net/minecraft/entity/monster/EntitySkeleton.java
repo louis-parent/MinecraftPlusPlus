@@ -1,13 +1,14 @@
 package net.minecraft.entity.monster;
 
 import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntitySpectralArrow;
 import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -75,7 +76,7 @@ public class EntitySkeleton extends AbstractSkeleton
 
     protected EntityArrow func_190726_a(float p_190726_1_)
     {
-        ItemStack itemstack = this.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND);
+        ItemStack itemstack = this.getItemStackFromSlot(EntityHandSlot.OFFHAND);
 
         if (itemstack.getItem() == Items.SPECTRAL_ARROW)
         {

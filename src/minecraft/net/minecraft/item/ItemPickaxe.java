@@ -9,7 +9,7 @@ import com.google.common.collect.Sets;
 
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.item.tool.IToolMaterial;
-import fr.minecraftpp.item.tool.IToolMaterial.ToolType;
+import fr.minecraftpp.item.tool.ToolType;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

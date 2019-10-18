@@ -2,6 +2,7 @@ package net.minecraft.advancements;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
+
 import net.minecraft.util.ResourceLocation;
 
 public interface ICriterionTrigger<T extends ICriterionInstance>

@@ -1,8 +1,11 @@
 package net.minecraft.client.entity;
 
-import com.mojang.authlib.GameProfile;
 import java.io.File;
+
 import javax.annotation.Nullable;
+
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.ImageBufferDownload;

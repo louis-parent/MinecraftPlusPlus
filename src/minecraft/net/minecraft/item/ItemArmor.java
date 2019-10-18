@@ -1,9 +1,13 @@
 package net.minecraft.item;
 
-import com.google.common.base.Predicates;
-import com.google.common.collect.Multimap;
 import java.util.List;
 import java.util.UUID;
+
+import com.google.common.base.Predicates;
+import com.google.common.collect.Multimap;
+
+import fr.minecraftpp.inventory.EntityArmorSlot;
+import fr.minecraftpp.inventory.EntityArmorSlot;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
@@ -16,7 +20,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EntitySelectors;
@@ -29,11 +32,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemArmor extends Item
-{
-    /** Holds the 'base' maxDamage that each armorType have. */
-    private static final int[] MAX_DAMAGE_ARRAY = new int[] {13, 15, 16, 11};
-    private static final UUID[] ARMOR_MODIFIERS = new UUID[] {UUID.fromString("845DB27C-C624-495F-8C9F-6020A9A58B6B"), UUID.fromString("D8499B04-0E66-4726-AB29-64469D734E0D"), UUID.fromString("9F3D476D-C118-4544-8365-64846904B48E"), UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150")};
-    public static final String[] EMPTY_SLOT_NAMES = new String[] {"minecraft:items/empty_armor_slot_boots", "minecraft:items/empty_armor_slot_leggings", "minecraft:items/empty_armor_slot_chestplate", "minecraft:items/empty_armor_slot_helmet"};
+{       
     public static final IBehaviorDispenseItem DISPENSER_BEHAVIOR = new BehaviorDefaultDispenseItem()
     {
         protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
@@ -42,21 +41,12 @@ public class ItemArmor extends Item
             return itemstack.isNotValid() ? super.dispenseStack(source, stack) : itemstack;
         }
     };
-
-    /**
-     * Stores the armor type: 0 is helmet, 1 is plate, 2 is legs and 3 is boots
-     */
-    public final EntityEquipmentSlot armorType;
+    
+    public final EntityArmorSlot armorType;
 
     /** Holds the amount of damage that the armor reduces at full durability. */
     public final int damageReduceAmount;
     public final float toughness;
-
-    /**
-     * Used on RenderPlayer to select the correspondent armor to be rendered on the player: 0 is cloth, 1 is chain, 2 is
-     * iron, 3 is diamond and 4 is gold.
-     */
-    public final int renderIndex;
 
     /** The EnumArmorMaterial used for this ItemArmor */
     private final ItemArmor.ArmorMaterial material;
@@ -73,7 +63,7 @@ public class ItemArmor extends Item
         else
         {
             EntityLivingBase entitylivingbase = list.get(0);
-            EntityEquipmentSlot entityequipmentslot = EntityLiving.getSlotForItemStack(stack);
+            EntityArmorSlot entityequipmentslot = (EntityArmorSlot) EntityLiving.getSlotForItemStack(stack);
             ItemStack itemstack = stack.splitStack(1);
             entitylivingbase.setItemStackToSlot(entityequipmentslot, itemstack);
 
@@ -86,14 +76,13 @@ public class ItemArmor extends Item
         }
     }
 
-    public ItemArmor(ItemArmor.ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
+    public ItemArmor(ItemArmor.ArmorMaterial material, EntityArmorSlot equipmentSlot)
     {
-        this.material = materialIn;
-        this.armorType = equipmentSlotIn;
-        this.renderIndex = renderIndexIn;
-        this.damageReduceAmount = materialIn.getDamageReductionAmount(equipmentSlotIn);
-        this.setMaxDamage(materialIn.getDurability(equipmentSlotIn));
-        this.toughness = materialIn.getToughness();
+        this.material = material;
+        this.armorType = equipmentSlot;
+        this.damageReduceAmount = material.getDamageReductionAmount(equipmentSlot);
+        this.setMaxDamage(material.getDurability(equipmentSlot));
+        this.toughness = material.getToughness();
         this.maxStackSize = 1;
         this.setCreativeTab(CreativeTabs.COMBAT);
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, DISPENSER_BEHAVIOR);
@@ -102,7 +91,7 @@ public class ItemArmor extends Item
     /**
      * Gets the equipment slot of this armor piece (formerly known as armor type)
      */
-    public EntityEquipmentSlot getEquipmentSlot()
+    public EntityArmorSlot getEquipmentSlot()
     {
         return this.armorType;
     }
@@ -228,7 +217,7 @@ public class ItemArmor extends Item
     public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
     {
         ItemStack itemstack = worldIn.getHeldItem(playerIn);
-        EntityEquipmentSlot entityequipmentslot = EntityLiving.getSlotForItemStack(itemstack);
+        EntityArmorSlot entityequipmentslot = (EntityArmorSlot) EntityLiving.getSlotForItemStack(itemstack);
         ItemStack itemstack1 = worldIn.getItemStackFromSlot(entityequipmentslot);
 
         if (itemstack1.isNotValid())
@@ -243,50 +232,57 @@ public class ItemArmor extends Item
         }
     }
 
-    public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
+    public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityArmorSlot equipmentSlot)
     {
         Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
         if (equipmentSlot == this.armorType)
         {
-            multimap.put(SharedMonsterAttributes.ARMOR.getAttributeUnlocalizedName(), new AttributeModifier(ARMOR_MODIFIERS[equipmentSlot.getIndex()], "Armor modifier", (double)this.damageReduceAmount, 0));
-            multimap.put(SharedMonsterAttributes.ARMOR_TOUGHNESS.getAttributeUnlocalizedName(), new AttributeModifier(ARMOR_MODIFIERS[equipmentSlot.getIndex()], "Armor toughness", (double)this.toughness, 0));
+            multimap.put(SharedMonsterAttributes.ARMOR.getAttributeUnlocalizedName(), new AttributeModifier(equipmentSlot.getModifierUUID(), "Armor modifier", (double)this.damageReduceAmount, 0));
+            multimap.put(SharedMonsterAttributes.ARMOR_TOUGHNESS.getAttributeUnlocalizedName(), new AttributeModifier(equipmentSlot.getModifierUUID(), "Armor toughness", (double)this.toughness, 0));
         }
 
         return multimap;
     }
-
+    
     public static enum ArmorMaterial
     {
-        LEATHER("leather", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F),
-        CHAIN("chainmail", 15, new int[]{1, 4, 5, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F),
-        IRON("iron", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F),
-        GOLD("gold", 7, new int[]{1, 3, 5, 2}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F),
-        DIAMOND("diamond", 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
+        LEATHER("leather", 0, 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F),
+        CHAIN("chainmail", 1, 15, new int[]{1, 4, 5, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.0F),
+        IRON("iron", 15, 2, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F),
+        DIAMOND("diamond", 3, 33, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F),
+        GOLD("gold", 4, 7, new int[]{1, 3, 5, 2}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F);
 
         private final String name;
+        private final int renderIndex;
         private final int maxDamageFactor;
         private final int[] damageReductionAmountArray;
         private final int enchantability;
         private final SoundEvent soundEvent;
         private final float toughness;
 
-        private ArmorMaterial(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountArrayIn, int enchantabilityIn, SoundEvent soundEventIn, float toughnessIn)
+        private ArmorMaterial(String name, int renderIndex, int maxDamageFactor, int[] damageReductionAmountArray, int enchantability, SoundEvent soundEvent, float toughness)
         {
-            this.name = nameIn;
-            this.maxDamageFactor = maxDamageFactorIn;
-            this.damageReductionAmountArray = damageReductionAmountArrayIn;
-            this.enchantability = enchantabilityIn;
-            this.soundEvent = soundEventIn;
-            this.toughness = toughnessIn;
+            this.name = name;
+            this.renderIndex = renderIndex;
+            this.maxDamageFactor = maxDamageFactor;
+            this.damageReductionAmountArray = damageReductionAmountArray;
+            this.enchantability = enchantability;
+            this.soundEvent = soundEvent;
+            this.toughness = toughness;
+        }
+        
+        public int getRenderIndex()
+        {
+        	return this.renderIndex;
         }
 
-        public int getDurability(EntityEquipmentSlot armorType)
+        public int getDurability(EntityArmorSlot armorType)
         {
-            return ItemArmor.MAX_DAMAGE_ARRAY[armorType.getIndex()] * this.maxDamageFactor;
+            return armorType.getBaseDurability() * this.maxDamageFactor;
         }
 
-        public int getDamageReductionAmount(EntityEquipmentSlot armorType)
+        public int getDamageReductionAmount(EntityArmorSlot armorType)
         {
             return this.damageReductionAmountArray[armorType.getIndex()];
         }

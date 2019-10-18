@@ -1,9 +1,12 @@
 package net.minecraft.block;
 
-import com.google.common.base.Predicates;
 import java.util.List;
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicates;
+
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;

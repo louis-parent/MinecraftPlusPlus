@@ -1,12 +1,15 @@
 package net.minecraft.block;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;

@@ -1,8 +1,13 @@
 package net.minecraft.client.renderer.entity;
 
-import com.google.common.collect.Lists;
 import java.nio.FloatBuffer;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelBase;
@@ -17,8 +22,6 @@ import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public abstract class RenderLivingBase<T extends EntityLivingBase> extends Render<T>
 {

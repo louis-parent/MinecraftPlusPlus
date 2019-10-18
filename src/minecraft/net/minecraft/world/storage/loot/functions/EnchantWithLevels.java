@@ -1,9 +1,11 @@
 package net.minecraft.world.storage.loot.functions;
 
+import java.util.Random;
+
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import java.util.Random;
+
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;

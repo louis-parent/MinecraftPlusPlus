@@ -1,7 +1,12 @@
 package net.minecraft.entity.monster;
 
 import java.util.Calendar;
+
 import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityArmorSlot;
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,7 +33,6 @@ import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -121,7 +125,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
             if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(blockpos))
             {
                 boolean flag = true;
-                ItemStack itemstack = this.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+                ItemStack itemstack = this.getItemStackFromSlot(EntityArmorSlot.HEAD);
 
                 if (!itemstack.isNotValid())
                 {
@@ -132,7 +136,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
                         if (itemstack.getItemDamage() >= itemstack.getMaxDamage())
                         {
                             this.renderBrokenItemStack(itemstack);
-                            this.setItemStackToSlot(EntityEquipmentSlot.HEAD, ItemStack.EMPTY_ITEM_STACK);
+                            this.setItemStackToSlot(EntityArmorSlot.HEAD, ItemStack.EMPTY_ITEM_STACK);
                         }
                     }
 
@@ -169,7 +173,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
         super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
+        this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.BOW));
     }
 
     @Nullable
@@ -186,14 +190,14 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
         this.setCombatTask();
         this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * difficulty.getClampedAdditionalDifficulty());
 
-        if (this.getItemStackFromSlot(EntityEquipmentSlot.HEAD).isNotValid())
+        if (this.getItemStackFromSlot(EntityArmorSlot.HEAD).isNotValid())
         {
             Calendar calendar = this.world.getCurrentDate();
 
             if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31 && this.rand.nextFloat() < 0.25F)
             {
-                this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
-                this.inventoryArmorDropChances[EntityEquipmentSlot.HEAD.getIndex()] = 0.0F;
+                this.setItemStackToSlot(EntityArmorSlot.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
+                this.inventoryArmorDropChances[EntityArmorSlot.HEAD.getIndex()] = 0.0F;
             }
         }
 
@@ -267,7 +271,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
     {
         super.setItemStackToSlot(slotIn, stack);
 
-        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND)
+        if (!this.world.isRemote && slotIn == EntityHandSlot.MAINHAND)
         {
             this.setCombatTask();
         }

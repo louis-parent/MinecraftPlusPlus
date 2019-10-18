@@ -1,5 +1,11 @@
 package net.minecraft.world.storage.loot.conditions;
 
+import java.lang.reflect.Type;
+import java.util.Map;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import com.google.common.collect.Maps;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -9,10 +15,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.JsonSyntaxException;
-import java.lang.reflect.Type;
-import java.util.Map;
-import java.util.Random;
-import javax.annotation.Nullable;
+
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;

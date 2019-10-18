@@ -1,13 +1,14 @@
 package net.minecraft.client.util;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
+
 import net.minecraft.client.gui.recipebook.RecipeList;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;

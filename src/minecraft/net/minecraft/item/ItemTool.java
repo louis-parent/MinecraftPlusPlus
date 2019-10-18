@@ -3,14 +3,15 @@ package net.minecraft.item;
 import com.google.common.collect.Multimap;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
+import fr.minecraftpp.inventory.EntityHandSlot;
 import fr.minecraftpp.item.tool.IToolMaterial;
-import fr.minecraftpp.item.tool.IToolMaterial.ToolType;
+import fr.minecraftpp.item.tool.ToolType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -107,7 +108,7 @@ public abstract class ItemTool extends Item
     {
         Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
-        if (equipmentSlot == EntityEquipmentSlot.MAINHAND)
+        if (equipmentSlot == EntityHandSlot.MAINHAND)
         {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)this.damageVsEntity, 0));
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)this.attackSpeed, 0));

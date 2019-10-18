@@ -1,11 +1,11 @@
 package net.minecraft.client.renderer.entity.layers;
 
+import fr.minecraftpp.inventory.EntityArmorSlot;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
@@ -22,7 +22,7 @@ public class LayerCape implements LayerRenderer<AbstractClientPlayer>
     {
         if (entitylivingbaseIn.hasPlayerInfo() && !entitylivingbaseIn.isInvisible() && entitylivingbaseIn.isWearing(EnumPlayerModelParts.CAPE) && entitylivingbaseIn.getLocationCape() != null)
         {
-            ItemStack itemstack = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+            ItemStack itemstack = entitylivingbaseIn.getItemStackFromSlot(EntityArmorSlot.CHEST);
 
             if (itemstack.getItem() != Items.ELYTRA)
             {

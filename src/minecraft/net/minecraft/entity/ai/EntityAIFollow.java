@@ -1,8 +1,11 @@
 package net.minecraft.entity.ai;
 
-import com.google.common.base.Predicate;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateFlying;

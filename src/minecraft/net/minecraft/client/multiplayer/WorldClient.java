@@ -1,9 +1,12 @@
 package net.minecraft.client.multiplayer;
 
-import com.google.common.collect.Sets;
 import java.util.Random;
 import java.util.Set;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

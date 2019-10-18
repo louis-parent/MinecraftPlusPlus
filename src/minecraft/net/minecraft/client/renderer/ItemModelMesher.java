@@ -1,9 +1,12 @@
 package net.minecraft.client.renderer;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Maps;
+
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

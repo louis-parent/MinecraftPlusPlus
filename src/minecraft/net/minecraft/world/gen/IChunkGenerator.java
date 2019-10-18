@@ -1,7 +1,9 @@
 package net.minecraft.world.gen;
 
 import java.util.List;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

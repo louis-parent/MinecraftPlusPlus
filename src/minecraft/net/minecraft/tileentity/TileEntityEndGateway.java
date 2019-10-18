@@ -2,7 +2,12 @@ package net.minecraft.tileentity;
 
 import java.util.List;
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -20,8 +25,6 @@ import net.minecraft.world.WorldProviderEnd;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.WorldGenEndGateway;
 import net.minecraft.world.gen.feature.WorldGenEndIsland;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class TileEntityEndGateway extends TileEntityEndPortal implements ITickable
 {

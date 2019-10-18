@@ -1,8 +1,10 @@
 package net.minecraft.potion;
 
+import java.util.List;
+
 import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
-import java.util.List;
+
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.item.Item;

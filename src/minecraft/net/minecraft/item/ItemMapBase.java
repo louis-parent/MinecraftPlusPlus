@@ -1,6 +1,7 @@
 package net.minecraft.item;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.Packet;
 import net.minecraft.world.World;

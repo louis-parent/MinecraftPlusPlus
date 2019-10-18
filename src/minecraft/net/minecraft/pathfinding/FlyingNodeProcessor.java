@@ -1,9 +1,12 @@
 package net.minecraft.pathfinding;
 
-import com.google.common.collect.Sets;
 import java.util.EnumSet;
 import java.util.Set;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.Blocks;

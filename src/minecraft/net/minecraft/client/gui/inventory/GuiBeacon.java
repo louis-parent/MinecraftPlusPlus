@@ -1,7 +1,6 @@
 package net.minecraft.client.gui.inventory;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +16,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.ContainerBeacon;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.CPacketCloseWindow;

@@ -1,9 +1,12 @@
 package net.minecraft.network.datasync;
 
-import com.google.common.base.Optional;
 import java.io.IOException;
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Optional;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;

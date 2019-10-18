@@ -1,5 +1,7 @@
 package net.minecraft.entity.ai;
 
+import fr.minecraftpp.inventory.EntityArmorSlot;
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -7,7 +9,6 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
@@ -72,13 +73,13 @@ public class EntityAISkeletonRiders extends EntityAIBase
         entityskeleton.hurtResistantTime = 60;
         entityskeleton.enablePersistence();
 
-        if (entityskeleton.getItemStackFromSlot(EntityEquipmentSlot.HEAD).isNotValid())
+        if (entityskeleton.getItemStackFromSlot(EntityArmorSlot.HEAD).isNotValid())
         {
-            entityskeleton.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(Items.IRON_HELMET));
+            entityskeleton.setItemStackToSlot(EntityArmorSlot.HEAD, new ItemStack(Items.IRON_HELMET));
         }
 
-        entityskeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, EnchantmentHelper.addRandomEnchantment(entityskeleton.getRNG(), entityskeleton.getHeldItemMainhand(), (int)(5.0F + p_188514_1_.getClampedAdditionalDifficulty() * (float)entityskeleton.getRNG().nextInt(18)), false));
-        entityskeleton.setItemStackToSlot(EntityEquipmentSlot.HEAD, EnchantmentHelper.addRandomEnchantment(entityskeleton.getRNG(), entityskeleton.getItemStackFromSlot(EntityEquipmentSlot.HEAD), (int)(5.0F + p_188514_1_.getClampedAdditionalDifficulty() * (float)entityskeleton.getRNG().nextInt(18)), false));
+        entityskeleton.setItemStackToSlot(EntityHandSlot.MAINHAND, EnchantmentHelper.addRandomEnchantment(entityskeleton.getRNG(), entityskeleton.getHeldItemMainhand(), (int)(5.0F + p_188514_1_.getClampedAdditionalDifficulty() * (float)entityskeleton.getRNG().nextInt(18)), false));
+        entityskeleton.setItemStackToSlot(EntityArmorSlot.HEAD, EnchantmentHelper.addRandomEnchantment(entityskeleton.getRNG(), entityskeleton.getItemStackFromSlot(EntityArmorSlot.HEAD), (int)(5.0F + p_188514_1_.getClampedAdditionalDifficulty() * (float)entityskeleton.getRNG().nextInt(18)), false));
         entityskeleton.world.spawnEntityInWorld(entityskeleton);
         return entityskeleton;
     }

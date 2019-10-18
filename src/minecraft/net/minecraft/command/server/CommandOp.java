@@ -1,10 +1,13 @@
 package net.minecraft.command.server;
 
-import com.google.common.collect.Lists;
-import com.mojang.authlib.GameProfile;
 import java.util.Collections;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

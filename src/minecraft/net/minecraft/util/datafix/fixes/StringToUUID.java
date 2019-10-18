@@ -1,6 +1,7 @@
 package net.minecraft.util.datafix.fixes;
 
 import java.util.UUID;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.datafix.IFixableData;
 

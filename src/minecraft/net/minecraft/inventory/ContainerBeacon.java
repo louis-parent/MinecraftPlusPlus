@@ -1,9 +1,6 @@
 package net.minecraft.inventory;
 
-import fr.minecraftpp.item.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityBeacon;
 

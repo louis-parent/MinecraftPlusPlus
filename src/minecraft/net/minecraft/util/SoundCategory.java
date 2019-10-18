@@ -1,8 +1,9 @@
 package net.minecraft.util;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Set;
+
+import com.google.common.collect.Maps;
 
 public enum SoundCategory
 {

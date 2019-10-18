@@ -1,6 +1,7 @@
 package net.minecraft.entity.ai;
 
 import com.google.common.base.Predicates;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;

@@ -3,6 +3,7 @@ package net.minecraft.client.resources.data;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+
 import net.minecraft.util.EnumTypeAdapterFactory;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.util.registry.RegistrySimple;

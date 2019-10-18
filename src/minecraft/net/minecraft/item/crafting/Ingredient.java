@@ -1,10 +1,12 @@
 package net.minecraft.item.crafting;
 
+import javax.annotation.Nullable;
+
 import com.google.common.base.Predicate;
+
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntComparators;
 import it.unimi.dsi.fastutil.ints.IntList;
-import javax.annotation.Nullable;
 import net.minecraft.client.util.RecipeItemHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -1,7 +1,9 @@
 package net.minecraft.entity.ai;
 
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.pathfinding.PathNavigate;

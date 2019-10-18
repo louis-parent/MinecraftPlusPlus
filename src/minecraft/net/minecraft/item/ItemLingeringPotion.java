@@ -1,7 +1,9 @@
 package net.minecraft.item;
 
 import java.util.List;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityPotion;

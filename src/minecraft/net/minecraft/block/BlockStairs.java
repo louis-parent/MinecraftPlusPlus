@@ -1,9 +1,12 @@
 package net.minecraft.block;
 
-import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;

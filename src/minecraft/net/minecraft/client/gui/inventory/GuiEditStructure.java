@@ -1,12 +1,18 @@
 package net.minecraft.client.gui.inventory;
 
-import com.google.common.collect.Lists;
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Keyboard;
+
+import com.google.common.collect.Lists;
+
+import io.netty.buffer.Unpooled;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
@@ -18,9 +24,6 @@ import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.input.Keyboard;
 
 public class GuiEditStructure extends GuiScreen
 {

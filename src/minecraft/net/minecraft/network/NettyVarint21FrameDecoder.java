@@ -1,11 +1,12 @@
 package net.minecraft.network;
 
+import java.util.List;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.CorruptedFrameException;
-import java.util.List;
 
 public class NettyVarint21FrameDecoder extends ByteToMessageDecoder
 {

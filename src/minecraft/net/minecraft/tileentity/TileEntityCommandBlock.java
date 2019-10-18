@@ -1,7 +1,8 @@
 package net.minecraft.tileentity;
 
-import io.netty.buffer.ByteBuf;
 import javax.annotation.Nullable;
+
+import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCommandBlock;
 import net.minecraft.block.state.IBlockState;

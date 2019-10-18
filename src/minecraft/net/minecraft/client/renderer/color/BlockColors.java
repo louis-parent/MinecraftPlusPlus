@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.color;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockOldLeaf;

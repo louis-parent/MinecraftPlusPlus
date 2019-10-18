@@ -1,12 +1,18 @@
 package net.minecraft.entity.player;
 
-import com.google.common.collect.Lists;
-import com.mojang.authlib.GameProfile;
-import io.netty.buffer.Unpooled;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.Lists;
+import com.mojang.authlib.GameProfile;
+
+import io.netty.buffer.Unpooled;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.PlayerAdvancements;
 import net.minecraft.block.Block;
@@ -111,8 +117,6 @@ import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.ILootContainer;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class EntityPlayerMP extends EntityPlayer implements IContainerListener
 {

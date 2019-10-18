@@ -1,7 +1,9 @@
 package net.minecraft.block;
 
-import com.google.common.base.Predicate;
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;

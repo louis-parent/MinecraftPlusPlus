@@ -1,6 +1,7 @@
 package net.minecraft.world.gen.feature;
 
 import java.util.Random;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;

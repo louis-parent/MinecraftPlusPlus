@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer.entity.layers;
 
+import fr.minecraftpp.inventory.EntityArmorSlot;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelElytra;
 import net.minecraft.client.renderer.GlStateManager;
@@ -7,7 +8,6 @@ import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -27,7 +27,7 @@ public class LayerElytra implements LayerRenderer<EntityLivingBase>
 
     public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        ItemStack itemstack = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+        ItemStack itemstack = entitylivingbaseIn.getItemStackFromSlot(EntityArmorSlot.CHEST);
 
         if (itemstack.getItem() == Items.ELYTRA)
         {

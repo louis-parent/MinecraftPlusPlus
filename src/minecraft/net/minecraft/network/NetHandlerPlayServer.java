@@ -1,15 +1,23 @@
 package net.minecraft.network;
 
-import com.google.common.collect.Lists;
-import com.google.common.primitives.Doubles;
-import com.google.common.primitives.Floats;
-import com.google.common.util.concurrent.Futures;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.Lists;
+import com.google.common.primitives.Doubles;
+import com.google.common.primitives.Floats;
+import com.google.common.util.concurrent.Futures;
+
+import fr.minecraftpp.inventory.EntityArmorSlot;
+import fr.minecraftpp.inventory.EntityHandSlot;
+import io.netty.util.concurrent.Future;
+import io.netty.util.concurrent.GenericFutureListener;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockCommandBlock;
@@ -37,7 +45,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerBeacon;
 import net.minecraft.inventory.ContainerMerchant;
 import net.minecraft.inventory.ContainerRepair;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemElytra;
@@ -116,9 +123,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.GameType;
 import net.minecraft.world.WorldServer;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 {
@@ -1063,7 +1067,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
             case START_FALL_FLYING:
                 if (!this.playerEntity.onGround && this.playerEntity.motionY < 0.0D && !this.playerEntity.isElytraFlying() && !this.playerEntity.isInWater())
                 {
-                    ItemStack itemstack = this.playerEntity.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+                    ItemStack itemstack = this.playerEntity.getItemStackFromSlot(EntityArmorSlot.CHEST);
 
                     if (itemstack.getItem() == Items.ELYTRA && ItemElytra.isBroken(itemstack))
                     {
@@ -1594,7 +1598,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                     }
 
                     itemstack2.setTagInfo("pages", nbttaglist);
-                    this.playerEntity.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, itemstack2);
+                    this.playerEntity.setItemStackToSlot(EntityHandSlot.MAINHAND, itemstack2);
                 }
             }
             catch (Exception exception7)

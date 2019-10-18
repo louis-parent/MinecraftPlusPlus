@@ -1,10 +1,14 @@
 package net.minecraft.client.gui;
 
+import java.util.List;
+import java.util.Map.Entry;
+
+import org.lwjgl.opengl.Display;
+
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.UnmodifiableIterator;
-import java.util.List;
-import java.util.Map.Entry;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -24,7 +28,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.Chunk;
-import org.lwjgl.opengl.Display;
 
 public class GuiOverlayDebug extends Gui
 {

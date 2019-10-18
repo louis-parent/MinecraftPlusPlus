@@ -1,6 +1,7 @@
 package net.minecraft.pathfinding;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.Vec3d;

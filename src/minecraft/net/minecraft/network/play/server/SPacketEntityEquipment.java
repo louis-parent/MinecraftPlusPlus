@@ -1,7 +1,8 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import net.minecraft.inventory.EntityEquipmentSlot;
+
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
@@ -30,7 +31,7 @@ public class SPacketEntityEquipment implements Packet<INetHandlerPlayClient>
     public void readPacketData(PacketBuffer buf) throws IOException
     {
         this.entityID = buf.readVarIntFromBuffer();
-        this.equipmentSlot = (EntityEquipmentSlot)buf.readEnumValue(EntityEquipmentSlot.class);
+        this.equipmentSlot = EntityEquipmentSlot.fromString(buf.readStringFromBuffer(EntityEquipmentSlot.getNameMaxLength()));
         this.itemStack = buf.readItemStackFromBuffer();
     }
 
@@ -40,7 +41,7 @@ public class SPacketEntityEquipment implements Packet<INetHandlerPlayClient>
     public void writePacketData(PacketBuffer buf) throws IOException
     {
         buf.writeVarIntToBuffer(this.entityID);
-        buf.writeEnumValue(this.equipmentSlot);
+        buf.writeString(this.equipmentSlot.getName());
         buf.writeItemStackToBuffer(this.itemStack);
     }
 

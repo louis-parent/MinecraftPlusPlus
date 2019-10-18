@@ -1,6 +1,7 @@
 package net.minecraft.entity.passive;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;

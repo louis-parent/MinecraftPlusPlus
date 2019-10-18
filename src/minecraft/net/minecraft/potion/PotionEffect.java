@@ -1,10 +1,12 @@
 package net.minecraft.potion;
 
-import com.google.common.collect.ComparisonChain;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.nbt.NBTTagCompound;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.ComparisonChain;
+
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class PotionEffect implements Comparable<PotionEffect>
 {

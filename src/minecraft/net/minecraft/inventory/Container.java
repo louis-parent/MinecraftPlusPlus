@@ -1,10 +1,13 @@
 package net.minecraft.inventory;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import java.util.List;
 import java.util.Set;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;

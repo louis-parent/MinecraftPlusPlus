@@ -3,7 +3,11 @@ package net.minecraft.entity.monster;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityArmorSlot;
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -31,7 +35,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -215,7 +218,7 @@ public class EntityZombie extends EntityMob
             if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(new BlockPos(this.posX, this.posY + (double)this.getEyeHeight(), this.posZ)))
             {
                 boolean flag = true;
-                ItemStack itemstack = this.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+                ItemStack itemstack = this.getItemStackFromSlot(EntityArmorSlot.HEAD);
 
                 if (!itemstack.isNotValid())
                 {
@@ -226,7 +229,7 @@ public class EntityZombie extends EntityMob
                         if (itemstack.getItemDamage() >= itemstack.getMaxDamage())
                         {
                             this.renderBrokenItemStack(itemstack);
-                            this.setItemStackToSlot(EntityEquipmentSlot.HEAD, ItemStack.EMPTY_ITEM_STACK);
+                            this.setItemStackToSlot(EntityArmorSlot.HEAD, ItemStack.EMPTY_ITEM_STACK);
                         }
                     }
 
@@ -369,11 +372,11 @@ public class EntityZombie extends EntityMob
 
             if (i == 0)
             {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+                this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
             }
             else
             {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SHOVEL));
+                this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.IRON_SHOVEL));
             }
         }
     }
@@ -516,14 +519,14 @@ public class EntityZombie extends EntityMob
         this.setEquipmentBasedOnDifficulty(difficulty);
         this.setEnchantmentBasedOnDifficulty(difficulty);
 
-        if (this.getItemStackFromSlot(EntityEquipmentSlot.HEAD).isNotValid())
+        if (this.getItemStackFromSlot(EntityArmorSlot.HEAD).isNotValid())
         {
             Calendar calendar = this.world.getCurrentDate();
 
             if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31 && this.rand.nextFloat() < 0.25F)
             {
-                this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
-                this.inventoryArmorDropChances[EntityEquipmentSlot.HEAD.getIndex()] = 0.0F;
+                this.setItemStackToSlot(EntityArmorSlot.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
+                this.inventoryArmorDropChances[EntityArmorSlot.HEAD.getIndex()] = 0.0F;
             }
         }
 

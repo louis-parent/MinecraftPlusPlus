@@ -1,9 +1,11 @@
 package net.minecraft.command;
 
-import io.netty.buffer.Unpooled;
 import java.util.Collections;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SPacketCustomPayload;

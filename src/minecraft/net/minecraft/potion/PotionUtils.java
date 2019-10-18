@@ -1,12 +1,15 @@
 package net.minecraft.potion;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.collect.Lists;
+
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.init.PotionTypes;

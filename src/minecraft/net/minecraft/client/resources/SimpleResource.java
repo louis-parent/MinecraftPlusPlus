@@ -1,8 +1,5 @@
 package net.minecraft.client.resources;
 
-import com.google.common.collect.Maps;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,11 +7,18 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+
 import javax.annotation.Nullable;
+
+import org.apache.commons.io.IOUtils;
+
+import com.google.common.collect.Maps;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.MetadataSerializer;
 import net.minecraft.util.ResourceLocation;
-import org.apache.commons.io.IOUtils;
 
 public class SimpleResource implements IResource
 {

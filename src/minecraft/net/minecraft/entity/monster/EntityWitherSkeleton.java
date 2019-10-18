@@ -1,6 +1,8 @@
 package net.minecraft.entity.monster;
 
 import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,7 +12,6 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -85,7 +86,7 @@ public class EntityWitherSkeleton extends AbstractSkeleton
      */
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+        this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
     }
 
     /**

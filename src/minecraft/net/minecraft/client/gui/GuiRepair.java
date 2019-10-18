@@ -1,7 +1,10 @@
 package net.minecraft.client.gui;
 
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
+
+import org.lwjgl.input.Keyboard;
+
+import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,7 +21,6 @@ import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import org.lwjgl.input.Keyboard;
 
 public class GuiRepair extends GuiContainer implements IContainerListener
 {

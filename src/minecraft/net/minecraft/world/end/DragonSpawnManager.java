@@ -2,6 +2,7 @@ package net.minecraft.world.end;
 
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.util.math.BlockPos;

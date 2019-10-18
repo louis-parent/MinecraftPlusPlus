@@ -1,15 +1,19 @@
 package net.minecraft.util.math;
 
-import com.google.common.collect.AbstractIterator;
-import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.annotation.concurrent.Immutable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.AbstractIterator;
+import com.google.common.collect.Lists;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Rotation;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Immutable
 public class BlockPos extends Vec3i

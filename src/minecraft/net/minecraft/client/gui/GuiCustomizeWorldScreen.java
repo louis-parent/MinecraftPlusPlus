@@ -1,10 +1,13 @@
 package net.minecraft.client.gui;
 
-import com.google.common.base.Predicate;
-import com.google.common.primitives.Floats;
 import java.io.IOException;
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+import com.google.common.primitives.Floats;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;

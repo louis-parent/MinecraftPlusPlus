@@ -1,6 +1,7 @@
 package net.minecraft.client.particle;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;

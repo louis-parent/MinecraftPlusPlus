@@ -1,6 +1,7 @@
 package net.minecraft.command;
 
 import java.util.UUID;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.JsonToNBT;

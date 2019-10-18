@@ -1,6 +1,7 @@
 package net.minecraft.util;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.text.ITextComponent;
 

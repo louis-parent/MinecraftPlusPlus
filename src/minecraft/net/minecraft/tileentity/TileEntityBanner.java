@@ -1,8 +1,11 @@
 package net.minecraft.tileentity;
 
-import com.google.common.collect.Lists;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemBanner;
 import net.minecraft.item.ItemStack;

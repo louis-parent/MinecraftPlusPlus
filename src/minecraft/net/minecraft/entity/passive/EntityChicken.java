@@ -1,8 +1,11 @@
 package net.minecraft.entity.passive;
 
-import com.google.common.collect.Sets;
 import java.util.Set;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;

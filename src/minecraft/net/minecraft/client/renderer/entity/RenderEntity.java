@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;

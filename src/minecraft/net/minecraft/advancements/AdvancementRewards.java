@@ -1,5 +1,8 @@
 package net.minecraft.advancements;
 
+import java.lang.reflect.Type;
+import java.util.Arrays;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -7,8 +10,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import java.lang.reflect.Type;
-import java.util.Arrays;
+
 import net.minecraft.command.CommandResultStats;
 import net.minecraft.command.FunctionObject;
 import net.minecraft.command.ICommandSender;

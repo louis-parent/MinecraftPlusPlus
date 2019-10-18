@@ -1,6 +1,7 @@
 package net.minecraft.world;
 
 import javax.annotation.concurrent.Immutable;
+
 import net.minecraft.util.math.MathHelper;
 
 @Immutable

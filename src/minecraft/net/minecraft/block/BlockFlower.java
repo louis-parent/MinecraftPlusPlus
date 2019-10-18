@@ -1,10 +1,13 @@
 package net.minecraft.block;
 
+import java.util.Collection;
+
+import javax.annotation.Nullable;
+
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
-import java.util.Collection;
-import javax.annotation.Nullable;
+
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;

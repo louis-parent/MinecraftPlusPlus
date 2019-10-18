@@ -1,5 +1,9 @@
 package net.minecraft.client.renderer.block.model.multipart;
 
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Set;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.gson.JsonArray;
@@ -7,9 +11,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
-import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Set;
+
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.client.renderer.block.model.VariantList;
 

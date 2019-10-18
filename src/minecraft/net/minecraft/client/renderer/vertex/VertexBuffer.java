@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.vertex;
 
 import java.nio.ByteBuffer;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 

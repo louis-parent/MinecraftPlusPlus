@@ -3,15 +3,19 @@ package fr.minecraftpp.crafting.blueprint;
 import java.security.InvalidParameterException;
 import java.util.Arrays;
 
+import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.anotation.Todo;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 
+@Mod("Minecraftpp")
 public class Blueprint
 {
 	private Item[][] matrix;
+	private Item[][] symmetryMatrix;
+	
 	private int width;
 	private int height;
 	
@@ -29,7 +33,9 @@ public class Blueprint
 	
 	private void setAttributes(int matrixWidth, int matrixHeight)
 	{
-		matrix = new Item[matrixWidth][matrixHeight];
+		this.matrix = new Item[matrixWidth][matrixHeight];
+		this.symmetryMatrix = new Item[matrixWidth][matrixHeight];
+
 		this.width = matrixWidth;
 		this.height = matrixHeight;
 	}
@@ -44,30 +50,34 @@ public class Blueprint
 		this.matrix[i / this.width][i % this.width] = item;
 	}
 	
+	@Todo("Do Shrink")
 	public void setItems(Item[][] itemMatrix)
 	{
 		testIfItemMatrixIsCorrect(itemMatrix);
 		
-		// TODO SHRINK
 		this.setAttributes(itemMatrix.length, itemMatrix[0].length);
 		
 		int i, j = 0;
 		
-		for(i = 0; i < itemMatrix.length; i++)
+		for(i = 0; i < this.width; i++)
 		{
-			for(j = 0; j < itemMatrix[i].length; j++)
+			for(j = 0; j < this.height; j++)
 			{
 				Item item = itemMatrix[i][j];
 				if(item != null)
 				{
 					this.matrix[i][j] = item;
+					this.symmetryMatrix[i][this.height - j - 1] = item;
 				}
 				else
 				{
 					this.matrix[i][j] = Items.EMPTY_ITEM;
+					this.symmetryMatrix[i][this.height - j - 1] = Items.EMPTY_ITEM;
 				}
 			}
 		}
+		
+		Item[][] temp = this.symmetryMatrix;
 	}
 
 	protected void testIfItemMatrixIsCorrect(Item[][] itemMatrix)
@@ -137,16 +147,22 @@ public class Blueprint
 		int iterationOverWidth = craftShape.getWidth() - this.width;
 		int iterationOverHeight = craftShape.getHeight() - this.height;
 		
+		
+		return this.matchBlueprint(this.matrix, backupArray, iterationOverWidth, iterationOverHeight) || this.matchBlueprint(this.symmetryMatrix, backupArray, iterationOverWidth, iterationOverHeight);
+		
+	}
+
+	private boolean matchBlueprint(Item[][] itemMatrix, Item[][] backupArray, int iterationOverWidth, int iterationOverHeight)
+	{
 		boolean match = false;
 		
 		for(int i = 0 ; i <= iterationOverWidth; i++)
 		{
 			for(int j = 0; j <= iterationOverHeight; j++)
 			{
-				match |= this.matchBlueprint(this.copy2DArray(backupArray), i, j);
+				match |= this.matchBlueprintEmplacement(itemMatrix, this.copy2DArray(backupArray), i, j);
 			}
 		}
-		
 		return match;
 	}
 
@@ -182,7 +198,7 @@ public class Blueprint
 	    return result;
 	}
 	
-	private boolean matchBlueprint(Item[][] craftShape, int originI, int originJ)
+	private boolean matchBlueprintEmplacement(Item[][] matrix, Item[][] craftShape, int originI, int originJ)
 	{
 		boolean match = true;
 		
@@ -190,7 +206,7 @@ public class Blueprint
 		{
 			for (int j = originJ; j < originJ + this.height; j++)
 			{
-				match &= craftShape[i][j] == this.matrix[i - originI][j - originJ];
+				match &= craftShape[i][j] == matrix[i - originI][j - originJ];
 				craftShape[i][j] = Items.EMPTY_ITEM;
 			}
 		}

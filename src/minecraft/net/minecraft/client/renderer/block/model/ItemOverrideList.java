@@ -1,8 +1,11 @@
 package net.minecraft.client.renderer.block.model;
 
-import com.google.common.collect.Lists;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

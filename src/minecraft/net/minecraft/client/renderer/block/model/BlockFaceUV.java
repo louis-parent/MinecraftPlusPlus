@@ -1,13 +1,16 @@
 package net.minecraft.client.renderer.block.model;
 
+import java.lang.reflect.Type;
+
+import javax.annotation.Nullable;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import java.lang.reflect.Type;
-import javax.annotation.Nullable;
+
 import net.minecraft.util.JsonUtils;
 
 public class BlockFaceUV

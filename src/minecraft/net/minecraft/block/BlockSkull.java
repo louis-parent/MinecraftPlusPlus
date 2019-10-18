@@ -1,8 +1,11 @@
 package net.minecraft.block;
 
-import com.google.common.base.Predicate;
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;

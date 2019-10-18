@@ -1,6 +1,7 @@
 package net.minecraft.tileentity;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.block.BlockFlower;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

@@ -2,6 +2,7 @@ package net.minecraft.inventory;
 
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;

@@ -1,5 +1,11 @@
 package net.minecraft.util.text;
 
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Map.Entry;
+
+import javax.annotation.Nullable;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -11,10 +17,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Map.Entry;
-import javax.annotation.Nullable;
+
 import net.minecraft.util.EnumTypeAdapterFactory;
 import net.minecraft.util.JsonUtils;
 

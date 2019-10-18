@@ -1,5 +1,9 @@
 package net.minecraft.world.storage.loot;
 
+import java.lang.reflect.Type;
+import java.util.Collection;
+import java.util.Random;
+
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -8,9 +12,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.JsonSyntaxException;
-import java.lang.reflect.Type;
-import java.util.Collection;
-import java.util.Random;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.math.MathHelper;

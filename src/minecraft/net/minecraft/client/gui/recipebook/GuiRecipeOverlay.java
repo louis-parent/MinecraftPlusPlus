@@ -1,9 +1,11 @@
 package net.minecraft.client.gui.recipebook;
 
-import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;

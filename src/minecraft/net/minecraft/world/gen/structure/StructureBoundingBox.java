@@ -1,6 +1,7 @@
 package net.minecraft.world.gen.structure;
 
 import com.google.common.base.MoreObjects;
+
 import net.minecraft.nbt.NBTTagIntArray;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.Vec3i;

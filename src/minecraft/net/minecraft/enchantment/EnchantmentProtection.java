@@ -1,8 +1,8 @@
 package net.minecraft.enchantment;
 
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Enchantments;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 

@@ -2,13 +2,8 @@ package fr.minecraftpp.block;
 
 import fr.minecraftpp.anotation.Mod;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockOre;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
 
 @Mod("minecraftpp")
 public class ModBlock extends Block

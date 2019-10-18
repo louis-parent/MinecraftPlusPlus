@@ -1,6 +1,7 @@
 package net.minecraft.item.crafting;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.EnumDyeColor;

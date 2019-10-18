@@ -2,5 +2,6 @@
 @MethodsReturnNonnullByDefault
 package net.minecraft.network.datasync;
 
-import mcp.MethodsReturnNonnullByDefault;
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import mcp.MethodsReturnNonnullByDefault;

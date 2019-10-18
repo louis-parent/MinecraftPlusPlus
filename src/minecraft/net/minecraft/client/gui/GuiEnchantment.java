@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Project;
 
 import com.google.common.collect.Lists;

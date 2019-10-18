@@ -1,11 +1,13 @@
 package net.minecraft.world.gen.structure;
 
+import java.util.Iterator;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
-import java.util.Iterator;
-import java.util.Random;
-import javax.annotation.Nullable;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.crash.ICrashReportDetail;

@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
 import java.util.Random;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;

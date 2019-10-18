@@ -1,10 +1,15 @@
 package net.minecraft.network;
 
+import java.util.Map;
+
+import javax.annotation.Nullable;
+
+import org.apache.logging.log4j.LogManager;
+
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Maps;
-import java.util.Map;
-import javax.annotation.Nullable;
+
 import net.minecraft.network.handshake.client.C00Handshake;
 import net.minecraft.network.login.client.CPacketEncryptionResponse;
 import net.minecraft.network.login.client.CPacketLoginStart;
@@ -121,7 +126,6 @@ import net.minecraft.network.status.client.CPacketPing;
 import net.minecraft.network.status.client.CPacketServerQuery;
 import net.minecraft.network.status.server.SPacketPong;
 import net.minecraft.network.status.server.SPacketServerInfo;
-import org.apache.logging.log4j.LogManager;
 
 public enum EnumConnectionState
 {

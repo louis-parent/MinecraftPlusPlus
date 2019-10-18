@@ -1,6 +1,7 @@
 package net.minecraft.realms;
 
 import java.nio.ByteBuffer;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 

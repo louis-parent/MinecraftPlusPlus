@@ -2,6 +2,7 @@ package net.minecraft.util;
 
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.client.gui.FontRenderer;
 
 public class EnchantmentNameParts

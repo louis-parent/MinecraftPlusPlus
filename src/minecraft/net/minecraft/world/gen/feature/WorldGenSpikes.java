@@ -1,7 +1,9 @@
 package net.minecraft.world.gen.feature;
 
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;

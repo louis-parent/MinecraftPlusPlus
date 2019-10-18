@@ -1,9 +1,12 @@
 package net.minecraft.scoreboard;
 
-import com.google.common.collect.Sets;
 import java.util.Collection;
 import java.util.Set;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Sets;
+
 import net.minecraft.util.text.TextFormatting;
 
 public class ScorePlayerTeam extends Team

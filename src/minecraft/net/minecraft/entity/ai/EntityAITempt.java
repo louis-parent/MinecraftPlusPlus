@@ -1,7 +1,9 @@
 package net.minecraft.entity.ai;
 
-import com.google.common.collect.Sets;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
+
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

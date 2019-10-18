@@ -1,8 +1,12 @@
 package net.minecraft.entity.passive;
 
-import com.google.common.collect.Sets;
 import java.util.Set;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Sets;
+
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -21,7 +25,6 @@ import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -254,7 +257,7 @@ public class EntityPig extends EntityAnimal
         if (!this.world.isRemote && !this.isDead)
         {
             EntityPigZombie entitypigzombie = new EntityPigZombie(this.world);
-            entitypigzombie.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+            entitypigzombie.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
             entitypigzombie.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
             entitypigzombie.setNoAI(this.isAIDisabled());
 

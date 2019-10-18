@@ -1,7 +1,9 @@
 package net.minecraft.client.tutorial;
 
-import com.google.common.collect.Sets;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;

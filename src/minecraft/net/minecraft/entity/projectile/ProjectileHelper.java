@@ -1,6 +1,7 @@
 package net.minecraft.entity.projectile;
 
 import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;

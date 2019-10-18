@@ -1,11 +1,14 @@
 package net.minecraft.command;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Lists;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

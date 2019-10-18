@@ -1,8 +1,10 @@
 package net.minecraft.client.renderer.block.model;
 
 import java.util.Locale;
-import net.minecraft.util.ResourceLocation;
+
 import org.apache.commons.lang3.StringUtils;
+
+import net.minecraft.util.ResourceLocation;
 
 public class ModelResourceLocation extends ResourceLocation
 {

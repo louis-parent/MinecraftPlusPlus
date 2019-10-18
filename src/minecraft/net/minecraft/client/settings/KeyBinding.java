@@ -1,13 +1,16 @@
 package net.minecraft.client.settings;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
+
+import org.lwjgl.input.Keyboard;
+
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.IntHashMap;
-import org.lwjgl.input.Keyboard;
 
 public class KeyBinding implements Comparable<KeyBinding>
 {

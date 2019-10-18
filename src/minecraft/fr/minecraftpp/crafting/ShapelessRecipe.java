@@ -1,9 +1,11 @@
 package fr.minecraftpp.crafting;
 
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import fr.minecraftpp.anotation.Mod;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -11,6 +13,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
+@Mod("Minecraftpp")
 public class ShapelessRecipe extends ModAbstractRecipe
 {
 	private List<Item> recipeRequirements;
@@ -30,7 +33,7 @@ public class ShapelessRecipe extends ModAbstractRecipe
 	public boolean matches(InventoryCrafting inv, World world)
 	{
 		boolean match = true;
-		int requirementFound = 0;
+		Map<Item, Integer> found = this.getItemMap();
 		
 		for(int i = 0; i < inv.getWidth(); i++)
 		{
@@ -40,7 +43,7 @@ public class ShapelessRecipe extends ModAbstractRecipe
 				
 				if(this.recipeRequirements.contains(item))
 				{
-					requirementFound++;
+					found.replace(item, found.get(item) - 1);
 				}
 				else
 				{
@@ -49,7 +52,38 @@ public class ShapelessRecipe extends ModAbstractRecipe
 			}
 		}
 		
-		return match && requirementFound == this.recipeRequirements.size();
+		return match && this.areAllItemsFound(found);
+	}
+
+	private Map<Item, Integer> getItemMap()
+	{
+		HashMap<Item, Integer> map = new HashMap<Item, Integer>();
+		
+		for (Item item : this.recipeRequirements)
+		{
+			if(map.containsKey(item))
+			{
+				map.replace(item, map.get(item) + 1);
+			}
+			else
+			{
+				map.put(item, 1);
+			}
+		}
+		
+		return map;
+	}
+	
+	private boolean areAllItemsFound(Map<Item, Integer> found)
+	{
+		boolean allZero = true;
+		
+		for (Map.Entry<Item, Integer> entry : found.entrySet())
+		{
+			allZero &= entry.getValue() == 0;
+		}
+		
+		return allZero;
 	}
 
 	@Override

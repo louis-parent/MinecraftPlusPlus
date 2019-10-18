@@ -1,6 +1,7 @@
 package net.minecraft.entity.projectile;
 
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;

@@ -1,7 +1,5 @@
 package fr.minecraftpp.block;
 
-import java.util.Random;
-
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.damageSource.ModDamageSource;
 import net.minecraft.block.Block;
@@ -13,11 +11,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;

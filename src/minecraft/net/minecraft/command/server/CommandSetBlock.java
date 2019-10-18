@@ -2,7 +2,9 @@ package net.minecraft.command.server;
 
 import java.util.Collections;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.command.CommandBase;

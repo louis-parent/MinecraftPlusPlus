@@ -1,6 +1,7 @@
 package net.minecraft.stats;
 
 import java.util.BitSet;
+
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 

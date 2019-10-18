@@ -1,9 +1,12 @@
 package net.minecraft.client.gui.toasts;
 
-import com.google.common.collect.Queues;
 import java.util.Arrays;
 import java.util.Deque;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Queues;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;

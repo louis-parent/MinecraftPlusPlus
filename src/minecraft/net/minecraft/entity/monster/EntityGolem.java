@@ -1,6 +1,7 @@
 package net.minecraft.entity.monster;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.util.DamageSource;

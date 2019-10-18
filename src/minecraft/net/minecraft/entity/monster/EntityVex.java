@@ -1,6 +1,8 @@
 package net.minecraft.entity.monster;
 
 import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,7 +19,6 @@ import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -258,8 +259,8 @@ public class EntityVex extends EntityMob
      */
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
-        this.setDropChance(EntityEquipmentSlot.MAINHAND, 0.0F);
+        this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+        this.setDropChance(EntityHandSlot.MAINHAND, 0.0F);
     }
 
     class AIChargeAttack extends EntityAIBase

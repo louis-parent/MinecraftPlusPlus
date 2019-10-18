@@ -3,7 +3,9 @@ package net.minecraft.entity.player;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.RecipeItemHelper;
 import net.minecraft.crash.CrashReport;

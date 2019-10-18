@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

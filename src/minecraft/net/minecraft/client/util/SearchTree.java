@@ -1,14 +1,15 @@
 package net.minecraft.client.util;
 
-import com.google.common.collect.AbstractIterator;
-import com.google.common.collect.Lists;
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.function.Consumer;
 import java.util.function.Function;
+
+import com.google.common.collect.AbstractIterator;
+import com.google.common.collect.Lists;
+
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.util.ResourceLocation;
 
 public class SearchTree<T> implements ISearchTree<T>

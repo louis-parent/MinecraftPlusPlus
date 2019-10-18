@@ -1,10 +1,13 @@
 package net.minecraft.util;
 
-import com.google.common.base.Predicates;
-import com.google.common.collect.Iterators;
 import java.util.Arrays;
 import java.util.Iterator;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicates;
+import com.google.common.collect.Iterators;
+
 import net.minecraft.util.math.MathHelper;
 
 public class IntIdentityHashBiMap<K> implements IObjectIntIterable<K>

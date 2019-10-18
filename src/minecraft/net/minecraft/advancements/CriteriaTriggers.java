@@ -1,8 +1,11 @@
 package net.minecraft.advancements;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Maps;
+
 import net.minecraft.advancements.critereon.BredAnimalsTrigger;
 import net.minecraft.advancements.critereon.BrewedPotionTrigger;
 import net.minecraft.advancements.critereon.ChangeDimensionTrigger;

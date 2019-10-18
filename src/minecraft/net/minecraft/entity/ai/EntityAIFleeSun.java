@@ -1,9 +1,11 @@
 package net.minecraft.entity.ai;
 
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityArmorSlot;
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -42,7 +44,7 @@ public class EntityAIFleeSun extends EntityAIBase
         {
             return false;
         }
-        else if (!this.theCreature.getItemStackFromSlot(EntityEquipmentSlot.HEAD).isNotValid())
+        else if (!this.theCreature.getItemStackFromSlot(EntityArmorSlot.HEAD).isNotValid())
         {
             return false;
         }

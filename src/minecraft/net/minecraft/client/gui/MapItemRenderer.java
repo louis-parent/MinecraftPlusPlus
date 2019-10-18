@@ -1,8 +1,11 @@
 package net.minecraft.client.gui;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Maps;
+
 import net.minecraft.block.material.MapColor;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;

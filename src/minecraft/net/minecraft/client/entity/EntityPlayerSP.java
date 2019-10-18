@@ -1,7 +1,10 @@
 package net.minecraft.client.entity;
 
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityArmorSlot;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ElytraSound;
@@ -37,7 +40,6 @@ import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemElytra;
@@ -1037,7 +1039,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
         if (this.movementInput.jump && !flag && !this.onGround && this.motionY < 0.0D && !this.isElytraFlying() && !this.capabilities.isFlying)
         {
-            ItemStack itemstack = this.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+            ItemStack itemstack = this.getItemStackFromSlot(EntityArmorSlot.CHEST);
 
             if (itemstack.getItem() == Items.ELYTRA && ItemElytra.isBroken(itemstack))
             {

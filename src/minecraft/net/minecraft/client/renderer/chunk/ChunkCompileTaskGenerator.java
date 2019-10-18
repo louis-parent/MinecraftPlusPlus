@@ -1,9 +1,11 @@
 package net.minecraft.client.renderer.chunk;
 
-import com.google.common.collect.Lists;
-import com.google.common.primitives.Doubles;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
+
+import com.google.common.collect.Lists;
+import com.google.common.primitives.Doubles;
+
 import net.minecraft.client.renderer.RegionRenderCacheBuilder;
 
 public class ChunkCompileTaskGenerator implements Comparable<ChunkCompileTaskGenerator>

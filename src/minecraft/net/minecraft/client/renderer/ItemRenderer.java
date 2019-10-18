@@ -1,7 +1,9 @@
 package net.minecraft.client.renderer;
 
-import com.google.common.base.MoreObjects;
 import java.util.Objects;
+
+import com.google.common.base.MoreObjects;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

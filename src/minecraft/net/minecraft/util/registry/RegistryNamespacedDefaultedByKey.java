@@ -1,8 +1,10 @@
 package net.minecraft.util.registry;
 
 import java.util.Random;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
 import org.apache.commons.lang3.Validate;
 
 public class RegistryNamespacedDefaultedByKey<K, V> extends RegistryNamespaced<K, V>

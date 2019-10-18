@@ -1,10 +1,12 @@
 package net.minecraft.client.renderer.chunk;
 
-import com.google.common.collect.Queues;
 import java.util.BitSet;
 import java.util.EnumSet;
 import java.util.Queue;
 import java.util.Set;
+
+import com.google.common.collect.Queues;
+
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IntegerCache;
 import net.minecraft.util.math.BlockPos;

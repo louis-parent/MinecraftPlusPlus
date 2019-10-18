@@ -1,6 +1,7 @@
 package net.minecraft.client.gui.toasts;
 
 import java.util.List;
+
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.FrameType;

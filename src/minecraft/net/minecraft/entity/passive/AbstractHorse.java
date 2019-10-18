@@ -1,9 +1,12 @@
 package net.minecraft.entity.passive;
 
+import java.util.UUID;
+
+import javax.annotation.Nullable;
+
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
-import java.util.UUID;
-import javax.annotation.Nullable;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

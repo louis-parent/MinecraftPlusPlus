@@ -3,6 +3,7 @@ package fr.minecraftpp.item;
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.block.ModBlocks;
 import fr.minecraftpp.item.tool.IToolMaterial;
+import fr.minecraftpp.item.tool.ToolType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemHoe;

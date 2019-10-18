@@ -2,7 +2,10 @@ package net.minecraft.entity.monster;
 
 import java.util.List;
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,7 +26,6 @@ import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -129,7 +131,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
                 {
                     this.setAggressive(false);
                     ItemStack itemstack = this.getHeldItemMainhand();
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack.EMPTY_ITEM_STACK);
+                    this.setItemStackToSlot(EntityHandSlot.MAINHAND, ItemStack.EMPTY_ITEM_STACK);
 
                     if (itemstack.getItem() == Items.POTIONITEM)
                     {
@@ -170,7 +172,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 
                 if (potiontype != null)
                 {
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), potiontype));
+                    this.setItemStackToSlot(EntityHandSlot.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), potiontype));
                     this.witchAttackTimer = this.getHeldItemMainhand().getMaxItemUseDuration();
                     this.setAggressive(true);
                     this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_WITCH_DRINK, this.getSoundCategory(), 1.0F, 0.8F + this.rand.nextFloat() * 0.4F);

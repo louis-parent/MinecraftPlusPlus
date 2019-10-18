@@ -1,7 +1,9 @@
 package net.minecraft.world.gen;
 
-import com.google.common.base.MoreObjects;
 import java.util.Random;
+
+import com.google.common.base.MoreObjects;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

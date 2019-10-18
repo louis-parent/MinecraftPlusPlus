@@ -1,7 +1,9 @@
 package net.minecraft.command.server;
 
 import java.util.List;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

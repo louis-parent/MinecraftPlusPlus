@@ -1,6 +1,7 @@
 package net.minecraft.entity.boss.dragon.phase;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathPoint;

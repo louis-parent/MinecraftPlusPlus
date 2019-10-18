@@ -1,8 +1,10 @@
 package net.minecraft.advancements.critereon;
 
+import javax.annotation.Nullable;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
-import javax.annotation.Nullable;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;

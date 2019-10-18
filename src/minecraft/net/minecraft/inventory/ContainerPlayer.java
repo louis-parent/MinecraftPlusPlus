@@ -1,16 +1,19 @@
 package net.minecraft.inventory;
 
 import javax.annotation.Nullable;
+
+import fr.minecraftpp.inventory.EntityArmorSlot;
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 public class ContainerPlayer extends Container
 {
-    private static final EntityEquipmentSlot[] VALID_EQUIPMENT_SLOTS = new EntityEquipmentSlot[] {EntityEquipmentSlot.HEAD, EntityEquipmentSlot.CHEST, EntityEquipmentSlot.LEGS, EntityEquipmentSlot.FEET};
+    private static final EntityEquipmentSlot[] VALID_EQUIPMENT_SLOTS = new EntityEquipmentSlot[] {EntityArmorSlot.HEAD, EntityArmorSlot.CHEST, EntityArmorSlot.LEGS, EntityArmorSlot.FEET};
 
     /** The crafting matrix inventory. */
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 2, 2);
@@ -55,7 +58,14 @@ public class ContainerPlayer extends Container
                 @Nullable
                 public String getSlotTexture()
                 {
-                    return ItemArmor.EMPTY_SLOT_NAMES[entityequipmentslot.getIndex()];
+                	if(entityequipmentslot instanceof EntityArmorSlot)
+                	{                		
+                		return ((EntityArmorSlot) entityequipmentslot).getEmptySlotName();
+                	}
+                	else
+                	{
+                		return null;
+                	}
                 }
             });
         }
@@ -150,7 +160,7 @@ public class ContainerPlayer extends Container
                     return ItemStack.EMPTY_ITEM_STACK;
                 }
             }
-            else if (entityequipmentslot.getSlotType() == EntityEquipmentSlot.Type.ARMOR && !((Slot)this.inventorySlots.get(8 - entityequipmentslot.getIndex())).getHasStack())
+            else if (entityequipmentslot instanceof EntityArmorSlot && !((Slot)this.inventorySlots.get(8 - entityequipmentslot.getIndex())).getHasStack())
             {
                 int i = 8 - entityequipmentslot.getIndex();
 
@@ -159,7 +169,7 @@ public class ContainerPlayer extends Container
                     return ItemStack.EMPTY_ITEM_STACK;
                 }
             }
-            else if (entityequipmentslot == EntityEquipmentSlot.OFFHAND && !((Slot)this.inventorySlots.get(45)).getHasStack())
+            else if (entityequipmentslot == EntityHandSlot.OFFHAND && !((Slot)this.inventorySlots.get(45)).getHasStack())
             {
                 if (!this.mergeItemStack(itemstack1, 45, 46, false))
                 {

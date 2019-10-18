@@ -1,7 +1,9 @@
 package net.minecraft.util.math;
 
-import com.google.common.annotations.VisibleForTesting;
 import javax.annotation.Nullable;
+
+import com.google.common.annotations.VisibleForTesting;
+
 import net.minecraft.util.EnumFacing;
 
 public class AxisAlignedBB

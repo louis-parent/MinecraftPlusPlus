@@ -1,9 +1,12 @@
 package net.minecraft.entity.passive;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Maps;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;

@@ -3,6 +3,7 @@ package net.minecraft.stats;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
+
 import net.minecraft.scoreboard.IScoreCriteria;
 import net.minecraft.scoreboard.ScoreCriteriaStat;
 import net.minecraft.util.IJsonSerializable;

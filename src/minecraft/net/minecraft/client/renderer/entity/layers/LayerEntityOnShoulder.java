@@ -1,7 +1,9 @@
 package net.minecraft.client.renderer.entity.layers;
 
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelParrot;
 import net.minecraft.client.renderer.GlStateManager;

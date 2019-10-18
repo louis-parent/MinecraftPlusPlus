@@ -1,7 +1,11 @@
 package net.minecraft.entity;
 
-import com.google.common.base.Predicate;
 import javax.annotation.Nullable;
+
+import org.apache.commons.lang3.Validate;
+
+import com.google.common.base.Predicate;
+
 import net.minecraft.block.BlockRedstoneDiode;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -17,7 +21,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.Validate;
 
 public abstract class EntityHanging extends Entity
 {

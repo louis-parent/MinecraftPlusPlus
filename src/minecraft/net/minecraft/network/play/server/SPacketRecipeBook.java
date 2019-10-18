@@ -1,8 +1,10 @@
 package net.minecraft.network.play.server;
 
-import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.network.Packet;

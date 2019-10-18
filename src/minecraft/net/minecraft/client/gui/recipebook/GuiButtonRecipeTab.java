@@ -2,6 +2,7 @@ package net.minecraft.client.gui.recipebook;
 
 import java.util.Iterator;
 import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButtonToggle;
 import net.minecraft.client.renderer.GlStateManager;

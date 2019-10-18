@@ -1,12 +1,14 @@
 package net.minecraft.realms;
 
-import com.google.common.util.concurrent.ListenableFuture;
-import com.mojang.authlib.GameProfile;
-import com.mojang.util.UUIDTypeAdapter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.Proxy;
+
+import com.google.common.util.concurrent.ListenableFuture;
+import com.mojang.authlib.GameProfile;
+import com.mojang.util.UUIDTypeAdapter;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.settings.GameSettings;

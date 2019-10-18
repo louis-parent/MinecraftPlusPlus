@@ -1,7 +1,9 @@
 package net.minecraft.util.text.event;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
+
+import com.google.common.collect.Maps;
+
 import net.minecraft.util.text.ITextComponent;
 
 public class HoverEvent

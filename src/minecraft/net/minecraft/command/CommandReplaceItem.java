@@ -1,15 +1,18 @@
 package net.minecraft.command;
 
-import com.google.common.collect.Maps;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Maps;
+
+import fr.minecraftpp.inventory.EntityArmorSlot;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -257,10 +260,10 @@ public class CommandReplaceItem extends CommandBase
         SHORTCUTS.put("slot.weapon", Integer.valueOf(98));
         SHORTCUTS.put("slot.weapon.mainhand", Integer.valueOf(98));
         SHORTCUTS.put("slot.weapon.offhand", Integer.valueOf(99));
-        SHORTCUTS.put("slot.armor.head", Integer.valueOf(100 + EntityEquipmentSlot.HEAD.getIndex()));
-        SHORTCUTS.put("slot.armor.chest", Integer.valueOf(100 + EntityEquipmentSlot.CHEST.getIndex()));
-        SHORTCUTS.put("slot.armor.legs", Integer.valueOf(100 + EntityEquipmentSlot.LEGS.getIndex()));
-        SHORTCUTS.put("slot.armor.feet", Integer.valueOf(100 + EntityEquipmentSlot.FEET.getIndex()));
+        SHORTCUTS.put("slot.armor.head", Integer.valueOf(100 + EntityArmorSlot.HEAD.getIndex()));
+        SHORTCUTS.put("slot.armor.chest", Integer.valueOf(100 + EntityArmorSlot.CHEST.getIndex()));
+        SHORTCUTS.put("slot.armor.legs", Integer.valueOf(100 + EntityArmorSlot.LEGS.getIndex()));
+        SHORTCUTS.put("slot.armor.feet", Integer.valueOf(100 + EntityArmorSlot.FEET.getIndex()));
         SHORTCUTS.put("slot.horse.saddle", Integer.valueOf(400));
         SHORTCUTS.put("slot.horse.armor", Integer.valueOf(401));
         SHORTCUTS.put("slot.horse.chest", Integer.valueOf(499));

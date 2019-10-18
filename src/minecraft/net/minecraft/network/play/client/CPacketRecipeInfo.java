@@ -1,6 +1,7 @@
 package net.minecraft.network.play.client;
 
 import java.io.IOException;
+
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.network.Packet;

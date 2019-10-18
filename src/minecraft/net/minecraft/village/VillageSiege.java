@@ -2,7 +2,9 @@ package net.minecraft.village;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntityZombie;

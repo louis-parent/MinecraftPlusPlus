@@ -1,5 +1,12 @@
 package net.minecraft.world.storage.loot;
 
+import java.lang.reflect.Type;
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
+
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.collect.Lists;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -8,16 +15,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import java.lang.reflect.Type;
-import java.util.Collection;
-import java.util.List;
-import java.util.Random;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
-import org.apache.commons.lang3.ArrayUtils;
 
 public class LootPool
 {

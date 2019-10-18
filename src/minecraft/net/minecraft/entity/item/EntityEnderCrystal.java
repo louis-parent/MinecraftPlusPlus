@@ -1,7 +1,9 @@
 package net.minecraft.entity.item;
 
-import com.google.common.base.Optional;
 import javax.annotation.Nullable;
+
+import com.google.common.base.Optional;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.init.Blocks;

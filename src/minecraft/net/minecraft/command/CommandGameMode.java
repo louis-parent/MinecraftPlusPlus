@@ -2,7 +2,9 @@ package net.minecraft.command;
 
 import java.util.Collections;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;

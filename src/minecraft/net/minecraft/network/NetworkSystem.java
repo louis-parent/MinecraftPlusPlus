@@ -1,7 +1,18 @@
 package net.minecraft.network;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.SocketAddress;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelException;
@@ -21,12 +32,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.SocketAddress;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 import net.minecraft.client.network.NetHandlerHandshakeMemory;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
@@ -37,8 +42,6 @@ import net.minecraft.server.network.NetHandlerHandshakeTCP;
 import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.text.TextComponentString;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class NetworkSystem
 {

@@ -1,6 +1,7 @@
 package net.minecraft.client.gui.chat;
 
 import com.mojang.text2speech.Narrator;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.toasts.GuiToast;
 import net.minecraft.client.gui.toasts.SystemToast;

@@ -1,8 +1,12 @@
 package net.minecraft.client.gui.inventory;
 
-import com.google.common.collect.Sets;
 import java.io.IOException;
 import java.util.Set;
+
+import org.lwjgl.input.Keyboard;
+
+import com.google.common.collect.Sets;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,7 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
-import org.lwjgl.input.Keyboard;
 
 public abstract class GuiContainer extends GuiScreen
 {

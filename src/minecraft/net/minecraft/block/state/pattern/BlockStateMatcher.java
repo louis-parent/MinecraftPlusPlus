@@ -1,10 +1,13 @@
 package net.minecraft.block.state.pattern;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Maps;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;

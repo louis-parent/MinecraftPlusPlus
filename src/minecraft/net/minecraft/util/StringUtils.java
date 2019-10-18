@@ -1,6 +1,7 @@
 package net.minecraft.util;
 
 import java.util.regex.Pattern;
+
 import javax.annotation.Nullable;
 
 public class StringUtils

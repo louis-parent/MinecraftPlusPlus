@@ -1,10 +1,13 @@
 package net.minecraft.client.renderer.block.model;
 
-import com.google.common.collect.ComparisonChain;
-import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.Lists;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;

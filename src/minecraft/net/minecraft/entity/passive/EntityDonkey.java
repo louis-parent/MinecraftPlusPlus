@@ -1,6 +1,7 @@
 package net.minecraft.entity.passive;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;

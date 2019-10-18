@@ -1,7 +1,8 @@
 package net.minecraft.enchantment;
 
 import java.util.Random;
-import net.minecraft.inventory.EntityEquipmentSlot;
+
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 

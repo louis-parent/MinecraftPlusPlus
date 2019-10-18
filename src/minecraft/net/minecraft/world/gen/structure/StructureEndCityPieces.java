@@ -1,8 +1,10 @@
 package net.minecraft.world.gen.structure;
 
-import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Random;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.monster.EntityShulker;
 import net.minecraft.init.Blocks;

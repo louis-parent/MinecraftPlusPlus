@@ -1,12 +1,18 @@
 package net.minecraft.entity.player;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Lists;
-import com.mojang.authlib.GameProfile;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Lists;
+import com.mojang.authlib.GameProfile;
+
+import fr.minecraftpp.inventory.EntityArmorSlot;
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
+import fr.minecraftpp.inventory.EntityHandSlot;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockHorizontal;
@@ -38,7 +44,6 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.ItemArmor;
@@ -1113,11 +1118,11 @@ public abstract class EntityPlayer extends EntityLivingBase
 
                 if (enumhand == EnumHand.MAIN_HAND)
                 {
-                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack.EMPTY_ITEM_STACK);
+                    this.setItemStackToSlot(EntityHandSlot.MAINHAND, ItemStack.EMPTY_ITEM_STACK);
                 }
                 else
                 {
-                    this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack.EMPTY_ITEM_STACK);
+                    this.setItemStackToSlot(EntityHandSlot.OFFHAND, ItemStack.EMPTY_ITEM_STACK);
                 }
 
                 this.activeItemStack = ItemStack.EMPTY_ITEM_STACK;
@@ -2253,38 +2258,38 @@ public abstract class EntityPlayer extends EntityLivingBase
         return this.theInventoryEnderChest;
     }
 
-    public ItemStack getItemStackFromSlot(EntityEquipmentSlot slotIn)
+    public ItemStack getItemStackFromSlot(EntityEquipmentSlot slot)
     {
-        if (slotIn == EntityEquipmentSlot.MAINHAND)
+        if (slot == EntityHandSlot.MAINHAND)
         {
             return this.inventory.getCurrentItem();
         }
-        else if (slotIn == EntityEquipmentSlot.OFFHAND)
+        else if (slot == EntityHandSlot.OFFHAND)
         {
             return this.inventory.offHandInventory.get(0);
         }
         else
         {
-            return slotIn.getSlotType() == EntityEquipmentSlot.Type.ARMOR ? (ItemStack)this.inventory.armorInventory.get(slotIn.getIndex()) : ItemStack.EMPTY_ITEM_STACK;
+            return slot instanceof EntityArmorSlot ? (ItemStack)this.inventory.armorInventory.get(slot.getIndex()) : ItemStack.EMPTY_ITEM_STACK;
         }
     }
 
-    public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack)
+    public void setItemStackToSlot(EntityEquipmentSlot slot, ItemStack stack)
     {
-        if (slotIn == EntityEquipmentSlot.MAINHAND)
+        if (slot == EntityHandSlot.MAINHAND)
         {
             this.playEquipSound(stack);
             this.inventory.mainInventory.set(this.inventory.currentItem, stack);
         }
-        else if (slotIn == EntityEquipmentSlot.OFFHAND)
+        else if (slot == EntityHandSlot.OFFHAND)
         {
             this.playEquipSound(stack);
             this.inventory.offHandInventory.set(0, stack);
         }
-        else if (slotIn.getSlotType() == EntityEquipmentSlot.Type.ARMOR)
+        else if (slot instanceof EntityArmorSlot)
         {
             this.playEquipSound(stack);
-            this.inventory.armorInventory.set(slotIn.getIndex(), stack);
+            this.inventory.armorInventory.set(slot.getIndex(), stack);
         }
     }
 
@@ -2510,21 +2515,21 @@ public abstract class EntityPlayer extends EntityLivingBase
         {
             EntityEquipmentSlot entityequipmentslot;
 
-            if (inventorySlot == 100 + EntityEquipmentSlot.HEAD.getIndex())
+            if (inventorySlot == 100 + EntityArmorSlot.HEAD.getIndex())
             {
-                entityequipmentslot = EntityEquipmentSlot.HEAD;
+                entityequipmentslot = EntityArmorSlot.HEAD;
             }
-            else if (inventorySlot == 100 + EntityEquipmentSlot.CHEST.getIndex())
+            else if (inventorySlot == 100 + EntityArmorSlot.CHEST.getIndex())
             {
-                entityequipmentslot = EntityEquipmentSlot.CHEST;
+                entityequipmentslot = EntityArmorSlot.CHEST;
             }
-            else if (inventorySlot == 100 + EntityEquipmentSlot.LEGS.getIndex())
+            else if (inventorySlot == 100 + EntityArmorSlot.LEGS.getIndex())
             {
-                entityequipmentslot = EntityEquipmentSlot.LEGS;
+                entityequipmentslot = EntityArmorSlot.LEGS;
             }
-            else if (inventorySlot == 100 + EntityEquipmentSlot.FEET.getIndex())
+            else if (inventorySlot == 100 + EntityArmorSlot.FEET.getIndex())
             {
-                entityequipmentslot = EntityEquipmentSlot.FEET;
+                entityequipmentslot = EntityArmorSlot.FEET;
             }
             else
             {
@@ -2533,12 +2538,12 @@ public abstract class EntityPlayer extends EntityLivingBase
 
             if (inventorySlot == 98)
             {
-                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, itemStackIn);
+                this.setItemStackToSlot(EntityHandSlot.MAINHAND, itemStackIn);
                 return true;
             }
             else if (inventorySlot == 99)
             {
-                this.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, itemStackIn);
+                this.setItemStackToSlot(EntityHandSlot.OFFHAND, itemStackIn);
                 return true;
             }
             else if (entityequipmentslot == null)
@@ -2561,7 +2566,7 @@ public abstract class EntityPlayer extends EntityLivingBase
                 {
                     if (!(itemStackIn.getItem() instanceof ItemArmor) && !(itemStackIn.getItem() instanceof ItemElytra))
                     {
-                        if (entityequipmentslot != EntityEquipmentSlot.HEAD)
+                        if (entityequipmentslot != EntityArmorSlot.HEAD)
                         {
                             return false;
                         }

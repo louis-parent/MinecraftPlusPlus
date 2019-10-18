@@ -1,11 +1,14 @@
 package net.minecraft.client.renderer.chunk;
 
-import com.google.common.collect.Sets;
 import java.nio.FloatBuffer;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.locks.ReentrantLock;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

@@ -1,6 +1,6 @@
 package net.minecraft.enchantment;
 
-import net.minecraft.inventory.EntityEquipmentSlot;
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
 
 public class EnchantmentArrowFire extends Enchantment
 {

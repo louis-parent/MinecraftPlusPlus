@@ -1,14 +1,16 @@
 package net.minecraft.util.text;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Iterators;
-import com.google.common.collect.Lists;
 import java.util.Arrays;
 import java.util.IllegalFormatException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Iterators;
+import com.google.common.collect.Lists;
+
 import net.minecraft.util.text.translation.I18n;
 
 public class TextComponentTranslation extends TextComponentBase

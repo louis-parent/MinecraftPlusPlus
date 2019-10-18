@@ -1,7 +1,7 @@
 package net.minecraft.enchantment;
 
+import fr.minecraftpp.inventory.EntityEquipmentSlot;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 
 public class EnchantmentDigging extends Enchantment

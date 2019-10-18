@@ -1,7 +1,9 @@
 package net.minecraft.entity.ai;
 
 import java.util.Iterator;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.entity.EntityCreature;

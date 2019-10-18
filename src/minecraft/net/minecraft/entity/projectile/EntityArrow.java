@@ -1,9 +1,12 @@
 package net.minecraft.entity.projectile;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import java.util.List;
-import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

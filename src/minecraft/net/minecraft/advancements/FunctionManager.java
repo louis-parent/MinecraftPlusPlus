@@ -1,12 +1,20 @@
 package net.minecraft.advancements;
 
-import com.google.common.collect.Maps;
-import com.google.common.io.Files;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.Map;
+
 import javax.annotation.Nullable;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.Maps;
+import com.google.common.io.Files;
+
 import net.minecraft.command.FunctionObject;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ICommandSender;
@@ -14,10 +22,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class FunctionManager implements ITickable
 {

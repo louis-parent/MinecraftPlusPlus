@@ -1,9 +1,11 @@
 package net.minecraft.entity.ai.attributes;
 
-import com.google.common.collect.Sets;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
+
 import net.minecraft.util.LowerStringMap;
 
 public class AttributeMap extends AbstractAttributeMap

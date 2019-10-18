@@ -1,7 +1,9 @@
 package net.minecraft.block;
 
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;

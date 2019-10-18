@@ -1,9 +1,10 @@
 package net.minecraft.world.gen.layer;
 
-import net.minecraft.init.Biomes;
-import net.minecraft.world.biome.Biome;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import net.minecraft.init.Biomes;
+import net.minecraft.world.biome.Biome;
 
 public class GenLayerHills extends GenLayer
 {

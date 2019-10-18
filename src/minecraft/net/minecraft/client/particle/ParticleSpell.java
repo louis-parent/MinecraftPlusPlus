@@ -1,6 +1,7 @@
 package net.minecraft.client.particle;
 
 import java.util.Random;
+
 import net.minecraft.world.World;
 
 public class ParticleSpell extends Particle

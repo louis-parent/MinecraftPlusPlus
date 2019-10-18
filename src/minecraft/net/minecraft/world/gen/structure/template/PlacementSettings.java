@@ -1,7 +1,9 @@
 package net.minecraft.world.gen.structure.template;
 
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;

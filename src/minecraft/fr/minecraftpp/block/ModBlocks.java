@@ -3,11 +3,9 @@ package fr.minecraftpp.block;
 import java.lang.reflect.Field;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.item.ModItems;
 import fr.minecraftpp.language.ModLanguage;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 
 @Mod("minecraftpp")
 public class ModBlocks extends Blocks

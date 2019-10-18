@@ -1,7 +1,9 @@
 package net.minecraft.entity.projectile;
 
 import java.util.UUID;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;

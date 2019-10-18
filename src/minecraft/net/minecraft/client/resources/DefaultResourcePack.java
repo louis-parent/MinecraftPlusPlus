@@ -1,6 +1,5 @@
 package net.minecraft.client.resources;
 
-import com.google.common.collect.ImmutableSet;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Set;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.ImmutableSet;
+
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.MetadataSerializer;

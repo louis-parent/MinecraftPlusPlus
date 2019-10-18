@@ -2,7 +2,9 @@ package net.minecraft.world.gen.structure;
 
 import java.util.List;
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;

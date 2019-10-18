@@ -1,9 +1,12 @@
 package net.minecraft.item;
 
-import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Maps;
+
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;

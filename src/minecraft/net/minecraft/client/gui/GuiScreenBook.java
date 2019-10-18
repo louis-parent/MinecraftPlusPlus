@@ -1,11 +1,18 @@
 package net.minecraft.client.gui;
 
-import com.google.common.collect.Lists;
-import com.google.gson.JsonParseException;
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Keyboard;
+
+import com.google.common.collect.Lists;
+import com.google.gson.JsonParseException;
+
+import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
@@ -23,9 +30,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.input.Keyboard;
 
 public class GuiScreenBook extends GuiScreen
 {

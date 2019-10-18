@@ -1,6 +1,7 @@
 package net.minecraft.network.datasync;
 
 import java.io.IOException;
+
 import net.minecraft.network.PacketBuffer;
 
 public interface DataSerializer<T>

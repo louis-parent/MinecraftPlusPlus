@@ -1,9 +1,12 @@
 package net.minecraft.command;
 
-import com.google.common.collect.Lists;
 import java.util.ArrayDeque;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.advancements.FunctionManager;
 import net.minecraft.util.ResourceLocation;
 

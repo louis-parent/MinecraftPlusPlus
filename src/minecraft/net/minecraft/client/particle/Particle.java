@@ -2,6 +2,7 @@ package net.minecraft.client.particle;
 
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;

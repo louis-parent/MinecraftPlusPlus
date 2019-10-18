@@ -1,7 +1,9 @@
 package net.minecraft.client.renderer;
 
-import com.google.common.collect.Ordering;
 import java.util.Collection;
+
+import com.google.common.collect.Ordering;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.Container;

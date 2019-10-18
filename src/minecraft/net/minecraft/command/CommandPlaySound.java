@@ -2,7 +2,9 @@ package net.minecraft.command;
 
 import java.util.Collections;
 import java.util.List;
+
 import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.play.server.SPacketCustomSound;
 import net.minecraft.server.MinecraftServer;

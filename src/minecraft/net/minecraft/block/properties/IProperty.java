@@ -1,7 +1,8 @@
 package net.minecraft.block.properties;
 
-import com.google.common.base.Optional;
 import java.util.Collection;
+
+import com.google.common.base.Optional;
 
 public interface IProperty<T extends Comparable<T>>
 {

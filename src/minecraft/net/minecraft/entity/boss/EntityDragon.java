@@ -1,7 +1,12 @@
 package net.minecraft.entity.boss;
 
 import java.util.List;
+
 import javax.annotation.Nullable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -45,8 +50,6 @@ import net.minecraft.world.WorldProviderEnd;
 import net.minecraft.world.end.DragonFightManager;
 import net.minecraft.world.gen.feature.WorldGenEndPodium;
 import net.minecraft.world.storage.loot.LootTableList;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class EntityDragon extends EntityLiving implements IEntityMultiPart, IMob
 {

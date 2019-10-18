@@ -1,10 +1,12 @@
 package net.minecraft.block.state.pattern;
 
+import javax.annotation.Nullable;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Predicate;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
-import javax.annotation.Nullable;
+
 import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
