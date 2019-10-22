@@ -2,6 +2,7 @@ package net.minecraft.world.biome;
 
 import java.util.Random;
 
+import fr.minecraftpp.block.ore.OreRegistry;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;
@@ -41,20 +42,12 @@ public class BiomeDecorator
 
 	/** The dirt generator. */
 	protected WorldGenerator dirtGen;
+	
 	protected WorldGenerator gravelGen;
 	protected WorldGenerator graniteGen;
 	protected WorldGenerator dioriteGen;
 	protected WorldGenerator andesiteGen;
-	protected WorldGenerator coalGen;
-	protected WorldGenerator ironGen;
-
-	/** Field that holds gold WorldGenMinable */
-	protected WorldGenerator goldGen;
-	protected WorldGenerator redstoneGen;
-	protected WorldGenerator diamondGen;
-
-	/** Field that holds Lapis WorldGenMinable */
-	protected WorldGenerator lapisGen;
+	
 	protected WorldGenFlowers yellowFlowerGen = new WorldGenFlowers(Blocks.YELLOW_FLOWER, BlockFlower.EnumFlowerType.DANDELION);
 
 	/** Field that holds mushroomBrown WorldGenFlowers */
@@ -145,7 +138,7 @@ public class BiomeDecorator
 	/** True if decorator should generate surface lava & water */
 	public boolean generateLakes = true;
 
-	public void decorate(World worldIn, Random random, Biome biome, BlockPos pos)
+	public void decorate(World world, Random random, Biome biome, BlockPos pos)
 	{
 		if (this.decorating)
 		{
@@ -153,20 +146,16 @@ public class BiomeDecorator
 		}
 		else
 		{
-			this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(worldIn.getWorldInfo().getGeneratorOptions()).build();
+			this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
 			this.chunkPos = pos;
+			
 			this.dirtGen = new WorldGenMinable(Blocks.DIRT.getDefaultState(), this.chunkProviderSettings.dirtSize);
 			this.gravelGen = new WorldGenMinable(Blocks.GRAVEL.getDefaultState(), this.chunkProviderSettings.gravelSize);
 			this.graniteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE), this.chunkProviderSettings.graniteSize);
 			this.dioriteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE), this.chunkProviderSettings.dioriteSize);
 			this.andesiteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE), this.chunkProviderSettings.andesiteSize);
-			this.coalGen = new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), this.chunkProviderSettings.coalSize);
-			this.ironGen = new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), this.chunkProviderSettings.ironSize);
-			this.goldGen = new WorldGenMinable(Blocks.GOLD_ORE.getDefaultState(), this.chunkProviderSettings.goldSize);
-			this.redstoneGen = new WorldGenMinable(Blocks.REDSTONE_ORE.getDefaultState(), this.chunkProviderSettings.redstoneSize);
-			this.diamondGen = new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), this.chunkProviderSettings.diamondSize);
-			this.lapisGen = new WorldGenMinable(Blocks.LAPIS_ORE.getDefaultState(), this.chunkProviderSettings.lapisSize);
-			this.genDecorations(biome, worldIn, random);
+			
+			this.genDecorations(biome, world, random);
 			this.decorating = false;
 		}
 	}
@@ -430,28 +419,24 @@ public class BiomeDecorator
 	/**
 	 * Generates ores in the current chunk
 	 */
-	protected void generateOres(World worldIn, Random random)
+	protected void generateOres(World world, Random random)
 	{
-		this.genStandardOre1(worldIn, random, this.chunkProviderSettings.dirtCount, this.dirtGen, this.chunkProviderSettings.dirtMinHeight, this.chunkProviderSettings.dirtMaxHeight);
-		this.genStandardOre1(worldIn, random, this.chunkProviderSettings.gravelCount, this.gravelGen, this.chunkProviderSettings.gravelMinHeight, this.chunkProviderSettings.gravelMaxHeight);
-		this.genStandardOre1(worldIn, random, this.chunkProviderSettings.dioriteCount, this.dioriteGen, this.chunkProviderSettings.dioriteMinHeight, this.chunkProviderSettings.dioriteMaxHeight);
-		this.genStandardOre1(worldIn, random, this.chunkProviderSettings.graniteCount, this.graniteGen, this.chunkProviderSettings.graniteMinHeight, this.chunkProviderSettings.graniteMaxHeight);
-		this.genStandardOre1(worldIn, random, this.chunkProviderSettings.andesiteCount, this.andesiteGen, this.chunkProviderSettings.andesiteMinHeight, this.chunkProviderSettings.andesiteMaxHeight);
-		this.genStandardOre1(worldIn, random, this.chunkProviderSettings.coalCount, this.coalGen, this.chunkProviderSettings.coalMinHeight, this.chunkProviderSettings.coalMaxHeight);
-		this.genStandardOre1(worldIn, random, this.chunkProviderSettings.ironCount, this.ironGen, this.chunkProviderSettings.ironMinHeight, this.chunkProviderSettings.ironMaxHeight);
-		this.genStandardOre1(worldIn, random, this.chunkProviderSettings.goldCount, this.goldGen, this.chunkProviderSettings.goldMinHeight, this.chunkProviderSettings.goldMaxHeight);
-		this.genStandardOre1(worldIn, random, this.chunkProviderSettings.redstoneCount, this.redstoneGen, this.chunkProviderSettings.redstoneMinHeight, this.chunkProviderSettings.redstoneMaxHeight);
-		this.genStandardOre1(worldIn, random, this.chunkProviderSettings.diamondCount, this.diamondGen, this.chunkProviderSettings.diamondMinHeight, this.chunkProviderSettings.diamondMaxHeight);
-		this.genStandardOre2(worldIn, random, this.chunkProviderSettings.lapisCount, this.lapisGen, this.chunkProviderSettings.lapisCenterHeight, this.chunkProviderSettings.lapisSpread);
+		this.uniformOreGeneration(world, random, this.chunkProviderSettings.dirtCount, this.dirtGen, this.chunkProviderSettings.dirtMinHeight, this.chunkProviderSettings.dirtMaxHeight);
+		this.uniformOreGeneration(world, random, this.chunkProviderSettings.gravelCount, this.gravelGen, this.chunkProviderSettings.gravelMinHeight, this.chunkProviderSettings.gravelMaxHeight);
+		this.uniformOreGeneration(world, random, this.chunkProviderSettings.dioriteCount, this.dioriteGen, this.chunkProviderSettings.dioriteMinHeight, this.chunkProviderSettings.dioriteMaxHeight);
+		this.uniformOreGeneration(world, random, this.chunkProviderSettings.graniteCount, this.graniteGen, this.chunkProviderSettings.graniteMinHeight, this.chunkProviderSettings.graniteMaxHeight);
+		this.uniformOreGeneration(world, random, this.chunkProviderSettings.andesiteCount, this.andesiteGen, this.chunkProviderSettings.andesiteMinHeight, this.chunkProviderSettings.andesiteMaxHeight);
+	
+		OreRegistry.decorate(this, world, random);
 	}
 
 	/**
 	 * Standard ore generation helper. Vanilla uses this to generate most ores.
-	 * The main difference between this and {@link #genStandardOre2} is that
+	 * The main difference between this and {@link #spreadOreGeneration} is that
 	 * this takes min and max heights, while genStandardOre2 takes center and
 	 * spread.
 	 */
-	protected void genStandardOre1(World worldIn, Random random, int blockCount, WorldGenerator generator, int minHeight, int maxHeight)
+	public void uniformOreGeneration(World world, Random random, int veinCount, WorldGenerator generator, int minHeight, int maxHeight)
 	{
 		if (maxHeight < minHeight)
 		{
@@ -471,25 +456,25 @@ public class BiomeDecorator
 			}
 		}
 
-		for (int j = 0; j < blockCount; ++j)
+		for (int j = 0; j < veinCount; ++j)
 		{
 			BlockPos blockpos = this.chunkPos.add(random.nextInt(16), random.nextInt(maxHeight - minHeight) + minHeight, random.nextInt(16));
-			generator.generate(worldIn, random, blockpos);
+			generator.generate(world, random, blockpos);
 		}
 	}
 
 	/**
 	 * Standard ore generation helper. Vanilla uses this to generate Lapis
-	 * Lazuli. The main difference between this and {@link #genStandardOre1} is
+	 * Lazuli. The main difference between this and {@link #uniformOreGeneration} is
 	 * that this takes takes center and spread, while genStandardOre1 takes min
 	 * and max heights.
 	 */
-	protected void genStandardOre2(World worldIn, Random random, int blockCount, WorldGenerator generator, int centerHeight, int spread)
+	public void spreadOreGeneration(World world, Random random, int veinCount, WorldGenerator generator, int centerHeight, int spread)
 	{
-		for (int i = 0; i < blockCount; ++i)
+		for (int i = 0; i < veinCount; ++i)
 		{
 			BlockPos blockpos = this.chunkPos.add(random.nextInt(16), random.nextInt(spread) + random.nextInt(spread) + centerHeight - spread, random.nextInt(16));
-			generator.generate(worldIn, random, blockpos);
+			generator.generate(world, random, blockpos);
 		}
 	}
 }

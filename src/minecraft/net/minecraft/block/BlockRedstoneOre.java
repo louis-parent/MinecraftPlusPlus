@@ -2,6 +2,7 @@ package net.minecraft.block;
 
 import java.util.Random;
 
+import fr.minecraftpp.block.ore.OreRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -15,18 +16,22 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.gen.ChunkGeneratorSettings;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 
-public class BlockRedstoneOre extends Block
+public class BlockRedstoneOre extends BlockOre
 {
 	private final boolean isOn;
 
 	public BlockRedstoneOre(boolean isOn)
 	{
-		super(Material.ROCK);
+		super();
 
 		if (isOn)
 		{
 			this.setTickRandomly(true);
+			OreRegistry.unregister(this);
 		}
 
 		this.isOn = isOn;
@@ -182,5 +187,12 @@ public class BlockRedstoneOre extends Block
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(Item.getItemFromBlock(Blocks.REDSTONE_ORE), 1, this.damageDropped(state));
+	}
+	
+	@Override
+	public void decorate(BiomeDecorator decorator, World world, Random rand)
+	{
+		ChunkGeneratorSettings settings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
+		decorator.uniformOreGeneration(world, rand, settings.redstoneCount, new WorldGenMinable(this.getDefaultState(), settings.redstoneSize), settings.redstoneMinHeight, settings.redstoneMaxHeight);
 	}
 }

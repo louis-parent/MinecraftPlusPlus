@@ -105,20 +105,20 @@ public class BlockStone extends Block
 		private final String name;
 		private final String unlocalizedName;
 		private final MapColor mapColor;
-		private final boolean field_190913_m;
+		private final boolean canOreGenerateIn;
 
-		private EnumType(int p_i46383_3_, MapColor p_i46383_4_, String p_i46383_5_, boolean p_i46383_6_)
+		private EnumType(int meta, MapColor mapColor, String unlocalizedName, boolean canOreGenerateIn)
 		{
-			this(p_i46383_3_, p_i46383_4_, p_i46383_5_, p_i46383_5_, p_i46383_6_);
+			this(meta, mapColor, unlocalizedName, unlocalizedName, canOreGenerateIn);
 		}
 
-		private EnumType(int p_i46384_3_, MapColor p_i46384_4_, String p_i46384_5_, String p_i46384_6_, boolean p_i46384_7_)
+		private EnumType(int meta, MapColor mapColor, String name, String unlocalizedName, boolean canOreGenerateIn)
 		{
-			this.meta = p_i46384_3_;
-			this.name = p_i46384_5_;
-			this.unlocalizedName = p_i46384_6_;
-			this.mapColor = p_i46384_4_;
-			this.field_190913_m = p_i46384_7_;
+			this.meta = meta;
+			this.name = name;
+			this.unlocalizedName = unlocalizedName;
+			this.mapColor = mapColor;
+			this.canOreGenerateIn = canOreGenerateIn;
 		}
 
 		public int getMetadata()
@@ -156,9 +156,9 @@ public class BlockStone extends Block
 			return this.unlocalizedName;
 		}
 
-		public boolean func_190912_e()
+		public boolean canOreGenerateIn()
 		{
-			return this.field_190913_m;
+			return this.canOreGenerateIn;
 		}
 
 		static

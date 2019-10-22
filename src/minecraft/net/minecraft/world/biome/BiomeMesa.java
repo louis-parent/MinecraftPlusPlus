@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 
 public class BiomeMesa extends Biome
 {
@@ -333,10 +334,10 @@ public class BiomeMesa extends Biome
 		{
 		}
 
-		protected void generateOres(World worldIn, Random random)
+		protected void generateOres(World world, Random random)
 		{
-			super.generateOres(worldIn, random);
-			this.genStandardOre1(worldIn, random, 20, this.goldGen, 32, 80);
+			super.generateOres(world, random);
+			this.uniformOreGeneration(world, random, 20, new WorldGenMinable(Blocks.GOLD_ORE.getDefaultState(), this.chunkProviderSettings.goldSize), 32, 80);
 		}
 	}
 }

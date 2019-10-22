@@ -24,11 +24,11 @@ public class WorldGenMinable extends WorldGenerator
 		this(state, blockCount, new WorldGenMinable.StonePredicate());
 	}
 
-	public WorldGenMinable(IBlockState state, int blockCount, Predicate<IBlockState> p_i45631_3_)
+	public WorldGenMinable(IBlockState state, int blockCount, Predicate<IBlockState> predicate)
 	{
 		this.oreBlock = state;
 		this.numberOfBlocks = blockCount;
-		this.predicate = p_i45631_3_;
+		this.predicate = predicate;
 	}
 
 	public boolean generate(World worldIn, Random rand, BlockPos position)
@@ -98,12 +98,12 @@ public class WorldGenMinable extends WorldGenerator
 		{
 		}
 
-		public boolean apply(IBlockState p_apply_1_)
+		public boolean apply(IBlockState state)
 		{
-			if (p_apply_1_ != null && p_apply_1_.getBlock() == Blocks.STONE)
+			if (state != null && state.getBlock() == Blocks.STONE)
 			{
-				BlockStone.EnumType blockstone$enumtype = (BlockStone.EnumType) p_apply_1_.getValue(BlockStone.VARIANT);
-				return blockstone$enumtype.func_190912_e();
+				BlockStone.EnumType blockstone$enumtype = (BlockStone.EnumType) state.getValue(BlockStone.VARIANT);
+				return blockstone$enumtype.canOreGenerateIn();
 			}
 			else
 			{

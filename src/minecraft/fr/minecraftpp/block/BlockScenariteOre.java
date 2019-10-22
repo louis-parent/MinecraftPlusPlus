@@ -2,12 +2,17 @@ package fr.minecraftpp.block;
 
 import java.util.Random;
 
+import com.google.common.base.Predicate;
+
 import fr.minecraftpp.item.ModItems;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,12 +22,14 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 
 public class BlockScenariteOre extends BlockOre
 {
 	public BlockScenariteOre()
 	{
-		super();
+		super(MapColor.MAGENTA);
 
 		this.setUnlocalizedName("scenariteOre");
 		this.setHardness(20.0F);
@@ -149,5 +156,11 @@ public class BlockScenariteOre extends BlockOre
 				world.spawnParticle(EnumParticleTypes.REDSTONE, d1, d2, d3, 0.0D, 0.0D, 0.0D);
 			}
 		}
+	}
+	
+	@Override
+	public void decorate(BiomeDecorator decorator, World world, Random rand)
+	{
+		decorator.uniformOreGeneration(world, rand, 15, new WorldGenMinable(this.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.STONE)), 0, 256);
 	}
 }

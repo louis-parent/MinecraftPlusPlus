@@ -24,6 +24,7 @@ import net.minecraft.block.BlockGrass;
 import net.minecraft.block.BlockHopper;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockMycelium;
+import net.minecraft.block.BlockOre;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPistonExtension;
 import net.minecraft.block.BlockPistonMoving;
