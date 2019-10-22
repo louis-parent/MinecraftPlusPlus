@@ -114,29 +114,11 @@ public class BlockFire extends Block
 	@Mod("Minecraftpp")
 	private static void initFlammableStaticBlocksFrom(Class blockList)
 	{
-		for (Field field : blockList.getDeclaredFields())
+		for (Block block : Block.REGISTRY)
 		{
-			try
+			if (block.getFlammability().isFlammable())
 			{
-				if (Modifier.isPublic(field.getModifiers()))
-				{
-					Object objectOfField = field.get(null);
-					boolean isFieldStatic = Modifier.isStatic(field.getModifiers());
-					boolean isFieldInstanceOrSubclassOfBlock = objectOfField instanceof Block;
-
-					if (isFieldStatic && isFieldInstanceOrSubclassOfBlock)
-					{
-						Block block = ((Block) objectOfField);
-						if (block.getFlammability().isFlammable())
-						{
-							Blocks.FIRE.setFireInfo(block, block.getFlammability().getFlammability(), block.getFlammability().getEncouragement());
-						}
-					}
-				}
-			}
-			catch (IllegalArgumentException | IllegalAccessException e)
-			{
-				e.printStackTrace();
+				Blocks.FIRE.setFireInfo(block, block.getFlammability().getFlammability(), block.getFlammability().getEncouragement());
 			}
 		}
 	}
