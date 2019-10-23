@@ -1,4 +1,4 @@
-package fr.minecraftpp.generator.item;
+package fr.minecraftpp.generator.item.food;
 
 import fr.minecraftpp.item.DynamicItem;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -94,7 +94,7 @@ public interface IFood
 		}
 		else
 		{
-			return null;
+			return new NotFood();
 		}
 	}
 }

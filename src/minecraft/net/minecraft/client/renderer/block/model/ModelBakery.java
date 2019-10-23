@@ -31,6 +31,8 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Queues;
 import com.google.common.collect.Sets;
 
+import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.renderer.ModModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BlockModelShapes;
@@ -85,6 +87,9 @@ public class ModelBakery
 	public IRegistry<ModelResourceLocation, IBakedModel> setupModelRegistry()
 	{
 		this.loadBlocks();
+		
+		ModModelManager.loadItemModels(this.models);
+		
 		this.loadVariantItemModels();
 		this.loadModelsCheck();
 		this.loadSprites();
@@ -293,7 +298,7 @@ public class ModelBakery
 	{
 		Reader reader = null;
 		IResource iresource = null;
-		ModelBlock lvt_5_2_;
+		ModelBlock model;
 
 		try
 		{
@@ -303,8 +308,8 @@ public class ModelBakery
 			{
 				if ("builtin/entity".equals(s))
 				{
-					lvt_5_2_ = MODEL_ENTITY;
-					return lvt_5_2_;
+					model = MODEL_ENTITY;
+					return model;
 				}
 
 				if (s.startsWith("builtin/"))
@@ -325,13 +330,13 @@ public class ModelBakery
 					reader = new InputStreamReader(iresource.getInputStream(), StandardCharsets.UTF_8);
 				}
 
-				lvt_5_2_ = ModelBlock.deserialize(reader);
-				lvt_5_2_.name = location.toString();
-				ModelBlock modelblock1 = lvt_5_2_;
+				model = ModelBlock.deserialize(reader);
+				model.name = location.toString();
+				ModelBlock modelblock1 = model;
 				return modelblock1;
 			}
 
-			lvt_5_2_ = MODEL_GENERATED;
+			model = MODEL_GENERATED;
 		}
 		finally
 		{
@@ -339,7 +344,7 @@ public class ModelBakery
 			IOUtils.closeQuietly((Closeable) iresource);
 		}
 
-		return lvt_5_2_;
+		return model;
 	}
 
 	private ResourceLocation getModelLocation(ResourceLocation location)
@@ -441,7 +446,7 @@ public class ModelBakery
 		this.variantNames.put(Item.getItemFromBlock(Blocks.OAK_FENCE), Lists.newArrayList("oak_fence"));
 		this.variantNames.put(Items.OAK_DOOR, Lists.newArrayList("oak_door"));
 		this.variantNames.put(Items.BOAT, Lists.newArrayList("oak_boat"));
-		this.variantNames.put(Items.field_190929_cY, Lists.newArrayList("totem"));
+		this.variantNames.put(Items.TOTEM, Lists.newArrayList("totem"));
 	}
 
 	private List<String> getVariantNames(Item stack)

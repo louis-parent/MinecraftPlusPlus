@@ -1148,7 +1148,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
 				if (entity == this.gameController.player)
 				{
-					this.gameController.entityRenderer.func_190565_a(new ItemStack(Items.field_190929_cY));
+					this.gameController.entityRenderer.func_190565_a(new ItemStack(Items.TOTEM));
 				}
 			}
 			else

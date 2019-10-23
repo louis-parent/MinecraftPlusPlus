@@ -4,8 +4,7 @@ import java.util.Random;
 
 public class NameGenerator
 {
-
-	public static Random rand = new Random();
+	private static Random rand = new Random();
 
 	public static String generateName()
 	{

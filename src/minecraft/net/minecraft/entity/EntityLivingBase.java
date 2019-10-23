@@ -1217,7 +1217,7 @@ public abstract class EntityLivingBase extends Entity
 			{
 				ItemStack itemstack1 = this.getHeldItem(enumhand);
 
-				if (itemstack1.getItem() == Items.field_190929_cY)
+				if (itemstack1.getItem() == Items.TOTEM)
 				{
 					itemstack = itemstack1.copy();
 					itemstack1.decreaseStackSize(1);
@@ -1230,7 +1230,7 @@ public abstract class EntityLivingBase extends Entity
 				if (this instanceof EntityPlayerMP)
 				{
 					EntityPlayerMP entityplayermp = (EntityPlayerMP) this;
-					entityplayermp.addStat(StatList.getObjectUseStats(Items.field_190929_cY));
+					entityplayermp.addStat(StatList.getObjectUseStats(Items.TOTEM));
 					CriteriaTriggers.field_193130_A.func_193187_a(entityplayermp, itemstack);
 				}
 

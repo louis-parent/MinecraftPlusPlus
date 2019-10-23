@@ -1,7 +1,19 @@
 {
+  "minecraft:recipes/misc/bone_meal_from_bone": {
+    "criteria": {
+      "has_bone": "2019-10-23 16:47:22 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/transportation/carrot_on_a_stick": {
     "criteria": {
       "has_carrot": "2019-10-11 14:18:54 +0200"
+    },
+    "done": true
+  },
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_something": "2019-10-23 16:47:45 +0200"
     },
     "done": true
   },
@@ -20,6 +32,12 @@
   "minecraft:recipes/misc/writable_book": {
     "criteria": {
       "has_book": "2019-10-11 14:18:54 +0200"
+    },
+    "done": true
+  },
+  "minecraft:husbandry/tame_an_animal": {
+    "criteria": {
+      "tamed_animal": "2019-10-23 16:47:50 +0200"
     },
     "done": true
   }

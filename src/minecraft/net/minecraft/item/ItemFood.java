@@ -1,7 +1,7 @@
 package net.minecraft.item;
 
-import fr.minecraftpp.generator.item.IFood;
 import fr.minecraftpp.generator.item.LighterUse;
+import fr.minecraftpp.generator.item.food.IFood;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;

@@ -105,17 +105,17 @@ public class RenderItem implements IResourceManagerReloadListener
 		this.registerItem(itm, 0, identifier);
 	}
 
-	private void func_191961_a(IBakedModel p_191961_1_, ItemStack p_191961_2_)
+	private void func_191961_a(IBakedModel model, ItemStack stack)
 	{
-		this.func_191967_a(p_191961_1_, -1, p_191961_2_);
+		this.func_191967_a(model, -1, stack);
 	}
 
-	private void func_191965_a(IBakedModel p_191965_1_, int p_191965_2_)
+	private void func_191965_a(IBakedModel model, int p_191965_2_)
 	{
-		this.func_191967_a(p_191965_1_, p_191965_2_, ItemStack.EMPTY_ITEM_STACK);
+		this.func_191967_a(model, p_191965_2_, ItemStack.EMPTY_ITEM_STACK);
 	}
 
-	private void func_191967_a(IBakedModel p_191967_1_, int p_191967_2_, ItemStack p_191967_3_)
+	private void func_191967_a(IBakedModel model, int p_191967_2_, ItemStack stack)
 	{
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
@@ -123,10 +123,10 @@ public class RenderItem implements IResourceManagerReloadListener
 
 		for (EnumFacing enumfacing : EnumFacing.values())
 		{
-			this.func_191970_a(bufferbuilder, p_191967_1_.getQuads((IBlockState) null, enumfacing, 0L), p_191967_2_, p_191967_3_);
+			this.func_191970_a(bufferbuilder, model.getQuads((IBlockState) null, enumfacing, 0L), p_191967_2_, stack);
 		}
 
-		this.func_191970_a(bufferbuilder, p_191967_1_.getQuads((IBlockState) null, (EnumFacing) null, 0L), p_191967_2_, p_191967_3_);
+		this.func_191970_a(bufferbuilder, model.getQuads((IBlockState) null, (EnumFacing) null, 0L), p_191967_2_, stack);
 		tessellator.draw();
 	}
 
@@ -992,7 +992,7 @@ public class RenderItem implements IResourceManagerReloadListener
 		this.registerItem(Items.BEETROOT, "beetroot");
 		this.registerItem(Items.BEETROOT_SEEDS, "beetroot_seeds");
 		this.registerItem(Items.BEETROOT_SOUP, "beetroot_soup");
-		this.registerItem(Items.field_190929_cY, "totem");
+		this.registerItem(Items.TOTEM, "totem");
 		this.registerItem(Items.POTIONITEM, "bottle_drinkable");
 		this.registerItem(Items.SPLASH_POTION, "bottle_splash");
 		this.registerItem(Items.LINGERING_POTION, "bottle_lingering");

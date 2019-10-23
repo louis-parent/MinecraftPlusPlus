@@ -1,7 +1,14 @@
 package fr.minecraftpp.item;
 
-import fr.minecraftpp.generator.item.IFood;
+import fr.minecraftpp.generator.IDynamicItem;
 import fr.minecraftpp.generator.item.LighterUse;
+import fr.minecraftpp.generator.item.food.IFood;
+import fr.minecraftpp.generator.item.food.NotFood;
+import fr.minecraftpp.language.ModLanguage;
+import fr.minecraftpp.renderer.ModModelManager;
+import fr.minecraftpp.renderer.ModRenderItem;
+import fr.minecraftpp.util.NameGenerator;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -14,8 +21,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class DynamicItem extends Item
+public class DynamicItem extends Item implements IDynamicItem
 {
+	private final String ID;
+	private final int TEXTURE_ID;
+	
 	private boolean hasEffect;
 	private int fuelAmount;
 	private boolean isEnchantCurrency;
@@ -23,17 +33,34 @@ public class DynamicItem extends Item
 	private boolean putsFire;
 	private IFood food;
 	
-	public DynamicItem(boolean hasEffect, int fuelAmount, boolean isEnchantCurrency, boolean putsFire, IFood food)
+	public DynamicItem(int textureId, boolean hasEffect, int fuelAmount, boolean isEnchantCurrency, boolean putsFire)
+	{
+		this(textureId, hasEffect, fuelAmount, isEnchantCurrency, putsFire, new NotFood());
+	}
+
+	public DynamicItem(int textureId, boolean hasEffect, int fuelAmount, boolean isEnchantCurrency, boolean putsFire, IFood food)
 	{
 		super();
-		
+				
 		this.hasEffect = hasEffect;
 		this.fuelAmount = fuelAmount;
 		this.isEnchantCurrency = isEnchantCurrency;
 		this.putsFire = putsFire;
 		this.food = food;
+		
+		this.setCreativeTab(CreativeTabs.MATERIALS);
+		
+		String name = NameGenerator.generateName();
+		this.setUnlocalizedName(name);
+		this.ID = name;
+		
+		this.TEXTURE_ID = textureId;
+		
+		// TODO extract
+		ModItem.setItemToRegister(this);
+		ModLanguage.addTranslation(this);
 	}
-	
+
 	@Override
 	public boolean hasEffect(ItemStack stack)
 	{
@@ -104,5 +131,28 @@ public class DynamicItem extends Item
 	public boolean allowEnchanting()
 	{
 		return this.isEnchantCurrency;
+	}
+	
+	@Override
+	public String getTextureName()
+	{
+		return this.getTexturePrefix() + this.TEXTURE_ID;
+	}
+
+	private String getTexturePrefix()
+	{
+		return "item_";
+	}
+
+	@Override
+	public String getID()
+	{
+		return this.ID;
+	}
+
+	@Override
+	public Item getItem()
+	{
+		return this;
 	}
 }

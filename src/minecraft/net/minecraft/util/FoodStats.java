@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-import fr.minecraftpp.generator.item.IFood;
+import fr.minecraftpp.generator.item.food.IFood;
 import fr.minecraftpp.item.DynamicItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

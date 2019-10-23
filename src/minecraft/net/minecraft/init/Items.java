@@ -222,7 +222,7 @@ public class Items
 	public static final Item BEETROOT_SEEDS;
 	public static final Item BEETROOT;
 	public static final Item BEETROOT_SOUP;
-	public static final Item field_190929_cY;
+	public static final Item TOTEM;
 	public static final Item field_190930_cZ;
 	public static final Item field_191525_da;
 	public static final Item field_192397_db;
@@ -455,7 +455,7 @@ public class Items
 			BEETROOT_SEEDS = getRegisteredItem("beetroot_seeds");
 			BEETROOT = getRegisteredItem("beetroot");
 			BEETROOT_SOUP = getRegisteredItem("beetroot_soup");
-			field_190929_cY = getRegisteredItem("totem_of_undying");
+			TOTEM = getRegisteredItem("totem_of_undying");
 			field_190930_cZ = getRegisteredItem("shulker_shell");
 			field_191525_da = getRegisteredItem("iron_nugget");
 			field_192397_db = getRegisteredItem("knowledge_book");

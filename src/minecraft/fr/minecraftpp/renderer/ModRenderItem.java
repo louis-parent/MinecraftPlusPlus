@@ -2,6 +2,8 @@ package fr.minecraftpp.renderer;
 
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.block.ModBlocks;
+import fr.minecraftpp.generator.IDynamicItem;
+import fr.minecraftpp.item.ModItem;
 import fr.minecraftpp.item.ModItems;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelManager;
@@ -10,7 +12,7 @@ import net.minecraft.client.renderer.texture.TextureManager;
 
 @Mod("minecraftpp")
 public class ModRenderItem extends RenderItem
-{
+{	
 	public ModRenderItem(TextureManager textureManager, ModelManager modelManager, ItemColors colors)
 	{
 		super(textureManager, modelManager, colors);
@@ -37,5 +39,9 @@ public class ModRenderItem extends RenderItem
 		renderer.registerItem(ModItems.SCENARIUM_LEGGINGS, "scenarium_leggings");
 		renderer.registerItem(ModItems.SCENARIUM_BOOTS, "scenarium_boots");
 
+		for(IDynamicItem item : ModItem.REGISTRY)
+		{
+			renderer.registerItem(item.getItem(), item.getID());
+		}
 	}
 }

@@ -510,7 +510,9 @@ public class Bootstrap
 		{
 			alreadyRegistered = true;
 			redirectOutputToLog();
-
+			
+			ModBootstrap.preBootstrap();
+			
 			SoundEvent.registerSounds();
 			Block.registerBlocks();
 			BlockFire.init();
@@ -546,7 +548,7 @@ public class Bootstrap
 				}
 			}
 
-			ModBootstrap.launchMeBaby();
+			ModBootstrap.postBootstrap();
 		}
 	}
 
