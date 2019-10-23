@@ -210,7 +210,7 @@ public class Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
-	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing face, float hitX, float hitY, float hitZ)
 	{
 		return EnumActionResult.PASS;
 	}
@@ -220,9 +220,9 @@ public class Item
 		return 1.0F;
 	}
 
-	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, worldIn.getHeldItem(playerIn));
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 	}
 
 	/**
@@ -230,7 +230,7 @@ public class Item
 	 * Not called when the player stops using the Item before the action is
 	 * complete.
 	 */
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
+	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)
 	{
 		return stack;
 	}
@@ -604,6 +604,12 @@ public class Item
 	 */
 	@Mod("Minecraftpp")
 	public boolean canSetFire()
+	{
+		return false;
+	}
+	
+	@Mod("Minecraftpp")
+	public boolean isFood()
 	{
 		return false;
 	}

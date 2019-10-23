@@ -261,17 +261,17 @@ public class ContainerEnchantment extends Container
 	 * Handles the given Button-click on the server, currently only used by
 	 * enchanting. Name is for legacy.
 	 */
-	public boolean enchantItem(EntityPlayer playerIn, int id)
+	public boolean enchantItem(EntityPlayer player, int id)
 	{
 		ItemStack itemstack = this.tableInventory.getStackInSlot(0);
 		ItemStack itemstack1 = this.tableInventory.getStackInSlot(1);
 		int i = id + 1;
 
-		if ((itemstack1.isNotValid() || itemstack1.getStackSize() < i) && !playerIn.capabilities.isCreativeMode)
+		if ((itemstack1.isNotValid() || itemstack1.getStackSize() < i) && !player.capabilities.isCreativeMode)
 		{
 			return false;
 		}
-		else if (this.enchantLevels[id] > 0 && !itemstack.isNotValid() && (playerIn.experienceLevel >= i && playerIn.experienceLevel >= this.enchantLevels[id] || playerIn.capabilities.isCreativeMode))
+		else if (this.enchantLevels[id] > 0 && !itemstack.isNotValid() && (player.experienceLevel >= i && player.experienceLevel >= this.enchantLevels[id] || player.capabilities.isCreativeMode))
 		{
 			if (!this.worldPointer.isRemote)
 			{
@@ -279,7 +279,7 @@ public class ContainerEnchantment extends Container
 
 				if (!list.isEmpty())
 				{
-					playerIn.func_192024_a(itemstack, i);
+					player.func_192024_a(itemstack, i);
 					boolean flag = itemstack.getItem() == Items.BOOK;
 
 					if (flag)
@@ -302,7 +302,7 @@ public class ContainerEnchantment extends Container
 						}
 					}
 
-					if (!playerIn.capabilities.isCreativeMode)
+					if (!player.capabilities.isCreativeMode)
 					{
 						itemstack1.decreaseStackSize(i);
 
@@ -312,15 +312,15 @@ public class ContainerEnchantment extends Container
 						}
 					}
 
-					playerIn.addStat(StatList.ITEM_ENCHANTED);
+					player.addStat(StatList.ITEM_ENCHANTED);
 
-					if (playerIn instanceof EntityPlayerMP)
+					if (player instanceof EntityPlayerMP)
 					{
-						CriteriaTriggers.field_192129_i.func_192190_a((EntityPlayerMP) playerIn, itemstack, i);
+						CriteriaTriggers.field_192129_i.func_192190_a((EntityPlayerMP) player, itemstack, i);
 					}
 
 					this.tableInventory.markDirty();
-					this.xpSeed = playerIn.getXPSeed();
+					this.xpSeed = player.getXPSeed();
 					this.onCraftMatrixChanged(this.tableInventory);
 					this.worldPointer.playSound((EntityPlayer) null, this.position, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0F, this.worldPointer.rand.nextFloat() * 0.1F + 0.9F);
 				}

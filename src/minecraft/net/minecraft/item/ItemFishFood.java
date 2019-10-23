@@ -34,7 +34,7 @@ public class ItemFishFood extends ItemFood
 		return this.cooked && itemfishfood$fishtype.canCook() ? itemfishfood$fishtype.getCookedSaturationModifier() : itemfishfood$fishtype.getUncookedSaturationModifier();
 	}
 
-	protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
+	public void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
 	{
 		ItemFishFood.FishType itemfishfood$fishtype = ItemFishFood.FishType.byItemStack(stack);
 

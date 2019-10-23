@@ -6,6 +6,8 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 
+import fr.minecraftpp.generator.item.IFood;
+import fr.minecraftpp.item.DynamicItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -425,9 +427,9 @@ public class EntityWolf extends EntityTameable
 		{
 			if (!itemstack.isNotValid())
 			{
-				if (itemstack.getItem() instanceof ItemFood)
+				if (itemstack.getItem().isFood())
 				{
-					ItemFood itemfood = (ItemFood) itemstack.getItem();
+					IFood itemfood = IFood.getFoodFromItem(itemstack.getItem());
 
 					if (itemfood.isWolfsFavoriteMeat() && ((Float) this.dataManager.get(DATA_HEALTH_ID)).floatValue() < 20.0F)
 					{
@@ -530,7 +532,7 @@ public class EntityWolf extends EntityTameable
 	 */
 	public boolean isBreedingItem(ItemStack stack)
 	{
-		return stack.getItem() instanceof ItemFood && ((ItemFood) stack.getItem()).isWolfsFavoriteMeat();
+		return IFood.getFoodFromItem(stack.getItem()).isWolfsFavoriteMeat();
 	}
 
 	/**

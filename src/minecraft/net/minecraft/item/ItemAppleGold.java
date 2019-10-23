@@ -28,7 +28,7 @@ public class ItemAppleGold extends ItemFood
 		return stack.getMetadata() == 0 ? EnumRarity.RARE : EnumRarity.EPIC;
 	}
 
-	protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
+	public void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
 	{
 		if (!worldIn.isRemote)
 		{

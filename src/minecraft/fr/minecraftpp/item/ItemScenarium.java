@@ -1,8 +1,10 @@
 package fr.minecraftpp.item;
 
+import fr.minecraftpp.generator.item.LighterUse;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -29,8 +31,6 @@ public class ItemScenarium extends ItemFood
 		this.setCreativeTab(CreativeTabs.MATERIALS);
 
 		TileEntityBeacon.paymentItems.add(this);
-
-		// EntityVillager.setMoney(this);
 	}
 
 	@Override
@@ -48,38 +48,7 @@ public class ItemScenarium extends ItemFood
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		pos = pos.offset(facing);
-		ItemStack itemstack = player.getHeldItem(hand);
-
-		if (player.canPlayerEdit(pos, facing, itemstack))
-		{
-			if (world.getBlockState(pos).getMaterial() == Material.AIR)
-			{
-				world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-				world.setBlockState(pos, Blocks.FIRE.getDefaultState(), 11);
-
-				if (!player.isCreative())
-				{
-					itemstack.decreaseStackSize(1);
-				}
-
-				if (player instanceof EntityPlayerMP)
-				{
-					CriteriaTriggers.field_193137_x.func_193173_a((EntityPlayerMP) player, pos, itemstack);
-				}
-
-				return EnumActionResult.SUCCESS;
-			}
-			else
-			{
-				return EnumActionResult.FAIL;
-			}
-
-		}
-		else
-		{
-			return EnumActionResult.FAIL;
-		}
+		return LighterUse.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 	}
 
 	@Override

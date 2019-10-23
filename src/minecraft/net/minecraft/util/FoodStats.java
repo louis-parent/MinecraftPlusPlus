@@ -1,6 +1,9 @@
 package net.minecraft.util;
 
+import fr.minecraftpp.generator.item.IFood;
+import fr.minecraftpp.item.DynamicItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,9 +33,9 @@ public class FoodStats
 		this.foodSaturationLevel = Math.min(this.foodSaturationLevel + (float) foodLevelIn * foodSaturationModifier * 2.0F, (float) this.foodLevel);
 	}
 
-	public void addStats(ItemFood foodItem, ItemStack stack)
+	public void addStats(IFood food, ItemStack stack)
 	{
-		this.addStats(foodItem.getHealAmount(stack), foodItem.getSaturationModifier(stack));
+		this.addStats(food.getHealAmount(stack), food.getSaturationModifier(stack));
 	}
 
 	/**

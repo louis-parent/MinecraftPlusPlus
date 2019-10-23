@@ -364,7 +364,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 		{
 			return 0;
 		}
-		else if (stack.getItem().getBurnTime() != 0)
+		else if (stack.getItem().getBurnTime() > 0)
 		{
 			return stack.getItem().getBurnTime();
 		}
