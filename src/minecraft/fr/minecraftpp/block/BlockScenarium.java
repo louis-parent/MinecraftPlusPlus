@@ -17,14 +17,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 @Mod("Minecraftpp")
-public class BlockScenarium extends BlockFalling implements IAbsorbingBlock
+public class BlockScenarium extends BlockFalling implements IAbsorbing
 {
 	public static final PropertyBool EXPLODE = PropertyBool.create("explode");
-
+	
 	public BlockScenarium()
 	{
 		super(Material.IRON);
-
+				
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);
 

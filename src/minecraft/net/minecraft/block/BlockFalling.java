@@ -2,16 +2,14 @@ package net.minecraft.block;
 
 import java.util.Random;
 
+import fr.minecraftpp.block.IFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockFalling extends Block
+public class BlockFalling extends Block implements IFalling
 {
 	public static boolean fallInstantly;
 
@@ -26,118 +24,39 @@ public class BlockFalling extends Block
 		super(materialIn);
 	}
 
-	/**
-	 * Called after the block is set in the Chunk data, but before the Tile
-	 * Entity is set
-	 */
 	@Override
 	public void onBlockAdded(World world, BlockPos pos, IBlockState state)
 	{
-		world.scheduleUpdate(pos, this, this.tickRate(world));
+		IFalling.super.onBlockAdded(world, pos, state);
 	}
 
-	/**
-	 * Called when a neighboring block was changed and marks that this state
-	 * should perform any checks during a neighbor change. Cases may include
-	 * when redstone power is updated, cactus blocks popping off due to a
-	 * neighboring solid block, etc.
-	 */
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos)
 	{
-		worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
+		IFalling.super.neighborChanged(state, world, pos, block, neighborPos);
 	}
 
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
-		if (!world.isRemote)
-		{
-			this.checkFallable(world, pos);
-		}
-	}
-
-	private void checkFallable(World world, BlockPos pos)
-	{
-		if (canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= 0)
-		{
-			int i = 32;
-
-			if (!fallInstantly && world.isAreaLoaded(pos.add(-32, -32, -32), pos.add(32, 32, 32)))
-			{
-				if (!world.isRemote)
-				{
-					EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, world.getBlockState(pos));
-					this.onStartFalling(entityfallingblock);
-					world.spawnEntityInWorld(entityfallingblock);
-				}
-			}
-			else
-			{
-				world.setBlockToAir(pos);
-				BlockPos blockpos;
-
-				for (blockpos = pos.down(); canFallThrough(world.getBlockState(blockpos)) && blockpos.getY() > 0; blockpos = blockpos.down())
-				{
-					;
-				}
-
-				if (blockpos.getY() > 0)
-				{
-					world.setBlockState(blockpos.up(), this.getDefaultState());
-				}
-			}
-		}
-	}
-
-	protected void onStartFalling(EntityFallingBlock fallingEntity)
-	{
-	}
-
-	/**
-	 * How many world ticks before ticking
-	 */
-	@Override
-	public int tickRate(World worldIn)
-	{
-		return 2;
-	}
-
-	public static boolean canFallThrough(IBlockState state)
-	{
-		Block block = state.getBlock();
-		Material material = state.getMaterial();
-		return block == Blocks.FIRE || material == Material.AIR || material == Material.WATER || material == Material.LAVA;
-	}
-
-	public void onEndFalling(World worldIn, BlockPos pos, IBlockState p_176502_3_, IBlockState p_176502_4_)
-	{
-	}
-
-	public void func_190974_b(World world, BlockPos pos)
-	{
-		
+		IFalling.super.updateTick(world, pos, state, rand);
 	}
 
 	@Override
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
+	public int tickRate(World world)
 	{
-		if (rand.nextInt(16) == 0)
-		{
-			BlockPos blockpos = pos.down();
-
-			if (canFallThrough(worldIn.getBlockState(blockpos)))
-			{
-				double d0 = pos.getX() + rand.nextFloat();
-				double d1 = pos.getY() - 0.05D;
-				double d2 = pos.getZ() + rand.nextFloat();
-				worldIn.spawnParticle(EnumParticleTypes.FALLING_DUST, d0, d1, d2, 0.0D, 0.0D, 0.0D, Block.getStateId(stateIn));
-			}
-		}
+		return IFalling.super.tickRate(world);
 	}
 
-	public int getDustColor(IBlockState p_189876_1_)
+	@Override
+	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
 	{
-		return -16777216;
+		IFalling.super.randomDisplayTick(state, world, pos, rand);
+	}
+
+	@Override
+	public Block getBlock()
+	{
+		return this;
 	}
 }

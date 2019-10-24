@@ -14,7 +14,7 @@ import net.minecraft.util.Tuple;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public interface IAbsorbingBlock
+public interface IAbsorbing
 {
 	public default boolean tryAbsorb(World worldIn, BlockPos pos, IBlockState state)
 	{

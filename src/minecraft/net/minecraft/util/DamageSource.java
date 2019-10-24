@@ -181,9 +181,9 @@ public class DamageSource
 		return this.damageIsAbsolute;
 	}
 
-	protected DamageSource(String damageTypeIn)
+	public DamageSource(String damageType)
 	{
-		this.damageType = damageTypeIn;
+		this.damageType = damageType;
 	}
 
 	@Nullable

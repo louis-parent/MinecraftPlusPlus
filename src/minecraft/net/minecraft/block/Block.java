@@ -670,7 +670,7 @@ public class Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos)
 	{
 	}
 

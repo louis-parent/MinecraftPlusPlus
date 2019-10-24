@@ -6,6 +6,7 @@ import java.util.Map;
 import fr.minecraftpp.anotation.Mod;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 
 @Mod("minecraftpp")
 public class ModLanguage
@@ -37,6 +38,12 @@ public class ModLanguage
 	{
 		String unlocalizedName = block.getUnlocalizedName() + ".name";
 		toAdd.put(unlocalizedName, unlocalizedNameToProperName(block.getUnlocalizedName()));
+	}
+	
+	public static void addTranslation(DamageSource damageSource)
+	{
+		String unlocalizedName = "death.attack." + damageSource.damageType;
+		toAdd.put(unlocalizedName, "%1$s was killed on " + unlocalizedNameToProperName(damageSource.damageType));
 	}
 
 	private static String unlocalizedNameToProperName(String unlocalizedName)

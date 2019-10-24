@@ -2,7 +2,7 @@ package net.minecraft.block;
 
 import java.util.Random;
 
-import fr.minecraftpp.block.IAbsorbingBlock;
+import fr.minecraftpp.block.IAbsorbing;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -17,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
-public class BlockSponge extends Block implements IAbsorbingBlock
+public class BlockSponge extends Block implements IAbsorbing
 {
 	public static final PropertyBool WET = PropertyBool.create("wet");
 
@@ -165,7 +165,7 @@ public class BlockSponge extends Block implements IAbsorbingBlock
 	@Override
 	public boolean tryAbsorb(World world, BlockPos pos, IBlockState state)
 	{
-		if (!state.getValue(WET).booleanValue() && IAbsorbingBlock.super.tryAbsorb(world, pos, state))
+		if (!state.getValue(WET).booleanValue() && IAbsorbing.super.tryAbsorb(world, pos, state))
 		{
 			world.setBlockState(pos, state.withProperty(WET, Boolean.valueOf(true)), 2);
 			return true;
