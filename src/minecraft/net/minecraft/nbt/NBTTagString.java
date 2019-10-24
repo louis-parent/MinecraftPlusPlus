@@ -25,26 +25,30 @@ public class NBTTagString extends NBTBase
 	 * Write the actual data contents of the tag, implemented in NBT extension
 	 * classes
 	 */
+	@Override
 	void write(DataOutput output) throws IOException
 	{
 		output.writeUTF(this.data);
 	}
 
+	@Override
 	void read(DataInput input, int depth, NBTSizeTracker sizeTracker) throws IOException
 	{
 		sizeTracker.read(288L);
 		this.data = input.readUTF();
-		sizeTracker.read((long) (16 * this.data.length()));
+		sizeTracker.read(16 * this.data.length());
 	}
 
 	/**
 	 * Gets the type byte for the tag.
 	 */
+	@Override
 	public byte getId()
 	{
 		return 8;
 	}
 
+	@Override
 	public String toString()
 	{
 		return func_193588_a(this.data);
@@ -53,6 +57,7 @@ public class NBTTagString extends NBTBase
 	/**
 	 * Creates a clone of the tag.
 	 */
+	@Override
 	public NBTTagString copy()
 	{
 		return new NBTTagString(this.data);
@@ -61,11 +66,13 @@ public class NBTTagString extends NBTBase
 	/**
 	 * Return whether this compound has no tags.
 	 */
+	@Override
 	public boolean hasNoTags()
 	{
 		return this.data.isEmpty();
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (!super.equals(p_equals_1_))
@@ -79,11 +86,13 @@ public class NBTTagString extends NBTBase
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return super.hashCode() ^ this.data.hashCode();
 	}
 
+	@Override
 	public String getString()
 	{
 		return this.data;

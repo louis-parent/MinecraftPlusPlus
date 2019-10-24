@@ -42,6 +42,7 @@ public class BlockPistonMoving extends BlockContainer
 		this.setHardness(-1.0F);
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -62,6 +63,7 @@ public class BlockPistonMoving extends BlockContainer
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -76,6 +78,7 @@ public class BlockPistonMoving extends BlockContainer
 		}
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return false;
@@ -84,6 +87,7 @@ public class BlockPistonMoving extends BlockContainer
 	/**
 	 * Check whether this Block can be placed on the given side
 	 */
+	@Override
 	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
 	{
 		return false;
@@ -92,12 +96,13 @@ public class BlockPistonMoving extends BlockContainer
 	/**
 	 * Called when a player destroys this Block
 	 */
+	@Override
 	public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state)
 	{
-		BlockPos blockpos = pos.offset(((EnumFacing) state.getValue(FACING)).getOpposite());
+		BlockPos blockpos = pos.offset(state.getValue(FACING).getOpposite());
 		IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-		if (iblockstate.getBlock() instanceof BlockPistonBase && ((Boolean) iblockstate.getValue(BlockPistonBase.EXTENDED)).booleanValue())
+		if (iblockstate.getBlock() instanceof BlockPistonBase && iblockstate.getValue(BlockPistonBase.EXTENDED).booleanValue())
 		{
 			worldIn.setBlockToAir(blockpos);
 		}
@@ -107,16 +112,19 @@ public class BlockPistonMoving extends BlockContainer
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		if (!worldIn.isRemote && worldIn.getTileEntity(pos) == null)
@@ -133,6 +141,7 @@ public class BlockPistonMoving extends BlockContainer
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.EMPTY_ITEM;
@@ -141,6 +150,7 @@ public class BlockPistonMoving extends BlockContainer
 	/**
 	 * Spawns this Block's drops into the World as EntityItems.
 	 */
+	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 		if (!worldIn.isRemote)
@@ -155,6 +165,7 @@ public class BlockPistonMoving extends BlockContainer
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -172,6 +183,7 @@ public class BlockPistonMoving extends BlockContainer
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!worldIn.isRemote)
@@ -180,6 +192,7 @@ public class BlockPistonMoving extends BlockContainer
 		}
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -187,6 +200,7 @@ public class BlockPistonMoving extends BlockContainer
 		return tileentitypiston == null ? null : tileentitypiston.getAABB(worldIn, pos);
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 		TileEntityPiston tileentitypiston = this.getTilePistonAt(worldIn, pos);
@@ -197,6 +211,7 @@ public class BlockPistonMoving extends BlockContainer
 		}
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		TileEntityPiston tileentitypiston = this.getTilePistonAt(source, pos);
@@ -215,6 +230,7 @@ public class BlockPistonMoving extends BlockContainer
 		return tileentity instanceof TileEntityPiston ? (TileEntityPiston) tileentity : null;
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return ItemStack.EMPTY_ITEM_STACK;
@@ -223,6 +239,7 @@ public class BlockPistonMoving extends BlockContainer
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(FACING, BlockPistonExtension.getFacing(meta)).withProperty(TYPE, (meta & 8) > 0 ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT);
@@ -232,27 +249,30 @@ public class BlockPistonMoving extends BlockContainer
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((EnumFacing) state.getValue(FACING)).getIndex();
+		i = i | state.getValue(FACING).getIndex();
 
 		if (state.getValue(TYPE) == BlockPistonExtension.EnumPistonType.STICKY)
 		{
@@ -262,11 +282,13 @@ public class BlockPistonMoving extends BlockContainer
 		return i;
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING, TYPE });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

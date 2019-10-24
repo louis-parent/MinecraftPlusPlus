@@ -52,7 +52,7 @@ public class EntityBodyHelper
 
 					if (this.rotationTickCounter > 10)
 					{
-						f = Math.max(1.0F - (float) (this.rotationTickCounter - 10) / 10.0F, 0.0F) * 75.0F;
+						f = Math.max(1.0F - (this.rotationTickCounter - 10) / 10.0F, 0.0F) * 75.0F;
 					}
 				}
 

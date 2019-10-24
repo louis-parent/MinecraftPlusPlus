@@ -28,6 +28,7 @@ public class ItemTransformVec3f
 		this.scale = new Vector3f(scale);
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -45,6 +46,7 @@ public class ItemTransformVec3f
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = this.rotation.hashCode();
@@ -59,6 +61,7 @@ public class ItemTransformVec3f
 		private static final Vector3f TRANSLATION_DEFAULT = new Vector3f(0.0F, 0.0F, 0.0F);
 		private static final Vector3f SCALE_DEFAULT = new Vector3f(1.0F, 1.0F, 1.0F);
 
+		@Override
 		public ItemTransformVec3f deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();

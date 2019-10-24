@@ -24,6 +24,7 @@ public class ModelEvokerFangs extends ModelBase
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		float f = limbSwing * 2.0F;

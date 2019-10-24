@@ -6,10 +6,13 @@ import net.minecraft.util.math.BlockPos;
 
 public interface IBlockSource extends ILocatableSource
 {
+	@Override
 	double getX();
 
+	@Override
 	double getY();
 
+	@Override
 	double getZ();
 
 	BlockPos getBlockPos();

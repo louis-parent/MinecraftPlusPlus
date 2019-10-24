@@ -27,6 +27,7 @@ public class WorldGenBigMushroom extends WorldGenerator
 		this.mushroomType = null;
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		Block block = this.mushroomType;

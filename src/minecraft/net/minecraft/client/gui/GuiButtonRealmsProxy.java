@@ -39,6 +39,7 @@ public class GuiButtonRealmsProxy extends GuiButton
 		super.displayString = text;
 	}
 
+	@Override
 	public int getButtonWidth()
 	{
 		return super.getButtonWidth();
@@ -53,6 +54,7 @@ public class GuiButtonRealmsProxy extends GuiButton
 	 * Returns true if the mouse has been pressed on this control. Equivalent of
 	 * MouseListener.mousePressed(MouseEvent e).
 	 */
+	@Override
 	public boolean mousePressed(Minecraft mc, int mouseX, int mouseY)
 	{
 		if (super.mousePressed(mc, mouseX, mouseY))
@@ -67,6 +69,7 @@ public class GuiButtonRealmsProxy extends GuiButton
 	 * Fired when the mouse button is released. Equivalent of
 	 * MouseListener.mouseReleased(MouseEvent e).
 	 */
+	@Override
 	public void mouseReleased(int mouseX, int mouseY)
 	{
 		this.realmsButton.released(mouseX, mouseY);
@@ -76,6 +79,7 @@ public class GuiButtonRealmsProxy extends GuiButton
 	 * Fired when the mouse button is dragged. Equivalent of
 	 * MouseListener.mouseDragged(MouseEvent e).
 	 */
+	@Override
 	public void mouseDragged(Minecraft mc, int mouseX, int mouseY)
 	{
 		this.realmsButton.renderBg(mouseX, mouseY);
@@ -90,6 +94,7 @@ public class GuiButtonRealmsProxy extends GuiButton
 	 * Returns 0 if the button is disabled, 1 if the mouse is NOT hovering over
 	 * this button and 2 if it IS hovering over this button.
 	 */
+	@Override
 	public int getHoverState(boolean mouseOver)
 	{
 		return this.realmsButton.getYImage(mouseOver);

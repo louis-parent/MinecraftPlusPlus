@@ -88,6 +88,7 @@ public class LanServerDetector
 			this.socket.joinGroup(this.broadcastAddress);
 		}
 
+		@Override
 		public void run()
 		{
 			byte[] abyte = new byte[1024];
@@ -106,7 +107,7 @@ public class LanServerDetector
 				}
 				catch (IOException ioexception)
 				{
-					LanServerDetector.LOGGER.error("Couldn't ping server", (Throwable) ioexception);
+					LanServerDetector.LOGGER.error("Couldn't ping server", ioexception);
 					break;
 				}
 

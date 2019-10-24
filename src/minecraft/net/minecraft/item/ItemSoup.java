@@ -17,6 +17,7 @@ public class ItemSoup extends ItemFood
 	 * Not called when the player stops using the Item before the action is
 	 * complete.
 	 */
+	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
 	{
 		super.onItemUseFinish(stack, worldIn, entityLiving);

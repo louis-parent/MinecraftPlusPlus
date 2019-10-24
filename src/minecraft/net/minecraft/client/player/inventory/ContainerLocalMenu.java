@@ -23,40 +23,48 @@ public class ContainerLocalMenu extends InventoryBasic implements ILockableConta
 		this.guiID = id;
 	}
 
+	@Override
 	public int getField(int id)
 	{
-		return this.dataValues.containsKey(Integer.valueOf(id)) ? ((Integer) this.dataValues.get(Integer.valueOf(id))).intValue() : 0;
+		return this.dataValues.containsKey(Integer.valueOf(id)) ? this.dataValues.get(Integer.valueOf(id)).intValue() : 0;
 	}
 
+	@Override
 	public void setField(int id, int value)
 	{
 		this.dataValues.put(Integer.valueOf(id), Integer.valueOf(value));
 	}
 
+	@Override
 	public int getFieldCount()
 	{
 		return this.dataValues.size();
 	}
 
+	@Override
 	public boolean isLocked()
 	{
 		return false;
 	}
 
+	@Override
 	public void setLockCode(LockCode code)
 	{
 	}
 
+	@Override
 	public LockCode getLockCode()
 	{
 		return LockCode.EMPTY_CODE;
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return this.guiID;
 	}
 
+	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
 		throw new UnsupportedOperationException();

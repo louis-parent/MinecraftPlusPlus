@@ -30,6 +30,7 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (this.runDelay > 0)
@@ -47,6 +48,7 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return this.timeoutCounter >= -this.maxStayTicks && this.timeoutCounter <= 1200 && this.shouldMoveTo(this.theEntity.world, this.destinationBlock);
@@ -55,9 +57,10 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
-		this.theEntity.getNavigator().tryMoveToXYZ((double) ((float) this.destinationBlock.getX()) + 0.5D, (double) (this.destinationBlock.getY() + 1), (double) ((float) this.destinationBlock.getZ()) + 0.5D, this.movementSpeed);
+		this.theEntity.getNavigator().tryMoveToXYZ((this.destinationBlock.getX()) + 0.5D, this.destinationBlock.getY() + 1, (this.destinationBlock.getZ()) + 0.5D, this.movementSpeed);
 		this.timeoutCounter = 0;
 		this.maxStayTicks = this.theEntity.getRNG().nextInt(this.theEntity.getRNG().nextInt(1200) + 1200) + 1200;
 	}
@@ -65,6 +68,7 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		if (this.theEntity.getDistanceSqToCenter(this.destinationBlock.up()) > 1.0D)
@@ -74,7 +78,7 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
 
 			if (this.timeoutCounter % 40 == 0)
 			{
-				this.theEntity.getNavigator().tryMoveToXYZ((double) ((float) this.destinationBlock.getX()) + 0.5D, (double) (this.destinationBlock.getY() + 1), (double) ((float) this.destinationBlock.getZ()) + 0.5D, this.movementSpeed);
+				this.theEntity.getNavigator().tryMoveToXYZ((this.destinationBlock.getX()) + 0.5D, this.destinationBlock.getY() + 1, (this.destinationBlock.getZ()) + 0.5D, this.movementSpeed);
 			}
 		}
 		else

@@ -15,6 +15,7 @@ public class RenderSpider<T extends EntitySpider> extends RenderLiving<T>
 		this.addLayer(new LayerSpiderEyes(this));
 	}
 
+	@Override
 	protected float getDeathMaxRotation(T entityLivingBaseIn)
 	{
 		return 180.0F;
@@ -24,6 +25,7 @@ public class RenderSpider<T extends EntitySpider> extends RenderLiving<T>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(T entity)
 	{
 		return SPIDER_TEXTURES;

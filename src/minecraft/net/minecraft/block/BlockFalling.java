@@ -30,9 +30,10 @@ public class BlockFalling extends Block
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+	@Override
+	public void onBlockAdded(World world, BlockPos pos, IBlockState state)
 	{
-		worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
+		world.scheduleUpdate(pos, this, this.tickRate(world));
 	}
 
 	/**
@@ -41,47 +42,49 @@ public class BlockFalling extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
 	}
 
-	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+	@Override
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
-		if (!worldIn.isRemote)
+		if (!world.isRemote)
 		{
-			this.checkFallable(worldIn, pos);
+			this.checkFallable(world, pos);
 		}
 	}
 
-	private void checkFallable(World worldIn, BlockPos pos)
+	private void checkFallable(World world, BlockPos pos)
 	{
-		if (canFallThrough(worldIn.getBlockState(pos.down())) && pos.getY() >= 0)
+		if (canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= 0)
 		{
 			int i = 32;
 
-			if (!fallInstantly && worldIn.isAreaLoaded(pos.add(-32, -32, -32), pos.add(32, 32, 32)))
+			if (!fallInstantly && world.isAreaLoaded(pos.add(-32, -32, -32), pos.add(32, 32, 32)))
 			{
-				if (!worldIn.isRemote)
+				if (!world.isRemote)
 				{
-					EntityFallingBlock entityfallingblock = new EntityFallingBlock(worldIn, (double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, worldIn.getBlockState(pos));
+					EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, world.getBlockState(pos));
 					this.onStartFalling(entityfallingblock);
-					worldIn.spawnEntityInWorld(entityfallingblock);
+					world.spawnEntityInWorld(entityfallingblock);
 				}
 			}
 			else
 			{
-				worldIn.setBlockToAir(pos);
+				world.setBlockToAir(pos);
 				BlockPos blockpos;
 
-				for (blockpos = pos.down(); canFallThrough(worldIn.getBlockState(blockpos)) && blockpos.getY() > 0; blockpos = blockpos.down())
+				for (blockpos = pos.down(); canFallThrough(world.getBlockState(blockpos)) && blockpos.getY() > 0; blockpos = blockpos.down())
 				{
 					;
 				}
 
 				if (blockpos.getY() > 0)
 				{
-					worldIn.setBlockState(blockpos.up(), this.getDefaultState());
+					world.setBlockState(blockpos.up(), this.getDefaultState());
 				}
 			}
 		}
@@ -94,6 +97,7 @@ public class BlockFalling extends Block
 	/**
 	 * How many world ticks before ticking
 	 */
+	@Override
 	public int tickRate(World worldIn)
 	{
 		return 2;
@@ -110,10 +114,12 @@ public class BlockFalling extends Block
 	{
 	}
 
-	public void func_190974_b(World p_190974_1_, BlockPos p_190974_2_)
+	public void func_190974_b(World world, BlockPos pos)
 	{
+		
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
 		if (rand.nextInt(16) == 0)
@@ -122,9 +128,9 @@ public class BlockFalling extends Block
 
 			if (canFallThrough(worldIn.getBlockState(blockpos)))
 			{
-				double d0 = (double) ((float) pos.getX() + rand.nextFloat());
-				double d1 = (double) pos.getY() - 0.05D;
-				double d2 = (double) ((float) pos.getZ() + rand.nextFloat());
+				double d0 = pos.getX() + rand.nextFloat();
+				double d1 = pos.getY() - 0.05D;
+				double d2 = pos.getZ() + rand.nextFloat();
 				worldIn.spawnParticle(EnumParticleTypes.FALLING_DUST, d0, d1, d2, 0.0D, 0.0D, 0.0D, Block.getStateId(stateIn));
 			}
 		}

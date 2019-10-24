@@ -28,6 +28,7 @@ public class DefaultResourcePack implements IResourcePack
 		this.resourceIndex = resourceIndexIn;
 	}
 
+	@Override
 	public InputStream getInputStream(ResourceLocation location) throws IOException
 	{
 		InputStream inputstream = this.getResourceStream(location);
@@ -74,16 +75,19 @@ public class DefaultResourcePack implements IResourcePack
 		}
 	}
 
+	@Override
 	public boolean resourceExists(ResourceLocation location)
 	{
 		return this.getResourceStream(location) != null || this.resourceIndex.isFileExisting(location);
 	}
 
+	@Override
 	public Set<String> getResourceDomains()
 	{
 		return DEFAULT_RESOURCE_DOMAINS;
 	}
 
+	@Override
 	@Nullable
 	public <T extends IMetadataSection> T getPackMetadata(MetadataSerializer metadataSerializer, String metadataSectionName) throws IOException
 	{
@@ -94,19 +98,21 @@ public class DefaultResourcePack implements IResourcePack
 		}
 		catch (RuntimeException var4)
 		{
-			return (T) null;
+			return null;
 		}
 		catch (FileNotFoundException var5)
 		{
-			return (T) null;
+			return null;
 		}
 	}
 
+	@Override
 	public BufferedImage getPackImage() throws IOException
 	{
 		return TextureUtil.readBufferedImage(DefaultResourcePack.class.getResourceAsStream("/" + (new ResourceLocation("pack.png")).getResourcePath()));
 	}
 
+	@Override
 	public String getPackName()
 	{
 		return "Default";

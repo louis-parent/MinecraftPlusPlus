@@ -19,6 +19,7 @@ public class RenderPig extends RenderLiving<EntityPig>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityPig entity)
 	{
 		return PIG_TEXTURES;

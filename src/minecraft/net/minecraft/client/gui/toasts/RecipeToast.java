@@ -22,6 +22,7 @@ public class RecipeToast implements IToast
 		this.field_193666_c.add(p_i47489_1_);
 	}
 
+	@Override
 	public IToast.Visibility func_193653_a(GuiToast p_193653_1_, long p_193653_2_)
 	{
 		if (this.field_193668_e)
@@ -42,7 +43,7 @@ public class RecipeToast implements IToast
 			p_193653_1_.func_192989_b().fontRendererObj.drawString(I18n.format("recipe.toast.title"), 30, 7, -11534256);
 			p_193653_1_.func_192989_b().fontRendererObj.drawString(I18n.format("recipe.toast.description"), 30, 18, -16777216);
 			RenderHelper.enableGUIStandardItemLighting();
-			p_193653_1_.func_192989_b().getRenderItem().renderItemAndEffectIntoGUI((EntityLivingBase) null, this.field_193666_c.get((int) (p_193653_2_ / (5000L / (long) this.field_193666_c.size()) % (long) this.field_193666_c.size())), 8, 8);
+			p_193653_1_.func_192989_b().getRenderItem().renderItemAndEffectIntoGUI((EntityLivingBase) null, this.field_193666_c.get((int) (p_193653_2_ / (5000L / this.field_193666_c.size()) % this.field_193666_c.size())), 8, 8);
 			return p_193653_2_ - this.field_193667_d >= 5000L ? IToast.Visibility.HIDE : IToast.Visibility.SHOW;
 		}
 	}
@@ -57,7 +58,7 @@ public class RecipeToast implements IToast
 
 	public static void func_193665_a(GuiToast p_193665_0_, IRecipe p_193665_1_)
 	{
-		RecipeToast recipetoast = (RecipeToast) p_193665_0_.func_192990_a(RecipeToast.class, field_193655_b);
+		RecipeToast recipetoast = p_193665_0_.func_192990_a(RecipeToast.class, field_193655_b);
 
 		if (recipetoast == null)
 		{

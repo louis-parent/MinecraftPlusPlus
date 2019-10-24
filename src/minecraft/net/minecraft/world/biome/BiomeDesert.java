@@ -44,6 +44,7 @@ public class BiomeDesert extends Biome
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityHusk.class, 80, 4, 4));
 	}
 
+	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
 		super.decorate(worldIn, rand, pos);

@@ -22,6 +22,7 @@ public class ItemAir extends Item
 	 * ItemStack so different stacks can have different names based on their
 	 * damage or NBT.
 	 */
+	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		return this.field_190904_a.getUnlocalizedName();
@@ -30,6 +31,7 @@ public class ItemAir extends Item
 	/**
 	 * Returns the unlocalized name of this item.
 	 */
+	@Override
 	public String getUnlocalizedName()
 	{
 		return this.field_190904_a.getUnlocalizedName();
@@ -39,6 +41,7 @@ public class ItemAir extends Item
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		super.addInformation(stack, playerIn, tooltip, advanced);

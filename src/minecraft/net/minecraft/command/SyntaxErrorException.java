@@ -12,6 +12,7 @@ public class SyntaxErrorException extends CommandException
 		super(message, replacements);
 	}
 
+	@Override
 	public synchronized Throwable fillInStackTrace()
 	{
 		return this;

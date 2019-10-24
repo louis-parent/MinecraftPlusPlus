@@ -34,11 +34,13 @@ public class BlockBeacon extends BlockContainer
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
+	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityBeacon();
 	}
 
+	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (world.isRemote)
@@ -63,11 +65,13 @@ public class BlockBeacon extends BlockContainer
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -78,6 +82,7 @@ public class BlockBeacon extends BlockContainer
 	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
 	 * INVISIBLE to skip all rendering
 	 */
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.MODEL;
@@ -87,6 +92,7 @@ public class BlockBeacon extends BlockContainer
 	 * Called by ItemBlocks after a block is set in the world, to allow
 	 * post-place logic
 	 */
+	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
@@ -108,6 +114,7 @@ public class BlockBeacon extends BlockContainer
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -119,6 +126,7 @@ public class BlockBeacon extends BlockContainer
 		}
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
@@ -128,6 +136,7 @@ public class BlockBeacon extends BlockContainer
 	{
 		HttpUtil.DOWNLOADER_EXECUTOR.submit(new Runnable()
 		{
+			@Override
 			public void run()
 			{
 				Chunk chunk = worldIn.getChunkFromBlockCoords(glassPos);
@@ -147,6 +156,7 @@ public class BlockBeacon extends BlockContainer
 					{
 						((WorldServer) worldIn).addScheduledTask(new Runnable()
 						{
+							@Override
 							public void run()
 							{
 								TileEntity tileentity = worldIn.getTileEntity(blockpos);

@@ -22,6 +22,7 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (this.theEntity.isWithinHomeDistanceCurrentPosition())
@@ -31,7 +32,7 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
 		else
 		{
 			BlockPos blockpos = this.theEntity.getHomePosition();
-			Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, new Vec3d((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ()));
+			Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, new Vec3d(blockpos.getX(), blockpos.getY(), blockpos.getZ()));
 
 			if (vec3d == null)
 			{
@@ -50,6 +51,7 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return !this.theEntity.getNavigator().noPath();
@@ -58,6 +60,7 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.movementSpeed);

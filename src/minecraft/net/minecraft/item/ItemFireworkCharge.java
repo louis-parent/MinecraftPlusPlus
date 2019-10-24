@@ -31,6 +31,7 @@ public class ItemFireworkCharge extends Item
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		if (stack.hasTagCompound())

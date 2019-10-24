@@ -21,6 +21,7 @@ public class RenderGiantZombie extends RenderLiving<EntityGiantZombie>
 		this.addLayer(new LayerHeldItem(this));
 		this.addLayer(new LayerBipedArmor(this)
 		{
+			@Override
 			protected void initArmor()
 			{
 				this.modelLeggings = new ModelZombie(0.5F, true);
@@ -29,6 +30,7 @@ public class RenderGiantZombie extends RenderLiving<EntityGiantZombie>
 		});
 	}
 
+	@Override
 	public void transformHeldFull3DItemLayer()
 	{
 		GlStateManager.translate(0.0F, 0.1875F, 0.0F);
@@ -38,6 +40,7 @@ public class RenderGiantZombie extends RenderLiving<EntityGiantZombie>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityGiantZombie entitylivingbaseIn, float partialTickTime)
 	{
 		GlStateManager.scale(this.scale, this.scale, this.scale);
@@ -47,6 +50,7 @@ public class RenderGiantZombie extends RenderLiving<EntityGiantZombie>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityGiantZombie entity)
 	{
 		return ZOMBIE_TEXTURES;

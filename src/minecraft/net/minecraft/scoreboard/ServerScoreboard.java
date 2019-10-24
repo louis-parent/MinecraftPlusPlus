@@ -26,6 +26,7 @@ public class ServerScoreboard extends Scoreboard
 		this.scoreboardMCServer = mcServer;
 	}
 
+	@Override
 	public void onScoreUpdated(Score scoreIn)
 	{
 		super.onScoreUpdated(scoreIn);
@@ -38,6 +39,7 @@ public class ServerScoreboard extends Scoreboard
 		this.markSaveDataDirty();
 	}
 
+	@Override
 	public void broadcastScoreUpdate(String scoreName)
 	{
 		super.broadcastScoreUpdate(scoreName);
@@ -45,6 +47,7 @@ public class ServerScoreboard extends Scoreboard
 		this.markSaveDataDirty();
 	}
 
+	@Override
 	public void broadcastScoreUpdate(String scoreName, ScoreObjective objective)
 	{
 		super.broadcastScoreUpdate(scoreName, objective);
@@ -55,6 +58,7 @@ public class ServerScoreboard extends Scoreboard
 	/**
 	 * 0 is tab menu, 1 is sidebar, 2 is below name
 	 */
+	@Override
 	public void setObjectiveInDisplaySlot(int objectiveSlot, ScoreObjective objective)
 	{
 		ScoreObjective scoreobjective = this.getObjectiveInDisplaySlot(objectiveSlot);
@@ -90,6 +94,7 @@ public class ServerScoreboard extends Scoreboard
 	/**
 	 * Adds a player to the given team
 	 */
+	@Override
 	public boolean addPlayerToTeam(String player, String newTeam)
 	{
 		if (super.addPlayerToTeam(player, newTeam))
@@ -109,6 +114,7 @@ public class ServerScoreboard extends Scoreboard
 	 * Removes the given username from the given ScorePlayerTeam. If the player
 	 * is not on the team then an IllegalStateException is thrown.
 	 */
+	@Override
 	public void removePlayerFromTeam(String username, ScorePlayerTeam playerTeam)
 	{
 		super.removePlayerFromTeam(username, playerTeam);
@@ -119,12 +125,14 @@ public class ServerScoreboard extends Scoreboard
 	/**
 	 * Called when a score objective is added
 	 */
+	@Override
 	public void onScoreObjectiveAdded(ScoreObjective scoreObjectiveIn)
 	{
 		super.onScoreObjectiveAdded(scoreObjectiveIn);
 		this.markSaveDataDirty();
 	}
 
+	@Override
 	public void onObjectiveDisplayNameChanged(ScoreObjective objective)
 	{
 		super.onObjectiveDisplayNameChanged(objective);
@@ -137,6 +145,7 @@ public class ServerScoreboard extends Scoreboard
 		this.markSaveDataDirty();
 	}
 
+	@Override
 	public void onScoreObjectiveRemoved(ScoreObjective objective)
 	{
 		super.onScoreObjectiveRemoved(objective);
@@ -153,6 +162,7 @@ public class ServerScoreboard extends Scoreboard
 	 * This packet will notify the players that this team is created, and that
 	 * will register it on the client
 	 */
+	@Override
 	public void broadcastTeamCreated(ScorePlayerTeam playerTeam)
 	{
 		super.broadcastTeamCreated(playerTeam);
@@ -163,6 +173,7 @@ public class ServerScoreboard extends Scoreboard
 	/**
 	 * This packet will notify the players that this team is updated
 	 */
+	@Override
 	public void broadcastTeamInfoUpdate(ScorePlayerTeam playerTeam)
 	{
 		super.broadcastTeamInfoUpdate(playerTeam);
@@ -170,6 +181,7 @@ public class ServerScoreboard extends Scoreboard
 		this.markSaveDataDirty();
 	}
 
+	@Override
 	public void broadcastTeamRemove(ScorePlayerTeam playerTeam)
 	{
 		super.broadcastTeamRemove(playerTeam);
@@ -179,7 +191,7 @@ public class ServerScoreboard extends Scoreboard
 
 	public void addDirtyRunnable(Runnable runnable)
 	{
-		this.dirtyRunnables = (Runnable[]) Arrays.copyOf(this.dirtyRunnables, this.dirtyRunnables.length + 1);
+		this.dirtyRunnables = Arrays.copyOf(this.dirtyRunnables, this.dirtyRunnables.length + 1);
 		this.dirtyRunnables[this.dirtyRunnables.length - 1] = runnable;
 	}
 

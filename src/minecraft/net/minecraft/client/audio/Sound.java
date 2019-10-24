@@ -41,11 +41,13 @@ public class Sound implements ISoundEventAccessor<Sound>
 		return this.pitch;
 	}
 
+	@Override
 	public int getWeight()
 	{
 		return this.weight;
 	}
 
+	@Override
 	public Sound cloneEntry()
 	{
 		return this;

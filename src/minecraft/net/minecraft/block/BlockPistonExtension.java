@@ -56,9 +56,10 @@ public class BlockPistonExtension extends BlockDirectional
 		this.setHardness(0.5F);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		switch ((EnumFacing) state.getValue(FACING))
+		switch (state.getValue(FACING))
 		{
 			case DOWN:
 			default:
@@ -81,6 +82,7 @@ public class BlockPistonExtension extends BlockDirectional
 		}
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 		addCollisionBoxToList(pos, entityBox, collidingBoxes, state.getBoundingBox(worldIn, pos));
@@ -89,9 +91,9 @@ public class BlockPistonExtension extends BlockDirectional
 
 	private AxisAlignedBB getArmShape(IBlockState state)
 	{
-		boolean flag = ((Boolean) state.getValue(SHORT)).booleanValue();
+		boolean flag = state.getValue(SHORT).booleanValue();
 
-		switch ((EnumFacing) state.getValue(FACING))
+		switch (state.getValue(FACING))
 		{
 			case DOWN:
 			default:
@@ -118,16 +120,18 @@ public class BlockPistonExtension extends BlockDirectional
 	 * Checks if an IBlockState represents a block that is opaque and a full
 	 * cube.
 	 */
+	@Override
 	public boolean isFullyOpaque(IBlockState state)
 	{
 		return state.getValue(FACING) == EnumFacing.UP;
 	}
 
+	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
 		if (player.capabilities.isCreativeMode)
 		{
-			BlockPos blockpos = pos.offset(((EnumFacing) state.getValue(FACING)).getOpposite());
+			BlockPos blockpos = pos.offset(state.getValue(FACING).getOpposite());
 			Block block = worldIn.getBlockState(blockpos).getBlock();
 
 			if (block == Blocks.PISTON || block == Blocks.STICKY_PISTON)
@@ -143,14 +147,15 @@ public class BlockPistonExtension extends BlockDirectional
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		super.breakBlock(worldIn, pos, state);
-		EnumFacing enumfacing = ((EnumFacing) state.getValue(FACING)).getOpposite();
+		EnumFacing enumfacing = state.getValue(FACING).getOpposite();
 		pos = pos.offset(enumfacing);
 		IBlockState iblockstate = worldIn.getBlockState(pos);
 
-		if ((iblockstate.getBlock() == Blocks.PISTON || iblockstate.getBlock() == Blocks.STICKY_PISTON) && ((Boolean) iblockstate.getValue(BlockPistonBase.EXTENDED)).booleanValue())
+		if ((iblockstate.getBlock() == Blocks.PISTON || iblockstate.getBlock() == Blocks.STICKY_PISTON) && iblockstate.getValue(BlockPistonBase.EXTENDED).booleanValue())
 		{
 			iblockstate.getBlock().dropBlockAsItem(worldIn, pos, iblockstate, 0);
 			worldIn.setBlockToAir(pos);
@@ -161,16 +166,19 @@ public class BlockPistonExtension extends BlockDirectional
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return false;
@@ -179,6 +187,7 @@ public class BlockPistonExtension extends BlockDirectional
 	/**
 	 * Check whether this Block can be placed on the given side
 	 */
+	@Override
 	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
 	{
 		return false;
@@ -187,6 +196,7 @@ public class BlockPistonExtension extends BlockDirectional
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
@@ -198,9 +208,10 @@ public class BlockPistonExtension extends BlockDirectional
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
-		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+		EnumFacing enumfacing = state.getValue(FACING);
 		BlockPos blockpos = pos.offset(enumfacing.getOpposite());
 		IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
@@ -214,6 +225,7 @@ public class BlockPistonExtension extends BlockDirectional
 		}
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return true;
@@ -226,6 +238,7 @@ public class BlockPistonExtension extends BlockDirectional
 		return i > 5 ? null : EnumFacing.getFront(i);
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(state.getValue(TYPE) == BlockPistonExtension.EnumPistonType.STICKY ? Blocks.STICKY_PISTON : Blocks.PISTON);
@@ -234,6 +247,7 @@ public class BlockPistonExtension extends BlockDirectional
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(FACING, getFacing(meta)).withProperty(TYPE, (meta & 8) > 0 ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT);
@@ -242,10 +256,11 @@ public class BlockPistonExtension extends BlockDirectional
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((EnumFacing) state.getValue(FACING)).getIndex();
+		i = i | state.getValue(FACING).getIndex();
 
 		if (state.getValue(TYPE) == BlockPistonExtension.EnumPistonType.STICKY)
 		{
@@ -259,25 +274,29 @@ public class BlockPistonExtension extends BlockDirectional
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING, TYPE, SHORT });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return p_193383_4_ == p_193383_2_.getValue(FACING) ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
@@ -294,11 +313,13 @@ public class BlockPistonExtension extends BlockDirectional
 			this.VARIANT = name;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.VARIANT;
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.VARIANT;

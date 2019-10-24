@@ -25,6 +25,7 @@ public class RenderDragon extends RenderLiving<EntityDragon>
 		this.addLayer(new LayerEnderDragonDeath());
 	}
 
+	@Override
 	protected void rotateCorpse(EntityDragon entityLiving, float p_77043_2_, float p_77043_3_, float partialTicks)
 	{
 		float f = (float) entityLiving.getMovementOffsets(7, partialTicks)[0];
@@ -35,7 +36,7 @@ public class RenderDragon extends RenderLiving<EntityDragon>
 
 		if (entityLiving.deathTime > 0)
 		{
-			float f2 = ((float) entityLiving.deathTime + partialTicks - 1.0F) / 20.0F * 1.6F;
+			float f2 = (entityLiving.deathTime + partialTicks - 1.0F) / 20.0F * 1.6F;
 			f2 = MathHelper.sqrt(f2);
 
 			if (f2 > 1.0F)
@@ -50,11 +51,12 @@ public class RenderDragon extends RenderLiving<EntityDragon>
 	/**
 	 * Renders the model in RenderLiving
 	 */
+	@Override
 	protected void renderModel(EntityDragon entitylivingbaseIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
 	{
 		if (entitylivingbaseIn.deathTicks > 0)
 		{
-			float f = (float) entitylivingbaseIn.deathTicks / 200.0F;
+			float f = entitylivingbaseIn.deathTicks / 200.0F;
 			GlStateManager.depthFunc(515);
 			GlStateManager.enableAlpha();
 			GlStateManager.alphaFunc(516, f);
@@ -84,6 +86,7 @@ public class RenderDragon extends RenderLiving<EntityDragon>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityDragon entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -91,9 +94,9 @@ public class RenderDragon extends RenderLiving<EntityDragon>
 		if (entity.healingEnderCrystal != null)
 		{
 			this.bindTexture(ENDERCRYSTAL_BEAM_TEXTURES);
-			float f = MathHelper.sin(((float) entity.healingEnderCrystal.ticksExisted + partialTicks) * 0.2F) / 2.0F + 0.5F;
+			float f = MathHelper.sin((entity.healingEnderCrystal.ticksExisted + partialTicks) * 0.2F) / 2.0F + 0.5F;
 			f = (f * f + f) * 0.2F;
-			renderCrystalBeams(x, y, z, partialTicks, entity.posX + (entity.prevPosX - entity.posX) * (double) (1.0F - partialTicks), entity.posY + (entity.prevPosY - entity.posY) * (double) (1.0F - partialTicks), entity.posZ + (entity.prevPosZ - entity.posZ) * (double) (1.0F - partialTicks), entity.ticksExisted, entity.healingEnderCrystal.posX, (double) f + entity.healingEnderCrystal.posY, entity.healingEnderCrystal.posZ);
+			renderCrystalBeams(x, y, z, partialTicks, entity.posX + (entity.prevPosX - entity.posX) * (1.0F - partialTicks), entity.posY + (entity.prevPosY - entity.posY) * (1.0F - partialTicks), entity.posZ + (entity.prevPosZ - entity.posZ) * (1.0F - partialTicks), entity.ticksExisted, entity.healingEnderCrystal.posX, f + entity.healingEnderCrystal.posY, entity.healingEnderCrystal.posZ);
 		}
 	}
 
@@ -106,25 +109,25 @@ public class RenderDragon extends RenderLiving<EntityDragon>
 		float f4 = MathHelper.sqrt(f * f + f1 * f1 + f2 * f2);
 		GlStateManager.pushMatrix();
 		GlStateManager.translate((float) p_188325_0_, (float) p_188325_2_ + 2.0F, (float) p_188325_4_);
-		GlStateManager.rotate((float) (-Math.atan2((double) f2, (double) f)) * (180F / (float) Math.PI) - 90.0F, 0.0F, 1.0F, 0.0F);
-		GlStateManager.rotate((float) (-Math.atan2((double) f3, (double) f1)) * (180F / (float) Math.PI) - 90.0F, 1.0F, 0.0F, 0.0F);
+		GlStateManager.rotate((float) (-Math.atan2(f2, f)) * (180F / (float) Math.PI) - 90.0F, 0.0F, 1.0F, 0.0F);
+		GlStateManager.rotate((float) (-Math.atan2(f3, f1)) * (180F / (float) Math.PI) - 90.0F, 1.0F, 0.0F, 0.0F);
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		RenderHelper.disableStandardItemLighting();
 		GlStateManager.disableCull();
 		GlStateManager.shadeModel(7425);
-		float f5 = 0.0F - ((float) p_188325_13_ + p_188325_6_) * 0.01F;
-		float f6 = MathHelper.sqrt(f * f + f1 * f1 + f2 * f2) / 32.0F - ((float) p_188325_13_ + p_188325_6_) * 0.01F;
+		float f5 = 0.0F - (p_188325_13_ + p_188325_6_) * 0.01F;
+		float f6 = MathHelper.sqrt(f * f + f1 * f1 + f2 * f2) / 32.0F - (p_188325_13_ + p_188325_6_) * 0.01F;
 		bufferbuilder.begin(5, DefaultVertexFormats.POSITION_TEX_COLOR);
 		int i = 8;
 
 		for (int j = 0; j <= 8; ++j)
 		{
-			float f7 = MathHelper.sin((float) (j % 8) * ((float) Math.PI * 2F) / 8.0F) * 0.75F;
-			float f8 = MathHelper.cos((float) (j % 8) * ((float) Math.PI * 2F) / 8.0F) * 0.75F;
-			float f9 = (float) (j % 8) / 8.0F;
-			bufferbuilder.pos((double) (f7 * 0.2F), (double) (f8 * 0.2F), 0.0D).tex((double) f9, (double) f5).color(0, 0, 0, 255).endVertex();
-			bufferbuilder.pos((double) f7, (double) f8, (double) f4).tex((double) f9, (double) f6).color(255, 255, 255, 255).endVertex();
+			float f7 = MathHelper.sin(j % 8 * ((float) Math.PI * 2F) / 8.0F) * 0.75F;
+			float f8 = MathHelper.cos(j % 8 * ((float) Math.PI * 2F) / 8.0F) * 0.75F;
+			float f9 = j % 8 / 8.0F;
+			bufferbuilder.pos(f7 * 0.2F, f8 * 0.2F, 0.0D).tex(f9, f5).color(0, 0, 0, 255).endVertex();
+			bufferbuilder.pos(f7, f8, f4).tex(f9, f6).color(255, 255, 255, 255).endVertex();
 		}
 
 		tessellator.draw();
@@ -138,6 +141,7 @@ public class RenderDragon extends RenderLiving<EntityDragon>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityDragon entity)
 	{
 		return DRAGON_TEXTURES;

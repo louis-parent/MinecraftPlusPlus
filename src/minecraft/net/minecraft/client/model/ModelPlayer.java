@@ -70,6 +70,7 @@ public class ModelPlayer extends ModelBiped
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
@@ -122,6 +123,7 @@ public class ModelPlayer extends ModelBiped
 	 * the time(so that arms and legs swing back and forth) and par2 represents
 	 * how "far" arms and legs can swing at most.
 	 */
+	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
@@ -141,6 +143,7 @@ public class ModelPlayer extends ModelBiped
 		}
 	}
 
+	@Override
 	public void setInvisible(boolean invisible)
 	{
 		super.setInvisible(invisible);
@@ -153,13 +156,14 @@ public class ModelPlayer extends ModelBiped
 		this.bipedDeadmau5Head.showModel = invisible;
 	}
 
+	@Override
 	public void postRenderArm(float scale, EnumHandSide side)
 	{
 		ModelRenderer modelrenderer = this.getArmForSide(side);
 
 		if (this.smallArms)
 		{
-			float f = 0.5F * (float) (side == EnumHandSide.RIGHT ? 1 : -1);
+			float f = 0.5F * (side == EnumHandSide.RIGHT ? 1 : -1);
 			modelrenderer.rotationPointX += f;
 			modelrenderer.postRender(scale);
 			modelrenderer.rotationPointX -= f;

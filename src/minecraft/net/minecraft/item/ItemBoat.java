@@ -30,6 +30,7 @@ public class ItemBoat extends Item
 		this.setUnlocalizedName("boat." + typeIn.getName());
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);
@@ -37,7 +38,7 @@ public class ItemBoat extends Item
 		float f1 = worldIn.prevRotationPitch + (worldIn.rotationPitch - worldIn.prevRotationPitch) * 1.0F;
 		float f2 = worldIn.prevRotationYaw + (worldIn.rotationYaw - worldIn.prevRotationYaw) * 1.0F;
 		double d0 = worldIn.prevPosX + (worldIn.posX - worldIn.prevPosX) * 1.0D;
-		double d1 = worldIn.prevPosY + (worldIn.posY - worldIn.prevPosY) * 1.0D + (double) worldIn.getEyeHeight();
+		double d1 = worldIn.prevPosY + (worldIn.posY - worldIn.prevPosY) * 1.0D + worldIn.getEyeHeight();
 		double d2 = worldIn.prevPosZ + (worldIn.posZ - worldIn.prevPosZ) * 1.0D;
 		Vec3d vec3d = new Vec3d(d0, d1, d2);
 		float f3 = MathHelper.cos(-f2 * 0.017453292F - (float) Math.PI);
@@ -47,7 +48,7 @@ public class ItemBoat extends Item
 		float f7 = f4 * f5;
 		float f8 = f3 * f5;
 		double d3 = 5.0D;
-		Vec3d vec3d1 = vec3d.addVector((double) f7 * 5.0D, (double) f6 * 5.0D, (double) f8 * 5.0D);
+		Vec3d vec3d1 = vec3d.addVector(f7 * 5.0D, f6 * 5.0D, f8 * 5.0D);
 		RayTraceResult raytraceresult = itemStackIn.rayTraceBlocks(vec3d, vec3d1, true);
 
 		if (raytraceresult == null)
@@ -66,7 +67,7 @@ public class ItemBoat extends Item
 
 				if (entity.canBeCollidedWith())
 				{
-					AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().expandXyz((double) entity.getCollisionBorderSize());
+					AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().expandXyz(entity.getCollisionBorderSize());
 
 					if (axisalignedbb.isVecInside(vec3d))
 					{

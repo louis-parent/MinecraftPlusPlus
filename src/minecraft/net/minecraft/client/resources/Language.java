@@ -25,11 +25,13 @@ public class Language implements Comparable<Language>
 		return this.bidirectional;
 	}
 
+	@Override
 	public String toString()
 	{
 		return String.format("%s (%s)", this.name, this.region);
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -42,11 +44,13 @@ public class Language implements Comparable<Language>
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.languageCode.hashCode();
 	}
 
+	@Override
 	public int compareTo(Language p_compareTo_1_)
 	{
 		return this.languageCode.compareTo(p_compareTo_1_.languageCode);

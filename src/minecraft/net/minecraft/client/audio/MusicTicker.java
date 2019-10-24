@@ -23,6 +23,7 @@ public class MusicTicker implements ITickable
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		MusicTicker.MusicType musicticker$musictype = this.mc.getAmbientMusicType();

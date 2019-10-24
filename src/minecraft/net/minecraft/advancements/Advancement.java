@@ -92,6 +92,7 @@ public class Advancement
 		return this.field_192078_c;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "SimpleAdvancement{id=" + this.func_192067_g() + ", parent=" + (this.field_192076_a == null ? "null" : this.field_192076_a.func_192067_g()) + ", display=" + this.field_192077_b + ", rewards=" + this.field_192078_c + ", criteria=" + this.field_192080_e + ", requirements=" + Arrays.deepToString(this.field_192081_f) + '}';
@@ -122,6 +123,7 @@ public class Advancement
 		return this.field_192079_d;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -139,6 +141,7 @@ public class Advancement
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.field_192079_d.hashCode();
@@ -226,6 +229,7 @@ public class Advancement
 			}
 		}
 
+		@Override
 		public String toString()
 		{
 			return "Task Advancement{parentId=" + this.field_192061_a + ", display=" + this.field_192063_c + ", rewards=" + this.field_192064_d + ", criteria=" + this.field_192065_e + ", requirements=" + Arrays.deepToString(this.field_192066_f) + '}';
@@ -235,7 +239,7 @@ public class Advancement
 		{
 			ResourceLocation resourcelocation = p_192059_0_.has("parent") ? new ResourceLocation(JsonUtils.getString(p_192059_0_, "parent")) : null;
 			DisplayInfo displayinfo = p_192059_0_.has("display") ? DisplayInfo.func_192294_a(JsonUtils.getJsonObject(p_192059_0_, "display"), p_192059_1_) : null;
-			AdvancementRewards advancementrewards = (AdvancementRewards) JsonUtils.deserializeClass(p_192059_0_, "rewards", AdvancementRewards.field_192114_a, p_192059_1_, AdvancementRewards.class);
+			AdvancementRewards advancementrewards = JsonUtils.deserializeClass(p_192059_0_, "rewards", AdvancementRewards.field_192114_a, p_192059_1_, AdvancementRewards.class);
 			Map<String, Criterion> map = Criterion.func_192144_b(JsonUtils.getJsonObject(p_192059_0_, "criteria"), p_192059_1_);
 
 			if (map.isEmpty())

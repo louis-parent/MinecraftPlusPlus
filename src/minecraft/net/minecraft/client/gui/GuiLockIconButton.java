@@ -22,6 +22,7 @@ public class GuiLockIconButton extends GuiButton
 		this.locked = lockedIn;
 	}
 
+	@Override
 	public void func_191745_a(Minecraft p_191745_1_, int p_191745_2_, int p_191745_3_, float p_191745_4_)
 	{
 		if (this.visible)

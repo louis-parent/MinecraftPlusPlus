@@ -24,6 +24,7 @@ public class ModelSheep2 extends ModelQuadruped
 	 * float params here are the same second and third as in the
 	 * setRotationAngles method.
 	 */
+	@Override
 	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
 	{
 		super.setLivingAnimations(entitylivingbaseIn, p_78086_2_, p_78086_3_, partialTickTime);
@@ -37,6 +38,7 @@ public class ModelSheep2 extends ModelQuadruped
 	 * the time(so that arms and legs swing back and forth) and par2 represents
 	 * how "far" arms and legs can swing at most.
 	 */
+	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);

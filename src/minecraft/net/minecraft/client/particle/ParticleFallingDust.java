@@ -33,7 +33,7 @@ public class ParticleFallingDust extends Particle
 		this.particleScale *= 0.9F;
 		this.oSize = this.particleScale;
 		this.particleMaxAge = (int) (32.0D / (Math.random() * 0.8D + 0.2D));
-		this.particleMaxAge = (int) ((float) this.particleMaxAge * 0.9F);
+		this.particleMaxAge = (int) (this.particleMaxAge * 0.9F);
 		this.rotSpeed = ((float) Math.random() - 0.5F) * 0.1F;
 		this.particleAngle = (float) Math.random() * ((float) Math.PI * 2F);
 	}
@@ -41,14 +41,16 @@ public class ParticleFallingDust extends Particle
 	/**
 	 * Renders the particle
 	 */
+	@Override
 	public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
-		float f = ((float) this.particleAge + partialTicks) / (float) this.particleMaxAge * 32.0F;
+		float f = (this.particleAge + partialTicks) / this.particleMaxAge * 32.0F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
 		this.particleScale = this.oSize * f;
 		super.renderParticle(worldRendererIn, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -76,6 +78,7 @@ public class ParticleFallingDust extends Particle
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		@Nullable
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
@@ -94,9 +97,9 @@ public class ParticleFallingDust extends Particle
 					i = ((BlockFalling) iblockstate.getBlock()).getDustColor(iblockstate);
 				}
 
-				float f = (float) (i >> 16 & 255) / 255.0F;
-				float f1 = (float) (i >> 8 & 255) / 255.0F;
-				float f2 = (float) (i & 255) / 255.0F;
+				float f = (i >> 16 & 255) / 255.0F;
+				float f1 = (i >> 8 & 255) / 255.0F;
+				float f2 = (i & 255) / 255.0F;
 				return new ParticleFallingDust(worldIn, xCoordIn, yCoordIn, zCoordIn, f, f1, f2);
 			}
 		}

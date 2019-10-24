@@ -24,6 +24,7 @@ public class PhaseHoldingPattern extends PhaseBase
 		super(dragonIn);
 	}
 
+	@Override
 	public PhaseList<PhaseHoldingPattern> getPhaseList()
 	{
 		return PhaseList.HOLDING_PATTERN;
@@ -33,6 +34,7 @@ public class PhaseHoldingPattern extends PhaseBase
 	 * Gives the phase a chance to update its status. Called by dragon's
 	 * onLivingUpdate. Only used when !worldObj.isRemote.
 	 */
+	@Override
 	public void doLocalUpdate()
 	{
 		double d0 = this.targetLocation == null ? 0.0D : this.targetLocation.squareDistanceTo(this.dragon.posX, this.dragon.posY, this.dragon.posZ);
@@ -46,12 +48,14 @@ public class PhaseHoldingPattern extends PhaseBase
 	/**
 	 * Called when this phase is set to active
 	 */
+	@Override
 	public void initPhase()
 	{
 		this.currentPath = null;
 		this.targetLocation = null;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -140,7 +144,7 @@ public class PhaseHoldingPattern extends PhaseBase
 	private void strafePlayer(EntityPlayer player)
 	{
 		this.dragon.getPhaseManager().setPhase(PhaseList.STRAFE_PLAYER);
-		((PhaseStrafePlayer) this.dragon.getPhaseManager().getPhase(PhaseList.STRAFE_PLAYER)).setTarget(player);
+		this.dragon.getPhaseManager().getPhase(PhaseList.STRAFE_PLAYER).setTarget(player);
 	}
 
 	private void navigateToNextPathNode()
@@ -155,7 +159,7 @@ public class PhaseHoldingPattern extends PhaseBase
 
 			while (true)
 			{
-				d2 = vec3d.yCoord + (double) (this.dragon.getRNG().nextFloat() * 20.0F);
+				d2 = vec3d.yCoord + this.dragon.getRNG().nextFloat() * 20.0F;
 
 				if (d2 >= vec3d.yCoord)
 				{
@@ -167,6 +171,7 @@ public class PhaseHoldingPattern extends PhaseBase
 		}
 	}
 
+	@Override
 	public void onCrystalDestroyed(EntityEnderCrystal crystal, BlockPos pos, DamageSource dmgSrc, @Nullable EntityPlayer plyr)
 	{
 		if (plyr != null && !plyr.capabilities.disableDamage)

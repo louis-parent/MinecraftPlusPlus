@@ -43,12 +43,14 @@ public class EntityItemFrame extends EntityHanging
 		this.updateFacingWithBoundingBox(p_i45852_3_);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		this.getDataManager().register(ITEM, ItemStack.EMPTY_ITEM_STACK);
 		this.getDataManager().register(ROTATION, Integer.valueOf(0));
 	}
 
+	@Override
 	public float getCollisionBorderSize()
 	{
 		return 0.0F;
@@ -57,6 +59,7 @@ public class EntityItemFrame extends EntityHanging
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -80,11 +83,13 @@ public class EntityItemFrame extends EntityHanging
 		}
 	}
 
+	@Override
 	public int getWidthPixels()
 	{
 		return 12;
 	}
 
+	@Override
 	public int getHeightPixels()
 	{
 		return 12;
@@ -93,6 +98,7 @@ public class EntityItemFrame extends EntityHanging
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	public boolean isInRangeToRenderDist(double distance)
 	{
 		double d0 = 16.0D;
@@ -103,12 +109,14 @@ public class EntityItemFrame extends EntityHanging
 	/**
 	 * Called when this entity is broken. Entity parameter may be null.
 	 */
+	@Override
 	public void onBroken(@Nullable Entity brokenEntity)
 	{
 		this.playSound(SoundEvents.ENTITY_ITEMFRAME_BREAK, 1.0F, 1.0F);
 		this.dropItemOrSelf(brokenEntity, true);
 	}
 
+	@Override
 	public void playPlaceSound()
 	{
 		this.playSound(SoundEvents.ENTITY_ITEMFRAME_PLACE, 1.0F, 1.0F);
@@ -165,7 +173,7 @@ public class EntityItemFrame extends EntityHanging
 
 	public ItemStack getDisplayedItem()
 	{
-		return (ItemStack) this.getDataManager().get(ITEM);
+		return this.getDataManager().get(ITEM);
 	}
 
 	public void setDisplayedItem(ItemStack stack)
@@ -196,6 +204,7 @@ public class EntityItemFrame extends EntityHanging
 		}
 	}
 
+	@Override
 	public void notifyDataManagerChange(DataParameter<?> key)
 	{
 		if (key.equals(ITEM))
@@ -214,7 +223,7 @@ public class EntityItemFrame extends EntityHanging
 	 */
 	public int getRotation()
 	{
-		return ((Integer) this.getDataManager().get(ROTATION)).intValue();
+		return this.getDataManager().get(ROTATION).intValue();
 	}
 
 	public void setItemRotation(int rotationIn)
@@ -240,6 +249,7 @@ public class EntityItemFrame extends EntityHanging
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		if (!this.getDisplayedItem().isNotValid())
@@ -255,6 +265,7 @@ public class EntityItemFrame extends EntityHanging
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		NBTTagCompound nbttagcompound = compound.getCompoundTag("Item");
@@ -273,6 +284,7 @@ public class EntityItemFrame extends EntityHanging
 		super.readEntityFromNBT(compound);
 	}
 
+	@Override
 	public boolean processInitialInteract(EntityPlayer player, EnumHand stack)
 	{
 		ItemStack itemstack = player.getHeldItem(stack);

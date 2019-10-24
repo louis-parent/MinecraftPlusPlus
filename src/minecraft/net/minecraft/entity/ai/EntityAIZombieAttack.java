@@ -16,6 +16,7 @@ public class EntityAIZombieAttack extends EntityAIAttackMelee
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		super.startExecuting();
@@ -25,6 +26,7 @@ public class EntityAIZombieAttack extends EntityAIAttackMelee
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		super.resetTask();
@@ -34,6 +36,7 @@ public class EntityAIZombieAttack extends EntityAIAttackMelee
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		super.updateTask();

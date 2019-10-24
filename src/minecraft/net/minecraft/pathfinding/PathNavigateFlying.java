@@ -14,6 +14,7 @@ public class PathNavigateFlying extends PathNavigate
 		super(p_i47412_1_, p_i47412_2_);
 	}
 
+	@Override
 	protected PathFinder getPathFinder()
 	{
 		this.nodeProcessor = new FlyingNodeProcessor();
@@ -24,11 +25,13 @@ public class PathNavigateFlying extends PathNavigate
 	/**
 	 * If on ground or swimming and can swim
 	 */
+	@Override
 	protected boolean canNavigate()
 	{
 		return this.func_192880_g() && this.isInLiquid() || !this.theEntity.isRiding();
 	}
 
+	@Override
 	protected Vec3d getEntityPosition()
 	{
 		return new Vec3d(this.theEntity.posX, this.theEntity.posY, this.theEntity.posZ);
@@ -37,11 +40,13 @@ public class PathNavigateFlying extends PathNavigate
 	/**
 	 * Returns the path to the given EntityLiving. Args : entity
 	 */
+	@Override
 	public Path getPathToEntityLiving(Entity entityIn)
 	{
 		return this.getPathToPos(new BlockPos(entityIn));
 	}
 
+	@Override
 	public void onUpdateNavigation()
 	{
 		++this.totalTicks;
@@ -80,6 +85,7 @@ public class PathNavigateFlying extends PathNavigate
 	/**
 	 * Checks if the specified entity can safely walk to the specified location.
 	 */
+	@Override
 	protected boolean isDirectPathBetweenPoints(Vec3d posVec31, Vec3d posVec32, int sizeX, int sizeY, int sizeZ)
 	{
 		int i = MathHelper.floor(posVec31.xCoord);
@@ -103,9 +109,9 @@ public class PathNavigateFlying extends PathNavigate
 			double d5 = 1.0D / Math.abs(d0);
 			double d6 = 1.0D / Math.abs(d1);
 			double d7 = 1.0D / Math.abs(d2);
-			double d8 = (double) i - posVec31.xCoord;
-			double d9 = (double) j - posVec31.yCoord;
-			double d10 = (double) k - posVec31.zCoord;
+			double d8 = i - posVec31.xCoord;
+			double d9 = j - posVec31.yCoord;
+			double d10 = k - posVec31.zCoord;
 
 			if (d0 >= 0.0D)
 			{
@@ -181,6 +187,7 @@ public class PathNavigateFlying extends PathNavigate
 		return this.nodeProcessor.getCanSwim();
 	}
 
+	@Override
 	public boolean canEntityStandOnPos(BlockPos pos)
 	{
 		return this.worldObj.getBlockState(pos).isFullyOpaque();

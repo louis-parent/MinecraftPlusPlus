@@ -36,6 +36,7 @@ public class LayerEntityOnShoulder implements LayerRenderer<EntityPlayer>
 		this.field_192867_c = p_i47370_1_;
 	}
 
+	@Override
 	public void doRenderLayer(EntityPlayer entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		if (entitylivingbaseIn.func_192023_dk() != null || entitylivingbaseIn.func_192025_dl() != null)
@@ -103,6 +104,7 @@ public class LayerEntityOnShoulder implements LayerRenderer<EntityPlayer>
 		return new LayerEntityOnShoulder.DataHolder(p_192864_2_, p_192864_4_, p_192864_5_, p_192864_6_, p_192864_7_);
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;

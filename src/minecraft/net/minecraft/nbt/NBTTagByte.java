@@ -22,11 +22,13 @@ public class NBTTagByte extends NBTPrimitive
 	 * Write the actual data contents of the tag, implemented in NBT extension
 	 * classes
 	 */
+	@Override
 	void write(DataOutput output) throws IOException
 	{
 		output.writeByte(this.data);
 	}
 
+	@Override
 	void read(DataInput input, int depth, NBTSizeTracker sizeTracker) throws IOException
 	{
 		sizeTracker.read(72L);
@@ -36,11 +38,13 @@ public class NBTTagByte extends NBTPrimitive
 	/**
 	 * Gets the type byte for the tag.
 	 */
+	@Override
 	public byte getId()
 	{
 		return 1;
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.data + "b";
@@ -49,48 +53,57 @@ public class NBTTagByte extends NBTPrimitive
 	/**
 	 * Creates a clone of the tag.
 	 */
+	@Override
 	public NBTTagByte copy()
 	{
 		return new NBTTagByte(this.data);
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		return super.equals(p_equals_1_) && this.data == ((NBTTagByte) p_equals_1_).data;
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return super.hashCode() ^ this.data;
 	}
 
+	@Override
 	public long getLong()
 	{
-		return (long) this.data;
+		return this.data;
 	}
 
+	@Override
 	public int getInt()
 	{
 		return this.data;
 	}
 
+	@Override
 	public short getShort()
 	{
-		return (short) this.data;
+		return this.data;
 	}
 
+	@Override
 	public byte getByte()
 	{
 		return this.data;
 	}
 
+	@Override
 	public double getDouble()
 	{
-		return (double) this.data;
+		return this.data;
 	}
 
+	@Override
 	public float getFloat()
 	{
-		return (float) this.data;
+		return this.data;
 	}
 }

@@ -44,12 +44,14 @@ public class BlockWall extends Block
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		state = this.getActualState(state, source, pos);
 		return AABB_BY_INDEX[getAABBIndex(state)];
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 		if (!p_185477_7_)
@@ -60,6 +62,7 @@ public class BlockWall extends Block
 		addCollisionBoxToList(pos, entityBox, collidingBoxes, CLIP_AABB_BY_INDEX[getAABBIndex(state)]);
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -71,22 +74,22 @@ public class BlockWall extends Block
 	{
 		int i = 0;
 
-		if (((Boolean) state.getValue(NORTH)).booleanValue())
+		if (state.getValue(NORTH).booleanValue())
 		{
 			i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
 		}
 
-		if (((Boolean) state.getValue(EAST)).booleanValue())
+		if (state.getValue(EAST).booleanValue())
 		{
 			i |= 1 << EnumFacing.EAST.getHorizontalIndex();
 		}
 
-		if (((Boolean) state.getValue(SOUTH)).booleanValue())
+		if (state.getValue(SOUTH).booleanValue())
 		{
 			i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
 		}
 
-		if (((Boolean) state.getValue(WEST)).booleanValue())
+		if (state.getValue(WEST).booleanValue())
 		{
 			i |= 1 << EnumFacing.WEST.getHorizontalIndex();
 		}
@@ -97,16 +100,19 @@ public class BlockWall extends Block
 	/**
 	 * Gets the localized name of this block. Used for the statistics page.
 	 */
+	@Override
 	public String getLocalizedName()
 	{
 		return I18n.translateToLocal(this.getUnlocalizedName() + "." + BlockWall.EnumType.NORMAL.getUnlocalizedName() + ".name");
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
 	{
 		return false;
@@ -116,6 +122,7 @@ public class BlockWall extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
@@ -139,6 +146,7 @@ public class BlockWall extends Block
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (BlockWall.EnumType blockwall$enumtype : BlockWall.EnumType.values())
@@ -152,11 +160,13 @@ public class BlockWall extends Block
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((BlockWall.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return side == EnumFacing.DOWN ? super.shouldSideBeRendered(blockState, blockAccess, pos, side) : true;
@@ -165,6 +175,7 @@ public class BlockWall extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(VARIANT, BlockWall.EnumType.byMetadata(meta));
@@ -173,9 +184,10 @@ public class BlockWall extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((BlockWall.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
 	/**
@@ -183,6 +195,7 @@ public class BlockWall extends Block
 	 * applies properties not visible in the metadata, such as fence
 	 * connections.
 	 */
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		boolean flag = this.canConnectTo(worldIn, pos.north(), EnumFacing.SOUTH);
@@ -193,11 +206,13 @@ public class BlockWall extends Block
 		return state.withProperty(UP, Boolean.valueOf(!flag4 || !worldIn.isAirBlock(pos.up()))).withProperty(NORTH, Boolean.valueOf(flag)).withProperty(EAST, Boolean.valueOf(flag1)).withProperty(SOUTH, Boolean.valueOf(flag2)).withProperty(WEST, Boolean.valueOf(flag3));
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { UP, NORTH, EAST, WEST, SOUTH, VARIANT });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return p_193383_4_ != EnumFacing.UP && p_193383_4_ != EnumFacing.DOWN ? BlockFaceShape.MIDDLE_POLE_THICK : BlockFaceShape.CENTER_BIG;
@@ -224,6 +239,7 @@ public class BlockWall extends Block
 			return this.meta;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -239,6 +255,7 @@ public class BlockWall extends Block
 			return META_LOOKUP[meta];
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

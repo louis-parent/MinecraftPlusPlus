@@ -35,6 +35,7 @@ public class FileResourcePack extends AbstractResourcePack implements Closeable
 		return this.resourcePackZipFile;
 	}
 
+	@Override
 	protected InputStream getInputStreamByName(String name) throws IOException
 	{
 		ZipFile zipfile = this.getResourcePackZipFile();
@@ -50,6 +51,7 @@ public class FileResourcePack extends AbstractResourcePack implements Closeable
 		}
 	}
 
+	@Override
 	public boolean hasResourceName(String name)
 	{
 		try
@@ -62,6 +64,7 @@ public class FileResourcePack extends AbstractResourcePack implements Closeable
 		}
 	}
 
+	@Override
 	public Set<String> getResourceDomains()
 	{
 		ZipFile zipfile;
@@ -106,12 +109,14 @@ public class FileResourcePack extends AbstractResourcePack implements Closeable
 		return set;
 	}
 
+	@Override
 	protected void finalize() throws Throwable
 	{
 		this.close();
 		super.finalize();
 	}
 
+	@Override
 	public void close() throws IOException
 	{
 		if (this.resourcePackZipFile != null)

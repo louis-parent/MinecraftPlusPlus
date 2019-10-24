@@ -18,6 +18,7 @@ public class NettyCompressionEncoder extends MessageToByteEncoder<ByteBuf>
 		this.deflater = new Deflater();
 	}
 
+	@Override
 	protected void encode(ChannelHandlerContext p_encode_1_, ByteBuf p_encode_2_, ByteBuf p_encode_3_) throws Exception
 	{
 		int i = p_encode_2_.readableBytes();

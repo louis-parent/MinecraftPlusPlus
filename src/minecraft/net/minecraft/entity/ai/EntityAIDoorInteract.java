@@ -39,6 +39,7 @@ public abstract class EntityAIDoorInteract extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (!this.theEntity.isCollidedHorizontally)
@@ -57,7 +58,7 @@ public abstract class EntityAIDoorInteract extends EntityAIBase
 					PathPoint pathpoint = path.getPathPointFromIndex(i);
 					this.doorPosition = new BlockPos(pathpoint.xCoord, pathpoint.yCoord + 1, pathpoint.zCoord);
 
-					if (this.theEntity.getDistanceSq((double) this.doorPosition.getX(), this.theEntity.posY, (double) this.doorPosition.getZ()) <= 2.25D)
+					if (this.theEntity.getDistanceSq(this.doorPosition.getX(), this.theEntity.posY, this.doorPosition.getZ()) <= 2.25D)
 					{
 						this.doorBlock = this.getBlockDoor(this.doorPosition);
 
@@ -82,6 +83,7 @@ public abstract class EntityAIDoorInteract extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return !this.hasStoppedDoorInteraction;
@@ -90,20 +92,22 @@ public abstract class EntityAIDoorInteract extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.hasStoppedDoorInteraction = false;
-		this.entityPositionX = (float) ((double) ((float) this.doorPosition.getX() + 0.5F) - this.theEntity.posX);
-		this.entityPositionZ = (float) ((double) ((float) this.doorPosition.getZ() + 0.5F) - this.theEntity.posZ);
+		this.entityPositionX = (float) (this.doorPosition.getX() + 0.5F - this.theEntity.posX);
+		this.entityPositionZ = (float) (this.doorPosition.getZ() + 0.5F - this.theEntity.posZ);
 	}
 
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
-		float f = (float) ((double) ((float) this.doorPosition.getX() + 0.5F) - this.theEntity.posX);
-		float f1 = (float) ((double) ((float) this.doorPosition.getZ() + 0.5F) - this.theEntity.posZ);
+		float f = (float) (this.doorPosition.getX() + 0.5F - this.theEntity.posX);
+		float f1 = (float) (this.doorPosition.getZ() + 0.5F - this.theEntity.posZ);
 		float f2 = this.entityPositionX * f + this.entityPositionZ * f1;
 
 		if (f2 < 0.0F)

@@ -67,7 +67,7 @@ public class GuiToast extends Gui
 			}
 		}
 
-		return (T) null;
+		return null;
 	}
 
 	public void func_191788_b()
@@ -108,7 +108,7 @@ public class GuiToast extends Gui
 
 		private float func_193686_a(long p_193686_1_)
 		{
-			float f = MathHelper.clamp((float) (p_193686_1_ - this.field_193689_c) / 600.0F, 0.0F, 1.0F);
+			float f = MathHelper.clamp((p_193686_1_ - this.field_193689_c) / 600.0F, 0.0F, 1.0F);
 			f = f * f;
 			return this.field_193691_e == IToast.Visibility.HIDE ? 1.0F - f : f;
 		}
@@ -129,13 +129,13 @@ public class GuiToast extends Gui
 			}
 
 			GlStateManager.pushMatrix();
-			GlStateManager.translate((float) p_193684_1_ - 160.0F * this.func_193686_a(i), (float) (p_193684_2_ * 32), (float) (500 + p_193684_2_));
+			GlStateManager.translate(p_193684_1_ - 160.0F * this.func_193686_a(i), p_193684_2_ * 32, 500 + p_193684_2_);
 			IToast.Visibility itoast$visibility = this.field_193688_b.func_193653_a(GuiToast.this, i - this.field_193690_d);
 			GlStateManager.popMatrix();
 
 			if (itoast$visibility != this.field_193691_e)
 			{
-				this.field_193689_c = i - (long) ((int) ((1.0F - this.func_193686_a(i)) * 600.0F));
+				this.field_193689_c = i - ((int) ((1.0F - this.func_193686_a(i)) * 600.0F));
 				this.field_193691_e = itoast$visibility;
 				this.field_193691_e.func_194169_a(GuiToast.this.field_191790_f.getSoundHandler());
 			}

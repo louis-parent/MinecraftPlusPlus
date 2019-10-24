@@ -22,6 +22,7 @@ public class BiomeEndDecorator extends BiomeDecorator
 	private static final LoadingCache<Long, WorldGenSpikes.EndSpike[]> SPIKE_CACHE = CacheBuilder.newBuilder().expireAfterWrite(5L, TimeUnit.MINUTES).<Long, WorldGenSpikes.EndSpike[]>build(new BiomeEndDecorator.SpikeCacheLoader());
 	private final WorldGenSpikes spikeGen = new WorldGenSpikes();
 
+	@Override
 	protected void genDecorations(Biome biomeIn, World worldIn, Random random)
 	{
 		this.generateOres(worldIn, random);
@@ -50,6 +51,7 @@ public class BiomeEndDecorator extends BiomeDecorator
 		{
 		}
 
+		@Override
 		public WorldGenSpikes.EndSpike[] load(Long p_load_1_) throws Exception
 		{
 			List<Integer> list = Lists.newArrayList(ContiguousSet.create(Range.closedOpen(Integer.valueOf(0), Integer.valueOf(10)), DiscreteDomain.integers()));
@@ -58,9 +60,9 @@ public class BiomeEndDecorator extends BiomeDecorator
 
 			for (int i = 0; i < 10; ++i)
 			{
-				int j = (int) (42.0D * Math.cos(2.0D * (-Math.PI + (Math.PI / 10D) * (double) i)));
-				int k = (int) (42.0D * Math.sin(2.0D * (-Math.PI + (Math.PI / 10D) * (double) i)));
-				int l = ((Integer) list.get(i)).intValue();
+				int j = (int) (42.0D * Math.cos(2.0D * (-Math.PI + (Math.PI / 10D) * i)));
+				int k = (int) (42.0D * Math.sin(2.0D * (-Math.PI + (Math.PI / 10D) * i)));
+				int l = list.get(i).intValue();
 				int i1 = 2 + l / 3;
 				int j1 = 76 + l * 3;
 				boolean flag = l == 1 || l == 2;

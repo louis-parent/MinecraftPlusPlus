@@ -18,6 +18,7 @@ public class ParticleFirework
 {
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			ParticleFirework.Spark particlefirework$spark = new ParticleFirework.Spark(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn, Minecraft.getMinecraft().effectRenderer);
@@ -34,24 +35,25 @@ public class ParticleFirework
 			this.particleMaxAge = 4;
 		}
 
+		@Override
 		public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 		{
 			float f = 0.25F;
 			float f1 = 0.5F;
 			float f2 = 0.125F;
 			float f3 = 0.375F;
-			float f4 = 7.1F * MathHelper.sin(((float) this.particleAge + partialTicks - 1.0F) * 0.25F * (float) Math.PI);
-			this.setAlphaF(0.6F - ((float) this.particleAge + partialTicks - 1.0F) * 0.25F * 0.5F);
-			float f5 = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) partialTicks - interpPosX);
-			float f6 = (float) (this.prevPosY + (this.posY - this.prevPosY) * (double) partialTicks - interpPosY);
-			float f7 = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * (double) partialTicks - interpPosZ);
+			float f4 = 7.1F * MathHelper.sin((this.particleAge + partialTicks - 1.0F) * 0.25F * (float) Math.PI);
+			this.setAlphaF(0.6F - (this.particleAge + partialTicks - 1.0F) * 0.25F * 0.5F);
+			float f5 = (float) (this.prevPosX + (this.posX - this.prevPosX) * partialTicks - interpPosX);
+			float f6 = (float) (this.prevPosY + (this.posY - this.prevPosY) * partialTicks - interpPosY);
+			float f7 = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * partialTicks - interpPosZ);
 			int i = this.getBrightnessForRender(partialTicks);
 			int j = i >> 16 & 65535;
 			int k = i & 65535;
-			worldRendererIn.pos((double) (f5 - rotationX * f4 - rotationXY * f4), (double) (f6 - rotationZ * f4), (double) (f7 - rotationYZ * f4 - rotationXZ * f4)).tex(0.5D, 0.375D).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
-			worldRendererIn.pos((double) (f5 - rotationX * f4 + rotationXY * f4), (double) (f6 + rotationZ * f4), (double) (f7 - rotationYZ * f4 + rotationXZ * f4)).tex(0.5D, 0.125D).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
-			worldRendererIn.pos((double) (f5 + rotationX * f4 + rotationXY * f4), (double) (f6 + rotationZ * f4), (double) (f7 + rotationYZ * f4 + rotationXZ * f4)).tex(0.25D, 0.125D).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
-			worldRendererIn.pos((double) (f5 + rotationX * f4 - rotationXY * f4), (double) (f6 - rotationZ * f4), (double) (f7 + rotationYZ * f4 - rotationXZ * f4)).tex(0.25D, 0.375D).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+			worldRendererIn.pos(f5 - rotationX * f4 - rotationXY * f4, f6 - rotationZ * f4, f7 - rotationYZ * f4 - rotationXZ * f4).tex(0.5D, 0.375D).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+			worldRendererIn.pos(f5 - rotationX * f4 + rotationXY * f4, f6 + rotationZ * f4, f7 - rotationYZ * f4 + rotationXZ * f4).tex(0.5D, 0.125D).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+			worldRendererIn.pos(f5 + rotationX * f4 + rotationXY * f4, f6 + rotationZ * f4, f7 + rotationYZ * f4 + rotationXZ * f4).tex(0.25D, 0.125D).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+			worldRendererIn.pos(f5 + rotationX * f4 - rotationXY * f4, f6 - rotationZ * f4, f7 + rotationYZ * f4 - rotationXZ * f4).tex(0.25D, 0.375D).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
 		}
 	}
 
@@ -86,11 +88,13 @@ public class ParticleFirework
 			this.twinkle = twinkleIn;
 		}
 
+		@Override
 		public boolean isTransparent()
 		{
 			return true;
 		}
 
+		@Override
 		public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 		{
 			if (!this.twinkle || this.particleAge < this.particleMaxAge / 3 || (this.particleAge + this.particleMaxAge) / 3 % 2 == 0)
@@ -99,6 +103,7 @@ public class ParticleFirework
 			}
 		}
 
+		@Override
 		public void onUpdate()
 		{
 			super.onUpdate();
@@ -167,10 +172,12 @@ public class ParticleFirework
 			}
 		}
 
+		@Override
 		public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 		{
 		}
 
+		@Override
 		public void onUpdate()
 		{
 			if (this.fireworkAge == 0 && this.fireworkExplosions != null)
@@ -247,9 +254,9 @@ public class ParticleFirework
 				}
 
 				int j = aint[0];
-				float f = (float) ((j & 16711680) >> 16) / 255.0F;
-				float f1 = (float) ((j & 65280) >> 8) / 255.0F;
-				float f2 = (float) ((j & 255) >> 0) / 255.0F;
+				float f = ((j & 16711680) >> 16) / 255.0F;
+				float f1 = ((j & 65280) >> 8) / 255.0F;
+				float f2 = ((j & 255) >> 0) / 255.0F;
 				ParticleFirework.Overlay particlefirework$overlay = new ParticleFirework.Overlay(this.worldObj, this.posX, this.posY, this.posZ);
 				particlefirework$overlay.setRBGColorF(f, f1, f2);
 				this.theEffectRenderer.addEffect(particlefirework$overlay);
@@ -305,10 +312,10 @@ public class ParticleFirework
 				{
 					for (int k = -size; k <= size; ++k)
 					{
-						double d3 = (double) j + (this.rand.nextDouble() - this.rand.nextDouble()) * 0.5D;
-						double d4 = (double) i + (this.rand.nextDouble() - this.rand.nextDouble()) * 0.5D;
-						double d5 = (double) k + (this.rand.nextDouble() - this.rand.nextDouble()) * 0.5D;
-						double d6 = (double) MathHelper.sqrt(d3 * d3 + d4 * d4 + d5 * d5) / speed + this.rand.nextGaussian() * 0.05D;
+						double d3 = j + (this.rand.nextDouble() - this.rand.nextDouble()) * 0.5D;
+						double d4 = i + (this.rand.nextDouble() - this.rand.nextDouble()) * 0.5D;
+						double d5 = k + (this.rand.nextDouble() - this.rand.nextDouble()) * 0.5D;
+						double d6 = MathHelper.sqrt(d3 * d3 + d4 * d4 + d5 * d5) / speed + this.rand.nextGaussian() * 0.05D;
 						this.createParticle(d0, d1, d2, d3 / d6, d4 / d6, d5 / d6, colours, fadeColours, trail, twinkleIn);
 
 						if (i != -size && i != size && j != -size && j != size)
@@ -330,7 +337,7 @@ public class ParticleFirework
 
 			for (int i = 0; i < 3; ++i)
 			{
-				double d3 = (double) f + (double) ((float) i * (float) Math.PI) * d2;
+				double d3 = f + i * (float) Math.PI * d2;
 				double d4 = d0;
 				double d5 = d1;
 
@@ -372,6 +379,7 @@ public class ParticleFirework
 			}
 		}
 
+		@Override
 		public int getFXLayer()
 		{
 			return 0;

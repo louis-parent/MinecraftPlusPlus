@@ -64,6 +64,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 		this.missingImage.setFramesTextureData(Lists.<int[][]>newArrayList(aint1));
 	}
 
+	@Override
 	public void loadTexture(IResourceManager resourceManager) throws IOException
 	{
 		if (this.iconCreator != null)
@@ -115,7 +116,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 			}
 			finally
 			{
-				IOUtils.closeQuietly((Closeable) iresource);
+				IOUtils.closeQuietly(iresource);
 			}
 
 			j = Math.min(j, Math.min(textureatlassprite.getIconWidth(), textureatlassprite.getIconHeight()));
@@ -216,7 +217,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 			}
 			finally
 			{
-				IOUtils.closeQuietly((Closeable) iresource);
+				IOUtils.closeQuietly(iresource);
 			}
 
 			return flag;
@@ -233,6 +234,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 			CrashReportCategory crashreportcategory = crashreport.makeCategory("Sprite being mipmapped");
 			crashreportcategory.setDetail("Sprite name", new ICrashReportDetail<String>()
 			{
+				@Override
 				public String call() throws Exception
 				{
 					return texture.getIconName();
@@ -240,6 +242,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 			});
 			crashreportcategory.setDetail("Sprite size", new ICrashReportDetail<String>()
 			{
+				@Override
 				public String call() throws Exception
 				{
 					return texture.getIconWidth() + " x " + texture.getIconHeight();
@@ -247,6 +250,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 			});
 			crashreportcategory.setDetail("Sprite frames", new ICrashReportDetail<String>()
 			{
+				@Override
 				public String call() throws Exception
 				{
 					return texture.getFrameCount() + " frames";
@@ -305,6 +309,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 		}
 	}
 
+	@Override
 	public void tick()
 	{
 		this.updateAnimations();

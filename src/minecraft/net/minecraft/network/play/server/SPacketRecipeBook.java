@@ -35,6 +35,7 @@ public class SPacketRecipeBook implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.func_191980_a(this);
@@ -43,9 +44,10 @@ public class SPacketRecipeBook implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
-		this.field_193646_a = (SPacketRecipeBook.State) buf.readEnumValue(SPacketRecipeBook.State.class);
+		this.field_193646_a = buf.readEnumValue(SPacketRecipeBook.State.class);
 		this.field_192598_c = buf.readBoolean();
 		this.field_192599_d = buf.readBoolean();
 		int i = buf.readVarIntFromBuffer();
@@ -71,6 +73,7 @@ public class SPacketRecipeBook implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeEnumValue(this.field_193646_a);

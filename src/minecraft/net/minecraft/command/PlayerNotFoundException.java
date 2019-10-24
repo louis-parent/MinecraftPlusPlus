@@ -12,6 +12,7 @@ public class PlayerNotFoundException extends CommandException
 		super(message, replacements);
 	}
 
+	@Override
 	public synchronized Throwable fillInStackTrace()
 	{
 		return this;

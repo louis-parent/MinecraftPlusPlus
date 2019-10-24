@@ -7,11 +7,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class EntityArmorAndHeld implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 100;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		NBTTagList nbttaglist = compound.getTagList("Equipment", 10);

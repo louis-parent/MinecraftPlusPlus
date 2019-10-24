@@ -33,30 +33,35 @@ public class BiomeSwamp extends Biome
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySlime.class, 1, 1, 1));
 	}
 
+	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		return SWAMP_FEATURE;
 	}
 
+	@Override
 	public int getGrassColorAtPos(BlockPos pos)
 	{
-		double d0 = GRASS_COLOR_NOISE.getValue((double) pos.getX() * 0.0225D, (double) pos.getZ() * 0.0225D);
+		double d0 = GRASS_COLOR_NOISE.getValue(pos.getX() * 0.0225D, pos.getZ() * 0.0225D);
 		return d0 < -0.1D ? 5011004 : 6975545;
 	}
 
+	@Override
 	public int getFoliageColorAtPos(BlockPos pos)
 	{
 		return 6975545;
 	}
 
+	@Override
 	public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos)
 	{
 		return BlockFlower.EnumFlowerType.BLUE_ORCHID;
 	}
 
+	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
 	{
-		double d0 = GRASS_COLOR_NOISE.getValue((double) x * 0.25D, (double) z * 0.25D);
+		double d0 = GRASS_COLOR_NOISE.getValue(x * 0.25D, z * 0.25D);
 
 		if (d0 > 0.0D)
 		{
@@ -85,6 +90,7 @@ public class BiomeSwamp extends Biome
 		this.generateBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
 	}
 
+	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
 		super.decorate(worldIn, rand, pos);

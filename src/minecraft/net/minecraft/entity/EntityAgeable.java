@@ -31,6 +31,7 @@ public abstract class EntityAgeable extends EntityCreature
 	@Nullable
 	public abstract EntityAgeable createChild(EntityAgeable ageable);
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -39,7 +40,7 @@ public abstract class EntityAgeable extends EntityCreature
 		{
 			if (!this.world.isRemote)
 			{
-				Class<? extends Entity> oclass = (Class) EntityList.field_191308_b.getObject(ItemMonsterPlacer.func_190908_h(itemstack));
+				Class<? extends Entity> oclass = EntityList.field_191308_b.getObject(ItemMonsterPlacer.func_190908_h(itemstack));
 
 				if (oclass != null && this.getClass() == oclass)
 				{
@@ -80,11 +81,12 @@ public abstract class EntityAgeable extends EntityCreature
 		}
 		else
 		{
-			Class<? extends Entity> oclass = (Class) EntityList.field_191308_b.getObject(ItemMonsterPlacer.func_190908_h(p_190669_1_));
+			Class<? extends Entity> oclass = EntityList.field_191308_b.getObject(ItemMonsterPlacer.func_190908_h(p_190669_1_));
 			return oclass != null && p_190669_2_ == oclass;
 		}
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -101,7 +103,7 @@ public abstract class EntityAgeable extends EntityCreature
 	{
 		if (this.world.isRemote)
 		{
-			return ((Boolean) this.dataManager.get(BABY)).booleanValue() ? -1 : 1;
+			return this.dataManager.get(BABY).booleanValue() ? -1 : 1;
 		}
 		else
 		{
@@ -169,6 +171,7 @@ public abstract class EntityAgeable extends EntityCreature
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -179,6 +182,7 @@ public abstract class EntityAgeable extends EntityCreature
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -186,6 +190,7 @@ public abstract class EntityAgeable extends EntityCreature
 		this.forcedAge = compound.getInteger("ForcedAge");
 	}
 
+	@Override
 	public void notifyDataManagerChange(DataParameter<?> key)
 	{
 		if (BABY.equals(key))
@@ -201,6 +206,7 @@ public abstract class EntityAgeable extends EntityCreature
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -211,7 +217,7 @@ public abstract class EntityAgeable extends EntityCreature
 			{
 				if (this.forcedAgeTimer % 4 == 0)
 				{
-					this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, 0.0D, 0.0D, 0.0D);
+					this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.0D, 0.0D, 0.0D);
 				}
 
 				--this.forcedAgeTimer;
@@ -250,6 +256,7 @@ public abstract class EntityAgeable extends EntityCreature
 	/**
 	 * If Animal, checks if the age timer is negative
 	 */
+	@Override
 	public boolean isChild()
 	{
 		return this.getGrowingAge() < 0;
@@ -267,6 +274,7 @@ public abstract class EntityAgeable extends EntityCreature
 	/**
 	 * Sets the width and height of the entity.
 	 */
+	@Override
 	protected final void setSize(float width, float height)
 	{
 		boolean flag = this.ageWidth > 0.0F;

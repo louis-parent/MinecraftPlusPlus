@@ -22,6 +22,7 @@ public class EntityMinecartEmpty extends EntityMinecart
 		EntityMinecart.registerFixesMinecart(fixer, EntityMinecartEmpty.class);
 	}
 
+	@Override
 	public boolean processInitialInteract(EntityPlayer player, EnumHand stack)
 	{
 		if (player.isSneaking())
@@ -46,6 +47,7 @@ public class EntityMinecartEmpty extends EntityMinecart
 	/**
 	 * Called every tick the minecart is on an activator rail.
 	 */
+	@Override
 	public void onActivatorRailPass(int x, int y, int z, boolean receivingPower)
 	{
 		if (receivingPower)
@@ -65,6 +67,7 @@ public class EntityMinecartEmpty extends EntityMinecart
 		}
 	}
 
+	@Override
 	public EntityMinecart.Type getType()
 	{
 		return EntityMinecart.Type.RIDEABLE;

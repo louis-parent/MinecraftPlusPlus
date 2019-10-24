@@ -49,6 +49,7 @@ public class BiomeTaiga extends Biome
 		}
 	}
 
+	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		if ((this.type == BiomeTaiga.Type.MEGA || this.type == BiomeTaiga.Type.MEGA_SPRUCE) && rand.nextInt(3) == 0)
@@ -57,18 +58,20 @@ public class BiomeTaiga extends Biome
 		}
 		else
 		{
-			return (WorldGenAbstractTree) (rand.nextInt(3) == 0 ? PINE_GENERATOR : SPRUCE_GENERATOR);
+			return rand.nextInt(3) == 0 ? PINE_GENERATOR : SPRUCE_GENERATOR;
 		}
 	}
 
 	/**
 	 * Gets a WorldGen appropriate for this biome.
 	 */
+	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand)
 	{
 		return rand.nextInt(5) > 0 ? new WorldGenTallGrass(BlockTallGrass.EnumType.FERN) : new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
 	}
 
+	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
 		if (this.type == BiomeTaiga.Type.MEGA || this.type == BiomeTaiga.Type.MEGA_SPRUCE)
@@ -97,6 +100,7 @@ public class BiomeTaiga extends Biome
 		super.decorate(worldIn, rand, pos);
 	}
 
+	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
 	{
 		if (this.type == BiomeTaiga.Type.MEGA || this.type == BiomeTaiga.Type.MEGA_SPRUCE)

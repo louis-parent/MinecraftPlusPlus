@@ -111,7 +111,7 @@ public class PlayerInteractionManager
 			}
 			else
 			{
-				float f = iblockstate.getPlayerRelativeBlockHardness(this.thisPlayerMP, this.thisPlayerMP.world, this.delayedDestroyPos) * (float) (i + 1);
+				float f = iblockstate.getPlayerRelativeBlockHardness(this.thisPlayerMP, this.thisPlayerMP.world, this.delayedDestroyPos) * (i + 1);
 				int j = (int) (f * 10.0F);
 
 				if (j != this.durabilityRemainingOnBlock)
@@ -140,7 +140,7 @@ public class PlayerInteractionManager
 			else
 			{
 				int k = this.curblockDamage - this.initialDamage;
-				float f1 = iblockstate1.getPlayerRelativeBlockHardness(this.thisPlayerMP, this.thisPlayerMP.world, this.delayedDestroyPos) * (float) (k + 1);
+				float f1 = iblockstate1.getPlayerRelativeBlockHardness(this.thisPlayerMP, this.thisPlayerMP.world, this.delayedDestroyPos) * (k + 1);
 				int l = (int) (f1 * 10.0F);
 
 				if (l != this.durabilityRemainingOnBlock)
@@ -227,7 +227,7 @@ public class PlayerInteractionManager
 
 			if (iblockstate.getMaterial() != Material.AIR)
 			{
-				float f = iblockstate.getPlayerRelativeBlockHardness(this.thisPlayerMP, this.thisPlayerMP.world, pos) * (float) (i + 1);
+				float f = iblockstate.getPlayerRelativeBlockHardness(this.thisPlayerMP, this.thisPlayerMP.world, pos) * (i + 1);
 
 				if (f >= 0.7F)
 				{

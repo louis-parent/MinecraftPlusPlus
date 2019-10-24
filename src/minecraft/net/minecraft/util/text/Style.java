@@ -39,115 +39,137 @@ public class Style
 	 */
 	private static final Style ROOT = new Style()
 	{
+		@Override
 		@Nullable
 		public TextFormatting getColor()
 		{
 			return null;
 		}
 
+		@Override
 		public boolean getBold()
 		{
 			return false;
 		}
 
+		@Override
 		public boolean getItalic()
 		{
 			return false;
 		}
 
+		@Override
 		public boolean getStrikethrough()
 		{
 			return false;
 		}
 
+		@Override
 		public boolean getUnderlined()
 		{
 			return false;
 		}
 
+		@Override
 		public boolean getObfuscated()
 		{
 			return false;
 		}
 
+		@Override
 		@Nullable
 		public ClickEvent getClickEvent()
 		{
 			return null;
 		}
 
+		@Override
 		@Nullable
 		public HoverEvent getHoverEvent()
 		{
 			return null;
 		}
 
+		@Override
 		@Nullable
 		public String getInsertion()
 		{
 			return null;
 		}
 
+		@Override
 		public Style setColor(TextFormatting color)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public Style setBold(Boolean boldIn)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public Style setItalic(Boolean italic)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public Style setStrikethrough(Boolean strikethrough)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public Style setUnderlined(Boolean underlined)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public Style setObfuscated(Boolean obfuscated)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public Style setClickEvent(ClickEvent event)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public Style setHoverEvent(HoverEvent event)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public Style setParentStyle(Style parent)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public String toString()
 		{
 			return "Style.ROOT";
 		}
 
+		@Override
 		public Style createShallowCopy()
 		{
 			return this;
 		}
 
+		@Override
 		public Style createDeepCopy()
 		{
 			return this;
 		}
 
+		@Override
 		public String getFormattingCode()
 		{
 			return "";
@@ -363,32 +385,32 @@ public class Style
 
 			if (this.getColor() != null)
 			{
-				stringbuilder.append((Object) this.getColor());
+				stringbuilder.append(this.getColor());
 			}
 
 			if (this.getBold())
 			{
-				stringbuilder.append((Object) TextFormatting.BOLD);
+				stringbuilder.append(TextFormatting.BOLD);
 			}
 
 			if (this.getItalic())
 			{
-				stringbuilder.append((Object) TextFormatting.ITALIC);
+				stringbuilder.append(TextFormatting.ITALIC);
 			}
 
 			if (this.getUnderlined())
 			{
-				stringbuilder.append((Object) TextFormatting.UNDERLINE);
+				stringbuilder.append(TextFormatting.UNDERLINE);
 			}
 
 			if (this.getObfuscated())
 			{
-				stringbuilder.append((Object) TextFormatting.OBFUSCATED);
+				stringbuilder.append(TextFormatting.OBFUSCATED);
 			}
 
 			if (this.getStrikethrough())
 			{
-				stringbuilder.append((Object) TextFormatting.STRIKETHROUGH);
+				stringbuilder.append(TextFormatting.STRIKETHROUGH);
 			}
 
 			return stringbuilder.toString();
@@ -403,11 +425,13 @@ public class Style
 		return this.parentStyle == null ? ROOT : this.parentStyle;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "Style{hasParent=" + (this.parentStyle != null) + ", color=" + this.color + ", bold=" + this.bold + ", italic=" + this.italic + ", underlined=" + this.underlined + ", obfuscated=" + this.obfuscated + ", clickEvent=" + this.getClickEvent() + ", hoverEvent=" + this.getHoverEvent() + ", insertion=" + this.getInsertion() + '}';
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -475,6 +499,7 @@ public class Style
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = this.color.hashCode();
@@ -532,6 +557,7 @@ public class Style
 
 	public static class Serializer implements JsonDeserializer<Style>, JsonSerializer<Style>
 	{
+		@Override
 		@Nullable
 		public Style deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
@@ -625,6 +651,7 @@ public class Style
 			}
 		}
 
+		@Override
 		@Nullable
 		public JsonElement serialize(Style p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{

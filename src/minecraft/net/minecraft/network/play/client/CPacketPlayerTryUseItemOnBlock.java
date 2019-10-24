@@ -35,11 +35,12 @@ public class CPacketPlayerTryUseItemOnBlock implements Packet<INetHandlerPlaySer
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.position = buf.readBlockPos();
-		this.placedBlockDirection = (EnumFacing) buf.readEnumValue(EnumFacing.class);
-		this.hand = (EnumHand) buf.readEnumValue(EnumHand.class);
+		this.placedBlockDirection = buf.readEnumValue(EnumFacing.class);
+		this.hand = buf.readEnumValue(EnumHand.class);
 		this.facingX = buf.readFloat();
 		this.facingY = buf.readFloat();
 		this.facingZ = buf.readFloat();
@@ -48,6 +49,7 @@ public class CPacketPlayerTryUseItemOnBlock implements Packet<INetHandlerPlaySer
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeBlockPos(this.position);
@@ -61,6 +63,7 @@ public class CPacketPlayerTryUseItemOnBlock implements Packet<INetHandlerPlaySer
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayServer handler)
 	{
 		handler.processRightClickBlock(this);

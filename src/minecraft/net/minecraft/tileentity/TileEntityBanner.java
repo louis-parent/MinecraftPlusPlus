@@ -55,6 +55,7 @@ public class TileEntityBanner extends TileEntity implements IWorldNameable
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.hasCustomName() ? this.field_190617_a : "banner";
@@ -63,6 +64,7 @@ public class TileEntityBanner extends TileEntity implements IWorldNameable
 	/**
 	 * Returns true if this thing is named
 	 */
+	@Override
 	public boolean hasCustomName()
 	{
 		return this.field_190617_a != null && !this.field_190617_a.isEmpty();
@@ -72,11 +74,13 @@ public class TileEntityBanner extends TileEntity implements IWorldNameable
 	 * Get the formatted ChatComponent that will be used for the sender's
 	 * username in chat
 	 */
+	@Override
 	public ITextComponent getDisplayName()
 	{
-		return (ITextComponent) (this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]));
+		return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]);
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -95,6 +99,7 @@ public class TileEntityBanner extends TileEntity implements IWorldNameable
 		return compound;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -112,12 +117,14 @@ public class TileEntityBanner extends TileEntity implements IWorldNameable
 		this.patternDataSet = true;
 	}
 
+	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		return new SPacketUpdateTileEntity(this.pos, 6, this.getUpdateTag());
 	}
 
+	@Override
 	public NBTTagCompound getUpdateTag()
 	{
 		return this.writeToNBT(new NBTTagCompound());

@@ -4,7 +4,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockFlowerPot;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.BlockLever;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPlanks;
@@ -58,6 +60,7 @@ public class ComponentScatteredFeaturePieces
 			super(p_i2062_1_, p_i2062_2_, 64, p_i2062_3_, 21, 15, 21);
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -67,6 +70,7 @@ public class ComponentScatteredFeaturePieces
 			tagCompound.setBoolean("hasPlacedChest3", this.hasPlacedChest[3]);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -76,6 +80,7 @@ public class ComponentScatteredFeaturePieces
 			this.hasPlacedChest[3] = tagCompound.getBoolean("hasPlacedChest3");
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, -4, 0, this.scatteredFeatureSizeX - 1, 0, this.scatteredFeatureSizeZ - 1, Blocks.SANDSTONE.getDefaultState(), Blocks.SANDSTONE.getDefaultState(), false);
@@ -308,6 +313,7 @@ public class ComponentScatteredFeaturePieces
 			}
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			tagCompound.setInteger("Width", this.scatteredFeatureSizeX);
@@ -316,6 +322,7 @@ public class ComponentScatteredFeaturePieces
 			tagCompound.setInteger("HPos", this.horizontalPos);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			this.scatteredFeatureSizeX = tagCompound.getInteger("Width");
@@ -379,6 +386,7 @@ public class ComponentScatteredFeaturePieces
 			super(rand, x, 64, z, 7, 5, 8);
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (!this.offsetToAverageGroundLevel(worldIn, structureBoundingBoxIn, -1))
@@ -455,6 +463,7 @@ public class ComponentScatteredFeaturePieces
 			super(rand, x, 64, z, 12, 10, 15);
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -464,6 +473,7 @@ public class ComponentScatteredFeaturePieces
 			tagCompound.setBoolean("placedTrap2", this.placedTrap2);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -473,6 +483,7 @@ public class ComponentScatteredFeaturePieces
 			this.placedTrap2 = tagCompound.getBoolean("placedTrap2");
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (!this.offsetToAverageGroundLevel(worldIn, structureBoundingBoxIn, 0))
@@ -656,10 +667,10 @@ public class ComponentScatteredFeaturePieces
 				this.setBlockState(worldIn, Blocks.REDSTONE_WIRE.getDefaultState(), 8, -2, 9, structureBoundingBoxIn);
 				this.setBlockState(worldIn, Blocks.REDSTONE_WIRE.getDefaultState(), 8, -2, 10, structureBoundingBoxIn);
 				this.setBlockState(worldIn, Blocks.REDSTONE_WIRE.getDefaultState(), 10, -1, 9, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.STICKY_PISTON.getDefaultState().withProperty(BlockPistonBase.FACING, EnumFacing.UP), 9, -2, 8, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.STICKY_PISTON.getDefaultState().withProperty(BlockPistonBase.FACING, EnumFacing.WEST), 10, -2, 8, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.STICKY_PISTON.getDefaultState().withProperty(BlockPistonBase.FACING, EnumFacing.WEST), 10, -1, 8, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.UNPOWERED_REPEATER.getDefaultState().withProperty(BlockRedstoneRepeater.FACING, EnumFacing.NORTH), 10, -2, 10, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.STICKY_PISTON.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.UP), 9, -2, 8, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.STICKY_PISTON.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.WEST), 10, -2, 8, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.STICKY_PISTON.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.WEST), 10, -1, 8, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.UNPOWERED_REPEATER.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH), 10, -2, 10, structureBoundingBoxIn);
 
 				if (!this.placedHiddenChest)
 				{
@@ -676,6 +687,7 @@ public class ComponentScatteredFeaturePieces
 			{
 			}
 
+			@Override
 			public void selectBlocks(Random rand, int x, int y, int z, boolean p_75062_5_)
 			{
 				if (rand.nextFloat() < 0.4F)
@@ -703,18 +715,21 @@ public class ComponentScatteredFeaturePieces
 			super(p_i2066_1_, p_i2066_2_, 64, p_i2066_3_, 7, 7, 9);
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setBoolean("Witch", this.hasWitch);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.hasWitch = tagCompound.getBoolean("Witch");
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (!this.offsetToAverageGroundLevel(worldIn, structureBoundingBoxIn, 0))
@@ -772,7 +787,7 @@ public class ComponentScatteredFeaturePieces
 						this.hasWitch = true;
 						EntityWitch entitywitch = new EntityWitch(worldIn);
 						entitywitch.enablePersistence();
-						entitywitch.setLocationAndAngles((double) l + 0.5D, (double) i1, (double) k + 0.5D, 0.0F, 0.0F);
+						entitywitch.setLocationAndAngles(l + 0.5D, i1, k + 0.5D, 0.0F, 0.0F);
 						entitywitch.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(l, i1, k)), (IEntityLivingData) null);
 						worldIn.spawnEntityInWorld(entitywitch);
 					}

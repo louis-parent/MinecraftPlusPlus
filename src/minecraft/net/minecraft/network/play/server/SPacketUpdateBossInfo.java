@@ -41,18 +41,19 @@ public class SPacketUpdateBossInfo implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.uniqueId = buf.readUuid();
-		this.operation = (SPacketUpdateBossInfo.Operation) buf.readEnumValue(SPacketUpdateBossInfo.Operation.class);
+		this.operation = buf.readEnumValue(SPacketUpdateBossInfo.Operation.class);
 
 		switch (this.operation)
 		{
 			case ADD:
 				this.name = buf.readTextComponent();
 				this.percent = buf.readFloat();
-				this.color = (BossInfo.Color) buf.readEnumValue(BossInfo.Color.class);
-				this.overlay = (BossInfo.Overlay) buf.readEnumValue(BossInfo.Overlay.class);
+				this.color = buf.readEnumValue(BossInfo.Color.class);
+				this.overlay = buf.readEnumValue(BossInfo.Overlay.class);
 				this.setFlags(buf.readUnsignedByte());
 
 			case REMOVE:
@@ -68,8 +69,8 @@ public class SPacketUpdateBossInfo implements Packet<INetHandlerPlayClient>
 				break;
 
 			case UPDATE_STYLE:
-				this.color = (BossInfo.Color) buf.readEnumValue(BossInfo.Color.class);
-				this.overlay = (BossInfo.Overlay) buf.readEnumValue(BossInfo.Overlay.class);
+				this.color = buf.readEnumValue(BossInfo.Color.class);
+				this.overlay = buf.readEnumValue(BossInfo.Overlay.class);
 				break;
 
 			case UPDATE_PROPERTIES:
@@ -87,6 +88,7 @@ public class SPacketUpdateBossInfo implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeUuid(this.uniqueId);
@@ -148,6 +150,7 @@ public class SPacketUpdateBossInfo implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handleUpdateEntityNBT(this);

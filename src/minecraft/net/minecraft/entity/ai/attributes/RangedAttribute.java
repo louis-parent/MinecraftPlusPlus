@@ -41,6 +41,7 @@ public class RangedAttribute extends BaseAttribute
 		return this.description;
 	}
 
+	@Override
 	public double clampValue(double value)
 	{
 		value = MathHelper.clamp(value, this.minimumValue, this.maximumValue);

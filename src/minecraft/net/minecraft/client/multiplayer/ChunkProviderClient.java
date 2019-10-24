@@ -27,6 +27,7 @@ public class ChunkProviderClient implements IChunkProvider
 	private final Chunk blankChunk;
 	private final Long2ObjectMap<Chunk> chunkMapping = new Long2ObjectOpenHashMap<Chunk>(8192)
 	{
+		@Override
 		protected void rehash(int p_rehash_1_)
 		{
 			if (p_rehash_1_ > this.key.length)
@@ -61,10 +62,11 @@ public class ChunkProviderClient implements IChunkProvider
 		this.chunkMapping.remove(ChunkPos.asLong(x, z));
 	}
 
+	@Override
 	@Nullable
 	public Chunk getLoadedChunk(int x, int z)
 	{
-		return (Chunk) this.chunkMapping.get(ChunkPos.asLong(x, z));
+		return this.chunkMapping.get(ChunkPos.asLong(x, z));
 	}
 
 	/**
@@ -78,15 +80,17 @@ public class ChunkProviderClient implements IChunkProvider
 		return chunk;
 	}
 
+	@Override
 	public Chunk provideChunk(int x, int z)
 	{
-		return (Chunk) MoreObjects.firstNonNull(this.getLoadedChunk(x, z), this.blankChunk);
+		return MoreObjects.firstNonNull(this.getLoadedChunk(x, z), this.blankChunk);
 	}
 
 	/**
 	 * Unloads chunks that are marked to be unloaded. This is not guaranteed to
 	 * unload every such chunk.
 	 */
+	@Override
 	public boolean unloadQueuedChunks()
 	{
 		long i = System.currentTimeMillis();
@@ -100,7 +104,7 @@ public class ChunkProviderClient implements IChunkProvider
 
 		if (System.currentTimeMillis() - i > 100L)
 		{
-			LOGGER.info("Warning: Clientside chunk ticking took {} ms", (long) (System.currentTimeMillis() - i));
+			LOGGER.info("Warning: Clientside chunk ticking took {} ms", System.currentTimeMillis() - i);
 		}
 
 		return false;
@@ -109,11 +113,13 @@ public class ChunkProviderClient implements IChunkProvider
 	/**
 	 * Converts the instance data to a readable string.
 	 */
+	@Override
 	public String makeString()
 	{
 		return "MultiplayerChunkCache: " + this.chunkMapping.size() + ", " + this.chunkMapping.size();
 	}
 
+	@Override
 	public boolean func_191062_e(int p_191062_1_, int p_191062_2_)
 	{
 		return this.chunkMapping.containsKey(ChunkPos.asLong(p_191062_1_, p_191062_2_));

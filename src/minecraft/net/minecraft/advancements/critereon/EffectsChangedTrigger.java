@@ -20,11 +20,13 @@ public class EffectsChangedTrigger implements ICriterionTrigger<EffectsChangedTr
 	private static final ResourceLocation field_193154_a = new ResourceLocation("effects_changed");
 	private final Map<PlayerAdvancements, EffectsChangedTrigger.Listeners> field_193155_b = Maps.<PlayerAdvancements, EffectsChangedTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_193154_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<EffectsChangedTrigger.Instance> p_192165_2_)
 	{
 		EffectsChangedTrigger.Listeners effectschangedtrigger$listeners = this.field_193155_b.get(p_192165_1_);
@@ -38,6 +40,7 @@ public class EffectsChangedTrigger implements ICriterionTrigger<EffectsChangedTr
 		effectschangedtrigger$listeners.func_193431_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<EffectsChangedTrigger.Instance> p_192164_2_)
 	{
 		EffectsChangedTrigger.Listeners effectschangedtrigger$listeners = this.field_193155_b.get(p_192164_1_);
@@ -53,11 +56,13 @@ public class EffectsChangedTrigger implements ICriterionTrigger<EffectsChangedTr
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_193155_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public EffectsChangedTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		MobEffectsPredicate mobeffectspredicate = MobEffectsPredicate.func_193471_a(p_192166_1_.get("effects"));
@@ -121,7 +126,7 @@ public class EffectsChangedTrigger implements ICriterionTrigger<EffectsChangedTr
 
 			for (ICriterionTrigger.Listener<EffectsChangedTrigger.Instance> listener : this.field_193434_b)
 			{
-				if (((EffectsChangedTrigger.Instance) listener.func_192158_a()).func_193195_a(p_193432_1_))
+				if (listener.func_192158_a().func_193195_a(p_193432_1_))
 				{
 					if (list == null)
 					{

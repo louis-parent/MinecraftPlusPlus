@@ -21,6 +21,7 @@ public class CommandTrigger extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "trigger";
@@ -29,6 +30,7 @@ public class CommandTrigger extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 0;
@@ -37,6 +39,7 @@ public class CommandTrigger extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.trigger.usage";
@@ -45,6 +48,7 @@ public class CommandTrigger extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length < 3)
@@ -122,6 +126,7 @@ public class CommandTrigger extends CommandBase
 		}
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		if (args.length == 1)
@@ -137,7 +142,7 @@ public class CommandTrigger extends CommandBase
 				}
 			}
 
-			return getListOfStringsMatchingLastWord(args, (String[]) list.toArray(new String[list.size()]));
+			return getListOfStringsMatchingLastWord(args, list.toArray(new String[list.size()]));
 		}
 		else
 		{

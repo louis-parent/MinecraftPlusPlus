@@ -18,11 +18,13 @@ import net.minecraft.world.World;
 
 public class ItemTippedArrow extends ItemArrow
 {
+	@Override
 	public ItemStack getAsStack()
 	{
 		return PotionUtils.addPotionToItemStack(super.getAsStack(), PotionTypes.POISON);
 	}
 
+	@Override
 	public EntityArrow createArrow(World worldIn, ItemStack stack, EntityLivingBase shooter)
 	{
 		EntityTippedArrow entitytippedarrow = new EntityTippedArrow(worldIn, shooter);
@@ -34,6 +36,7 @@ public class ItemTippedArrow extends ItemArrow
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
+	@Override
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (this.func_194125_a(itemIn))
@@ -52,11 +55,13 @@ public class ItemTippedArrow extends ItemArrow
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		PotionUtils.addPotionTooltip(stack, tooltip, 0.125F);
 	}
 
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		return I18n.translateToLocal(PotionUtils.getPotionFromItem(stack).getNamePrefixed("tipped_arrow.effect."));

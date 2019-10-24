@@ -32,12 +32,13 @@ public class ItemEnderEye extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
 		ItemStack itemstack = stack.getHeldItem(pos);
 
-		if (stack.canPlayerEdit(worldIn.offset(hand), hand, itemstack) && iblockstate.getBlock() == Blocks.END_PORTAL_FRAME && !((Boolean) iblockstate.getValue(BlockEndPortalFrame.EYE)).booleanValue())
+		if (stack.canPlayerEdit(worldIn.offset(hand), hand, itemstack) && iblockstate.getBlock() == Blocks.END_PORTAL_FRAME && !iblockstate.getValue(BlockEndPortalFrame.EYE).booleanValue())
 		{
 			if (playerIn.isRemote)
 			{
@@ -51,9 +52,9 @@ public class ItemEnderEye extends Item
 
 				for (int i = 0; i < 16; ++i)
 				{
-					double d0 = (double) ((float) worldIn.getX() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F);
-					double d1 = (double) ((float) worldIn.getY() + 0.8125F);
-					double d2 = (double) ((float) worldIn.getZ() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F);
+					double d0 = worldIn.getX() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
+					double d1 = worldIn.getY() + 0.8125F;
+					double d2 = worldIn.getZ() + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
 					double d3 = 0.0D;
 					double d4 = 0.0D;
 					double d5 = 0.0D;
@@ -87,6 +88,7 @@ public class ItemEnderEye extends Item
 		}
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);
@@ -106,7 +108,7 @@ public class ItemEnderEye extends Item
 
 				if (blockpos != null)
 				{
-					EntityEnderEye entityendereye = new EntityEnderEye(itemStackIn, worldIn.posX, worldIn.posY + (double) (worldIn.height / 2.0F), worldIn.posZ);
+					EntityEnderEye entityendereye = new EntityEnderEye(itemStackIn, worldIn.posX, worldIn.posY + worldIn.height / 2.0F, worldIn.posZ);
 					entityendereye.moveTowards(blockpos);
 					itemStackIn.spawnEntityInWorld(entityendereye);
 

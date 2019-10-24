@@ -101,7 +101,7 @@ public class RenderChunk
 		{
 			this.stopCompileTask();
 			this.position.setPos(p_189562_1_, p_189562_2_, p_189562_3_);
-			this.boundingBox = new AxisAlignedBB((double) p_189562_1_, (double) p_189562_2_, (double) p_189562_3_, (double) (p_189562_1_ + 16), (double) (p_189562_2_ + 16), (double) (p_189562_3_ + 16));
+			this.boundingBox = new AxisAlignedBB(p_189562_1_, p_189562_2_, p_189562_3_, p_189562_1_ + 16, p_189562_2_ + 16, p_189562_3_ + 16);
 
 			for (EnumFacing enumfacing : EnumFacing.values())
 			{
@@ -328,7 +328,7 @@ public class RenderChunk
 	private void preRenderBlocks(BufferBuilder worldRendererIn, BlockPos pos)
 	{
 		worldRendererIn.begin(7, DefaultVertexFormats.BLOCK);
-		worldRendererIn.setTranslation((double) (-pos.getX()), (double) (-pos.getY()), (double) (-pos.getZ()));
+		worldRendererIn.setTranslation((-pos.getX()), (-pos.getY()), (-pos.getZ()));
 	}
 
 	private void postRenderBlocks(BlockRenderLayer layer, float x, float y, float z, BufferBuilder worldRendererIn, CompiledChunk compiledChunkIn)

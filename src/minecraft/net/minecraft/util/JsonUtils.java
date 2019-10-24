@@ -375,7 +375,7 @@ public class JsonUtils
 	{
 		if (json.has(memberName))
 		{
-			return (T) deserializeClass(json.get(memberName), memberName, context, adapter);
+			return deserializeClass(json.get(memberName), memberName, context, adapter);
 		}
 		else
 		{
@@ -385,7 +385,7 @@ public class JsonUtils
 
 	public static <T> T deserializeClass(JsonObject json, String memberName, T fallback, JsonDeserializationContext context, Class<? extends T> adapter)
 	{
-		return (T) (json.has(memberName) ? deserializeClass(json.get(memberName), memberName, context, adapter) : fallback);
+		return json.has(memberName) ? deserializeClass(json.get(memberName), memberName, context, adapter) : fallback;
 	}
 
 	/**
@@ -394,7 +394,7 @@ public class JsonUtils
 	 */
 	public static String toString(JsonElement json)
 	{
-		String s = org.apache.commons.lang3.StringUtils.abbreviateMiddle(String.valueOf((Object) json), "...", 10);
+		String s = org.apache.commons.lang3.StringUtils.abbreviateMiddle(String.valueOf(json), "...", 10);
 
 		if (json == null)
 		{
@@ -440,7 +440,7 @@ public class JsonUtils
 		{
 			JsonReader jsonreader = new JsonReader(readerIn);
 			jsonreader.setLenient(lenient);
-			return (T) gsonIn.getAdapter(adapter).read(jsonreader);
+			return gsonIn.getAdapter(adapter).read(jsonreader);
 		}
 		catch (IOException ioexception)
 		{
@@ -472,7 +472,7 @@ public class JsonUtils
 	@Nullable
 	public static <T> T gsonDeserialize(Gson gsonIn, String json, Class<T> adapter, boolean lenient)
 	{
-		return (T) gsonDeserialize(gsonIn, new StringReader(json), adapter, lenient);
+		return gsonDeserialize(gsonIn, new StringReader(json), adapter, lenient);
 	}
 
 	@Nullable
@@ -490,12 +490,12 @@ public class JsonUtils
 	@Nullable
 	public static <T> T func_193839_a(Gson p_193839_0_, Reader p_193839_1_, Class<T> p_193839_2_)
 	{
-		return (T) gsonDeserialize(p_193839_0_, p_193839_1_, p_193839_2_, false);
+		return gsonDeserialize(p_193839_0_, p_193839_1_, p_193839_2_, false);
 	}
 
 	@Nullable
 	public static <T> T gsonDeserialize(Gson gsonIn, String json, Class<T> adapter)
 	{
-		return (T) gsonDeserialize(gsonIn, json, adapter, false);
+		return gsonDeserialize(gsonIn, json, adapter, false);
 	}
 }

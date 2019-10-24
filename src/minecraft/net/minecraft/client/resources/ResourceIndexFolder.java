@@ -13,11 +13,13 @@ public class ResourceIndexFolder extends ResourceIndex
 		this.baseDir = folder;
 	}
 
+	@Override
 	public File getFile(ResourceLocation location)
 	{
 		return new File(this.baseDir, location.toString().replace(':', '/'));
 	}
 
+	@Override
 	public File getPackMcmeta()
 	{
 		return new File(this.baseDir, "pack.mcmeta");

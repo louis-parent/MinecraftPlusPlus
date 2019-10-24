@@ -49,6 +49,7 @@ public class EntityPolarBear extends EntityAnimal
 		this.setSize(1.3F, 1.4F);
 	}
 
+	@Override
 	public EntityAgeable createChild(EntityAgeable ageable)
 	{
 		return new EntityPolarBear(this.world);
@@ -58,11 +59,13 @@ public class EntityPolarBear extends EntityAnimal
 	 * Checks if the parameter is an item which this animal can be fed to breed
 	 * it (wheat, carrots or seeds depending on the animal type)
 	 */
+	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
 		return false;
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		super.initEntityAI();
@@ -77,6 +80,7 @@ public class EntityPolarBear extends EntityAnimal
 		this.targetTasks.addTask(2, new EntityPolarBear.AIAttackPlayer());
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -87,21 +91,25 @@ public class EntityPolarBear extends EntityAnimal
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return this.isChild() ? SoundEvents.ENTITY_POLAR_BEAR_BABY_AMBIENT : SoundEvents.ENTITY_POLAR_BEAR_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_POLAR_BEAR_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_POLAR_BEAR_DEATH;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.ENTITY_POLAR_BEAR_STEP, 0.15F, 1.0F);
@@ -116,12 +124,14 @@ public class EntityPolarBear extends EntityAnimal
 		}
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.ENTITIES_POLAR_BEAR;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -131,6 +141,7 @@ public class EntityPolarBear extends EntityAnimal
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -155,9 +166,10 @@ public class EntityPolarBear extends EntityAnimal
 		}
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()));
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), ((int) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()));
 
 		if (flag)
 		{
@@ -169,7 +181,7 @@ public class EntityPolarBear extends EntityAnimal
 
 	public boolean isStanding()
 	{
-		return ((Boolean) this.dataManager.get(IS_STANDING)).booleanValue();
+		return this.dataManager.get(IS_STANDING).booleanValue();
 	}
 
 	public void setStanding(boolean standing)
@@ -182,6 +194,7 @@ public class EntityPolarBear extends EntityAnimal
 		return (this.clientSideStandAnimation0 + (this.clientSideStandAnimation - this.clientSideStandAnimation0) * p_189795_1_) / 6.0F;
 	}
 
+	@Override
 	protected float getWaterSlowDown()
 	{
 		return 0.98F;
@@ -192,6 +205,7 @@ public class EntityPolarBear extends EntityAnimal
 	 * spawner, natural spawning etc, but not called when entity is reloaded
 	 * from nbt. Mainly used for initializing attributes and inventory
 	 */
+	@Override
 	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata)
 	{
 		if (livingdata instanceof EntityPolarBear.GroupData)
@@ -218,6 +232,7 @@ public class EntityPolarBear extends EntityAnimal
 			super(EntityPolarBear.this, EntityPlayer.class, 20, true, true, (Predicate) null);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			if (EntityPolarBear.this.isChild())
@@ -242,6 +257,7 @@ public class EntityPolarBear extends EntityAnimal
 			}
 		}
 
+		@Override
 		protected double getTargetDistance()
 		{
 			return super.getTargetDistance() * 0.5D;
@@ -255,6 +271,7 @@ public class EntityPolarBear extends EntityAnimal
 			super(EntityPolarBear.this, false);
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			super.startExecuting();
@@ -266,6 +283,7 @@ public class EntityPolarBear extends EntityAnimal
 			}
 		}
 
+		@Override
 		protected void setEntityAttackTarget(EntityCreature creatureIn, EntityLivingBase entityLivingBaseIn)
 		{
 			if (creatureIn instanceof EntityPolarBear && !creatureIn.isChild())
@@ -282,6 +300,7 @@ public class EntityPolarBear extends EntityAnimal
 			super(EntityPolarBear.this, 1.25D, true);
 		}
 
+		@Override
 		protected void checkAndPerformAttack(EntityLivingBase p_190102_1_, double p_190102_2_)
 		{
 			double d0 = this.getAttackReachSqr(p_190102_1_);
@@ -313,15 +332,17 @@ public class EntityPolarBear extends EntityAnimal
 			}
 		}
 
+		@Override
 		public void resetTask()
 		{
 			EntityPolarBear.this.setStanding(false);
 			super.resetTask();
 		}
 
+		@Override
 		protected double getAttackReachSqr(EntityLivingBase attackTarget)
 		{
-			return (double) (4.0F + attackTarget.width);
+			return 4.0F + attackTarget.width;
 		}
 	}
 
@@ -332,6 +353,7 @@ public class EntityPolarBear extends EntityAnimal
 			super(EntityPolarBear.this, 2.0D);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			return !EntityPolarBear.this.isChild() && !EntityPolarBear.this.isBurning() ? false : super.shouldExecute();

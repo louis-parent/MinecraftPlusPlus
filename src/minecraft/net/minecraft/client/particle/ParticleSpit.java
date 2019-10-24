@@ -10,14 +10,16 @@ public class ParticleSpit extends ParticleExplosion
 		this.particleGravity = 0.5F;
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
-		this.motionY -= 0.004D + 0.04D * (double) this.particleGravity;
+		this.motionY -= 0.004D + 0.04D * this.particleGravity;
 	}
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleSpit(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);

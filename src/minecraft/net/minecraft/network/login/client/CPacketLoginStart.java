@@ -25,6 +25,7 @@ public class CPacketLoginStart implements Packet<INetHandlerLoginServer>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.profile = new GameProfile((UUID) null, buf.readStringFromBuffer(16));
@@ -33,6 +34,7 @@ public class CPacketLoginStart implements Packet<INetHandlerLoginServer>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeString(this.profile.getName());
@@ -41,6 +43,7 @@ public class CPacketLoginStart implements Packet<INetHandlerLoginServer>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerLoginServer handler)
 	{
 		handler.processLoginStart(this);

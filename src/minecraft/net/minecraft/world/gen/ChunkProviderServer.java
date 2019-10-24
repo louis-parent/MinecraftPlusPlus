@@ -78,11 +78,12 @@ public class ChunkProviderServer implements IChunkProvider
 		}
 	}
 
+	@Override
 	@Nullable
 	public Chunk getLoadedChunk(int x, int z)
 	{
 		long i = ChunkPos.asLong(x, z);
-		Chunk chunk = (Chunk) this.id2ChunkMap.get(i);
+		Chunk chunk = this.id2ChunkMap.get(i);
 
 		if (chunk != null)
 		{
@@ -112,6 +113,7 @@ public class ChunkProviderServer implements IChunkProvider
 		return chunk;
 	}
 
+	@Override
 	public Chunk provideChunk(int x, int z)
 	{
 		Chunk chunk = this.loadChunk(x, z);
@@ -159,7 +161,7 @@ public class ChunkProviderServer implements IChunkProvider
 		}
 		catch (Exception exception)
 		{
-			LOGGER.error("Couldn't load chunk", (Throwable) exception);
+			LOGGER.error("Couldn't load chunk", exception);
 			return null;
 		}
 	}
@@ -172,7 +174,7 @@ public class ChunkProviderServer implements IChunkProvider
 		}
 		catch (Exception exception)
 		{
-			LOGGER.error("Couldn't save entities", (Throwable) exception);
+			LOGGER.error("Couldn't save entities", exception);
 		}
 	}
 
@@ -185,11 +187,11 @@ public class ChunkProviderServer implements IChunkProvider
 		}
 		catch (IOException ioexception)
 		{
-			LOGGER.error("Couldn't save chunk", (Throwable) ioexception);
+			LOGGER.error("Couldn't save chunk", ioexception);
 		}
 		catch (MinecraftException minecraftexception)
 		{
-			LOGGER.error("Couldn't save chunk; already in use by another instance of Minecraft?", (Throwable) minecraftexception);
+			LOGGER.error("Couldn't save chunk; already in use by another instance of Minecraft?", minecraftexception);
 		}
 	}
 
@@ -236,6 +238,7 @@ public class ChunkProviderServer implements IChunkProvider
 	 * Unloads chunks that are marked to be unloaded. This is not guaranteed to
 	 * unload every such chunk.
 	 */
+	@Override
 	public boolean unloadQueuedChunks()
 	{
 		if (!this.worldObj.disableLevelSaving)
@@ -247,7 +250,7 @@ public class ChunkProviderServer implements IChunkProvider
 				for (int i = 0; i < 100 && iterator.hasNext(); iterator.remove())
 				{
 					Long olong = iterator.next();
-					Chunk chunk = (Chunk) this.id2ChunkMap.get(olong);
+					Chunk chunk = this.id2ChunkMap.get(olong);
 
 					if (chunk != null && chunk.unloaded)
 					{
@@ -277,6 +280,7 @@ public class ChunkProviderServer implements IChunkProvider
 	/**
 	 * Converts the instance data to a readable string.
 	 */
+	@Override
 	public String makeString()
 	{
 		return "ServerChunkCache: " + this.id2ChunkMap.size() + " Drop: " + this.droppedChunksSet.size();
@@ -311,6 +315,7 @@ public class ChunkProviderServer implements IChunkProvider
 		return this.id2ChunkMap.containsKey(ChunkPos.asLong(x, z));
 	}
 
+	@Override
 	public boolean func_191062_e(int p_191062_1_, int p_191062_2_)
 	{
 		return this.id2ChunkMap.containsKey(ChunkPos.asLong(p_191062_1_, p_191062_2_)) || this.chunkLoader.func_191063_a(p_191062_1_, p_191062_2_);

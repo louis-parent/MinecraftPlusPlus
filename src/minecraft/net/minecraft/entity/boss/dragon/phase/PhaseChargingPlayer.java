@@ -23,6 +23,7 @@ public class PhaseChargingPlayer extends PhaseBase
 	 * Gives the phase a chance to update its status. Called by dragon's
 	 * onLivingUpdate. Only used when !worldObj.isRemote.
 	 */
+	@Override
 	public void doLocalUpdate()
 	{
 		if (this.targetLocation == null)
@@ -48,6 +49,7 @@ public class PhaseChargingPlayer extends PhaseBase
 	/**
 	 * Called when this phase is set to active
 	 */
+	@Override
 	public void initPhase()
 	{
 		this.targetLocation = null;
@@ -62,11 +64,13 @@ public class PhaseChargingPlayer extends PhaseBase
 	/**
 	 * Returns the maximum amount dragon may rise or fall during this phase
 	 */
+	@Override
 	public float getMaxRiseOrFall()
 	{
 		return 3.0F;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -77,6 +81,7 @@ public class PhaseChargingPlayer extends PhaseBase
 		return this.targetLocation;
 	}
 
+	@Override
 	public PhaseList<PhaseChargingPlayer> getPhaseList()
 	{
 		return PhaseList.CHARGING_PLAYER;

@@ -96,6 +96,7 @@ public class EntityTippedArrow extends EntityArrow
 		this.getDataManager().set(COLOR, Integer.valueOf(PotionUtils.getPotionColorFromEffectList(PotionUtils.mergeEffects(this.potion, this.customPotionEffects))));
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -105,6 +106,7 @@ public class EntityTippedArrow extends EntityArrow
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -138,20 +140,20 @@ public class EntityTippedArrow extends EntityArrow
 
 		if (i != -1 && particleCount > 0)
 		{
-			double d0 = (double) (i >> 16 & 255) / 255.0D;
-			double d1 = (double) (i >> 8 & 255) / 255.0D;
-			double d2 = (double) (i >> 0 & 255) / 255.0D;
+			double d0 = (i >> 16 & 255) / 255.0D;
+			double d1 = (i >> 8 & 255) / 255.0D;
+			double d2 = (i >> 0 & 255) / 255.0D;
 
 			for (int j = 0; j < particleCount; ++j)
 			{
-				this.world.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, d0, d1, d2);
+				this.world.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, d0, d1, d2);
 			}
 		}
 	}
 
 	public int getColor()
 	{
-		return ((Integer) this.dataManager.get(COLOR)).intValue();
+		return this.dataManager.get(COLOR).intValue();
 	}
 
 	private void func_191507_d(int p_191507_1_)
@@ -168,13 +170,14 @@ public class EntityTippedArrow extends EntityArrow
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
 
 		if (this.potion != PotionTypes.EMPTY && this.potion != null)
 		{
-			compound.setString("Potion", ((ResourceLocation) PotionType.REGISTRY.getNameForObject(this.potion)).toString());
+			compound.setString("Potion", PotionType.REGISTRY.getNameForObject(this.potion).toString());
 		}
 
 		if (this.field_191509_at)
@@ -198,6 +201,7 @@ public class EntityTippedArrow extends EntityArrow
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -222,6 +226,7 @@ public class EntityTippedArrow extends EntityArrow
 		}
 	}
 
+	@Override
 	protected void arrowHit(EntityLivingBase living)
 	{
 		super.arrowHit(living);
@@ -240,6 +245,7 @@ public class EntityTippedArrow extends EntityArrow
 		}
 	}
 
+	@Override
 	protected ItemStack getArrowStack()
 	{
 		if (this.customPotionEffects.isEmpty() && this.potion == PotionTypes.EMPTY)
@@ -269,6 +275,7 @@ public class EntityTippedArrow extends EntityArrow
 		}
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 0)
@@ -277,13 +284,13 @@ public class EntityTippedArrow extends EntityArrow
 
 			if (i != -1)
 			{
-				double d0 = (double) (i >> 16 & 255) / 255.0D;
-				double d1 = (double) (i >> 8 & 255) / 255.0D;
-				double d2 = (double) (i >> 0 & 255) / 255.0D;
+				double d0 = (i >> 16 & 255) / 255.0D;
+				double d1 = (i >> 8 & 255) / 255.0D;
+				double d2 = (i >> 0 & 255) / 255.0D;
 
 				for (int j = 0; j < 20; ++j)
 				{
-					this.world.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, d0, d1, d2);
+					this.world.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, d0, d1, d2);
 				}
 			}
 		}

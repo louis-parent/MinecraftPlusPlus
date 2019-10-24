@@ -50,21 +50,24 @@ public class BlockEndPortalFrame extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return AABB_BLOCK;
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 		addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BLOCK);
 
-		if (((Boolean) worldIn.getBlockState(pos).getValue(EYE)).booleanValue())
+		if (worldIn.getBlockState(pos).getValue(EYE).booleanValue())
 		{
 			addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_EYE);
 		}
@@ -73,6 +76,7 @@ public class BlockEndPortalFrame extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.EMPTY_ITEM;
@@ -82,24 +86,28 @@ public class BlockEndPortalFrame extends Block
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(EYE, Boolean.valueOf(false));
 	}
 
+	@Override
 	public boolean hasComparatorInputOverride(IBlockState state)
 	{
 		return true;
 	}
 
+	@Override
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
 	{
-		return ((Boolean) blockState.getValue(EYE)).booleanValue() ? 15 : 0;
+		return blockState.getValue(EYE).booleanValue() ? 15 : 0;
 	}
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(EYE, Boolean.valueOf((meta & 4) != 0)).withProperty(FACING, EnumFacing.getHorizontal(meta & 3));
@@ -108,12 +116,13 @@ public class BlockEndPortalFrame extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((EnumFacing) state.getValue(FACING)).getHorizontalIndex();
+		i = i | state.getValue(FACING).getHorizontalIndex();
 
-		if (((Boolean) state.getValue(EYE)).booleanValue())
+		if (state.getValue(EYE).booleanValue())
 		{
 			i |= 4;
 		}
@@ -125,25 +134,29 @@ public class BlockEndPortalFrame extends Block
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING, EYE });
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -159,6 +172,7 @@ public class BlockEndPortalFrame extends Block
 		return portalShape;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return p_193383_4_ == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;

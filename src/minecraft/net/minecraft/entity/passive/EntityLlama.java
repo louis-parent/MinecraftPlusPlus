@@ -79,12 +79,13 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 
 	public int func_190707_dL()
 	{
-		return ((Integer) this.dataManager.get(field_190720_bG)).intValue();
+		return this.dataManager.get(field_190720_bG).intValue();
 	}
 
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -100,6 +101,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.func_190706_p(compound.getInteger("Strength"));
@@ -114,6 +116,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 		this.updateHorseSlots();
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -130,12 +133,14 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 		this.targetTasks.addTask(2, new EntityLlama.AIDefendTarget(this));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -146,7 +151,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 
 	public int func_190719_dM()
 	{
-		return MathHelper.clamp(((Integer) this.dataManager.get(field_190722_bI)).intValue(), 0, 3);
+		return MathHelper.clamp(this.dataManager.get(field_190722_bI).intValue(), 0, 3);
 	}
 
 	public void func_190710_o(int p_190710_1_)
@@ -154,11 +159,13 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 		this.dataManager.set(field_190722_bI, Integer.valueOf(p_190710_1_));
 	}
 
+	@Override
 	protected int func_190686_di()
 	{
 		return this.func_190695_dh() ? 2 + 3 * this.func_190696_dl() : super.func_190686_di();
 	}
 
+	@Override
 	public void updatePassenger(Entity passenger)
 	{
 		if (this.isPassenger(passenger))
@@ -166,7 +173,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 			float f = MathHelper.cos(this.renderYawOffset * 0.017453292F);
 			float f1 = MathHelper.sin(this.renderYawOffset * 0.017453292F);
 			float f2 = 0.3F;
-			passenger.setPosition(this.posX + (double) (0.3F * f1), this.posY + this.getMountedYOffset() + passenger.getYOffset(), this.posZ - (double) (0.3F * f));
+			passenger.setPosition(this.posX + 0.3F * f1, this.posY + this.getMountedYOffset() + passenger.getYOffset(), this.posZ - 0.3F * f);
 		}
 	}
 
@@ -174,9 +181,10 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	 * Returns the Y offset from the entity's position for any entity riding
 	 * this one.
 	 */
+	@Override
 	public double getMountedYOffset()
 	{
-		return (double) this.height * 0.67D;
+		return this.height * 0.67D;
 	}
 
 	/**
@@ -184,11 +192,13 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	 * pigs, this is true if it is being ridden by a player and the player is
 	 * holding a carrot-on-a-stick
 	 */
+	@Override
 	public boolean canBeSteered()
 	{
 		return false;
 	}
 
+	@Override
 	protected boolean func_190678_b(EntityPlayer p_190678_1_, ItemStack p_190678_2_)
 	{
 		int i = 0;
@@ -224,7 +234,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 
 		if (this.isChild() && i > 0)
 		{
-			this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, 0.0D, 0.0D, 0.0D);
+			this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.0D, 0.0D, 0.0D);
 
 			if (!this.world.isRemote)
 			{
@@ -255,11 +265,13 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	/**
 	 * Dead and sleeping entities cannot move
 	 */
+	@Override
 	protected boolean isMovementBlocked()
 	{
 		return this.getHealth() <= 0.0F || this.isEatingHaystack();
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -292,36 +304,43 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 		return this.func_190704_dO() != null;
 	}
 
+	@Override
 	protected SoundEvent getAngrySound()
 	{
 		return SoundEvents.field_191250_dA;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.field_191260_dz;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.field_191254_dE;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.field_191252_dC;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.field_191256_dG, 0.15F, 1.0F);
 	}
 
+	@Override
 	protected void func_190697_dk()
 	{
 		this.playSound(SoundEvents.field_191251_dB, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 	}
 
+	@Override
 	public void func_190687_dF()
 	{
 		SoundEvent soundevent = this.getAngrySound();
@@ -332,27 +351,32 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 		}
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.field_191187_aw;
 	}
 
+	@Override
 	public int func_190696_dl()
 	{
 		return this.func_190707_dL();
 	}
 
+	@Override
 	public boolean func_190677_dK()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean func_190682_f(ItemStack p_190682_1_)
 	{
 		return p_190682_1_.getItem() == Item.getItemFromBlock(Blocks.CARPET);
 	}
 
+	@Override
 	public boolean func_190685_dA()
 	{
 		return false;
@@ -362,6 +386,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	 * Called by InventoryBasic.onInventoryChanged() on a array that is never
 	 * filled.
 	 */
+	@Override
 	public void onInventoryChanged(IInventory invBasic)
 	{
 		EnumDyeColor enumdyecolor = this.func_190704_dO();
@@ -377,6 +402,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	/**
 	 * Updates the items in the saddle and armor slots of the horse's inventory.
 	 */
+	@Override
 	protected void updateHorseSlots()
 	{
 		if (!this.world.isRemote)
@@ -406,10 +432,11 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	@Nullable
 	public EnumDyeColor func_190704_dO()
 	{
-		int i = ((Integer) this.dataManager.get(field_190721_bH)).intValue();
+		int i = this.dataManager.get(field_190721_bH).intValue();
 		return i == -1 ? null : EnumDyeColor.byMetadata(i);
 	}
 
+	@Override
 	public int func_190676_dC()
 	{
 		return 30;
@@ -418,11 +445,13 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	/**
 	 * Returns true if the mob is currently able to mate with the specified mob.
 	 */
+	@Override
 	public boolean canMateWith(EntityAnimal otherAnimal)
 	{
 		return otherAnimal != this && otherAnimal instanceof EntityLlama && this.canMate() && ((EntityLlama) otherAnimal).canMate();
 	}
 
+	@Override
 	public EntityLlama createChild(EntityAgeable ageable)
 	{
 		EntityLlama entityllama = new EntityLlama(this.world);
@@ -444,10 +473,10 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	{
 		EntityLlamaSpit entityllamaspit = new EntityLlamaSpit(this.world, this);
 		double d0 = p_190713_1_.posX - this.posX;
-		double d1 = p_190713_1_.getEntityBoundingBox().minY + (double) (p_190713_1_.height / 3.0F) - entityllamaspit.posY;
+		double d1 = p_190713_1_.getEntityBoundingBox().minY + p_190713_1_.height / 3.0F - entityllamaspit.posY;
 		double d2 = p_190713_1_.posZ - this.posZ;
 		float f = MathHelper.sqrt(d0 * d0 + d2 * d2) * 0.2F;
-		entityllamaspit.setThrowableHeading(d0, d1 + (double) f, d2, 1.5F, 10.0F);
+		entityllamaspit.setThrowableHeading(d0, d1 + f, d2, 1.5F, 10.0F);
 		this.world.playSound((EntityPlayer) null, this.posX, this.posY, this.posZ, SoundEvents.field_191255_dF, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
 		this.world.spawnEntityInWorld(entityllamaspit);
 		this.field_190723_bJ = true;
@@ -458,6 +487,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 		this.field_190723_bJ = p_190714_1_;
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 		int i = MathHelper.ceil((distance * 0.5F - 3.0F) * damageMultiplier);
@@ -466,18 +496,18 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 		{
 			if (distance >= 6.0F)
 			{
-				this.attackEntityFrom(DamageSource.fall, (float) i);
+				this.attackEntityFrom(DamageSource.fall, i);
 
 				if (this.isBeingRidden())
 				{
 					for (Entity entity : this.getRecursivePassengers())
 					{
-						entity.attackEntityFrom(DamageSource.fall, (float) i);
+						entity.attackEntityFrom(DamageSource.fall, i);
 					}
 				}
 			}
 
-			IBlockState iblockstate = this.world.getBlockState(new BlockPos(this.posX, this.posY - 0.2D - (double) this.prevRotationYaw, this.posZ));
+			IBlockState iblockstate = this.world.getBlockState(new BlockPos(this.posX, this.posY - 0.2D - this.prevRotationYaw, this.posZ));
 			Block block = iblockstate.getBlock();
 
 			if (iblockstate.getMaterial() != Material.AIR && !this.isSilent())
@@ -520,11 +550,13 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 		return this.field_190724_bK;
 	}
 
+	@Override
 	protected double func_190634_dg()
 	{
 		return 2.0D;
 	}
 
+	@Override
 	protected void func_190679_dD()
 	{
 		if (!this.func_190718_dR() && this.isChild())
@@ -533,6 +565,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 		}
 	}
 
+	@Override
 	public boolean func_190684_dE()
 	{
 		return false;
@@ -545,11 +578,13 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	 *            How far the target is, normalized and clamped between 0.1 and
 	 *            1.0
 	 */
+	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor)
 	{
 		this.func_190713_e(target);
 	}
 
+	@Override
 	public void setSwingingArms(boolean swingingArms)
 	{
 	}
@@ -561,9 +596,10 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 			super(p_i47285_1_, EntityWolf.class, 16, false, true, (Predicate) null);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
-			if (super.shouldExecute() && this.targetEntity != null && !((EntityWolf) this.targetEntity).isTamed())
+			if (super.shouldExecute() && this.targetEntity != null && !this.targetEntity.isTamed())
 			{
 				return true;
 			}
@@ -574,6 +610,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 			}
 		}
 
+		@Override
 		protected double getTargetDistance()
 		{
 			return super.getTargetDistance() * 0.25D;
@@ -587,6 +624,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 			super(p_i47282_1_, false);
 		}
 
+		@Override
 		public boolean continueExecuting()
 		{
 			if (this.taskOwner instanceof EntityLlama)

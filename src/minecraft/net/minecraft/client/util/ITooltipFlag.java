@@ -15,6 +15,7 @@ public interface ITooltipFlag
 			this.field_194131_c = p_i47611_3_;
 		}
 
+		@Override
 		public boolean func_194127_a()
 		{
 			return this.field_194131_c;

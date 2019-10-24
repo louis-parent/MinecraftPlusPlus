@@ -27,17 +27,20 @@ public class BlockStructureVoid extends Block
 	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
 	 * INVISIBLE to skip all rendering
 	 */
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.INVISIBLE;
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return NULL_AABB;
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return STRUCTURE_VOID_AABB;
@@ -47,16 +50,19 @@ public class BlockStructureVoid extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public float getAmbientOcclusionLightValue(IBlockState state)
 	{
 		return 1.0F;
@@ -65,15 +71,18 @@ public class BlockStructureVoid extends Block
 	/**
 	 * Spawns this Block's drops into the World as EntityItems.
 	 */
+	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 	}
 
+	@Override
 	public EnumPushReaction getMobilityFlag(IBlockState state)
 	{
 		return EnumPushReaction.DESTROY;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

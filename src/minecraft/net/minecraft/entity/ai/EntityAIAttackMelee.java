@@ -48,6 +48,7 @@ public class EntityAIAttackMelee extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
@@ -78,6 +79,7 @@ public class EntityAIAttackMelee extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
@@ -107,6 +109,7 @@ public class EntityAIAttackMelee extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.attacker.getNavigator().setPath(this.entityPathEntity, this.speedTowardsTarget);
@@ -116,6 +119,7 @@ public class EntityAIAttackMelee extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
@@ -131,6 +135,7 @@ public class EntityAIAttackMelee extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
@@ -178,6 +183,6 @@ public class EntityAIAttackMelee extends EntityAIBase
 
 	protected double getAttackReachSqr(EntityLivingBase attackTarget)
 	{
-		return (double) (this.attacker.width * 2.0F * this.attacker.width * 2.0F + attackTarget.width);
+		return this.attacker.width * 2.0F * this.attacker.width * 2.0F + attackTarget.width;
 	}
 }

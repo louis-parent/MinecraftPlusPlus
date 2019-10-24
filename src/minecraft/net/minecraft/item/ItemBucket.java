@@ -37,6 +37,7 @@ public class ItemBucket extends Item
 		this.setCreativeTab(CreativeTabs.MISC);
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		boolean flag = this.containedBlock == Blocks.AIR;
@@ -70,14 +71,14 @@ public class ItemBucket extends Item
 					IBlockState iblockstate = itemStackIn.getBlockState(blockpos);
 					Material material = iblockstate.getMaterial();
 
-					if (material == Material.WATER && ((Integer) iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0)
+					if (material == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0)
 					{
 						itemStackIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
 						worldIn.addStat(StatList.getObjectUseStats(this));
 						worldIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
 						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, this.fillBucket(itemstack, worldIn, Items.WATER_BUCKET));
 					}
-					else if (material == Material.LAVA && ((Integer) iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0)
+					else if (material == Material.LAVA && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0)
 					{
 						worldIn.playSound(SoundEvents.ITEM_BUCKET_FILL_LAVA, 1.0F, 1.0F);
 						itemStackIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
@@ -171,7 +172,7 @@ public class ItemBucket extends Item
 
 					for (int k = 0; k < 8; ++k)
 					{
-						worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double) l + Math.random(), (double) i + Math.random(), (double) j + Math.random(), 0.0D, 0.0D, 0.0D);
+						worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, l + Math.random(), i + Math.random(), j + Math.random(), 0.0D, 0.0D, 0.0D);
 					}
 				}
 				else

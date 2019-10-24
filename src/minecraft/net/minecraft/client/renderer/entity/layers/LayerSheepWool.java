@@ -18,6 +18,7 @@ public class LayerSheepWool implements LayerRenderer<EntitySheep>
 		this.sheepRenderer = sheepRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntitySheep entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		if (!entitylivingbaseIn.getSheared() && !entitylivingbaseIn.isInvisible())
@@ -31,7 +32,7 @@ public class LayerSheepWool implements LayerRenderer<EntitySheep>
 				int j = EnumDyeColor.values().length;
 				int k = i % j;
 				int l = (i + 1) % j;
-				float f = ((float) (entitylivingbaseIn.ticksExisted % 25) + partialTicks) / 25.0F;
+				float f = (entitylivingbaseIn.ticksExisted % 25 + partialTicks) / 25.0F;
 				float[] afloat1 = EntitySheep.getDyeRgb(EnumDyeColor.byMetadata(k));
 				float[] afloat2 = EntitySheep.getDyeRgb(EnumDyeColor.byMetadata(l));
 				GlStateManager.color(afloat1[0] * (1.0F - f) + afloat2[0] * f, afloat1[1] * (1.0F - f) + afloat2[1] * f, afloat1[2] * (1.0F - f) + afloat2[2] * f);
@@ -48,6 +49,7 @@ public class LayerSheepWool implements LayerRenderer<EntitySheep>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return true;

@@ -26,6 +26,7 @@ public class ItemDoor extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		if (hand != EnumFacing.UP)
@@ -46,7 +47,7 @@ public class ItemDoor extends Item
 
 			if (stack.canPlayerEdit(worldIn, hand, itemstack) && this.block.canPlaceBlockAt(playerIn, worldIn))
 			{
-				EnumFacing enumfacing = EnumFacing.fromAngle((double) stack.rotationYaw);
+				EnumFacing enumfacing = EnumFacing.fromAngle(stack.rotationYaw);
 				int i = enumfacing.getFrontOffsetX();
 				int j = enumfacing.getFrontOffsetZ();
 				boolean flag = i < 0 && hitY < 0.5F || i > 0 && hitY > 0.5F || j < 0 && facing > 0.5F || j > 0 && facing < 0.5F;

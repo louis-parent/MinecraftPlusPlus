@@ -226,11 +226,11 @@ public class GuiIngame extends Gui
 			GlStateManager.disableDepth();
 			GlStateManager.disableAlpha();
 			int j1 = this.mc.player.getSleepTimer();
-			float f1 = (float) j1 / 100.0F;
+			float f1 = j1 / 100.0F;
 
 			if (f1 > 1.0F)
 			{
-				f1 = 1.0F - (float) (j1 - 100) / 10.0F;
+				f1 = 1.0F - (j1 - 100) / 10.0F;
 			}
 
 			int k = (int) (220.0F * f1) << 24 | 1052704;
@@ -276,7 +276,7 @@ public class GuiIngame extends Gui
 		if (this.recordPlayingUpFor > 0)
 		{
 			this.mc.mcProfiler.startSection("overlayMessage");
-			float f2 = (float) this.recordPlayingUpFor - partialTicks;
+			float f2 = this.recordPlayingUpFor - partialTicks;
 			int l1 = (int) (f2 * 255.0F / 20.0F);
 
 			if (l1 > 255)
@@ -287,7 +287,7 @@ public class GuiIngame extends Gui
 			if (l1 > 8)
 			{
 				GlStateManager.pushMatrix();
-				GlStateManager.translate((float) (i / 2), (float) (j - 68), 0.0F);
+				GlStateManager.translate(i / 2, j - 68, 0.0F);
 				GlStateManager.enableBlend();
 				GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 				int l = 16777215;
@@ -310,18 +310,18 @@ public class GuiIngame extends Gui
 		if (this.titlesTimer > 0)
 		{
 			this.mc.mcProfiler.startSection("titleAndSubtitle");
-			float f3 = (float) this.titlesTimer - partialTicks;
+			float f3 = this.titlesTimer - partialTicks;
 			int i2 = 255;
 
 			if (this.titlesTimer > this.titleFadeOut + this.titleDisplayTime)
 			{
-				float f4 = (float) (this.titleFadeIn + this.titleDisplayTime + this.titleFadeOut) - f3;
-				i2 = (int) (f4 * 255.0F / (float) this.titleFadeIn);
+				float f4 = this.titleFadeIn + this.titleDisplayTime + this.titleFadeOut - f3;
+				i2 = (int) (f4 * 255.0F / this.titleFadeIn);
 			}
 
 			if (this.titlesTimer <= this.titleFadeOut)
 			{
-				i2 = (int) (f3 * 255.0F / (float) this.titleFadeOut);
+				i2 = (int) (f3 * 255.0F / this.titleFadeOut);
 			}
 
 			i2 = MathHelper.clamp(i2, 0, 255);
@@ -329,17 +329,17 @@ public class GuiIngame extends Gui
 			if (i2 > 8)
 			{
 				GlStateManager.pushMatrix();
-				GlStateManager.translate((float) (i / 2), (float) (j / 2), 0.0F);
+				GlStateManager.translate(i / 2, j / 2, 0.0F);
 				GlStateManager.enableBlend();
 				GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 				GlStateManager.pushMatrix();
 				GlStateManager.scale(4.0F, 4.0F, 4.0F);
 				int j2 = i2 << 24 & -16777216;
-				fontrenderer.drawString(this.displayedTitle, (float) (-fontrenderer.getStringWidth(this.displayedTitle) / 2), -10.0F, 16777215 | j2, true);
+				fontrenderer.drawString(this.displayedTitle, -fontrenderer.getStringWidth(this.displayedTitle) / 2, -10.0F, 16777215 | j2, true);
 				GlStateManager.popMatrix();
 				GlStateManager.pushMatrix();
 				GlStateManager.scale(2.0F, 2.0F, 2.0F);
-				fontrenderer.drawString(this.displayedSubTitle, (float) (-fontrenderer.getStringWidth(this.displayedSubTitle) / 2), 5.0F, 16777215 | j2, true);
+				fontrenderer.drawString(this.displayedSubTitle, -fontrenderer.getStringWidth(this.displayedSubTitle) / 2, 5.0F, 16777215 | j2, true);
 				GlStateManager.popMatrix();
 				GlStateManager.disableBlend();
 				GlStateManager.popMatrix();
@@ -373,7 +373,7 @@ public class GuiIngame extends Gui
 		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		GlStateManager.disableAlpha();
 		GlStateManager.pushMatrix();
-		GlStateManager.translate(0.0F, (float) (j - 48), 0.0F);
+		GlStateManager.translate(0.0F, j - 48, 0.0F);
 		this.mc.mcProfiler.startSection("chat");
 		this.persistantChatGUI.drawChat(this.updateCounter);
 		this.mc.mcProfiler.endSection();
@@ -424,7 +424,7 @@ public class GuiIngame extends Gui
 			if (gamesettings.showDebugInfo && !gamesettings.hideGUI && !this.mc.player.hasReducedDebug() && !gamesettings.reducedDebugInfo)
 			{
 				GlStateManager.pushMatrix();
-				GlStateManager.translate((float) (l / 2), (float) (i1 / 2), this.zLevel);
+				GlStateManager.translate(l / 2, i1 / 2, this.zLevel);
 				Entity entity = this.mc.getRenderViewEntity();
 				GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * p_184045_1_, -1.0F, 0.0F, 0.0F);
 				GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * p_184045_1_, 0.0F, 1.0F, 0.0F);
@@ -520,7 +520,7 @@ public class GuiIngame extends Gui
 						if (potioneffect.getDuration() <= 200)
 						{
 							int j1 = 10 - potioneffect.getDuration() / 20;
-							f = MathHelper.clamp((float) potioneffect.getDuration() / 10.0F / 5.0F * 0.5F, 0.0F, 0.5F) + MathHelper.cos((float) potioneffect.getDuration() * (float) Math.PI / 5.0F) * MathHelper.clamp((float) j1 / 10.0F * 0.25F, 0.0F, 0.25F);
+							f = MathHelper.clamp(potioneffect.getDuration() / 10.0F / 5.0F * 0.5F, 0.0F, 0.5F) + MathHelper.cos(potioneffect.getDuration() * (float) Math.PI / 5.0F) * MathHelper.clamp(j1 / 10.0F * 0.25F, 0.0F, 0.25F);
 						}
 					}
 
@@ -690,7 +690,7 @@ public class GuiIngame extends Gui
 				j += 14;
 			}
 
-			int k = (int) ((float) this.remainingHighlightTicks * 256.0F / 10.0F);
+			int k = (int) (this.remainingHighlightTicks * 256.0F / 10.0F);
 
 			if (k > 255)
 			{
@@ -702,7 +702,7 @@ public class GuiIngame extends Gui
 				GlStateManager.pushMatrix();
 				GlStateManager.enableBlend();
 				GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-				this.getFontRenderer().drawStringWithShadow(s, (float) i, (float) j, 16777215 + (k << 24));
+				this.getFontRenderer().drawStringWithShadow(s, i, j, 16777215 + (k << 24));
 				GlStateManager.disableBlend();
 				GlStateManager.popMatrix();
 			}
@@ -726,7 +726,7 @@ public class GuiIngame extends Gui
 		}
 
 		int i = this.getFontRenderer().getStringWidth(s);
-		this.getFontRenderer().drawStringWithShadow(s, (float) (scaledRes.getScaledWidth() - i - 10), 5.0F, 16777215);
+		this.getFontRenderer().drawStringWithShadow(s, scaledRes.getScaledWidth() - i - 10, 5.0F, 16777215);
 		this.mc.mcProfiler.endSection();
 	}
 
@@ -736,6 +736,7 @@ public class GuiIngame extends Gui
 		Collection<Score> collection = scoreboard.getSortedScores(objective);
 		List<Score> list = Lists.newArrayList(Iterables.filter(collection, new Predicate<Score>()
 		{
+			@Override
 			public boolean apply(@Nullable Score p_apply_1_)
 			{
 				return p_apply_1_.getPlayerName() != null && !p_apply_1_.getPlayerName().startsWith("#");
@@ -794,17 +795,17 @@ public class GuiIngame extends Gui
 		{
 			EntityPlayer entityplayer = (EntityPlayer) this.mc.getRenderViewEntity();
 			int i = MathHelper.ceil(entityplayer.getHealth());
-			boolean flag = this.healthUpdateCounter > (long) this.updateCounter && (this.healthUpdateCounter - (long) this.updateCounter) / 3L % 2L == 1L;
+			boolean flag = this.healthUpdateCounter > this.updateCounter && (this.healthUpdateCounter - this.updateCounter) / 3L % 2L == 1L;
 
 			if (i < this.playerHealth && entityplayer.hurtResistantTime > 0)
 			{
 				this.lastSystemTime = Minecraft.getSystemTime();
-				this.healthUpdateCounter = (long) (this.updateCounter + 20);
+				this.healthUpdateCounter = this.updateCounter + 20;
 			}
 			else if (i > this.playerHealth && entityplayer.hurtResistantTime > 0)
 			{
 				this.lastSystemTime = Minecraft.getSystemTime();
-				this.healthUpdateCounter = (long) (this.updateCounter + 10);
+				this.healthUpdateCounter = this.updateCounter + 10;
 			}
 
 			if (Minecraft.getSystemTime() - this.lastSystemTime > 1000L)
@@ -816,7 +817,7 @@ public class GuiIngame extends Gui
 
 			this.playerHealth = i;
 			int j = this.lastPlayerHealth;
-			this.rand.setSeed((long) (this.updateCounter * 312871));
+			this.rand.setSeed(this.updateCounter * 312871);
 			FoodStats foodstats = entityplayer.getFoodStats();
 			int k = foodstats.getFoodLevel();
 			IAttributeInstance iattributeinstance = entityplayer.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
@@ -825,7 +826,7 @@ public class GuiIngame extends Gui
 			int j1 = scaledRes.getScaledHeight() - 39;
 			float f = (float) iattributeinstance.getAttributeValue();
 			int k1 = MathHelper.ceil(entityplayer.getAbsorptionAmount());
-			int l1 = MathHelper.ceil((f + (float) k1) / 2.0F / 10.0F);
+			int l1 = MathHelper.ceil((f + k1) / 2.0F / 10.0F);
 			int i2 = Math.max(10 - (l1 - 2), 3);
 			int j2 = j1 - (l1 - 1) * i2 - 10;
 			int k2 = j1 - 10;
@@ -865,7 +866,7 @@ public class GuiIngame extends Gui
 
 			this.mc.mcProfiler.endStartSection("health");
 
-			for (int j5 = MathHelper.ceil((f + (float) k1) / 2.0F) - 1; j5 >= 0; --j5)
+			for (int j5 = MathHelper.ceil((f + k1) / 2.0F) - 1; j5 >= 0; --j5)
 			{
 				int k5 = 16;
 
@@ -885,7 +886,7 @@ public class GuiIngame extends Gui
 					i4 = 1;
 				}
 
-				int j4 = MathHelper.ceil((float) (j5 + 1) / 10.0F) - 1;
+				int j4 = MathHelper.ceil((j5 + 1) / 10.0F) - 1;
 				int k4 = l + j5 % 10 * 8;
 				int l4 = j1 - j4 * i2;
 
@@ -991,8 +992,8 @@ public class GuiIngame extends Gui
 			if (entityplayer.isInsideOfMaterial(Material.WATER))
 			{
 				int i6 = this.mc.player.getAir();
-				int k6 = MathHelper.ceil((double) (i6 - 2) * 10.0D / 300.0D);
-				int i7 = MathHelper.ceil((double) i6 * 10.0D / 300.0D) - k6;
+				int k6 = MathHelper.ceil((i6 - 2) * 10.0D / 300.0D);
+				int i7 = MathHelper.ceil(i6 * 10.0D / 300.0D) - k6;
 
 				for (int k7 = 0; k7 < k6 + i7; ++k7)
 				{
@@ -1022,7 +1023,7 @@ public class GuiIngame extends Gui
 			{
 				this.mc.mcProfiler.endStartSection("mountHealth");
 				EntityLivingBase entitylivingbase = (EntityLivingBase) entity;
-				int i = (int) Math.ceil((double) entitylivingbase.getHealth());
+				int i = (int) Math.ceil(entitylivingbase.getHealth());
 				float f = entitylivingbase.getMaxHealth();
 				int j = (int) (f + 0.5F) / 2;
 
@@ -1076,9 +1077,9 @@ public class GuiIngame extends Gui
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.pos(0.0D, (double) scaledRes.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
-		bufferbuilder.pos((double) scaledRes.getScaledWidth(), (double) scaledRes.getScaledHeight(), -90.0D).tex(1.0D, 1.0D).endVertex();
-		bufferbuilder.pos((double) scaledRes.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
+		bufferbuilder.pos(0.0D, scaledRes.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
+		bufferbuilder.pos(scaledRes.getScaledWidth(), scaledRes.getScaledHeight(), -90.0D).tex(1.0D, 1.0D).endVertex();
+		bufferbuilder.pos(scaledRes.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
 		bufferbuilder.pos(0.0D, 0.0D, -90.0D).tex(0.0D, 0.0D).endVertex();
 		tessellator.draw();
 		GlStateManager.depthMask(true);
@@ -1097,19 +1098,19 @@ public class GuiIngame extends Gui
 		lightLevel = MathHelper.clamp(lightLevel, 0.0F, 1.0F);
 		WorldBorder worldborder = this.mc.world.getWorldBorder();
 		float f = (float) worldborder.getClosestDistance(this.mc.player);
-		double d0 = Math.min(worldborder.getResizeSpeed() * (double) worldborder.getWarningTime() * 1000.0D, Math.abs(worldborder.getTargetSize() - worldborder.getDiameter()));
-		double d1 = Math.max((double) worldborder.getWarningDistance(), d0);
+		double d0 = Math.min(worldborder.getResizeSpeed() * worldborder.getWarningTime() * 1000.0D, Math.abs(worldborder.getTargetSize() - worldborder.getDiameter()));
+		double d1 = Math.max(worldborder.getWarningDistance(), d0);
 
-		if ((double) f < d1)
+		if (f < d1)
 		{
-			f = 1.0F - (float) ((double) f / d1);
+			f = 1.0F - (float) (f / d1);
 		}
 		else
 		{
 			f = 0.0F;
 		}
 
-		this.prevVignetteBrightness = (float) ((double) this.prevVignetteBrightness + (double) (lightLevel - this.prevVignetteBrightness) * 0.01D);
+		this.prevVignetteBrightness = (float) (this.prevVignetteBrightness + (lightLevel - this.prevVignetteBrightness) * 0.01D);
 		GlStateManager.disableDepth();
 		GlStateManager.depthMask(false);
 		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.ZERO, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
@@ -1127,9 +1128,9 @@ public class GuiIngame extends Gui
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.pos(0.0D, (double) scaledRes.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
-		bufferbuilder.pos((double) scaledRes.getScaledWidth(), (double) scaledRes.getScaledHeight(), -90.0D).tex(1.0D, 1.0D).endVertex();
-		bufferbuilder.pos((double) scaledRes.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
+		bufferbuilder.pos(0.0D, scaledRes.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
+		bufferbuilder.pos(scaledRes.getScaledWidth(), scaledRes.getScaledHeight(), -90.0D).tex(1.0D, 1.0D).endVertex();
+		bufferbuilder.pos(scaledRes.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
 		bufferbuilder.pos(0.0D, 0.0D, -90.0D).tex(0.0D, 0.0D).endVertex();
 		tessellator.draw();
 		GlStateManager.depthMask(true);
@@ -1161,10 +1162,10 @@ public class GuiIngame extends Gui
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.pos(0.0D, (double) scaledRes.getScaledHeight(), -90.0D).tex((double) f, (double) f3).endVertex();
-		bufferbuilder.pos((double) scaledRes.getScaledWidth(), (double) scaledRes.getScaledHeight(), -90.0D).tex((double) f2, (double) f3).endVertex();
-		bufferbuilder.pos((double) scaledRes.getScaledWidth(), 0.0D, -90.0D).tex((double) f2, (double) f1).endVertex();
-		bufferbuilder.pos(0.0D, 0.0D, -90.0D).tex((double) f, (double) f1).endVertex();
+		bufferbuilder.pos(0.0D, scaledRes.getScaledHeight(), -90.0D).tex(f, f3).endVertex();
+		bufferbuilder.pos(scaledRes.getScaledWidth(), scaledRes.getScaledHeight(), -90.0D).tex(f2, f3).endVertex();
+		bufferbuilder.pos(scaledRes.getScaledWidth(), 0.0D, -90.0D).tex(f2, f1).endVertex();
+		bufferbuilder.pos(0.0D, 0.0D, -90.0D).tex(f, f1).endVertex();
 		tessellator.draw();
 		GlStateManager.depthMask(true);
 		GlStateManager.enableDepth();
@@ -1176,15 +1177,15 @@ public class GuiIngame extends Gui
 	{
 		if (!stack.isNotValid())
 		{
-			float f = (float) stack.getAnimationToGo() - p_184044_3_;
+			float f = stack.getAnimationToGo() - p_184044_3_;
 
 			if (f > 0.0F)
 			{
 				GlStateManager.pushMatrix();
 				float f1 = 1.0F + f / 5.0F;
-				GlStateManager.translate((float) (p_184044_1_ + 8), (float) (p_184044_2_ + 12), 0.0F);
+				GlStateManager.translate(p_184044_1_ + 8, p_184044_2_ + 12, 0.0F);
 				GlStateManager.scale(1.0F / f1, (f1 + 1.0F) / 2.0F, 1.0F);
-				GlStateManager.translate((float) (-(p_184044_1_ + 8)), (float) (-(p_184044_2_ + 12)), 0.0F);
+				GlStateManager.translate((-(p_184044_1_ + 8)), (-(p_184044_2_ + 12)), 0.0F);
 			}
 
 			this.itemRenderer.renderItemAndEffectIntoGUI(player, stack, p_184044_1_, p_184044_2_);

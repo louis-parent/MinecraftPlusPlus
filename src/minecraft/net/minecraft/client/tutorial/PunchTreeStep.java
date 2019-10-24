@@ -32,6 +32,7 @@ public class PunchTreeStep implements ITutorialStep
 		this.field_193277_d = p_i47579_1_;
 	}
 
+	@Override
 	public void func_193245_a()
 	{
 		++this.field_193279_f;
@@ -73,6 +74,7 @@ public class PunchTreeStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193248_b()
 	{
 		if (this.field_193278_e != null)
@@ -82,6 +84,7 @@ public class PunchTreeStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193250_a(WorldClient p_193250_1_, BlockPos p_193250_2_, IBlockState p_193250_3_, float p_193250_4_)
 	{
 		boolean flag = field_193274_a.contains(p_193250_3_.getBlock());
@@ -108,6 +111,7 @@ public class PunchTreeStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193252_a(ItemStack p_193252_1_)
 	{
 		for (Block block : field_193274_a)

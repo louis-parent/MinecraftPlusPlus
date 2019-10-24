@@ -32,13 +32,14 @@ public class BlockRotatedPillar extends Block
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
 		switch (rot)
 		{
 			case COUNTERCLOCKWISE_90:
 			case CLOCKWISE_90:
-				switch ((EnumFacing.Axis) state.getValue(AXIS))
+				switch (state.getValue(AXIS))
 				{
 					case X:
 						return state.withProperty(AXIS, EnumFacing.Axis.Z);
@@ -58,6 +59,7 @@ public class BlockRotatedPillar extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		EnumFacing.Axis enumfacing$axis = EnumFacing.Axis.Y;
@@ -78,10 +80,11 @@ public class BlockRotatedPillar extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis) state.getValue(AXIS);
+		EnumFacing.Axis enumfacing$axis = state.getValue(AXIS);
 
 		if (enumfacing$axis == EnumFacing.Axis.X)
 		{
@@ -95,11 +98,13 @@ public class BlockRotatedPillar extends Block
 		return i;
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { AXIS });
 	}
 
+	@Override
 	protected ItemStack getSilkTouchDrop(IBlockState state)
 	{
 		return new ItemStack(Item.getItemFromBlock(this));
@@ -109,6 +114,7 @@ public class BlockRotatedPillar extends Block
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(AXIS, facing.getAxis());

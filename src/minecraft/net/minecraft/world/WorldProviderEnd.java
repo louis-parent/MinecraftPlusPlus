@@ -19,6 +19,7 @@ public class WorldProviderEnd extends WorldProvider
 	/**
 	 * creates a new world chunk manager for WorldProvider
 	 */
+	@Override
 	public void createBiomeProvider()
 	{
 		this.biomeProvider = new BiomeProviderSingle(Biomes.SKY);
@@ -26,6 +27,7 @@ public class WorldProviderEnd extends WorldProvider
 		this.dragonFightManager = this.worldObj instanceof WorldServer ? new DragonFightManager((WorldServer) this.worldObj, nbttagcompound.getCompoundTag("DragonFight")) : null;
 	}
 
+	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
 		return new ChunkGeneratorEnd(this.worldObj, this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.worldObj.getSeed(), this.getSpawnCoordinate());
@@ -35,11 +37,13 @@ public class WorldProviderEnd extends WorldProvider
 	 * Calculates the angle of sun and moon in the sky relative to a specified
 	 * time (usually worldTime)
 	 */
+	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks)
 	{
 		return 0.0F;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -53,6 +57,7 @@ public class WorldProviderEnd extends WorldProvider
 	/**
 	 * Return Vec3D with biome specific fog color
 	 */
+	@Override
 	public Vec3d getFogColor(float p_76562_1_, float p_76562_2_)
 	{
 		int i = 10518688;
@@ -64,9 +69,10 @@ public class WorldProviderEnd extends WorldProvider
 		f1 = f1 * (f * 0.0F + 0.15F);
 		f2 = f2 * (f * 0.0F + 0.15F);
 		f3 = f3 * (f * 0.0F + 0.15F);
-		return new Vec3d((double) f1, (double) f2, (double) f3);
+		return new Vec3d(f1, f2, f3);
 	}
 
+	@Override
 	public boolean isSkyColored()
 	{
 		return false;
@@ -76,6 +82,7 @@ public class WorldProviderEnd extends WorldProvider
 	 * True if the player can respawn in this dimension (true = overworld, false
 	 * = nether).
 	 */
+	@Override
 	public boolean canRespawnHere()
 	{
 		return false;
@@ -85,6 +92,7 @@ public class WorldProviderEnd extends WorldProvider
 	 * Returns 'true' if in the "main surface world", but 'false' if in the
 	 * Nether or End dimensions.
 	 */
+	@Override
 	public boolean isSurfaceWorld()
 	{
 		return false;
@@ -93,6 +101,7 @@ public class WorldProviderEnd extends WorldProvider
 	/**
 	 * the y level at which clouds are rendered.
 	 */
+	@Override
 	public float getCloudHeight()
 	{
 		return 8.0F;
@@ -102,16 +111,19 @@ public class WorldProviderEnd extends WorldProvider
 	 * Will check if the x, z position specified is alright to be set as the map
 	 * spawn point
 	 */
+	@Override
 	public boolean canCoordinateBeSpawn(int x, int z)
 	{
 		return this.worldObj.getGroundAboveSeaLevel(new BlockPos(x, 0, z)).getMaterial().blocksMovement();
 	}
 
+	@Override
 	public BlockPos getSpawnCoordinate()
 	{
 		return new BlockPos(100, 50, 0);
 	}
 
+	@Override
 	public int getAverageGroundLevel()
 	{
 		return 50;
@@ -120,11 +132,13 @@ public class WorldProviderEnd extends WorldProvider
 	/**
 	 * Returns true if the given X,Z coordinate should show environmental fog.
 	 */
+	@Override
 	public boolean doesXZShowFog(int x, int z)
 	{
 		return false;
 	}
 
+	@Override
 	public DimensionType getDimensionType()
 	{
 		return DimensionType.THE_END;
@@ -134,6 +148,7 @@ public class WorldProviderEnd extends WorldProvider
 	 * Called when the world is performing a save. Only used to save the state
 	 * of the Dragon Boss fight in WorldProviderEnd in Vanilla.
 	 */
+	@Override
 	public void onWorldSave()
 	{
 		NBTTagCompound nbttagcompound = new NBTTagCompound();
@@ -150,6 +165,7 @@ public class WorldProviderEnd extends WorldProvider
 	 * Called when the world is updating entities. Only used in WorldProviderEnd
 	 * to update the DragonFightManager in Vanilla.
 	 */
+	@Override
 	public void onWorldUpdateEntities()
 	{
 		if (this.dragonFightManager != null)

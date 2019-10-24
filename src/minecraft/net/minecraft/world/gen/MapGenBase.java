@@ -28,8 +28,8 @@ public class MapGenBase
 		{
 			for (int i1 = z - i; i1 <= z + i; ++i1)
 			{
-				long j1 = (long) l * j;
-				long k1 = (long) i1 * k;
+				long j1 = l * j;
+				long k1 = i1 * k;
 				this.rand.setSeed(j1 ^ k1 ^ worldIn.getSeed());
 				this.recursiveGenerate(worldIn, l, i1, x, z, primer);
 			}
@@ -41,8 +41,8 @@ public class MapGenBase
 		p_191068_2_.setSeed(p_191068_0_);
 		long i = p_191068_2_.nextLong();
 		long j = p_191068_2_.nextLong();
-		long k = (long) p_191068_3_ * i;
-		long l = (long) p_191068_4_ * j;
+		long k = p_191068_3_ * i;
+		long l = p_191068_4_ * j;
 		p_191068_2_.setSeed(k ^ l ^ p_191068_0_);
 	}
 

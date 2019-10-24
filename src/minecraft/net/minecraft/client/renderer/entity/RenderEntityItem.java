@@ -42,13 +42,13 @@ public class RenderEntityItem extends Render<EntityItem>
 			boolean flag = p_177077_9_.isGui3d();
 			int i = this.getModelCount(itemstack);
 			float f = 0.25F;
-			float f1 = MathHelper.sin(((float) itemIn.getAge() + p_177077_8_) / 10.0F + itemIn.hoverStart) * 0.1F + 0.1F;
+			float f1 = MathHelper.sin((itemIn.getAge() + p_177077_8_) / 10.0F + itemIn.hoverStart) * 0.1F + 0.1F;
 			float f2 = p_177077_9_.getItemCameraTransforms().getTransform(ItemCameraTransforms.TransformType.GROUND).scale.y;
 			GlStateManager.translate((float) p_177077_2_, (float) p_177077_4_ + f1 + 0.25F * f2, (float) p_177077_6_);
 
 			if (flag || this.renderManager.options != null)
 			{
-				float f3 = (((float) itemIn.getAge() + p_177077_8_) / 20.0F + itemIn.hoverStart) * (180F / (float) Math.PI);
+				float f3 = ((itemIn.getAge() + p_177077_8_) / 20.0F + itemIn.hoverStart) * (180F / (float) Math.PI);
 				GlStateManager.rotate(f3, 0.0F, 1.0F, 0.0F);
 			}
 
@@ -84,11 +84,12 @@ public class RenderEntityItem extends Render<EntityItem>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityItem entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		ItemStack itemstack = entity.getEntityItem();
 		int i = itemstack.isNotValid() ? 187 : Item.getIdFromItem(itemstack.getItem()) + itemstack.getMetadata();
-		this.random.setSeed((long) i);
+		this.random.setSeed(i);
 		boolean flag = false;
 
 		if (this.bindEntityTexture(entity))
@@ -112,9 +113,9 @@ public class RenderEntityItem extends Render<EntityItem>
 
 		if (!flag1)
 		{
-			float f3 = -0.0F * (float) (j - 1) * 0.5F * f;
-			float f4 = -0.0F * (float) (j - 1) * 0.5F * f1;
-			float f5 = -0.09375F * (float) (j - 1) * 0.5F * f2;
+			float f3 = -0.0F * (j - 1) * 0.5F * f;
+			float f4 = -0.0F * (j - 1) * 0.5F * f1;
+			float f5 = -0.09375F * (j - 1) * 0.5F * f2;
 			GlStateManager.translate(f3, f4, f5);
 		}
 
@@ -183,6 +184,7 @@ public class RenderEntityItem extends Render<EntityItem>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityItem entity)
 	{
 		return TextureMap.LOCATION_BLOCKS_TEXTURE;

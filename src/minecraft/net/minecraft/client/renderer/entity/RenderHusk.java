@@ -17,6 +17,7 @@ public class RenderHusk extends RenderZombie
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityZombie entitylivingbaseIn, float partialTickTime)
 	{
 		float f = 1.0625F;
@@ -28,6 +29,7 @@ public class RenderHusk extends RenderZombie
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityZombie entity)
 	{
 		return HUSK_ZOMBIE_TEXTURES;

@@ -144,6 +144,7 @@ public class BlockStairs extends Block
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 		if (!p_185477_7_)
@@ -162,7 +163,7 @@ public class BlockStairs extends Block
 		List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
 		boolean flag = bstate.getValue(HALF) == BlockStairs.EnumHalf.TOP;
 		list.add(flag ? AABB_SLAB_TOP : AABB_SLAB_BOTTOM);
-		BlockStairs.EnumShape blockstairs$enumshape = (BlockStairs.EnumShape) bstate.getValue(SHAPE);
+		BlockStairs.EnumShape blockstairs$enumshape = bstate.getValue(SHAPE);
 
 		if (blockstairs$enumshape == BlockStairs.EnumShape.STRAIGHT || blockstairs$enumshape == BlockStairs.EnumShape.INNER_LEFT || blockstairs$enumshape == BlockStairs.EnumShape.INNER_RIGHT)
 		{
@@ -185,7 +186,7 @@ public class BlockStairs extends Block
 	{
 		boolean flag = bstate.getValue(HALF) == BlockStairs.EnumHalf.TOP;
 
-		switch ((EnumFacing) bstate.getValue(FACING))
+		switch (bstate.getValue(FACING))
 		{
 			case NORTH:
 			default:
@@ -210,10 +211,10 @@ public class BlockStairs extends Block
 	 */
 	private static AxisAlignedBB getCollEighthBlock(IBlockState bstate)
 	{
-		EnumFacing enumfacing = (EnumFacing) bstate.getValue(FACING);
+		EnumFacing enumfacing = bstate.getValue(FACING);
 		EnumFacing enumfacing1;
 
-		switch ((BlockStairs.EnumShape) bstate.getValue(SHAPE))
+		switch (bstate.getValue(SHAPE))
 		{
 			case OUTER_LEFT:
 			default:
@@ -251,6 +252,7 @@ public class BlockStairs extends Block
 		}
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		p_193383_2_ = this.getActualState(p_193383_2_, p_193383_1_, p_193383_3_);
@@ -261,11 +263,11 @@ public class BlockStairs extends Block
 		}
 		else
 		{
-			BlockStairs.EnumShape blockstairs$enumshape = (BlockStairs.EnumShape) p_193383_2_.getValue(SHAPE);
+			BlockStairs.EnumShape blockstairs$enumshape = p_193383_2_.getValue(SHAPE);
 
 			if (blockstairs$enumshape != BlockStairs.EnumShape.OUTER_LEFT && blockstairs$enumshape != BlockStairs.EnumShape.OUTER_RIGHT)
 			{
-				EnumFacing enumfacing = (EnumFacing) p_193383_2_.getValue(FACING);
+				EnumFacing enumfacing = p_193383_2_.getValue(FACING);
 
 				switch (blockstairs$enumshape)
 				{
@@ -293,21 +295,25 @@ public class BlockStairs extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
 		this.modelBlock.randomDisplayTick(stateIn, worldIn, pos, rand);
 	}
 
+	@Override
 	public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
 	{
 		this.modelBlock.onBlockClicked(worldIn, pos, playerIn);
@@ -316,11 +322,13 @@ public class BlockStairs extends Block
 	/**
 	 * Called when a player destroys this Block
 	 */
+	@Override
 	public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state)
 	{
 		this.modelBlock.onBlockDestroyedByPlayer(worldIn, pos, state);
 	}
 
+	@Override
 	public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return this.modelState.getPackedLightmapCoords(source, pos);
@@ -330,11 +338,13 @@ public class BlockStairs extends Block
 	 * Returns how much this block can resist explosions from the passed in
 	 * entity.
 	 */
+	@Override
 	public float getExplosionResistance(Entity exploder)
 	{
 		return this.modelBlock.getExplosionResistance(exploder);
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return this.modelBlock.getBlockLayer();
@@ -343,16 +353,19 @@ public class BlockStairs extends Block
 	/**
 	 * How many world ticks before ticking
 	 */
+	@Override
 	public int tickRate(World worldIn)
 	{
 		return this.modelBlock.tickRate(worldIn);
 	}
 
+	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos)
 	{
 		return this.modelState.getSelectedBoundingBox(worldIn, pos);
 	}
 
+	@Override
 	public Vec3d modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3d motion)
 	{
 		return this.modelBlock.modifyAcceleration(worldIn, pos, entityIn, motion);
@@ -363,16 +376,19 @@ public class BlockStairs extends Block
 	 * return that of the block that the stair is made of (though nobody's going
 	 * to make fire stairs, right?)
 	 */
+	@Override
 	public boolean isCollidable()
 	{
 		return this.modelBlock.isCollidable();
 	}
 
+	@Override
 	public boolean canCollideCheck(IBlockState state, boolean hitIfLiquid)
 	{
 		return this.modelBlock.canCollideCheck(state, hitIfLiquid);
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return this.modelBlock.canPlaceBlockAt(worldIn, pos);
@@ -382,6 +398,7 @@ public class BlockStairs extends Block
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		this.modelState.neighborChanged(worldIn, pos, Blocks.AIR, pos);
@@ -392,6 +409,7 @@ public class BlockStairs extends Block
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		this.modelBlock.breakBlock(worldIn, pos, this.modelState);
@@ -401,16 +419,19 @@ public class BlockStairs extends Block
 	 * Triggered whenever an entity collides with this block (enters into the
 	 * block)
 	 */
+	@Override
 	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
 	{
 		this.modelBlock.onEntityWalk(worldIn, pos, entityIn);
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		this.modelBlock.updateTick(worldIn, pos, state, rand);
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		return this.modelBlock.onBlockActivated(worldIn, pos, this.modelState, playerIn, hand, EnumFacing.DOWN, 0.0F, 0.0F, 0.0F);
@@ -419,6 +440,7 @@ public class BlockStairs extends Block
 	/**
 	 * Called when this Block is destroyed by an Explosion
 	 */
+	@Override
 	public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn)
 	{
 		this.modelBlock.onBlockDestroyedByExplosion(worldIn, pos, explosionIn);
@@ -428,6 +450,7 @@ public class BlockStairs extends Block
 	 * Checks if an IBlockState represents a block that is opaque and a full
 	 * cube.
 	 */
+	@Override
 	public boolean isFullyOpaque(IBlockState state)
 	{
 		return state.getValue(HALF) == BlockStairs.EnumHalf.TOP;
@@ -436,6 +459,7 @@ public class BlockStairs extends Block
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
 		return this.modelBlock.getMapColor(this.modelState, p_180659_2_, p_180659_3_);
@@ -445,13 +469,15 @@ public class BlockStairs extends Block
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		IBlockState iblockstate = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 		iblockstate = iblockstate.withProperty(FACING, placer.getHorizontalFacing()).withProperty(SHAPE, BlockStairs.EnumShape.STRAIGHT);
-		return facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double) hitY <= 0.5D) ? iblockstate.withProperty(HALF, BlockStairs.EnumHalf.BOTTOM) : iblockstate.withProperty(HALF, BlockStairs.EnumHalf.TOP);
+		return facing != EnumFacing.DOWN && (facing == EnumFacing.UP || hitY <= 0.5D) ? iblockstate.withProperty(HALF, BlockStairs.EnumHalf.BOTTOM) : iblockstate.withProperty(HALF, BlockStairs.EnumHalf.TOP);
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -490,6 +516,7 @@ public class BlockStairs extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		IBlockState iblockstate = this.getDefaultState().withProperty(HALF, (meta & 4) > 0 ? BlockStairs.EnumHalf.TOP : BlockStairs.EnumHalf.BOTTOM);
@@ -500,6 +527,7 @@ public class BlockStairs extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
@@ -509,7 +537,7 @@ public class BlockStairs extends Block
 			i |= 4;
 		}
 
-		i = i | 5 - ((EnumFacing) state.getValue(FACING)).getIndex();
+		i = i | 5 - state.getValue(FACING).getIndex();
 		return i;
 	}
 
@@ -518,6 +546,7 @@ public class BlockStairs extends Block
 	 * applies properties not visible in the metadata, such as fence
 	 * connections.
 	 */
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		return state.withProperty(SHAPE, getStairsShape(state, worldIn, pos));
@@ -525,14 +554,14 @@ public class BlockStairs extends Block
 
 	private static BlockStairs.EnumShape getStairsShape(IBlockState p_185706_0_, IBlockAccess p_185706_1_, BlockPos p_185706_2_)
 	{
-		EnumFacing enumfacing = (EnumFacing) p_185706_0_.getValue(FACING);
+		EnumFacing enumfacing = p_185706_0_.getValue(FACING);
 		IBlockState iblockstate = p_185706_1_.getBlockState(p_185706_2_.offset(enumfacing));
 
 		if (isBlockStairs(iblockstate) && p_185706_0_.getValue(HALF) == iblockstate.getValue(HALF))
 		{
-			EnumFacing enumfacing1 = (EnumFacing) iblockstate.getValue(FACING);
+			EnumFacing enumfacing1 = iblockstate.getValue(FACING);
 
-			if (enumfacing1.getAxis() != ((EnumFacing) p_185706_0_.getValue(FACING)).getAxis() && isDifferentStairs(p_185706_0_, p_185706_1_, p_185706_2_, enumfacing1.getOpposite()))
+			if (enumfacing1.getAxis() != p_185706_0_.getValue(FACING).getAxis() && isDifferentStairs(p_185706_0_, p_185706_1_, p_185706_2_, enumfacing1.getOpposite()))
 			{
 				if (enumfacing1 == enumfacing.rotateYCCW())
 				{
@@ -547,9 +576,9 @@ public class BlockStairs extends Block
 
 		if (isBlockStairs(iblockstate1) && p_185706_0_.getValue(HALF) == iblockstate1.getValue(HALF))
 		{
-			EnumFacing enumfacing2 = (EnumFacing) iblockstate1.getValue(FACING);
+			EnumFacing enumfacing2 = iblockstate1.getValue(FACING);
 
-			if (enumfacing2.getAxis() != ((EnumFacing) p_185706_0_.getValue(FACING)).getAxis() && isDifferentStairs(p_185706_0_, p_185706_1_, p_185706_2_, enumfacing2))
+			if (enumfacing2.getAxis() != p_185706_0_.getValue(FACING).getAxis() && isDifferentStairs(p_185706_0_, p_185706_1_, p_185706_2_, enumfacing2))
 			{
 				if (enumfacing2 == enumfacing.rotateYCCW())
 				{
@@ -578,11 +607,13 @@ public class BlockStairs extends Block
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
+	@Override
 	@SuppressWarnings("incomplete-switch")
 
 	/**
@@ -591,8 +622,8 @@ public class BlockStairs extends Block
 	 */
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
-		BlockStairs.EnumShape blockstairs$enumshape = (BlockStairs.EnumShape) state.getValue(SHAPE);
+		EnumFacing enumfacing = state.getValue(FACING);
+		BlockStairs.EnumShape blockstairs$enumshape = state.getValue(SHAPE);
 
 		switch (mirrorIn)
 		{
@@ -646,6 +677,7 @@ public class BlockStairs extends Block
 		return super.withMirror(state, mirrorIn);
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING, HALF, SHAPE });
@@ -662,11 +694,13 @@ public class BlockStairs extends Block
 			this.name = name;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;
@@ -684,11 +718,13 @@ public class BlockStairs extends Block
 			this.name = name;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

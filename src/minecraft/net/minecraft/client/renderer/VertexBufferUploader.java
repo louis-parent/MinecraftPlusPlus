@@ -6,6 +6,7 @@ public class VertexBufferUploader extends WorldVertexBufferUploader
 {
 	private VertexBuffer vertexBuffer;
 
+	@Override
 	public void draw(BufferBuilder vertexBufferIn)
 	{
 		vertexBufferIn.reset();

@@ -16,6 +16,7 @@ public class GenLayerEdge extends GenLayer
 	 * interpreted as temperatures, rainfall amounts, or biomeList[] indices
 	 * based on the particular GenLayer subclass.
 	 */
+	@Override
 	public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
 	{
 		switch (this.mode)
@@ -45,7 +46,7 @@ public class GenLayerEdge extends GenLayer
 		{
 			for (int j1 = 0; j1 < p_151626_3_; ++j1)
 			{
-				this.initChunkSeed((long) (j1 + p_151626_1_), (long) (i1 + p_151626_2_));
+				this.initChunkSeed(j1 + p_151626_1_, i1 + p_151626_2_);
 				int k1 = aint[j1 + 1 + (i1 + 1) * k];
 
 				if (k1 == 1)
@@ -116,7 +117,7 @@ public class GenLayerEdge extends GenLayer
 		{
 			for (int j = 0; j < p_151625_3_; ++j)
 			{
-				this.initChunkSeed((long) (j + p_151625_1_), (long) (i + p_151625_2_));
+				this.initChunkSeed(j + p_151625_1_, i + p_151625_2_);
 				int k = aint[j + i * p_151625_3_];
 
 				if (k != 0 && this.nextInt(13) == 0)

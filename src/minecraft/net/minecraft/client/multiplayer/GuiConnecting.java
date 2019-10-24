@@ -52,6 +52,7 @@ public class GuiConnecting extends GuiScreen
 		LOGGER.info("Connecting to {}, {}", ip, Integer.valueOf(port));
 		(new Thread("Server Connector #" + CONNECTION_ID.incrementAndGet())
 		{
+			@Override
 			public void run()
 			{
 				InetAddress inetaddress = null;
@@ -76,7 +77,7 @@ public class GuiConnecting extends GuiScreen
 						return;
 					}
 
-					GuiConnecting.LOGGER.error("Couldn't connect to server", (Throwable) unknownhostexception);
+					GuiConnecting.LOGGER.error("Couldn't connect to server", unknownhostexception);
 					GuiConnecting.this.mc.displayGuiScreen(new GuiDisconnected(GuiConnecting.this.previousGuiScreen, "connect.failed", new TextComponentTranslation("disconnect.genericReason", new Object[] { "Unknown host" })));
 				}
 				catch (Exception exception)
@@ -86,7 +87,7 @@ public class GuiConnecting extends GuiScreen
 						return;
 					}
 
-					GuiConnecting.LOGGER.error("Couldn't connect to server", (Throwable) exception);
+					GuiConnecting.LOGGER.error("Couldn't connect to server", exception);
 					String s = exception.toString();
 
 					if (inetaddress != null)
@@ -104,6 +105,7 @@ public class GuiConnecting extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		if (this.networkManager != null)
@@ -124,6 +126,7 @@ public class GuiConnecting extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 	}
@@ -133,6 +136,7 @@ public class GuiConnecting extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.buttonList.clear();
@@ -143,6 +147,7 @@ public class GuiConnecting extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.id == 0)
@@ -161,6 +166,7 @@ public class GuiConnecting extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();

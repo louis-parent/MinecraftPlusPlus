@@ -14,6 +14,7 @@ public enum DragonSpawnManager
 {
 	START
 	{
+		@Override
 		public void process(WorldServer worldIn, DragonFightManager manager, List<EntityEnderCrystal> crystals, int ticks, BlockPos pos)
 		{
 			BlockPos blockpos = new BlockPos(0, 128, 0);
@@ -28,6 +29,7 @@ public enum DragonSpawnManager
 	},
 	PREPARING_TO_SUMMON_PILLARS
 	{
+		@Override
 		public void process(WorldServer worldIn, DragonFightManager manager, List<EntityEnderCrystal> crystals, int ticks, BlockPos pos)
 		{
 			if (ticks < 100)
@@ -45,6 +47,7 @@ public enum DragonSpawnManager
 	},
 	SUMMONING_PILLARS
 	{
+		@Override
 		public void process(WorldServer worldIn, DragonFightManager manager, List<EntityEnderCrystal> crystals, int ticks, BlockPos pos)
 		{
 			int i = 40;
@@ -76,7 +79,7 @@ public enum DragonSpawnManager
 							worldIn.setBlockToAir(blockpos$mutableblockpos);
 						}
 
-						worldIn.createExplosion((Entity) null, (double) ((float) worldgenspikes$endspike.getCenterX() + 0.5F), (double) worldgenspikes$endspike.getHeight(), (double) ((float) worldgenspikes$endspike.getCenterZ() + 0.5F), 5.0F, true);
+						worldIn.createExplosion((Entity) null, worldgenspikes$endspike.getCenterX() + 0.5F, worldgenspikes$endspike.getHeight(), worldgenspikes$endspike.getCenterZ() + 0.5F, 5.0F, true);
 						WorldGenSpikes worldgenspikes = new WorldGenSpikes();
 						worldgenspikes.setSpike(worldgenspikes$endspike);
 						worldgenspikes.setCrystalInvulnerable(true);
@@ -93,6 +96,7 @@ public enum DragonSpawnManager
 	},
 	SUMMONING_DRAGON
 	{
+		@Override
 		public void process(WorldServer worldIn, DragonFightManager manager, List<EntityEnderCrystal> crystals, int ticks, BlockPos pos)
 		{
 			if (ticks >= 100)
@@ -126,6 +130,7 @@ public enum DragonSpawnManager
 	},
 	END
 	{
+		@Override
 		public void process(WorldServer worldIn, DragonFightManager manager, List<EntityEnderCrystal> crystals, int ticks, BlockPos pos)
 		{
 		}

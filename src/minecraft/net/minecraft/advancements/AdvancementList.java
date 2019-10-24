@@ -84,7 +84,7 @@ public class AdvancementList
 
 			while (iterator.hasNext())
 			{
-				Entry<ResourceLocation, Advancement.Builder> entry = (Entry) iterator.next();
+				Entry<ResourceLocation, Advancement.Builder> entry = iterator.next();
 				ResourceLocation resourcelocation = entry.getKey();
 				Advancement.Builder advancement$builder = entry.getValue();
 
@@ -127,7 +127,7 @@ public class AdvancementList
 						break label42;
 					}
 
-					Entry<ResourceLocation, Advancement.Builder> entry1 = (Entry) iterator.next();
+					Entry<ResourceLocation, Advancement.Builder> entry1 = iterator.next();
 					field_192091_a.error("Couldn't load advancement " + entry1.getKey() + ": " + entry1.getValue());
 				}
 			}

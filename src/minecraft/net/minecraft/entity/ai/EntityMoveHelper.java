@@ -95,7 +95,7 @@ public class EntityMoveHelper
 			{
 				NodeProcessor nodeprocessor = pathnavigate.getNodeProcessor();
 
-				if (nodeprocessor != null && nodeprocessor.getPathNodeType(this.entity.world, MathHelper.floor(this.entity.posX + (double) f7), MathHelper.floor(this.entity.posY), MathHelper.floor(this.entity.posZ + (double) f8)) != PathNodeType.WALKABLE)
+				if (nodeprocessor != null && nodeprocessor.getPathNodeType(this.entity.world, MathHelper.floor(this.entity.posX + f7), MathHelper.floor(this.entity.posY), MathHelper.floor(this.entity.posZ + f8)) != PathNodeType.WALKABLE)
 				{
 					this.moveForward = 1.0F;
 					this.moveStrafe = 0.0F;
@@ -126,7 +126,7 @@ public class EntityMoveHelper
 			this.entity.rotationYaw = this.limitAngle(this.entity.rotationYaw, f9, 90.0F);
 			this.entity.setAIMoveSpeed((float) (this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
 
-			if (d2 > (double) this.entity.stepHeight && d0 * d0 + d1 * d1 < (double) Math.max(1.0F, this.entity.width))
+			if (d2 > this.entity.stepHeight && d0 * d0 + d1 * d1 < Math.max(1.0F, this.entity.width))
 			{
 				this.entity.getJumpHelper().setJumping();
 				this.action = EntityMoveHelper.Action.JUMPING;

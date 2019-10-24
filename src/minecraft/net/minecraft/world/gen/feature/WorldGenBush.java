@@ -15,6 +15,7 @@ public class WorldGenBush extends WorldGenerator
 		this.block = blockIn;
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		for (int i = 0; i < 64; ++i)

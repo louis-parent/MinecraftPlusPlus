@@ -62,6 +62,7 @@ public class EntityAIAttackRanged extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		EntityLivingBase entitylivingbase = this.entityHost.getAttackTarget();
@@ -80,6 +81,7 @@ public class EntityAIAttackRanged extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return this.shouldExecute() || !this.entityHost.getNavigator().noPath();
@@ -88,6 +90,7 @@ public class EntityAIAttackRanged extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.attackTarget = null;
@@ -98,6 +101,7 @@ public class EntityAIAttackRanged extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		double d0 = this.entityHost.getDistanceSq(this.attackTarget.posX, this.attackTarget.getEntityBoundingBox().minY, this.attackTarget.posZ);
@@ -112,7 +116,7 @@ public class EntityAIAttackRanged extends EntityAIBase
 			this.seeTime = 0;
 		}
 
-		if (d0 <= (double) this.maxAttackDistance && this.seeTime >= 20)
+		if (d0 <= this.maxAttackDistance && this.seeTime >= 20)
 		{
 			this.entityHost.getNavigator().clearPathEntity();
 		}
@@ -133,12 +137,12 @@ public class EntityAIAttackRanged extends EntityAIBase
 			float f = MathHelper.sqrt(d0) / this.attackRadius;
 			float lvt_5_1_ = MathHelper.clamp(f, 0.1F, 1.0F);
 			this.rangedAttackEntityHost.attackEntityWithRangedAttack(this.attackTarget, lvt_5_1_);
-			this.rangedAttackTime = MathHelper.floor(f * (float) (this.maxRangedAttackTime - this.attackIntervalMin) + (float) this.attackIntervalMin);
+			this.rangedAttackTime = MathHelper.floor(f * (this.maxRangedAttackTime - this.attackIntervalMin) + this.attackIntervalMin);
 		}
 		else if (this.rangedAttackTime < 0)
 		{
 			float f2 = MathHelper.sqrt(d0) / this.attackRadius;
-			this.rangedAttackTime = MathHelper.floor(f2 * (float) (this.maxRangedAttackTime - this.attackIntervalMin) + (float) this.attackIntervalMin);
+			this.rangedAttackTime = MathHelper.floor(f2 * (this.maxRangedAttackTime - this.attackIntervalMin) + this.attackIntervalMin);
 		}
 	}
 }

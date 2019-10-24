@@ -50,6 +50,7 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
 		this.previousGuiScreen = previousScreenIn;
 	}
 
+	@Override
 	public void handleEncryptionRequest(SPacketEncryptionRequest packetIn)
 	{
 		final SecretKey secretkey = CryptManager.createNewSharedKey();
@@ -93,6 +94,7 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
 
 		this.networkManager.sendPacket(new CPacketEncryptionResponse(secretkey, publickey, packetIn.getVerifyToken()), new GenericFutureListener<Future<? super Void>>()
 		{
+			@Override
 			public void operationComplete(Future<? super Void> p_operationComplete_1_) throws Exception
 			{
 				NetHandlerLoginClient.this.networkManager.enableEncryption(secretkey);
@@ -105,6 +107,7 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
 		return this.mc.getSessionService();
 	}
 
+	@Override
 	public void handleLoginSuccess(SPacketLoginSuccess packetIn)
 	{
 		this.gameProfile = packetIn.getProfile();
@@ -116,6 +119,7 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
 	 * Invoked when disconnecting, the parameter is a ChatComponent describing
 	 * the reason for termination
 	 */
+	@Override
 	public void onDisconnect(ITextComponent reason)
 	{
 		if (this.previousGuiScreen != null && this.previousGuiScreen instanceof GuiScreenRealmsProxy)
@@ -128,11 +132,13 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
 		}
 	}
 
+	@Override
 	public void handleDisconnect(SPacketDisconnect packetIn)
 	{
 		this.networkManager.closeChannel(packetIn.getReason());
 	}
 
+	@Override
 	public void handleEnableCompression(SPacketEnableCompression packetIn)
 	{
 		if (!this.networkManager.isLocalChannel())

@@ -60,11 +60,12 @@ public class LootTableManager
 		{
 		}
 
+		@Override
 		public LootTable load(ResourceLocation p_load_1_) throws Exception
 		{
 			if (p_load_1_.getResourcePath().contains("."))
 			{
-				LootTableManager.LOGGER.debug("Invalid loot table name '{}' (can't contain periods)", (Object) p_load_1_);
+				LootTableManager.LOGGER.debug("Invalid loot table name '{}' (can't contain periods)", p_load_1_);
 				return LootTable.EMPTY_LOOT_TABLE;
 			}
 			else
@@ -79,7 +80,7 @@ public class LootTableManager
 				if (loottable == null)
 				{
 					loottable = LootTable.EMPTY_LOOT_TABLE;
-					LootTableManager.LOGGER.warn("Couldn't find resource table {}", (Object) p_load_1_);
+					LootTableManager.LOGGER.warn("Couldn't find resource table {}", p_load_1_);
 				}
 
 				return loottable;
@@ -115,7 +116,7 @@ public class LootTableManager
 
 						try
 						{
-							return (LootTable) JsonUtils.gsonDeserialize(LootTableManager.GSON_INSTANCE, s, LootTable.class);
+							return JsonUtils.gsonDeserialize(LootTableManager.GSON_INSTANCE, s, LootTable.class);
 						}
 						catch (IllegalArgumentException | JsonParseException jsonparseexception)
 						{
@@ -157,7 +158,7 @@ public class LootTableManager
 
 				try
 				{
-					return (LootTable) JsonUtils.gsonDeserialize(LootTableManager.GSON_INSTANCE, s, LootTable.class);
+					return JsonUtils.gsonDeserialize(LootTableManager.GSON_INSTANCE, s, LootTable.class);
 				}
 				catch (JsonParseException jsonparseexception)
 				{

@@ -6,11 +6,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class RedundantChanceTags implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 113;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if (compound.hasKey("HandDropChances", 9))

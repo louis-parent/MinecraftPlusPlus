@@ -52,6 +52,7 @@ public class TileEntityStructure extends TileEntity
 	private float integrity = 1.0F;
 	private long seed;
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -76,6 +77,7 @@ public class TileEntityStructure extends TileEntity
 		return compound;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -150,12 +152,14 @@ public class TileEntityStructure extends TileEntity
 		}
 	}
 
+	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		return new SPacketUpdateTileEntity(this.pos, 7, this.getUpdateTag());
 	}
 
+	@Override
 	public NBTTagCompound getUpdateTag()
 	{
 		return this.writeToNBT(new NBTTagCompound());
@@ -364,6 +368,7 @@ public class TileEntityStructure extends TileEntity
 	{
 		Iterable<TileEntityStructure> iterable = Iterables.filter(p_184415_1_, new Predicate<TileEntityStructure>()
 		{
+			@Override
 			public boolean apply(@Nullable TileEntityStructure p_apply_1_)
 			{
 				return p_apply_1_.mode == TileEntityStructure.Mode.CORNER && TileEntityStructure.this.name.equals(p_apply_1_.name);
@@ -400,7 +405,7 @@ public class TileEntityStructure extends TileEntity
 
 		if (p_184416_2_.size() > 1)
 		{
-			BlockPos blockpos = ((TileEntityStructure) p_184416_2_.get(0)).getPos();
+			BlockPos blockpos = p_184416_2_.get(0).getPos();
 			structureboundingbox = new StructureBoundingBox(blockpos, blockpos);
 		}
 		else
@@ -588,6 +593,7 @@ public class TileEntityStructure extends TileEntity
 		this.showBoundingBox = showBoundingBoxIn;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -613,6 +619,7 @@ public class TileEntityStructure extends TileEntity
 			this.modeId = modeIdIn;
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.modeName;

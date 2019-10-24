@@ -201,6 +201,7 @@ public class StructureBoundingBox
 		return this.maxZ - this.minZ + 1;
 	}
 
+	@Override
 	public String toString()
 	{
 		return MoreObjects.toStringHelper(this).add("x0", this.minX).add("y0", this.minY).add("z0", this.minZ).add("x1", this.maxX).add("y1", this.maxY).add("z1", this.maxZ).toString();

@@ -17,6 +17,7 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
 		super(p_i46448_1_, p_i46448_2_, p_i46448_3_, p_i46448_4_, p_i46448_5_);
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		int i = this.getHeight(rand);
@@ -37,8 +38,8 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
 
 				for (int i1 = 0; i1 < 5; ++i1)
 				{
-					k = position.getX() + (int) (1.5F + MathHelper.cos(f) * (float) i1);
-					l = position.getZ() + (int) (1.5F + MathHelper.sin(f) * (float) i1);
+					k = position.getX() + (int) (1.5F + MathHelper.cos(f) * i1);
+					l = position.getZ() + (int) (1.5F + MathHelper.sin(f) * i1);
 					this.setBlockAndNotifyAdequately(worldIn, new BlockPos(k, j - 3 + i1 / 2, l), this.woodMetadata);
 				}
 

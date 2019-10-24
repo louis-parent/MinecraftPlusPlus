@@ -29,6 +29,7 @@ public class C00Handshake implements Packet<INetHandlerHandshakeServer>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.protocolVersion = buf.readVarIntFromBuffer();
@@ -40,6 +41,7 @@ public class C00Handshake implements Packet<INetHandlerHandshakeServer>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeVarIntToBuffer(this.protocolVersion);
@@ -51,6 +53,7 @@ public class C00Handshake implements Packet<INetHandlerHandshakeServer>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerHandshakeServer handler)
 	{
 		handler.processHandshake(this);

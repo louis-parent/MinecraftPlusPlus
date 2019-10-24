@@ -49,7 +49,7 @@ public class MapGenStructureIO
 
 		try
 		{
-			Class<? extends StructureStart> oclass = (Class) startNameToClassMap.get(tagCompound.getString("id"));
+			Class<? extends StructureStart> oclass = startNameToClassMap.get(tagCompound.getString("id"));
 
 			if (oclass != null)
 			{
@@ -58,7 +58,7 @@ public class MapGenStructureIO
 		}
 		catch (Exception exception)
 		{
-			LOGGER.warn("Failed Start with id {}", (Object) tagCompound.getString("id"));
+			LOGGER.warn("Failed Start with id {}", tagCompound.getString("id"));
 			exception.printStackTrace();
 		}
 
@@ -68,7 +68,7 @@ public class MapGenStructureIO
 		}
 		else
 		{
-			LOGGER.warn("Skipping Structure with id {}", (Object) tagCompound.getString("id"));
+			LOGGER.warn("Skipping Structure with id {}", tagCompound.getString("id"));
 		}
 
 		return structurestart;
@@ -80,7 +80,7 @@ public class MapGenStructureIO
 
 		try
 		{
-			Class<? extends StructureComponent> oclass = (Class) componentNameToClassMap.get(tagCompound.getString("id"));
+			Class<? extends StructureComponent> oclass = componentNameToClassMap.get(tagCompound.getString("id"));
 
 			if (oclass != null)
 			{
@@ -89,7 +89,7 @@ public class MapGenStructureIO
 		}
 		catch (Exception exception)
 		{
-			LOGGER.warn("Failed Piece with id {}", (Object) tagCompound.getString("id"));
+			LOGGER.warn("Failed Piece with id {}", tagCompound.getString("id"));
 			exception.printStackTrace();
 		}
 
@@ -99,7 +99,7 @@ public class MapGenStructureIO
 		}
 		else
 		{
-			LOGGER.warn("Skipping Piece with id {}", (Object) tagCompound.getString("id"));
+			LOGGER.warn("Skipping Piece with id {}", tagCompound.getString("id"));
 		}
 
 		return structurecomponent;

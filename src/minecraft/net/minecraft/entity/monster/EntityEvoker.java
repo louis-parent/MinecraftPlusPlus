@@ -47,6 +47,7 @@ public class EntityEvoker extends EntitySpellcasterIllager
 		this.experienceValue = 10;
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		super.initEntityAI();
@@ -65,6 +66,7 @@ public class EntityEvoker extends EntitySpellcasterIllager
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityIronGolem.class, false));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -73,6 +75,7 @@ public class EntityEvoker extends EntitySpellcasterIllager
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(24.0D);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -86,6 +89,7 @@ public class EntityEvoker extends EntitySpellcasterIllager
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -94,16 +98,19 @@ public class EntityEvoker extends EntitySpellcasterIllager
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
 	}
 
+	@Override
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.field_191185_au;
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		super.updateAITasks();
@@ -112,6 +119,7 @@ public class EntityEvoker extends EntitySpellcasterIllager
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -120,6 +128,7 @@ public class EntityEvoker extends EntitySpellcasterIllager
 	/**
 	 * Returns whether this Entity is on the same team as the given Entity.
 	 */
+	@Override
 	public boolean isOnSameTeam(Entity entityIn)
 	{
 		if (entityIn == null)
@@ -148,16 +157,19 @@ public class EntityEvoker extends EntitySpellcasterIllager
 		}
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.field_191243_bm;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.field_191245_bo;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.field_191246_bp;
@@ -174,6 +186,7 @@ public class EntityEvoker extends EntitySpellcasterIllager
 		return this.field_190763_bw;
 	}
 
+	@Override
 	protected SoundEvent func_193086_dk()
 	{
 		return SoundEvents.field_191244_bn;
@@ -185,16 +198,19 @@ public class EntityEvoker extends EntitySpellcasterIllager
 		{
 		}
 
+		@Override
 		protected int func_190869_f()
 		{
 			return 40;
 		}
 
+		@Override
 		protected int func_190872_i()
 		{
 			return 100;
 		}
 
+		@Override
 		protected void func_190868_j()
 		{
 			EntityLivingBase entitylivingbase = EntityEvoker.this.getAttackTarget();
@@ -206,23 +222,23 @@ public class EntityEvoker extends EntitySpellcasterIllager
 			{
 				for (int i = 0; i < 5; ++i)
 				{
-					float f1 = f + (float) i * (float) Math.PI * 0.4F;
-					this.func_190876_a(EntityEvoker.this.posX + (double) MathHelper.cos(f1) * 1.5D, EntityEvoker.this.posZ + (double) MathHelper.sin(f1) * 1.5D, d0, d1, f1, 0);
+					float f1 = f + i * (float) Math.PI * 0.4F;
+					this.func_190876_a(EntityEvoker.this.posX + MathHelper.cos(f1) * 1.5D, EntityEvoker.this.posZ + MathHelper.sin(f1) * 1.5D, d0, d1, f1, 0);
 				}
 
 				for (int k = 0; k < 8; ++k)
 				{
-					float f2 = f + (float) k * (float) Math.PI * 2.0F / 8.0F + ((float) Math.PI * 2F / 5F);
-					this.func_190876_a(EntityEvoker.this.posX + (double) MathHelper.cos(f2) * 2.5D, EntityEvoker.this.posZ + (double) MathHelper.sin(f2) * 2.5D, d0, d1, f2, 3);
+					float f2 = f + k * (float) Math.PI * 2.0F / 8.0F + ((float) Math.PI * 2F / 5F);
+					this.func_190876_a(EntityEvoker.this.posX + MathHelper.cos(f2) * 2.5D, EntityEvoker.this.posZ + MathHelper.sin(f2) * 2.5D, d0, d1, f2, 3);
 				}
 			}
 			else
 			{
 				for (int l = 0; l < 16; ++l)
 				{
-					double d2 = 1.25D * (double) (l + 1);
+					double d2 = 1.25D * (l + 1);
 					int j = 1 * l;
-					this.func_190876_a(EntityEvoker.this.posX + (double) MathHelper.cos(f) * d2, EntityEvoker.this.posZ + (double) MathHelper.sin(f) * d2, d0, d1, f, j);
+					this.func_190876_a(EntityEvoker.this.posX + MathHelper.cos(f) * d2, EntityEvoker.this.posZ + MathHelper.sin(f) * d2, d0, d1, f, j);
 				}
 			}
 		}
@@ -262,16 +278,18 @@ public class EntityEvoker extends EntitySpellcasterIllager
 
 			if (flag)
 			{
-				EntityEvokerFangs entityevokerfangs = new EntityEvokerFangs(EntityEvoker.this.world, p_190876_1_, (double) blockpos.getY() + d0, p_190876_3_, p_190876_9_, p_190876_10_, EntityEvoker.this);
+				EntityEvokerFangs entityevokerfangs = new EntityEvokerFangs(EntityEvoker.this.world, p_190876_1_, blockpos.getY() + d0, p_190876_3_, p_190876_9_, p_190876_10_, EntityEvoker.this);
 				EntityEvoker.this.world.spawnEntityInWorld(entityevokerfangs);
 			}
 		}
 
+		@Override
 		protected SoundEvent func_190871_k()
 		{
 			return SoundEvents.field_191247_bq;
 		}
 
+		@Override
 		protected EntitySpellcasterIllager.SpellType func_193320_l()
 		{
 			return EntitySpellcasterIllager.SpellType.FANGS;
@@ -284,15 +302,16 @@ public class EntityEvoker extends EntitySpellcasterIllager
 		{
 		}
 
+		@Override
 		public void updateTask()
 		{
 			if (EntityEvoker.this.getAttackTarget() != null)
 			{
-				EntityEvoker.this.getLookHelper().setLookPositionWithEntity(EntityEvoker.this.getAttackTarget(), (float) EntityEvoker.this.getHorizontalFaceSpeed(), (float) EntityEvoker.this.getVerticalFaceSpeed());
+				EntityEvoker.this.getLookHelper().setLookPositionWithEntity(EntityEvoker.this.getAttackTarget(), EntityEvoker.this.getHorizontalFaceSpeed(), EntityEvoker.this.getVerticalFaceSpeed());
 			}
 			else if (EntityEvoker.this.func_190751_dj() != null)
 			{
-				EntityEvoker.this.getLookHelper().setLookPositionWithEntity(EntityEvoker.this.func_190751_dj(), (float) EntityEvoker.this.getHorizontalFaceSpeed(), (float) EntityEvoker.this.getVerticalFaceSpeed());
+				EntityEvoker.this.getLookHelper().setLookPositionWithEntity(EntityEvoker.this.func_190751_dj(), EntityEvoker.this.getHorizontalFaceSpeed(), EntityEvoker.this.getVerticalFaceSpeed());
 			}
 		}
 	}
@@ -303,6 +322,7 @@ public class EntityEvoker extends EntitySpellcasterIllager
 		{
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			if (!super.shouldExecute())
@@ -316,16 +336,19 @@ public class EntityEvoker extends EntitySpellcasterIllager
 			}
 		}
 
+		@Override
 		protected int func_190869_f()
 		{
 			return 100;
 		}
 
+		@Override
 		protected int func_190872_i()
 		{
 			return 340;
 		}
 
+		@Override
 		protected void func_190868_j()
 		{
 			for (int i = 0; i < 3; ++i)
@@ -341,11 +364,13 @@ public class EntityEvoker extends EntitySpellcasterIllager
 			}
 		}
 
+		@Override
 		protected SoundEvent func_190871_k()
 		{
 			return SoundEvents.field_191248_br;
 		}
 
+		@Override
 		protected EntitySpellcasterIllager.SpellType func_193320_l()
 		{
 			return EntitySpellcasterIllager.SpellType.SUMMON_VEX;
@@ -356,6 +381,7 @@ public class EntityEvoker extends EntitySpellcasterIllager
 	{
 		final Predicate<EntitySheep> field_190879_a = new Predicate<EntitySheep>()
 		{
+			@Override
 			public boolean apply(EntitySheep p_apply_1_)
 			{
 				return p_apply_1_.getFleeceColor() == EnumDyeColor.BLUE;
@@ -366,6 +392,7 @@ public class EntityEvoker extends EntitySpellcasterIllager
 		{
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			if (EntityEvoker.this.getAttackTarget() != null)
@@ -400,17 +427,20 @@ public class EntityEvoker extends EntitySpellcasterIllager
 			}
 		}
 
+		@Override
 		public boolean continueExecuting()
 		{
 			return EntityEvoker.this.func_190751_dj() != null && this.field_193321_c > 0;
 		}
 
+		@Override
 		public void resetTask()
 		{
 			super.resetTask();
 			EntityEvoker.this.func_190748_a((EntitySheep) null);
 		}
 
+		@Override
 		protected void func_190868_j()
 		{
 			EntitySheep entitysheep = EntityEvoker.this.func_190751_dj();
@@ -421,26 +451,31 @@ public class EntityEvoker extends EntitySpellcasterIllager
 			}
 		}
 
+		@Override
 		protected int func_190867_m()
 		{
 			return 40;
 		}
 
+		@Override
 		protected int func_190869_f()
 		{
 			return 60;
 		}
 
+		@Override
 		protected int func_190872_i()
 		{
 			return 140;
 		}
 
+		@Override
 		protected SoundEvent func_190871_k()
 		{
 			return SoundEvents.field_191249_bs;
 		}
 
+		@Override
 		protected EntitySpellcasterIllager.SpellType func_193320_l()
 		{
 			return EntitySpellcasterIllager.SpellType.WOLOLO;

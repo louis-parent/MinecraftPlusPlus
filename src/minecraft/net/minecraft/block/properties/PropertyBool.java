@@ -14,6 +14,7 @@ public class PropertyBool extends PropertyHelper<Boolean>
 		super(name, Boolean.class);
 	}
 
+	@Override
 	public Collection<Boolean> getAllowedValues()
 	{
 		return this.allowedValues;
@@ -24,6 +25,7 @@ public class PropertyBool extends PropertyHelper<Boolean>
 		return new PropertyBool(name);
 	}
 
+	@Override
 	public Optional<Boolean> parseValue(String value)
 	{
 		return !"true".equals(value) && !"false".equals(value) ? Optional.absent() : Optional.of(Boolean.valueOf(value));
@@ -32,11 +34,13 @@ public class PropertyBool extends PropertyHelper<Boolean>
 	/**
 	 * Get the name for the given value.
 	 */
+	@Override
 	public String getName(Boolean value)
 	{
 		return value.toString();
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -54,6 +58,7 @@ public class PropertyBool extends PropertyHelper<Boolean>
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return 31 * super.hashCode() + this.allowedValues.hashCode();

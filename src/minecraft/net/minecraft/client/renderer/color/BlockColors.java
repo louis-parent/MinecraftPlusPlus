@@ -32,14 +32,16 @@ public class BlockColors
 		final BlockColors blockcolors = new BlockColors();
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
-				BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = (BlockDoublePlant.EnumPlantType) state.getValue(BlockDoublePlant.VARIANT);
+				BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = state.getValue(BlockDoublePlant.VARIANT);
 				return worldIn != null && pos != null && (blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.GRASS || blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.FERN) ? BiomeColorHelper.getGrassColorAtPos(worldIn, state.getValue(BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.UPPER ? pos.down() : pos) : -1;
 			}
 		}, Blocks.DOUBLE_PLANT);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
 				if (worldIn != null && pos != null)
@@ -65,6 +67,7 @@ public class BlockColors
 		}, Blocks.FLOWER_POT);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
 				return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D);
@@ -72,9 +75,10 @@ public class BlockColors
 		}, Blocks.GRASS);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
-				BlockPlanks.EnumType blockplanks$enumtype = (BlockPlanks.EnumType) state.getValue(BlockOldLeaf.VARIANT);
+				BlockPlanks.EnumType blockplanks$enumtype = state.getValue(BlockOldLeaf.VARIANT);
 
 				if (blockplanks$enumtype == BlockPlanks.EnumType.SPRUCE)
 				{
@@ -92,6 +96,7 @@ public class BlockColors
 		}, Blocks.LEAVES);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
 				return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
@@ -99,6 +104,7 @@ public class BlockColors
 		}, Blocks.LEAVES2);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
 				return worldIn != null && pos != null ? BiomeColorHelper.getWaterColorAtPos(worldIn, pos) : -1;
@@ -106,13 +112,15 @@ public class BlockColors
 		}, Blocks.WATER, Blocks.FLOWING_WATER);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
-				return BlockRedstoneWire.colorMultiplier(((Integer) state.getValue(BlockRedstoneWire.POWER)).intValue());
+				return BlockRedstoneWire.colorMultiplier(state.getValue(BlockRedstoneWire.POWER).intValue());
 			}
 		}, Blocks.REDSTONE_WIRE);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
 				return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : -1;
@@ -120,9 +128,10 @@ public class BlockColors
 		}, Blocks.REEDS);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
-				int i = ((Integer) state.getValue(BlockStem.AGE)).intValue();
+				int i = state.getValue(BlockStem.AGE).intValue();
 				int j = i * 32;
 				int k = 255 - i * 8;
 				int l = i * 4;
@@ -131,6 +140,7 @@ public class BlockColors
 		}, Blocks.MELON_STEM, Blocks.PUMPKIN_STEM);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
 				if (worldIn != null && pos != null)
@@ -145,6 +155,7 @@ public class BlockColors
 		}, Blocks.TALLGRASS);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
 				return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
@@ -152,6 +163,7 @@ public class BlockColors
 		}, Blocks.VINE);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
+			@Override
 			public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
 			{
 				return worldIn != null && pos != null ? 2129968 : 7455580;

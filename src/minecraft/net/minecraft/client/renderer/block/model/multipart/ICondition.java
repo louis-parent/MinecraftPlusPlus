@@ -11,10 +11,12 @@ public interface ICondition
 {
 	ICondition TRUE = new ICondition()
 	{
+		@Override
 		public Predicate<IBlockState> getPredicate(BlockStateContainer blockState)
 		{
 			return new Predicate<IBlockState>()
 			{
+				@Override
 				public boolean apply(@Nullable IBlockState p_apply_1_)
 				{
 					return true;
@@ -24,10 +26,12 @@ public interface ICondition
 	};
 	ICondition FALSE = new ICondition()
 	{
+		@Override
 		public Predicate<IBlockState> getPredicate(BlockStateContainer blockState)
 		{
 			return new Predicate<IBlockState>()
 			{
+				@Override
 				public boolean apply(@Nullable IBlockState p_apply_1_)
 				{
 					return false;

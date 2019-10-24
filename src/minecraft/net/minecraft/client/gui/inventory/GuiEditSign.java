@@ -41,6 +41,7 @@ public class GuiEditSign extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.buttonList.clear();
@@ -53,6 +54,7 @@ public class GuiEditSign extends GuiScreen
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		Keyboard.enableRepeatEvents(false);
@@ -69,6 +71,7 @@ public class GuiEditSign extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		++this.updateCounter;
@@ -78,6 +81,7 @@ public class GuiEditSign extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.enabled)
@@ -95,6 +99,7 @@ public class GuiEditSign extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (keyCode == 200)
@@ -130,13 +135,14 @@ public class GuiEditSign extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
 		this.drawCenteredString(this.fontRendererObj, I18n.format("sign.edit"), this.width / 2, 40, 16777215);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.pushMatrix();
-		GlStateManager.translate((float) (this.width / 2), 0.0F, 50.0F);
+		GlStateManager.translate(this.width / 2, 0.0F, 50.0F);
 		float f = 93.75F;
 		GlStateManager.scale(-93.75F, -93.75F, -93.75F);
 		GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
@@ -144,7 +150,7 @@ public class GuiEditSign extends GuiScreen
 
 		if (block == Blocks.STANDING_SIGN)
 		{
-			float f1 = (float) (this.tileSign.getBlockMetadata() * 360) / 16.0F;
+			float f1 = this.tileSign.getBlockMetadata() * 360 / 16.0F;
 			GlStateManager.rotate(f1, 0.0F, 1.0F, 0.0F);
 			GlStateManager.translate(0.0F, -1.0625F, 0.0F);
 		}

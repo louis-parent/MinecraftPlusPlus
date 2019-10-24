@@ -22,6 +22,7 @@ public class ItemShears extends Item
 	 * Called when a Block is destroyed using this Item. Return true to trigger
 	 * the "Use Item" statistic.
 	 */
+	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
 	{
 		if (!worldIn.isRemote)
@@ -36,12 +37,14 @@ public class ItemShears extends Item
 	/**
 	 * Check whether this Item can harvest the given Block
 	 */
+	@Override
 	public boolean canHarvestBlock(IBlockState blockIn)
 	{
 		Block block = blockIn.getBlock();
 		return block == Blocks.WEB || block == Blocks.REDSTONE_WIRE || block == Blocks.TRIPWIRE;
 	}
 
+	@Override
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
 	{
 		Block block = state.getBlock();

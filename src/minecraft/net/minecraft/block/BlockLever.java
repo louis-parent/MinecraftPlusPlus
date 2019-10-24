@@ -42,6 +42,7 @@ public class BlockLever extends Block
 		this.setCreativeTab(CreativeTabs.REDSTONE);
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -52,11 +53,13 @@ public class BlockLever extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -65,11 +68,13 @@ public class BlockLever extends Block
 	/**
 	 * Check whether this Block can be placed on the given side
 	 */
+	@Override
 	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
 	{
 		return canAttachTo(worldIn, pos, side);
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		for (EnumFacing enumfacing : EnumFacing.values())
@@ -92,6 +97,7 @@ public class BlockLever extends Block
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		IBlockState iblockstate = this.getDefaultState().withProperty(POWERED, Boolean.valueOf(false));
@@ -127,9 +133,10 @@ public class BlockLever extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
-		if (this.checkCanSurvive(worldIn, pos, state) && !canAttachTo(worldIn, pos, ((BlockLever.EnumOrientation) state.getValue(FACING)).getFacing()))
+		if (this.checkCanSurvive(worldIn, pos, state) && !canAttachTo(worldIn, pos, state.getValue(FACING).getFacing()))
 		{
 			this.dropBlockAsItem(worldIn, pos, state, 0);
 			worldIn.setBlockToAir(pos);
@@ -150,9 +157,10 @@ public class BlockLever extends Block
 		}
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		switch ((BlockLever.EnumOrientation) state.getValue(FACING))
+		switch (state.getValue(FACING))
 		{
 			case EAST:
 			default:
@@ -177,6 +185,7 @@ public class BlockLever extends Block
 		}
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		if (worldIn.isRemote)
@@ -187,10 +196,10 @@ public class BlockLever extends Block
 		{
 			state = state.cycleProperty(POWERED);
 			worldIn.setBlockState(pos, state, 3);
-			float f = ((Boolean) state.getValue(POWERED)).booleanValue() ? 0.6F : 0.5F;
+			float f = state.getValue(POWERED).booleanValue() ? 0.6F : 0.5F;
 			worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, f);
 			worldIn.notifyNeighborsOfStateChange(pos, this, false);
-			EnumFacing enumfacing = ((BlockLever.EnumOrientation) state.getValue(FACING)).getFacing();
+			EnumFacing enumfacing = state.getValue(FACING).getFacing();
 			worldIn.notifyNeighborsOfStateChange(pos.offset(enumfacing.getOpposite()), this, false);
 			return true;
 		}
@@ -200,32 +209,35 @@ public class BlockLever extends Block
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
-		if (((Boolean) state.getValue(POWERED)).booleanValue())
+		if (state.getValue(POWERED).booleanValue())
 		{
 			worldIn.notifyNeighborsOfStateChange(pos, this, false);
-			EnumFacing enumfacing = ((BlockLever.EnumOrientation) state.getValue(FACING)).getFacing();
+			EnumFacing enumfacing = state.getValue(FACING).getFacing();
 			worldIn.notifyNeighborsOfStateChange(pos.offset(enumfacing.getOpposite()), this, false);
 		}
 
 		super.breakBlock(worldIn, pos, state);
 	}
 
+	@Override
 	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
-		return ((Boolean) blockState.getValue(POWERED)).booleanValue() ? 15 : 0;
+		return blockState.getValue(POWERED).booleanValue() ? 15 : 0;
 	}
 
+	@Override
 	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
-		if (!((Boolean) blockState.getValue(POWERED)).booleanValue())
+		if (!blockState.getValue(POWERED).booleanValue())
 		{
 			return 0;
 		}
 		else
 		{
-			return ((BlockLever.EnumOrientation) blockState.getValue(FACING)).getFacing() == side ? 15 : 0;
+			return blockState.getValue(FACING).getFacing() == side ? 15 : 0;
 		}
 	}
 
@@ -233,6 +245,7 @@ public class BlockLever extends Block
 	 * Can this block provide power. Only wire currently seems to have this
 	 * change based on its state.
 	 */
+	@Override
 	public boolean canProvidePower(IBlockState state)
 	{
 		return true;
@@ -241,6 +254,7 @@ public class BlockLever extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(FACING, BlockLever.EnumOrientation.byMetadata(meta & 7)).withProperty(POWERED, Boolean.valueOf((meta & 8) > 0));
@@ -249,12 +263,13 @@ public class BlockLever extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((BlockLever.EnumOrientation) state.getValue(FACING)).getMetadata();
+		i = i | state.getValue(FACING).getMetadata();
 
-		if (((Boolean) state.getValue(POWERED)).booleanValue())
+		if (state.getValue(POWERED).booleanValue())
 		{
 			i |= 8;
 		}
@@ -266,12 +281,13 @@ public class BlockLever extends Block
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
 		switch (rot)
 		{
 			case CLOCKWISE_180:
-				switch ((BlockLever.EnumOrientation) state.getValue(FACING))
+				switch (state.getValue(FACING))
 				{
 					case EAST:
 						return state.withProperty(FACING, BlockLever.EnumOrientation.WEST);
@@ -290,7 +306,7 @@ public class BlockLever extends Block
 				}
 
 			case COUNTERCLOCKWISE_90:
-				switch ((BlockLever.EnumOrientation) state.getValue(FACING))
+				switch (state.getValue(FACING))
 				{
 					case EAST:
 						return state.withProperty(FACING, BlockLever.EnumOrientation.NORTH);
@@ -318,7 +334,7 @@ public class BlockLever extends Block
 				}
 
 			case CLOCKWISE_90:
-				switch ((BlockLever.EnumOrientation) state.getValue(FACING))
+				switch (state.getValue(FACING))
 				{
 					case EAST:
 						return state.withProperty(FACING, BlockLever.EnumOrientation.SOUTH);
@@ -354,16 +370,19 @@ public class BlockLever extends Block
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(mirrorIn.toRotation(((BlockLever.EnumOrientation) state.getValue(FACING)).getFacing()));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING).getFacing()));
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING, POWERED });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;
@@ -395,6 +414,7 @@ public class BlockLever extends Block
 			return this.facing;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -457,6 +477,7 @@ public class BlockLever extends Block
 			}
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

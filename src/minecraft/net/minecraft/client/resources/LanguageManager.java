@@ -63,6 +63,7 @@ public class LanguageManager implements IResourceManagerReloadListener
 		}
 	}
 
+	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager)
 	{
 		List<String> list = Lists.newArrayList("en_us");

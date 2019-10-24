@@ -35,6 +35,7 @@ public class BlockMagma extends Block
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess access, BlockPos pos)
 	{
 		return MapColor.NETHERRACK;
@@ -44,6 +45,7 @@ public class BlockMagma extends Block
 	 * Triggered whenever an entity collides with this block (enters into the
 	 * block)
 	 */
+	@Override
 	public void onEntityWalk(World world, BlockPos pos, Entity entity)
 	{
 		if (!entity.isImmuneToFire() && entity instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity))
@@ -54,11 +56,13 @@ public class BlockMagma extends Block
 		super.onEntityWalk(world, pos, entity);
 	}
 
+	@Override
 	public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return 15728880;
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		BlockPos blockpos = pos.up();
@@ -71,11 +75,12 @@ public class BlockMagma extends Block
 
 			if (worldIn instanceof WorldServer)
 			{
-				((WorldServer) worldIn).spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 0.25D, (double) blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
+				((WorldServer) worldIn).spawnParticle(EnumParticleTypes.SMOKE_LARGE, blockpos.getX() + 0.5D, blockpos.getY() + 0.25D, blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
 			}
 		}
 	}
 
+	@Override
 	public boolean canEntitySpawn(IBlockState state, Entity entityIn)
 	{
 		return entityIn.isImmuneToFire();

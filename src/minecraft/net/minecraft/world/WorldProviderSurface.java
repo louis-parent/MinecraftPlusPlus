@@ -2,6 +2,7 @@ package net.minecraft.world;
 
 public class WorldProviderSurface extends WorldProvider
 {
+	@Override
 	public DimensionType getDimensionType()
 	{
 		return DimensionType.OVERWORLD;
@@ -12,6 +13,7 @@ public class WorldProviderSurface extends WorldProvider
 	 * the provider's world can be dropped. Used in WorldProviderSurface to
 	 * prevent spawn chunks from being unloaded.
 	 */
+	@Override
 	public boolean canDropChunk(int x, int z)
 	{
 		return !this.worldObj.isSpawnChunk(x, z);

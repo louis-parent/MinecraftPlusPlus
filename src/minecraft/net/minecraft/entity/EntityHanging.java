@@ -26,6 +26,7 @@ public abstract class EntityHanging extends Entity
 {
 	private static final Predicate<Entity> IS_HANGING_ENTITY = new Predicate<Entity>()
 	{
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			return p_apply_1_ instanceof EntityHanging;
@@ -50,6 +51,7 @@ public abstract class EntityHanging extends Entity
 		this.hangingPosition = hangingPositionIn;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 	}
@@ -62,7 +64,7 @@ public abstract class EntityHanging extends Entity
 		Validate.notNull(facingDirectionIn);
 		Validate.isTrue(facingDirectionIn.getAxis().isHorizontal());
 		this.facingDirection = facingDirectionIn;
-		this.rotationYaw = (float) (this.facingDirection.getHorizontalIndex() * 90);
+		this.rotationYaw = this.facingDirection.getHorizontalIndex() * 90;
 		this.prevRotationYaw = this.rotationYaw;
 		this.updateBoundingBox();
 	}
@@ -74,24 +76,24 @@ public abstract class EntityHanging extends Entity
 	{
 		if (this.facingDirection != null)
 		{
-			double d0 = (double) this.hangingPosition.getX() + 0.5D;
-			double d1 = (double) this.hangingPosition.getY() + 0.5D;
-			double d2 = (double) this.hangingPosition.getZ() + 0.5D;
+			double d0 = this.hangingPosition.getX() + 0.5D;
+			double d1 = this.hangingPosition.getY() + 0.5D;
+			double d2 = this.hangingPosition.getZ() + 0.5D;
 			double d3 = 0.46875D;
 			double d4 = this.offs(this.getWidthPixels());
 			double d5 = this.offs(this.getHeightPixels());
-			d0 = d0 - (double) this.facingDirection.getFrontOffsetX() * 0.46875D;
-			d2 = d2 - (double) this.facingDirection.getFrontOffsetZ() * 0.46875D;
+			d0 = d0 - this.facingDirection.getFrontOffsetX() * 0.46875D;
+			d2 = d2 - this.facingDirection.getFrontOffsetZ() * 0.46875D;
 			d1 = d1 + d5;
 			EnumFacing enumfacing = this.facingDirection.rotateYCCW();
-			d0 = d0 + d4 * (double) enumfacing.getFrontOffsetX();
-			d2 = d2 + d4 * (double) enumfacing.getFrontOffsetZ();
+			d0 = d0 + d4 * enumfacing.getFrontOffsetX();
+			d2 = d2 + d4 * enumfacing.getFrontOffsetZ();
 			this.posX = d0;
 			this.posY = d1;
 			this.posZ = d2;
-			double d6 = (double) this.getWidthPixels();
-			double d7 = (double) this.getHeightPixels();
-			double d8 = (double) this.getWidthPixels();
+			double d6 = this.getWidthPixels();
+			double d7 = this.getHeightPixels();
+			double d8 = this.getWidthPixels();
 
 			if (this.facingDirection.getAxis() == EnumFacing.Axis.Z)
 			{
@@ -117,6 +119,7 @@ public abstract class EntityHanging extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -176,6 +179,7 @@ public abstract class EntityHanging extends Entity
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return true;
@@ -185,6 +189,7 @@ public abstract class EntityHanging extends Entity
 	 * Called when a player attacks an entity. If this returns true the attack
 	 * will not happen.
 	 */
+	@Override
 	public boolean hitByEntity(Entity entityIn)
 	{
 		return entityIn instanceof EntityPlayer ? this.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) entityIn), 0.0F) : false;
@@ -193,6 +198,7 @@ public abstract class EntityHanging extends Entity
 	/**
 	 * Gets the horizontal facing direction of this Entity.
 	 */
+	@Override
 	public EnumFacing getHorizontalFacing()
 	{
 		return this.facingDirection;
@@ -201,6 +207,7 @@ public abstract class EntityHanging extends Entity
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -223,6 +230,7 @@ public abstract class EntityHanging extends Entity
 	/**
 	 * Tries to move the entity towards the specified location.
 	 */
+	@Override
 	public void moveEntity(MoverType x, double p_70091_2_, double p_70091_4_, double p_70091_6_)
 	{
 		if (!this.world.isRemote && !this.isDead && p_70091_2_ * p_70091_2_ + p_70091_4_ * p_70091_4_ + p_70091_6_ * p_70091_6_ > 0.0D)
@@ -235,6 +243,7 @@ public abstract class EntityHanging extends Entity
 	/**
 	 * Adds to the current velocity of the entity.
 	 */
+	@Override
 	public void addVelocity(double x, double y, double z)
 	{
 		if (!this.world.isRemote && !this.isDead && x * x + y * y + z * z > 0.0D)
@@ -247,6 +256,7 @@ public abstract class EntityHanging extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		compound.setByte("Facing", (byte) this.facingDirection.getHorizontalIndex());
@@ -259,6 +269,7 @@ public abstract class EntityHanging extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.hangingPosition = new BlockPos(compound.getInteger("TileX"), compound.getInteger("TileY"), compound.getInteger("TileZ"));
@@ -279,14 +290,16 @@ public abstract class EntityHanging extends Entity
 	/**
 	 * Drops an item at the position of the entity.
 	 */
+	@Override
 	public EntityItem entityDropItem(ItemStack stack, float offsetY)
 	{
-		EntityItem entityitem = new EntityItem(this.world, this.posX + (double) ((float) this.facingDirection.getFrontOffsetX() * 0.15F), this.posY + (double) offsetY, this.posZ + (double) ((float) this.facingDirection.getFrontOffsetZ() * 0.15F), stack);
+		EntityItem entityitem = new EntityItem(this.world, this.posX + this.facingDirection.getFrontOffsetX() * 0.15F, this.posY + offsetY, this.posZ + this.facingDirection.getFrontOffsetZ() * 0.15F, stack);
 		entityitem.setDefaultPickupDelay();
 		this.world.spawnEntityInWorld(entityitem);
 		return entityitem;
 	}
 
+	@Override
 	protected boolean shouldSetPosAfterLoading()
 	{
 		return false;
@@ -296,6 +309,7 @@ public abstract class EntityHanging extends Entity
 	 * Sets the x,y,z of the entity from the given parameters. Also seems to set
 	 * up a bounding box.
 	 */
+	@Override
 	public void setPosition(double x, double y, double z)
 	{
 		this.hangingPosition = new BlockPos(x, y, z);
@@ -308,6 +322,7 @@ public abstract class EntityHanging extends Entity
 		return this.hangingPosition;
 	}
 
+	@Override
 	@SuppressWarnings("incomplete-switch")
 
 	/**
@@ -355,6 +370,7 @@ public abstract class EntityHanging extends Entity
 	 * Transforms the entity's current yaw with the given Mirror and returns it.
 	 * This does not have a side-effect.
 	 */
+	@Override
 	public float getMirroredYaw(Mirror transformMirror)
 	{
 		return this.getRotatedYaw(transformMirror.toRotation(this.facingDirection));
@@ -363,6 +379,7 @@ public abstract class EntityHanging extends Entity
 	/**
 	 * Called when a lightning bolt hits the entity.
 	 */
+	@Override
 	public void onStruckByLightning(EntityLightningBolt lightningBolt)
 	{
 	}

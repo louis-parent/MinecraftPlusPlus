@@ -1,6 +1,5 @@
 package net.minecraft.init;
 
-import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.item.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -11,7 +10,6 @@ import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemShears;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class Items

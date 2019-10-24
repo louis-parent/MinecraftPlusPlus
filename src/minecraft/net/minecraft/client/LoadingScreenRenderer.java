@@ -45,6 +45,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
 	 * lines shown. This resets progress to 0, and the WorkingString to
 	 * "working...".
 	 */
+	@Override
 	public void resetProgressAndMessage(String message)
 	{
 		this.loadingSuccess = false;
@@ -54,6 +55,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
 	/**
 	 * Shows the 'Saving level' string.
 	 */
+	@Override
 	public void displaySavingString(String message)
 	{
 		this.loadingSuccess = true;
@@ -80,7 +82,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
 			if (OpenGlHelper.isFramebufferEnabled())
 			{
 				int i = this.scaledResolution.getScaleFactor();
-				GlStateManager.ortho(0.0D, (double) (this.scaledResolution.getScaledWidth() * i), (double) (this.scaledResolution.getScaledHeight() * i), 0.0D, 100.0D, 300.0D);
+				GlStateManager.ortho(0.0D, this.scaledResolution.getScaledWidth() * i, this.scaledResolution.getScaledHeight() * i, 0.0D, 100.0D, 300.0D);
 			}
 			else
 			{
@@ -98,6 +100,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
 	 * Displays a string on the loading screen supposed to indicate what is
 	 * being done currently.
 	 */
+	@Override
 	public void displayLoadingString(String message)
 	{
 		if (!this.mc.running)
@@ -119,6 +122,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
 	/**
 	 * Updates the progress bar on the loading screen to the specified amount.
 	 */
+	@Override
 	public void setLoadingProgress(int progress)
 	{
 		if (!this.mc.running)
@@ -167,9 +171,9 @@ public class LoadingScreenRenderer implements IProgressUpdate
 				this.mc.getTextureManager().bindTexture(Gui.OPTIONS_BACKGROUND);
 				float f = 32.0F;
 				bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-				bufferbuilder.pos(0.0D, (double) l, 0.0D).tex(0.0D, (double) ((float) l / 32.0F)).color(64, 64, 64, 255).endVertex();
-				bufferbuilder.pos((double) k, (double) l, 0.0D).tex((double) ((float) k / 32.0F), (double) ((float) l / 32.0F)).color(64, 64, 64, 255).endVertex();
-				bufferbuilder.pos((double) k, 0.0D, 0.0D).tex((double) ((float) k / 32.0F), 0.0D).color(64, 64, 64, 255).endVertex();
+				bufferbuilder.pos(0.0D, l, 0.0D).tex(0.0D, l / 32.0F).color(64, 64, 64, 255).endVertex();
+				bufferbuilder.pos(k, l, 0.0D).tex(k / 32.0F, l / 32.0F).color(64, 64, 64, 255).endVertex();
+				bufferbuilder.pos(k, 0.0D, 0.0D).tex(k / 32.0F, 0.0D).color(64, 64, 64, 255).endVertex();
 				bufferbuilder.pos(0.0D, 0.0D, 0.0D).tex(0.0D, 0.0D).color(64, 64, 64, 255).endVertex();
 				tessellator.draw();
 
@@ -181,22 +185,22 @@ public class LoadingScreenRenderer implements IProgressUpdate
 					int l1 = l / 2 + 16;
 					GlStateManager.disableTexture2D();
 					bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
-					bufferbuilder.pos((double) k1, (double) l1, 0.0D).color(128, 128, 128, 255).endVertex();
-					bufferbuilder.pos((double) k1, (double) (l1 + 2), 0.0D).color(128, 128, 128, 255).endVertex();
-					bufferbuilder.pos((double) (k1 + 100), (double) (l1 + 2), 0.0D).color(128, 128, 128, 255).endVertex();
-					bufferbuilder.pos((double) (k1 + 100), (double) l1, 0.0D).color(128, 128, 128, 255).endVertex();
-					bufferbuilder.pos((double) k1, (double) l1, 0.0D).color(128, 255, 128, 255).endVertex();
-					bufferbuilder.pos((double) k1, (double) (l1 + 2), 0.0D).color(128, 255, 128, 255).endVertex();
-					bufferbuilder.pos((double) (k1 + progress), (double) (l1 + 2), 0.0D).color(128, 255, 128, 255).endVertex();
-					bufferbuilder.pos((double) (k1 + progress), (double) l1, 0.0D).color(128, 255, 128, 255).endVertex();
+					bufferbuilder.pos(k1, l1, 0.0D).color(128, 128, 128, 255).endVertex();
+					bufferbuilder.pos(k1, l1 + 2, 0.0D).color(128, 128, 128, 255).endVertex();
+					bufferbuilder.pos(k1 + 100, l1 + 2, 0.0D).color(128, 128, 128, 255).endVertex();
+					bufferbuilder.pos(k1 + 100, l1, 0.0D).color(128, 128, 128, 255).endVertex();
+					bufferbuilder.pos(k1, l1, 0.0D).color(128, 255, 128, 255).endVertex();
+					bufferbuilder.pos(k1, l1 + 2, 0.0D).color(128, 255, 128, 255).endVertex();
+					bufferbuilder.pos(k1 + progress, l1 + 2, 0.0D).color(128, 255, 128, 255).endVertex();
+					bufferbuilder.pos(k1 + progress, l1, 0.0D).color(128, 255, 128, 255).endVertex();
 					tessellator.draw();
 					GlStateManager.enableTexture2D();
 				}
 
 				GlStateManager.enableBlend();
 				GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-				this.mc.fontRendererObj.drawStringWithShadow(this.currentlyDisplayedText, (float) ((k - this.mc.fontRendererObj.getStringWidth(this.currentlyDisplayedText)) / 2), (float) (l / 2 - 4 - 16), 16777215);
-				this.mc.fontRendererObj.drawStringWithShadow(this.message, (float) ((k - this.mc.fontRendererObj.getStringWidth(this.message)) / 2), (float) (l / 2 - 4 + 8), 16777215);
+				this.mc.fontRendererObj.drawStringWithShadow(this.currentlyDisplayedText, (k - this.mc.fontRendererObj.getStringWidth(this.currentlyDisplayedText)) / 2, l / 2 - 4 - 16, 16777215);
+				this.mc.fontRendererObj.drawStringWithShadow(this.message, (k - this.mc.fontRendererObj.getStringWidth(this.message)) / 2, l / 2 - 4 + 8, 16777215);
 				this.framebuffer.unbindFramebuffer();
 
 				if (OpenGlHelper.isFramebufferEnabled())
@@ -218,6 +222,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
 		}
 	}
 
+	@Override
 	public void setDoneWorking()
 	{
 	}

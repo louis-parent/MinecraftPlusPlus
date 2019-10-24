@@ -37,6 +37,7 @@ public class EntityEndermite extends EntityMob
 		this.setSize(0.4F, 0.3F);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(1, new EntityAISwimming(this));
@@ -48,11 +49,13 @@ public class EntityEndermite extends EntityMob
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return 0.1F;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -65,31 +68,37 @@ public class EntityEndermite extends EntityMob
 	 * returns if this entity triggers Block.onEntityWalking on the blocks they
 	 * walk on. used for spiders and wolves to prevent them from trampling crops
 	 */
+	@Override
 	protected boolean canTriggerWalking()
 	{
 		return false;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_ENDERMITE_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_ENDERMITE_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_ENDERMITE_DEATH;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.ENTITY_ENDERMITE_STEP, 0.15F, 1.0F);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -104,6 +113,7 @@ public class EntityEndermite extends EntityMob
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -114,6 +124,7 @@ public class EntityEndermite extends EntityMob
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -124,6 +135,7 @@ public class EntityEndermite extends EntityMob
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		this.renderYawOffset = this.rotationYaw;
@@ -133,6 +145,7 @@ public class EntityEndermite extends EntityMob
 	/**
 	 * Set the render yaw offset
 	 */
+	@Override
 	public void setRenderYawOffset(float offset)
 	{
 		this.rotationYaw = offset;
@@ -142,6 +155,7 @@ public class EntityEndermite extends EntityMob
 	/**
 	 * Returns the Y Offset of this entity.
 	 */
+	@Override
 	public double getYOffset()
 	{
 		return 0.1D;
@@ -165,6 +179,7 @@ public class EntityEndermite extends EntityMob
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -173,7 +188,7 @@ public class EntityEndermite extends EntityMob
 		{
 			for (int i = 0; i < 2; ++i)
 			{
-				this.world.spawnParticle(EnumParticleTypes.PORTAL, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
+				this.world.spawnParticle(EnumParticleTypes.PORTAL, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
 			}
 		}
 		else
@@ -193,6 +208,7 @@ public class EntityEndermite extends EntityMob
 	/**
 	 * Checks to make sure the light is not too bright where the mob is spawning
 	 */
+	@Override
 	protected boolean isValidLightLevel()
 	{
 		return true;
@@ -202,6 +218,7 @@ public class EntityEndermite extends EntityMob
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		if (super.getCanSpawnHere())
@@ -218,6 +235,7 @@ public class EntityEndermite extends EntityMob
 	/**
 	 * Get this Entity's EnumCreatureAttribute
 	 */
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.ARTHROPOD;

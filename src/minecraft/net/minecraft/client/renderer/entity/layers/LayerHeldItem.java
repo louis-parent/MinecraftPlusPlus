@@ -18,6 +18,7 @@ public class LayerHeldItem implements LayerRenderer<EntityLivingBase>
 		this.livingEntityRenderer = livingEntityRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		boolean flag = entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT;
@@ -56,7 +57,7 @@ public class LayerHeldItem implements LayerRenderer<EntityLivingBase>
 			GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
 			GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
 			boolean flag = handSide == EnumHandSide.LEFT;
-			GlStateManager.translate((float) (flag ? -1 : 1) / 16.0F, 0.125F, -0.625F);
+			GlStateManager.translate((flag ? -1 : 1) / 16.0F, 0.125F, -0.625F);
 			Minecraft.getMinecraft().getItemRenderer().renderItemSide(p_188358_1_, p_188358_2_, p_188358_3_, flag);
 			GlStateManager.popMatrix();
 		}
@@ -67,6 +68,7 @@ public class LayerHeldItem implements LayerRenderer<EntityLivingBase>
 		((ModelBiped) this.livingEntityRenderer.getMainModel()).postRenderArm(0.0625F, p_191361_1_);
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;

@@ -38,11 +38,13 @@ public class ResourcePackListEntryServer extends ResourcePackListEntry
 		this.resourcePackIcon = this.mc.getTextureManager().getDynamicTextureLocation("texturepackicon", dynamictexture);
 	}
 
+	@Override
 	protected int getResourcePackFormat()
 	{
 		return 3;
 	}
 
+	@Override
 	protected String getResourcePackDescription()
 	{
 		try
@@ -56,51 +58,59 @@ public class ResourcePackListEntryServer extends ResourcePackListEntry
 		}
 		catch (JsonParseException jsonparseexception)
 		{
-			LOGGER.error("Couldn't load metadata info", (Throwable) jsonparseexception);
+			LOGGER.error("Couldn't load metadata info", jsonparseexception);
 		}
 		catch (IOException ioexception)
 		{
-			LOGGER.error("Couldn't load metadata info", (Throwable) ioexception);
+			LOGGER.error("Couldn't load metadata info", ioexception);
 		}
 
 		return TextFormatting.RED + "Missing " + "pack.mcmeta" + " :(";
 	}
 
+	@Override
 	protected boolean canMoveRight()
 	{
 		return false;
 	}
 
+	@Override
 	protected boolean canMoveLeft()
 	{
 		return false;
 	}
 
+	@Override
 	protected boolean canMoveUp()
 	{
 		return false;
 	}
 
+	@Override
 	protected boolean canMoveDown()
 	{
 		return false;
 	}
 
+	@Override
 	protected String getResourcePackName()
 	{
 		return "Server";
 	}
 
+	@Override
 	protected void bindResourcePackIcon()
 	{
 		this.mc.getTextureManager().bindTexture(this.resourcePackIcon);
 	}
 
+	@Override
 	protected boolean showHoverOverlay()
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isServerPack()
 	{
 		return true;

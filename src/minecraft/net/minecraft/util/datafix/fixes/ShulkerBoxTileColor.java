@@ -5,11 +5,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class ShulkerBoxTileColor implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 813;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("minecraft:shulker".equals(compound.getString("id")))

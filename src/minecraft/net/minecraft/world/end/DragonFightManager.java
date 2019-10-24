@@ -192,7 +192,7 @@ public class DragonFightManager
 				{
 					EntityDragon entitydragon = list.get(0);
 					this.dragonUniqueId = entitydragon.getUniqueID();
-					LOGGER.info("Found that there's a dragon still alive ({})", (Object) entitydragon);
+					LOGGER.info("Found that there's a dragon still alive ({})", entitydragon);
 					this.dragonKilled = false;
 
 					if (!flag)
@@ -235,7 +235,7 @@ public class DragonFightManager
 					else
 					{
 						LOGGER.debug("Haven't seen our dragon, but found another one to use.");
-						this.dragonUniqueId = ((EntityDragon) list1.get(0)).getUniqueID();
+						this.dragonUniqueId = list1.get(0).getUniqueID();
 					}
 
 					this.ticksSinceDragonSeen = 0;
@@ -390,7 +390,7 @@ public class DragonFightManager
 			this.aliveCrystals += this.world.getEntitiesWithinAABB(EntityEnderCrystal.class, worldgenspikes$endspike.getTopBoundingBox()).size();
 		}
 
-		LOGGER.debug("Found {} end crystals still alive", (int) this.aliveCrystals);
+		LOGGER.debug("Found {} end crystals still alive", this.aliveCrystals);
 	}
 
 	public void processDragonDeath(EntityDragon dragon)
@@ -416,9 +416,9 @@ public class DragonFightManager
 	{
 		if (!this.gateways.isEmpty())
 		{
-			int i = ((Integer) this.gateways.remove(this.gateways.size() - 1)).intValue();
-			int j = (int) (96.0D * Math.cos(2.0D * (-Math.PI + 0.15707963267948966D * (double) i)));
-			int k = (int) (96.0D * Math.sin(2.0D * (-Math.PI + 0.15707963267948966D * (double) i)));
+			int i = this.gateways.remove(this.gateways.size() - 1).intValue();
+			int j = (int) (96.0D * Math.cos(2.0D * (-Math.PI + 0.15707963267948966D * i)));
+			int k = (int) (96.0D * Math.sin(2.0D * (-Math.PI + 0.15707963267948966D * i)));
 			this.generateGateway(new BlockPos(j, 75, k));
 		}
 	}

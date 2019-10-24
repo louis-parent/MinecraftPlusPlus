@@ -29,6 +29,7 @@ public class EntityAIFollow extends EntityAIBase
 		this.field_192372_a = p_i47417_1_;
 		this.field_192373_b = new Predicate<EntityLiving>()
 		{
+			@Override
 			public boolean apply(@Nullable EntityLiving p_apply_1_)
 			{
 				return p_apply_1_ != null && p_i47417_1_.getClass() != p_apply_1_.getClass();
@@ -49,9 +50,10 @@ public class EntityAIFollow extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
-		List<EntityLiving> list = this.field_192372_a.world.<EntityLiving>getEntitiesWithinAABB(EntityLiving.class, this.field_192372_a.getEntityBoundingBox().expandXyz((double) this.field_192380_i), this.field_192373_b);
+		List<EntityLiving> list = this.field_192372_a.world.<EntityLiving>getEntitiesWithinAABB(EntityLiving.class, this.field_192372_a.getEntityBoundingBox().expandXyz(this.field_192380_i), this.field_192373_b);
 
 		if (!list.isEmpty())
 		{
@@ -71,14 +73,16 @@ public class EntityAIFollow extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
-		return this.field_192374_c != null && !this.field_192376_e.noPath() && this.field_192372_a.getDistanceSqToEntity(this.field_192374_c) > (double) (this.field_192378_g * this.field_192378_g);
+		return this.field_192374_c != null && !this.field_192376_e.noPath() && this.field_192372_a.getDistanceSqToEntity(this.field_192374_c) > this.field_192378_g * this.field_192378_g;
 	}
 
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.field_192377_f = 0;
@@ -89,6 +93,7 @@ public class EntityAIFollow extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.field_192374_c = null;
@@ -99,11 +104,12 @@ public class EntityAIFollow extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		if (this.field_192374_c != null && !this.field_192372_a.getLeashed())
 		{
-			this.field_192372_a.getLookHelper().setLookPositionWithEntity(this.field_192374_c, 10.0F, (float) this.field_192372_a.getVerticalFaceSpeed());
+			this.field_192372_a.getLookHelper().setLookPositionWithEntity(this.field_192374_c, 10.0F, this.field_192372_a.getVerticalFaceSpeed());
 
 			if (--this.field_192377_f <= 0)
 			{
@@ -113,7 +119,7 @@ public class EntityAIFollow extends EntityAIBase
 				double d2 = this.field_192372_a.posZ - this.field_192374_c.posZ;
 				double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 
-				if (d3 > (double) (this.field_192378_g * this.field_192378_g))
+				if (d3 > this.field_192378_g * this.field_192378_g)
 				{
 					this.field_192376_e.tryMoveToEntityLiving(this.field_192374_c, this.field_192375_d);
 				}
@@ -122,7 +128,7 @@ public class EntityAIFollow extends EntityAIBase
 					this.field_192376_e.clearPathEntity();
 					EntityLookHelper entitylookhelper = this.field_192374_c.getLookHelper();
 
-					if (d3 <= (double) this.field_192378_g || entitylookhelper.getLookPosX() == this.field_192372_a.posX && entitylookhelper.getLookPosY() == this.field_192372_a.posY && entitylookhelper.getLookPosZ() == this.field_192372_a.posZ)
+					if (d3 <= this.field_192378_g || entitylookhelper.getLookPosX() == this.field_192372_a.posX && entitylookhelper.getLookPosY() == this.field_192372_a.posY && entitylookhelper.getLookPosZ() == this.field_192372_a.posZ)
 					{
 						double d4 = this.field_192374_c.posX - this.field_192372_a.posX;
 						double d5 = this.field_192374_c.posZ - this.field_192372_a.posZ;

@@ -38,6 +38,7 @@ public class BlockSapling extends BlockBush implements IGrowable
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return SAPLING_AABB;
@@ -46,11 +47,13 @@ public class BlockSapling extends BlockBush implements IGrowable
 	/**
 	 * Gets the localized name of this block. Used for the statistics page.
 	 */
+	@Override
 	public String getLocalizedName()
 	{
 		return I18n.translateToLocal(this.getUnlocalizedName() + "." + BlockPlanks.EnumType.OAK.getUnlocalizedName() + ".name");
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (!worldIn.isRemote)
@@ -66,7 +69,7 @@ public class BlockSapling extends BlockBush implements IGrowable
 
 	public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
-		if (((Integer) state.getValue(STAGE)).intValue() == 0)
+		if (state.getValue(STAGE).intValue() == 0)
 		{
 			worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
 		}
@@ -78,12 +81,12 @@ public class BlockSapling extends BlockBush implements IGrowable
 
 	public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
-		WorldGenerator worldgenerator = (WorldGenerator) (rand.nextInt(10) == 0 ? new WorldGenBigTree(true) : new WorldGenTrees(true));
+		WorldGenerator worldgenerator = rand.nextInt(10) == 0 ? new WorldGenBigTree(true) : new WorldGenTrees(true);
 		int i = 0;
 		int j = 0;
 		boolean flag = false;
 
-		switch ((BlockPlanks.EnumType) state.getValue(TYPE))
+		switch (state.getValue(TYPE))
 		{
 			case SPRUCE:
 				label68: for (i = 0; i >= -1; --i)
@@ -214,15 +217,17 @@ public class BlockSapling extends BlockBush implements IGrowable
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((BlockPlanks.EnumType) state.getValue(TYPE)).getMetadata();
+		return state.getValue(TYPE).getMetadata();
 	}
 
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (BlockPlanks.EnumType blockplanks$enumtype : BlockPlanks.EnumType.values())
@@ -234,16 +239,19 @@ public class BlockSapling extends BlockBush implements IGrowable
 	/**
 	 * Whether this IGrowable can grow
 	 */
+	@Override
 	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
 	{
 		return true;
 	}
 
+	@Override
 	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
 	{
-		return (double) worldIn.rand.nextFloat() < 0.45D;
+		return worldIn.rand.nextFloat() < 0.45D;
 	}
 
+	@Override
 	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
 	{
 		this.grow(worldIn, pos, state, rand);
@@ -252,6 +260,7 @@ public class BlockSapling extends BlockBush implements IGrowable
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(TYPE, BlockPlanks.EnumType.byMetadata(meta & 7)).withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
@@ -260,14 +269,16 @@ public class BlockSapling extends BlockBush implements IGrowable
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((BlockPlanks.EnumType) state.getValue(TYPE)).getMetadata();
-		i = i | ((Integer) state.getValue(STAGE)).intValue() << 3;
+		i = i | state.getValue(TYPE).getMetadata();
+		i = i | state.getValue(STAGE).intValue() << 3;
 		return i;
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { TYPE, STAGE });

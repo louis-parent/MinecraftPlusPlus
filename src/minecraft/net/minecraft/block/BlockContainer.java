@@ -47,6 +47,7 @@ public abstract class BlockContainer extends Block implements ITileEntityProvide
 	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
 	 * INVISIBLE to skip all rendering
 	 */
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.INVISIBLE;
@@ -56,12 +57,14 @@ public abstract class BlockContainer extends Block implements ITileEntityProvide
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		super.breakBlock(worldIn, pos, state);
 		worldIn.removeTileEntity(pos);
 	}
 
+	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
 		if (te instanceof IWorldNameable && ((IWorldNameable) te).hasCustomName())
@@ -99,6 +102,7 @@ public abstract class BlockContainer extends Block implements ITileEntityProvide
 	 * update may involve replacing tile entities, playing sounds, or performing
 	 * other visual actions to reflect the server side changes.
 	 */
+	@Override
 	public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param)
 	{
 		super.eventReceived(state, worldIn, pos, id, param);

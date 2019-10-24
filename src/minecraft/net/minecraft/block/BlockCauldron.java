@@ -50,6 +50,7 @@ public class BlockCauldron extends Block
 		this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, Integer.valueOf(0)));
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 		addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_LEGS);
@@ -59,6 +60,7 @@ public class BlockCauldron extends Block
 		addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_SOUTH);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return FULL_BLOCK_AABB;
@@ -68,11 +70,13 @@ public class BlockCauldron extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -81,18 +85,20 @@ public class BlockCauldron extends Block
 	/**
 	 * Called When an Entity Collided with the Block
 	 */
+	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		int i = ((Integer) state.getValue(LEVEL)).intValue();
-		float f = (float) pos.getY() + (6.0F + (float) (3 * i)) / 16.0F;
+		int i = state.getValue(LEVEL).intValue();
+		float f = pos.getY() + (6.0F + 3 * i) / 16.0F;
 
-		if (!worldIn.isRemote && entityIn.isBurning() && i > 0 && entityIn.getEntityBoundingBox().minY <= (double) f)
+		if (!worldIn.isRemote && entityIn.isBurning() && i > 0 && entityIn.getEntityBoundingBox().minY <= f)
 		{
 			entityIn.extinguish();
 			this.setWaterLevel(worldIn, pos, state, i - 1);
 		}
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		ItemStack itemstack = playerIn.getHeldItem(hand);
@@ -103,7 +109,7 @@ public class BlockCauldron extends Block
 		}
 		else
 		{
-			int i = ((Integer) state.getValue(LEVEL)).intValue();
+			int i = state.getValue(LEVEL).intValue();
 			Item item = itemstack.getItem();
 
 			if (item == Items.WATER_BUCKET)
@@ -262,6 +268,7 @@ public class BlockCauldron extends Block
 	/**
 	 * Called similar to random ticks, but only when it is raining.
 	 */
+	@Override
 	public void fillWithRain(World worldIn, BlockPos pos)
 	{
 		if (worldIn.rand.nextInt(20) == 1)
@@ -272,7 +279,7 @@ public class BlockCauldron extends Block
 			{
 				IBlockState iblockstate = worldIn.getBlockState(pos);
 
-				if (((Integer) iblockstate.getValue(LEVEL)).intValue() < 3)
+				if (iblockstate.getValue(LEVEL).intValue() < 3)
 				{
 					worldIn.setBlockState(pos, iblockstate.cycleProperty(LEVEL), 2);
 				}
@@ -283,29 +290,34 @@ public class BlockCauldron extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.CAULDRON;
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(Items.CAULDRON);
 	}
 
+	@Override
 	public boolean hasComparatorInputOverride(IBlockState state)
 	{
 		return true;
 	}
 
+	@Override
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
 	{
-		return ((Integer) blockState.getValue(LEVEL)).intValue();
+		return blockState.getValue(LEVEL).intValue();
 	}
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(LEVEL, Integer.valueOf(meta));
@@ -314,21 +326,25 @@ public class BlockCauldron extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(LEVEL)).intValue();
+		return state.getValue(LEVEL).intValue();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { LEVEL });
 	}
 
+	@Override
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
 	{
 		return true;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		if (p_193383_4_ == EnumFacing.UP)

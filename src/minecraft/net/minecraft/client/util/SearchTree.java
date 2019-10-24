@@ -60,6 +60,7 @@ public class SearchTree<T> implements ISearchTree<T>
 		});
 	}
 
+	@Override
 	public List<T> func_194038_a(String p_194038_1_)
 	{
 		List<T> list = this.field_194044_a.func_194055_a(p_194038_1_);
@@ -71,7 +72,7 @@ public class SearchTree<T> implements ISearchTree<T>
 		else
 		{
 			List<T> list1 = this.field_194045_b.func_194055_a(p_194038_1_);
-			return (List<T>) (list1.isEmpty() ? list : Lists.newArrayList(new SearchTree.MergingIterator(list.iterator(), list1.iterator(), this.field_194049_f)));
+			return list1.isEmpty() ? list : Lists.newArrayList(new SearchTree.MergingIterator(list.iterator(), list1.iterator(), this.field_194049_f));
 		}
 	}
 
@@ -88,15 +89,16 @@ public class SearchTree<T> implements ISearchTree<T>
 			this.field_194033_a = p_i47606_1_;
 			this.field_194034_b = p_i47606_2_;
 			this.field_194035_c = p_i47606_3_;
-			this.field_194036_d = (T) (p_i47606_1_.hasNext() ? p_i47606_1_.next() : null);
-			this.field_194037_e = (T) (p_i47606_2_.hasNext() ? p_i47606_2_.next() : null);
+			this.field_194036_d = p_i47606_1_.hasNext() ? p_i47606_1_.next() : null;
+			this.field_194037_e = p_i47606_2_.hasNext() ? p_i47606_2_.next() : null;
 		}
 
+		@Override
 		protected T computeNext()
 		{
 			if (this.field_194036_d == null && this.field_194037_e == null)
 			{
-				return (T) this.endOfData();
+				return this.endOfData();
 			}
 			else
 			{
@@ -119,16 +121,16 @@ public class SearchTree<T> implements ISearchTree<T>
 					i = Integer.compare(this.field_194035_c.getInt(this.field_194036_d), this.field_194035_c.getInt(this.field_194037_e));
 				}
 
-				T t = (T) (i <= 0 ? this.field_194036_d : this.field_194037_e);
+				T t = i <= 0 ? this.field_194036_d : this.field_194037_e;
 
 				if (i <= 0)
 				{
-					this.field_194036_d = (T) (this.field_194033_a.hasNext() ? this.field_194033_a.next() : null);
+					this.field_194036_d = this.field_194033_a.hasNext() ? this.field_194033_a.next() : null;
 				}
 
 				if (i >= 0)
 				{
-					this.field_194037_e = (T) (this.field_194034_b.hasNext() ? this.field_194034_b.next() : null);
+					this.field_194037_e = this.field_194034_b.hasNext() ? this.field_194034_b.next() : null;
 				}
 
 				return t;

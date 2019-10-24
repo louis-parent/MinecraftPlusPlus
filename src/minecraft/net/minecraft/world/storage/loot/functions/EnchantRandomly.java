@@ -40,6 +40,7 @@ public class EnchantRandomly extends LootFunction
 		this.enchantments = enchantmentsIn == null ? Collections.emptyList() : enchantmentsIn;
 	}
 
+	@Override
 	public ItemStack apply(ItemStack stack, Random rand, LootContext context)
 	{
 		Enchantment enchantment;
@@ -58,7 +59,7 @@ public class EnchantRandomly extends LootFunction
 
 			if (list.isEmpty())
 			{
-				LOGGER.warn("Couldn't find a compatible enchantment for {}", (Object) stack);
+				LOGGER.warn("Couldn't find a compatible enchantment for {}", stack);
 				return stack;
 			}
 
@@ -91,6 +92,7 @@ public class EnchantRandomly extends LootFunction
 			super(new ResourceLocation("enchant_randomly"), EnchantRandomly.class);
 		}
 
+		@Override
 		public void serialize(JsonObject object, EnchantRandomly functionClazz, JsonSerializationContext serializationContext)
 		{
 			if (!functionClazz.enchantments.isEmpty())
@@ -113,6 +115,7 @@ public class EnchantRandomly extends LootFunction
 			}
 		}
 
+		@Override
 		public EnchantRandomly deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn)
 		{
 			List<Enchantment> list = Lists.<Enchantment>newArrayList();

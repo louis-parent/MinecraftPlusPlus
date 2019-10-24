@@ -26,6 +26,7 @@ public class SetNBT extends LootFunction
 		this.tag = tagIn;
 	}
 
+	@Override
 	public ItemStack apply(ItemStack stack, Random rand, LootContext context)
 	{
 		NBTTagCompound nbttagcompound = stack.getTagCompound();
@@ -50,11 +51,13 @@ public class SetNBT extends LootFunction
 			super(new ResourceLocation("set_nbt"), SetNBT.class);
 		}
 
+		@Override
 		public void serialize(JsonObject object, SetNBT functionClazz, JsonSerializationContext serializationContext)
 		{
 			object.addProperty("tag", functionClazz.tag.toString());
 		}
 
+		@Override
 		public SetNBT deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn)
 		{
 			try

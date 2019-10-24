@@ -27,6 +27,7 @@ public class ItemBow extends Item
 		this.setCreativeTab(CreativeTabs.COMBAT);
 		this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
 		{
+			@Override
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
 			{
 				if (entityIn == null)
@@ -35,12 +36,13 @@ public class ItemBow extends Item
 				}
 				else
 				{
-					return entityIn.getActiveItemStack().getItem() != Items.BOW ? 0.0F : (float) (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F;
+					return entityIn.getActiveItemStack().getItem() != Items.BOW ? 0.0F : (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F;
 				}
 			}
 		});
 		this.addPropertyOverride(new ResourceLocation("pulling"), new IItemPropertyGetter()
 		{
+			@Override
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
 			{
 				return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F : 0.0F;
@@ -83,6 +85,7 @@ public class ItemBow extends Item
 	 * Called when the player stops using an Item (stops holding the right mouse
 	 * button).
 	 */
+	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft)
 	{
 		if (entityLiving instanceof EntityPlayer)
@@ -101,7 +104,7 @@ public class ItemBow extends Item
 				int i = this.getMaxItemUseDuration(stack) - timeLeft;
 				float f = getArrowVelocity(i);
 
-				if ((double) f >= 0.1D)
+				if (f >= 0.1D)
 				{
 					boolean flag1 = flag && itemstack.getItem() == Items.ARROW;
 
@@ -120,7 +123,7 @@ public class ItemBow extends Item
 
 						if (j > 0)
 						{
-							entityarrow.setDamage(entityarrow.getDamage() + (double) j * 0.5D + 0.5D);
+							entityarrow.setDamage(entityarrow.getDamage() + j * 0.5D + 0.5D);
 						}
 
 						int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
@@ -168,7 +171,7 @@ public class ItemBow extends Item
 	 */
 	public static float getArrowVelocity(int charge)
 	{
-		float f = (float) charge / 20.0F;
+		float f = charge / 20.0F;
 		f = (f * f + f * 2.0F) / 3.0F;
 
 		if (f > 1.0F)
@@ -182,6 +185,7 @@ public class ItemBow extends Item
 	/**
 	 * How long it takes to use or consume an item
 	 */
+	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{
 		return 72000;
@@ -191,11 +195,13 @@ public class ItemBow extends Item
 	 * returns the action that specifies what animation to play when the items
 	 * is being used
 	 */
+	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
 		return EnumAction.BOW;
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);
@@ -216,6 +222,7 @@ public class ItemBow extends Item
 	 * Return the enchantability factor of the item, most of the time is based
 	 * on material.
 	 */
+	@Override
 	public int getItemEnchantability()
 	{
 		return 1;

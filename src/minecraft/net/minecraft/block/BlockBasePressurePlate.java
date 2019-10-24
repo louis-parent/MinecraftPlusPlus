@@ -41,6 +41,7 @@ public abstract class BlockBasePressurePlate extends Block
 		this.setTickRandomly(true);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		boolean flag = this.getRedstoneStrength(state) > 0;
@@ -50,11 +51,13 @@ public abstract class BlockBasePressurePlate extends Block
 	/**
 	 * How many world ticks before ticking
 	 */
+	@Override
 	public int tickRate(World worldIn)
 	{
 		return 20;
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -65,16 +68,19 @@ public abstract class BlockBasePressurePlate extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
 	{
 		return true;
@@ -84,11 +90,13 @@ public abstract class BlockBasePressurePlate extends Block
 	 * Return true if an entity can be spawned inside the block (used to get the
 	 * player's bed spawn location)
 	 */
+	@Override
 	public boolean canSpawnInBlock()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return this.canBePlacedOn(worldIn, pos.down());
@@ -100,6 +108,7 @@ public abstract class BlockBasePressurePlate extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!this.canBePlacedOn(worldIn, pos.down()))
@@ -118,10 +127,12 @@ public abstract class BlockBasePressurePlate extends Block
 	 * Called randomly when setTickRandomly is set to true (used by e.g. crops
 	 * to grow, etc.)
 	 */
+	@Override
 	public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
 	{
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (!worldIn.isRemote)
@@ -138,6 +149,7 @@ public abstract class BlockBasePressurePlate extends Block
 	/**
 	 * Called When an Entity Collided with the Block
 	 */
+	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
 		if (!worldIn.isRemote)
@@ -191,6 +203,7 @@ public abstract class BlockBasePressurePlate extends Block
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (this.getRedstoneStrength(state) > 0)
@@ -210,11 +223,13 @@ public abstract class BlockBasePressurePlate extends Block
 		worldIn.notifyNeighborsOfStateChange(pos.down(), this, false);
 	}
 
+	@Override
 	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return this.getRedstoneStrength(blockState);
 	}
 
+	@Override
 	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return side == EnumFacing.UP ? this.getRedstoneStrength(blockState) : 0;
@@ -224,11 +239,13 @@ public abstract class BlockBasePressurePlate extends Block
 	 * Can this block provide power. Only wire currently seems to have this
 	 * change based on its state.
 	 */
+	@Override
 	public boolean canProvidePower(IBlockState state)
 	{
 		return true;
 	}
 
+	@Override
 	public EnumPushReaction getMobilityFlag(IBlockState state)
 	{
 		return EnumPushReaction.DESTROY;
@@ -240,6 +257,7 @@ public abstract class BlockBasePressurePlate extends Block
 
 	protected abstract IBlockState setRedstoneStrength(IBlockState state, int strength);
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

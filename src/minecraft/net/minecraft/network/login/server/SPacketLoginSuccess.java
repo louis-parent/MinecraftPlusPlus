@@ -25,6 +25,7 @@ public class SPacketLoginSuccess implements Packet<INetHandlerLoginClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		String s = buf.readStringFromBuffer(36);
@@ -36,6 +37,7 @@ public class SPacketLoginSuccess implements Packet<INetHandlerLoginClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		UUID uuid = this.profile.getId();
@@ -46,6 +48,7 @@ public class SPacketLoginSuccess implements Packet<INetHandlerLoginClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerLoginClient handler)
 	{
 		handler.handleLoginSuccess(this);

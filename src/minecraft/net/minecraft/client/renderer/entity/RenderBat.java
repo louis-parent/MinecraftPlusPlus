@@ -19,6 +19,7 @@ public class RenderBat extends RenderLiving<EntityBat>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityBat entity)
 	{
 		return BAT_TEXTURES;
@@ -28,11 +29,13 @@ public class RenderBat extends RenderLiving<EntityBat>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityBat entitylivingbaseIn, float partialTickTime)
 	{
 		GlStateManager.scale(0.35F, 0.35F, 0.35F);
 	}
 
+	@Override
 	protected void rotateCorpse(EntityBat entityLiving, float p_77043_2_, float p_77043_3_, float partialTicks)
 	{
 		if (entityLiving.getIsBatHanging())

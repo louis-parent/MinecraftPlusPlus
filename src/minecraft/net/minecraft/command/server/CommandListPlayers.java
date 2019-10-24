@@ -13,6 +13,7 @@ public class CommandListPlayers extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "list";
@@ -21,6 +22,7 @@ public class CommandListPlayers extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 0;
@@ -29,6 +31,7 @@ public class CommandListPlayers extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.players.usage";
@@ -37,6 +40,7 @@ public class CommandListPlayers extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		int i = server.getCurrentPlayerCount();

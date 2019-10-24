@@ -11,11 +11,13 @@ public class EntityId implements IFixableData
 {
 	private static final Map<String, String> field_191276_a = Maps.<String, String>newHashMap();
 
+	@Override
 	public int getFixVersion()
 	{
 		return 704;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		String s = field_191276_a.get(compound.getString("id"));

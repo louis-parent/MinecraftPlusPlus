@@ -17,6 +17,7 @@ public class LayerStrayClothing implements LayerRenderer<EntityStray>
 		this.renderer = p_i47183_1_;
 	}
 
+	@Override
 	public void doRenderLayer(EntityStray entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.layerModel.setModelAttributes(this.renderer.getMainModel());
@@ -26,6 +27,7 @@ public class LayerStrayClothing implements LayerRenderer<EntityStray>
 		this.layerModel.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return true;

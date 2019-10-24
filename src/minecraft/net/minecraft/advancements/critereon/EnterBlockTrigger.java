@@ -31,11 +31,13 @@ public class EnterBlockTrigger implements ICriterionTrigger<EnterBlockTrigger.In
 	private static final ResourceLocation field_192196_a = new ResourceLocation("enter_block");
 	private final Map<PlayerAdvancements, EnterBlockTrigger.Listeners> field_192197_b = Maps.<PlayerAdvancements, EnterBlockTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192196_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<EnterBlockTrigger.Instance> p_192165_2_)
 	{
 		EnterBlockTrigger.Listeners enterblocktrigger$listeners = this.field_192197_b.get(p_192165_1_);
@@ -49,6 +51,7 @@ public class EnterBlockTrigger implements ICriterionTrigger<EnterBlockTrigger.In
 		enterblocktrigger$listeners.func_192472_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<EnterBlockTrigger.Instance> p_192164_2_)
 	{
 		EnterBlockTrigger.Listeners enterblocktrigger$listeners = this.field_192197_b.get(p_192164_1_);
@@ -64,11 +67,13 @@ public class EnterBlockTrigger implements ICriterionTrigger<EnterBlockTrigger.In
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192197_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public EnterBlockTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		Block block = null;
@@ -102,7 +107,7 @@ public class EnterBlockTrigger implements ICriterionTrigger<EnterBlockTrigger.In
 
 				if (iproperty == null)
 				{
-					throw new JsonSyntaxException("Unknown block state property '" + (String) entry.getKey() + "' for block '" + Block.REGISTRY.getNameForObject(block) + "'");
+					throw new JsonSyntaxException("Unknown block state property '" + entry.getKey() + "' for block '" + Block.REGISTRY.getNameForObject(block) + "'");
 				}
 
 				String s = JsonUtils.getString(entry.getValue(), entry.getKey());
@@ -110,7 +115,7 @@ public class EnterBlockTrigger implements ICriterionTrigger<EnterBlockTrigger.In
 
 				if (!optional.isPresent())
 				{
-					throw new JsonSyntaxException("Invalid block state value '" + s + "' for property '" + (String) entry.getKey() + "' on block '" + Block.REGISTRY.getNameForObject(block) + "'");
+					throw new JsonSyntaxException("Invalid block state value '" + s + "' for property '" + entry.getKey() + "' on block '" + Block.REGISTRY.getNameForObject(block) + "'");
 				}
 
 				if (map == null)
@@ -202,7 +207,7 @@ public class EnterBlockTrigger implements ICriterionTrigger<EnterBlockTrigger.In
 
 			for (ICriterionTrigger.Listener<EnterBlockTrigger.Instance> listener : this.field_192474_b)
 			{
-				if (((EnterBlockTrigger.Instance) listener.func_192158_a()).func_192260_a(p_192471_1_))
+				if (listener.func_192158_a().func_192260_a(p_192471_1_))
 				{
 					if (list == null)
 					{

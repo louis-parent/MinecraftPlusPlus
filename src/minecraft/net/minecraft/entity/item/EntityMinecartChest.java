@@ -30,6 +30,7 @@ public class EntityMinecartChest extends EntityMinecartContainer
 		EntityMinecartContainer.func_190574_b(fixer, EntityMinecartChest.class);
 	}
 
+	@Override
 	public void killMinecart(DamageSource source)
 	{
 		super.killMinecart(source);
@@ -43,31 +44,37 @@ public class EntityMinecartChest extends EntityMinecartContainer
 	/**
 	 * Returns the number of slots in the inventory.
 	 */
+	@Override
 	public int getSizeInventory()
 	{
 		return 27;
 	}
 
+	@Override
 	public EntityMinecart.Type getType()
 	{
 		return EntityMinecart.Type.CHEST;
 	}
 
+	@Override
 	public IBlockState getDefaultDisplayTile()
 	{
 		return Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.NORTH);
 	}
 
+	@Override
 	public int getDefaultDisplayTileOffset()
 	{
 		return 8;
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return "minecraft:chest";
 	}
 
+	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
 		this.addLoot(playerIn);

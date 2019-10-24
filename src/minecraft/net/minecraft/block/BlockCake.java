@@ -33,11 +33,13 @@ public class BlockCake extends Block
 		this.setTickRandomly(true);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		return CAKE_AABB[((Integer) state.getValue(BITES)).intValue()];
+		return CAKE_AABB[state.getValue(BITES).intValue()];
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -47,11 +49,13 @@ public class BlockCake extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		if (!worldIn.isRemote)
@@ -75,7 +79,7 @@ public class BlockCake extends Block
 		{
 			player.addStat(StatList.CAKE_SLICES_EATEN);
 			player.getFoodStats().addStats(2, 0.1F);
-			int i = ((Integer) state.getValue(BITES)).intValue();
+			int i = state.getValue(BITES).intValue();
 
 			if (i < 6)
 			{
@@ -90,6 +94,7 @@ public class BlockCake extends Block
 		}
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return super.canPlaceBlockAt(worldIn, pos) ? this.canBlockStay(worldIn, pos) : false;
@@ -101,6 +106,7 @@ public class BlockCake extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!this.canBlockStay(worldIn, pos))
@@ -117,6 +123,7 @@ public class BlockCake extends Block
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
@@ -125,16 +132,19 @@ public class BlockCake extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.EMPTY_ITEM;
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(Items.CAKE);
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
@@ -143,6 +153,7 @@ public class BlockCake extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(BITES, Integer.valueOf(meta));
@@ -151,26 +162,31 @@ public class BlockCake extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(BITES)).intValue();
+		return state.getValue(BITES).intValue();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { BITES });
 	}
 
+	@Override
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
 	{
-		return (7 - ((Integer) blockState.getValue(BITES)).intValue()) * 2;
+		return (7 - blockState.getValue(BITES).intValue()) * 2;
 	}
 
+	@Override
 	public boolean hasComparatorInputOverride(IBlockState state)
 	{
 		return true;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

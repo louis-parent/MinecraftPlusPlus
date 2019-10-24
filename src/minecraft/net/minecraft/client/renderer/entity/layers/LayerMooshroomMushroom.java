@@ -17,6 +17,7 @@ public class LayerMooshroomMushroom implements LayerRenderer<EntityMooshroom>
 		this.mooshroomRenderer = mooshroomRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntityMooshroom entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		if (!entitylivingbaseIn.isChild() && !entitylivingbaseIn.isInvisible())
@@ -53,6 +54,7 @@ public class LayerMooshroomMushroom implements LayerRenderer<EntityMooshroom>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return true;

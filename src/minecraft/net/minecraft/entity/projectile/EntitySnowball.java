@@ -30,6 +30,7 @@ public class EntitySnowball extends EntityThrowable
 		EntityThrowable.registerFixesThrowable(fixer, "Snowball");
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 3)
@@ -44,6 +45,7 @@ public class EntitySnowball extends EntityThrowable
 	/**
 	 * Called when this EntityThrowable hits a block or entity.
 	 */
+	@Override
 	protected void onImpact(RayTraceResult result)
 	{
 		if (result.entityHit != null)
@@ -55,7 +57,7 @@ public class EntitySnowball extends EntityThrowable
 				i = 3;
 			}
 
-			result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) i);
+			result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), i);
 		}
 
 		if (!this.world.isRemote)

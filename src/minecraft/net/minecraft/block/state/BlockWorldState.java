@@ -65,6 +65,7 @@ public class BlockWorldState
 	{
 		return new Predicate<BlockWorldState>()
 		{
+			@Override
 			public boolean apply(@Nullable BlockWorldState p_apply_1_)
 			{
 				return p_apply_1_ != null && predicatesIn.apply(p_apply_1_.getBlockState());

@@ -52,6 +52,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 		this.setMutexBits(1);
 		this.targetEntitySelector = new Predicate<T>()
 		{
+			@Override
 			public boolean apply(@Nullable T p_apply_1_)
 			{
 				if (p_apply_1_ == null)
@@ -73,6 +74,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (this.targetChance > 0 && this.taskOwner.getRNG().nextInt(this.targetChance) != 0)
@@ -96,8 +98,9 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 		}
 		else
 		{
-			this.targetEntity = (T) this.taskOwner.world.getNearestAttackablePlayer(this.taskOwner.posX, this.taskOwner.posY + (double) this.taskOwner.getEyeHeight(), this.taskOwner.posZ, this.getTargetDistance(), this.getTargetDistance(), new Function<EntityPlayer, Double>()
+			this.targetEntity = (T) this.taskOwner.world.getNearestAttackablePlayer(this.taskOwner.posX, this.taskOwner.posY + this.taskOwner.getEyeHeight(), this.taskOwner.posZ, this.getTargetDistance(), this.getTargetDistance(), new Function<EntityPlayer, Double>()
 			{
+				@Override
 				@Nullable
 				public Double apply(@Nullable EntityPlayer p_apply_1_)
 				{
@@ -131,6 +134,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.taskOwner.setAttackTarget(this.targetEntity);
@@ -146,6 +150,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 			this.theEntity = theEntityIn;
 		}
 
+		@Override
 		public int compare(Entity p_compare_1_, Entity p_compare_2_)
 		{
 			double d0 = this.theEntity.getDistanceSqToEntity(p_compare_1_);

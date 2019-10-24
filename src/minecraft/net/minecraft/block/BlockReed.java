@@ -33,11 +33,13 @@ public class BlockReed extends Block
 		this.setTickRandomly(true);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return REED_AABB;
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (worldIn.getBlockState(pos.down()).getBlock() == Blocks.REEDS || this.checkForDrop(worldIn, pos, state))
@@ -53,7 +55,7 @@ public class BlockReed extends Block
 
 				if (i < 3)
 				{
-					int j = ((Integer) state.getValue(AGE)).intValue();
+					int j = state.getValue(AGE).intValue();
 
 					if (j == 15)
 					{
@@ -69,6 +71,7 @@ public class BlockReed extends Block
 		}
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		Block block = worldIn.getBlockState(pos.down()).getBlock();
@@ -105,6 +108,7 @@ public class BlockReed extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		this.checkForDrop(worldIn, pos, state);
@@ -129,6 +133,7 @@ public class BlockReed extends Block
 		return this.canPlaceBlockAt(worldIn, pos);
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -138,6 +143,7 @@ public class BlockReed extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.REEDS;
@@ -147,21 +153,25 @@ public class BlockReed extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(Items.REEDS);
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
@@ -170,6 +180,7 @@ public class BlockReed extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
@@ -178,16 +189,19 @@ public class BlockReed extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(AGE)).intValue();
+		return state.getValue(AGE).intValue();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { AGE });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

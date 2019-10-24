@@ -10,6 +10,7 @@ public class PotionHealthBoost extends Potion
 		super(isBadEffectIn, liquidColorIn);
 	}
 
+	@Override
 	public void removeAttributesModifiersFromEntity(EntityLivingBase entityLivingBaseIn, AbstractAttributeMap attributeMapIn, int amplifier)
 	{
 		super.removeAttributesModifiersFromEntity(entityLivingBaseIn, attributeMapIn, amplifier);

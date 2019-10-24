@@ -36,11 +36,13 @@ public class PropertyEnum<T extends Enum<T> & IStringSerializable> extends Prope
 		}
 	}
 
+	@Override
 	public Collection<T> getAllowedValues()
 	{
 		return this.allowedValues;
 	}
 
+	@Override
 	public Optional<T> parseValue(String value)
 	{
 		return Optional.<T>fromNullable(this.nameToValue.get(value));
@@ -49,11 +51,13 @@ public class PropertyEnum<T extends Enum<T> & IStringSerializable> extends Prope
 	/**
 	 * Get the name for the given value.
 	 */
+	@Override
 	public String getName(T value)
 	{
 		return ((IStringSerializable) value).getName();
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -71,6 +75,7 @@ public class PropertyEnum<T extends Enum<T> & IStringSerializable> extends Prope
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = super.hashCode();

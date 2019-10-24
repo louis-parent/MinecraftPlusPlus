@@ -16,6 +16,7 @@ public class ItemCloth extends ItemBlock
 	 * placed in the world when this Item is placed as a Block (mostly used with
 	 * ItemBlocks).
 	 */
+	@Override
 	public int getMetadata(int damage)
 	{
 		return damage;
@@ -26,6 +27,7 @@ public class ItemCloth extends ItemBlock
 	 * ItemStack so different stacks can have different names based on their
 	 * damage or NBT.
 	 */
+	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		return super.getUnlocalizedName() + "." + EnumDyeColor.byMetadata(stack.getMetadata()).getUnlocalizedName();

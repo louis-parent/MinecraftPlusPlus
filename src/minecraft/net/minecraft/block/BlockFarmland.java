@@ -32,6 +32,7 @@ public class BlockFarmland extends Block
 		this.setLightOpacity(255);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return FARMLAND_AABB;
@@ -41,19 +42,22 @@ public class BlockFarmland extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
-		int i = ((Integer) state.getValue(MOISTURE)).intValue();
+		int i = state.getValue(MOISTURE).intValue();
 
 		if (!this.hasWater(worldIn, pos) && !worldIn.isRainingAt(pos.up()))
 		{
@@ -75,6 +79,7 @@ public class BlockFarmland extends Block
 	/**
 	 * Block's chance to react to a living entity falling on it.
 	 */
+	@Override
 	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
 	{
 		if (!worldIn.isRemote && worldIn.rand.nextFloat() < fallDistance - 0.5F && entityIn instanceof EntityLivingBase && (entityIn instanceof EntityPlayer || worldIn.getGameRules().getBoolean("mobGriefing")) && entityIn.width * entityIn.width * entityIn.height > 0.512F)
@@ -122,6 +127,7 @@ public class BlockFarmland extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		super.neighborChanged(state, worldIn, pos, blockIn, p_189540_5_);
@@ -136,6 +142,7 @@ public class BlockFarmland extends Block
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		super.onBlockAdded(worldIn, pos, state);
@@ -146,6 +153,7 @@ public class BlockFarmland extends Block
 		}
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		switch (side)
@@ -169,6 +177,7 @@ public class BlockFarmland extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Blocks.DIRT.getItemDropped(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
@@ -177,6 +186,7 @@ public class BlockFarmland extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(MOISTURE, Integer.valueOf(meta & 7));
@@ -185,16 +195,19 @@ public class BlockFarmland extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(MOISTURE)).intValue();
+		return state.getValue(MOISTURE).intValue();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { MOISTURE });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return p_193383_4_ == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;

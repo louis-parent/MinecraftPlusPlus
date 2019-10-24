@@ -23,6 +23,7 @@ public class PhaseDying extends PhaseBase
 	 * sounds). Called by dragon's onLivingUpdate. Only used when
 	 * worldObj.isRemote.
 	 */
+	@Override
 	public void doClientRenderEffects()
 	{
 		if (this.time++ % 10 == 0)
@@ -30,7 +31,7 @@ public class PhaseDying extends PhaseBase
 			float f = (this.dragon.getRNG().nextFloat() - 0.5F) * 8.0F;
 			float f1 = (this.dragon.getRNG().nextFloat() - 0.5F) * 4.0F;
 			float f2 = (this.dragon.getRNG().nextFloat() - 0.5F) * 8.0F;
-			this.dragon.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.dragon.posX + (double) f, this.dragon.posY + 2.0D + (double) f1, this.dragon.posZ + (double) f2, 0.0D, 0.0D, 0.0D);
+			this.dragon.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.dragon.posX + f, this.dragon.posY + 2.0D + f1, this.dragon.posZ + f2, 0.0D, 0.0D, 0.0D);
 		}
 	}
 
@@ -38,6 +39,7 @@ public class PhaseDying extends PhaseBase
 	 * Gives the phase a chance to update its status. Called by dragon's
 	 * onLivingUpdate. Only used when !worldObj.isRemote.
 	 */
+	@Override
 	public void doLocalUpdate()
 	{
 		++this.time;
@@ -45,7 +47,7 @@ public class PhaseDying extends PhaseBase
 		if (this.targetLocation == null)
 		{
 			BlockPos blockpos = this.dragon.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION);
-			this.targetLocation = new Vec3d((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ());
+			this.targetLocation = new Vec3d(blockpos.getX(), blockpos.getY(), blockpos.getZ());
 		}
 
 		double d0 = this.targetLocation.squareDistanceTo(this.dragon.posX, this.dragon.posY, this.dragon.posZ);
@@ -63,6 +65,7 @@ public class PhaseDying extends PhaseBase
 	/**
 	 * Called when this phase is set to active
 	 */
+	@Override
 	public void initPhase()
 	{
 		this.targetLocation = null;
@@ -72,11 +75,13 @@ public class PhaseDying extends PhaseBase
 	/**
 	 * Returns the maximum amount dragon may rise or fall during this phase
 	 */
+	@Override
 	public float getMaxRiseOrFall()
 	{
 		return 3.0F;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -87,6 +92,7 @@ public class PhaseDying extends PhaseBase
 		return this.targetLocation;
 	}
 
+	@Override
 	public PhaseList<PhaseDying> getPhaseList()
 	{
 		return PhaseList.DYING;

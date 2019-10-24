@@ -95,6 +95,7 @@ public enum TextFormatting
 		return this.name().toLowerCase(Locale.ROOT);
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.controlString;

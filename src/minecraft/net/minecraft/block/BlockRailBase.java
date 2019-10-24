@@ -44,6 +44,7 @@ public abstract class BlockRailBase extends Block
 		this.setCreativeTab(CreativeTabs.TRANSPORTATION);
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -54,27 +55,32 @@ public abstract class BlockRailBase extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = state.getBlock() == this ? (BlockRailBase.EnumRailDirection) state.getValue(this.getShapeProperty()) : null;
 		return blockrailbase$enumraildirection != null && blockrailbase$enumraildirection.isAscending() ? field_190959_b : FLAT_AABB;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return worldIn.getBlockState(pos.down()).isFullyOpaque();
@@ -84,6 +90,7 @@ public abstract class BlockRailBase extends Block
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (!worldIn.isRemote)
@@ -103,11 +110,12 @@ public abstract class BlockRailBase extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!worldIn.isRemote)
 		{
-			BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = (BlockRailBase.EnumRailDirection) state.getValue(this.getShapeProperty());
+			BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = state.getValue(this.getShapeProperty());
 			boolean flag = false;
 
 			if (!worldIn.getBlockState(pos.down()).isFullyOpaque())
@@ -153,6 +161,7 @@ public abstract class BlockRailBase extends Block
 		return worldIn.isRemote ? state : (new BlockRailBase.Rail(worldIn, pos, state)).place(worldIn.isBlockPowered(pos), p_176564_4_).getBlockState();
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
@@ -162,11 +171,12 @@ public abstract class BlockRailBase extends Block
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		super.breakBlock(worldIn, pos, state);
 
-		if (((BlockRailBase.EnumRailDirection) state.getValue(this.getShapeProperty())).isAscending())
+		if (state.getValue(this.getShapeProperty()).isAscending())
 		{
 			worldIn.notifyNeighborsOfStateChange(pos.up(), this, false);
 		}
@@ -199,6 +209,7 @@ public abstract class BlockRailBase extends Block
 			return this.meta;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -219,6 +230,7 @@ public abstract class BlockRailBase extends Block
 			return META_LOOKUP[meta];
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;
@@ -248,7 +260,7 @@ public abstract class BlockRailBase extends Block
 			this.pos = pos;
 			this.state = state;
 			this.block = (BlockRailBase) state.getBlock();
-			BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = (BlockRailBase.EnumRailDirection) state.getValue(this.block.getShapeProperty());
+			BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = state.getValue(this.block.getShapeProperty());
 			this.isPowered = this.block.isPowered;
 			this.updateConnectedRails(blockrailbase$enumraildirection);
 		}

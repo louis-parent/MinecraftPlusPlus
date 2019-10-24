@@ -12,6 +12,7 @@ public class BiomeVoid extends Biome
 		this.theBiomeDecorator = new BiomeVoidDecorator();
 	}
 
+	@Override
 	public boolean ignorePlayerSpawnSuitability()
 	{
 		return true;

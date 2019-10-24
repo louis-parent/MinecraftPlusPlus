@@ -123,18 +123,21 @@ public class StructureNetherBridgePieces
 			this.chest = p_i45615_2_.nextInt(3) == 0;
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.chest = tagCompound.getBoolean("Chest");
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setBoolean("Chest", this.chest);
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentX((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 0, 1, true);
@@ -146,6 +149,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175879_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Corridor(p_175879_6_, p_175879_1_, structureboundingbox, p_175879_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -194,18 +198,21 @@ public class StructureNetherBridgePieces
 			this.chest = p_i45613_2_.nextInt(3) == 0;
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.chest = tagCompound.getBoolean("Chest");
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setBoolean("Chest", this.chest);
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentZ((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 0, 1, true);
@@ -217,6 +224,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175876_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Corridor2(p_175876_6_, p_175876_1_, structureboundingbox, p_175876_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -262,6 +270,7 @@ public class StructureNetherBridgePieces
 			this.boundingBox = p_i45619_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 1, 0, true);
@@ -273,6 +282,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175883_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Corridor3(p_175883_6_, p_175883_1_, structureboundingbox, p_175883_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			IBlockState iblockstate = Blocks.NETHER_BRICK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
@@ -325,6 +335,7 @@ public class StructureNetherBridgePieces
 			this.boundingBox = p_i45618_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			int i = 1;
@@ -345,6 +356,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175880_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Corridor4(p_175880_6_, p_175880_1_, structureboundingbox, p_175880_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 8, 1, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -392,6 +404,7 @@ public class StructureNetherBridgePieces
 			this.boundingBox = p_i45614_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 1, 0, true);
@@ -403,6 +416,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175877_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Corridor5(p_175877_6_, p_175877_1_, structureboundingbox, p_175877_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -440,6 +454,7 @@ public class StructureNetherBridgePieces
 			this.boundingBox = p_i45610_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 2, 0, false);
@@ -453,6 +468,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175873_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Crossing(p_175873_6_, p_175873_1_, structureboundingbox, p_175873_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 6, 1, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -499,6 +515,7 @@ public class StructureNetherBridgePieces
 			this.boundingBox = p_i45616_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 1, 0, true);
@@ -512,6 +529,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175878_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Crossing2(p_175878_6_, p_175878_1_, structureboundingbox, p_175878_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -562,6 +580,7 @@ public class StructureNetherBridgePieces
 			}
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 8, 3, false);
@@ -575,6 +594,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175885_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Crossing3(p_175885_6_, p_175885_1_, structureboundingbox, p_175885_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 3, 0, 11, 4, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -643,21 +663,24 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175884_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.End(p_175884_6_, p_175884_1_, structureboundingbox, p_175884_5_) : null;
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.fillSeed = tagCompound.getInteger("Seed");
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setInteger("Seed", this.fillSeed);
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			Random random = new Random((long) this.fillSeed);
+			Random random = new Random(this.fillSeed);
 
 			for (int i = 0; i <= 4; ++i)
 			{
@@ -705,6 +728,7 @@ public class StructureNetherBridgePieces
 			this.boundingBox = p_i45617_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 5, 3, true);
@@ -716,6 +740,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175881_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Entrance(p_175881_6_, p_175881_1_, structureboundingbox, p_175881_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 0, 12, 4, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -812,6 +837,7 @@ public class StructureNetherBridgePieces
 			this.boundingBox = p_i45612_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 5, 3, true);
@@ -824,6 +850,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175875_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.NetherStalkRoom(p_175875_6_, p_175875_1_, structureboundingbox, p_175875_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 0, 12, 4, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -959,10 +986,12 @@ public class StructureNetherBridgePieces
 			super(p_i2054_1_);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 		}
@@ -1184,6 +1213,7 @@ public class StructureNetherBridgePieces
 			this.boundingBox = p_i45609_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentZ((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 6, 2, false);
@@ -1195,6 +1225,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175872_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Stairs(p_175872_5_, p_175872_1_, structureboundingbox, p_175872_6_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 6, 1, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -1274,6 +1305,7 @@ public class StructureNetherBridgePieces
 			this.boundingBox = p_i45620_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureNetherBridgePieces.Start) componentIn, listIn, rand, 1, 3, false);
@@ -1285,6 +1317,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175882_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Straight(p_175882_6_, p_175882_1_, structureboundingbox, p_175882_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 0, 4, 4, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
@@ -1332,12 +1365,14 @@ public class StructureNetherBridgePieces
 			this.boundingBox = p_i45611_3_;
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.hasSpawner = tagCompound.getBoolean("Mob");
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -1350,6 +1385,7 @@ public class StructureNetherBridgePieces
 			return isAboveGround(structureboundingbox) && StructureComponent.findIntersecting(p_175874_0_, structureboundingbox) == null ? new StructureNetherBridgePieces.Throne(p_175874_5_, p_175874_1_, structureboundingbox, p_175874_6_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 6, 7, 7, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);

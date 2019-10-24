@@ -47,7 +47,7 @@ public class CreativeSettings
 		}
 		catch (Exception exception)
 		{
-			field_192566_b.error("Failed to load creative mode options", (Throwable) exception);
+			field_192566_b.error("Failed to load creative mode options", exception);
 		}
 	}
 
@@ -66,7 +66,7 @@ public class CreativeSettings
 		}
 		catch (Exception exception)
 		{
-			field_192566_b.error("Failed to save creative mode options", (Throwable) exception);
+			field_192566_b.error("Failed to save creative mode options", exception);
 		}
 	}
 

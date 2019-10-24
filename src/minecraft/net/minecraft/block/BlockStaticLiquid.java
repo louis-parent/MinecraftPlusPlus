@@ -28,6 +28,7 @@ public class BlockStaticLiquid extends BlockLiquid
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!this.checkForMixing(worldIn, pos, state))
@@ -43,6 +44,7 @@ public class BlockStaticLiquid extends BlockLiquid
 		worldIn.scheduleUpdate(pos, blockdynamicliquid, this.tickRate(worldIn));
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (this.blockMaterial == Material.LAVA)

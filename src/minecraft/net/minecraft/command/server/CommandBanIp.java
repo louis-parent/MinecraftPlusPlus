@@ -28,6 +28,7 @@ public class CommandBanIp extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "ban-ip";
@@ -36,6 +37,7 @@ public class CommandBanIp extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 3;
@@ -44,6 +46,7 @@ public class CommandBanIp extends CommandBase
 	/**
 	 * Check if the given ICommandSender has permission to execute this command
 	 */
+	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender)
 	{
 		return server.getPlayerList().getBannedIPs().isLanServer() && super.checkPermission(server, sender);
@@ -52,6 +55,7 @@ public class CommandBanIp extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.banip.usage";
@@ -60,6 +64,7 @@ public class CommandBanIp extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length >= 1 && args[0].length() > 1)
@@ -89,6 +94,7 @@ public class CommandBanIp extends CommandBase
 		}
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		return args.length == 1 ? getListOfStringsMatchingLastWord(args, server.getAllUsernames()) : Collections.emptyList();

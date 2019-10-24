@@ -60,12 +60,12 @@ public class AnimationMetadataSection implements IMetadataSection
 
 	public boolean frameHasTime(int frame)
 	{
-		return !((AnimationFrame) this.animationFrames.get(frame)).hasNoTime();
+		return !this.animationFrames.get(frame).hasNoTime();
 	}
 
 	public int getFrameIndex(int frame)
 	{
-		return ((AnimationFrame) this.animationFrames.get(frame)).getFrameIndex();
+		return this.animationFrames.get(frame).getFrameIndex();
 	}
 
 	public Set<Integer> getFrameIndexSet()

@@ -203,6 +203,7 @@ public class GuiPageButtonList extends GuiListExtended
 		}
 	}
 
+	@Override
 	public boolean mouseClicked(int mouseX, int mouseY, int mouseEvent)
 	{
 		boolean flag = super.mouseClicked(mouseX, mouseY, mouseEvent);
@@ -307,11 +308,11 @@ public class GuiPageButtonList extends GuiListExtended
 
 					if (l > this.bottom)
 					{
-						this.amountScrolled += (float) (l - this.bottom);
+						this.amountScrolled += l - this.bottom;
 					}
 					else if (i1 < this.top)
 					{
-						this.amountScrolled = (float) i1;
+						this.amountScrolled = i1;
 					}
 				}
 				else
@@ -353,11 +354,13 @@ public class GuiPageButtonList extends GuiListExtended
 	/**
 	 * Gets the IGuiListEntry object for the given index
 	 */
+	@Override
 	public GuiPageButtonList.GuiEntry getListEntry(int index)
 	{
 		return this.entries.get(index);
 	}
 
+	@Override
 	public int getSize()
 	{
 		return this.entries.size();
@@ -366,11 +369,13 @@ public class GuiPageButtonList extends GuiListExtended
 	/**
 	 * Gets the width of the list
 	 */
+	@Override
 	public int getListWidth()
 	{
 		return 400;
 	}
 
+	@Override
 	protected int getScrollBarX()
 	{
 		return super.getScrollBarX() + 32;
@@ -431,6 +436,7 @@ public class GuiPageButtonList extends GuiListExtended
 			return this.component2;
 		}
 
+		@Override
 		public void func_192634_a(int p_192634_1_, int p_192634_2_, int p_192634_3_, int p_192634_4_, int p_192634_5_, int p_192634_6_, int p_192634_7_, boolean p_192634_8_, float p_192634_9_)
 		{
 			this.func_192636_a(this.component1, p_192634_3_, p_192634_6_, p_192634_7_, false, p_192634_9_);
@@ -486,12 +492,14 @@ public class GuiPageButtonList extends GuiListExtended
 			}
 		}
 
+		@Override
 		public void func_192633_a(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
 		{
 			this.func_192636_a(this.component1, p_192633_3_, 0, 0, true, p_192633_4_);
 			this.func_192636_a(this.component2, p_192633_3_, 0, 0, true, p_192633_4_);
 		}
 
+		@Override
 		public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY)
 		{
 			boolean flag = this.clickComponent(this.component1, mouseX, mouseY, mouseEvent);
@@ -542,6 +550,7 @@ public class GuiPageButtonList extends GuiListExtended
 			}
 		}
 
+		@Override
 		public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY)
 		{
 			this.releaseComponent(this.component1, x, y, mouseEvent);

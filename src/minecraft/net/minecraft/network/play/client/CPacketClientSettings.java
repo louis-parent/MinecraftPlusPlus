@@ -34,19 +34,21 @@ public class CPacketClientSettings implements Packet<INetHandlerPlayServer>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.lang = buf.readStringFromBuffer(16);
 		this.view = buf.readByte();
-		this.chatVisibility = (EntityPlayer.EnumChatVisibility) buf.readEnumValue(EntityPlayer.EnumChatVisibility.class);
+		this.chatVisibility = buf.readEnumValue(EntityPlayer.EnumChatVisibility.class);
 		this.enableColors = buf.readBoolean();
 		this.modelPartFlags = buf.readUnsignedByte();
-		this.mainHand = (EnumHandSide) buf.readEnumValue(EnumHandSide.class);
+		this.mainHand = buf.readEnumValue(EnumHandSide.class);
 	}
 
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeString(this.lang);
@@ -60,6 +62,7 @@ public class CPacketClientSettings implements Packet<INetHandlerPlayServer>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayServer handler)
 	{
 		handler.processClientSettings(this);

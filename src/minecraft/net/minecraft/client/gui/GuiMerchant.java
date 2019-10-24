@@ -60,13 +60,14 @@ public class GuiMerchant extends GuiContainer
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		super.initGui();
 		int i = (this.width - this.xSize) / 2;
 		int j = (this.height - this.ySize) / 2;
-		this.nextButton = (GuiMerchant.MerchantButton) this.addButton(new GuiMerchant.MerchantButton(1, i + 120 + 27, j + 24 - 1, true));
-		this.previousButton = (GuiMerchant.MerchantButton) this.addButton(new GuiMerchant.MerchantButton(2, i + 36 - 19, j + 24 - 1, false));
+		this.nextButton = this.addButton(new GuiMerchant.MerchantButton(1, i + 120 + 27, j + 24 - 1, true));
+		this.previousButton = this.addButton(new GuiMerchant.MerchantButton(2, i + 36 - 19, j + 24 - 1, false));
 		this.nextButton.enabled = false;
 		this.previousButton.enabled = false;
 	}
@@ -75,6 +76,7 @@ public class GuiMerchant extends GuiContainer
 	 * Draw the foreground layer for the GuiContainer (everything in front of
 	 * the items)
 	 */
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		String s = this.chatComponent.getUnformattedText();
@@ -85,6 +87,7 @@ public class GuiMerchant extends GuiContainer
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		super.updateScreen();
@@ -101,6 +104,7 @@ public class GuiMerchant extends GuiContainer
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		boolean flag = false;
@@ -141,6 +145,7 @@ public class GuiMerchant extends GuiContainer
 	/**
 	 * Draws the background layer of this container (behind the items).
 	 */
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -159,7 +164,7 @@ public class GuiMerchant extends GuiContainer
 				return;
 			}
 
-			MerchantRecipe merchantrecipe = (MerchantRecipe) merchantrecipelist.get(k);
+			MerchantRecipe merchantrecipe = merchantrecipelist.get(k);
 
 			if (merchantrecipe.isRecipeDisabled())
 			{
@@ -175,6 +180,7 @@ public class GuiMerchant extends GuiContainer
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
@@ -186,7 +192,7 @@ public class GuiMerchant extends GuiContainer
 			int i = (this.width - this.xSize) / 2;
 			int j = (this.height - this.ySize) / 2;
 			int k = this.selectedMerchantRecipe;
-			MerchantRecipe merchantrecipe = (MerchantRecipe) merchantrecipelist.get(k);
+			MerchantRecipe merchantrecipe = merchantrecipelist.get(k);
 			ItemStack itemstack = merchantrecipe.getItemToBuy();
 			ItemStack itemstack1 = merchantrecipe.getSecondItemToBuy();
 			ItemStack itemstack2 = merchantrecipe.getItemToSell();
@@ -252,6 +258,7 @@ public class GuiMerchant extends GuiContainer
 			this.forward = p_i1095_4_;
 		}
 
+		@Override
 		public void func_191745_a(Minecraft p_191745_1_, int p_191745_2_, int p_191745_3_, float p_191745_4_)
 		{
 			if (this.visible)

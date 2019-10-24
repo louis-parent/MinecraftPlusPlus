@@ -24,6 +24,7 @@ public class Smelt extends LootFunction
 		super(conditionsIn);
 	}
 
+	@Override
 	public ItemStack apply(ItemStack stack, Random rand, LootContext context)
 	{
 		if (stack.isNotValid())
@@ -36,7 +37,7 @@ public class Smelt extends LootFunction
 
 			if (itemstack.isNotValid())
 			{
-				LOGGER.warn("Couldn't smelt {} because there is no smelting recipe", (Object) stack);
+				LOGGER.warn("Couldn't smelt {} because there is no smelting recipe", stack);
 				return stack;
 			}
 			else
@@ -55,10 +56,12 @@ public class Smelt extends LootFunction
 			super(new ResourceLocation("furnace_smelt"), Smelt.class);
 		}
 
+		@Override
 		public void serialize(JsonObject object, Smelt functionClazz, JsonSerializationContext serializationContext)
 		{
 		}
 
+		@Override
 		public Smelt deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn)
 		{
 			return new Smelt(conditionsIn);

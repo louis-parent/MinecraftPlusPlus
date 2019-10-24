@@ -36,16 +36,19 @@ public class RealmsVertexFormatElement
 		return this.v.getElementCount();
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.v.hashCode();
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		return this.v.equals(p_equals_1_);
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.v.toString();

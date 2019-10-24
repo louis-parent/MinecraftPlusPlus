@@ -41,6 +41,7 @@ public class GuiRepair extends GuiContainer implements IContainerListener
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		super.initGui();
@@ -60,6 +61,7 @@ public class GuiRepair extends GuiContainer implements IContainerListener
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		super.onGuiClosed();
@@ -71,6 +73,7 @@ public class GuiRepair extends GuiContainer implements IContainerListener
 	 * Draw the foreground layer for the GuiContainer (everything in front of
 	 * the items)
 	 */
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		GlStateManager.disableLighting();
@@ -127,6 +130,7 @@ public class GuiRepair extends GuiContainer implements IContainerListener
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (this.nameField.textboxKeyTyped(typedChar, keyCode))
@@ -156,6 +160,7 @@ public class GuiRepair extends GuiContainer implements IContainerListener
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		super.mouseClicked(mouseX, mouseY, mouseButton);
@@ -165,6 +170,7 @@ public class GuiRepair extends GuiContainer implements IContainerListener
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
@@ -178,6 +184,7 @@ public class GuiRepair extends GuiContainer implements IContainerListener
 	/**
 	 * Draws the background layer of this container (behind the items).
 	 */
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -196,6 +203,7 @@ public class GuiRepair extends GuiContainer implements IContainerListener
 	/**
 	 * update the crafting window inventory with the items in the list
 	 */
+	@Override
 	public void updateCraftingInventory(Container containerToSend, NonNullList<ItemStack> itemsList)
 	{
 		this.sendSlotContents(containerToSend, 0, containerToSend.getSlot(0).getStack());
@@ -205,6 +213,7 @@ public class GuiRepair extends GuiContainer implements IContainerListener
 	 * Sends the contents of an inventory slot to the client-side Container.
 	 * This doesn't have to match the actual contents of that slot.
 	 */
+	@Override
 	public void sendSlotContents(Container containerToSend, int slotInd, ItemStack stack)
 	{
 		if (slotInd == 0)
@@ -225,10 +234,12 @@ public class GuiRepair extends GuiContainer implements IContainerListener
 	 * the first int identifies which variable to update, and the second
 	 * contains the new value. Both are truncated to shorts in non-local SMP.
 	 */
+	@Override
 	public void sendProgressBarUpdate(Container containerIn, int varToUpdate, int newValue)
 	{
 	}
 
+	@Override
 	public void sendAllWindowProperties(Container containerIn, IInventory inventory)
 	{
 	}

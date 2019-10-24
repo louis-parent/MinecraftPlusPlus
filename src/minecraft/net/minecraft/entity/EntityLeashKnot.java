@@ -25,7 +25,7 @@ public class EntityLeashKnot extends EntityHanging
 	public EntityLeashKnot(World worldIn, BlockPos hangingPositionIn)
 	{
 		super(worldIn, hangingPositionIn);
-		this.setPosition((double) hangingPositionIn.getX() + 0.5D, (double) hangingPositionIn.getY() + 0.5D, (double) hangingPositionIn.getZ() + 0.5D);
+		this.setPosition(hangingPositionIn.getX() + 0.5D, hangingPositionIn.getY() + 0.5D, hangingPositionIn.getZ() + 0.5D);
 		float f = 0.125F;
 		float f1 = 0.1875F;
 		float f2 = 0.25F;
@@ -37,38 +37,44 @@ public class EntityLeashKnot extends EntityHanging
 	 * Sets the x,y,z of the entity from the given parameters. Also seems to set
 	 * up a bounding box.
 	 */
+	@Override
 	public void setPosition(double x, double y, double z)
 	{
-		super.setPosition((double) MathHelper.floor(x) + 0.5D, (double) MathHelper.floor(y) + 0.5D, (double) MathHelper.floor(z) + 0.5D);
+		super.setPosition(MathHelper.floor(x) + 0.5D, MathHelper.floor(y) + 0.5D, MathHelper.floor(z) + 0.5D);
 	}
 
 	/**
 	 * Updates the entity bounding box based on current facing
 	 */
+	@Override
 	protected void updateBoundingBox()
 	{
-		this.posX = (double) this.hangingPosition.getX() + 0.5D;
-		this.posY = (double) this.hangingPosition.getY() + 0.5D;
-		this.posZ = (double) this.hangingPosition.getZ() + 0.5D;
+		this.posX = this.hangingPosition.getX() + 0.5D;
+		this.posY = this.hangingPosition.getY() + 0.5D;
+		this.posZ = this.hangingPosition.getZ() + 0.5D;
 	}
 
 	/**
 	 * Updates facing and bounding box based on it
 	 */
+	@Override
 	public void updateFacingWithBoundingBox(EnumFacing facingDirectionIn)
 	{
 	}
 
+	@Override
 	public int getWidthPixels()
 	{
 		return 9;
 	}
 
+	@Override
 	public int getHeightPixels()
 	{
 		return 9;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return -0.0625F;
@@ -77,6 +83,7 @@ public class EntityLeashKnot extends EntityHanging
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	public boolean isInRangeToRenderDist(double distance)
 	{
 		return distance < 1024.0D;
@@ -85,6 +92,7 @@ public class EntityLeashKnot extends EntityHanging
 	/**
 	 * Called when this entity is broken. Entity parameter may be null.
 	 */
+	@Override
 	public void onBroken(@Nullable Entity brokenEntity)
 	{
 		this.playSound(SoundEvents.ENTITY_LEASHKNOT_BREAK, 1.0F, 1.0F);
@@ -96,6 +104,7 @@ public class EntityLeashKnot extends EntityHanging
 	 * saved on disk. Ridden entities return false here as they are saved with
 	 * their rider.
 	 */
+	@Override
 	public boolean writeToNBTOptional(NBTTagCompound compound)
 	{
 		return false;
@@ -104,6 +113,7 @@ public class EntityLeashKnot extends EntityHanging
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 	}
@@ -111,10 +121,12 @@ public class EntityLeashKnot extends EntityHanging
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 	}
 
+	@Override
 	public boolean processInitialInteract(EntityPlayer player, EnumHand stack)
 	{
 		if (this.world.isRemote)
@@ -159,6 +171,7 @@ public class EntityLeashKnot extends EntityHanging
 	/**
 	 * checks to make sure painting can be placed there
 	 */
+	@Override
 	public boolean onValidSurface()
 	{
 		return this.world.getBlockState(this.hangingPosition).getBlock() instanceof BlockFence;
@@ -179,7 +192,7 @@ public class EntityLeashKnot extends EntityHanging
 		int j = pos.getY();
 		int k = pos.getZ();
 
-		for (EntityLeashKnot entityleashknot : worldIn.getEntitiesWithinAABB(EntityLeashKnot.class, new AxisAlignedBB((double) i - 1.0D, (double) j - 1.0D, (double) k - 1.0D, (double) i + 1.0D, (double) j + 1.0D, (double) k + 1.0D)))
+		for (EntityLeashKnot entityleashknot : worldIn.getEntitiesWithinAABB(EntityLeashKnot.class, new AxisAlignedBB(i - 1.0D, j - 1.0D, k - 1.0D, i + 1.0D, j + 1.0D, k + 1.0D)))
 		{
 			if (entityleashknot.getHangingPosition().equals(pos))
 			{
@@ -190,6 +203,7 @@ public class EntityLeashKnot extends EntityHanging
 		return null;
 	}
 
+	@Override
 	public void playPlaceSound()
 	{
 		this.playSound(SoundEvents.ENTITY_LEASHKNOT_PLACE, 1.0F, 1.0F);

@@ -59,6 +59,7 @@ public class EntityArmorStand extends EntityLivingBase
 	public static final DataParameter<Rotations> RIGHT_LEG_ROTATION = EntityDataManager.<Rotations>createKey(EntityArmorStand.class, DataSerializers.ROTATIONS);
 	private static final Predicate<Entity> IS_RIDEABLE_MINECART = new Predicate<Entity>()
 	{
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			return p_apply_1_ instanceof EntityMinecart && ((EntityMinecart) p_apply_1_).getType() == EntityMinecart.Type.RIDEABLE;
@@ -106,6 +107,7 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Sets the width and height of the entity.
 	 */
+	@Override
 	protected final void setSize(float width, float height)
 	{
 		double d0 = this.posX;
@@ -119,11 +121,13 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Returns whether the entity is in a server world
 	 */
+	@Override
 	public boolean isServerWorld()
 	{
 		return super.isServerWorld() && !this.hasNoGravity();
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -136,16 +140,19 @@ public class EntityArmorStand extends EntityLivingBase
 		this.dataManager.register(RIGHT_LEG_ROTATION, DEFAULT_RIGHTLEG_ROTATION);
 	}
 
+	@Override
 	public Iterable<ItemStack> getHeldEquipment()
 	{
 		return this.handItems;
 	}
 
+	@Override
 	public Iterable<ItemStack> getArmorInventoryList()
 	{
 		return this.armorItems;
 	}
 
+	@Override
 	public ItemStack getItemStackFromSlot(EntityEquipmentSlot slot)
 	{
 		if (slot instanceof EntityHandSlot)
@@ -162,6 +169,7 @@ public class EntityArmorStand extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public void setItemStackToSlot(EntityEquipmentSlot slot, ItemStack stack)
 	{
 		if (slot instanceof EntityHandSlot)
@@ -176,6 +184,7 @@ public class EntityArmorStand extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn)
 	{
 		EntityEquipmentSlot entityequipmentslot;
@@ -229,6 +238,7 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -279,6 +289,7 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -375,15 +386,18 @@ public class EntityArmorStand extends EntityLivingBase
 	 * Returns true if this entity should push and be pushed by other entities
 	 * when colliding.
 	 */
+	@Override
 	public boolean canBePushed()
 	{
 		return false;
 	}
 
+	@Override
 	protected void collideWithEntity(Entity entityIn)
 	{
 	}
 
+	@Override
 	protected void collideWithNearbyEntities()
 	{
 		List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox(), IS_RIDEABLE_MINECART);
@@ -402,6 +416,7 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Applies the given player interaction to this Entity.
 	 */
+	@Override
 	public EnumActionResult applyPlayerInteraction(EntityPlayer player, Vec3d vec, EnumHand stack)
 	{
 		ItemStack itemstack = player.getHeldItem(stack);
@@ -518,6 +533,7 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (!this.world.isRemote && !this.isDead)
@@ -612,6 +628,7 @@ public class EntityArmorStand extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 32)
@@ -631,6 +648,7 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	public boolean isInRangeToRenderDist(double distance)
 	{
 		double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 4.0D;
@@ -648,7 +666,7 @@ public class EntityArmorStand extends EntityLivingBase
 	{
 		if (this.world instanceof WorldServer)
 		{
-			((WorldServer) this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + (double) this.height / 1.5D, this.posZ, 10, (double) (this.width / 4.0F), (double) (this.height / 4.0F), (double) (this.width / 4.0F), 0.05D, Block.getStateId(Blocks.PLANKS.getDefaultState()));
+			((WorldServer) this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + this.height / 1.5D, this.posZ, 10, (double) (this.width / 4.0F), (double) (this.height / 4.0F), (double) (this.width / 4.0F), 0.05D, Block.getStateId(Blocks.PLANKS.getDefaultState()));
 		}
 	}
 
@@ -706,6 +724,7 @@ public class EntityArmorStand extends EntityLivingBase
 		this.world.playSound((EntityPlayer) null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_ARMORSTAND_BREAK, this.getSoundCategory(), 1.0F, 1.0F);
 	}
 
+	@Override
 	protected float updateDistance(float p_110146_1_, float p_110146_2_)
 	{
 		this.prevRenderYawOffset = this.prevRotationYaw;
@@ -713,6 +732,7 @@ public class EntityArmorStand extends EntityLivingBase
 		return 0.0F;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return this.isChild() ? this.height * 0.5F : this.height * 0.9F;
@@ -721,11 +741,13 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Returns the Y Offset of this entity.
 	 */
+	@Override
 	public double getYOffset()
 	{
 		return this.hasMarker() ? 0.0D : 0.10000000149011612D;
 	}
 
+	@Override
 	public void func_191986_a(float p_191986_1_, float p_191986_2_, float p_191986_3_)
 	{
 		if (!this.hasNoGravity())
@@ -737,6 +759,7 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Set the render yaw offset
 	 */
+	@Override
 	public void setRenderYawOffset(float offset)
 	{
 		this.prevRenderYawOffset = this.prevRotationYaw = offset;
@@ -746,6 +769,7 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Sets the head's yaw rotation of the entity.
 	 */
+	@Override
 	public void setRotationYawHead(float rotation)
 	{
 		this.prevRenderYawOffset = this.prevRotationYaw = rotation;
@@ -755,45 +779,46 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
-		Rotations rotations = (Rotations) this.dataManager.get(HEAD_ROTATION);
+		Rotations rotations = this.dataManager.get(HEAD_ROTATION);
 
 		if (!this.headRotation.equals(rotations))
 		{
 			this.setHeadRotation(rotations);
 		}
 
-		Rotations rotations1 = (Rotations) this.dataManager.get(BODY_ROTATION);
+		Rotations rotations1 = this.dataManager.get(BODY_ROTATION);
 
 		if (!this.bodyRotation.equals(rotations1))
 		{
 			this.setBodyRotation(rotations1);
 		}
 
-		Rotations rotations2 = (Rotations) this.dataManager.get(LEFT_ARM_ROTATION);
+		Rotations rotations2 = this.dataManager.get(LEFT_ARM_ROTATION);
 
 		if (!this.leftArmRotation.equals(rotations2))
 		{
 			this.setLeftArmRotation(rotations2);
 		}
 
-		Rotations rotations3 = (Rotations) this.dataManager.get(RIGHT_ARM_ROTATION);
+		Rotations rotations3 = this.dataManager.get(RIGHT_ARM_ROTATION);
 
 		if (!this.rightArmRotation.equals(rotations3))
 		{
 			this.setRightArmRotation(rotations3);
 		}
 
-		Rotations rotations4 = (Rotations) this.dataManager.get(LEFT_LEG_ROTATION);
+		Rotations rotations4 = this.dataManager.get(LEFT_LEG_ROTATION);
 
 		if (!this.leftLegRotation.equals(rotations4))
 		{
 			this.setLeftLegRotation(rotations4);
 		}
 
-		Rotations rotations5 = (Rotations) this.dataManager.get(RIGHT_LEG_ROTATION);
+		Rotations rotations5 = this.dataManager.get(RIGHT_LEG_ROTATION);
 
 		if (!this.rightLegRotation.equals(rotations5))
 		{
@@ -827,11 +852,13 @@ public class EntityArmorStand extends EntityLivingBase
 	 * Otherwise, updates potion effect color, ambience, and invisibility
 	 * metadata values
 	 */
+	@Override
 	protected void updatePotionMetadata()
 	{
 		this.setInvisible(this.canInteract);
 	}
 
+	@Override
 	public void setInvisible(boolean invisible)
 	{
 		this.canInteract = invisible;
@@ -841,6 +868,7 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * If Animal, checks if the age timer is negative
 	 */
+	@Override
 	public boolean isChild()
 	{
 		return this.isSmall();
@@ -849,16 +877,19 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Called by the /kill command.
 	 */
+	@Override
 	public void onKillCommand()
 	{
 		this.setDead();
 	}
 
+	@Override
 	public boolean isImmuneToExplosions()
 	{
 		return this.isInvisible();
 	}
 
+	@Override
 	public EnumPushReaction getPushReaction()
 	{
 		return this.hasMarker() ? EnumPushReaction.IGNORE : super.getPushReaction();
@@ -866,33 +897,33 @@ public class EntityArmorStand extends EntityLivingBase
 
 	private void setSmall(boolean small)
 	{
-		this.dataManager.set(STATUS, Byte.valueOf(this.setBit(((Byte) this.dataManager.get(STATUS)).byteValue(), 1, small)));
+		this.dataManager.set(STATUS, Byte.valueOf(this.setBit(this.dataManager.get(STATUS).byteValue(), 1, small)));
 		this.setSize(0.5F, 1.975F);
 	}
 
 	public boolean isSmall()
 	{
-		return (((Byte) this.dataManager.get(STATUS)).byteValue() & 1) != 0;
+		return (this.dataManager.get(STATUS).byteValue() & 1) != 0;
 	}
 
 	private void setShowArms(boolean showArms)
 	{
-		this.dataManager.set(STATUS, Byte.valueOf(this.setBit(((Byte) this.dataManager.get(STATUS)).byteValue(), 4, showArms)));
+		this.dataManager.set(STATUS, Byte.valueOf(this.setBit(this.dataManager.get(STATUS).byteValue(), 4, showArms)));
 	}
 
 	public boolean getShowArms()
 	{
-		return (((Byte) this.dataManager.get(STATUS)).byteValue() & 4) != 0;
+		return (this.dataManager.get(STATUS).byteValue() & 4) != 0;
 	}
 
 	private void setNoBasePlate(boolean noBasePlate)
 	{
-		this.dataManager.set(STATUS, Byte.valueOf(this.setBit(((Byte) this.dataManager.get(STATUS)).byteValue(), 8, noBasePlate)));
+		this.dataManager.set(STATUS, Byte.valueOf(this.setBit(this.dataManager.get(STATUS).byteValue(), 8, noBasePlate)));
 	}
 
 	public boolean hasNoBasePlate()
 	{
-		return (((Byte) this.dataManager.get(STATUS)).byteValue() & 8) != 0;
+		return (this.dataManager.get(STATUS).byteValue() & 8) != 0;
 	}
 
 	/**
@@ -901,7 +932,7 @@ public class EntityArmorStand extends EntityLivingBase
 	 */
 	private void setMarker(boolean marker)
 	{
-		this.dataManager.set(STATUS, Byte.valueOf(this.setBit(((Byte) this.dataManager.get(STATUS)).byteValue(), 16, marker)));
+		this.dataManager.set(STATUS, Byte.valueOf(this.setBit(this.dataManager.get(STATUS).byteValue(), 16, marker)));
 		this.setSize(0.5F, 1.975F);
 	}
 
@@ -911,7 +942,7 @@ public class EntityArmorStand extends EntityLivingBase
 	 */
 	public boolean hasMarker()
 	{
-		return (((Byte) this.dataManager.get(STATUS)).byteValue() & 16) != 0;
+		return (this.dataManager.get(STATUS).byteValue() & 16) != 0;
 	}
 
 	private byte setBit(byte p_184797_1_, int p_184797_2_, boolean p_184797_3_)
@@ -998,27 +1029,32 @@ public class EntityArmorStand extends EntityLivingBase
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return super.canBeCollidedWith() && !this.hasMarker();
 	}
 
+	@Override
 	public EnumHandSide getPrimaryHand()
 	{
 		return EnumHandSide.RIGHT;
 	}
 
+	@Override
 	protected SoundEvent getFallSound(int heightIn)
 	{
 		return SoundEvents.ENTITY_ARMORSTAND_FALL;
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_ARMORSTAND_HIT;
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getDeathSound()
 	{
@@ -1028,6 +1064,7 @@ public class EntityArmorStand extends EntityLivingBase
 	/**
 	 * Called when a lightning bolt hits the entity.
 	 */
+	@Override
 	public void onStruckByLightning(EntityLightningBolt lightningBolt)
 	{
 	}
@@ -1036,11 +1073,13 @@ public class EntityArmorStand extends EntityLivingBase
 	 * Returns false if the entity is an armor stand. Returns true for all other
 	 * entity living bases.
 	 */
+	@Override
 	public boolean canBeHitWithPotion()
 	{
 		return false;
 	}
 
+	@Override
 	public void notifyDataManagerChange(DataParameter<?> key)
 	{
 		if (STATUS.equals(key))
@@ -1051,6 +1090,7 @@ public class EntityArmorStand extends EntityLivingBase
 		super.notifyDataManagerChange(key);
 	}
 
+	@Override
 	public boolean func_190631_cK()
 	{
 		return false;

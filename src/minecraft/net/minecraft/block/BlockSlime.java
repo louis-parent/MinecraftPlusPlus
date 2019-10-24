@@ -18,6 +18,7 @@ public class BlockSlime extends BlockBreakable
 		this.slipperiness = 0.8F;
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
@@ -26,6 +27,7 @@ public class BlockSlime extends BlockBreakable
 	/**
 	 * Block's chance to react to a living entity falling on it.
 	 */
+	@Override
 	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
 	{
 		if (entityIn.isSneaking())
@@ -42,6 +44,7 @@ public class BlockSlime extends BlockBreakable
 	 * Called when an Entity lands on this Block. This method *must* update
 	 * motionY because the entity will not do that on its own
 	 */
+	@Override
 	public void onLanded(World worldIn, Entity entityIn)
 	{
 		if (entityIn.isSneaking())
@@ -63,6 +66,7 @@ public class BlockSlime extends BlockBreakable
 	 * Triggered whenever an entity collides with this block (enters into the
 	 * block)
 	 */
+	@Override
 	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
 	{
 		if (Math.abs(entityIn.motionY) < 0.1D && !entityIn.isSneaking())

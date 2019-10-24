@@ -17,6 +17,7 @@ public class RenderElderGuardian extends RenderGuardian
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityGuardian entitylivingbaseIn, float partialTickTime)
 	{
 		GlStateManager.scale(2.35F, 2.35F, 2.35F);
@@ -26,6 +27,7 @@ public class RenderElderGuardian extends RenderGuardian
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityGuardian entity)
 	{
 		return GUARDIAN_ELDER_TEXTURE;

@@ -19,6 +19,7 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (!this.theDefendingTameable.isTamed())
@@ -45,6 +46,7 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.taskOwner.setAttackTarget(this.theOwnerAttacker);

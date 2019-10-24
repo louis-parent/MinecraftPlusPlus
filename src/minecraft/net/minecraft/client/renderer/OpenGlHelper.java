@@ -11,6 +11,7 @@ import java.util.Locale;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.Sys;
+import org.lwjgl.opengl.ARBBufferObject;
 import org.lwjgl.opengl.ARBFramebufferObject;
 import org.lwjgl.opengl.ARBMultitexture;
 import org.lwjgl.opengl.ARBShaderObjects;
@@ -600,14 +601,14 @@ public class OpenGlHelper
 
 	public static int glGenBuffers()
 	{
-		return arbVbo ? ARBVertexBufferObject.glGenBuffersARB() : GL15.glGenBuffers();
+		return arbVbo ? ARBBufferObject.glGenBuffersARB() : GL15.glGenBuffers();
 	}
 
 	public static void glBindBuffer(int target, int buffer)
 	{
 		if (arbVbo)
 		{
-			ARBVertexBufferObject.glBindBufferARB(target, buffer);
+			ARBBufferObject.glBindBufferARB(target, buffer);
 		}
 		else
 		{
@@ -619,7 +620,7 @@ public class OpenGlHelper
 	{
 		if (arbVbo)
 		{
-			ARBVertexBufferObject.glBufferDataARB(target, data, usage);
+			ARBBufferObject.glBufferDataARB(target, data, usage);
 		}
 		else
 		{
@@ -631,7 +632,7 @@ public class OpenGlHelper
 	{
 		if (arbVbo)
 		{
-			ARBVertexBufferObject.glDeleteBuffersARB(buffer);
+			ARBBufferObject.glDeleteBuffersARB(buffer);
 		}
 		else
 		{
@@ -946,20 +947,20 @@ public class OpenGlHelper
 		GL11.glLineWidth(4.0F);
 		bufferbuilder.begin(1, DefaultVertexFormats.POSITION_COLOR);
 		bufferbuilder.pos(0.0D, 0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
-		bufferbuilder.pos((double) p_188785_0_, 0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
+		bufferbuilder.pos(p_188785_0_, 0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
 		bufferbuilder.pos(0.0D, 0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
-		bufferbuilder.pos(0.0D, (double) p_188785_0_, 0.0D).color(0, 0, 0, 255).endVertex();
+		bufferbuilder.pos(0.0D, p_188785_0_, 0.0D).color(0, 0, 0, 255).endVertex();
 		bufferbuilder.pos(0.0D, 0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
-		bufferbuilder.pos(0.0D, 0.0D, (double) p_188785_0_).color(0, 0, 0, 255).endVertex();
+		bufferbuilder.pos(0.0D, 0.0D, p_188785_0_).color(0, 0, 0, 255).endVertex();
 		tessellator.draw();
 		GL11.glLineWidth(2.0F);
 		bufferbuilder.begin(1, DefaultVertexFormats.POSITION_COLOR);
 		bufferbuilder.pos(0.0D, 0.0D, 0.0D).color(255, 0, 0, 255).endVertex();
-		bufferbuilder.pos((double) p_188785_0_, 0.0D, 0.0D).color(255, 0, 0, 255).endVertex();
+		bufferbuilder.pos(p_188785_0_, 0.0D, 0.0D).color(255, 0, 0, 255).endVertex();
 		bufferbuilder.pos(0.0D, 0.0D, 0.0D).color(0, 255, 0, 255).endVertex();
-		bufferbuilder.pos(0.0D, (double) p_188785_0_, 0.0D).color(0, 255, 0, 255).endVertex();
+		bufferbuilder.pos(0.0D, p_188785_0_, 0.0D).color(0, 255, 0, 255).endVertex();
 		bufferbuilder.pos(0.0D, 0.0D, 0.0D).color(127, 127, 255, 255).endVertex();
-		bufferbuilder.pos(0.0D, 0.0D, (double) p_188785_0_).color(127, 127, 255, 255).endVertex();
+		bufferbuilder.pos(0.0D, 0.0D, p_188785_0_).color(127, 127, 255, 255).endVertex();
 		tessellator.draw();
 		GL11.glLineWidth(1.0F);
 		GlStateManager.depthMask(true);
@@ -980,7 +981,7 @@ public class OpenGlHelper
 			}
 			catch (IOException ioexception1)
 			{
-				LOGGER.error("Couldn't open file", (Throwable) ioexception1);
+				LOGGER.error("Couldn't open file", ioexception1);
 			}
 		}
 		else if (Util.getOSType() == Util.EnumOS.WINDOWS)
@@ -994,7 +995,7 @@ public class OpenGlHelper
 			}
 			catch (IOException ioexception)
 			{
-				LOGGER.error("Couldn't open file", (Throwable) ioexception);
+				LOGGER.error("Couldn't open file", ioexception);
 			}
 		}
 

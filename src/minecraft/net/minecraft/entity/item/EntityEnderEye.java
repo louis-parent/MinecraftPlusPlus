@@ -29,6 +29,7 @@ public class EntityEnderEye extends Entity
 		this.setSize(0.25F, 0.25F);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 	}
@@ -36,6 +37,7 @@ public class EntityEnderEye extends Entity
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	public boolean isInRangeToRenderDist(double distance)
 	{
 		double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 4.0D;
@@ -59,23 +61,23 @@ public class EntityEnderEye extends Entity
 
 	public void moveTowards(BlockPos pos)
 	{
-		double d0 = (double) pos.getX();
+		double d0 = pos.getX();
 		int i = pos.getY();
-		double d1 = (double) pos.getZ();
+		double d1 = pos.getZ();
 		double d2 = d0 - this.posX;
 		double d3 = d1 - this.posZ;
 		float f = MathHelper.sqrt(d2 * d2 + d3 * d3);
 
 		if (f > 12.0F)
 		{
-			this.targetX = this.posX + d2 / (double) f * 12.0D;
-			this.targetZ = this.posZ + d3 / (double) f * 12.0D;
+			this.targetX = this.posX + d2 / f * 12.0D;
+			this.targetZ = this.posZ + d3 / f * 12.0D;
 			this.targetY = this.posY + 8.0D;
 		}
 		else
 		{
 			this.targetX = d0;
-			this.targetY = (double) i;
+			this.targetY = i;
 			this.targetZ = d1;
 		}
 
@@ -86,6 +88,7 @@ public class EntityEnderEye extends Entity
 	/**
 	 * Updates the velocity of the entity to a new value.
 	 */
+	@Override
 	public void setVelocity(double x, double y, double z)
 	{
 		this.motionX = x;
@@ -96,7 +99,7 @@ public class EntityEnderEye extends Entity
 		{
 			float f = MathHelper.sqrt(x * x + z * z);
 			this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-			this.rotationPitch = (float) (MathHelper.atan2(y, (double) f) * (180D / Math.PI));
+			this.rotationPitch = (float) (MathHelper.atan2(y, f) * (180D / Math.PI));
 			this.prevRotationYaw = this.rotationYaw;
 			this.prevRotationPitch = this.rotationPitch;
 		}
@@ -105,6 +108,7 @@ public class EntityEnderEye extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		this.lastTickPosX = this.posX;
@@ -117,7 +121,7 @@ public class EntityEnderEye extends Entity
 		float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
 
-		for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, (double) f) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+		for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, f) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
 		{
 			;
 		}
@@ -146,7 +150,7 @@ public class EntityEnderEye extends Entity
 			double d1 = this.targetZ - this.posZ;
 			float f1 = (float) Math.sqrt(d0 * d0 + d1 * d1);
 			float f2 = (float) MathHelper.atan2(d1, d0);
-			double d2 = (double) f + (double) (f1 - f) * 0.0025D;
+			double d2 = f + (f1 - f) * 0.0025D;
 
 			if (f1 < 1.0F)
 			{
@@ -154,8 +158,8 @@ public class EntityEnderEye extends Entity
 				this.motionY *= 0.8D;
 			}
 
-			this.motionX = Math.cos((double) f2) * d2;
-			this.motionZ = Math.sin((double) f2) * d2;
+			this.motionX = Math.cos(f2) * d2;
+			this.motionZ = Math.sin(f2) * d2;
 
 			if (this.posY < this.targetY)
 			{
@@ -206,6 +210,7 @@ public class EntityEnderEye extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 	}
@@ -213,6 +218,7 @@ public class EntityEnderEye extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 	}
@@ -220,11 +226,13 @@ public class EntityEnderEye extends Entity
 	/**
 	 * Gets how bright this entity is.
 	 */
+	@Override
 	public float getBrightness()
 	{
 		return 1.0F;
 	}
 
+	@Override
 	public int getBrightnessForRender()
 	{
 		return 15728880;
@@ -233,6 +241,7 @@ public class EntityEnderEye extends Entity
 	/**
 	 * Returns true if it's possible to attack this entity with an item.
 	 */
+	@Override
 	public boolean canBeAttackedWithItem()
 	{
 		return false;

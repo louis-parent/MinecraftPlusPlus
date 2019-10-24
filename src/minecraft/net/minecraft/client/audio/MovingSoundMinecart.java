@@ -21,6 +21,7 @@ public class MovingSoundMinecart extends MovingSound
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		if (this.minecart.isDead)
@@ -34,7 +35,7 @@ public class MovingSoundMinecart extends MovingSound
 			this.zPosF = (float) this.minecart.posZ;
 			float f = MathHelper.sqrt(this.minecart.motionX * this.minecart.motionX + this.minecart.motionZ * this.minecart.motionZ);
 
-			if ((double) f >= 0.01D)
+			if (f >= 0.01D)
 			{
 				this.distance = MathHelper.clamp(this.distance + 0.0025F, 0.0F, 1.0F);
 				this.volume = 0.0F + MathHelper.clamp(f, 0.0F, 0.5F) * 0.7F;

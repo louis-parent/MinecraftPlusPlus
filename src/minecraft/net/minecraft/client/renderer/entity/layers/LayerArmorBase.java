@@ -35,6 +35,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 		this.initArmor();
 	}
 
+	@Override
 	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.renderArmorLayer(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale, EntityArmorSlot.CHEST);
@@ -43,6 +44,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 		this.renderArmorLayer(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale, EntityArmorSlot.HEAD);
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;
@@ -96,9 +98,9 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 	private void renderColoredArmor(EntityLivingBase entityLivingBase, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, ItemStack itemstack, ItemArmor itemarmor, T t, boolean flag)
 	{
 		int i = itemarmor.getColor(itemstack);
-		float f = (float) (i >> 16 & 255) / 255.0F;
-		float f1 = (float) (i >> 8 & 255) / 255.0F;
-		float f2 = (float) (i & 255) / 255.0F;
+		float f = (i >> 16 & 255) / 255.0F;
+		float f1 = (i >> 8 & 255) / 255.0F;
+		float f2 = (i & 255) / 255.0F;
 		GlStateManager.color(this.colorR * f, this.colorG * f1, this.colorB * f2, this.alpha);
 		t.render(entityLivingBase, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 		this.renderer.bindTexture(this.getArmorResource(itemarmor, flag, "overlay"));
@@ -112,7 +114,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 
 	public T getModelFromSlot(EntityEquipmentSlot slotIn)
 	{
-		return (T) (this.isLegSlot(slotIn) ? this.modelLeggings : this.modelArmor);
+		return this.isLegSlot(slotIn) ? this.modelLeggings : this.modelArmor;
 	}
 
 	private boolean isLegSlot(EntityEquipmentSlot slotIn)
@@ -122,7 +124,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 
 	public static void renderEnchantedGlint(RenderLivingBase<?> p_188364_0_, EntityLivingBase p_188364_1_, ModelBase model, float p_188364_3_, float p_188364_4_, float p_188364_5_, float p_188364_6_, float p_188364_7_, float p_188364_8_, float p_188364_9_)
 	{
-		float f = (float) p_188364_1_.ticksExisted + p_188364_5_;
+		float f = p_188364_1_.ticksExisted + p_188364_5_;
 		p_188364_0_.bindTexture(ENCHANTED_ITEM_GLINT_RES);
 		Minecraft.getMinecraft().entityRenderer.func_191514_d(true);
 		GlStateManager.enableBlend();
@@ -141,8 +143,8 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 			GlStateManager.loadIdentity();
 			float f3 = 0.33333334F;
 			GlStateManager.scale(0.33333334F, 0.33333334F, 0.33333334F);
-			GlStateManager.rotate(30.0F - (float) i * 60.0F, 0.0F, 0.0F, 1.0F);
-			GlStateManager.translate(0.0F, f * (0.001F + (float) i * 0.003F) * 20.0F, 0.0F);
+			GlStateManager.rotate(30.0F - i * 60.0F, 0.0F, 0.0F, 1.0F);
+			GlStateManager.translate(0.0F, f * (0.001F + i * 0.003F) * 20.0F, 0.0F);
 			GlStateManager.matrixMode(5888);
 			model.render(p_188364_1_, p_188364_3_, p_188364_4_, p_188364_6_, p_188364_7_, p_188364_8_, p_188364_9_);
 			GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);

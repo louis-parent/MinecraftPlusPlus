@@ -23,6 +23,7 @@ public class GenLayerHills extends GenLayer
 	 * interpreted as temperatures, rainfall amounts, or biomeList[] indices
 	 * based on the particular GenLayer subclass.
 	 */
+	@Override
 	public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
 	{
 		int[] aint = this.parent.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
@@ -33,14 +34,14 @@ public class GenLayerHills extends GenLayer
 		{
 			for (int j = 0; j < areaWidth; ++j)
 			{
-				this.initChunkSeed((long) (j + areaX), (long) (i + areaY));
+				this.initChunkSeed(j + areaX, i + areaY);
 				int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
 				int l = aint1[j + 1 + (i + 1) * (areaWidth + 2)];
 				boolean flag = (l - 2) % 29 == 0;
 
 				if (k > 255)
 				{
-					LOGGER.debug("old! {}", (int) k);
+					LOGGER.debug("old! {}", k);
 				}
 
 				Biome biome = Biome.getBiomeForId(k);

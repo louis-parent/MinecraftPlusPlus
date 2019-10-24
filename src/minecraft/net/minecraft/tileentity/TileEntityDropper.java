@@ -14,11 +14,13 @@ public class TileEntityDropper extends TileEntityDispenser
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.hasCustomName() ? this.field_190577_o : "container.dropper";
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return "minecraft:dropper";

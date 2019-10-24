@@ -21,6 +21,7 @@ public class RenderEnderman extends RenderLiving<EntityEnderman>
 		this.addLayer(new LayerHeldBlock(this));
 	}
 
+	@Override
 	public ModelEnderman getMainModel()
 	{
 		return (ModelEnderman) super.getMainModel();
@@ -29,6 +30,7 @@ public class RenderEnderman extends RenderLiving<EntityEnderman>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityEnderman entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		IBlockState iblockstate = entity.getHeldBlockState();
@@ -50,6 +52,7 @@ public class RenderEnderman extends RenderLiving<EntityEnderman>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityEnderman entity)
 	{
 		return ENDERMAN_TEXTURES;

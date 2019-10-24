@@ -6,6 +6,7 @@ import net.minecraft.util.BlockRenderLayer;
 
 public class VboRenderList extends ChunkRenderContainer
 {
+	@Override
 	public void renderChunkLayer(BlockRenderLayer layer)
 	{
 		if (this.initialized)

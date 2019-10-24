@@ -45,21 +45,25 @@ public class ShapedRecipes implements IRecipe
 		this.recipeOutput = recipeOutput;
 	}
 
+	@Override
 	public String getRecipeGroup()
 	{
 		return this.group;
 	}
 
+	@Override
 	public ItemStack getRecipeOutput()
 	{
 		return this.recipeOutput;
 	}
 
+	@Override
 	public NonNullList<Ingredient> getListOfIngredients()
 	{
 		return this.recipeItems;
 	}
 
+	@Override
 	public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
 	{
 		return p_194133_1_ >= this.recipeWidth && p_194133_2_ >= this.recipeHeight;
@@ -68,6 +72,7 @@ public class ShapedRecipes implements IRecipe
 	/**
 	 * Used to check if a recipe matches current crafting inventory
 	 */
+	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn)
 	{
 		for (int i = 0; i <= 3 - this.recipeWidth; ++i)
@@ -127,6 +132,7 @@ public class ShapedRecipes implements IRecipe
 	/**
 	 * Returns an Item that is the result of this recipe
 	 */
+	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
 		return this.getRecipeOutput().copy();
@@ -299,9 +305,9 @@ public class ShapedRecipes implements IRecipe
 
 		for (Entry<String, JsonElement> entry : p_192408_0_.entrySet())
 		{
-			if (((String) entry.getKey()).length() != 1)
+			if (entry.getKey().length() != 1)
 			{
-				throw new JsonSyntaxException("Invalid key entry: '" + (String) entry.getKey() + "' is an invalid symbol (must be 1 character only).");
+				throw new JsonSyntaxException("Invalid key entry: '" + entry.getKey() + "' is an invalid symbol (must be 1 character only).");
 			}
 
 			if (" ".equals(entry.getKey()))

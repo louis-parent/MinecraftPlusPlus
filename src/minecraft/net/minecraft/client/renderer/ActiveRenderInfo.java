@@ -57,17 +57,17 @@ public class ActiveRenderInfo
 		GlStateManager.getFloat(2982, MODELVIEW);
 		GlStateManager.getFloat(2983, PROJECTION);
 		GlStateManager.glGetInteger(2978, VIEWPORT);
-		float f = (float) ((VIEWPORT.get(0) + VIEWPORT.get(2)) / 2);
-		float f1 = (float) ((VIEWPORT.get(1) + VIEWPORT.get(3)) / 2);
+		float f = (VIEWPORT.get(0) + VIEWPORT.get(2)) / 2;
+		float f1 = (VIEWPORT.get(1) + VIEWPORT.get(3)) / 2;
 		GLU.gluUnProject(f, f1, 0.0F, MODELVIEW, PROJECTION, VIEWPORT, OBJECTCOORDS);
-		position = new Vec3d((double) OBJECTCOORDS.get(0), (double) OBJECTCOORDS.get(1), (double) OBJECTCOORDS.get(2));
+		position = new Vec3d(OBJECTCOORDS.get(0), OBJECTCOORDS.get(1), OBJECTCOORDS.get(2));
 		int i = p_74583_1_ ? 1 : 0;
 		float f2 = entityplayerIn.rotationPitch;
 		float f3 = entityplayerIn.rotationYaw;
-		rotationX = MathHelper.cos(f3 * 0.017453292F) * (float) (1 - i * 2);
-		rotationZ = MathHelper.sin(f3 * 0.017453292F) * (float) (1 - i * 2);
-		rotationYZ = -rotationZ * MathHelper.sin(f2 * 0.017453292F) * (float) (1 - i * 2);
-		rotationXY = rotationX * MathHelper.sin(f2 * 0.017453292F) * (float) (1 - i * 2);
+		rotationX = MathHelper.cos(f3 * 0.017453292F) * (1 - i * 2);
+		rotationZ = MathHelper.sin(f3 * 0.017453292F) * (1 - i * 2);
+		rotationYZ = -rotationZ * MathHelper.sin(f2 * 0.017453292F) * (1 - i * 2);
+		rotationXY = rotationX * MathHelper.sin(f2 * 0.017453292F) * (1 - i * 2);
 		rotationXZ = MathHelper.cos(f2 * 0.017453292F);
 	}
 
@@ -84,7 +84,7 @@ public class ActiveRenderInfo
 
 	public static IBlockState getBlockStateAtEntityViewpoint(World worldIn, Entity entityIn, float p_186703_2_)
 	{
-		Vec3d vec3d = projectViewFromEntity(entityIn, (double) p_186703_2_);
+		Vec3d vec3d = projectViewFromEntity(entityIn, p_186703_2_);
 		BlockPos blockpos = new BlockPos(vec3d);
 		IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
@@ -94,12 +94,12 @@ public class ActiveRenderInfo
 
 			if (iblockstate.getBlock() instanceof BlockLiquid)
 			{
-				f = BlockLiquid.getLiquidHeightPercent(((Integer) iblockstate.getValue(BlockLiquid.LEVEL)).intValue()) - 0.11111111F;
+				f = BlockLiquid.getLiquidHeightPercent(iblockstate.getValue(BlockLiquid.LEVEL).intValue()) - 0.11111111F;
 			}
 
-			float f1 = (float) (blockpos.getY() + 1) - f;
+			float f1 = blockpos.getY() + 1 - f;
 
-			if (vec3d.yCoord >= (double) f1)
+			if (vec3d.yCoord >= f1)
 			{
 				iblockstate = worldIn.getBlockState(blockpos.up());
 			}

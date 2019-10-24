@@ -47,6 +47,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 		EntityLiving.registerFixesMob(fixer, EntitySnowman.class);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(1, new EntityAIAttackRanged(this, 1.25D, 20, 10.0F));
@@ -56,6 +57,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, true, false, IMob.MOB_SELECTOR));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -63,6 +65,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -72,6 +75,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -81,6 +85,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -96,6 +101,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -123,9 +129,9 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 
 			for (int l = 0; l < 4; ++l)
 			{
-				i = MathHelper.floor(this.posX + (double) ((float) (l % 2 * 2 - 1) * 0.25F));
+				i = MathHelper.floor(this.posX + (l % 2 * 2 - 1) * 0.25F);
 				j = MathHelper.floor(this.posY);
-				k = MathHelper.floor(this.posZ + (double) ((float) (l / 2 % 2 * 2 - 1) * 0.25F));
+				k = MathHelper.floor(this.posZ + (l / 2 % 2 * 2 - 1) * 0.25F);
 				BlockPos blockpos = new BlockPos(i, j, k);
 
 				if (this.world.getBlockState(blockpos).getMaterial() == Material.AIR && this.world.getBiome(blockpos).getFloatTemperature(blockpos) < 0.8F && Blocks.SNOW_LAYER.canPlaceBlockAt(this.world, blockpos))
@@ -136,6 +142,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 		}
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -149,24 +156,27 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 	 *            How far the target is, normalized and clamped between 0.1 and
 	 *            1.0
 	 */
+	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor)
 	{
 		EntitySnowball entitysnowball = new EntitySnowball(this.world, this);
-		double d0 = target.posY + (double) target.getEyeHeight() - 1.100000023841858D;
+		double d0 = target.posY + target.getEyeHeight() - 1.100000023841858D;
 		double d1 = target.posX - this.posX;
 		double d2 = d0 - entitysnowball.posY;
 		double d3 = target.posZ - this.posZ;
 		float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
-		entitysnowball.setThrowableHeading(d1, d2 + (double) f, d3, 1.6F, 12.0F);
+		entitysnowball.setThrowableHeading(d1, d2 + f, d3, 1.6F, 12.0F);
 		this.playSound(SoundEvents.ENTITY_SNOWMAN_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
 		this.world.spawnEntityInWorld(entitysnowball);
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return 1.7F;
 	}
 
+	@Override
 	protected boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -182,12 +192,12 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 
 	public boolean isPumpkinEquipped()
 	{
-		return (((Byte) this.dataManager.get(PUMPKIN_EQUIPPED)).byteValue() & 16) != 0;
+		return (this.dataManager.get(PUMPKIN_EQUIPPED).byteValue() & 16) != 0;
 	}
 
 	public void setPumpkinEquipped(boolean pumpkinEquipped)
 	{
-		byte b0 = ((Byte) this.dataManager.get(PUMPKIN_EQUIPPED)).byteValue();
+		byte b0 = this.dataManager.get(PUMPKIN_EQUIPPED).byteValue();
 
 		if (pumpkinEquipped)
 		{
@@ -199,24 +209,28 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 		}
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_SNOWMAN_AMBIENT;
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_SNOWMAN_HURT;
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_SNOWMAN_DEATH;
 	}
 
+	@Override
 	public void setSwingingArms(boolean swingingArms)
 	{
 	}

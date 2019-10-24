@@ -17,6 +17,7 @@ public class LayerSpiderEyes<T extends EntitySpider> implements LayerRenderer<T>
 		this.spiderRenderer = spiderRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.spiderRenderer.bindTexture(SPIDER_EYES);
@@ -36,7 +37,7 @@ public class LayerSpiderEyes<T extends EntitySpider> implements LayerRenderer<T>
 		int i = 61680;
 		int j = i % 65536;
 		int k = i / 65536;
-		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
+		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j, k);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		Minecraft.getMinecraft().entityRenderer.func_191514_d(true);
 		this.spiderRenderer.getMainModel().render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
@@ -44,12 +45,13 @@ public class LayerSpiderEyes<T extends EntitySpider> implements LayerRenderer<T>
 		i = entitylivingbaseIn.getBrightnessForRender();
 		j = i % 65536;
 		k = i / 65536;
-		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
+		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j, k);
 		this.spiderRenderer.setLightmap(entitylivingbaseIn);
 		GlStateManager.disableBlend();
 		GlStateManager.enableAlpha();
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;

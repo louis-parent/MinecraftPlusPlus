@@ -25,9 +25,10 @@ public class BlockDynamicLiquid extends BlockLiquid
 		worldIn.setBlockState(pos, getStaticBlock(this.blockMaterial).getDefaultState().withProperty(LEVEL, currentState.getValue(LEVEL)), 2);
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
-		int i = ((Integer) state.getValue(LEVEL)).intValue();
+		int i = state.getValue(LEVEL).intValue();
 		int j = 1;
 
 		if (this.blockMaterial == Material.LAVA && !worldIn.provider.doesWaterVaporize())
@@ -76,7 +77,7 @@ public class BlockDynamicLiquid extends BlockLiquid
 				{
 					i1 = 0;
 				}
-				else if (iblockstate.getMaterial() == this.blockMaterial && ((Integer) iblockstate.getValue(LEVEL)).intValue() == 0)
+				else if (iblockstate.getMaterial() == this.blockMaterial && iblockstate.getValue(LEVEL).intValue() == 0)
 				{
 					i1 = 0;
 				}
@@ -186,7 +187,7 @@ public class BlockDynamicLiquid extends BlockLiquid
 				BlockPos blockpos = pos.offset(enumfacing);
 				IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-				if (!this.isBlocked(worldIn, blockpos, iblockstate) && (iblockstate.getMaterial() != this.blockMaterial || ((Integer) iblockstate.getValue(LEVEL)).intValue() > 0))
+				if (!this.isBlocked(worldIn, blockpos, iblockstate) && (iblockstate.getMaterial() != this.blockMaterial || iblockstate.getValue(LEVEL).intValue() > 0))
 				{
 					if (!this.isBlocked(worldIn, blockpos.down(), iblockstate))
 					{
@@ -224,7 +225,7 @@ public class BlockDynamicLiquid extends BlockLiquid
 			BlockPos blockpos = pos.offset(enumfacing);
 			IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-			if (!this.isBlocked(worldIn, blockpos, iblockstate) && (iblockstate.getMaterial() != this.blockMaterial || ((Integer) iblockstate.getValue(LEVEL)).intValue() > 0))
+			if (!this.isBlocked(worldIn, blockpos, iblockstate) && (iblockstate.getMaterial() != this.blockMaterial || iblockstate.getValue(LEVEL).intValue() > 0))
 			{
 				int j;
 
@@ -301,6 +302,7 @@ public class BlockDynamicLiquid extends BlockLiquid
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (!this.checkForMixing(worldIn, pos, state))

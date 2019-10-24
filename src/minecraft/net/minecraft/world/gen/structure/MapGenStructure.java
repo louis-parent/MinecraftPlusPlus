@@ -30,6 +30,7 @@ public abstract class MapGenStructure extends MapGenBase
 	/**
 	 * Recursively called by generate()
 	 */
+	@Override
 	protected final synchronized void recursiveGenerate(World worldIn, final int chunkX, final int chunkZ, int p_180701_4_, int p_180701_5_, ChunkPrimer chunkPrimerIn)
 	{
 		this.initializeStructureData(worldIn);
@@ -57,6 +58,7 @@ public abstract class MapGenStructure extends MapGenBase
 				CrashReportCategory crashreportcategory = crashreport.makeCategory("Feature being prepared");
 				crashreportcategory.setDetail("Is feature chunk", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
 						return MapGenStructure.this.canSpawnStructureAtCoords(chunkX, chunkZ) ? "True" : "False";
@@ -65,6 +67,7 @@ public abstract class MapGenStructure extends MapGenBase
 				crashreportcategory.addCrashSection("Chunk location", String.format("%d,%d", chunkX, chunkZ));
 				crashreportcategory.setDetail("Chunk pos hash", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
 						return String.valueOf(ChunkPos.asLong(chunkX, chunkZ));
@@ -72,6 +75,7 @@ public abstract class MapGenStructure extends MapGenBase
 				});
 				crashreportcategory.setDetail("Structure type", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
 						return MapGenStructure.this.getClass().getCanonicalName();

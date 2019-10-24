@@ -31,6 +31,7 @@ public class ItemPotion extends Item
 		this.setCreativeTab(CreativeTabs.BREWING);
 	}
 
+	@Override
 	public ItemStack getAsStack()
 	{
 		return PotionUtils.addPotionToItemStack(super.getAsStack(), PotionTypes.WATER);
@@ -41,6 +42,7 @@ public class ItemPotion extends Item
 	 * Not called when the player stops using the Item before the action is
 	 * complete.
 	 */
+	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
 	{
 		EntityPlayer entityplayer = entityLiving instanceof EntityPlayer ? (EntityPlayer) entityLiving : null;
@@ -94,6 +96,7 @@ public class ItemPotion extends Item
 	/**
 	 * How long it takes to use or consume an item
 	 */
+	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{
 		return 32;
@@ -103,17 +106,20 @@ public class ItemPotion extends Item
 	 * returns the action that specifies what animation to play when the items
 	 * is being used
 	 */
+	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
 		return EnumAction.DRINK;
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		worldIn.setActiveHand(playerIn);
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, worldIn.getHeldItem(playerIn));
 	}
 
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		return I18n.translateToLocal(PotionUtils.getPotionFromItem(stack).getNamePrefixed("potion.effect."));
@@ -123,11 +129,13 @@ public class ItemPotion extends Item
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		PotionUtils.addPotionTooltip(stack, tooltip, 1.0F);
 	}
 
+	@Override
 	public boolean hasEffect(ItemStack stack)
 	{
 		return super.hasEffect(stack) || !PotionUtils.getEffectsFromStack(stack).isEmpty();
@@ -137,6 +145,7 @@ public class ItemPotion extends Item
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
+	@Override
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (this.func_194125_a(itemIn))

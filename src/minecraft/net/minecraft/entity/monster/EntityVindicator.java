@@ -36,6 +36,7 @@ public class EntityVindicator extends AbstractIllager
 	private boolean field_190643_b;
 	private static final Predicate<Entity> field_190644_c = new Predicate<Entity>()
 	{
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			return p_apply_1_ instanceof EntityLivingBase && ((EntityLivingBase) p_apply_1_).func_190631_cK();
@@ -53,6 +54,7 @@ public class EntityVindicator extends AbstractIllager
 		EntityLiving.registerFixesMob(p_190641_0_, EntityVindicator.class);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		super.initEntityAI();
@@ -68,6 +70,7 @@ public class EntityVindicator extends AbstractIllager
 		this.targetTasks.addTask(4, new EntityVindicator.AIJohnnyAttack(this));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -77,11 +80,13 @@ public class EntityVindicator extends AbstractIllager
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 	}
 
+	@Override
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.field_191186_av;
@@ -100,6 +105,7 @@ public class EntityVindicator extends AbstractIllager
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -110,6 +116,7 @@ public class EntityVindicator extends AbstractIllager
 		}
 	}
 
+	@Override
 	public AbstractIllager.IllagerArmPose func_193077_p()
 	{
 		return this.func_190639_o() ? AbstractIllager.IllagerArmPose.ATTACKING : AbstractIllager.IllagerArmPose.CROSSED;
@@ -118,6 +125,7 @@ public class EntityVindicator extends AbstractIllager
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -128,6 +136,7 @@ public class EntityVindicator extends AbstractIllager
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -146,11 +155,13 @@ public class EntityVindicator extends AbstractIllager
 	/**
 	 * Gives armor or weapon for entity based on given DifficultyInstance
 	 */
+	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
 		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.IRON_AXE));
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		super.updateAITasks();
@@ -160,6 +171,7 @@ public class EntityVindicator extends AbstractIllager
 	/**
 	 * Returns whether this Entity is on the same team as the given Entity.
 	 */
+	@Override
 	public boolean isOnSameTeam(Entity entityIn)
 	{
 		if (super.isOnSameTeam(entityIn))
@@ -179,6 +191,7 @@ public class EntityVindicator extends AbstractIllager
 	/**
 	 * Sets the custom name tag for this entity
 	 */
+	@Override
 	public void setCustomNameTag(String name)
 	{
 		super.setCustomNameTag(name);
@@ -189,16 +202,19 @@ public class EntityVindicator extends AbstractIllager
 		}
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.field_191268_hm;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.field_191269_hn;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.field_191270_ho;
@@ -211,6 +227,7 @@ public class EntityVindicator extends AbstractIllager
 			super(p_i47345_1_, EntityLivingBase.class, 0, true, true, EntityVindicator.field_190644_c);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			return ((EntityVindicator) this.taskOwner).field_190643_b && super.shouldExecute();

@@ -43,6 +43,7 @@ public class EntityEnderPearl extends EntityThrowable
 	/**
 	 * Called when this EntityThrowable hits a block or entity.
 	 */
+	@Override
 	protected void onImpact(RayTraceResult result)
 	{
 		EntityLivingBase entitylivingbase = this.getThrower();
@@ -127,6 +128,7 @@ public class EntityEnderPearl extends EntityThrowable
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		EntityLivingBase entitylivingbase = this.getThrower();

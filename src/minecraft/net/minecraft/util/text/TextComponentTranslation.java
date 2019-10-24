@@ -168,6 +168,7 @@ public class TextComponentTranslation extends TextComponentBase
 		}
 	}
 
+	@Override
 	public ITextComponent setStyle(Style style)
 	{
 		super.setStyle(style);
@@ -191,6 +192,7 @@ public class TextComponentTranslation extends TextComponentBase
 		return this;
 	}
 
+	@Override
 	public Iterator<ITextComponent> iterator()
 	{
 		this.ensureInitialized();
@@ -201,6 +203,7 @@ public class TextComponentTranslation extends TextComponentBase
 	 * Gets the text of this component, without any special formatting codes
 	 * added, for chat. TODO: why is this two different methods?
 	 */
+	@Override
 	public String getUnformattedComponentText()
 	{
 		this.ensureInitialized();
@@ -218,6 +221,7 @@ public class TextComponentTranslation extends TextComponentBase
 	 * Creates a copy of this component. Almost a deep copy, except the style is
 	 * shallow-copied.
 	 */
+	@Override
 	public TextComponentTranslation createCopy()
 	{
 		Object[] aobject = new Object[this.formatArgs.length];
@@ -245,6 +249,7 @@ public class TextComponentTranslation extends TextComponentBase
 		return textcomponenttranslation;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -262,6 +267,7 @@ public class TextComponentTranslation extends TextComponentBase
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = super.hashCode();
@@ -270,6 +276,7 @@ public class TextComponentTranslation extends TextComponentBase
 		return i;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "TranslatableComponent{key='" + this.key + '\'' + ", args=" + Arrays.toString(this.formatArgs) + ", siblings=" + this.siblings + ", style=" + this.getStyle() + '}';

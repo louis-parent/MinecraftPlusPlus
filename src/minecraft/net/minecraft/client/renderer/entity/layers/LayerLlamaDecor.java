@@ -16,6 +16,7 @@ public class LayerLlamaDecor implements LayerRenderer<EntityLlama>
 		this.field_191365_b = p_i47184_1_;
 	}
 
+	@Override
 	public void doRenderLayer(EntityLlama entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		if (entitylivingbaseIn.func_190717_dN())
@@ -26,6 +27,7 @@ public class LayerLlamaDecor implements LayerRenderer<EntityLlama>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;

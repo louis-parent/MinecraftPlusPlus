@@ -15,7 +15,7 @@ public class ParticleLava extends Particle
 		this.motionX *= 0.800000011920929D;
 		this.motionY *= 0.800000011920929D;
 		this.motionZ *= 0.800000011920929D;
-		this.motionY = (double) (this.rand.nextFloat() * 0.4F + 0.05F);
+		this.motionY = this.rand.nextFloat() * 0.4F + 0.05F;
 		this.particleRed = 1.0F;
 		this.particleGreen = 1.0F;
 		this.particleBlue = 1.0F;
@@ -25,6 +25,7 @@ public class ParticleLava extends Particle
 		this.setParticleTextureIndex(49);
 	}
 
+	@Override
 	public int getBrightnessForRender(float p_189214_1_)
 	{
 		int i = super.getBrightnessForRender(p_189214_1_);
@@ -36,13 +37,15 @@ public class ParticleLava extends Particle
 	/**
 	 * Renders the particle
 	 */
+	@Override
 	public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
-		float f = ((float) this.particleAge + partialTicks) / (float) this.particleMaxAge;
+		float f = (this.particleAge + partialTicks) / this.particleMaxAge;
 		this.particleScale = this.lavaParticleScale * (1.0F - f * f);
 		super.renderParticle(worldRendererIn, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -76,6 +79,7 @@ public class ParticleLava extends Particle
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleLava(worldIn, xCoordIn, yCoordIn, zCoordIn);

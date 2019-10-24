@@ -13,6 +13,7 @@ public class ShulkerBoxRecipes
 {
 	public static class ShulkerBoxColoring implements IRecipe
 	{
+		@Override
 		public boolean matches(InventoryCrafting inv, World worldIn)
 		{
 			int i = 0;
@@ -48,6 +49,7 @@ public class ShulkerBoxRecipes
 			return i == 1 && j == 1;
 		}
 
+		@Override
 		public ItemStack getCraftingResult(InventoryCrafting inv)
 		{
 			ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -80,11 +82,13 @@ public class ShulkerBoxRecipes
 			return itemstack3;
 		}
 
+		@Override
 		public ItemStack getRecipeOutput()
 		{
 			return ItemStack.EMPTY_ITEM_STACK;
 		}
 
+		@Override
 		public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
 		{
 			NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
@@ -102,11 +106,13 @@ public class ShulkerBoxRecipes
 			return nonnulllist;
 		}
 
+		@Override
 		public boolean hideInCraftingTabs()
 		{
 			return true;
 		}
 
+		@Override
 		public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
 		{
 			return p_194133_1_ * p_194133_2_ >= 2;

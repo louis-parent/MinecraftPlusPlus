@@ -21,6 +21,7 @@ public class RenderLightningBolt extends Render<EntityLightningBolt>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityLightningBolt entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		Tessellator tessellator = Tessellator.getInstance();
@@ -39,8 +40,8 @@ public class RenderLightningBolt extends Render<EntityLightningBolt>
 		{
 			adouble[i] = d0;
 			adouble1[i] = d1;
-			d0 += (double) (random.nextInt(11) - 5);
-			d1 += (double) (random.nextInt(11) - 5);
+			d0 += random.nextInt(11) - 5;
+			d1 += random.nextInt(11) - 5;
 		}
 
 		for (int k1 = 0; k1 < 4; ++k1)
@@ -72,13 +73,13 @@ public class RenderLightningBolt extends Render<EntityLightningBolt>
 
 					if (j == 0)
 					{
-						d2 += (double) (random1.nextInt(11) - 5);
-						d3 += (double) (random1.nextInt(11) - 5);
+						d2 += random1.nextInt(11) - 5;
+						d3 += random1.nextInt(11) - 5;
 					}
 					else
 					{
-						d2 += (double) (random1.nextInt(31) - 15);
-						d3 += (double) (random1.nextInt(31) - 15);
+						d2 += random1.nextInt(31) - 15;
+						d3 += random1.nextInt(31) - 15;
 					}
 
 					bufferbuilder.begin(5, DefaultVertexFormats.POSITION_COLOR);
@@ -86,18 +87,18 @@ public class RenderLightningBolt extends Render<EntityLightningBolt>
 					float f1 = 0.45F;
 					float f2 = 0.45F;
 					float f3 = 0.5F;
-					double d6 = 0.1D + (double) k1 * 0.2D;
+					double d6 = 0.1D + k1 * 0.2D;
 
 					if (j == 0)
 					{
-						d6 *= (double) i1 * 0.1D + 1.0D;
+						d6 *= i1 * 0.1D + 1.0D;
 					}
 
-					double d7 = 0.1D + (double) k1 * 0.2D;
+					double d7 = 0.1D + k1 * 0.2D;
 
 					if (j == 0)
 					{
-						d7 *= (double) (i1 - 1) * 0.1D + 1.0D;
+						d7 *= (i1 - 1) * 0.1D + 1.0D;
 					}
 
 					for (int j1 = 0; j1 < 5; ++j1)
@@ -128,8 +129,8 @@ public class RenderLightningBolt extends Render<EntityLightningBolt>
 							d11 += d7 * 2.0D;
 						}
 
-						bufferbuilder.pos(d10 + d2, y + (double) (i1 * 16), d11 + d3).color(0.45F, 0.45F, 0.5F, 0.3F).endVertex();
-						bufferbuilder.pos(d8 + d4, y + (double) ((i1 + 1) * 16), d9 + d5).color(0.45F, 0.45F, 0.5F, 0.3F).endVertex();
+						bufferbuilder.pos(d10 + d2, y + i1 * 16, d11 + d3).color(0.45F, 0.45F, 0.5F, 0.3F).endVertex();
+						bufferbuilder.pos(d8 + d4, y + (i1 + 1) * 16, d9 + d5).color(0.45F, 0.45F, 0.5F, 0.3F).endVertex();
 					}
 
 					tessellator.draw();
@@ -142,6 +143,7 @@ public class RenderLightningBolt extends Render<EntityLightningBolt>
 		GlStateManager.enableTexture2D();
 	}
 
+	@Override
 	@Nullable
 
 	/**

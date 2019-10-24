@@ -109,16 +109,17 @@ public class VertexFormat
 
 	public int getUvOffsetById(int id)
 	{
-		return ((Integer) this.uvOffsetsById.get(id)).intValue();
+		return this.uvOffsetsById.get(id).intValue();
 	}
 
+	@Override
 	public String toString()
 	{
 		String s = "format: " + this.elements.size() + " elements: ";
 
 		for (int i = 0; i < this.elements.size(); ++i)
 		{
-			s = s + ((VertexFormatElement) this.elements.get(i)).toString();
+			s = s + this.elements.get(i).toString();
 
 			if (i != this.elements.size() - 1)
 			{
@@ -173,9 +174,10 @@ public class VertexFormat
 
 	public int getOffset(int index)
 	{
-		return ((Integer) this.offsets.get(index)).intValue();
+		return this.offsets.get(index).intValue();
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -205,6 +207,7 @@ public class VertexFormat
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = this.elements.hashCode();

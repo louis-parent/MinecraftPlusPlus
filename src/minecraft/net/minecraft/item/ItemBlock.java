@@ -37,6 +37,7 @@ public class ItemBlock extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
@@ -146,6 +147,7 @@ public class ItemBlock extends Item
 	 * ItemStack so different stacks can have different names based on their
 	 * damage or NBT.
 	 */
+	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		return this.block.getUnlocalizedName();
@@ -154,6 +156,7 @@ public class ItemBlock extends Item
 	/**
 	 * Returns the unlocalized name of this item.
 	 */
+	@Override
 	public String getUnlocalizedName()
 	{
 		return this.block.getUnlocalizedName();
@@ -162,6 +165,7 @@ public class ItemBlock extends Item
 	/**
 	 * gets the CreativeTab this item is displayed on
 	 */
+	@Override
 	public CreativeTabs getCreativeTab()
 	{
 		return this.block.getCreativeTabToDisplayOn();
@@ -171,6 +175,7 @@ public class ItemBlock extends Item
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
+	@Override
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (this.func_194125_a(itemIn))
@@ -189,6 +194,7 @@ public class ItemBlock extends Item
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		super.addInformation(stack, playerIn, tooltip, advanced);

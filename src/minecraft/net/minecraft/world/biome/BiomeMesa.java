@@ -57,26 +57,31 @@ public class BiomeMesa extends Biome
 	/**
 	 * Allocate a new BiomeDecorator for this BiomeGenBase
 	 */
+	@Override
 	protected BiomeDecorator createBiomeDecorator()
 	{
 		return new BiomeMesa.Decorator();
 	}
 
+	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		return TREE_FEATURE;
 	}
 
+	@Override
 	public int getFoliageColorAtPos(BlockPos pos)
 	{
 		return 10387789;
 	}
 
+	@Override
 	public int getGrassColorAtPos(BlockPos pos)
 	{
 		return 9470285;
 	}
 
+	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
 	{
 		if (this.clayBands == null || this.worldSeed != worldIn.getSeed())
@@ -98,12 +103,12 @@ public class BiomeMesa extends Biome
 		{
 			int i = (x & -16) + (z & 15);
 			int j = (z & -16) + (x & 15);
-			double d0 = Math.min(Math.abs(noiseVal), this.pillarNoise.getValue((double) i * 0.25D, (double) j * 0.25D));
+			double d0 = Math.min(Math.abs(noiseVal), this.pillarNoise.getValue(i * 0.25D, j * 0.25D));
 
 			if (d0 > 0.0D)
 			{
 				double d1 = 0.001953125D;
-				double d2 = Math.abs(this.pillarRoofNoise.getValue((double) i * 0.001953125D, (double) j * 0.001953125D));
+				double d2 = Math.abs(this.pillarRoofNoise.getValue(i * 0.001953125D, j * 0.001953125D));
 				d4 = d0 * d0 * 2.5D;
 				double d3 = Math.ceil(d2 * 50.0D) + 14.0D;
 
@@ -324,7 +329,7 @@ public class BiomeMesa extends Biome
 
 	private IBlockState getBand(int p_180629_1_, int p_180629_2_, int p_180629_3_)
 	{
-		int i = (int) Math.round(this.clayBandsOffsetNoise.getValue((double) p_180629_1_ / 512.0D, (double) p_180629_1_ / 512.0D) * 2.0D);
+		int i = (int) Math.round(this.clayBandsOffsetNoise.getValue(p_180629_1_ / 512.0D, p_180629_1_ / 512.0D) * 2.0D);
 		return this.clayBands[(p_180629_2_ + i + 64) % 64];
 	}
 
@@ -334,6 +339,7 @@ public class BiomeMesa extends Biome
 		{
 		}
 
+		@Override
 		protected void generateOres(World world, Random random)
 		{
 			super.generateOres(world, random);

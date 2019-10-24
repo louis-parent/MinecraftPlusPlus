@@ -48,6 +48,7 @@ public class NetworkSystem
 	private static final Logger LOGGER = LogManager.getLogger();
 	public static final LazyLoadBase<NioEventLoopGroup> SERVER_NIO_EVENTLOOP = new LazyLoadBase<NioEventLoopGroup>()
 	{
+		@Override
 		protected NioEventLoopGroup load()
 		{
 			return new NioEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Server IO #%d").setDaemon(true).build());
@@ -55,6 +56,7 @@ public class NetworkSystem
 	};
 	public static final LazyLoadBase<EpollEventLoopGroup> SERVER_EPOLL_EVENTLOOP = new LazyLoadBase<EpollEventLoopGroup>()
 	{
+		@Override
 		protected EpollEventLoopGroup load()
 		{
 			return new EpollEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Epoll Server IO #%d").setDaemon(true).build());
@@ -62,6 +64,7 @@ public class NetworkSystem
 	};
 	public static final LazyLoadBase<LocalEventLoopGroup> SERVER_LOCAL_EVENTLOOP = new LazyLoadBase<LocalEventLoopGroup>()
 	{
+		@Override
 		protected LocalEventLoopGroup load()
 		{
 			return new LocalEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Local Server IO #%d").setDaemon(true).build());
@@ -105,8 +108,9 @@ public class NetworkSystem
 				LOGGER.info("Using default channel type");
 			}
 
-			this.endpoints.add(((ServerBootstrap) ((ServerBootstrap) (new ServerBootstrap()).channel(oclass)).childHandler(new ChannelInitializer<Channel>()
+			this.endpoints.add((new ServerBootstrap()).channel(oclass).childHandler(new ChannelInitializer<Channel>()
 			{
+				@Override
 				protected void initChannel(Channel p_initChannel_1_) throws Exception
 				{
 					try
@@ -124,7 +128,7 @@ public class NetworkSystem
 					p_initChannel_1_.pipeline().addLast("packet_handler", networkmanager);
 					networkmanager.setNetHandler(new NetHandlerHandshakeTCP(NetworkSystem.this.mcServer, networkmanager));
 				}
-			}).group(lazyloadbase.getValue()).localAddress(address, port)).bind().syncUninterruptibly());
+			}).group(lazyloadbase.getValue()).localAddress(address, port).bind().syncUninterruptibly());
 		}
 	}
 
@@ -137,8 +141,9 @@ public class NetworkSystem
 
 		synchronized (this.endpoints)
 		{
-			channelfuture = ((ServerBootstrap) ((ServerBootstrap) (new ServerBootstrap()).channel(LocalServerChannel.class)).childHandler(new ChannelInitializer<Channel>()
+			channelfuture = (new ServerBootstrap()).channel(LocalServerChannel.class).childHandler(new ChannelInitializer<Channel>()
 			{
+				@Override
 				protected void initChannel(Channel p_initChannel_1_) throws Exception
 				{
 					NetworkManager networkmanager = new NetworkManager(EnumPacketDirection.SERVERBOUND);
@@ -146,7 +151,7 @@ public class NetworkSystem
 					NetworkSystem.this.networkManagers.add(networkmanager);
 					p_initChannel_1_.pipeline().addLast("packet_handler", networkmanager);
 				}
-			}).group(SERVER_NIO_EVENTLOOP.getValue()).localAddress(LocalAddress.ANY)).bind().syncUninterruptibly();
+			}).group(SERVER_NIO_EVENTLOOP.getValue()).localAddress(LocalAddress.ANY).bind().syncUninterruptibly();
 			this.endpoints.add(channelfuture);
 		}
 
@@ -203,6 +208,7 @@ public class NetworkSystem
 								CrashReportCategory crashreportcategory = crashreport.makeCategory("Ticking connection");
 								crashreportcategory.setDetail("Connection", new ICrashReportDetail<String>()
 								{
+									@Override
 									public String call() throws Exception
 									{
 										return networkmanager.toString();
@@ -215,6 +221,7 @@ public class NetworkSystem
 							final TextComponentString textcomponentstring = new TextComponentString("Internal server error");
 							networkmanager.sendPacket(new SPacketDisconnect(textcomponentstring), new GenericFutureListener<Future<? super Void>>()
 							{
+								@Override
 								public void operationComplete(Future<? super Void> p_operationComplete_1_) throws Exception
 								{
 									networkmanager.closeChannel(textcomponentstring);

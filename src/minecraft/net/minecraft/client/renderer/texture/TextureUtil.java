@@ -131,10 +131,10 @@ public class TextureUtil
 			f1 = f1 / 4.0F;
 			f2 = f2 / 4.0F;
 			f3 = f3 / 4.0F;
-			int i2 = (int) (Math.pow((double) f, 0.45454545454545453D) * 255.0D);
-			int j1 = (int) (Math.pow((double) f1, 0.45454545454545453D) * 255.0D);
-			int k1 = (int) (Math.pow((double) f2, 0.45454545454545453D) * 255.0D);
-			int l1 = (int) (Math.pow((double) f3, 0.45454545454545453D) * 255.0D);
+			int i2 = (int) (Math.pow(f, 0.45454545454545453D) * 255.0D);
+			int j1 = (int) (Math.pow(f1, 0.45454545454545453D) * 255.0D);
+			int k1 = (int) (Math.pow(f2, 0.45454545454545453D) * 255.0D);
+			int l1 = (int) (Math.pow(f3, 0.45454545454545453D) * 255.0D);
 
 			if (i2 < 96)
 			{
@@ -159,8 +159,8 @@ public class TextureUtil
 		float f1 = getColorGamma(p_147944_1_ >> p_147944_4_);
 		float f2 = getColorGamma(p_147944_2_ >> p_147944_4_);
 		float f3 = getColorGamma(p_147944_3_ >> p_147944_4_);
-		float f4 = (float) ((double) ((float) Math.pow((double) (f + f1 + f2 + f3) * 0.25D, 0.45454545454545453D)));
-		return (int) ((double) f4 * 255.0D);
+		float f4 = (float) (((float) Math.pow((f + f1 + f2 + f3) * 0.25D, 0.45454545454545453D)));
+		return (int) (f4 * 255.0D);
 	}
 
 	public static void uploadTextureMipmap(int[][] p_147955_0_, int p_147955_1_, int p_147955_2_, int p_147955_3_, int p_147955_4_, boolean p_147955_5_, boolean p_147955_6_)
@@ -320,7 +320,7 @@ public class TextureUtil
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Closeable) iresource);
+			IOUtils.closeQuietly(iresource);
 		}
 
 		return aint1;
@@ -398,7 +398,7 @@ public class TextureUtil
 
 		for (int i1 = 0; i1 < COLOR_GAMMAS.length; ++i1)
 		{
-			COLOR_GAMMAS[i1] = (float) Math.pow((double) ((float) i1 / 255.0F), 2.2D);
+			COLOR_GAMMAS[i1] = (float) Math.pow(i1 / 255.0F, 2.2D);
 		}
 
 		MIPMAP_BUFFER = new int[4];

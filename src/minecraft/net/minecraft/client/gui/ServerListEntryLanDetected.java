@@ -18,6 +18,7 @@ public class ServerListEntryLanDetected implements GuiListExtended.IGuiListEntry
 		this.mc = Minecraft.getMinecraft();
 	}
 
+	@Override
 	public void func_192634_a(int p_192634_1_, int p_192634_2_, int p_192634_3_, int p_192634_4_, int p_192634_5_, int p_192634_6_, int p_192634_7_, boolean p_192634_8_, float p_192634_9_)
 	{
 		this.mc.fontRendererObj.drawString(I18n.format("lanServer.title"), p_192634_2_ + 32 + 3, p_192634_3_ + 1, 16777215);
@@ -38,6 +39,7 @@ public class ServerListEntryLanDetected implements GuiListExtended.IGuiListEntry
 	 * that something within this entry was clicked and the list should not be
 	 * dragged.
 	 */
+	@Override
 	public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY)
 	{
 		this.screen.selectServer(slotIndex);
@@ -51,6 +53,7 @@ public class ServerListEntryLanDetected implements GuiListExtended.IGuiListEntry
 		return false;
 	}
 
+	@Override
 	public void func_192633_a(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
 	{
 	}
@@ -59,6 +62,7 @@ public class ServerListEntryLanDetected implements GuiListExtended.IGuiListEntry
 	 * Fired when the mouse button is released. Arguments: index, x, y,
 	 * mouseEvent, relativeX, relativeY
 	 */
+	@Override
 	public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY)
 	{
 	}

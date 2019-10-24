@@ -35,18 +35,20 @@ public class GuiOptionsRowList extends GuiListExtended
 		else
 		{
 			int i = options.returnEnumOrdinal();
-			return (GuiButton) (options.getEnumFloat() ? new GuiOptionSlider(i, p_148182_2_, p_148182_3_, options) : new GuiOptionButton(i, p_148182_2_, p_148182_3_, options, mcIn.gameSettings.getKeyBinding(options)));
+			return options.getEnumFloat() ? new GuiOptionSlider(i, p_148182_2_, p_148182_3_, options) : new GuiOptionButton(i, p_148182_2_, p_148182_3_, options, mcIn.gameSettings.getKeyBinding(options));
 		}
 	}
 
 	/**
 	 * Gets the IGuiListEntry object for the given index
 	 */
+	@Override
 	public GuiOptionsRowList.Row getListEntry(int index)
 	{
 		return this.options.get(index);
 	}
 
+	@Override
 	protected int getSize()
 	{
 		return this.options.size();
@@ -55,11 +57,13 @@ public class GuiOptionsRowList extends GuiListExtended
 	/**
 	 * Gets the width of the list
 	 */
+	@Override
 	public int getListWidth()
 	{
 		return 400;
 	}
 
+	@Override
 	protected int getScrollBarX()
 	{
 		return super.getScrollBarX() + 32;
@@ -77,6 +81,7 @@ public class GuiOptionsRowList extends GuiListExtended
 			this.buttonB = buttonBIn;
 		}
 
+		@Override
 		public void func_192634_a(int p_192634_1_, int p_192634_2_, int p_192634_3_, int p_192634_4_, int p_192634_5_, int p_192634_6_, int p_192634_7_, boolean p_192634_8_, float p_192634_9_)
 		{
 			if (this.buttonA != null)
@@ -92,6 +97,7 @@ public class GuiOptionsRowList extends GuiListExtended
 			}
 		}
 
+		@Override
 		public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY)
 		{
 			if (this.buttonA.mousePressed(this.client, mouseX, mouseY))
@@ -120,6 +126,7 @@ public class GuiOptionsRowList extends GuiListExtended
 			}
 		}
 
+		@Override
 		public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY)
 		{
 			if (this.buttonA != null)
@@ -133,6 +140,7 @@ public class GuiOptionsRowList extends GuiListExtended
 			}
 		}
 
+		@Override
 		public void func_192633_a(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
 		{
 		}

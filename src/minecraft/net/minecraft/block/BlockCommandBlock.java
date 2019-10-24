@@ -46,6 +46,7 @@ public class BlockCommandBlock extends BlockContainer
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
+	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		TileEntityCommandBlock tileentitycommandblock = new TileEntityCommandBlock();
@@ -59,6 +60,7 @@ public class BlockCommandBlock extends BlockContainer
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!worldIn.isRemote)
@@ -84,6 +86,7 @@ public class BlockCommandBlock extends BlockContainer
 		}
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (!worldIn.isRemote)
@@ -144,17 +147,19 @@ public class BlockCommandBlock extends BlockContainer
 			p_193387_4_.setSuccessCount(0);
 		}
 
-		func_193386_c(p_193387_2_, p_193387_3_, (EnumFacing) p_193387_1_.getValue(FACING));
+		func_193386_c(p_193387_2_, p_193387_3_, p_193387_1_.getValue(FACING));
 	}
 
 	/**
 	 * How many world ticks before ticking
 	 */
+	@Override
 	public int tickRate(World worldIn)
 	{
 		return 1;
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -170,11 +175,13 @@ public class BlockCommandBlock extends BlockContainer
 		}
 	}
 
+	@Override
 	public boolean hasComparatorInputOverride(IBlockState state)
 	{
 		return true;
 	}
 
+	@Override
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
 	{
 		TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -185,6 +192,7 @@ public class BlockCommandBlock extends BlockContainer
 	 * Called by ItemBlocks after a block is set in the world, to allow
 	 * post-place logic
 	 */
+	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -221,6 +229,7 @@ public class BlockCommandBlock extends BlockContainer
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
@@ -231,6 +240,7 @@ public class BlockCommandBlock extends BlockContainer
 	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
 	 * INVISIBLE to skip all rendering
 	 */
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.MODEL;
@@ -239,6 +249,7 @@ public class BlockCommandBlock extends BlockContainer
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(CONDITIONAL, Boolean.valueOf((meta & 8) != 0));
@@ -247,29 +258,33 @@ public class BlockCommandBlock extends BlockContainer
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((EnumFacing) state.getValue(FACING)).getIndex() | (((Boolean) state.getValue(CONDITIONAL)).booleanValue() ? 8 : 0);
+		return state.getValue(FACING).getIndex() | (state.getValue(CONDITIONAL).booleanValue() ? 8 : 0);
 	}
 
 	/**
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING, CONDITIONAL });
@@ -279,6 +294,7 @@ public class BlockCommandBlock extends BlockContainer
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getDefaultState().withProperty(FACING, EnumFacing.func_190914_a(pos, placer)).withProperty(CONDITIONAL, Boolean.valueOf(false));
@@ -291,7 +307,7 @@ public class BlockCommandBlock extends BlockContainer
 		int i;
 		IBlockState iblockstate;
 
-		for (i = gamerules.getInt("maxCommandChainLength"); i-- > 0; p_193386_2_ = (EnumFacing) iblockstate.getValue(FACING))
+		for (i = gamerules.getInt("maxCommandChainLength"); i-- > 0; p_193386_2_ = iblockstate.getValue(FACING))
 		{
 			blockpos$mutableblockpos.move(p_193386_2_);
 			iblockstate = p_193386_0_.getBlockState(blockpos$mutableblockpos);

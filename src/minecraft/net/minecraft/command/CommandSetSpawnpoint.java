@@ -14,6 +14,7 @@ public class CommandSetSpawnpoint extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "spawnpoint";
@@ -22,6 +23,7 @@ public class CommandSetSpawnpoint extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
@@ -30,6 +32,7 @@ public class CommandSetSpawnpoint extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.spawnpoint.usage";
@@ -38,6 +41,7 @@ public class CommandSetSpawnpoint extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length > 1 && args.length < 4)
@@ -57,6 +61,7 @@ public class CommandSetSpawnpoint extends CommandBase
 		}
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		if (args.length == 1)
@@ -73,6 +78,7 @@ public class CommandSetSpawnpoint extends CommandBase
 	 * Return whether the specified command parameter index is a username
 	 * parameter.
 	 */
+	@Override
 	public boolean isUsernameIndex(String[] args, int index)
 	{
 		return index == 0;

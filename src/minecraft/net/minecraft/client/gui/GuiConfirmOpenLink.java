@@ -29,6 +29,7 @@ public class GuiConfirmOpenLink extends GuiYesNo
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		super.initGui();
@@ -42,6 +43,7 @@ public class GuiConfirmOpenLink extends GuiYesNo
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.id == 2)
@@ -63,6 +65,7 @@ public class GuiConfirmOpenLink extends GuiYesNo
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		super.drawScreen(mouseX, mouseY, partialTicks);

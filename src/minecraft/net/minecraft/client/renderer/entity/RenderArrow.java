@@ -17,6 +17,7 @@ public abstract class RenderArrow<T extends EntityArrow> extends Render<T>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		this.bindEntityTexture(entity);
@@ -39,7 +40,7 @@ public abstract class RenderArrow<T extends EntityArrow> extends Render<T>
 		float f7 = 0.3125F;
 		float f8 = 0.05625F;
 		GlStateManager.enableRescaleNormal();
-		float f9 = (float) entity.arrowShake - partialTicks;
+		float f9 = entity.arrowShake - partialTicks;
 
 		if (f9 > 0.0F)
 		{

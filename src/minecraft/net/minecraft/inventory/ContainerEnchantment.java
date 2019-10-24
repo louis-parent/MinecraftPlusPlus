@@ -46,11 +46,13 @@ public class ContainerEnchantment extends Container
 	{
 		this.tableInventory = new InventoryBasic("Enchant", true, 2)
 		{
+			@Override
 			public int getInventoryStackLimit()
 			{
 				return 64;
 			}
 
+			@Override
 			public void markDirty()
 			{
 				super.markDirty();
@@ -66,11 +68,13 @@ public class ContainerEnchantment extends Container
 		this.xpSeed = playerInv.player.getXPSeed();
 		this.addSlotToContainer(new Slot(this.tableInventory, 0, 15, 47)
 		{
+			@Override
 			public boolean isItemValid(ItemStack stack)
 			{
 				return true;
 			}
 
+			@Override
 			public int getSlotStackLimit()
 			{
 				return 1;
@@ -78,6 +82,7 @@ public class ContainerEnchantment extends Container
 		});
 		this.addSlotToContainer(new Slot(this.tableInventory, 1, 35, 47)
 		{
+			@Override
 			public boolean isItemValid(ItemStack stack)
 			{
 				return isItemStackEnchantable(stack) || stack.getItem() == Items.CARROT;
@@ -112,6 +117,7 @@ public class ContainerEnchantment extends Container
 		crafting.sendProgressBarUpdate(this, 9, this.worldClue[2]);
 	}
 
+	@Override
 	public void addListener(IContainerListener listener)
 	{
 		super.addListener(listener);
@@ -121,6 +127,7 @@ public class ContainerEnchantment extends Container
 	/**
 	 * Looks for changes made in the container, sends them to every listener.
 	 */
+	@Override
 	public void detectAndSendChanges()
 	{
 		super.detectAndSendChanges();
@@ -132,6 +139,7 @@ public class ContainerEnchantment extends Container
 		}
 	}
 
+	@Override
 	public void updateProgressBar(int id, int data)
 	{
 		if (id >= 0 && id <= 2)
@@ -159,6 +167,7 @@ public class ContainerEnchantment extends Container
 	/**
 	 * Callback for when the crafting matrix is changed.
 	 */
+	@Override
 	public void onCraftMatrixChanged(IInventory inventoryIn)
 	{
 		if (inventoryIn == this.tableInventory)
@@ -213,7 +222,7 @@ public class ContainerEnchantment extends Container
 						}
 					}
 
-					this.rand.setSeed((long) this.xpSeed);
+					this.rand.setSeed(this.xpSeed);
 
 					for (int i1 = 0; i1 < 3; ++i1)
 					{
@@ -261,6 +270,7 @@ public class ContainerEnchantment extends Container
 	 * Handles the given Button-click on the server, currently only used by
 	 * enchanting. Name is for legacy.
 	 */
+	@Override
 	public boolean enchantItem(EntityPlayer player, int id)
 	{
 		ItemStack itemstack = this.tableInventory.getStackInSlot(0);
@@ -336,7 +346,7 @@ public class ContainerEnchantment extends Container
 
 	private List<EnchantmentData> getEnchantmentList(ItemStack stack, int p_178148_2_, int p_178148_3_)
 	{
-		this.rand.setSeed((long) (this.xpSeed + p_178148_2_));
+		this.rand.setSeed(this.xpSeed + p_178148_2_);
 		List<EnchantmentData> list = EnchantmentHelper.buildEnchantmentList(this.rand, stack, p_178148_3_, false);
 
 		if (stack.getItem() == Items.BOOK && list.size() > 1)
@@ -356,6 +366,7 @@ public class ContainerEnchantment extends Container
 	/**
 	 * Called when the container is closed.
 	 */
+	@Override
 	public void onContainerClosed(EntityPlayer playerIn)
 	{
 		super.onContainerClosed(playerIn);
@@ -369,6 +380,7 @@ public class ContainerEnchantment extends Container
 	/**
 	 * Determines whether supplied player can use this container
 	 */
+	@Override
 	public boolean canInteractWith(EntityPlayer playerIn)
 	{
 		if (this.worldPointer.getBlockState(this.position).getBlock() != Blocks.ENCHANTING_TABLE)
@@ -377,13 +389,14 @@ public class ContainerEnchantment extends Container
 		}
 		else
 		{
-			return playerIn.getDistanceSq((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+			return playerIn.getDistanceSq(this.position.getX() + 0.5D, this.position.getY() + 0.5D, this.position.getZ() + 0.5D) <= 64.0D;
 		}
 	}
 
 	/**
 	 * Take a stack from the specified inventory slot.
 	 */
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
 		ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -417,19 +430,19 @@ public class ContainerEnchantment extends Container
 			}
 			else
 			{
-				if (((Slot) this.inventorySlots.get(0)).getHasStack() || !((Slot) this.inventorySlots.get(0)).isItemValid(itemstack1))
+				if (this.inventorySlots.get(0).getHasStack() || !this.inventorySlots.get(0).isItemValid(itemstack1))
 				{
 					return ItemStack.EMPTY_ITEM_STACK;
 				}
 
 				if (itemstack1.hasTagCompound() && itemstack1.getStackSize() == 1)
 				{
-					((Slot) this.inventorySlots.get(0)).putStack(itemstack1.copy());
+					this.inventorySlots.get(0).putStack(itemstack1.copy());
 					itemstack1.setStackSize(0);
 				}
 				else if (!itemstack1.isNotValid())
 				{
-					((Slot) this.inventorySlots.get(0)).putStack(new ItemStack(itemstack1.getItem(), 1, itemstack1.getMetadata()));
+					this.inventorySlots.get(0).putStack(new ItemStack(itemstack1.getItem(), 1, itemstack1.getMetadata()));
 					itemstack1.decreaseStackSize(1);
 				}
 			}

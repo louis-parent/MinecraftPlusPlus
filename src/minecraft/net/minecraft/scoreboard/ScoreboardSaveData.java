@@ -38,6 +38,7 @@ public class ScoreboardSaveData extends WorldSavedData
 	/**
 	 * reads in data from the NBTTagCompound into this MapDataBase
 	 */
+	@Override
 	public void readFromNBT(NBTTagCompound nbt)
 	{
 		if (this.theScoreboard == null)
@@ -202,6 +203,7 @@ public class ScoreboardSaveData extends WorldSavedData
 		}
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		if (this.theScoreboard == null)

@@ -30,6 +30,7 @@ public class DataFixer implements IDataFixer
 		return i >= 1139 ? compound : this.process(type, compound, i);
 	}
 
+	@Override
 	public NBTTagCompound process(IFixType type, NBTTagCompound compound, int versionIn)
 	{
 		if (versionIn < this.version)
@@ -43,7 +44,7 @@ public class DataFixer implements IDataFixer
 
 	private NBTTagCompound processFixes(IFixType type, NBTTagCompound compound, int versionIn)
 	{
-		List<IFixableData> list = (List) this.fixMap.get(type);
+		List<IFixableData> list = this.fixMap.get(type);
 
 		if (list != null)
 		{
@@ -63,13 +64,13 @@ public class DataFixer implements IDataFixer
 
 	private NBTTagCompound processWalkers(IFixType type, NBTTagCompound compound, int versionIn)
 	{
-		List<IDataWalker> list = (List) this.walkerMap.get(type);
+		List<IDataWalker> list = this.walkerMap.get(type);
 
 		if (list != null)
 		{
 			for (int i = 0; i < list.size(); ++i)
 			{
-				compound = ((IDataWalker) list.get(i)).process(this, compound, versionIn);
+				compound = list.get(i).process(this, compound, versionIn);
 			}
 		}
 
@@ -97,11 +98,11 @@ public class DataFixer implements IDataFixer
 		}
 		else
 		{
-			if (!list.isEmpty() && ((IFixableData) Util.getLastElement(list)).getFixVersion() > i)
+			if (!list.isEmpty() && Util.getLastElement(list).getFixVersion() > i)
 			{
 				for (int j = 0; j < list.size(); ++j)
 				{
-					if (((IFixableData) list.get(j)).getFixVersion() > i)
+					if (list.get(j).getFixVersion() > i)
 					{
 						list.add(j, fixable);
 						break;
@@ -117,7 +118,7 @@ public class DataFixer implements IDataFixer
 
 	private <V> List<V> getTypeList(Map<IFixType, List<V>> map, IFixType type)
 	{
-		List<V> list = (List) map.get(type);
+		List<V> list = map.get(type);
 
 		if (list == null)
 		{

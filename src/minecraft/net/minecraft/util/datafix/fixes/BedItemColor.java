@@ -6,11 +6,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class BedItemColor implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 1125;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("minecraft:bed".equals(compound.getString("id")) && compound.getShort("Damage") == 0)

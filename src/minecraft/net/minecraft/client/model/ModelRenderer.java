@@ -148,7 +148,7 @@ public class ModelRenderer
 						{
 							for (int k = 0; k < this.childModels.size(); ++k)
 							{
-								((ModelRenderer) this.childModels.get(k)).render(scale);
+								this.childModels.get(k).render(scale);
 							}
 						}
 					}
@@ -161,7 +161,7 @@ public class ModelRenderer
 						{
 							for (int j = 0; j < this.childModels.size(); ++j)
 							{
-								((ModelRenderer) this.childModels.get(j)).render(scale);
+								this.childModels.get(j).render(scale);
 							}
 						}
 
@@ -194,7 +194,7 @@ public class ModelRenderer
 					{
 						for (int i = 0; i < this.childModels.size(); ++i)
 						{
-							((ModelRenderer) this.childModels.get(i)).render(scale);
+							this.childModels.get(i).render(scale);
 						}
 					}
 
@@ -296,7 +296,7 @@ public class ModelRenderer
 
 		for (int i = 0; i < this.cubeList.size(); ++i)
 		{
-			((ModelBox) this.cubeList.get(i)).render(bufferbuilder, scale);
+			this.cubeList.get(i).render(bufferbuilder, scale);
 		}
 
 		GlStateManager.glEndList();
@@ -308,8 +308,8 @@ public class ModelRenderer
 	 */
 	public ModelRenderer setTextureSize(int textureWidthIn, int textureHeightIn)
 	{
-		this.textureWidth = (float) textureWidthIn;
-		this.textureHeight = (float) textureHeightIn;
+		this.textureWidth = textureWidthIn;
+		this.textureHeight = textureHeightIn;
 		return this;
 	}
 }

@@ -42,22 +42,26 @@ public class ContainerPlayer extends Container
 			final EntityEquipmentSlot entityequipmentslot = VALID_EQUIPMENT_SLOTS[k];
 			this.addSlotToContainer(new Slot(playerInventory, 36 + (3 - k), 8, 8 + k * 18)
 			{
+				@Override
 				public int getSlotStackLimit()
 				{
 					return 1;
 				}
 
+				@Override
 				public boolean isItemValid(ItemStack stack)
 				{
 					return entityequipmentslot == EntityLiving.getSlotForItemStack(stack);
 				}
 
+				@Override
 				public boolean canTakeStack(EntityPlayer playerIn)
 				{
 					ItemStack itemstack = this.getStack();
 					return !itemstack.isNotValid() && !playerIn.isCreative() && EnchantmentHelper.func_190938_b(itemstack) ? false : super.canTakeStack(playerIn);
 				}
 
+				@Override
 				@Nullable
 				public String getSlotTexture()
 				{
@@ -88,6 +92,7 @@ public class ContainerPlayer extends Container
 
 		this.addSlotToContainer(new Slot(playerInventory, 40, 77, 62)
 		{
+			@Override
 			@Nullable
 			public String getSlotTexture()
 			{
@@ -99,6 +104,7 @@ public class ContainerPlayer extends Container
 	/**
 	 * Callback for when the crafting matrix is changed.
 	 */
+	@Override
 	public void onCraftMatrixChanged(IInventory inventoryIn)
 	{
 		this.func_192389_a(this.thePlayer.world, this.thePlayer, this.craftMatrix, this.craftResult);
@@ -107,6 +113,7 @@ public class ContainerPlayer extends Container
 	/**
 	 * Called when the container is closed.
 	 */
+	@Override
 	public void onContainerClosed(EntityPlayer playerIn)
 	{
 		super.onContainerClosed(playerIn);
@@ -121,6 +128,7 @@ public class ContainerPlayer extends Container
 	/**
 	 * Determines whether supplied player can use this container
 	 */
+	@Override
 	public boolean canInteractWith(EntityPlayer playerIn)
 	{
 		return true;
@@ -129,6 +137,7 @@ public class ContainerPlayer extends Container
 	/**
 	 * Take a stack from the specified inventory slot.
 	 */
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
 		ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -163,7 +172,7 @@ public class ContainerPlayer extends Container
 					return ItemStack.EMPTY_ITEM_STACK;
 				}
 			}
-			else if (entityequipmentslot instanceof EntityArmorSlot && !((Slot) this.inventorySlots.get(8 - entityequipmentslot.getIndex())).getHasStack())
+			else if (entityequipmentslot instanceof EntityArmorSlot && !this.inventorySlots.get(8 - entityequipmentslot.getIndex()).getHasStack())
 			{
 				int i = 8 - entityequipmentslot.getIndex();
 
@@ -172,7 +181,7 @@ public class ContainerPlayer extends Container
 					return ItemStack.EMPTY_ITEM_STACK;
 				}
 			}
-			else if (entityequipmentslot == EntityHandSlot.OFFHAND && !((Slot) this.inventorySlots.get(45)).getHasStack())
+			else if (entityequipmentslot == EntityHandSlot.OFFHAND && !this.inventorySlots.get(45).getHasStack())
 			{
 				if (!this.mergeItemStack(itemstack1, 45, 46, false))
 				{
@@ -228,6 +237,7 @@ public class ContainerPlayer extends Container
 	 * (double-click) code. The stack passed in is null for the initial slot
 	 * that was double-clicked.
 	 */
+	@Override
 	public boolean canMergeSlot(ItemStack stack, Slot slotIn)
 	{
 		return slotIn.inventory != this.craftResult && super.canMergeSlot(stack, slotIn);

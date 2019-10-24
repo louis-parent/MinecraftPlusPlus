@@ -34,21 +34,25 @@ public class BlockEndPortal extends BlockContainer
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
+	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityEndPortal();
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return END_PORTAL_AABB;
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return side == EnumFacing.DOWN ? super.shouldSideBeRendered(blockState, blockAccess, pos, side) : false;
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 	}
@@ -57,11 +61,13 @@ public class BlockEndPortal extends BlockContainer
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -70,6 +76,7 @@ public class BlockEndPortal extends BlockContainer
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
@@ -78,6 +85,7 @@ public class BlockEndPortal extends BlockContainer
 	/**
 	 * Called When an Entity Collided with the Block
 	 */
+	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
 		if (!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && !worldIn.isRemote && entityIn.getEntityBoundingBox().intersectsWith(state.getBoundingBox(worldIn, pos).offset(pos)))
@@ -86,17 +94,19 @@ public class BlockEndPortal extends BlockContainer
 		}
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
-		double d0 = (double) ((float) pos.getX() + rand.nextFloat());
-		double d1 = (double) ((float) pos.getY() + 0.8F);
-		double d2 = (double) ((float) pos.getZ() + rand.nextFloat());
+		double d0 = pos.getX() + rand.nextFloat();
+		double d1 = pos.getY() + 0.8F;
+		double d2 = pos.getZ() + rand.nextFloat();
 		double d3 = 0.0D;
 		double d4 = 0.0D;
 		double d5 = 0.0D;
 		worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return ItemStack.EMPTY_ITEM_STACK;
@@ -105,11 +115,13 @@ public class BlockEndPortal extends BlockContainer
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
 		return MapColor.BLACK;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

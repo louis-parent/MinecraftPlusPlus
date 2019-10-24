@@ -21,6 +21,7 @@ public class AdvancementCommand extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "advancement";
@@ -29,6 +30,7 @@ public class AdvancementCommand extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
@@ -37,6 +39,7 @@ public class AdvancementCommand extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.advancement.usage";
@@ -45,6 +48,7 @@ public class AdvancementCommand extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length < 1)
@@ -226,6 +230,7 @@ public class AdvancementCommand extends CommandBase
 		}
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		if (args.length == 1)
@@ -312,6 +317,7 @@ public class AdvancementCommand extends CommandBase
 	 * Return whether the specified command parameter index is a username
 	 * parameter.
 	 */
+	@Override
 	public boolean isUsernameIndex(String[] args, int index)
 	{
 		return args.length > 1 && ("grant".equals(args[0]) || "revoke".equals(args[0]) || "test".equals(args[0])) && index == 1;
@@ -335,6 +341,7 @@ public class AdvancementCommand extends CommandBase
 	{
 		GRANT("grant")
 		{
+			@Override
 			protected boolean func_193537_a(EntityPlayerMP p_193537_1_, Advancement p_193537_2_)
 			{
 				AdvancementProgress advancementprogress = p_193537_1_.func_192039_O().func_192747_a(p_193537_2_);
@@ -354,6 +361,7 @@ public class AdvancementCommand extends CommandBase
 				}
 			}
 
+			@Override
 			protected boolean func_193535_a(EntityPlayerMP p_193535_1_, Advancement p_193535_2_, String p_193535_3_)
 			{
 				return p_193535_1_.func_192039_O().func_192750_a(p_193535_2_, p_193535_3_);
@@ -361,6 +369,7 @@ public class AdvancementCommand extends CommandBase
 		},
 		REVOKE("revoke")
 		{
+			@Override
 			protected boolean func_193537_a(EntityPlayerMP p_193537_1_, Advancement p_193537_2_)
 			{
 				AdvancementProgress advancementprogress = p_193537_1_.func_192039_O().func_192747_a(p_193537_2_);
@@ -380,6 +389,7 @@ public class AdvancementCommand extends CommandBase
 				}
 			}
 
+			@Override
 			protected boolean func_193535_a(EntityPlayerMP p_193535_1_, Advancement p_193535_2_, String p_193535_3_)
 			{
 				return p_193535_1_.func_192039_O().func_192744_b(p_193535_2_, p_193535_3_);

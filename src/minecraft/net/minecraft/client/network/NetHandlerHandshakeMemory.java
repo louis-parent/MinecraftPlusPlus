@@ -25,6 +25,7 @@ public class NetHandlerHandshakeMemory implements INetHandlerHandshakeServer
 	 * login-intention must pass a versioncheck or receive a disconnect
 	 * otherwise
 	 */
+	@Override
 	public void processHandshake(C00Handshake packetIn)
 	{
 		this.networkManager.setConnectionState(packetIn.getRequestedState());
@@ -35,6 +36,7 @@ public class NetHandlerHandshakeMemory implements INetHandlerHandshakeServer
 	 * Invoked when disconnecting, the parameter is a ChatComponent describing
 	 * the reason for termination
 	 */
+	@Override
 	public void onDisconnect(ITextComponent reason)
 	{
 	}

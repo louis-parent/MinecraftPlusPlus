@@ -51,6 +51,7 @@ public class ModelGuardian extends ModelBase
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
@@ -63,10 +64,11 @@ public class ModelGuardian extends ModelBase
 	 * the time(so that arms and legs swing back and forth) and par2 represents
 	 * how "far" arms and legs can swing at most.
 	 */
+	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
 		EntityGuardian entityguardian = (EntityGuardian) entityIn;
-		float f = ageInTicks - (float) entityguardian.ticksExisted;
+		float f = ageInTicks - entityguardian.ticksExisted;
 		this.guardianBody.rotateAngleY = netHeadYaw * 0.017453292F;
 		this.guardianBody.rotateAngleX = headPitch * 0.017453292F;
 		float[] afloat = new float[] { 1.75F, 0.25F, 0.0F, 0.0F, 0.5F, 0.5F, 0.5F, 0.5F, 1.25F, 0.75F, 0.0F, 0.0F };
@@ -82,9 +84,9 @@ public class ModelGuardian extends ModelBase
 			this.guardianSpines[i].rotateAngleX = (float) Math.PI * afloat[i];
 			this.guardianSpines[i].rotateAngleY = (float) Math.PI * afloat1[i];
 			this.guardianSpines[i].rotateAngleZ = (float) Math.PI * afloat2[i];
-			this.guardianSpines[i].rotationPointX = afloat3[i] * (1.0F + MathHelper.cos(ageInTicks * 1.5F + (float) i) * 0.01F - f1);
-			this.guardianSpines[i].rotationPointY = 16.0F + afloat4[i] * (1.0F + MathHelper.cos(ageInTicks * 1.5F + (float) i) * 0.01F - f1);
-			this.guardianSpines[i].rotationPointZ = afloat5[i] * (1.0F + MathHelper.cos(ageInTicks * 1.5F + (float) i) * 0.01F - f1);
+			this.guardianSpines[i].rotationPointX = afloat3[i] * (1.0F + MathHelper.cos(ageInTicks * 1.5F + i) * 0.01F - f1);
+			this.guardianSpines[i].rotationPointY = 16.0F + afloat4[i] * (1.0F + MathHelper.cos(ageInTicks * 1.5F + i) * 0.01F - f1);
+			this.guardianSpines[i].rotationPointZ = afloat5[i] * (1.0F + MathHelper.cos(ageInTicks * 1.5F + i) * 0.01F - f1);
 		}
 
 		this.guardianEye.rotationPointZ = -8.25F;

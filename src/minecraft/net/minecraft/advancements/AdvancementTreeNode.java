@@ -231,7 +231,7 @@ public class AdvancementTreeNode
 
 	private void func_192316_a(AdvancementTreeNode p_192316_1_, float p_192316_2_)
 	{
-		float f = (float) (p_192316_1_.field_192331_d - this.field_192331_d);
+		float f = p_192316_1_.field_192331_d - this.field_192331_d;
 
 		if (f != 0.0F)
 		{
@@ -253,7 +253,7 @@ public class AdvancementTreeNode
 	{
 		if (this.field_192328_a.func_192068_c() != null)
 		{
-			this.field_192328_a.func_192068_c().func_192292_a((float) this.field_192335_h, this.field_192336_i);
+			this.field_192328_a.func_192068_c().func_192292_a(this.field_192335_h, this.field_192336_i);
 		}
 
 		if (!this.field_192332_e.isEmpty())

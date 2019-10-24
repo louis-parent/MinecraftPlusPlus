@@ -5,9 +5,6 @@ import fr.minecraftpp.generator.item.LighterUse;
 import fr.minecraftpp.generator.item.food.IFood;
 import fr.minecraftpp.generator.item.food.NotFood;
 import fr.minecraftpp.language.ModLanguage;
-import fr.minecraftpp.renderer.ModModelManager;
-import fr.minecraftpp.renderer.ModRenderItem;
-import fr.minecraftpp.util.NameGenerator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,12 +30,12 @@ public class DynamicItem extends Item implements IDynamicItem
 	private boolean putsFire;
 	private IFood food;
 	
-	public DynamicItem(int textureId, boolean hasEffect, int fuelAmount, boolean isEnchantCurrency, boolean putsFire)
+	public DynamicItem(String typeName, int textureId, boolean hasEffect, int fuelAmount, boolean isEnchantCurrency, boolean putsFire)
 	{
-		this(textureId, hasEffect, fuelAmount, isEnchantCurrency, putsFire, new NotFood());
+		this(typeName, textureId, hasEffect, fuelAmount, isEnchantCurrency, putsFire, new NotFood());
 	}
 
-	public DynamicItem(int textureId, boolean hasEffect, int fuelAmount, boolean isEnchantCurrency, boolean putsFire, IFood food)
+	public DynamicItem(String typeName, int textureId, boolean hasEffect, int fuelAmount, boolean isEnchantCurrency, boolean putsFire, IFood food)
 	{
 		super();
 				
@@ -50,9 +47,8 @@ public class DynamicItem extends Item implements IDynamicItem
 		
 		this.setCreativeTab(CreativeTabs.MATERIALS);
 		
-		String name = NameGenerator.generateName();
-		this.setUnlocalizedName(name);
-		this.ID = name;
+		this.setUnlocalizedName(typeName);
+		this.ID = typeName;
 		
 		this.TEXTURE_ID = textureId;
 		

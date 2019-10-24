@@ -27,6 +27,7 @@ public class EntityMagmaCube extends EntitySlime
 		EntityLiving.registerFixesMob(fixer, EntityMagmaCube.class);
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -37,6 +38,7 @@ public class EntityMagmaCube extends EntitySlime
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		return this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
@@ -45,17 +47,20 @@ public class EntityMagmaCube extends EntitySlime
 	/**
 	 * Checks that the entity is not colliding with any blocks / liquids
 	 */
+	@Override
 	public boolean isNotColliding()
 	{
 		return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
 	}
 
+	@Override
 	protected void setSlimeSize(int size, boolean p_70799_2_)
 	{
 		super.setSlimeSize(size, p_70799_2_);
-		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue((double) (size * 3));
+		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(size * 3);
 	}
 
+	@Override
 	public int getBrightnessForRender()
 	{
 		return 15728880;
@@ -64,21 +69,25 @@ public class EntityMagmaCube extends EntitySlime
 	/**
 	 * Gets how bright this entity is.
 	 */
+	@Override
 	public float getBrightness()
 	{
 		return 1.0F;
 	}
 
+	@Override
 	protected EnumParticleTypes getParticleType()
 	{
 		return EnumParticleTypes.FLAME;
 	}
 
+	@Override
 	protected EntitySlime createInstance()
 	{
 		return new EntityMagmaCube(this.world);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -89,6 +98,7 @@ public class EntityMagmaCube extends EntitySlime
 	 * Returns true if the entity is on fire. Used by render to add the fire
 	 * effect on rendering.
 	 */
+	@Override
 	public boolean isBurning()
 	{
 		return false;
@@ -97,11 +107,13 @@ public class EntityMagmaCube extends EntitySlime
 	/**
 	 * Gets the amount of time the slime needs to wait between jumps.
 	 */
+	@Override
 	protected int getJumpDelay()
 	{
 		return super.getJumpDelay() * 4;
 	}
 
+	@Override
 	protected void alterSquishAmount()
 	{
 		this.squishAmount *= 0.9F;
@@ -110,18 +122,21 @@ public class EntityMagmaCube extends EntitySlime
 	/**
 	 * Causes this entity to do an upwards motion (jumping).
 	 */
+	@Override
 	protected void jump()
 	{
-		this.motionY = (double) (0.42F + (float) this.getSlimeSize() * 0.1F);
+		this.motionY = 0.42F + this.getSlimeSize() * 0.1F;
 		this.isAirBorne = true;
 	}
 
+	@Override
 	protected void handleJumpLava()
 	{
-		this.motionY = (double) (0.22F + (float) this.getSlimeSize() * 0.05F);
+		this.motionY = 0.22F + this.getSlimeSize() * 0.05F;
 		this.isAirBorne = true;
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 	}
@@ -130,6 +145,7 @@ public class EntityMagmaCube extends EntitySlime
 	 * Indicates weather the slime is able to damage the player (based upon the
 	 * slime's size)
 	 */
+	@Override
 	protected boolean canDamagePlayer()
 	{
 		return true;
@@ -139,26 +155,31 @@ public class EntityMagmaCube extends EntitySlime
 	 * Gets the amount of damage dealt to the player when "attacked" by the
 	 * slime.
 	 */
+	@Override
 	protected int getAttackStrength()
 	{
 		return super.getAttackStrength() + 2;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return this.isSmallSlime() ? SoundEvents.ENTITY_SMALL_MAGMACUBE_HURT : SoundEvents.ENTITY_MAGMACUBE_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return this.isSmallSlime() ? SoundEvents.ENTITY_SMALL_MAGMACUBE_DEATH : SoundEvents.ENTITY_MAGMACUBE_DEATH;
 	}
 
+	@Override
 	protected SoundEvent getSquishSound()
 	{
 		return this.isSmallSlime() ? SoundEvents.ENTITY_SMALL_MAGMACUBE_SQUISH : SoundEvents.ENTITY_MAGMACUBE_SQUISH;
 	}
 
+	@Override
 	protected SoundEvent getJumpSound()
 	{
 		return SoundEvents.ENTITY_MAGMACUBE_JUMP;

@@ -28,6 +28,7 @@ public class EntityZombieHorse extends AbstractHorse
 		AbstractHorse.func_190683_c(p_190693_0_, EntityZombieHorse.class);
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -39,35 +40,41 @@ public class EntityZombieHorse extends AbstractHorse
 	/**
 	 * Get this Entity's EnumCreatureAttribute
 	 */
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		super.getAmbientSound();
 		return SoundEvents.ENTITY_ZOMBIE_HORSE_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		super.getDeathSound();
 		return SoundEvents.ENTITY_ZOMBIE_HORSE_DEATH;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		super.getHurtSound(p_184601_1_);
 		return SoundEvents.ENTITY_ZOMBIE_HORSE_HURT;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.ENTITIES_ZOMBIE_HORSE;
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);

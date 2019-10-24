@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 
 public class WorldGenVines extends WorldGenerator
 {
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		for (; position.getY() < 128; position = position.up())

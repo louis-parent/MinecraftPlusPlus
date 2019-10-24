@@ -46,6 +46,7 @@ public class ContainerMerchant extends Container
 	/**
 	 * Callback for when the crafting matrix is changed.
 	 */
+	@Override
 	public void onCraftMatrixChanged(IInventory inventoryIn)
 	{
 		this.merchantInventory.resetRecipeAndSlots();
@@ -60,6 +61,7 @@ public class ContainerMerchant extends Container
 	/**
 	 * Determines whether supplied player can use this container
 	 */
+	@Override
 	public boolean canInteractWith(EntityPlayer playerIn)
 	{
 		return this.theMerchant.getCustomer() == playerIn;
@@ -68,6 +70,7 @@ public class ContainerMerchant extends Container
 	/**
 	 * Take a stack from the specified inventory slot.
 	 */
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
 		ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -129,6 +132,7 @@ public class ContainerMerchant extends Container
 	/**
 	 * Called when the container is closed.
 	 */
+	@Override
 	public void onContainerClosed(EntityPlayer playerIn)
 	{
 		super.onContainerClosed(playerIn);

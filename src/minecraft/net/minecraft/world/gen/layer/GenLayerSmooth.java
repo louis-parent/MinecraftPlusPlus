@@ -13,6 +13,7 @@ public class GenLayerSmooth extends GenLayer
 	 * interpreted as temperatures, rainfall amounts, or biomeList[] indices
 	 * based on the particular GenLayer subclass.
 	 */
+	@Override
 	public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
 	{
 		int i = areaX - 1;
@@ -34,7 +35,7 @@ public class GenLayerSmooth extends GenLayer
 
 				if (k1 == l1 && i2 == j2)
 				{
-					this.initChunkSeed((long) (j1 + areaX), (long) (i1 + areaY));
+					this.initChunkSeed(j1 + areaX, i1 + areaY);
 
 					if (this.nextInt(2) == 0)
 					{

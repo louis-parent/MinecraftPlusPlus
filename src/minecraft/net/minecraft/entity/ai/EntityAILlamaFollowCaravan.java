@@ -21,6 +21,7 @@ public class EntityAILlamaFollowCaravan extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (!this.field_190859_a.getLeashed() && !this.field_190859_a.func_190718_dR())
@@ -87,6 +88,7 @@ public class EntityAILlamaFollowCaravan extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		if (this.field_190859_a.func_190718_dR() && this.field_190859_a.func_190716_dS().isEntityAlive() && this.func_190858_a(this.field_190859_a, 0))
@@ -124,6 +126,7 @@ public class EntityAILlamaFollowCaravan extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.field_190859_a.func_190709_dP();
@@ -133,12 +136,13 @@ public class EntityAILlamaFollowCaravan extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		if (this.field_190859_a.func_190718_dR())
 		{
 			EntityLlama entityllama = this.field_190859_a.func_190716_dS();
-			double d0 = (double) this.field_190859_a.getDistanceToEntity(entityllama);
+			double d0 = this.field_190859_a.getDistanceToEntity(entityllama);
 			float f = 2.0F;
 			Vec3d vec3d = (new Vec3d(entityllama.posX - this.field_190859_a.posX, entityllama.posY - this.field_190859_a.posY, entityllama.posZ - this.field_190859_a.posZ)).normalize().scale(Math.max(d0 - 2.0D, 0.0D));
 			this.field_190859_a.getNavigator().tryMoveToXYZ(this.field_190859_a.posX + vec3d.xCoord, this.field_190859_a.posY + vec3d.yCoord, this.field_190859_a.posZ + vec3d.zCoord, this.field_190860_b);

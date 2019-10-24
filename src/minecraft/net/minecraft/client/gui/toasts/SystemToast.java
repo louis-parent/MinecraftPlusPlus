@@ -20,6 +20,7 @@ public class SystemToast implements IToast
 		this.field_193661_e = p_i47488_3_ == null ? null : p_i47488_3_.getUnformattedText();
 	}
 
+	@Override
 	public IToast.Visibility func_193653_a(GuiToast p_193653_1_, long p_193653_2_)
 	{
 		if (this.field_193663_g)
@@ -52,6 +53,7 @@ public class SystemToast implements IToast
 		this.field_193663_g = true;
 	}
 
+	@Override
 	public SystemToast.Type func_193652_b()
 	{
 		return this.field_193659_c;
@@ -59,7 +61,7 @@ public class SystemToast implements IToast
 
 	public static void func_193657_a(GuiToast p_193657_0_, SystemToast.Type p_193657_1_, ITextComponent p_193657_2_, @Nullable ITextComponent p_193657_3_)
 	{
-		SystemToast systemtoast = (SystemToast) p_193657_0_.func_192990_a(SystemToast.class, p_193657_1_);
+		SystemToast systemtoast = p_193657_0_.func_192990_a(SystemToast.class, p_193657_1_);
 
 		if (systemtoast == null)
 		{

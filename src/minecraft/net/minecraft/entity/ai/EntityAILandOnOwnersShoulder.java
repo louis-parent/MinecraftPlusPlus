@@ -18,6 +18,7 @@ public class EntityAILandOnOwnersShoulder extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		EntityLivingBase entitylivingbase = this.field_192382_a.getOwner();
@@ -29,6 +30,7 @@ public class EntityAILandOnOwnersShoulder extends EntityAIBase
 	 * Determine if this AI Task is interruptible by a higher (= lower value)
 	 * priority task. All vanilla AITask have this value set to true.
 	 */
+	@Override
 	public boolean isInterruptible()
 	{
 		return !this.field_192384_c;
@@ -37,6 +39,7 @@ public class EntityAILandOnOwnersShoulder extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.field_192383_b = (EntityPlayer) this.field_192382_a.getOwner();
@@ -46,6 +49,7 @@ public class EntityAILandOnOwnersShoulder extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		if (!this.field_192384_c && !this.field_192382_a.isSitting() && !this.field_192382_a.getLeashed())

@@ -56,7 +56,7 @@ public class ShaderLoader
 
 	public static ShaderLoader loadShader(IResourceManager resourceManager, ShaderLoader.ShaderType type, String filename) throws IOException
 	{
-		ShaderLoader shaderloader = (ShaderLoader) type.getLoadedShaders().get(filename);
+		ShaderLoader shaderloader = type.getLoadedShaders().get(filename);
 
 		if (shaderloader == null)
 		{
@@ -86,7 +86,7 @@ public class ShaderLoader
 			}
 			finally
 			{
-				IOUtils.closeQuietly((Closeable) iresource);
+				IOUtils.closeQuietly(iresource);
 			}
 		}
 

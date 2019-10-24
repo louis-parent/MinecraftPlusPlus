@@ -42,6 +42,7 @@ public class EntityDamageSource extends DamageSource
 		return this.isThornsDamage;
 	}
 
+	@Override
 	@Nullable
 	public Entity getEntity()
 	{
@@ -51,6 +52,7 @@ public class EntityDamageSource extends DamageSource
 	/**
 	 * Gets the death message that is displayed when the player dies
 	 */
+	@Override
 	public ITextComponent getDeathMessage(EntityLivingBase entityLivingBaseIn)
 	{
 		ItemStack itemstack = this.damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase) this.damageSourceEntity).getHeldItemMainhand() : ItemStack.EMPTY_ITEM_STACK;
@@ -63,11 +65,13 @@ public class EntityDamageSource extends DamageSource
 	 * Return whether this damage source will have its damage amount scaled
 	 * based on the current difficulty.
 	 */
+	@Override
 	public boolean isDifficultyScaled()
 	{
 		return this.damageSourceEntity != null && this.damageSourceEntity instanceof EntityLivingBase && !(this.damageSourceEntity instanceof EntityPlayer);
 	}
 
+	@Override
 	@Nullable
 
 	/**

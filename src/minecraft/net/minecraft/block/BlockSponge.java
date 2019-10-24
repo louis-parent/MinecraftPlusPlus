@@ -31,6 +31,7 @@ public class BlockSponge extends Block implements IAbsorbingBlock
 	/**
 	 * Gets the localized name of this block. Used for the statistics page.
 	 */
+	@Override
 	public String getLocalizedName()
 	{
 		return I18n.translateToLocal(this.getUnlocalizedName() + ".dry.name");
@@ -41,15 +42,17 @@ public class BlockSponge extends Block implements IAbsorbingBlock
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((Boolean) state.getValue(WET)).booleanValue() ? 1 : 0;
+		return state.getValue(WET).booleanValue() ? 1 : 0;
 	}
 
 	/**
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		this.tryAbsorb(worldIn, pos, state);
@@ -61,6 +64,7 @@ public class BlockSponge extends Block implements IAbsorbingBlock
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		this.tryAbsorb(worldIn, pos, state);
@@ -71,6 +75,7 @@ public class BlockSponge extends Block implements IAbsorbingBlock
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		tab.add(new ItemStack(this, 1, 0));
@@ -80,6 +85,7 @@ public class BlockSponge extends Block implements IAbsorbingBlock
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(WET, Boolean.valueOf((meta & 1) == 1));
@@ -88,27 +94,30 @@ public class BlockSponge extends Block implements IAbsorbingBlock
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Boolean) state.getValue(WET)).booleanValue() ? 1 : 0;
+		return state.getValue(WET).booleanValue() ? 1 : 0;
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { WET });
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
-		if (((Boolean) stateIn.getValue(WET)).booleanValue())
+		if (stateIn.getValue(WET).booleanValue())
 		{
 			EnumFacing enumfacing = EnumFacing.random(rand);
 
 			if (enumfacing != EnumFacing.UP && !worldIn.getBlockState(pos.offset(enumfacing)).isFullyOpaque())
 			{
-				double d0 = (double) pos.getX();
-				double d1 = (double) pos.getY();
-				double d2 = (double) pos.getZ();
+				double d0 = pos.getX();
+				double d1 = pos.getY();
+				double d2 = pos.getZ();
 
 				if (enumfacing == EnumFacing.DOWN)
 				{
@@ -156,7 +165,7 @@ public class BlockSponge extends Block implements IAbsorbingBlock
 	@Override
 	public boolean tryAbsorb(World world, BlockPos pos, IBlockState state)
 	{
-		if (!((Boolean) state.getValue(WET)).booleanValue() && IAbsorbingBlock.super.tryAbsorb(world, pos, state))
+		if (!state.getValue(WET).booleanValue() && IAbsorbingBlock.super.tryAbsorb(world, pos, state))
 		{
 			world.setBlockState(pos, state.withProperty(WET, Boolean.valueOf(true)), 2);
 			return true;

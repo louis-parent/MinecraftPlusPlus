@@ -98,7 +98,7 @@ public class SharedMonsterAttributes
 
 			if (iattributeinstance == null)
 			{
-				LOGGER.warn("Ignoring unknown attribute '{}'", (Object) nbttagcompound.getString("Name"));
+				LOGGER.warn("Ignoring unknown attribute '{}'", nbttagcompound.getString("Name"));
 			}
 			else
 			{
@@ -149,7 +149,7 @@ public class SharedMonsterAttributes
 		}
 		catch (Exception exception)
 		{
-			LOGGER.warn("Unable to create attribute: {}", (Object) exception.getMessage());
+			LOGGER.warn("Unable to create attribute: {}", exception.getMessage());
 			return null;
 		}
 	}

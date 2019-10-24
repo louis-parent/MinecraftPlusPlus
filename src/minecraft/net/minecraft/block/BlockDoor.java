@@ -47,11 +47,12 @@ public class BlockDoor extends Block
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPEN, Boolean.valueOf(false)).withProperty(HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(POWERED, Boolean.valueOf(false)).withProperty(HALF, BlockDoor.EnumDoorHalf.LOWER));
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		state = state.getActualState(source, pos);
-		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
-		boolean flag = !((Boolean) state.getValue(OPEN)).booleanValue();
+		EnumFacing enumfacing = state.getValue(FACING);
+		boolean flag = !state.getValue(OPEN).booleanValue();
 		boolean flag1 = state.getValue(HINGE) == BlockDoor.EnumHingePosition.RIGHT;
 
 		switch (enumfacing)
@@ -74,6 +75,7 @@ public class BlockDoor extends Block
 	/**
 	 * Gets the localized name of this block. Used for the statistics page.
 	 */
+	@Override
 	public String getLocalizedName()
 	{
 		return I18n.translateToLocal((this.getUnlocalizedName() + ".name").replaceAll("tile", "item"));
@@ -83,16 +85,19 @@ public class BlockDoor extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
 	{
 		return isOpen(combineMetadata(worldIn, pos));
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -111,6 +116,7 @@ public class BlockDoor extends Block
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
 		if (state.getBlock() == Blocks.IRON_DOOR)
@@ -143,6 +149,7 @@ public class BlockDoor extends Block
 		}
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		if (this.blockMaterial == Material.IRON)
@@ -163,7 +170,7 @@ public class BlockDoor extends Block
 				state = iblockstate.cycleProperty(OPEN);
 				worldIn.setBlockState(blockpos, state, 10);
 				worldIn.markBlockRangeForRenderUpdate(blockpos, pos);
-				worldIn.playEvent(playerIn, ((Boolean) state.getValue(OPEN)).booleanValue() ? this.getOpenSound() : this.getCloseSound(), pos, 0);
+				worldIn.playEvent(playerIn, state.getValue(OPEN).booleanValue() ? this.getOpenSound() : this.getCloseSound(), pos, 0);
 				return true;
 			}
 		}
@@ -178,7 +185,7 @@ public class BlockDoor extends Block
 			BlockPos blockpos = iblockstate.getValue(HALF) == BlockDoor.EnumDoorHalf.LOWER ? pos : pos.down();
 			IBlockState iblockstate1 = pos == blockpos ? iblockstate : worldIn.getBlockState(blockpos);
 
-			if (iblockstate1.getBlock() == this && ((Boolean) iblockstate1.getValue(OPEN)).booleanValue() != open)
+			if (iblockstate1.getBlock() == this && iblockstate1.getValue(OPEN).booleanValue() != open)
 			{
 				worldIn.setBlockState(blockpos, iblockstate1.withProperty(OPEN, Boolean.valueOf(open)), 10);
 				worldIn.markBlockRangeForRenderUpdate(blockpos, pos);
@@ -193,6 +200,7 @@ public class BlockDoor extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER)
@@ -243,11 +251,11 @@ public class BlockDoor extends Block
 			{
 				boolean flag = worldIn.isBlockPowered(pos) || worldIn.isBlockPowered(blockpos1);
 
-				if (blockIn != this && (flag || blockIn.getDefaultState().canProvidePower()) && flag != ((Boolean) iblockstate1.getValue(POWERED)).booleanValue())
+				if (blockIn != this && (flag || blockIn.getDefaultState().canProvidePower()) && flag != iblockstate1.getValue(POWERED).booleanValue())
 				{
 					worldIn.setBlockState(blockpos1, iblockstate1.withProperty(POWERED, Boolean.valueOf(flag)), 2);
 
-					if (flag != ((Boolean) state.getValue(OPEN)).booleanValue())
+					if (flag != state.getValue(OPEN).booleanValue())
 					{
 						worldIn.setBlockState(pos, state.withProperty(OPEN, Boolean.valueOf(flag)), 2);
 						worldIn.markBlockRangeForRenderUpdate(pos, pos);
@@ -261,11 +269,13 @@ public class BlockDoor extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER ? Items.EMPTY_ITEM : this.getItem();
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		if (pos.getY() >= 255)
@@ -278,6 +288,7 @@ public class BlockDoor extends Block
 		}
 	}
 
+	@Override
 	public EnumPushReaction getMobilityFlag(IBlockState state)
 	{
 		return EnumPushReaction.DESTROY;
@@ -299,6 +310,7 @@ public class BlockDoor extends Block
 		return removeHalfBit(k) | (flag ? 8 : 0) | (flag1 ? 16 : 0) | (flag2 ? 32 : 0);
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(this.getItem());
@@ -332,6 +344,7 @@ public class BlockDoor extends Block
 		}
 	}
 
+	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
 		BlockPos blockpos = pos.down();
@@ -353,6 +366,7 @@ public class BlockDoor extends Block
 		}
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
@@ -363,6 +377,7 @@ public class BlockDoor extends Block
 	 * applies properties not visible in the metadata, such as fence
 	 * connections.
 	 */
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		if (state.getValue(HALF) == BlockDoor.EnumDoorHalf.LOWER)
@@ -391,23 +406,26 @@ public class BlockDoor extends Block
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.getValue(HALF) != BlockDoor.EnumDoorHalf.LOWER ? state : state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.getValue(HALF) != BlockDoor.EnumDoorHalf.LOWER ? state : state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return mirrorIn == Mirror.NONE ? state : state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING))).cycleProperty(HINGE);
+		return mirrorIn == Mirror.NONE ? state : state.withRotation(mirrorIn.toRotation(state.getValue(FACING))).cycleProperty(HINGE);
 	}
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return (meta & 8) > 0 ? this.getDefaultState().withProperty(HALF, BlockDoor.EnumDoorHalf.UPPER).withProperty(HINGE, (meta & 1) > 0 ? BlockDoor.EnumHingePosition.RIGHT : BlockDoor.EnumHingePosition.LEFT).withProperty(POWERED, Boolean.valueOf((meta & 2) > 0)) : this.getDefaultState().withProperty(HALF, BlockDoor.EnumDoorHalf.LOWER).withProperty(FACING, EnumFacing.getHorizontal(meta & 3).rotateYCCW()).withProperty(OPEN, Boolean.valueOf((meta & 4) > 0));
@@ -416,6 +434,7 @@ public class BlockDoor extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
@@ -429,16 +448,16 @@ public class BlockDoor extends Block
 				i |= 1;
 			}
 
-			if (((Boolean) state.getValue(POWERED)).booleanValue())
+			if (state.getValue(POWERED).booleanValue())
 			{
 				i |= 2;
 			}
 		}
 		else
 		{
-			i = i | ((EnumFacing) state.getValue(FACING)).rotateY().getHorizontalIndex();
+			i = i | state.getValue(FACING).rotateY().getHorizontalIndex();
 
-			if (((Boolean) state.getValue(OPEN)).booleanValue())
+			if (state.getValue(OPEN).booleanValue())
 			{
 				i |= 4;
 			}
@@ -477,11 +496,13 @@ public class BlockDoor extends Block
 		return (meta & 8) != 0;
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { HALF, FACING, OPEN, HINGE, POWERED });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;
@@ -491,11 +512,13 @@ public class BlockDoor extends Block
 	{
 		UPPER, LOWER;
 
+		@Override
 		public String toString()
 		{
 			return this.getName();
 		}
 
+		@Override
 		public String getName()
 		{
 			return this == UPPER ? "upper" : "lower";
@@ -506,11 +529,13 @@ public class BlockDoor extends Block
 	{
 		LEFT, RIGHT;
 
+		@Override
 		public String toString()
 		{
 			return this.getName();
 		}
 
+		@Override
 		public String getName()
 		{
 			return this == LEFT ? "left" : "right";

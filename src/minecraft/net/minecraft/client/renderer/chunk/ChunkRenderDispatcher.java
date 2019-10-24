@@ -44,7 +44,7 @@ public class ChunkRenderDispatcher
 
 	public ChunkRenderDispatcher()
 	{
-		int i = Math.max(1, (int) ((double) Runtime.getRuntime().maxMemory() * 0.3D) / 10485760);
+		int i = Math.max(1, (int) (Runtime.getRuntime().maxMemory() * 0.3D) / 10485760);
 		int j = Math.max(1, MathHelper.clamp(Runtime.getRuntime().availableProcessors(), 1, i / 5));
 		this.countRenderBuilders = MathHelper.clamp(j * 10, 1, i);
 
@@ -130,6 +130,7 @@ public class ChunkRenderDispatcher
 			final ChunkCompileTaskGenerator chunkcompiletaskgenerator = chunkRenderer.makeCompileTaskChunk();
 			chunkcompiletaskgenerator.addFinishRunnable(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					ChunkRenderDispatcher.this.queueChunkUpdates.remove(chunkcompiletaskgenerator);
@@ -234,6 +235,7 @@ public class ChunkRenderDispatcher
 
 			chunkcompiletaskgenerator.addFinishRunnable(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					ChunkRenderDispatcher.this.queueChunkUpdates.remove(chunkcompiletaskgenerator);
@@ -269,6 +271,7 @@ public class ChunkRenderDispatcher
 		{
 			ListenableFutureTask<Object> listenablefuturetask = ListenableFutureTask.<Object>create(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					ChunkRenderDispatcher.this.uploadChunk(p_188245_1_, p_188245_2_, p_188245_3_, p_188245_4_, p_188245_5_);
@@ -335,7 +338,7 @@ public class ChunkRenderDispatcher
 			}
 			catch (InterruptedException interruptedexception)
 			{
-				LOGGER.warn("Interrupted whilst waiting for worker to die", (Throwable) interruptedexception);
+				LOGGER.warn("Interrupted whilst waiting for worker to die", interruptedexception);
 			}
 		}
 
@@ -358,6 +361,7 @@ public class ChunkRenderDispatcher
 			this.distanceSq = p_i46994_3_;
 		}
 
+		@Override
 		public int compareTo(ChunkRenderDispatcher.PendingUpload p_compareTo_1_)
 		{
 			return Doubles.compare(this.distanceSq, p_compareTo_1_.distanceSq);

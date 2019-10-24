@@ -66,6 +66,7 @@ public class ServerPinger
 			private boolean receivedStatus;
 			private long pingSentAt;
 
+			@Override
 			public void handleServerInfo(SPacketServerInfo packetIn)
 			{
 				if (this.receivedStatus)
@@ -157,6 +158,7 @@ public class ServerPinger
 				}
 			}
 
+			@Override
 			public void handlePong(SPacketPong packetIn)
 			{
 				long i = this.pingSentAt;
@@ -165,6 +167,7 @@ public class ServerPinger
 				networkmanager.closeChannel(new TextComponentString("Finished"));
 			}
 
+			@Override
 			public void onDisconnect(ITextComponent reason)
 			{
 				if (!this.successful)
@@ -191,8 +194,9 @@ public class ServerPinger
 	private void tryCompatibilityPing(final ServerData server)
 	{
 		final ServerAddress serveraddress = ServerAddress.fromString(server.serverIP);
-		((Bootstrap) ((Bootstrap) ((Bootstrap) (new Bootstrap()).group(NetworkManager.CLIENT_NIO_EVENTLOOP.getValue())).handler(new ChannelInitializer<Channel>()
+		(new Bootstrap()).group(NetworkManager.CLIENT_NIO_EVENTLOOP.getValue()).handler(new ChannelInitializer<Channel>()
 		{
+			@Override
 			protected void initChannel(Channel p_initChannel_1_) throws Exception
 			{
 				try
@@ -206,6 +210,7 @@ public class ServerPinger
 
 				p_initChannel_1_.pipeline().addLast(new SimpleChannelInboundHandler<ByteBuf>()
 				{
+					@Override
 					public void channelActive(ChannelHandlerContext p_channelActive_1_) throws Exception
 					{
 						super.channelActive(p_channelActive_1_);
@@ -243,6 +248,7 @@ public class ServerPinger
 						}
 					}
 
+					@Override
 					protected void channelRead0(ChannelHandlerContext p_channelRead0_1_, ByteBuf p_channelRead0_2_) throws Exception
 					{
 						short short1 = p_channelRead0_2_.readUnsignedByte();
@@ -250,7 +256,7 @@ public class ServerPinger
 						if (short1 == 255)
 						{
 							String s = new String(p_channelRead0_2_.readBytes(p_channelRead0_2_.readShort() * 2).array(), StandardCharsets.UTF_16BE);
-							String[] astring = (String[]) Iterables.toArray(ServerPinger.PING_RESPONSE_SPLITTER.split(s), String.class);
+							String[] astring = Iterables.toArray(ServerPinger.PING_RESPONSE_SPLITTER.split(s), String.class);
 
 							if ("\u00a71".equals(astring[0]))
 							{
@@ -269,13 +275,14 @@ public class ServerPinger
 						p_channelRead0_1_.close();
 					}
 
+					@Override
 					public void exceptionCaught(ChannelHandlerContext p_exceptionCaught_1_, Throwable p_exceptionCaught_2_) throws Exception
 					{
 						p_exceptionCaught_1_.close();
 					}
 				});
 			}
-		})).channel(NioSocketChannel.class)).connect(serveraddress.getIP(), serveraddress.getPort());
+		}).channel(NioSocketChannel.class).connect(serveraddress.getIP(), serveraddress.getPort());
 	}
 
 	public void pingPendingNetworks()

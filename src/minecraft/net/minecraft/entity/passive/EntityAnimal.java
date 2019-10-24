@@ -30,6 +30,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 		super(worldIn);
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		if (this.getGrowingAge() != 0)
@@ -45,6 +46,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -63,7 +65,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 				double d0 = this.rand.nextGaussian() * 0.02D;
 				double d1 = this.rand.nextGaussian() * 0.02D;
 				double d2 = this.rand.nextGaussian() * 0.02D;
-				this.world.spawnParticle(EnumParticleTypes.HEART, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
+				this.world.spawnParticle(EnumParticleTypes.HEART, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
 			}
 		}
 	}
@@ -71,6 +73,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -84,6 +87,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 		}
 	}
 
+	@Override
 	public float getBlockPathWeight(BlockPos pos)
 	{
 		return this.world.getBlockState(pos.down()).getBlock() == this.spawnableBlock ? 10.0F : this.world.getLightBrightness(pos) - 0.5F;
@@ -92,6 +96,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -106,6 +111,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 	/**
 	 * Returns the Y Offset of this entity.
 	 */
+	@Override
 	public double getYOffset()
 	{
 		return 0.14D;
@@ -114,6 +120,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -125,6 +132,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		int i = MathHelper.floor(this.posX);
@@ -138,6 +146,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 	 * Get number of ticks, at least during which the living entity will be
 	 * silent.
 	 */
+	@Override
 	public int getTalkInterval()
 	{
 		return 120;
@@ -146,6 +155,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 	/**
 	 * Determines if an entity can be despawned, used on idle far away entities
 	 */
+	@Override
 	protected boolean canDespawn()
 	{
 		return false;
@@ -154,6 +164,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 	/**
 	 * Get the experience points the entity currently has.
 	 */
+	@Override
 	protected int getExperiencePoints(EntityPlayer player)
 	{
 		return 1 + this.world.rand.nextInt(3);
@@ -168,6 +179,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 		return stack.getItem() == Items.WHEAT;
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -184,7 +196,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 			if (this.isChild() && this.isBreedingItem(itemstack))
 			{
 				this.consumeItemFromStack(player, itemstack);
-				this.ageUp((int) ((float) (-this.getGrowingAge() / 20) * 0.1F), true);
+				this.ageUp((int) (-this.getGrowingAge() / 20 * 0.1F), true);
 				return true;
 			}
 		}
@@ -261,6 +273,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 		}
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 18)
@@ -270,7 +283,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 				double d0 = this.rand.nextGaussian() * 0.02D;
 				double d1 = this.rand.nextGaussian() * 0.02D;
 				double d2 = this.rand.nextGaussian() * 0.02D;
-				this.world.spawnParticle(EnumParticleTypes.HEART, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
+				this.world.spawnParticle(EnumParticleTypes.HEART, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
 			}
 		}
 		else

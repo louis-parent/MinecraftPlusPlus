@@ -18,6 +18,7 @@ public class BlockRailPowered extends BlockRailBase
 {
 	public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
 	{
+		@Override
 		public boolean apply(@Nullable BlockRailBase.EnumRailDirection p_apply_1_)
 		{
 			return p_apply_1_ != BlockRailBase.EnumRailDirection.NORTH_EAST && p_apply_1_ != BlockRailBase.EnumRailDirection.NORTH_WEST && p_apply_1_ != BlockRailBase.EnumRailDirection.SOUTH_EAST && p_apply_1_ != BlockRailBase.EnumRailDirection.SOUTH_WEST;
@@ -44,7 +45,7 @@ public class BlockRailPowered extends BlockRailBase
 			int j = pos.getY();
 			int k = pos.getZ();
 			boolean flag = true;
-			BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = (BlockRailBase.EnumRailDirection) state.getValue(SHAPE);
+			BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = state.getValue(SHAPE);
 
 			switch (blockrailbase$enumraildirection)
 			{
@@ -153,13 +154,13 @@ public class BlockRailPowered extends BlockRailBase
 		}
 		else
 		{
-			BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = (BlockRailBase.EnumRailDirection) iblockstate.getValue(SHAPE);
+			BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = iblockstate.getValue(SHAPE);
 
 			if (p_176567_5_ != BlockRailBase.EnumRailDirection.EAST_WEST || blockrailbase$enumraildirection != BlockRailBase.EnumRailDirection.NORTH_SOUTH && blockrailbase$enumraildirection != BlockRailBase.EnumRailDirection.ASCENDING_NORTH && blockrailbase$enumraildirection != BlockRailBase.EnumRailDirection.ASCENDING_SOUTH)
 			{
 				if (p_176567_5_ != BlockRailBase.EnumRailDirection.NORTH_SOUTH || blockrailbase$enumraildirection != BlockRailBase.EnumRailDirection.EAST_WEST && blockrailbase$enumraildirection != BlockRailBase.EnumRailDirection.ASCENDING_EAST && blockrailbase$enumraildirection != BlockRailBase.EnumRailDirection.ASCENDING_WEST)
 				{
-					if (((Boolean) iblockstate.getValue(POWERED)).booleanValue())
+					if (iblockstate.getValue(POWERED).booleanValue())
 					{
 						return worldIn.isBlockPowered(pos) ? true : this.findPoweredRailSignal(worldIn, pos, iblockstate, p_176567_3_, distance + 1);
 					}
@@ -180,9 +181,10 @@ public class BlockRailPowered extends BlockRailBase
 		}
 	}
 
+	@Override
 	protected void updateState(IBlockState p_189541_1_, World p_189541_2_, BlockPos p_189541_3_, Block p_189541_4_)
 	{
-		boolean flag = ((Boolean) p_189541_1_.getValue(POWERED)).booleanValue();
+		boolean flag = p_189541_1_.getValue(POWERED).booleanValue();
 		boolean flag1 = p_189541_2_.isBlockPowered(p_189541_3_) || this.findPoweredRailSignal(p_189541_2_, p_189541_3_, p_189541_1_, true, 0) || this.findPoweredRailSignal(p_189541_2_, p_189541_3_, p_189541_1_, false, 0);
 
 		if (flag1 != flag)
@@ -190,13 +192,14 @@ public class BlockRailPowered extends BlockRailBase
 			p_189541_2_.setBlockState(p_189541_3_, p_189541_1_.withProperty(POWERED, Boolean.valueOf(flag1)), 3);
 			p_189541_2_.notifyNeighborsOfStateChange(p_189541_3_.down(), this, false);
 
-			if (((BlockRailBase.EnumRailDirection) p_189541_1_.getValue(SHAPE)).isAscending())
+			if (p_189541_1_.getValue(SHAPE).isAscending())
 			{
 				p_189541_2_.notifyNeighborsOfStateChange(p_189541_3_.up(), this, false);
 			}
 		}
 	}
 
+	@Override
 	public IProperty<BlockRailBase.EnumRailDirection> getShapeProperty()
 	{
 		return SHAPE;
@@ -205,6 +208,7 @@ public class BlockRailPowered extends BlockRailBase
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.byMetadata(meta & 7)).withProperty(POWERED, Boolean.valueOf((meta & 8) > 0));
@@ -213,12 +217,13 @@ public class BlockRailPowered extends BlockRailBase
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((BlockRailBase.EnumRailDirection) state.getValue(SHAPE)).getMetadata();
+		i = i | state.getValue(SHAPE).getMetadata();
 
-		if (((Boolean) state.getValue(POWERED)).booleanValue())
+		if (state.getValue(POWERED).booleanValue())
 		{
 			i |= 8;
 		}
@@ -226,6 +231,7 @@ public class BlockRailPowered extends BlockRailBase
 		return i;
 	}
 
+	@Override
 	@SuppressWarnings("incomplete-switch")
 
 	/**
@@ -237,7 +243,7 @@ public class BlockRailPowered extends BlockRailBase
 		switch (rot)
 		{
 			case CLOCKWISE_180:
-				switch ((BlockRailBase.EnumRailDirection) state.getValue(SHAPE))
+				switch (state.getValue(SHAPE))
 				{
 					case ASCENDING_EAST:
 						return state.withProperty(SHAPE, BlockRailBase.EnumRailDirection.ASCENDING_WEST);
@@ -265,7 +271,7 @@ public class BlockRailPowered extends BlockRailBase
 				}
 
 			case COUNTERCLOCKWISE_90:
-				switch ((BlockRailBase.EnumRailDirection) state.getValue(SHAPE))
+				switch (state.getValue(SHAPE))
 				{
 					case NORTH_SOUTH:
 						return state.withProperty(SHAPE, BlockRailBase.EnumRailDirection.EAST_WEST);
@@ -299,7 +305,7 @@ public class BlockRailPowered extends BlockRailBase
 				}
 
 			case CLOCKWISE_90:
-				switch ((BlockRailBase.EnumRailDirection) state.getValue(SHAPE))
+				switch (state.getValue(SHAPE))
 				{
 					case NORTH_SOUTH:
 						return state.withProperty(SHAPE, BlockRailBase.EnumRailDirection.EAST_WEST);
@@ -337,6 +343,7 @@ public class BlockRailPowered extends BlockRailBase
 		}
 	}
 
+	@Override
 	@SuppressWarnings("incomplete-switch")
 
 	/**
@@ -345,7 +352,7 @@ public class BlockRailPowered extends BlockRailBase
 	 */
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = (BlockRailBase.EnumRailDirection) state.getValue(SHAPE);
+		BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = state.getValue(SHAPE);
 
 		switch (mirrorIn)
 		{
@@ -405,6 +412,7 @@ public class BlockRailPowered extends BlockRailBase
 		return super.withMirror(state, mirrorIn);
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { SHAPE, POWERED });

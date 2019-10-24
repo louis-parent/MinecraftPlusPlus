@@ -16,6 +16,7 @@ public class ItemWritableBook extends Item
 		this.setMaxStackSize(1);
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);

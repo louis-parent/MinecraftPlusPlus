@@ -21,11 +21,13 @@ public class ConsumeItemTrigger implements ICriterionTrigger<ConsumeItemTrigger.
 	private static final ResourceLocation field_193149_a = new ResourceLocation("consume_item");
 	private final Map<PlayerAdvancements, ConsumeItemTrigger.Listeners> field_193150_b = Maps.<PlayerAdvancements, ConsumeItemTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_193149_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<ConsumeItemTrigger.Instance> p_192165_2_)
 	{
 		ConsumeItemTrigger.Listeners consumeitemtrigger$listeners = this.field_193150_b.get(p_192165_1_);
@@ -39,6 +41,7 @@ public class ConsumeItemTrigger implements ICriterionTrigger<ConsumeItemTrigger.
 		consumeitemtrigger$listeners.func_193239_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<ConsumeItemTrigger.Instance> p_192164_2_)
 	{
 		ConsumeItemTrigger.Listeners consumeitemtrigger$listeners = this.field_193150_b.get(p_192164_1_);
@@ -54,11 +57,13 @@ public class ConsumeItemTrigger implements ICriterionTrigger<ConsumeItemTrigger.
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_193150_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public ConsumeItemTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		ItemPredicate itempredicate = ItemPredicate.func_192492_a(p_192166_1_.get("item"));
@@ -122,7 +127,7 @@ public class ConsumeItemTrigger implements ICriterionTrigger<ConsumeItemTrigger.
 
 			for (ICriterionTrigger.Listener<ConsumeItemTrigger.Instance> listener : this.field_193242_b)
 			{
-				if (((ConsumeItemTrigger.Instance) listener.func_192158_a()).func_193193_a(p_193240_1_))
+				if (listener.func_192158_a().func_193193_a(p_193240_1_))
 				{
 					if (list == null)
 					{

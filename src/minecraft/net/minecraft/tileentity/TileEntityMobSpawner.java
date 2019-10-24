@@ -21,21 +21,25 @@ public class TileEntityMobSpawner extends TileEntity implements ITickable
 {
 	private final MobSpawnerBaseLogic spawnerLogic = new MobSpawnerBaseLogic()
 	{
+		@Override
 		public void broadcastEvent(int id)
 		{
 			TileEntityMobSpawner.this.world.addBlockEvent(TileEntityMobSpawner.this.pos, Blocks.MOB_SPAWNER, id, 0);
 		}
 
+		@Override
 		public World getSpawnerWorld()
 		{
 			return TileEntityMobSpawner.this.world;
 		}
 
+		@Override
 		public BlockPos getSpawnerPosition()
 		{
 			return TileEntityMobSpawner.this.pos;
 		}
 
+		@Override
 		public void setNextSpawnData(WeightedSpawnerEntity p_184993_1_)
 		{
 			super.setNextSpawnData(p_184993_1_);
@@ -52,6 +56,7 @@ public class TileEntityMobSpawner extends TileEntity implements ITickable
 	{
 		fixer.registerWalker(FixTypes.BLOCK_ENTITY, new IDataWalker()
 		{
+			@Override
 			public NBTTagCompound process(IDataFixer fixer, NBTTagCompound compound, int versionIn)
 			{
 				if (TileEntity.func_190559_a(TileEntityMobSpawner.class).equals(new ResourceLocation(compound.getString("id"))))
@@ -75,12 +80,14 @@ public class TileEntityMobSpawner extends TileEntity implements ITickable
 		});
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
 		this.spawnerLogic.readFromNBT(compound);
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -91,17 +98,20 @@ public class TileEntityMobSpawner extends TileEntity implements ITickable
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		this.spawnerLogic.updateSpawner();
 	}
 
+	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		return new SPacketUpdateTileEntity(this.pos, 1, this.getUpdateTag());
 	}
 
+	@Override
 	public NBTTagCompound getUpdateTag()
 	{
 		NBTTagCompound nbttagcompound = this.writeToNBT(new NBTTagCompound());
@@ -109,11 +119,13 @@ public class TileEntityMobSpawner extends TileEntity implements ITickable
 		return nbttagcompound;
 	}
 
+	@Override
 	public boolean receiveClientEvent(int id, int type)
 	{
 		return this.spawnerLogic.setDelayToMin(id) ? true : super.receiveClientEvent(id, type);
 	}
 
+	@Override
 	public boolean onlyOpsCanSetNbt()
 	{
 		return true;

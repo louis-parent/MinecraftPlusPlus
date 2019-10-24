@@ -6,11 +6,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class BannerItemColor implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 804;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("minecraft:banner".equals(compound.getString("id")) && compound.hasKey("tag", 10))

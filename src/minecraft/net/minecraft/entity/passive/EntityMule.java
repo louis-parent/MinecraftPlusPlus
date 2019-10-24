@@ -22,30 +22,35 @@ public class EntityMule extends AbstractChestHorse
 		AbstractChestHorse.func_190694_b(p_190700_0_, EntityMule.class);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.field_191191_I;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		super.getAmbientSound();
 		return SoundEvents.ENTITY_MULE_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		super.getDeathSound();
 		return SoundEvents.ENTITY_MULE_DEATH;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		super.getHurtSound(p_184601_1_);
 		return SoundEvents.ENTITY_MULE_HURT;
 	}
 
+	@Override
 	protected void func_190697_dk()
 	{
 		this.playSound(SoundEvents.field_191259_dX, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);

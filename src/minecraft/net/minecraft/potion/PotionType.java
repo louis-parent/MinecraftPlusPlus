@@ -47,7 +47,7 @@ public class PotionType
 	 */
 	public String getNamePrefixed(String p_185174_1_)
 	{
-		return this.baseName == null ? p_185174_1_ + ((ResourceLocation) REGISTRY.getNameForObject(this)).getResourcePath() : p_185174_1_ + this.baseName;
+		return this.baseName == null ? p_185174_1_ + REGISTRY.getNameForObject(this).getResourcePath() : p_185174_1_ + this.baseName;
 	}
 
 	public List<PotionEffect> getEffects()

@@ -21,16 +21,19 @@ public abstract class BaseAttribute implements IAttribute
 		}
 	}
 
+	@Override
 	public String getAttributeUnlocalizedName()
 	{
 		return this.unlocalizedName;
 	}
 
+	@Override
 	public double getDefaultValue()
 	{
 		return this.defaultValue;
 	}
 
+	@Override
 	public boolean getShouldWatch()
 	{
 		return this.shouldWatch;
@@ -42,17 +45,20 @@ public abstract class BaseAttribute implements IAttribute
 		return this;
 	}
 
+	@Override
 	@Nullable
 	public IAttribute getParent()
 	{
 		return this.parent;
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.unlocalizedName.hashCode();
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		return p_equals_1_ instanceof IAttribute && this.unlocalizedName.equals(((IAttribute) p_equals_1_).getAttributeUnlocalizedName());

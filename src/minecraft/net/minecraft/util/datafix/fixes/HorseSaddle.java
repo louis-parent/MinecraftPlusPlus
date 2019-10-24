@@ -5,11 +5,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class HorseSaddle implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 110;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("EntityHorse".equals(compound.getString("id")) && !compound.hasKey("SaddleItem", 10) && compound.getBoolean("Saddle"))

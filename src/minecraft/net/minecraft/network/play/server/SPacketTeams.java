@@ -84,6 +84,7 @@ public class SPacketTeams implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.name = buf.readStringFromBuffer(16);
@@ -114,6 +115,7 @@ public class SPacketTeams implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeString(this.name);
@@ -144,6 +146,7 @@ public class SPacketTeams implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handleTeams(this);

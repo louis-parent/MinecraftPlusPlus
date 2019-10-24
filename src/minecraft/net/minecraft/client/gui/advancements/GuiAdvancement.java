@@ -211,7 +211,7 @@ public class GuiAdvancement extends Gui
 		int i = s == null ? 0 : this.field_191833_k.fontRendererObj.getStringWidth(s);
 		boolean flag1 = 113 - p_191821_2_ - this.field_191826_p - 26 <= 6 + this.field_192997_l.size() * this.field_191833_k.fontRendererObj.FONT_HEIGHT;
 		float f = this.field_191836_n == null ? 0.0F : this.field_191836_n.func_192103_c();
-		int j = MathHelper.floor(f * (float) this.field_191832_j);
+		int j = MathHelper.floor(f * this.field_191832_j);
 		AdvancementState advancementstate;
 		AdvancementState advancementstate1;
 		AdvancementState advancementstate2;
@@ -280,20 +280,20 @@ public class GuiAdvancement extends Gui
 
 		if (flag)
 		{
-			this.field_191833_k.fontRendererObj.drawString(this.field_191831_i, (float) (i1 + 5), (float) (p_191821_2_ + this.field_191826_p + 9), -1, true);
+			this.field_191833_k.fontRendererObj.drawString(this.field_191831_i, i1 + 5, p_191821_2_ + this.field_191826_p + 9, -1, true);
 
 			if (s != null)
 			{
-				this.field_191833_k.fontRendererObj.drawString(s, (float) (p_191821_1_ + this.field_191837_o - i), (float) (p_191821_2_ + this.field_191826_p + 9), -1, true);
+				this.field_191833_k.fontRendererObj.drawString(s, p_191821_1_ + this.field_191837_o - i, p_191821_2_ + this.field_191826_p + 9, -1, true);
 			}
 		}
 		else
 		{
-			this.field_191833_k.fontRendererObj.drawString(this.field_191831_i, (float) (p_191821_1_ + this.field_191837_o + 32), (float) (p_191821_2_ + this.field_191826_p + 9), -1, true);
+			this.field_191833_k.fontRendererObj.drawString(this.field_191831_i, p_191821_1_ + this.field_191837_o + 32, p_191821_2_ + this.field_191826_p + 9, -1, true);
 
 			if (s != null)
 			{
-				this.field_191833_k.fontRendererObj.drawString(s, (float) (p_191821_1_ + this.field_191837_o + this.field_191832_j - i - 5), (float) (p_191821_2_ + this.field_191826_p + 9), -1, true);
+				this.field_191833_k.fontRendererObj.drawString(s, p_191821_1_ + this.field_191837_o + this.field_191832_j - i - 5, p_191821_2_ + this.field_191826_p + 9, -1, true);
 			}
 		}
 
@@ -301,14 +301,14 @@ public class GuiAdvancement extends Gui
 		{
 			for (int k1 = 0; k1 < this.field_192997_l.size(); ++k1)
 			{
-				this.field_191833_k.fontRendererObj.drawString(this.field_192997_l.get(k1), (float) (i1 + 5), (float) (l + 26 - j1 + 7 + k1 * this.field_191833_k.fontRendererObj.FONT_HEIGHT), -5592406, false);
+				this.field_191833_k.fontRendererObj.drawString(this.field_192997_l.get(k1), i1 + 5, l + 26 - j1 + 7 + k1 * this.field_191833_k.fontRendererObj.FONT_HEIGHT, -5592406, false);
 			}
 		}
 		else
 		{
 			for (int l1 = 0; l1 < this.field_192997_l.size(); ++l1)
 			{
-				this.field_191833_k.fontRendererObj.drawString(this.field_192997_l.get(l1), (float) (i1 + 5), (float) (p_191821_2_ + this.field_191826_p + 9 + 17 + l1 * this.field_191833_k.fontRendererObj.FONT_HEIGHT), -5592406, false);
+				this.field_191833_k.fontRendererObj.drawString(this.field_192997_l.get(l1), i1 + 5, p_191821_2_ + this.field_191826_p + 9 + 17 + l1 * this.field_191833_k.fontRendererObj.FONT_HEIGHT, -5592406, false);
 			}
 		}
 

@@ -20,11 +20,13 @@ public class ContainerHorseInventory extends Container
 		int j = -18;
 		this.addSlotToContainer(new Slot(horseInventoryIn, 0, 8, 18)
 		{
+			@Override
 			public boolean isItemValid(ItemStack stack)
 			{
 				return stack.getItem() == Items.SADDLE && !this.getHasStack() && horse.func_190685_dA();
 			}
 
+			@Override
 			public boolean canBeHovered()
 			{
 				return horse.func_190685_dA();
@@ -32,16 +34,19 @@ public class ContainerHorseInventory extends Container
 		});
 		this.addSlotToContainer(new Slot(horseInventoryIn, 1, 8, 36)
 		{
+			@Override
 			public boolean isItemValid(ItemStack stack)
 			{
 				return horse.func_190682_f(stack);
 			}
 
+			@Override
 			public boolean canBeHovered()
 			{
 				return horse.func_190677_dK();
 			}
 
+			@Override
 			public int getSlotStackLimit()
 			{
 				return 1;
@@ -76,6 +81,7 @@ public class ContainerHorseInventory extends Container
 	/**
 	 * Determines whether supplied player can use this container
 	 */
+	@Override
 	public boolean canInteractWith(EntityPlayer playerIn)
 	{
 		return this.horseInventory.isUsableByPlayer(playerIn) && this.theHorse.isEntityAlive() && this.theHorse.getDistanceToEntity(playerIn) < 8.0F;
@@ -84,6 +90,7 @@ public class ContainerHorseInventory extends Container
 	/**
 	 * Take a stack from the specified inventory slot.
 	 */
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
 		ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -136,6 +143,7 @@ public class ContainerHorseInventory extends Container
 	/**
 	 * Called when the container is closed.
 	 */
+	@Override
 	public void onContainerClosed(EntityPlayer playerIn)
 	{
 		super.onContainerClosed(playerIn);

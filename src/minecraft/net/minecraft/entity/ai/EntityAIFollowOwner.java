@@ -45,6 +45,7 @@ public class EntityAIFollowOwner extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		EntityLivingBase entitylivingbase = this.thePet.getOwner();
@@ -61,7 +62,7 @@ public class EntityAIFollowOwner extends EntityAIBase
 		{
 			return false;
 		}
-		else if (this.thePet.getDistanceSqToEntity(entitylivingbase) < (double) (this.minDist * this.minDist))
+		else if (this.thePet.getDistanceSqToEntity(entitylivingbase) < this.minDist * this.minDist)
 		{
 			return false;
 		}
@@ -75,14 +76,16 @@ public class EntityAIFollowOwner extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
-		return !this.petPathfinder.noPath() && this.thePet.getDistanceSqToEntity(this.theOwner) > (double) (this.maxDist * this.maxDist) && !this.thePet.isSitting();
+		return !this.petPathfinder.noPath() && this.thePet.getDistanceSqToEntity(this.theOwner) > this.maxDist * this.maxDist && !this.thePet.isSitting();
 	}
 
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.timeToRecalcPath = 0;
@@ -93,6 +96,7 @@ public class EntityAIFollowOwner extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.theOwner = null;
@@ -103,9 +107,10 @@ public class EntityAIFollowOwner extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
-		this.thePet.getLookHelper().setLookPositionWithEntity(this.theOwner, 10.0F, (float) this.thePet.getVerticalFaceSpeed());
+		this.thePet.getLookHelper().setLookPositionWithEntity(this.theOwner, 10.0F, this.thePet.getVerticalFaceSpeed());
 
 		if (!this.thePet.isSitting())
 		{
@@ -129,7 +134,7 @@ public class EntityAIFollowOwner extends EntityAIBase
 								{
 									if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && this.func_192381_a(i, j, k, l, i1))
 									{
-										this.thePet.setLocationAndAngles((double) ((float) (i + l) + 0.5F), (double) k, (double) ((float) (j + i1) + 0.5F), this.thePet.rotationYaw, this.thePet.rotationPitch);
+										this.thePet.setLocationAndAngles(i + l + 0.5F, k, j + i1 + 0.5F, this.thePet.rotationYaw, this.thePet.rotationPitch);
 										this.petPathfinder.clearPathEntity();
 										return;
 									}

@@ -26,9 +26,10 @@ public class BiomePlains extends Biome
 		this.theBiomeDecorator.grassPerChunk = 10;
 	}
 
+	@Override
 	public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos)
 	{
-		double d0 = GRASS_COLOR_NOISE.getValue((double) pos.getX() / 200.0D, (double) pos.getZ() / 200.0D);
+		double d0 = GRASS_COLOR_NOISE.getValue(pos.getX() / 200.0D, pos.getZ() / 200.0D);
 
 		if (d0 < -0.8D)
 		{
@@ -69,9 +70,10 @@ public class BiomePlains extends Biome
 		}
 	}
 
+	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
-		double d0 = GRASS_COLOR_NOISE.getValue((double) (pos.getX() + 8) / 200.0D, (double) (pos.getZ() + 8) / 200.0D);
+		double d0 = GRASS_COLOR_NOISE.getValue((pos.getX() + 8) / 200.0D, (pos.getZ() + 8) / 200.0D);
 
 		if (d0 < -0.8D)
 		{
@@ -109,8 +111,9 @@ public class BiomePlains extends Biome
 		super.decorate(worldIn, rand, pos);
 	}
 
+	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return (WorldGenAbstractTree) (rand.nextInt(3) == 0 ? BIG_TREE_FEATURE : TREE_FEATURE);
+		return rand.nextInt(3) == 0 ? BIG_TREE_FEATURE : TREE_FEATURE;
 	}
 }

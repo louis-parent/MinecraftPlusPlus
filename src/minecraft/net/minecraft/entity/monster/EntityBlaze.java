@@ -55,6 +55,7 @@ public class EntityBlaze extends EntityMob
 		EntityLiving.registerFixesMob(fixer, EntityBlaze.class);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(4, new EntityBlaze.AIFireballAttack(this));
@@ -66,6 +67,7 @@ public class EntityBlaze extends EntityMob
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -74,27 +76,32 @@ public class EntityBlaze extends EntityMob
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(48.0D);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataManager.register(ON_FIRE, Byte.valueOf((byte) 0));
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_BLAZE_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_BLAZE_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_BLAZE_DEATH;
 	}
 
+	@Override
 	public int getBrightnessForRender()
 	{
 		return 15728880;
@@ -103,6 +110,7 @@ public class EntityBlaze extends EntityMob
 	/**
 	 * Gets how bright this entity is.
 	 */
+	@Override
 	public float getBrightness()
 	{
 		return 1.0F;
@@ -113,6 +121,7 @@ public class EntityBlaze extends EntityMob
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		if (!this.onGround && this.motionY < 0.0D)
@@ -129,13 +138,14 @@ public class EntityBlaze extends EntityMob
 
 			for (int i = 0; i < 2; ++i)
 			{
-				this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, 0.0D, 0.0D, 0.0D);
+				this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, 0.0D, 0.0D, 0.0D);
 			}
 		}
 
 		super.onLivingUpdate();
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		if (this.isWet())
@@ -153,7 +163,7 @@ public class EntityBlaze extends EntityMob
 
 		EntityLivingBase entitylivingbase = this.getAttackTarget();
 
-		if (entitylivingbase != null && entitylivingbase.posY + (double) entitylivingbase.getEyeHeight() > this.posY + (double) this.getEyeHeight() + (double) this.heightOffset)
+		if (entitylivingbase != null && entitylivingbase.posY + entitylivingbase.getEyeHeight() > this.posY + this.getEyeHeight() + this.heightOffset)
 		{
 			this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
 			this.isAirBorne = true;
@@ -162,6 +172,7 @@ public class EntityBlaze extends EntityMob
 		super.updateAITasks();
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 	}
@@ -170,11 +181,13 @@ public class EntityBlaze extends EntityMob
 	 * Returns true if the entity is on fire. Used by render to add the fire
 	 * effect on rendering.
 	 */
+	@Override
 	public boolean isBurning()
 	{
 		return this.isCharged();
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -183,12 +196,12 @@ public class EntityBlaze extends EntityMob
 
 	public boolean isCharged()
 	{
-		return (((Byte) this.dataManager.get(ON_FIRE)).byteValue() & 1) != 0;
+		return (this.dataManager.get(ON_FIRE).byteValue() & 1) != 0;
 	}
 
 	public void setOnFire(boolean onFire)
 	{
-		byte b0 = ((Byte) this.dataManager.get(ON_FIRE)).byteValue();
+		byte b0 = this.dataManager.get(ON_FIRE).byteValue();
 
 		if (onFire)
 		{
@@ -205,6 +218,7 @@ public class EntityBlaze extends EntityMob
 	/**
 	 * Checks to make sure the light is not too bright where the mob is spawning
 	 */
+	@Override
 	protected boolean isValidLightLevel()
 	{
 		return true;
@@ -222,22 +236,26 @@ public class EntityBlaze extends EntityMob
 			this.setMutexBits(3);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			EntityLivingBase entitylivingbase = this.blaze.getAttackTarget();
 			return entitylivingbase != null && entitylivingbase.isEntityAlive();
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			this.attackStep = 0;
 		}
 
+		@Override
 		public void resetTask()
 		{
 			this.blaze.setOnFire(false);
 		}
 
+		@Override
 		public void updateTask()
 		{
 			--this.attackTime;
@@ -257,7 +275,7 @@ public class EntityBlaze extends EntityMob
 			else if (d0 < this.func_191523_f() * this.func_191523_f())
 			{
 				double d1 = entitylivingbase.posX - this.blaze.posX;
-				double d2 = entitylivingbase.getEntityBoundingBox().minY + (double) (entitylivingbase.height / 2.0F) - (this.blaze.posY + (double) (this.blaze.height / 2.0F));
+				double d2 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (this.blaze.posY + this.blaze.height / 2.0F);
 				double d3 = entitylivingbase.posZ - this.blaze.posZ;
 
 				if (this.attackTime <= 0)
@@ -287,8 +305,8 @@ public class EntityBlaze extends EntityMob
 
 						for (int i = 0; i < 1; ++i)
 						{
-							EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.blaze.world, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * (double) f, d2, d3 + this.blaze.getRNG().nextGaussian() * (double) f);
-							entitysmallfireball.posY = this.blaze.posY + (double) (this.blaze.height / 2.0F) + 0.5D;
+							EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.blaze.world, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * f, d2, d3 + this.blaze.getRNG().nextGaussian() * f);
+							entitysmallfireball.posY = this.blaze.posY + this.blaze.height / 2.0F + 0.5D;
 							this.blaze.world.spawnEntityInWorld(entitysmallfireball);
 						}
 					}

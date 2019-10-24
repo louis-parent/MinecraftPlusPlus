@@ -44,7 +44,7 @@ public class LootFunctionManager
 
 	public static LootFunction.Serializer<?> getSerializerForName(ResourceLocation location)
 	{
-		LootFunction.Serializer<?> serializer = (LootFunction.Serializer) NAME_TO_SERIALIZER_MAP.get(location);
+		LootFunction.Serializer<?> serializer = NAME_TO_SERIALIZER_MAP.get(location);
 
 		if (serializer == null)
 		{
@@ -85,6 +85,7 @@ public class LootFunctionManager
 
 	public static class Serializer implements JsonDeserializer<LootFunction>, JsonSerializer<LootFunction>
 	{
+		@Override
 		public LootFunction deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "function");
@@ -100,9 +101,10 @@ public class LootFunctionManager
 				throw new JsonSyntaxException("Unknown function '" + resourcelocation + "'");
 			}
 
-			return serializer.deserialize(jsonobject, p_deserialize_3_, (LootCondition[]) JsonUtils.deserializeClass(jsonobject, "conditions", new LootCondition[0], p_deserialize_3_, LootCondition[].class));
+			return serializer.deserialize(jsonobject, p_deserialize_3_, JsonUtils.deserializeClass(jsonobject, "conditions", new LootCondition[0], p_deserialize_3_, LootCondition[].class));
 		}
 
+		@Override
 		public JsonElement serialize(LootFunction p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			LootFunction.Serializer<LootFunction> serializer = LootFunctionManager.<LootFunction>getSerializerFor(p_serialize_1_);

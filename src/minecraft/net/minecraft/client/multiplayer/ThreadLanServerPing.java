@@ -30,6 +30,7 @@ public class ThreadLanServerPing extends Thread
 		this.socket = new DatagramSocket();
 	}
 
+	@Override
 	public void run()
 	{
 		String s = getPingResponse(this.motd, this.address);
@@ -45,7 +46,7 @@ public class ThreadLanServerPing extends Thread
 			}
 			catch (IOException ioexception)
 			{
-				LOGGER.warn("LanServerPinger: {}", (Object) ioexception.getMessage());
+				LOGGER.warn("LanServerPinger: {}", ioexception.getMessage());
 				break;
 			}
 
@@ -60,6 +61,7 @@ public class ThreadLanServerPing extends Thread
 		}
 	}
 
+	@Override
 	public void interrupt()
 	{
 		super.interrupt();

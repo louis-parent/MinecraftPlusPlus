@@ -19,11 +19,13 @@ public class TickTrigger implements ICriterionTrigger<TickTrigger.Instance>
 	public static final ResourceLocation field_193183_a = new ResourceLocation("tick");
 	private final Map<PlayerAdvancements, TickTrigger.Listeners> field_193184_b = Maps.<PlayerAdvancements, TickTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_193183_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<TickTrigger.Instance> p_192165_2_)
 	{
 		TickTrigger.Listeners ticktrigger$listeners = this.field_193184_b.get(p_192165_1_);
@@ -37,6 +39,7 @@ public class TickTrigger implements ICriterionTrigger<TickTrigger.Instance>
 		ticktrigger$listeners.func_193502_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<TickTrigger.Instance> p_192164_2_)
 	{
 		TickTrigger.Listeners ticktrigger$listeners = this.field_193184_b.get(p_192164_1_);
@@ -52,11 +55,13 @@ public class TickTrigger implements ICriterionTrigger<TickTrigger.Instance>
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_193184_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public TickTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		return new TickTrigger.Instance();

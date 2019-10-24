@@ -37,11 +37,13 @@ public abstract class BlockPurpurSlab extends BlockSlab
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Item.getItemFromBlock(Blocks.PURPUR_SLAB);
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(Blocks.PURPUR_SLAB);
@@ -50,6 +52,7 @@ public abstract class BlockPurpurSlab extends BlockSlab
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		IBlockState iblockstate = this.getDefaultState().withProperty(VARIANT, BlockPurpurSlab.Variant.DEFAULT);
@@ -65,6 +68,7 @@ public abstract class BlockPurpurSlab extends BlockSlab
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
@@ -77,6 +81,7 @@ public abstract class BlockPurpurSlab extends BlockSlab
 		return i;
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return this.isDouble() ? new BlockStateContainer(this, new IProperty[] { VARIANT }) : new BlockStateContainer(this, new IProperty[] { HALF, VARIANT });
@@ -85,16 +90,19 @@ public abstract class BlockPurpurSlab extends BlockSlab
 	/**
 	 * Returns the slab block name with the type associated with it
 	 */
+	@Override
 	public String getUnlocalizedName(int meta)
 	{
 		return super.getUnlocalizedName();
 	}
 
+	@Override
 	public IProperty<?> getVariantProperty()
 	{
 		return VARIANT;
 	}
 
+	@Override
 	public Comparable<?> getTypeForItem(ItemStack stack)
 	{
 		return BlockPurpurSlab.Variant.DEFAULT;
@@ -102,6 +110,7 @@ public abstract class BlockPurpurSlab extends BlockSlab
 
 	public static class Double extends BlockPurpurSlab
 	{
+		@Override
 		public boolean isDouble()
 		{
 			return true;
@@ -110,6 +119,7 @@ public abstract class BlockPurpurSlab extends BlockSlab
 
 	public static class Half extends BlockPurpurSlab
 	{
+		@Override
 		public boolean isDouble()
 		{
 			return false;
@@ -120,6 +130,7 @@ public abstract class BlockPurpurSlab extends BlockSlab
 	{
 		DEFAULT;
 
+		@Override
 		public String getName()
 		{
 			return "default";

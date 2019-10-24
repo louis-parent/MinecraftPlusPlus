@@ -29,6 +29,7 @@ public class EntityOtherPlayerMP extends AbstractClientPlayer
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	public boolean isInRangeToRenderDist(double distance)
 	{
 		double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 10.0D;
@@ -45,6 +46,7 @@ public class EntityOtherPlayerMP extends AbstractClientPlayer
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		return true;
@@ -53,19 +55,21 @@ public class EntityOtherPlayerMP extends AbstractClientPlayer
 	/**
 	 * Set the position and rotation values directly without any clamping.
 	 */
+	@Override
 	public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport)
 	{
 		this.otherPlayerMPX = x;
 		this.otherPlayerMPY = y;
 		this.otherPlayerMPZ = z;
-		this.otherPlayerMPYaw = (double) yaw;
-		this.otherPlayerMPPitch = (double) pitch;
+		this.otherPlayerMPYaw = yaw;
+		this.otherPlayerMPPitch = pitch;
 		this.otherPlayerMPPosRotationIncrements = posRotationIncrements;
 	}
 
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		this.renderOffsetY = 0.0F;
@@ -89,16 +93,17 @@ public class EntityOtherPlayerMP extends AbstractClientPlayer
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.otherPlayerMPPosRotationIncrements > 0)
 		{
-			double d0 = this.posX + (this.otherPlayerMPX - this.posX) / (double) this.otherPlayerMPPosRotationIncrements;
-			double d1 = this.posY + (this.otherPlayerMPY - this.posY) / (double) this.otherPlayerMPPosRotationIncrements;
-			double d2 = this.posZ + (this.otherPlayerMPZ - this.posZ) / (double) this.otherPlayerMPPosRotationIncrements;
+			double d0 = this.posX + (this.otherPlayerMPX - this.posX) / this.otherPlayerMPPosRotationIncrements;
+			double d1 = this.posY + (this.otherPlayerMPY - this.posY) / this.otherPlayerMPPosRotationIncrements;
+			double d2 = this.posZ + (this.otherPlayerMPZ - this.posZ) / this.otherPlayerMPPosRotationIncrements;
 			double d3;
 
-			for (d3 = this.otherPlayerMPYaw - (double) this.rotationYaw; d3 < -180.0D; d3 += 360.0D)
+			for (d3 = this.otherPlayerMPYaw - this.rotationYaw; d3 < -180.0D; d3 += 360.0D)
 			{
 				;
 			}
@@ -108,8 +113,8 @@ public class EntityOtherPlayerMP extends AbstractClientPlayer
 				d3 -= 360.0D;
 			}
 
-			this.rotationYaw = (float) ((double) this.rotationYaw + d3 / (double) this.otherPlayerMPPosRotationIncrements);
-			this.rotationPitch = (float) ((double) this.rotationPitch + (this.otherPlayerMPPitch - (double) this.rotationPitch) / (double) this.otherPlayerMPPosRotationIncrements);
+			this.rotationYaw = (float) (this.rotationYaw + d3 / this.otherPlayerMPPosRotationIncrements);
+			this.rotationPitch = (float) (this.rotationPitch + (this.otherPlayerMPPitch - this.rotationPitch) / this.otherPlayerMPPosRotationIncrements);
 			--this.otherPlayerMPPosRotationIncrements;
 			this.setPosition(d0, d1, d2);
 			this.setRotation(this.rotationYaw, this.rotationPitch);
@@ -145,6 +150,7 @@ public class EntityOtherPlayerMP extends AbstractClientPlayer
 	/**
 	 * Send a chat message to the CommandSender
 	 */
+	@Override
 	public void addChatMessage(ITextComponent component)
 	{
 		Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(component);
@@ -154,6 +160,7 @@ public class EntityOtherPlayerMP extends AbstractClientPlayer
 	 * Returns {@code true} if the CommandSender is allowed to execute the
 	 * command, {@code false} if not
 	 */
+	@Override
 	public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 	{
 		return false;
@@ -163,6 +170,7 @@ public class EntityOtherPlayerMP extends AbstractClientPlayer
 	 * Get the position in the world. <b>{@code null} is not allowed!</b> If you
 	 * are not an entity in the world, return the coordinates 0, 0, 0
 	 */
+	@Override
 	public BlockPos getPosition()
 	{
 		return new BlockPos(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D);

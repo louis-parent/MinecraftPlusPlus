@@ -73,6 +73,7 @@ public class EntitySelector
 	private static final String field_190850_x = func_190826_c("tag");
 	private static final Predicate<String> field_190851_y = new Predicate<String>()
 	{
+		@Override
 		public boolean apply(@Nullable String p_apply_1_)
 		{
 			return p_apply_1_ != null && (EntitySelector.field_190830_d.contains(p_apply_1_) || p_apply_1_.length() > "score_".length() && p_apply_1_.startsWith("score_"));
@@ -94,7 +95,7 @@ public class EntitySelector
 	 */
 	public static EntityPlayerMP matchOnePlayer(ICommandSender sender, String token) throws CommandException
 	{
-		return (EntityPlayerMP) matchOneEntity(sender, token, EntityPlayerMP.class);
+		return matchOneEntity(sender, token, EntityPlayerMP.class);
 	}
 
 	public static List<EntityPlayerMP> func_193531_b(ICommandSender p_193531_0_, String p_193531_1_) throws CommandException
@@ -262,6 +263,7 @@ public class EntitySelector
 		{
 			return !type.equals("e") && !type.equals("s") ? Collections.singletonList(new Predicate<Entity>()
 			{
+				@Override
 				public boolean apply(@Nullable Entity p_apply_1_)
 				{
 					return p_apply_1_ instanceof EntityPlayer;
@@ -274,6 +276,7 @@ public class EntitySelector
 			final ResourceLocation resourcelocation = new ResourceLocation(flag ? s.substring(1) : s);
 			return Collections.singletonList(new Predicate<Entity>()
 			{
+				@Override
 				public boolean apply(@Nullable Entity p_apply_1_)
 				{
 					return EntityList.isStringEntityName(p_apply_1_, resourcelocation) != flag;
@@ -292,6 +295,7 @@ public class EntitySelector
 		{
 			list.add(new Predicate<Entity>()
 			{
+				@Override
 				public boolean apply(@Nullable Entity p_apply_1_)
 				{
 					if (!(p_apply_1_ instanceof EntityPlayerMP))
@@ -343,6 +347,7 @@ public class EntitySelector
 			final GameType type = gametype;
 			list.add(new Predicate<Entity>()
 			{
+				@Override
 				public boolean apply(@Nullable Entity p_apply_1_)
 				{
 					if (!(p_apply_1_ instanceof EntityPlayerMP))
@@ -377,6 +382,7 @@ public class EntitySelector
 			final String s_f_ = s;
 			list.add(new Predicate<Entity>()
 			{
+				@Override
 				public boolean apply(@Nullable Entity p_apply_1_)
 				{
 					if (!(p_apply_1_ instanceof EntityLivingBase))
@@ -402,6 +408,7 @@ public class EntitySelector
 		final Map<String, Integer> map = getScoreMap(params);
 		return (map.isEmpty() ? Collections.emptyList() : Lists.newArrayList(new Predicate<Entity>()
 		{
+			@Override
 			public boolean apply(@Nullable Entity p_apply_1_)
 			{
 				if (p_apply_1_ == null)
@@ -440,12 +447,12 @@ public class EntitySelector
 						Score score = scoreboard.getOrCreateScore(s1, scoreobjective);
 						int i = score.getScorePoints();
 
-						if (i < ((Integer) entry.getValue()).intValue() && flag)
+						if (i < entry.getValue().intValue() && flag)
 						{
 							return false;
 						}
 
-						if (i > ((Integer) entry.getValue()).intValue() && !flag)
+						if (i > entry.getValue().intValue() && !flag)
 						{
 							return false;
 						}
@@ -473,6 +480,7 @@ public class EntitySelector
 			final String s_f_ = s;
 			list.add(new Predicate<Entity>()
 			{
+				@Override
 				public boolean apply(@Nullable Entity p_apply_1_)
 				{
 					return p_apply_1_ != null && p_apply_1_.getName().equals(s_f_) != flag;
@@ -499,6 +507,7 @@ public class EntitySelector
 			final String s_f_ = s;
 			list.add(new Predicate<Entity>()
 			{
+				@Override
 				public boolean apply(@Nullable Entity p_apply_1_)
 				{
 					if (p_apply_1_ == null)
@@ -522,8 +531,8 @@ public class EntitySelector
 
 	private static List<Predicate<Entity>> getRadiusPredicates(Map<String, String> params, final Vec3d pos)
 	{
-		double d0 = (double) getInt(params, field_190832_f, -1);
-		double d1 = (double) getInt(params, field_190831_e, -1);
+		double d0 = getInt(params, field_190832_f, -1);
+		double d1 = getInt(params, field_190831_e, -1);
 		final boolean flag = d0 < -0.5D;
 		final boolean flag1 = d1 < -0.5D;
 
@@ -539,6 +548,7 @@ public class EntitySelector
 			final double d5 = d4 * d4;
 			return Lists.newArrayList(new Predicate<Entity>()
 			{
+				@Override
 				public boolean apply(@Nullable Entity p_apply_1_)
 				{
 					if (p_apply_1_ == null)
@@ -565,6 +575,7 @@ public class EntitySelector
 			final int j = MathHelper.clampAngle(getInt(params, field_190843_q, 359));
 			list.add(new Predicate<Entity>()
 			{
+				@Override
 				public boolean apply(@Nullable Entity p_apply_1_)
 				{
 					if (p_apply_1_ == null)
@@ -594,6 +605,7 @@ public class EntitySelector
 			final int l = MathHelper.clampAngle(getInt(params, field_190841_o, 359));
 			list.add(new Predicate<Entity>()
 			{
+				@Override
 				public boolean apply(@Nullable Entity p_apply_1_)
 				{
 					if (p_apply_1_ == null)
@@ -638,7 +650,7 @@ public class EntitySelector
 		{
 			if (l >= 0)
 			{
-				AxisAlignedBB axisalignedbb1 = new AxisAlignedBB((double) (position.getX() - l), (double) (position.getY() - l), (double) (position.getZ() - l), (double) (position.getX() + l + 1), (double) (position.getY() + l + 1), (double) (position.getZ() + l + 1));
+				AxisAlignedBB axisalignedbb1 = new AxisAlignedBB(position.getX() - l, position.getY() - l, position.getZ() - l, position.getX() + l + 1, position.getY() + l + 1, position.getZ() + l + 1);
 
 				if (flag && !flag1)
 				{
@@ -670,6 +682,7 @@ public class EntitySelector
 			{
 				Predicate<Entity> predicate2 = new Predicate<Entity>()
 				{
+					@Override
 					public boolean apply(@Nullable Entity p_apply_1_)
 					{
 						return p_apply_1_ != null && axisalignedbb.intersectsWith(p_apply_1_.getEntityBoundingBox());
@@ -701,6 +714,7 @@ public class EntitySelector
 		{
 			Collections.sort(matchingEntities, new Comparator<Entity>()
 			{
+				@Override
 				public int compare(Entity p_compare_1_, Entity p_compare_2_)
 				{
 					return ComparisonChain.start().compare(p_compare_1_.getDistanceSq(pos.xCoord, pos.yCoord, pos.zCoord), p_compare_2_.getDistanceSq(pos.xCoord, pos.yCoord, pos.zCoord)).result();
@@ -739,7 +753,7 @@ public class EntitySelector
 		int l = pos.getX() + (flag ? 0 : x) + 1;
 		int i1 = pos.getY() + (flag1 ? 0 : y) + 1;
 		int j1 = pos.getZ() + (flag2 ? 0 : z) + 1;
-		return new AxisAlignedBB((double) i, (double) j, (double) k, (double) l, (double) i1, (double) j1);
+		return new AxisAlignedBB(i, j, k, l, i1, j1);
 	}
 
 	private static BlockPos getBlockPosFromArguments(Map<String, String> params, BlockPos pos)
@@ -754,7 +768,7 @@ public class EntitySelector
 
 	private static double getCoordinate(Map<String, String> params, String key, double defaultD, boolean offset)
 	{
-		return params.containsKey(key) ? (double) MathHelper.getInt(params.get(key), MathHelper.floor(defaultD)) + (offset ? 0.5D : 0.0D) : defaultD;
+		return params.containsKey(key) ? MathHelper.getInt(params.get(key), MathHelper.floor(defaultD)) + (offset ? 0.5D : 0.0D) : defaultD;
 	}
 
 	private static boolean hasArgument(Map<String, String> params)

@@ -16,6 +16,7 @@ public class GenLayerRareBiome extends GenLayer
 	 * interpreted as temperatures, rainfall amounts, or biomeList[] indices
 	 * based on the particular GenLayer subclass.
 	 */
+	@Override
 	public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
 	{
 		int[] aint = this.parent.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
@@ -25,7 +26,7 @@ public class GenLayerRareBiome extends GenLayer
 		{
 			for (int j = 0; j < areaWidth; ++j)
 			{
-				this.initChunkSeed((long) (j + areaX), (long) (i + areaY));
+				this.initChunkSeed(j + areaX, i + areaY);
 				int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
 
 				if (this.nextInt(57) == 0)

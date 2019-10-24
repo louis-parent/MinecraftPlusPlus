@@ -20,6 +20,7 @@ public class WorldGenHellLava extends WorldGenerator
 		this.insideRock = insideRockIn;
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		if (worldIn.getBlockState(position.up()).getBlock() != Blocks.NETHERRACK)

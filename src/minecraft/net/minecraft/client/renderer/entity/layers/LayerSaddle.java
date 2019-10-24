@@ -16,6 +16,7 @@ public class LayerSaddle implements LayerRenderer<EntityPig>
 		this.pigRenderer = pigRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntityPig entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		if (entitylivingbaseIn.getSaddled())
@@ -26,6 +27,7 @@ public class LayerSaddle implements LayerRenderer<EntityPig>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;

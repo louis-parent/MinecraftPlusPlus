@@ -61,7 +61,7 @@ public class ItemPredicate
 		{
 			return false;
 		}
-		else if (!this.field_192498_d.func_192514_a((float) p_192493_1_.getStackSize()))
+		else if (!this.field_192498_d.func_192514_a(p_192493_1_.getStackSize()))
 		{
 			return false;
 		}
@@ -69,7 +69,7 @@ public class ItemPredicate
 		{
 			return false;
 		}
-		else if (!this.field_193444_e.func_192514_a((float) (p_192493_1_.getMaxDamage() - p_192493_1_.getItemDamage())))
+		else if (!this.field_193444_e.func_192514_a(p_192493_1_.getMaxDamage() - p_192493_1_.getItemDamage()))
 		{
 			return false;
 		}

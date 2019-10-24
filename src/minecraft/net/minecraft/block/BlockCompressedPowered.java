@@ -18,11 +18,13 @@ public class BlockCompressedPowered extends Block
 	 * Can this block provide power. Only wire currently seems to have this
 	 * change based on its state.
 	 */
+	@Override
 	public boolean canProvidePower(IBlockState state)
 	{
 		return true;
 	}
 
+	@Override
 	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return 15;

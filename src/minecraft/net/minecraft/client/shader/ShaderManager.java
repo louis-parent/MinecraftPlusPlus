@@ -166,7 +166,7 @@ public class ShaderManager
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Closeable) iresource);
+			IOUtils.closeQuietly(iresource);
 		}
 
 		this.markDirty();
@@ -273,7 +273,7 @@ public class ShaderManager
 	public ShaderUniform getShaderUniformOrDefault(String name)
 	{
 		ShaderUniform shaderuniform = this.getShaderUniform(name);
-		return (ShaderUniform) (shaderuniform == null ? DEFAULT_SHADER_UNIFORM : shaderuniform);
+		return shaderuniform == null ? DEFAULT_SHADER_UNIFORM : shaderuniform;
 	}
 
 	/**
@@ -311,7 +311,7 @@ public class ShaderManager
 
 			if (l == -1)
 			{
-				LOGGER.warn("Could not find uniform named {} in the specified shader program.", (Object) s1);
+				LOGGER.warn("Could not find uniform named {} in the specified shader program.", s1);
 			}
 			else
 			{

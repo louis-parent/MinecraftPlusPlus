@@ -26,6 +26,7 @@ public class EntityAISwimming extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		return this.theEntity.isInWater() || this.theEntity.isInLava();
@@ -34,6 +35,7 @@ public class EntityAISwimming extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		if (this.theEntity.getRNG().nextFloat() < 0.8F)

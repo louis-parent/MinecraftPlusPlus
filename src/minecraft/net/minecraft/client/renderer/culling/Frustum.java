@@ -19,6 +19,7 @@ public class Frustum implements ICamera
 		this.clippingHelper = p_i46196_1_;
 	}
 
+	@Override
 	public void setPosition(double p_78547_1_, double p_78547_3_, double p_78547_5_)
 	{
 		this.xPosition = p_78547_1_;
@@ -39,6 +40,7 @@ public class Frustum implements ICamera
 	 * Returns true if the bounding box is inside all 6 clipping planes,
 	 * otherwise returns false.
 	 */
+	@Override
 	public boolean isBoundingBoxInFrustum(AxisAlignedBB p_78546_1_)
 	{
 		return this.isBoxInFrustum(p_78546_1_.minX, p_78546_1_.minY, p_78546_1_.minZ, p_78546_1_.maxX, p_78546_1_.maxY, p_78546_1_.maxZ);

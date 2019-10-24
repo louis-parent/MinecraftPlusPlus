@@ -45,11 +45,12 @@ public class SPacketExplosion implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
-		this.posX = (double) buf.readFloat();
-		this.posY = (double) buf.readFloat();
-		this.posZ = (double) buf.readFloat();
+		this.posX = buf.readFloat();
+		this.posY = buf.readFloat();
+		this.posZ = buf.readFloat();
 		this.strength = buf.readFloat();
 		int i = buf.readInt();
 		this.affectedBlockPositions = Lists.<BlockPos>newArrayListWithCapacity(i);
@@ -73,6 +74,7 @@ public class SPacketExplosion implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeFloat((float) this.posX);
@@ -102,6 +104,7 @@ public class SPacketExplosion implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handleExplosion(this);

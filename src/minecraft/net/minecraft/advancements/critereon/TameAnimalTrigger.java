@@ -21,11 +21,13 @@ public class TameAnimalTrigger implements ICriterionTrigger<TameAnimalTrigger.In
 	private static final ResourceLocation field_193179_a = new ResourceLocation("tame_animal");
 	private final Map<PlayerAdvancements, TameAnimalTrigger.Listeners> field_193180_b = Maps.<PlayerAdvancements, TameAnimalTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_193179_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<TameAnimalTrigger.Instance> p_192165_2_)
 	{
 		TameAnimalTrigger.Listeners tameanimaltrigger$listeners = this.field_193180_b.get(p_192165_1_);
@@ -39,6 +41,7 @@ public class TameAnimalTrigger implements ICriterionTrigger<TameAnimalTrigger.In
 		tameanimaltrigger$listeners.func_193496_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<TameAnimalTrigger.Instance> p_192164_2_)
 	{
 		TameAnimalTrigger.Listeners tameanimaltrigger$listeners = this.field_193180_b.get(p_192164_1_);
@@ -54,11 +57,13 @@ public class TameAnimalTrigger implements ICriterionTrigger<TameAnimalTrigger.In
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_193180_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public TameAnimalTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		EntityPredicate entitypredicate = EntityPredicate.func_192481_a(p_192166_1_.get("entity"));
@@ -122,7 +127,7 @@ public class TameAnimalTrigger implements ICriterionTrigger<TameAnimalTrigger.In
 
 			for (ICriterionTrigger.Listener<TameAnimalTrigger.Instance> listener : this.field_193499_b)
 			{
-				if (((TameAnimalTrigger.Instance) listener.func_192158_a()).func_193216_a(p_193497_1_, p_193497_2_))
+				if (listener.func_192158_a().func_193216_a(p_193497_1_, p_193497_2_))
 				{
 					if (list == null)
 					{

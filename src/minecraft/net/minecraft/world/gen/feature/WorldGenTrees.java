@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
@@ -48,6 +49,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 		this.vinesGrow = p_i46446_5_;
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		int i = rand.nextInt(3) + this.minTreeHeight;
@@ -241,7 +243,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
 	private void placeCocoa(World worldIn, int p_181652_2_, BlockPos pos, EnumFacing side)
 	{
-		this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.COCOA.getDefaultState().withProperty(BlockCocoa.AGE, Integer.valueOf(p_181652_2_)).withProperty(BlockCocoa.FACING, side));
+		this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.COCOA.getDefaultState().withProperty(BlockCocoa.AGE, Integer.valueOf(p_181652_2_)).withProperty(BlockHorizontal.FACING, side));
 	}
 
 	private void addVine(World worldIn, BlockPos pos, PropertyBool prop)

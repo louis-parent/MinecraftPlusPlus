@@ -34,12 +34,14 @@ public class ParticleEnchantmentTable extends Particle
 		this.setParticleTextureIndex((int) (Math.random() * 26.0D + 1.0D + 224.0D));
 	}
 
+	@Override
 	public void moveEntity(double x, double y, double z)
 	{
 		this.setEntityBoundingBox(this.getEntityBoundingBox().offset(x, y, z));
 		this.resetPositionToBB();
 	}
 
+	@Override
 	public int getBrightnessForRender(float p_189214_1_)
 	{
 		int i = super.getBrightnessForRender(p_189214_1_);
@@ -58,6 +60,7 @@ public class ParticleEnchantmentTable extends Particle
 		return j | k << 16;
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -68,9 +71,9 @@ public class ParticleEnchantmentTable extends Particle
 		float f1 = 1.0F - f;
 		f1 = f1 * f1;
 		f1 = f1 * f1;
-		this.posX = this.coordX + this.motionX * (double) f;
-		this.posY = this.coordY + this.motionY * (double) f - (double) (f1 * 1.2F);
-		this.posZ = this.coordZ + this.motionZ * (double) f;
+		this.posX = this.coordX + this.motionX * f;
+		this.posY = this.coordY + this.motionY * f - f1 * 1.2F;
+		this.posZ = this.coordZ + this.motionZ * f;
 
 		if (this.particleAge++ >= this.particleMaxAge)
 		{
@@ -80,6 +83,7 @@ public class ParticleEnchantmentTable extends Particle
 
 	public static class EnchantmentTable implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleEnchantmentTable(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);

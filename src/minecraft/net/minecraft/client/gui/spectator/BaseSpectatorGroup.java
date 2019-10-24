@@ -19,11 +19,13 @@ public class BaseSpectatorGroup implements ISpectatorMenuView
 		this.items.add(new TeleportToTeam());
 	}
 
+	@Override
 	public List<ISpectatorMenuObject> getItems()
 	{
 		return this.items;
 	}
 
+	@Override
 	public ITextComponent getPrompt()
 	{
 		return new TextComponentTranslation("spectatorMenu.root.prompt", new Object[0]);

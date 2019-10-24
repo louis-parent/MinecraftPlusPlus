@@ -19,6 +19,7 @@ public class RenderLlama extends RenderLiving<EntityLlama>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityLlama entity)
 	{
 		return field_191350_a[entity.func_190719_dM()];

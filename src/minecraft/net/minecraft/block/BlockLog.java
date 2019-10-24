@@ -27,6 +27,7 @@ public abstract class BlockLog extends BlockRotatedPillar
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		int i = 4;
@@ -38,7 +39,7 @@ public abstract class BlockLog extends BlockRotatedPillar
 			{
 				IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-				if (iblockstate.getMaterial() == Material.LEAVES && !((Boolean) iblockstate.getValue(BlockLeaves.CHECK_DECAY)).booleanValue())
+				if (iblockstate.getMaterial() == Material.LEAVES && !iblockstate.getValue(BlockLeaves.CHECK_DECAY).booleanValue())
 				{
 					worldIn.setBlockState(blockpos, iblockstate.withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(true)), 4);
 				}
@@ -50,6 +51,7 @@ public abstract class BlockLog extends BlockRotatedPillar
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getStateFromMeta(meta).withProperty(LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(facing.getAxis()));
@@ -59,13 +61,14 @@ public abstract class BlockLog extends BlockRotatedPillar
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
 		switch (rot)
 		{
 			case COUNTERCLOCKWISE_90:
 			case CLOCKWISE_90:
-				switch ((BlockLog.EnumAxis) state.getValue(LOG_AXIS))
+				switch (state.getValue(LOG_AXIS))
 				{
 					case X:
 						return state.withProperty(LOG_AXIS, BlockLog.EnumAxis.Z);
@@ -93,6 +96,7 @@ public abstract class BlockLog extends BlockRotatedPillar
 			this.name = name;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -116,6 +120,7 @@ public abstract class BlockLog extends BlockRotatedPillar
 			}
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

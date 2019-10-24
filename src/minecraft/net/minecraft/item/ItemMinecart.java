@@ -22,13 +22,14 @@ public class ItemMinecart extends Item
 	{
 		private final BehaviorDefaultDispenseItem behaviourDefaultDispenseItem = new BehaviorDefaultDispenseItem();
 
+		@Override
 		public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
 		{
-			EnumFacing enumfacing = (EnumFacing) source.getBlockState().getValue(BlockDispenser.FACING);
+			EnumFacing enumfacing = source.getBlockState().getValue(BlockDispenser.FACING);
 			World world = source.getWorld();
-			double d0 = source.getX() + (double) enumfacing.getFrontOffsetX() * 1.125D;
-			double d1 = Math.floor(source.getY()) + (double) enumfacing.getFrontOffsetY();
-			double d2 = source.getZ() + (double) enumfacing.getFrontOffsetZ() * 1.125D;
+			double d0 = source.getX() + enumfacing.getFrontOffsetX() * 1.125D;
+			double d1 = Math.floor(source.getY()) + enumfacing.getFrontOffsetY();
+			double d2 = source.getZ() + enumfacing.getFrontOffsetZ() * 1.125D;
 			BlockPos blockpos = source.getBlockPos().offset(enumfacing);
 			IBlockState iblockstate = world.getBlockState(blockpos);
 			BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = iblockstate.getBlock() instanceof BlockRailBase ? (BlockRailBase.EnumRailDirection) iblockstate.getValue(((BlockRailBase) iblockstate.getBlock()).getShapeProperty()) : BlockRailBase.EnumRailDirection.NORTH_SOUTH;
@@ -77,6 +78,7 @@ public class ItemMinecart extends Item
 			return stack;
 		}
 
+		@Override
 		protected void playDispenseSound(IBlockSource source)
 		{
 			source.getWorld().playEvent(1000, source.getBlockPos(), 0);
@@ -95,6 +97,7 @@ public class ItemMinecart extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
@@ -117,7 +120,7 @@ public class ItemMinecart extends Item
 					d0 = 0.5D;
 				}
 
-				EntityMinecart entityminecart = EntityMinecart.create(playerIn, (double) worldIn.getX() + 0.5D, (double) worldIn.getY() + 0.0625D + d0, (double) worldIn.getZ() + 0.5D, this.minecartType);
+				EntityMinecart entityminecart = EntityMinecart.create(playerIn, worldIn.getX() + 0.5D, worldIn.getY() + 0.0625D + d0, worldIn.getZ() + 0.5D, this.minecartType);
 
 				if (itemstack.hasDisplayName())
 				{

@@ -46,11 +46,13 @@ public class Variant
 		return this.weight;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "Variant{modelLocation=" + this.modelLocation + ", rotation=" + this.rotation + ", uvLock=" + this.uvLock + ", weight=" + this.weight + '}';
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -68,6 +70,7 @@ public class Variant
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = this.modelLocation.hashCode();
@@ -79,6 +82,7 @@ public class Variant
 
 	public static class Deserializer implements JsonDeserializer<Variant>
 	{
+		@Override
 		public Variant deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();

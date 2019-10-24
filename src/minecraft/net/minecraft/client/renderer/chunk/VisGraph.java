@@ -76,7 +76,7 @@ public class VisGraph
 
 		while (!queue.isEmpty())
 		{
-			int i = ((Integer) queue.poll()).intValue();
+			int i = queue.poll().intValue();
 			this.addEdges(i, set);
 
 			for (EnumFacing enumfacing : EnumFacing.values())

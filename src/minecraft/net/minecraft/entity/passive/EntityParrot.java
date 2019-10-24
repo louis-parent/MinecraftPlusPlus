@@ -88,6 +88,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	private static final DataParameter<Integer> field_192013_bG = EntityDataManager.<Integer>createKey(EntityParrot.class, DataSerializers.VARINT);
 	private static final Predicate<EntityLiving> field_192014_bH = new Predicate<EntityLiving>()
 	{
+		@Override
 		public boolean apply(@Nullable EntityLiving p_apply_1_)
 		{
 			return p_apply_1_ != null && EntityParrot.field_192017_bK.containsKey(EntityList.field_191308_b.getIDForObject(p_apply_1_.getClass()));
@@ -111,6 +112,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		this.moveHelper = new EntityFlyHelper(this);
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -124,6 +126,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		return super.onInitialSpawn(difficulty, livingdata);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.aiSit = new EntityAISit(this);
@@ -137,6 +140,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		this.tasks.addTask(3, new EntityAIFollow(this, 1.0D, 3.0F, 7.0F));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -149,6 +153,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	/**
 	 * Returns new PathNavigateGround instance
 	 */
+	@Override
 	protected PathNavigate getNewNavigator(World worldIn)
 	{
 		PathNavigateFlying pathnavigateflying = new PathNavigateFlying(this, worldIn);
@@ -158,6 +163,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		return pathnavigateflying;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return this.height * 0.6F;
@@ -168,6 +174,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		func_192006_b(this.world, this);
@@ -182,6 +189,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		this.func_192001_dv();
 	}
 
+	@Override
 	public void func_191987_a(BlockPos p_191987_1_, boolean p_191987_2_)
 	{
 		this.field_192019_bM = p_191987_1_;
@@ -197,7 +205,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	{
 		this.field_192011_bE = this.field_192008_bB;
 		this.field_192010_bD = this.field_192009_bC;
-		this.field_192009_bC = (float) ((double) this.field_192009_bC + (double) (this.onGround ? -1 : 4) * 0.3D);
+		this.field_192009_bC = (float) (this.field_192009_bC + (this.onGround ? -1 : 4) * 0.3D);
 		this.field_192009_bC = MathHelper.clamp(this.field_192009_bC, 0.0F, 1.0F);
 
 		if (!this.onGround && this.field_192012_bF < 1.0F)
@@ -205,7 +213,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 			this.field_192012_bF = 1.0F;
 		}
 
-		this.field_192012_bF = (float) ((double) this.field_192012_bF * 0.9D);
+		this.field_192012_bF = (float) (this.field_192012_bF * 0.9D);
 
 		if (!this.onGround && this.motionY < 0.0D)
 		{
@@ -241,6 +249,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		}
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -305,6 +314,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	 * Checks if the parameter is an item which this animal can be fed to breed
 	 * it (wheat, carrots or seeds depending on the animal type)
 	 */
+	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
 		return false;
@@ -314,6 +324,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		int i = MathHelper.floor(this.posX);
@@ -324,10 +335,12 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		return block instanceof BlockLeaves || block == Blocks.GRASS || block instanceof BlockLog || block == Blocks.AIR && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere();
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 	}
 
+	@Override
 	protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
 	{
 	}
@@ -335,11 +348,13 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	/**
 	 * Returns true if the mob is currently able to mate with the specified mob.
 	 */
+	@Override
 	public boolean canMateWith(EntityAnimal otherAnimal)
 	{
 		return false;
 	}
 
+	@Override
 	@Nullable
 	public EntityAgeable createChild(EntityAgeable ageable)
 	{
@@ -354,11 +369,13 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		}
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
 		return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0F);
 	}
 
+	@Override
 	@Nullable
 	public SoundEvent getAmbientSound()
 	{
@@ -370,7 +387,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		if (p_192003_0_.nextInt(1000) == 0)
 		{
 			List<Integer> list = new ArrayList<Integer>(field_192017_bK.keySet());
-			return func_191999_g(((Integer) list.get(p_192003_0_.nextInt(list.size()))).intValue());
+			return func_191999_g(list.get(p_192003_0_.nextInt(list.size())).intValue());
 		}
 		else
 		{
@@ -383,27 +400,32 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		return field_192017_bK.containsKey(p_191999_0_) ? (SoundEvent) field_192017_bK.get(p_191999_0_) : SoundEvents.field_192792_ep;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.field_192794_er;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.field_192793_eq;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.field_192795_es, 0.15F, 1.0F);
 	}
 
+	@Override
 	protected float func_191954_d(float p_191954_1_)
 	{
 		this.playSound(SoundEvents.field_192796_et, 0.15F, 1.0F);
 		return p_191954_1_ + this.field_192009_bC / 2.0F;
 	}
 
+	@Override
 	protected boolean func_191957_ae()
 	{
 		return true;
@@ -412,6 +434,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	/**
 	 * Gets the pitch of living sounds in living entities.
 	 */
+	@Override
 	protected float getSoundPitch()
 	{
 		return func_192000_b(this.rand);
@@ -422,6 +445,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		return (p_192000_0_.nextFloat() - p_192000_0_.nextFloat()) * 0.2F + 1.0F;
 	}
 
+	@Override
 	public SoundCategory getSoundCategory()
 	{
 		return SoundCategory.NEUTRAL;
@@ -431,11 +455,13 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	 * Returns true if this entity should push and be pushed by other entities
 	 * when colliding.
 	 */
+	@Override
 	public boolean canBePushed()
 	{
 		return true;
 	}
 
+	@Override
 	protected void collideWithEntity(Entity entityIn)
 	{
 		if (!(entityIn instanceof EntityPlayer))
@@ -447,6 +473,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -466,7 +493,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 
 	public int func_191998_ds()
 	{
-		return MathHelper.clamp(((Integer) this.dataManager.get(field_192013_bG)).intValue(), 0, 4);
+		return MathHelper.clamp(this.dataManager.get(field_192013_bG).intValue(), 0, 4);
 	}
 
 	public void func_191997_m(int p_191997_1_)
@@ -474,6 +501,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		this.dataManager.set(field_192013_bG, Integer.valueOf(p_191997_1_));
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -483,6 +511,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -492,12 +521,14 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
 		this.func_191997_m(compound.getInteger("Variant"));
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{

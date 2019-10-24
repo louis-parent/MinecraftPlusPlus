@@ -67,6 +67,7 @@ public interface ITextComponent extends Iterable<ITextComponent>
 	{
 		private static final Gson GSON;
 
+		@Override
 		public ITextComponent deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			if (p_deserialize_1_.isJsonPrimitive())
@@ -206,6 +207,7 @@ public interface ITextComponent extends Iterable<ITextComponent>
 			}
 		}
 
+		@Override
 		public JsonElement serialize(ITextComponent p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			JsonObject jsonobject = new JsonObject();
@@ -291,13 +293,13 @@ public interface ITextComponent extends Iterable<ITextComponent>
 		@Nullable
 		public static ITextComponent jsonToComponent(String json)
 		{
-			return (ITextComponent) JsonUtils.gsonDeserialize(GSON, json, ITextComponent.class, false);
+			return JsonUtils.gsonDeserialize(GSON, json, ITextComponent.class, false);
 		}
 
 		@Nullable
 		public static ITextComponent fromJsonLenient(String json)
 		{
-			return (ITextComponent) JsonUtils.gsonDeserialize(GSON, json, ITextComponent.class, true);
+			return JsonUtils.gsonDeserialize(GSON, json, ITextComponent.class, true);
 		}
 
 		static

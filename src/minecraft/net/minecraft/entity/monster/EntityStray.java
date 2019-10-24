@@ -32,37 +32,44 @@ public class EntityStray extends AbstractSkeleton
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		return super.getCanSpawnHere() && this.world.canSeeSky(new BlockPos(this));
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.ENTITIES_STRAY;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_STRAY_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_STRAY_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_STRAY_DEATH;
 	}
 
+	@Override
 	SoundEvent func_190727_o()
 	{
 		return SoundEvents.ENTITY_STRAY_STEP;
 	}
 
+	@Override
 	protected EntityArrow func_190726_a(float p_190726_1_)
 	{
 		EntityArrow entityarrow = super.func_190726_a(p_190726_1_);

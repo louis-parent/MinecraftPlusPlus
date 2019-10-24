@@ -35,7 +35,7 @@ public class PathFinder
 	@Nullable
 	public Path findPath(IBlockAccess worldIn, EntityLiving p_186336_2_, BlockPos p_186336_3_, float p_186336_4_)
 	{
-		return this.findPath(worldIn, p_186336_2_, (double) ((float) p_186336_3_.getX() + 0.5F), (double) ((float) p_186336_3_.getY() + 0.5F), (double) ((float) p_186336_3_.getZ() + 0.5F), p_186336_4_);
+		return this.findPath(worldIn, p_186336_2_, p_186336_3_.getX() + 0.5F, p_186336_3_.getY() + 0.5F, p_186336_3_.getZ() + 0.5F, p_186336_4_);
 	}
 
 	@Nullable

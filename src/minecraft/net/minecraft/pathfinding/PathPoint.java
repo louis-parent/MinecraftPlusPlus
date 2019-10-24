@@ -73,9 +73,9 @@ public class PathPoint
 	 */
 	public float distanceTo(PathPoint pathpointIn)
 	{
-		float f = (float) (pathpointIn.xCoord - this.xCoord);
-		float f1 = (float) (pathpointIn.yCoord - this.yCoord);
-		float f2 = (float) (pathpointIn.zCoord - this.zCoord);
+		float f = pathpointIn.xCoord - this.xCoord;
+		float f1 = pathpointIn.yCoord - this.yCoord;
+		float f2 = pathpointIn.zCoord - this.zCoord;
 		return MathHelper.sqrt(f * f + f1 * f1 + f2 * f2);
 	}
 
@@ -84,20 +84,21 @@ public class PathPoint
 	 */
 	public float distanceToSquared(PathPoint pathpointIn)
 	{
-		float f = (float) (pathpointIn.xCoord - this.xCoord);
-		float f1 = (float) (pathpointIn.yCoord - this.yCoord);
-		float f2 = (float) (pathpointIn.zCoord - this.zCoord);
+		float f = pathpointIn.xCoord - this.xCoord;
+		float f1 = pathpointIn.yCoord - this.yCoord;
+		float f2 = pathpointIn.zCoord - this.zCoord;
 		return f * f + f1 * f1 + f2 * f2;
 	}
 
 	public float distanceManhattan(PathPoint p_186281_1_)
 	{
-		float f = (float) Math.abs(p_186281_1_.xCoord - this.xCoord);
-		float f1 = (float) Math.abs(p_186281_1_.yCoord - this.yCoord);
-		float f2 = (float) Math.abs(p_186281_1_.zCoord - this.zCoord);
+		float f = Math.abs(p_186281_1_.xCoord - this.xCoord);
+		float f1 = Math.abs(p_186281_1_.yCoord - this.yCoord);
+		float f2 = Math.abs(p_186281_1_.zCoord - this.zCoord);
 		return f + f1 + f2;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (!(p_equals_1_ instanceof PathPoint))
@@ -111,6 +112,7 @@ public class PathPoint
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.hash;
@@ -124,6 +126,7 @@ public class PathPoint
 		return this.index >= 0;
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.xCoord + ", " + this.yCoord + ", " + this.zCoord;

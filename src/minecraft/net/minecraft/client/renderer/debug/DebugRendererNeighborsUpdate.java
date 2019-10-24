@@ -29,7 +29,7 @@ public class DebugRendererNeighborsUpdate implements DebugRenderer.IDebugRendere
 
 	public void func_191553_a(long p_191553_1_, BlockPos p_191553_3_)
 	{
-		Map<BlockPos, Integer> map = (Map) this.field_191555_b.get(Long.valueOf(p_191553_1_));
+		Map<BlockPos, Integer> map = this.field_191555_b.get(Long.valueOf(p_191553_1_));
 
 		if (map == null)
 		{
@@ -47,13 +47,14 @@ public class DebugRendererNeighborsUpdate implements DebugRenderer.IDebugRendere
 		map.put(p_191553_3_, Integer.valueOf(integer.intValue() + 1));
 	}
 
+	@Override
 	public void render(float p_190060_1_, long p_190060_2_)
 	{
 		long i = this.field_191554_a.world.getTotalWorldTime();
 		EntityPlayer entityplayer = this.field_191554_a.player;
-		double d0 = entityplayer.lastTickPosX + (entityplayer.posX - entityplayer.lastTickPosX) * (double) p_190060_1_;
-		double d1 = entityplayer.lastTickPosY + (entityplayer.posY - entityplayer.lastTickPosY) * (double) p_190060_1_;
-		double d2 = entityplayer.lastTickPosZ + (entityplayer.posZ - entityplayer.lastTickPosZ) * (double) p_190060_1_;
+		double d0 = entityplayer.lastTickPosX + (entityplayer.posX - entityplayer.lastTickPosX) * p_190060_1_;
+		double d1 = entityplayer.lastTickPosY + (entityplayer.posY - entityplayer.lastTickPosY) * p_190060_1_;
+		double d2 = entityplayer.lastTickPosZ + (entityplayer.posZ - entityplayer.lastTickPosZ) * p_190060_1_;
 		World world = this.field_191554_a.player.world;
 		GlStateManager.enableBlend();
 		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
@@ -68,9 +69,9 @@ public class DebugRendererNeighborsUpdate implements DebugRenderer.IDebugRendere
 
 		while (iterator.hasNext())
 		{
-			Entry<Long, Map<BlockPos, Integer>> entry = (Entry) iterator.next();
+			Entry<Long, Map<BlockPos, Integer>> entry = iterator.next();
 			Long olong = entry.getKey();
-			Map<BlockPos, Integer> map1 = (Map) entry.getValue();
+			Map<BlockPos, Integer> map1 = entry.getValue();
 			long k = i - olong.longValue();
 
 			if (k > 200L)
@@ -86,7 +87,7 @@ public class DebugRendererNeighborsUpdate implements DebugRenderer.IDebugRendere
 
 					if (set.add(blockpos))
 					{
-						RenderGlobal.drawSelectionBoundingBox((new AxisAlignedBB(BlockPos.ORIGIN)).expandXyz(0.002D).contract(0.0025D * (double) k).offset((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ()).offset(-d0, -d1, -d2), 1.0F, 1.0F, 1.0F, 1.0F);
+						RenderGlobal.drawSelectionBoundingBox((new AxisAlignedBB(BlockPos.ORIGIN)).expandXyz(0.002D).contract(0.0025D * k).offset(blockpos.getX(), blockpos.getY(), blockpos.getZ()).offset(-d0, -d1, -d2), 1.0F, 1.0F, 1.0F, 1.0F);
 						map.put(blockpos, integer);
 					}
 				}
@@ -97,7 +98,7 @@ public class DebugRendererNeighborsUpdate implements DebugRenderer.IDebugRendere
 		{
 			BlockPos blockpos1 = entry2.getKey();
 			Integer integer1 = entry2.getValue();
-			DebugRenderer.func_191556_a(String.valueOf((Object) integer1), blockpos1.getX(), blockpos1.getY(), blockpos1.getZ(), p_190060_1_, -1);
+			DebugRenderer.func_191556_a(String.valueOf(integer1), blockpos1.getX(), blockpos1.getY(), blockpos1.getZ(), p_190060_1_, -1);
 		}
 
 		GlStateManager.depthMask(true);

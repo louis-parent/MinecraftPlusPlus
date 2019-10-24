@@ -57,6 +57,7 @@ public class EntitySheep extends EntityAnimal
 	 */
 	private final InventoryCrafting inventoryCrafting = new InventoryCrafting(new Container()
 	{
+		@Override
 		public boolean canInteractWith(EntityPlayer playerIn)
 		{
 			return false;
@@ -91,6 +92,7 @@ public class EntitySheep extends EntityAnimal
 		this.inventoryCrafting.setInventorySlotContents(1, new ItemStack(Items.DYE));
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.entityAIEatGrass = new EntityAIEatGrass(this);
@@ -105,6 +107,7 @@ public class EntitySheep extends EntityAnimal
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		this.sheepTimer = this.entityAIEatGrass.getEatingGrassTimer();
@@ -116,6 +119,7 @@ public class EntitySheep extends EntityAnimal
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.world.isRemote)
@@ -126,6 +130,7 @@ public class EntitySheep extends EntityAnimal
 		super.onLivingUpdate();
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -133,12 +138,14 @@ public class EntitySheep extends EntityAnimal
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataManager.register(DYE_COLOR, Byte.valueOf((byte) 0));
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -202,6 +209,7 @@ public class EntitySheep extends EntityAnimal
 		}
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 10)
@@ -226,7 +234,7 @@ public class EntitySheep extends EntityAnimal
 		}
 		else
 		{
-			return this.sheepTimer < 4 ? ((float) this.sheepTimer - p_70894_1_) / 4.0F : -((float) (this.sheepTimer - 40) - p_70894_1_) / 4.0F;
+			return this.sheepTimer < 4 ? (this.sheepTimer - p_70894_1_) / 4.0F : -(this.sheepTimer - 40 - p_70894_1_) / 4.0F;
 		}
 	}
 
@@ -234,7 +242,7 @@ public class EntitySheep extends EntityAnimal
 	{
 		if (this.sheepTimer > 4 && this.sheepTimer <= 36)
 		{
-			float f = ((float) (this.sheepTimer - 4) - p_70890_1_) / 32.0F;
+			float f = (this.sheepTimer - 4 - p_70890_1_) / 32.0F;
 			return ((float) Math.PI / 5F) + ((float) Math.PI * 7F / 100F) * MathHelper.sin(f * 28.7F);
 		}
 		else
@@ -243,6 +251,7 @@ public class EntitySheep extends EntityAnimal
 		}
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -257,9 +266,9 @@ public class EntitySheep extends EntityAnimal
 				for (int j = 0; j < i; ++j)
 				{
 					EntityItem entityitem = this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.WOOL), 1, this.getFleeceColor().getMetadata()), 1.0F);
-					entityitem.motionY += (double) (this.rand.nextFloat() * 0.05F);
-					entityitem.motionX += (double) ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F);
-					entityitem.motionZ += (double) ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F);
+					entityitem.motionY += this.rand.nextFloat() * 0.05F;
+					entityitem.motionX += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F;
+					entityitem.motionZ += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F;
 				}
 			}
 
@@ -278,6 +287,7 @@ public class EntitySheep extends EntityAnimal
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -288,6 +298,7 @@ public class EntitySheep extends EntityAnimal
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -295,21 +306,25 @@ public class EntitySheep extends EntityAnimal
 		this.setFleeceColor(EnumDyeColor.byMetadata(compound.getByte("Color")));
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_SHEEP_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_SHEEP_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_SHEEP_DEATH;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.ENTITY_SHEEP_STEP, 0.15F, 1.0F);
@@ -320,7 +335,7 @@ public class EntitySheep extends EntityAnimal
 	 */
 	public EnumDyeColor getFleeceColor()
 	{
-		return EnumDyeColor.byMetadata(((Byte) this.dataManager.get(DYE_COLOR)).byteValue() & 15);
+		return EnumDyeColor.byMetadata(this.dataManager.get(DYE_COLOR).byteValue() & 15);
 	}
 
 	/**
@@ -328,7 +343,7 @@ public class EntitySheep extends EntityAnimal
 	 */
 	public void setFleeceColor(EnumDyeColor color)
 	{
-		byte b0 = ((Byte) this.dataManager.get(DYE_COLOR)).byteValue();
+		byte b0 = this.dataManager.get(DYE_COLOR).byteValue();
 		this.dataManager.set(DYE_COLOR, Byte.valueOf((byte) (b0 & 240 | color.getMetadata() & 15)));
 	}
 
@@ -337,7 +352,7 @@ public class EntitySheep extends EntityAnimal
 	 */
 	public boolean getSheared()
 	{
-		return (((Byte) this.dataManager.get(DYE_COLOR)).byteValue() & 16) != 0;
+		return (this.dataManager.get(DYE_COLOR).byteValue() & 16) != 0;
 	}
 
 	/**
@@ -345,7 +360,7 @@ public class EntitySheep extends EntityAnimal
 	 */
 	public void setSheared(boolean sheared)
 	{
-		byte b0 = ((Byte) this.dataManager.get(DYE_COLOR)).byteValue();
+		byte b0 = this.dataManager.get(DYE_COLOR).byteValue();
 
 		if (sheared)
 		{
@@ -386,6 +401,7 @@ public class EntitySheep extends EntityAnimal
 		}
 	}
 
+	@Override
 	public EntitySheep createChild(EntityAgeable ageable)
 	{
 		EntitySheep entitysheep = (EntitySheep) ageable;
@@ -399,6 +415,7 @@ public class EntitySheep extends EntityAnimal
 	 * growing up to the acting entity. (This function is used in the
 	 * AIEatGrass)
 	 */
+	@Override
 	public void eatGrassBonus()
 	{
 		this.setSheared(false);
@@ -409,6 +426,7 @@ public class EntitySheep extends EntityAnimal
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -447,6 +465,7 @@ public class EntitySheep extends EntityAnimal
 		return EnumDyeColor.byDyeDamage(k);
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return 0.95F * this.height;

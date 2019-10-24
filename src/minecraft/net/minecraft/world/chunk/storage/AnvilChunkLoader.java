@@ -55,6 +55,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 		this.field_193416_e = dataFixerIn;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -80,6 +81,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 		return this.checkedReadChunkFromNBT(worldIn, x, z, nbttagcompound);
 	}
 
+	@Override
 	public boolean func_191063_a(int p_191063_1_, int p_191063_2_)
 	{
 		ChunkPos chunkpos = new ChunkPos(p_191063_1_, p_191063_2_);
@@ -125,6 +127,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 		}
 	}
 
+	@Override
 	public void saveChunk(World worldIn, Chunk chunkIn) throws MinecraftException, IOException
 	{
 		worldIn.checkSessionLock();
@@ -140,7 +143,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 		}
 		catch (Exception exception)
 		{
-			LOGGER.error("Failed to save chunk", (Throwable) exception);
+			LOGGER.error("Failed to save chunk", exception);
 		}
 	}
 
@@ -157,13 +160,14 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 	/**
 	 * Returns a boolean stating if the write was unsuccessful.
 	 */
+	@Override
 	public boolean writeNextIO()
 	{
 		if (this.chunksToRemove.isEmpty())
 		{
 			if (this.savingExtraData)
 			{
-				LOGGER.info("ThreadedAnvilChunkStorage ({}): All chunks are saved", (Object) this.chunkSaveLocation.getName());
+				LOGGER.info("ThreadedAnvilChunkStorage ({}): All chunks are saved", this.chunkSaveLocation.getName());
 			}
 
 			return false;
@@ -186,7 +190,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 					}
 					catch (Exception exception)
 					{
-						LOGGER.error("Failed to save chunk", (Throwable) exception);
+						LOGGER.error("Failed to save chunk", exception);
 					}
 				}
 
@@ -212,6 +216,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 	 * Save extra data associated with this Chunk not normally saved during
 	 * autosave, only during chunk unload. Currently unused.
 	 */
+	@Override
 	public void saveExtraChunkData(World worldIn, Chunk chunkIn) throws IOException
 	{
 	}
@@ -219,6 +224,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 	/**
 	 * Called every World.tick()
 	 */
+	@Override
 	public void chunkTick()
 	{
 	}
@@ -227,6 +233,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 	 * Save extra data not associated with any Chunk. Not saved during autosave,
 	 * only during world unload. Currently unused.
 	 */
+	@Override
 	public void saveExtraData()
 	{
 		try
@@ -246,6 +253,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 	{
 		fixer.registerWalker(FixTypes.CHUNK, new IDataWalker()
 		{
+			@Override
 			public NBTTagCompound process(IDataFixer fixer, NBTTagCompound compound, int versionIn)
 			{
 				if (compound.hasKey("Level", 10))

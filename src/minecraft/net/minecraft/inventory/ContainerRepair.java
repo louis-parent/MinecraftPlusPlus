@@ -54,6 +54,7 @@ public class ContainerRepair extends Container
 		this.outputSlot = new InventoryCraftResult();
 		this.inputSlots = new InventoryBasic("Repair", true, 2)
 		{
+			@Override
 			public void markDirty()
 			{
 				super.markDirty();
@@ -67,16 +68,19 @@ public class ContainerRepair extends Container
 		this.addSlotToContainer(new Slot(this.inputSlots, 1, 76, 47));
 		this.addSlotToContainer(new Slot(this.outputSlot, 2, 134, 47)
 		{
+			@Override
 			public boolean isItemValid(ItemStack stack)
 			{
 				return false;
 			}
 
+			@Override
 			public boolean canTakeStack(EntityPlayer playerIn)
 			{
 				return (playerIn.capabilities.isCreativeMode || playerIn.experienceLevel >= ContainerRepair.this.maximumCost) && ContainerRepair.this.maximumCost > 0 && this.getHasStack();
 			}
 
+			@Override
 			public ItemStack func_190901_a(EntityPlayer p_190901_1_, ItemStack p_190901_2_)
 			{
 				if (!p_190901_1_.capabilities.isCreativeMode)
@@ -110,7 +114,7 @@ public class ContainerRepair extends Container
 
 				if (!p_190901_1_.capabilities.isCreativeMode && !worldIn.isRemote && iblockstate.getBlock() == Blocks.ANVIL && p_190901_1_.getRNG().nextFloat() < 0.12F)
 				{
-					int l = ((Integer) iblockstate.getValue(BlockAnvil.DAMAGE)).intValue();
+					int l = iblockstate.getValue(BlockAnvil.DAMAGE).intValue();
 					++l;
 
 					if (l > 2)
@@ -150,6 +154,7 @@ public class ContainerRepair extends Container
 	/**
 	 * Callback for when the crafting matrix is changed.
 	 */
+	@Override
 	public void onCraftMatrixChanged(IInventory inventoryIn)
 	{
 		super.onCraftMatrixChanged(inventoryIn);
@@ -249,8 +254,8 @@ public class ContainerRepair extends Container
 					{
 						if (enchantment1 != null)
 						{
-							int i2 = map.containsKey(enchantment1) ? ((Integer) map.get(enchantment1)).intValue() : 0;
-							int j2 = ((Integer) map1.get(enchantment1)).intValue();
+							int i2 = map.containsKey(enchantment1) ? map.get(enchantment1).intValue() : 0;
+							int j2 = map1.get(enchantment1).intValue();
 							j2 = i2 == j2 ? j2 + 1 : Math.max(j2, i2);
 							boolean flag1 = enchantment1.canApply(itemstack);
 
@@ -382,12 +387,14 @@ public class ContainerRepair extends Container
 		}
 	}
 
+	@Override
 	public void addListener(IContainerListener listener)
 	{
 		super.addListener(listener);
 		listener.sendProgressBarUpdate(this, 0, this.maximumCost);
 	}
 
+	@Override
 	public void updateProgressBar(int id, int data)
 	{
 		if (id == 0)
@@ -399,6 +406,7 @@ public class ContainerRepair extends Container
 	/**
 	 * Called when the container is closed.
 	 */
+	@Override
 	public void onContainerClosed(EntityPlayer playerIn)
 	{
 		super.onContainerClosed(playerIn);
@@ -412,6 +420,7 @@ public class ContainerRepair extends Container
 	/**
 	 * Determines whether supplied player can use this container
 	 */
+	@Override
 	public boolean canInteractWith(EntityPlayer playerIn)
 	{
 		if (this.theWorld.getBlockState(this.selfPosition).getBlock() != Blocks.ANVIL)
@@ -420,13 +429,14 @@ public class ContainerRepair extends Container
 		}
 		else
 		{
-			return playerIn.getDistanceSq((double) this.selfPosition.getX() + 0.5D, (double) this.selfPosition.getY() + 0.5D, (double) this.selfPosition.getZ() + 0.5D) <= 64.0D;
+			return playerIn.getDistanceSq(this.selfPosition.getX() + 0.5D, this.selfPosition.getY() + 0.5D, this.selfPosition.getZ() + 0.5D) <= 64.0D;
 		}
 	}
 
 	/**
 	 * Take a stack from the specified inventory slot.
 	 */
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
 		ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;

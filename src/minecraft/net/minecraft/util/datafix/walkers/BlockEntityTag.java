@@ -27,6 +27,7 @@ public class BlockEntityTag implements IDataWalker
 		return blockID < 515 ? (String) field_190892_b.get((new ResourceLocation(p_188267_1_)).toString()) : (String) ITEM_ID_TO_BLOCK_ENTITY_ID.get((new ResourceLocation(p_188267_1_)).toString());
 	}
 
+	@Override
 	public NBTTagCompound process(IDataFixer fixer, NBTTagCompound compound, int versionIn)
 	{
 		if (!compound.hasKey("tag", 10))
@@ -46,7 +47,7 @@ public class BlockEntityTag implements IDataWalker
 
 				if (s1 == null)
 				{
-					LOGGER.warn("Unable to resolve BlockEntity for ItemInstance: {}", (Object) s);
+					LOGGER.warn("Unable to resolve BlockEntity for ItemInstance: {}", s);
 					flag = false;
 				}
 				else

@@ -22,11 +22,13 @@ public class NetherTravelTrigger implements ICriterionTrigger<NetherTravelTrigge
 	private static final ResourceLocation field_193169_a = new ResourceLocation("nether_travel");
 	private final Map<PlayerAdvancements, NetherTravelTrigger.Listeners> field_193170_b = Maps.<PlayerAdvancements, NetherTravelTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_193169_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<NetherTravelTrigger.Instance> p_192165_2_)
 	{
 		NetherTravelTrigger.Listeners nethertraveltrigger$listeners = this.field_193170_b.get(p_192165_1_);
@@ -40,6 +42,7 @@ public class NetherTravelTrigger implements ICriterionTrigger<NetherTravelTrigge
 		nethertraveltrigger$listeners.func_193484_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<NetherTravelTrigger.Instance> p_192164_2_)
 	{
 		NetherTravelTrigger.Listeners nethertraveltrigger$listeners = this.field_193170_b.get(p_192164_1_);
@@ -55,11 +58,13 @@ public class NetherTravelTrigger implements ICriterionTrigger<NetherTravelTrigge
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_193170_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public NetherTravelTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		LocationPredicate locationpredicate = LocationPredicate.func_193454_a(p_192166_1_.get("entered"));
@@ -140,7 +145,7 @@ public class NetherTravelTrigger implements ICriterionTrigger<NetherTravelTrigge
 
 			for (ICriterionTrigger.Listener<NetherTravelTrigger.Instance> listener : this.field_193486_b)
 			{
-				if (((NetherTravelTrigger.Instance) listener.func_192158_a()).func_193206_a(p_193483_1_, p_193483_2_, p_193483_3_, p_193483_5_, p_193483_7_))
+				if (listener.func_192158_a().func_193206_a(p_193483_1_, p_193483_2_, p_193483_3_, p_193483_5_, p_193483_7_))
 				{
 					if (list == null)
 					{

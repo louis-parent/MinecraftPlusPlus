@@ -17,6 +17,7 @@ public class BlockStateMatcher implements Predicate<IBlockState>
 {
 	public static final Predicate<IBlockState> ANY = new Predicate<IBlockState>()
 	{
+		@Override
 		public boolean apply(@Nullable IBlockState p_apply_1_)
 		{
 			return true;
@@ -35,6 +36,7 @@ public class BlockStateMatcher implements Predicate<IBlockState>
 		return new BlockStateMatcher(blockIn.getBlockState());
 	}
 
+	@Override
 	public boolean apply(@Nullable IBlockState p_apply_1_)
 	{
 		if (p_apply_1_ != null && p_apply_1_.getBlock().equals(this.blockstate.getBlock()))

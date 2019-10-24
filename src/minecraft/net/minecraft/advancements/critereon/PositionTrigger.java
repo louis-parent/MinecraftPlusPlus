@@ -26,11 +26,13 @@ public class PositionTrigger implements ICriterionTrigger<PositionTrigger.Instan
 		this.field_192217_a = p_i47432_1_;
 	}
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return this.field_192217_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<PositionTrigger.Instance> p_192165_2_)
 	{
 		PositionTrigger.Listeners positiontrigger$listeners = this.field_192218_b.get(p_192165_1_);
@@ -44,6 +46,7 @@ public class PositionTrigger implements ICriterionTrigger<PositionTrigger.Instan
 		positiontrigger$listeners.func_192510_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<PositionTrigger.Instance> p_192164_2_)
 	{
 		PositionTrigger.Listeners positiontrigger$listeners = this.field_192218_b.get(p_192164_1_);
@@ -59,11 +62,13 @@ public class PositionTrigger implements ICriterionTrigger<PositionTrigger.Instan
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192218_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public PositionTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		LocationPredicate locationpredicate = LocationPredicate.func_193454_a(p_192166_1_);
@@ -127,7 +132,7 @@ public class PositionTrigger implements ICriterionTrigger<PositionTrigger.Instan
 
 			for (ICriterionTrigger.Listener<PositionTrigger.Instance> listener : this.field_192512_b)
 			{
-				if (((PositionTrigger.Instance) listener.func_192158_a()).func_193204_a(p_193462_1_, p_193462_2_, p_193462_4_, p_193462_6_))
+				if (listener.func_192158_a().func_193204_a(p_193462_1_, p_193462_2_, p_193462_4_, p_193462_6_))
 				{
 					if (list == null)
 					{

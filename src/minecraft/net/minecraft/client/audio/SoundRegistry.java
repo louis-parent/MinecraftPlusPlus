@@ -11,6 +11,7 @@ public class SoundRegistry extends RegistrySimple<ResourceLocation, SoundEventAc
 {
 	private Map<ResourceLocation, SoundEventAccessor> soundRegistry;
 
+	@Override
 	protected Map<ResourceLocation, SoundEventAccessor> createUnderlyingMap()
 	{
 		this.soundRegistry = Maps.<ResourceLocation, SoundEventAccessor>newHashMap();

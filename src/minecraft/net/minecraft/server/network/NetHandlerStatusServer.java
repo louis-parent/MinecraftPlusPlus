@@ -27,10 +27,12 @@ public class NetHandlerStatusServer implements INetHandlerStatusServer
 	 * Invoked when disconnecting, the parameter is a ChatComponent describing
 	 * the reason for termination
 	 */
+	@Override
 	public void onDisconnect(ITextComponent reason)
 	{
 	}
 
+	@Override
 	public void processServerQuery(CPacketServerQuery packetIn)
 	{
 		if (this.handled)
@@ -44,6 +46,7 @@ public class NetHandlerStatusServer implements INetHandlerStatusServer
 		}
 	}
 
+	@Override
 	public void processPing(CPacketPing packetIn)
 	{
 		this.networkManager.sendPacket(new SPacketPong(packetIn.getClientTime()));

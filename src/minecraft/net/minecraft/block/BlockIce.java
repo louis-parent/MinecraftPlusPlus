@@ -30,11 +30,13 @@ public class BlockIce extends BlockBreakable
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 
+	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
 		player.addStat(StatList.getBlockStats(this));
@@ -66,11 +68,13 @@ public class BlockIce extends BlockBreakable
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (worldIn.getLightFor(EnumSkyBlock.BLOCK, pos) > 11 - this.getDefaultState().getLightOpacity())
@@ -93,6 +97,7 @@ public class BlockIce extends BlockBreakable
 		}
 	}
 
+	@Override
 	public EnumPushReaction getMobilityFlag(IBlockState state)
 	{
 		return EnumPushReaction.NORMAL;

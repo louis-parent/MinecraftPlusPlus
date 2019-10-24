@@ -24,6 +24,7 @@ public class TextComponentSelector extends TextComponentBase
 	 * Gets the text of this component, without any special formatting codes
 	 * added, for chat. TODO: why is this two different methods?
 	 */
+	@Override
 	public String getUnformattedComponentText()
 	{
 		return this.selector;
@@ -33,6 +34,7 @@ public class TextComponentSelector extends TextComponentBase
 	 * Creates a copy of this component. Almost a deep copy, except the style is
 	 * shallow-copied.
 	 */
+	@Override
 	public TextComponentSelector createCopy()
 	{
 		TextComponentSelector textcomponentselector = new TextComponentSelector(this.selector);
@@ -46,6 +48,7 @@ public class TextComponentSelector extends TextComponentBase
 		return textcomponentselector;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -63,6 +66,7 @@ public class TextComponentSelector extends TextComponentBase
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		return "SelectorComponent{pattern='" + this.selector + '\'' + ", siblings=" + this.siblings + ", style=" + this.getStyle() + '}';

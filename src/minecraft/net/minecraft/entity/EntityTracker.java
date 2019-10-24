@@ -237,6 +237,7 @@ public class EntityTracker
 			crashreportcategory.addCrashSection("Tracking range", trackingRange + " blocks");
 			crashreportcategory.setDetail("Update interval", new ICrashReportDetail<String>()
 			{
+				@Override
 				public String call() throws Exception
 				{
 					String s = "Once per " + updateFrequency + " ticks";
@@ -250,7 +251,7 @@ public class EntityTracker
 				}
 			});
 			entityIn.addEntityCrashInfo(crashreportcategory);
-			((EntityTrackerEntry) this.trackedEntityHashTable.lookup(entityIn.getEntityId())).getTrackedEntity().addEntityCrashInfo(crashreport.makeCategory("Entity That Is Already Tracked"));
+			this.trackedEntityHashTable.lookup(entityIn.getEntityId()).getTrackedEntity().addEntityCrashInfo(crashreport.makeCategory("Entity That Is Already Tracked"));
 
 			try
 			{
@@ -258,7 +259,7 @@ public class EntityTracker
 			}
 			catch (ReportedException reportedexception)
 			{
-				LOGGER.error("\"Silently\" catching entity tracking error.", (Throwable) reportedexception);
+				LOGGER.error("\"Silently\" catching entity tracking error.", reportedexception);
 			}
 		}
 	}

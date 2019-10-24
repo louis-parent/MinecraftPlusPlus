@@ -28,7 +28,7 @@ public enum EnumDyeColor implements IStringSerializable
 		int i = (p_i47505_7_ & 16711680) >> 16;
 		int j = (p_i47505_7_ & 65280) >> 8;
 		int k = (p_i47505_7_ & 255) >> 0;
-		this.field_193352_x = new float[] { (float) i / 255.0F, (float) j / 255.0F, (float) k / 255.0F };
+		this.field_193352_x = new float[] { i / 255.0F, j / 255.0F, k / 255.0F };
 	}
 
 	public int getMetadata()
@@ -81,11 +81,13 @@ public enum EnumDyeColor implements IStringSerializable
 		return META_LOOKUP[meta];
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.unlocalizedName;
 	}
 
+	@Override
 	public String getName()
 	{
 		return this.name;

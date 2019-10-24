@@ -26,6 +26,7 @@ public class RegistrySimple<K, V> implements IRegistry<K, V>
 		return Maps.<K, V>newHashMap();
 	}
 
+	@Override
 	@Nullable
 	public V getObject(@Nullable K name)
 	{
@@ -35,6 +36,7 @@ public class RegistrySimple<K, V> implements IRegistry<K, V>
 	/**
 	 * Register an object on this registry.
 	 */
+	@Override
 	public void putObject(K key, V value)
 	{
 		Validate.notNull(key);
@@ -49,6 +51,7 @@ public class RegistrySimple<K, V> implements IRegistry<K, V>
 		this.registryObjects.put(key, value);
 	}
 
+	@Override
 	public Set<K> getKeys()
 	{
 		return Collections.<K>unmodifiableSet(this.registryObjects.keySet());
@@ -63,7 +66,7 @@ public class RegistrySimple<K, V> implements IRegistry<K, V>
 
 			if (collection.isEmpty())
 			{
-				return (V) null;
+				return null;
 			}
 
 			this.values = collection.toArray(new Object[collection.size()]);
@@ -80,6 +83,7 @@ public class RegistrySimple<K, V> implements IRegistry<K, V>
 		return this.registryObjects.containsKey(key);
 	}
 
+	@Override
 	public Iterator<V> iterator()
 	{
 		return this.registryObjects.values().iterator();

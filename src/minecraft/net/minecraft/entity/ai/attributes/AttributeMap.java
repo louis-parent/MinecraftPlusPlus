@@ -13,11 +13,13 @@ public class AttributeMap extends AbstractAttributeMap
 	private final Set<IAttributeInstance> attributeInstanceSet = Sets.<IAttributeInstance>newHashSet();
 	protected final Map<String, IAttributeInstance> descriptionToAttributeInstanceMap = new LowerStringMap();
 
+	@Override
 	public ModifiableAttributeInstance getAttributeInstance(IAttribute attribute)
 	{
 		return (ModifiableAttributeInstance) super.getAttributeInstance(attribute);
 	}
 
+	@Override
 	public ModifiableAttributeInstance getAttributeInstanceByName(String attributeName)
 	{
 		IAttributeInstance iattributeinstance = super.getAttributeInstanceByName(attributeName);
@@ -34,6 +36,7 @@ public class AttributeMap extends AbstractAttributeMap
 	 * Registers an attribute with this AttributeMap, returns a modifiable
 	 * AttributeInstance associated with this map
 	 */
+	@Override
 	public IAttributeInstance registerAttribute(IAttribute attribute)
 	{
 		IAttributeInstance iattributeinstance = super.registerAttribute(attribute);
@@ -46,11 +49,13 @@ public class AttributeMap extends AbstractAttributeMap
 		return iattributeinstance;
 	}
 
+	@Override
 	protected IAttributeInstance createInstance(IAttribute attribute)
 	{
 		return new ModifiableAttributeInstance(this, attribute);
 	}
 
+	@Override
 	public void onAttributeModified(IAttributeInstance instance)
 	{
 		if (instance.getAttribute().getShouldWatch())

@@ -44,9 +44,10 @@ public class SPacketTitle implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
-		this.type = (SPacketTitle.Type) buf.readEnumValue(SPacketTitle.Type.class);
+		this.type = buf.readEnumValue(SPacketTitle.Type.class);
 
 		if (this.type == SPacketTitle.Type.TITLE || this.type == SPacketTitle.Type.SUBTITLE || this.type == SPacketTitle.Type.ACTIONBAR)
 		{
@@ -64,6 +65,7 @@ public class SPacketTitle implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeEnumValue(this.type);
@@ -84,6 +86,7 @@ public class SPacketTitle implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handleTitle(this);

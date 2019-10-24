@@ -14,6 +14,7 @@ public class ImageBufferDownload implements IImageBuffer
 	private int imageWidth;
 	private int imageHeight;
 
+	@Override
 	@Nullable
 	public BufferedImage parseUserSkin(BufferedImage image)
 	{
@@ -63,6 +64,7 @@ public class ImageBufferDownload implements IImageBuffer
 		}
 	}
 
+	@Override
 	public void skinAvailable()
 	{
 	}

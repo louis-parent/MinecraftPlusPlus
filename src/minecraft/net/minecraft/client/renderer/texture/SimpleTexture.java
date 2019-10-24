@@ -23,6 +23,7 @@ public class SimpleTexture extends AbstractTexture
 		this.textureLocation = textureResourceLocation;
 	}
 
+	@Override
 	public void loadTexture(IResourceManager resourceManager) throws IOException
 	{
 		this.deleteGlTexture();
@@ -57,7 +58,7 @@ public class SimpleTexture extends AbstractTexture
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Closeable) iresource);
+			IOUtils.closeQuietly(iresource);
 		}
 	}
 }

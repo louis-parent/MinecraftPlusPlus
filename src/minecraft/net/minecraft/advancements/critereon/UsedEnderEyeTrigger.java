@@ -21,11 +21,13 @@ public class UsedEnderEyeTrigger implements ICriterionTrigger<UsedEnderEyeTrigge
 	private static final ResourceLocation field_192242_a = new ResourceLocation("used_ender_eye");
 	private final Map<PlayerAdvancements, UsedEnderEyeTrigger.Listeners> field_192243_b = Maps.<PlayerAdvancements, UsedEnderEyeTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192242_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<UsedEnderEyeTrigger.Instance> p_192165_2_)
 	{
 		UsedEnderEyeTrigger.Listeners usedendereyetrigger$listeners = this.field_192243_b.get(p_192165_1_);
@@ -39,6 +41,7 @@ public class UsedEnderEyeTrigger implements ICriterionTrigger<UsedEnderEyeTrigge
 		usedendereyetrigger$listeners.func_192546_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<UsedEnderEyeTrigger.Instance> p_192164_2_)
 	{
 		UsedEnderEyeTrigger.Listeners usedendereyetrigger$listeners = this.field_192243_b.get(p_192164_1_);
@@ -54,11 +57,13 @@ public class UsedEnderEyeTrigger implements ICriterionTrigger<UsedEnderEyeTrigge
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192243_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public UsedEnderEyeTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		MinMaxBounds minmaxbounds = MinMaxBounds.func_192515_a(p_192166_1_.get("distance"));
@@ -71,8 +76,8 @@ public class UsedEnderEyeTrigger implements ICriterionTrigger<UsedEnderEyeTrigge
 
 		if (usedendereyetrigger$listeners != null)
 		{
-			double d0 = p_192239_1_.posX - (double) p_192239_2_.getX();
-			double d1 = p_192239_1_.posZ - (double) p_192239_2_.getZ();
+			double d0 = p_192239_1_.posX - p_192239_2_.getX();
+			double d1 = p_192239_1_.posZ - p_192239_2_.getZ();
 			usedendereyetrigger$listeners.func_192543_a(d0 * d0 + d1 * d1);
 		}
 	}
@@ -124,7 +129,7 @@ public class UsedEnderEyeTrigger implements ICriterionTrigger<UsedEnderEyeTrigge
 
 			for (ICriterionTrigger.Listener<UsedEnderEyeTrigger.Instance> listener : this.field_192548_b)
 			{
-				if (((UsedEnderEyeTrigger.Instance) listener.func_192158_a()).func_192288_a(p_192543_1_))
+				if (listener.func_192158_a().func_192288_a(p_192543_1_))
 				{
 					if (list == null)
 					{

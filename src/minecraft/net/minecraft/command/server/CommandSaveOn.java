@@ -11,6 +11,7 @@ public class CommandSaveOn extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "save-on";
@@ -19,6 +20,7 @@ public class CommandSaveOn extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.save-on.usage";
@@ -27,6 +29,7 @@ public class CommandSaveOn extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		boolean flag = false;

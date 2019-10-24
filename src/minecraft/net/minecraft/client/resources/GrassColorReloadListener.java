@@ -10,6 +10,7 @@ public class GrassColorReloadListener implements IResourceManagerReloadListener
 {
 	private static final ResourceLocation LOC_GRASS_PNG = new ResourceLocation("textures/colormap/grass.png");
 
+	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager)
 	{
 		try

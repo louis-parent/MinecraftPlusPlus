@@ -12,11 +12,13 @@ public class UserListOps extends UserList<GameProfile, UserListOpsEntry>
 		super(saveFile);
 	}
 
+	@Override
 	protected UserListEntry<GameProfile> createEntry(JsonObject entryData)
 	{
 		return new UserListOpsEntry(entryData);
 	}
 
+	@Override
 	public String[] getKeys()
 	{
 		String[] astring = new String[this.getValues().size()];
@@ -24,7 +26,7 @@ public class UserListOps extends UserList<GameProfile, UserListOpsEntry>
 
 		for (UserListOpsEntry userlistopsentry : this.getValues().values())
 		{
-			astring[i++] = ((GameProfile) userlistopsentry.getValue()).getName();
+			astring[i++] = userlistopsentry.getValue().getName();
 		}
 
 		return astring;
@@ -35,19 +37,20 @@ public class UserListOps extends UserList<GameProfile, UserListOpsEntry>
 	 */
 	public int getPermissionLevel(GameProfile profile)
 	{
-		UserListOpsEntry userlistopsentry = (UserListOpsEntry) this.getEntry(profile);
+		UserListOpsEntry userlistopsentry = this.getEntry(profile);
 		return userlistopsentry != null ? userlistopsentry.getPermissionLevel() : 0;
 	}
 
 	public boolean bypassesPlayerLimit(GameProfile profile)
 	{
-		UserListOpsEntry userlistopsentry = (UserListOpsEntry) this.getEntry(profile);
+		UserListOpsEntry userlistopsentry = this.getEntry(profile);
 		return userlistopsentry != null ? userlistopsentry.bypassesPlayerLimit() : false;
 	}
 
 	/**
 	 * Gets the key value for the given object
 	 */
+	@Override
 	protected String getObjectKey(GameProfile obj)
 	{
 		return obj.getId().toString();
@@ -60,9 +63,9 @@ public class UserListOps extends UserList<GameProfile, UserListOpsEntry>
 	{
 		for (UserListOpsEntry userlistopsentry : this.getValues().values())
 		{
-			if (username.equalsIgnoreCase(((GameProfile) userlistopsentry.getValue()).getName()))
+			if (username.equalsIgnoreCase(userlistopsentry.getValue().getName()))
 			{
-				return (GameProfile) userlistopsentry.getValue();
+				return userlistopsentry.getValue();
 			}
 		}
 

@@ -15,6 +15,7 @@ public class SlotShulkerBox extends Slot
 	 * Check if the stack is allowed to be placed in this slot, used for armor
 	 * slots as well as furnace fuel.
 	 */
+	@Override
 	public boolean isItemValid(ItemStack stack)
 	{
 		return !(Block.getBlockFromItem(stack.getItem()) instanceof BlockShulkerBox);

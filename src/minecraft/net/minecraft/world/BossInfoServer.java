@@ -25,6 +25,7 @@ public class BossInfoServer extends BossInfo
 		this.visible = true;
 	}
 
+	@Override
 	public void setPercent(float percentIn)
 	{
 		if (percentIn != this.percent)
@@ -34,6 +35,7 @@ public class BossInfoServer extends BossInfo
 		}
 	}
 
+	@Override
 	public void setColor(BossInfo.Color colorIn)
 	{
 		if (colorIn != this.color)
@@ -43,6 +45,7 @@ public class BossInfoServer extends BossInfo
 		}
 	}
 
+	@Override
 	public void setOverlay(BossInfo.Overlay overlayIn)
 	{
 		if (overlayIn != this.overlay)
@@ -52,6 +55,7 @@ public class BossInfoServer extends BossInfo
 		}
 	}
 
+	@Override
 	public BossInfo setDarkenSky(boolean darkenSkyIn)
 	{
 		if (darkenSkyIn != this.darkenSky)
@@ -63,6 +67,7 @@ public class BossInfoServer extends BossInfo
 		return this;
 	}
 
+	@Override
 	public BossInfo setPlayEndBossMusic(boolean playEndBossMusicIn)
 	{
 		if (playEndBossMusicIn != this.playEndBossMusic)
@@ -74,6 +79,7 @@ public class BossInfoServer extends BossInfo
 		return this;
 	}
 
+	@Override
 	public BossInfo setCreateFog(boolean createFogIn)
 	{
 		if (createFogIn != this.createFog)
@@ -85,6 +91,7 @@ public class BossInfoServer extends BossInfo
 		return this;
 	}
 
+	@Override
 	public void setName(ITextComponent nameIn)
 	{
 		if (!Objects.equal(nameIn, this.name))

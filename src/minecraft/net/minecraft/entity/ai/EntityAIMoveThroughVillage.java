@@ -40,6 +40,7 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		this.resizeDoorList();
@@ -78,7 +79,7 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
 					}
 					else
 					{
-						Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 10, 7, new Vec3d((double) this.doorInfo.getDoorBlockPos().getX(), (double) this.doorInfo.getDoorBlockPos().getY(), (double) this.doorInfo.getDoorBlockPos().getZ()));
+						Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 10, 7, new Vec3d(this.doorInfo.getDoorBlockPos().getX(), this.doorInfo.getDoorBlockPos().getY(), this.doorInfo.getDoorBlockPos().getZ()));
 
 						if (vec3d == null)
 						{
@@ -100,6 +101,7 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		if (this.theEntity.getNavigator().noPath())
@@ -109,13 +111,14 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
 		else
 		{
 			float f = this.theEntity.width + 4.0F;
-			return this.theEntity.getDistanceSq(this.doorInfo.getDoorBlockPos()) > (double) (f * f);
+			return this.theEntity.getDistanceSq(this.doorInfo.getDoorBlockPos()) > f * f;
 		}
 	}
 
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.theEntity.getNavigator().setPath(this.entityPathNavigate, this.movementSpeed);
@@ -124,6 +127,7 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		if (this.theEntity.getNavigator().noPath() || this.theEntity.getDistanceSq(this.doorInfo.getDoorBlockPos()) < 16.0D)

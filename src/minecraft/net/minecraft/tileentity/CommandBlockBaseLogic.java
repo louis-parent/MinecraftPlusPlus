@@ -58,7 +58,7 @@ public abstract class CommandBlockBaseLogic implements ICommandSender
 	 */
 	public ITextComponent getLastOutput()
 	{
-		return (ITextComponent) (this.lastOutput == null ? new TextComponentString("") : this.lastOutput);
+		return this.lastOutput == null ? new TextComponentString("") : this.lastOutput;
 	}
 
 	public NBTTagCompound writeToNBT(NBTTagCompound p_189510_1_)
@@ -139,6 +139,7 @@ public abstract class CommandBlockBaseLogic implements ICommandSender
 	 * Returns {@code true} if the CommandSender is allowed to execute the
 	 * command, {@code false} if not
 	 */
+	@Override
 	public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 	{
 		return permLevel <= 2;
@@ -188,6 +189,7 @@ public abstract class CommandBlockBaseLogic implements ICommandSender
 						CrashReportCategory crashreportcategory = crashreport.makeCategory("Command to be executed");
 						crashreportcategory.setDetail("Command", new ICrashReportDetail<String>()
 						{
+							@Override
 							public String call() throws Exception
 							{
 								return CommandBlockBaseLogic.this.getCommand();
@@ -195,6 +197,7 @@ public abstract class CommandBlockBaseLogic implements ICommandSender
 						});
 						crashreportcategory.setDetail("Name", new ICrashReportDetail<String>()
 						{
+							@Override
 							public String call() throws Exception
 							{
 								return CommandBlockBaseLogic.this.getName();
@@ -229,6 +232,7 @@ public abstract class CommandBlockBaseLogic implements ICommandSender
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.customName;
@@ -242,6 +246,7 @@ public abstract class CommandBlockBaseLogic implements ICommandSender
 	/**
 	 * Send a chat message to the CommandSender
 	 */
+	@Override
 	public void addChatMessage(ITextComponent component)
 	{
 		if (this.trackOutput && this.getEntityWorld() != null && !this.getEntityWorld().isRemote)
@@ -255,12 +260,14 @@ public abstract class CommandBlockBaseLogic implements ICommandSender
 	 * Returns true if the command sender should be sent feedback about executed
 	 * commands
 	 */
+	@Override
 	public boolean sendCommandFeedback()
 	{
 		MinecraftServer minecraftserver = this.getServer();
 		return minecraftserver == null || !minecraftserver.isAnvilFileSet() || minecraftserver.worldServers[0].getGameRules().getBoolean("commandBlockOutput");
 	}
 
+	@Override
 	public void setCommandStat(CommandResultStats.Type type, int amount)
 	{
 		this.resultStats.setCommandStatForSender(this.getServer(), this, type, amount);

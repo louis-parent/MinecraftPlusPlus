@@ -41,6 +41,7 @@ public class EntityDragonFireball extends EntityFireball
 	/**
 	 * Called when this EntityFireball hits a block or entity.
 	 */
+	@Override
 	protected void onImpact(RayTraceResult result)
 	{
 		if (result.entityHit == null || !result.entityHit.isEntityEqual(this.shootingEntity))
@@ -53,7 +54,7 @@ public class EntityDragonFireball extends EntityFireball
 				entityareaeffectcloud.setParticle(EnumParticleTypes.DRAGON_BREATH);
 				entityareaeffectcloud.setRadius(3.0F);
 				entityareaeffectcloud.setDuration(600);
-				entityareaeffectcloud.setRadiusPerTick((7.0F - entityareaeffectcloud.getRadius()) / (float) entityareaeffectcloud.getDuration());
+				entityareaeffectcloud.setRadiusPerTick((7.0F - entityareaeffectcloud.getRadius()) / entityareaeffectcloud.getDuration());
 				entityareaeffectcloud.addEffect(new PotionEffect(MobEffects.INSTANT_DAMAGE, 1, 1));
 
 				if (!list.isEmpty())
@@ -81,6 +82,7 @@ public class EntityDragonFireball extends EntityFireball
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return false;
@@ -89,16 +91,19 @@ public class EntityDragonFireball extends EntityFireball
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		return false;
 	}
 
+	@Override
 	protected EnumParticleTypes getParticleType()
 	{
 		return EnumParticleTypes.DRAGON_BREATH;
 	}
 
+	@Override
 	protected boolean isFireballFiery()
 	{
 		return false;

@@ -15,6 +15,7 @@ public class NarratorChatListener implements IChatListener
 	public static final NarratorChatListener field_193643_a = new NarratorChatListener();
 	private final Narrator field_192580_a = Narrator.getNarrator();
 
+	@Override
 	public void func_192576_a(ChatType p_192576_1_, ITextComponent p_192576_2_)
 	{
 		int i = Minecraft.getMinecraft().gameSettings.field_192571_R;

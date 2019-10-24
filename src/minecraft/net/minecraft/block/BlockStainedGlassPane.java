@@ -33,15 +33,17 @@ public class BlockStainedGlassPane extends BlockPane
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((EnumDyeColor) state.getValue(COLOR)).getMetadata();
+		return state.getValue(COLOR).getMetadata();
 	}
 
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (int i = 0; i < EnumDyeColor.values().length; ++i)
@@ -53,11 +55,13 @@ public class BlockStainedGlassPane extends BlockPane
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
-		return MapColor.func_193558_a((EnumDyeColor) state.getValue(COLOR));
+		return MapColor.func_193558_a(state.getValue(COLOR));
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
@@ -66,6 +70,7 @@ public class BlockStainedGlassPane extends BlockPane
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(COLOR, EnumDyeColor.byMetadata(meta));
@@ -74,15 +79,17 @@ public class BlockStainedGlassPane extends BlockPane
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((EnumDyeColor) state.getValue(COLOR)).getMetadata();
+		return state.getValue(COLOR).getMetadata();
 	}
 
 	/**
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
 		switch (rot)
@@ -105,6 +112,7 @@ public class BlockStainedGlassPane extends BlockPane
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
 		switch (mirrorIn)
@@ -120,6 +128,7 @@ public class BlockStainedGlassPane extends BlockPane
 		}
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { NORTH, EAST, WEST, SOUTH, COLOR });
@@ -129,6 +138,7 @@ public class BlockStainedGlassPane extends BlockPane
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (!worldIn.isRemote)
@@ -141,6 +151,7 @@ public class BlockStainedGlassPane extends BlockPane
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (!worldIn.isRemote)

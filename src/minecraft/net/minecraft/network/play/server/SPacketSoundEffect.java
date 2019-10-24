@@ -39,10 +39,11 @@ public class SPacketSoundEffect implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.sound = SoundEvent.REGISTRY.getObjectById(buf.readVarIntFromBuffer());
-		this.category = (SoundCategory) buf.readEnumValue(SoundCategory.class);
+		this.category = buf.readEnumValue(SoundCategory.class);
 		this.posX = buf.readInt();
 		this.posY = buf.readInt();
 		this.posZ = buf.readInt();
@@ -53,6 +54,7 @@ public class SPacketSoundEffect implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeVarIntToBuffer(SoundEvent.REGISTRY.getIDForObject(this.sound));
@@ -76,17 +78,17 @@ public class SPacketSoundEffect implements Packet<INetHandlerPlayClient>
 
 	public double getX()
 	{
-		return (double) ((float) this.posX / 8.0F);
+		return this.posX / 8.0F;
 	}
 
 	public double getY()
 	{
-		return (double) ((float) this.posY / 8.0F);
+		return this.posY / 8.0F;
 	}
 
 	public double getZ()
 	{
-		return (double) ((float) this.posZ / 8.0F);
+		return this.posZ / 8.0F;
 	}
 
 	public float getVolume()
@@ -102,6 +104,7 @@ public class SPacketSoundEffect implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handleSoundEffect(this);

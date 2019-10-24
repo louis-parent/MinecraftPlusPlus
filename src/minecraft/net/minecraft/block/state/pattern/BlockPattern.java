@@ -155,6 +155,7 @@ public class BlockPattern
 			this.forceLoad = forceLoadIn;
 		}
 
+		@Override
 		public BlockWorldState load(BlockPos p_load_1_) throws Exception
 		{
 			return new BlockWorldState(this.world, p_load_1_, this.forceLoad);
@@ -212,6 +213,7 @@ public class BlockPattern
 			return this.lcache.getUnchecked(BlockPattern.translateOffset(this.frontTopLeft, this.getForwards(), this.getUp(), palmOffset, thumbOffset, fingerOffset));
 		}
 
+		@Override
 		public String toString()
 		{
 			return MoreObjects.toStringHelper(this).add("up", this.up).add("forwards", this.forwards).add("frontTopLeft", this.frontTopLeft).toString();

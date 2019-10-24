@@ -6,11 +6,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class RidingToPassengers implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 135;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		while (compound.hasKey("Riding", 10))

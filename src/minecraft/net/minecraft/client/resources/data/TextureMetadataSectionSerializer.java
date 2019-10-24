@@ -11,6 +11,7 @@ import net.minecraft.util.JsonUtils;
 
 public class TextureMetadataSectionSerializer extends BaseMetadataSectionSerializer<TextureMetadataSection>
 {
+	@Override
 	public TextureMetadataSection deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 	{
 		JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();
@@ -22,6 +23,7 @@ public class TextureMetadataSectionSerializer extends BaseMetadataSectionSeriali
 	/**
 	 * The name of this section type as it appears in JSON.
 	 */
+	@Override
 	public String getSectionName()
 	{
 		return "texture";

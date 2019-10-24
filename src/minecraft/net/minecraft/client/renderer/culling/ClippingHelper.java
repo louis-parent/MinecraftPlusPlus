@@ -9,7 +9,7 @@ public class ClippingHelper
 
 	private double dot(float[] p_178624_1_, double p_178624_2_, double p_178624_4_, double p_178624_6_)
 	{
-		return (double) p_178624_1_[0] * p_178624_2_ + (double) p_178624_1_[1] * p_178624_4_ + (double) p_178624_1_[2] * p_178624_6_ + (double) p_178624_1_[3];
+		return p_178624_1_[0] * p_178624_2_ + p_178624_1_[1] * p_178624_4_ + p_178624_1_[2] * p_178624_6_ + p_178624_1_[3];
 	}
 
 	/**

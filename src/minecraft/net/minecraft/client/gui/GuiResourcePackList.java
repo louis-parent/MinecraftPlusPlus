@@ -18,12 +18,13 @@ public abstract class GuiResourcePackList extends GuiListExtended
 		this.mc = mcIn;
 		this.resourcePackEntries = p_i45055_4_;
 		this.centerListVertically = false;
-		this.setHasListHeader(true, (int) ((float) mcIn.fontRendererObj.FONT_HEIGHT * 1.5F));
+		this.setHasListHeader(true, (int) (mcIn.fontRendererObj.FONT_HEIGHT * 1.5F));
 	}
 
 	/**
 	 * Handles drawing a list's header row.
 	 */
+	@Override
 	protected void drawListHeader(int insideLeft, int insideTop, Tessellator tessellatorIn)
 	{
 		String s = TextFormatting.UNDERLINE + "" + TextFormatting.BOLD + this.getListHeader();
@@ -37,6 +38,7 @@ public abstract class GuiResourcePackList extends GuiListExtended
 		return this.resourcePackEntries;
 	}
 
+	@Override
 	protected int getSize()
 	{
 		return this.getList().size();
@@ -45,19 +47,22 @@ public abstract class GuiResourcePackList extends GuiListExtended
 	/**
 	 * Gets the IGuiListEntry object for the given index
 	 */
+	@Override
 	public ResourcePackListEntry getListEntry(int index)
 	{
-		return (ResourcePackListEntry) this.getList().get(index);
+		return this.getList().get(index);
 	}
 
 	/**
 	 * Gets the width of the list
 	 */
+	@Override
 	public int getListWidth()
 	{
 		return this.width;
 	}
 
+	@Override
 	protected int getScrollBarX()
 	{
 		return this.right - 6;

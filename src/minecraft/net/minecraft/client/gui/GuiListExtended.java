@@ -13,6 +13,7 @@ public abstract class GuiListExtended extends GuiSlot
 	 * The element in the slot that was clicked, boolean for whether it was
 	 * double clicked or not
 	 */
+	@Override
 	protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 	{
 	}
@@ -20,20 +21,24 @@ public abstract class GuiListExtended extends GuiSlot
 	/**
 	 * Returns true if the element passed in is currently selected
 	 */
+	@Override
 	protected boolean isSelected(int slotIndex)
 	{
 		return false;
 	}
 
+	@Override
 	protected void drawBackground()
 	{
 	}
 
+	@Override
 	protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 	{
 		this.getListEntry(p_192637_1_).func_192634_a(p_192637_1_, p_192637_2_, p_192637_3_, this.getListWidth(), p_192637_4_, p_192637_5_, p_192637_6_, this.isMouseYWithinSlotBounds(p_192637_6_) && this.getSlotIndexFromScreenCoords(p_192637_5_, p_192637_6_) == p_192637_1_, p_192637_7_);
 	}
 
+	@Override
 	protected void func_192639_a(int p_192639_1_, int p_192639_2_, int p_192639_3_, float p_192639_4_)
 	{
 		this.getListEntry(p_192639_1_).func_192633_a(p_192639_1_, p_192639_2_, p_192639_3_, p_192639_4_);

@@ -36,11 +36,13 @@ public abstract class BlockSlab extends Block
 		this.setLightOpacity(255);
 	}
 
+	@Override
 	protected boolean canSilkHarvest()
 	{
 		return false;
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		if (this.isDouble())
@@ -57,11 +59,13 @@ public abstract class BlockSlab extends Block
 	 * Checks if an IBlockState represents a block that is opaque and a full
 	 * cube.
 	 */
+	@Override
 	public boolean isFullyOpaque(IBlockState state)
 	{
 		return ((BlockSlab) state.getBlock()).isDouble() || state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		if (((BlockSlab) p_193383_2_.getBlock()).isDouble())
@@ -82,6 +86,7 @@ public abstract class BlockSlab extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return this.isDouble();
@@ -91,6 +96,7 @@ public abstract class BlockSlab extends Block
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		IBlockState iblockstate = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
@@ -101,23 +107,26 @@ public abstract class BlockSlab extends Block
 		}
 		else
 		{
-			return facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double) hitY <= 0.5D) ? iblockstate : iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.TOP);
+			return facing != EnumFacing.DOWN && (facing == EnumFacing.UP || hitY <= 0.5D) ? iblockstate : iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.TOP);
 		}
 	}
 
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return this.isDouble() ? 2 : 1;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return this.isDouble();
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		if (this.isDouble())
@@ -192,11 +201,13 @@ public abstract class BlockSlab extends Block
 			this.name = name;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

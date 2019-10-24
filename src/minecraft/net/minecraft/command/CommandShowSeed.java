@@ -10,6 +10,7 @@ public class CommandShowSeed extends CommandBase
 	/**
 	 * Check if the given ICommandSender has permission to execute this command
 	 */
+	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender)
 	{
 		return server.isSinglePlayer() || super.checkPermission(server, sender);
@@ -18,6 +19,7 @@ public class CommandShowSeed extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "seed";
@@ -26,6 +28,7 @@ public class CommandShowSeed extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
@@ -34,6 +37,7 @@ public class CommandShowSeed extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.seed.usage";
@@ -42,9 +46,10 @@ public class CommandShowSeed extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
-		World world = (World) (sender instanceof EntityPlayer ? ((EntityPlayer) sender).world : server.worldServerForDimension(0));
+		World world = sender instanceof EntityPlayer ? ((EntityPlayer) sender).world : server.worldServerForDimension(0);
 		sender.addChatMessage(new TextComponentTranslation("commands.seed.success", new Object[] { world.getSeed() }));
 	}
 }

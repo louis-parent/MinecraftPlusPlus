@@ -36,6 +36,7 @@ public class EntityAIAttackRangedBow<T extends EntityMob & IRangedAttackMob> ext
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		return this.entity.getAttackTarget() == null ? false : this.isBowInMainhand();
@@ -49,6 +50,7 @@ public class EntityAIAttackRangedBow<T extends EntityMob & IRangedAttackMob> ext
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return (this.shouldExecute() || !this.entity.getNavigator().noPath()) && this.isBowInMainhand();
@@ -57,6 +59,7 @@ public class EntityAIAttackRangedBow<T extends EntityMob & IRangedAttackMob> ext
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		super.startExecuting();
@@ -66,6 +69,7 @@ public class EntityAIAttackRangedBow<T extends EntityMob & IRangedAttackMob> ext
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		super.resetTask();
@@ -78,6 +82,7 @@ public class EntityAIAttackRangedBow<T extends EntityMob & IRangedAttackMob> ext
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		EntityLivingBase entitylivingbase = this.entity.getAttackTarget();
@@ -102,7 +107,7 @@ public class EntityAIAttackRangedBow<T extends EntityMob & IRangedAttackMob> ext
 				--this.seeTime;
 			}
 
-			if (d0 <= (double) this.maxAttackDistance && this.seeTime >= 20)
+			if (d0 <= this.maxAttackDistance && this.seeTime >= 20)
 			{
 				this.entity.getNavigator().clearPathEntity();
 				++this.strafingTime;
@@ -115,12 +120,12 @@ public class EntityAIAttackRangedBow<T extends EntityMob & IRangedAttackMob> ext
 
 			if (this.strafingTime >= 20)
 			{
-				if ((double) this.entity.getRNG().nextFloat() < 0.3D)
+				if (this.entity.getRNG().nextFloat() < 0.3D)
 				{
 					this.strafingClockwise = !this.strafingClockwise;
 				}
 
-				if ((double) this.entity.getRNG().nextFloat() < 0.3D)
+				if (this.entity.getRNG().nextFloat() < 0.3D)
 				{
 					this.strafingBackwards = !this.strafingBackwards;
 				}
@@ -130,11 +135,11 @@ public class EntityAIAttackRangedBow<T extends EntityMob & IRangedAttackMob> ext
 
 			if (this.strafingTime > -1)
 			{
-				if (d0 > (double) (this.maxAttackDistance * 0.75F))
+				if (d0 > this.maxAttackDistance * 0.75F)
 				{
 					this.strafingBackwards = false;
 				}
-				else if (d0 < (double) (this.maxAttackDistance * 0.25F))
+				else if (d0 < this.maxAttackDistance * 0.25F)
 				{
 					this.strafingBackwards = true;
 				}

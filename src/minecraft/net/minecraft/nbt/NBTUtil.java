@@ -319,7 +319,7 @@ public final class NBTUtil
 	 */
 	public static NBTTagCompound writeBlockState(NBTTagCompound tag, IBlockState state)
 	{
-		tag.setString("Name", ((ResourceLocation) Block.REGISTRY.getNameForObject(state.getBlock())).toString());
+		tag.setString("Name", Block.REGISTRY.getNameForObject(state.getBlock()).toString());
 
 		if (!state.getProperties().isEmpty())
 		{
@@ -329,7 +329,7 @@ public final class NBTUtil
 			while (unmodifiableiterator.hasNext())
 			{
 				Entry<IProperty<?>, Comparable<?>> entry = (Entry) unmodifiableiterator.next();
-				IProperty<?> iproperty = (IProperty) entry.getKey();
+				IProperty<?> iproperty = entry.getKey();
 				nbttagcompound.setString(iproperty.getName(), getName(iproperty, entry.getValue()));
 			}
 

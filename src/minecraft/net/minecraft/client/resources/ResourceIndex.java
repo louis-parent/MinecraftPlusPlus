@@ -61,15 +61,15 @@ public class ResourceIndex
 		}
 		catch (JsonParseException var20)
 		{
-			LOGGER.error("Unable to parse resource index file: {}", (Object) file2);
+			LOGGER.error("Unable to parse resource index file: {}", file2);
 		}
 		catch (FileNotFoundException var21)
 		{
-			LOGGER.error("Can't find the resource index file: {}", (Object) file2);
+			LOGGER.error("Can't find the resource index file: {}", file2);
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Reader) bufferedreader);
+			IOUtils.closeQuietly(bufferedreader);
 		}
 	}
 

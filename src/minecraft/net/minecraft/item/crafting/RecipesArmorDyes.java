@@ -18,6 +18,7 @@ public class RecipesArmorDyes implements IRecipe
 	/**
 	 * Used to check if a recipe matches current crafting inventory
 	 */
+	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn)
 	{
 		ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -58,6 +59,7 @@ public class RecipesArmorDyes implements IRecipe
 	/**
 	 * Returns an Item that is the result of this recipe
 	 */
+	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
 		ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -87,13 +89,13 @@ public class RecipesArmorDyes implements IRecipe
 					if (itemarmor.hasColor(itemstack1))
 					{
 						int l = itemarmor.getColor(itemstack);
-						float f = (float) (l >> 16 & 255) / 255.0F;
-						float f1 = (float) (l >> 8 & 255) / 255.0F;
-						float f2 = (float) (l & 255) / 255.0F;
-						i = (int) ((float) i + Math.max(f, Math.max(f1, f2)) * 255.0F);
-						aint[0] = (int) ((float) aint[0] + f * 255.0F);
-						aint[1] = (int) ((float) aint[1] + f1 * 255.0F);
-						aint[2] = (int) ((float) aint[2] + f2 * 255.0F);
+						float f = (l >> 16 & 255) / 255.0F;
+						float f1 = (l >> 8 & 255) / 255.0F;
+						float f2 = (l & 255) / 255.0F;
+						i = (int) (i + Math.max(f, Math.max(f1, f2)) * 255.0F);
+						aint[0] = (int) (aint[0] + f * 255.0F);
+						aint[1] = (int) (aint[1] + f1 * 255.0F);
+						aint[2] = (int) (aint[2] + f2 * 255.0F);
 						++j;
 					}
 				}
@@ -127,10 +129,10 @@ public class RecipesArmorDyes implements IRecipe
 			int j1 = aint[1] / j;
 			int k1 = aint[2] / j;
 			float f3 = (float) i / (float) j;
-			float f4 = (float) Math.max(i1, Math.max(j1, k1));
-			i1 = (int) ((float) i1 * f3 / f4);
-			j1 = (int) ((float) j1 * f3 / f4);
-			k1 = (int) ((float) k1 * f3 / f4);
+			float f4 = Math.max(i1, Math.max(j1, k1));
+			i1 = (int) (i1 * f3 / f4);
+			j1 = (int) (j1 * f3 / f4);
+			k1 = (int) (k1 * f3 / f4);
 			int k2 = (i1 << 8) + j1;
 			k2 = (k2 << 8) + k1;
 			itemarmor.setColor(itemstack, k2);
@@ -138,11 +140,13 @@ public class RecipesArmorDyes implements IRecipe
 		}
 	}
 
+	@Override
 	public ItemStack getRecipeOutput()
 	{
 		return ItemStack.EMPTY_ITEM_STACK;
 	}
 
+	@Override
 	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
 	{
 		NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
@@ -160,11 +164,13 @@ public class RecipesArmorDyes implements IRecipe
 		return nonnulllist;
 	}
 
+	@Override
 	public boolean hideInCraftingTabs()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
 	{
 		return p_194133_1_ * p_194133_2_ >= 2;

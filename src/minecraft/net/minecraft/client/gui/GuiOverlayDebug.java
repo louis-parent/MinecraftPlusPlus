@@ -289,10 +289,10 @@ public class GuiOverlayDebug extends Gui
 		int j1 = p_181553_2_ >> 16 & 255;
 		int k1 = p_181553_2_ >> 8 & 255;
 		int l1 = p_181553_2_ & 255;
-		int i2 = MathHelper.clamp((int) ((float) i + (float) (i1 - i) * p_181553_3_), 0, 255);
-		int j2 = MathHelper.clamp((int) ((float) j + (float) (j1 - j) * p_181553_3_), 0, 255);
-		int k2 = MathHelper.clamp((int) ((float) k + (float) (k1 - k) * p_181553_3_), 0, 255);
-		int l2 = MathHelper.clamp((int) ((float) l + (float) (l1 - l) * p_181553_3_), 0, 255);
+		int i2 = MathHelper.clamp((int) (i + (i1 - i) * p_181553_3_), 0, 255);
+		int j2 = MathHelper.clamp((int) (j + (j1 - j) * p_181553_3_), 0, 255);
+		int k2 = MathHelper.clamp((int) (k + (k1 - k) * p_181553_3_), 0, 255);
+		int l2 = MathHelper.clamp((int) (l + (l1 - l) * p_181553_3_), 0, 255);
 		return i2 << 24 | j2 << 16 | k2 << 8 | l2;
 	}
 

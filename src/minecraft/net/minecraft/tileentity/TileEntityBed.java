@@ -16,6 +16,7 @@ public class TileEntityBed extends TileEntity
 		this.func_193052_a(EnumDyeColor.byMetadata(p_193051_1_.getMetadata()));
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -26,6 +27,7 @@ public class TileEntityBed extends TileEntity
 		}
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -33,11 +35,13 @@ public class TileEntityBed extends TileEntity
 		return compound;
 	}
 
+	@Override
 	public NBTTagCompound getUpdateTag()
 	{
 		return this.writeToNBT(new NBTTagCompound());
 	}
 
+	@Override
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		return new SPacketUpdateTileEntity(this.pos, 11, this.getUpdateTag());

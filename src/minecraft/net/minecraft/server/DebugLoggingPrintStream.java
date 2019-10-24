@@ -11,6 +11,7 @@ public class DebugLoggingPrintStream extends LoggingPrintStream
 		super(p_i47315_1_, p_i47315_2_);
 	}
 
+	@Override
 	protected void logString(String string)
 	{
 		StackTraceElement[] astacktraceelement = Thread.currentThread().getStackTrace();

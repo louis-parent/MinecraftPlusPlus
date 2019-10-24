@@ -28,39 +28,46 @@ public class WeightedBakedModel implements IBakedModel
 
 	private IBakedModel getRandomModel(long p_188627_1_)
 	{
-		return ((WeightedBakedModel.WeightedModel) WeightedRandom.getRandomItem(this.models, Math.abs((int) p_188627_1_ >> 16) % this.totalWeight)).model;
+		return WeightedRandom.getRandomItem(this.models, Math.abs((int) p_188627_1_ >> 16) % this.totalWeight).model;
 	}
 
+	@Override
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
 	{
 		return this.getRandomModel(rand).getQuads(state, side, rand);
 	}
 
+	@Override
 	public boolean isAmbientOcclusion()
 	{
 		return this.baseModel.isAmbientOcclusion();
 	}
 
+	@Override
 	public boolean isGui3d()
 	{
 		return this.baseModel.isGui3d();
 	}
 
+	@Override
 	public boolean isBuiltInRenderer()
 	{
 		return this.baseModel.isBuiltInRenderer();
 	}
 
+	@Override
 	public TextureAtlasSprite getParticleTexture()
 	{
 		return this.baseModel.getParticleTexture();
 	}
 
+	@Override
 	public ItemCameraTransforms getItemCameraTransforms()
 	{
 		return this.baseModel.getItemCameraTransforms();
 	}
 
+	@Override
 	public ItemOverrideList getOverrides()
 	{
 		return this.baseModel.getOverrides();
@@ -98,11 +105,13 @@ public class WeightedBakedModel implements IBakedModel
 			this.model = modelIn;
 		}
 
+		@Override
 		public int compareTo(WeightedBakedModel.WeightedModel p_compareTo_1_)
 		{
 			return ComparisonChain.start().compare(p_compareTo_1_.itemWeight, this.itemWeight).result();
 		}
 
+		@Override
 		public String toString()
 		{
 			return "MyWeighedRandomItem{weight=" + this.itemWeight + ", model=" + this.model + '}';

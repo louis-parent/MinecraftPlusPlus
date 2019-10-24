@@ -19,6 +19,7 @@ public class RecipesMapExtending extends ShapedRecipes
 	/**
 	 * Used to check if a recipe matches current crafting inventory
 	 */
+	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn)
 	{
 		if (!super.matches(inv, worldIn))
@@ -82,6 +83,7 @@ public class RecipesMapExtending extends ShapedRecipes
 	/**
 	 * Returns an Item that is the result of this recipe
 	 */
+	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
 		ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -108,6 +110,7 @@ public class RecipesMapExtending extends ShapedRecipes
 		return itemstack;
 	}
 
+	@Override
 	public boolean hideInCraftingTabs()
 	{
 		return true;

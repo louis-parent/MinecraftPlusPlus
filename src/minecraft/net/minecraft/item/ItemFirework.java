@@ -24,12 +24,13 @@ public class ItemFirework extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		if (!playerIn.isRemote)
 		{
 			ItemStack itemstack = stack.getHeldItem(pos);
-			EntityFireworkRocket entityfireworkrocket = new EntityFireworkRocket(playerIn, (double) ((float) worldIn.getX() + facing), (double) ((float) worldIn.getY() + hitX), (double) ((float) worldIn.getZ() + hitY), itemstack);
+			EntityFireworkRocket entityfireworkrocket = new EntityFireworkRocket(playerIn, worldIn.getX() + facing, worldIn.getY() + hitX, worldIn.getZ() + hitY, itemstack);
 			playerIn.spawnEntityInWorld(entityfireworkrocket);
 
 			if (!stack.capabilities.isCreativeMode)
@@ -41,6 +42,7 @@ public class ItemFirework extends Item
 		return EnumActionResult.SUCCESS;
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		if (worldIn.isElytraFlying())
@@ -70,6 +72,7 @@ public class ItemFirework extends Item
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		NBTTagCompound nbttagcompound = stack.getSubCompound("Fireworks");
@@ -95,7 +98,7 @@ public class ItemFirework extends Item
 					{
 						for (int j = 1; j < list.size(); ++j)
 						{
-							list.set(j, "  " + (String) list.get(j));
+							list.set(j, "  " + list.get(j));
 						}
 
 						tooltip.addAll(list);

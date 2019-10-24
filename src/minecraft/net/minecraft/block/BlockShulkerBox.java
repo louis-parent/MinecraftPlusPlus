@@ -58,6 +58,7 @@ public class BlockShulkerBox extends BlockContainer
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
+	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityShulkerBox(this.field_190958_b);
@@ -67,21 +68,25 @@ public class BlockShulkerBox extends BlockContainer
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean causesSuffocation(IBlockState p_176214_1_)
 	{
 		return true;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean func_190946_v(IBlockState p_190946_1_)
 	{
 		return true;
@@ -92,11 +97,13 @@ public class BlockShulkerBox extends BlockContainer
 	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
 	 * INVISIBLE to skip all rendering
 	 */
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		if (worldIn.isRemote)
@@ -113,12 +120,12 @@ public class BlockShulkerBox extends BlockContainer
 
 			if (tileentity instanceof TileEntityShulkerBox)
 			{
-				EnumFacing enumfacing = (EnumFacing) state.getValue(field_190957_a);
+				EnumFacing enumfacing = state.getValue(field_190957_a);
 				boolean flag;
 
 				if (((TileEntityShulkerBox) tileentity).func_190591_p() == TileEntityShulkerBox.AnimationStatus.CLOSED)
 				{
-					AxisAlignedBB axisalignedbb = FULL_BLOCK_AABB.addCoord((double) (0.5F * (float) enumfacing.getFrontOffsetX()), (double) (0.5F * (float) enumfacing.getFrontOffsetY()), (double) (0.5F * (float) enumfacing.getFrontOffsetZ())).func_191195_a((double) enumfacing.getFrontOffsetX(), (double) enumfacing.getFrontOffsetY(), (double) enumfacing.getFrontOffsetZ());
+					AxisAlignedBB axisalignedbb = FULL_BLOCK_AABB.addCoord(0.5F * enumfacing.getFrontOffsetX(), 0.5F * enumfacing.getFrontOffsetY(), 0.5F * enumfacing.getFrontOffsetZ()).func_191195_a(enumfacing.getFrontOffsetX(), enumfacing.getFrontOffsetY(), enumfacing.getFrontOffsetZ());
 					flag = !worldIn.collidesWithAnyBlock(axisalignedbb.offset(pos.offset(enumfacing)));
 				}
 				else
@@ -145,11 +152,13 @@ public class BlockShulkerBox extends BlockContainer
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getDefaultState().withProperty(field_190957_a, facing);
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { field_190957_a });
@@ -158,20 +167,23 @@ public class BlockShulkerBox extends BlockContainer
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((EnumFacing) state.getValue(field_190957_a)).getIndex();
+		return state.getValue(field_190957_a).getIndex();
 	}
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		EnumFacing enumfacing = EnumFacing.getFront(meta);
 		return this.getDefaultState().withProperty(field_190957_a, enumfacing);
 	}
 
+	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
 		if (worldIn.getTileEntity(pos) instanceof TileEntityShulkerBox)
@@ -185,6 +197,7 @@ public class BlockShulkerBox extends BlockContainer
 	/**
 	 * Spawns this Block's drops into the World as EntityItems.
 	 */
+	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 	}
@@ -193,6 +206,7 @@ public class BlockShulkerBox extends BlockContainer
 	 * Called by ItemBlocks after a block is set in the world, to allow
 	 * post-place logic
 	 */
+	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		if (stack.hasDisplayName())
@@ -210,6 +224,7 @@ public class BlockShulkerBox extends BlockContainer
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -241,6 +256,7 @@ public class BlockShulkerBox extends BlockContainer
 		super.breakBlock(worldIn, pos, state);
 	}
 
+	@Override
 	public void func_190948_a(ItemStack stack, @Nullable World world, List<String> itemNames, ITooltipFlag flag)
 	{
 		super.func_190948_a(stack, world, itemNames, flag);
@@ -284,27 +300,32 @@ public class BlockShulkerBox extends BlockContainer
 		}
 	}
 
+	@Override
 	public EnumPushReaction getMobilityFlag(IBlockState state)
 	{
 		return EnumPushReaction.DESTROY;
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		TileEntity tileentity = source.getTileEntity(pos);
 		return tileentity instanceof TileEntityShulkerBox ? ((TileEntityShulkerBox) tileentity).func_190584_a(state) : FULL_BLOCK_AABB;
 	}
 
+	@Override
 	public boolean hasComparatorInputOverride(IBlockState state)
 	{
 		return true;
 	}
 
+	@Override
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
 	{
 		return Container.calcRedstoneFromInventory((IInventory) worldIn.getTileEntity(pos));
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		ItemStack itemstack = super.getItem(worldIn, pos, state);
@@ -398,24 +419,27 @@ public class BlockShulkerBox extends BlockContainer
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(field_190957_a, rot.rotate((EnumFacing) state.getValue(field_190957_a)));
+		return state.withProperty(field_190957_a, rot.rotate(state.getValue(field_190957_a)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(field_190957_a)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(field_190957_a)));
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		p_193383_2_ = this.getActualState(p_193383_2_, p_193383_1_, p_193383_3_);
-		EnumFacing enumfacing = (EnumFacing) p_193383_2_.getValue(field_190957_a);
+		EnumFacing enumfacing = p_193383_2_.getValue(field_190957_a);
 		TileEntityShulkerBox.AnimationStatus tileentityshulkerbox$animationstatus = ((TileEntityShulkerBox) p_193383_1_.getTileEntity(p_193383_3_)).func_190591_p();
 		return tileentityshulkerbox$animationstatus != TileEntityShulkerBox.AnimationStatus.CLOSED && (tileentityshulkerbox$animationstatus != TileEntityShulkerBox.AnimationStatus.OPENED || enumfacing != p_193383_4_.getOpposite() && enumfacing != p_193383_4_) ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
 	}

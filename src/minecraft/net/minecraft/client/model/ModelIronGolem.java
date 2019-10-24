@@ -64,6 +64,7 @@ public class ModelIronGolem extends ModelBase
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
@@ -81,6 +82,7 @@ public class ModelIronGolem extends ModelBase
 	 * the time(so that arms and legs swing back and forth) and par2 represents
 	 * how "far" arms and legs can swing at most.
 	 */
+	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
 		this.ironGolemHead.rotateAngleY = netHeadYaw * 0.017453292F;
@@ -96,6 +98,7 @@ public class ModelIronGolem extends ModelBase
 	 * float params here are the same second and third as in the
 	 * setRotationAngles method.
 	 */
+	@Override
 	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
 	{
 		EntityIronGolem entityirongolem = (EntityIronGolem) entitylivingbaseIn;
@@ -103,8 +106,8 @@ public class ModelIronGolem extends ModelBase
 
 		if (i > 0)
 		{
-			this.ironGolemRightArm.rotateAngleX = -2.0F + 1.5F * this.triangleWave((float) i - partialTickTime, 10.0F);
-			this.ironGolemLeftArm.rotateAngleX = -2.0F + 1.5F * this.triangleWave((float) i - partialTickTime, 10.0F);
+			this.ironGolemRightArm.rotateAngleX = -2.0F + 1.5F * this.triangleWave(i - partialTickTime, 10.0F);
+			this.ironGolemLeftArm.rotateAngleX = -2.0F + 1.5F * this.triangleWave(i - partialTickTime, 10.0F);
 		}
 		else
 		{
@@ -112,7 +115,7 @@ public class ModelIronGolem extends ModelBase
 
 			if (j > 0)
 			{
-				this.ironGolemRightArm.rotateAngleX = -0.8F + 0.025F * this.triangleWave((float) j, 70.0F);
+				this.ironGolemRightArm.rotateAngleX = -0.8F + 0.025F * this.triangleWave(j, 70.0F);
 				this.ironGolemLeftArm.rotateAngleX = 0.0F;
 			}
 			else

@@ -31,9 +31,10 @@ public class BlockDirt extends Block
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
-		return ((BlockDirt.DirtType) state.getValue(VARIANT)).getColor();
+		return state.getValue(VARIANT).getColor();
 	}
 
 	/**
@@ -41,6 +42,7 @@ public class BlockDirt extends Block
 	 * applies properties not visible in the metadata, such as fence
 	 * connections.
 	 */
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		if (state.getValue(VARIANT) == BlockDirt.DirtType.PODZOL)
@@ -56,6 +58,7 @@ public class BlockDirt extends Block
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		tab.add(new ItemStack(this, 1, BlockDirt.DirtType.DIRT.getMetadata()));
@@ -63,14 +66,16 @@ public class BlockDirt extends Block
 		tab.add(new ItemStack(this, 1, BlockDirt.DirtType.PODZOL.getMetadata()));
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(this, 1, ((BlockDirt.DirtType) state.getValue(VARIANT)).getMetadata());
+		return new ItemStack(this, 1, state.getValue(VARIANT).getMetadata());
 	}
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(VARIANT, BlockDirt.DirtType.byMetadata(meta));
@@ -79,11 +84,13 @@ public class BlockDirt extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((BlockDirt.DirtType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { VARIANT, SNOWY });
@@ -94,9 +101,10 @@ public class BlockDirt extends Block
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		BlockDirt.DirtType blockdirt$dirttype = (BlockDirt.DirtType) state.getValue(VARIANT);
+		BlockDirt.DirtType blockdirt$dirttype = state.getValue(VARIANT);
 
 		if (blockdirt$dirttype == BlockDirt.DirtType.PODZOL)
 		{
@@ -144,6 +152,7 @@ public class BlockDirt extends Block
 			return this.color;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -159,6 +168,7 @@ public class BlockDirt extends Block
 			return METADATA_LOOKUP[metadata];
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

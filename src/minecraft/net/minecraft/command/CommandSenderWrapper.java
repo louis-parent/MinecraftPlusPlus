@@ -63,6 +63,7 @@ public class CommandSenderWrapper implements ICommandSender
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.field_194005_e != null ? this.field_194005_e.getName() : this.field_193043_a.getName();
@@ -72,6 +73,7 @@ public class CommandSenderWrapper implements ICommandSender
 	 * Get the formatted ChatComponent that will be used for the sender's
 	 * username in chat
 	 */
+	@Override
 	public ITextComponent getDisplayName()
 	{
 		return this.field_194005_e != null ? this.field_194005_e.getDisplayName() : this.field_193043_a.getDisplayName();
@@ -80,6 +82,7 @@ public class CommandSenderWrapper implements ICommandSender
 	/**
 	 * Send a chat message to the CommandSender
 	 */
+	@Override
 	public void addChatMessage(ITextComponent component)
 	{
 		if (this.field_194006_f == null || this.field_194006_f.booleanValue())
@@ -92,6 +95,7 @@ public class CommandSenderWrapper implements ICommandSender
 	 * Returns {@code true} if the CommandSender is allowed to execute the
 	 * command, {@code false} if not
 	 */
+	@Override
 	public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 	{
 		return this.field_194004_d != null && this.field_194004_d.intValue() < permLevel ? false : this.field_193043_a.canCommandSenderUseCommand(permLevel, commandName);
@@ -101,6 +105,7 @@ public class CommandSenderWrapper implements ICommandSender
 	 * Get the position in the world. <b>{@code null} is not allowed!</b> If you
 	 * are not an entity in the world, return the coordinates 0, 0, 0
 	 */
+	@Override
 	public BlockPos getPosition()
 	{
 		if (this.field_194003_c != null)
@@ -117,6 +122,7 @@ public class CommandSenderWrapper implements ICommandSender
 	 * Get the position vector. <b>{@code null} is not allowed!</b> If you are
 	 * not an entity in the world, return 0.0D, 0.0D, 0.0D
 	 */
+	@Override
 	public Vec3d getPositionVector()
 	{
 		if (this.field_194002_b != null)
@@ -133,11 +139,13 @@ public class CommandSenderWrapper implements ICommandSender
 	 * Get the world, if available. <b>{@code null} is not allowed!</b> If you
 	 * are not an entity in the world, return the overworld
 	 */
+	@Override
 	public World getEntityWorld()
 	{
 		return this.field_194005_e != null ? this.field_194005_e.getEntityWorld() : this.field_193043_a.getEntityWorld();
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -152,11 +160,13 @@ public class CommandSenderWrapper implements ICommandSender
 	 * Returns true if the command sender should be sent feedback about executed
 	 * commands
 	 */
+	@Override
 	public boolean sendCommandFeedback()
 	{
 		return this.field_194006_f != null ? this.field_194006_f.booleanValue() : this.field_193043_a.sendCommandFeedback();
 	}
 
+	@Override
 	public void setCommandStat(CommandResultStats.Type type, int amount)
 	{
 		if (this.field_194005_e != null)
@@ -169,6 +179,7 @@ public class CommandSenderWrapper implements ICommandSender
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**

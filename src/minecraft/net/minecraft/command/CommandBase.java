@@ -91,6 +91,7 @@ public abstract class CommandBase implements ICommand
 		return 4;
 	}
 
+	@Override
 	public List<String> getCommandAliases()
 	{
 		return Collections.<String>emptyList();
@@ -99,11 +100,13 @@ public abstract class CommandBase implements ICommand
 	/**
 	 * Check if the given ICommandSender has permission to execute this command
 	 */
+	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender)
 	{
 		return sender.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName());
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		return Collections.<String>emptyList();
@@ -177,7 +180,7 @@ public abstract class CommandBase implements ICommand
 	public static BlockPos parseBlockPos(ICommandSender sender, String[] args, int startIndex, boolean centerBlock) throws NumberInvalidException
 	{
 		BlockPos blockpos = sender.getPosition();
-		return new BlockPos(parseDouble((double) blockpos.getX(), args[startIndex], -30000000, 30000000, centerBlock), parseDouble((double) blockpos.getY(), args[startIndex + 1], 0, 256, false), parseDouble((double) blockpos.getZ(), args[startIndex + 2], -30000000, 30000000, centerBlock));
+		return new BlockPos(parseDouble(blockpos.getX(), args[startIndex], -30000000, 30000000, centerBlock), parseDouble(blockpos.getY(), args[startIndex + 1], 0, 256, false), parseDouble(blockpos.getZ(), args[startIndex + 2], -30000000, 30000000, centerBlock));
 	}
 
 	public static double parseDouble(String input) throws NumberInvalidException
@@ -261,7 +264,7 @@ public abstract class CommandBase implements ICommand
 	public static List<EntityPlayerMP> func_193513_a(MinecraftServer p_193513_0_, ICommandSender p_193513_1_, String p_193513_2_) throws CommandException
 	{
 		List<EntityPlayerMP> list = EntitySelector.func_193531_b(p_193513_1_, p_193513_2_);
-		return (List<EntityPlayerMP>) (list.isEmpty() ? Lists.newArrayList(func_193512_a(p_193513_0_, (EntityPlayerMP) null, p_193513_2_)) : list);
+		return list.isEmpty() ? Lists.newArrayList(func_193512_a(p_193513_0_, (EntityPlayerMP) null, p_193513_2_)) : list;
 	}
 
 	public static EntityPlayerMP getPlayer(MinecraftServer server, ICommandSender sender, String target) throws PlayerNotFoundException, CommandException
@@ -345,7 +348,7 @@ public abstract class CommandBase implements ICommand
 
 	public static List<Entity> getEntityList(MinecraftServer server, ICommandSender sender, String target) throws EntityNotFoundException, CommandException
 	{
-		return (List<Entity>) (EntitySelector.hasArguments(target) ? EntitySelector.matchEntities(sender, target, Entity.class) : Lists.newArrayList(getEntity(server, sender, target)));
+		return EntitySelector.hasArguments(target) ? EntitySelector.matchEntities(sender, target, Entity.class) : Lists.newArrayList(getEntity(server, sender, target));
 	}
 
 	public static String getPlayerName(MinecraftServer server, ICommandSender sender, String target) throws PlayerNotFoundException, CommandException
@@ -493,12 +496,12 @@ public abstract class CommandBase implements ICommand
 
 			if (min != 0 || max != 0)
 			{
-				if (d1 < (double) min)
+				if (d1 < min)
 				{
 					throw new NumberInvalidException("commands.generic.num.tooSmall", new Object[] { String.format("%.2f", d1), min });
 				}
 
-				if (d1 > (double) max)
+				if (d1 > max)
 				{
 					throw new NumberInvalidException("commands.generic.num.tooBig", new Object[] { String.format("%.2f", d1), max });
 				}
@@ -544,12 +547,12 @@ public abstract class CommandBase implements ICommand
 
 			if (min != 0 || max != 0)
 			{
-				if (d0 < (double) min)
+				if (d0 < min)
 				{
 					throw new NumberInvalidException("commands.generic.num.tooSmall", new Object[] { String.format("%.2f", d0), min });
 				}
 
-				if (d0 > (double) max)
+				if (d0 > max)
 				{
 					throw new NumberInvalidException("commands.generic.num.tooBig", new Object[] { String.format("%.2f", d0), max });
 				}
@@ -654,6 +657,7 @@ public abstract class CommandBase implements ICommand
 				final int i = Integer.parseInt(p_190791_1_);
 				return new Predicate<IBlockState>()
 				{
+					@Override
 					public boolean apply(@Nullable IBlockState p_apply_1_)
 					{
 						return i == p_apply_1_.getBlock().getMetaFromState(p_apply_1_);
@@ -665,6 +669,7 @@ public abstract class CommandBase implements ICommand
 				final Map<IProperty<?>, Comparable<?>> map = func_190795_c(p_190791_0_, p_190791_1_);
 				return new Predicate<IBlockState>()
 				{
+					@Override
 					public boolean apply(@Nullable IBlockState p_apply_1_)
 					{
 						if (p_apply_1_ != null && p_190791_0_ == p_apply_1_.getBlock())
@@ -745,7 +750,7 @@ public abstract class CommandBase implements ICommand
 	@Nullable
 	private static <T extends Comparable<T>> T func_190792_a(IProperty<T> p_190792_0_, String p_190792_1_)
 	{
-		return (T) (p_190792_0_.parseValue(p_190792_1_).orNull());
+		return (p_190792_0_.parseValue(p_190792_1_).orNull());
 	}
 
 	/**
@@ -924,6 +929,7 @@ public abstract class CommandBase implements ICommand
 	 * Return whether the specified command parameter index is a username
 	 * parameter.
 	 */
+	@Override
 	public boolean isUsernameIndex(String[] args, int index)
 	{
 		return false;
@@ -951,6 +957,7 @@ public abstract class CommandBase implements ICommand
 		commandListener = listener;
 	}
 
+	@Override
 	public int compareTo(ICommand p_compareTo_1_)
 	{
 		return this.getCommandName().compareTo(p_compareTo_1_.getCommandName());

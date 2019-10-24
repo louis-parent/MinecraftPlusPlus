@@ -25,6 +25,7 @@ public class ServerSelectionList extends GuiListExtended
 	/**
 	 * Gets the IGuiListEntry object for the given index
 	 */
+	@Override
 	public GuiListExtended.IGuiListEntry getListEntry(int index)
 	{
 		if (index < this.serverListInternet.size())
@@ -47,6 +48,7 @@ public class ServerSelectionList extends GuiListExtended
 		}
 	}
 
+	@Override
 	protected int getSize()
 	{
 		return this.serverListInternet.size() + 1 + this.serverListLan.size();
@@ -60,6 +62,7 @@ public class ServerSelectionList extends GuiListExtended
 	/**
 	 * Returns true if the element passed in is currently selected
 	 */
+	@Override
 	protected boolean isSelected(int slotIndex)
 	{
 		return slotIndex == this.selectedSlotIndex;
@@ -90,6 +93,7 @@ public class ServerSelectionList extends GuiListExtended
 		}
 	}
 
+	@Override
 	protected int getScrollBarX()
 	{
 		return super.getScrollBarX() + 30;
@@ -98,6 +102,7 @@ public class ServerSelectionList extends GuiListExtended
 	/**
 	 * Gets the width of the list
 	 */
+	@Override
 	public int getListWidth()
 	{
 		return super.getListWidth() + 85;

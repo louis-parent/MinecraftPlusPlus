@@ -38,6 +38,7 @@ public class RenderWitherSkull extends Render<EntityWitherSkull>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityWitherSkull entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		GlStateManager.pushMatrix();
@@ -73,6 +74,7 @@ public class RenderWitherSkull extends Render<EntityWitherSkull>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityWitherSkull entity)
 	{
 		return entity.isInvulnerable() ? INVULNERABLE_WITHER_TEXTURES : WITHER_TEXTURES;

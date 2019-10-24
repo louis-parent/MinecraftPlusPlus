@@ -49,6 +49,7 @@ public class ItemPickaxe extends ItemTool
 	/**
 	 * Check whether this Item can harvest the given Block
 	 */
+	@Override
 	public boolean canHarvestBlock(IBlockState state)
 	{
 		return EFFECTIVE_ON.contains(state.getMaterial()) && this.toolMaterial.getHarvestLevel() >= (HARVEST_LEVEL.containsKey(state.getBlock()) ? HARVEST_LEVEL.get(state.getBlock()) : state.getBlock().getRequiredHarvestLevel());

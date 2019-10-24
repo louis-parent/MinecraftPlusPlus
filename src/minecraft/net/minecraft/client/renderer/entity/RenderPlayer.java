@@ -47,6 +47,7 @@ public class RenderPlayer extends RenderLivingBase<AbstractClientPlayer>
 		this.addLayer(new LayerEntityOnShoulder(renderManager));
 	}
 
+	@Override
 	public ModelPlayer getMainModel()
 	{
 		return (ModelPlayer) super.getMainModel();
@@ -55,6 +56,7 @@ public class RenderPlayer extends RenderLivingBase<AbstractClientPlayer>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(AbstractClientPlayer entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		if (!entity.isUser() || this.renderManager.renderViewEntity == entity)
@@ -149,11 +151,13 @@ public class RenderPlayer extends RenderLivingBase<AbstractClientPlayer>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	public ResourceLocation getEntityTexture(AbstractClientPlayer entity)
 	{
 		return entity.getLocationSkin();
 	}
 
+	@Override
 	public void transformHeldFull3DItemLayer()
 	{
 		GlStateManager.translate(0.0F, 0.1875F, 0.0F);
@@ -163,12 +167,14 @@ public class RenderPlayer extends RenderLivingBase<AbstractClientPlayer>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(AbstractClientPlayer entitylivingbaseIn, float partialTickTime)
 	{
 		float f = 0.9375F;
 		GlStateManager.scale(0.9375F, 0.9375F, 0.9375F);
 	}
 
+	@Override
 	protected void renderEntityName(AbstractClientPlayer entityIn, double x, double y, double z, String name, double distanceSq)
 	{
 		if (distanceSq < 100.0D)
@@ -180,7 +186,7 @@ public class RenderPlayer extends RenderLivingBase<AbstractClientPlayer>
 			{
 				Score score = scoreboard.getOrCreateScore(entityIn.getName(), scoreobjective);
 				this.renderLivingLabel(entityIn, score.getScorePoints() + " " + scoreobjective.getDisplayName(), x, y, z, 64);
-				y += (double) ((float) this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * 0.025F);
+				y += this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * 0.025F;
 			}
 		}
 
@@ -226,11 +232,12 @@ public class RenderPlayer extends RenderLivingBase<AbstractClientPlayer>
 	/**
 	 * Sets a simple glTranslate on a LivingEntity.
 	 */
+	@Override
 	protected void renderLivingAt(AbstractClientPlayer entityLivingBaseIn, double x, double y, double z)
 	{
 		if (entityLivingBaseIn.isEntityAlive() && entityLivingBaseIn.isPlayerSleeping())
 		{
-			super.renderLivingAt(entityLivingBaseIn, x + (double) entityLivingBaseIn.renderOffsetX, y + (double) entityLivingBaseIn.renderOffsetY, z + (double) entityLivingBaseIn.renderOffsetZ);
+			super.renderLivingAt(entityLivingBaseIn, x + entityLivingBaseIn.renderOffsetX, y + entityLivingBaseIn.renderOffsetY, z + entityLivingBaseIn.renderOffsetZ);
 		}
 		else
 		{
@@ -238,6 +245,7 @@ public class RenderPlayer extends RenderLivingBase<AbstractClientPlayer>
 		}
 	}
 
+	@Override
 	protected void rotateCorpse(AbstractClientPlayer entityLiving, float p_77043_2_, float p_77043_3_, float partialTicks)
 	{
 		if (entityLiving.isEntityAlive() && entityLiving.isPlayerSleeping())
@@ -249,7 +257,7 @@ public class RenderPlayer extends RenderLivingBase<AbstractClientPlayer>
 		else if (entityLiving.isElytraFlying())
 		{
 			super.rotateCorpse(entityLiving, p_77043_2_, p_77043_3_, partialTicks);
-			float f = (float) entityLiving.getTicksElytraFlying() + partialTicks;
+			float f = entityLiving.getTicksElytraFlying() + partialTicks;
 			float f1 = MathHelper.clamp(f * f / 100.0F, 0.0F, 1.0F);
 			GlStateManager.rotate(f1 * (-90.0F - entityLiving.rotationPitch), 1.0F, 0.0F, 0.0F);
 			Vec3d vec3d = entityLiving.getLook(partialTicks);

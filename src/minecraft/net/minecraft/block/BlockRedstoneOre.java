@@ -3,7 +3,6 @@ package net.minecraft.block;
 import java.util.Random;
 
 import fr.minecraftpp.block.ore.OreRegistry;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,11 +39,13 @@ public class BlockRedstoneOre extends BlockOre
 	/**
 	 * How many world ticks before ticking
 	 */
+	@Override
 	public int tickRate(World worldIn)
 	{
 		return 30;
 	}
 
+	@Override
 	public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
 	{
 		this.activate(worldIn, pos);
@@ -55,12 +56,14 @@ public class BlockRedstoneOre extends BlockOre
 	 * Triggered whenever an entity collides with this block (enters into the
 	 * block)
 	 */
+	@Override
 	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
 	{
 		this.activate(worldIn, pos);
 		super.onEntityWalk(worldIn, pos, entityIn);
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		this.activate(worldIn, pos);
@@ -77,6 +80,7 @@ public class BlockRedstoneOre extends BlockOre
 		}
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (this == Blocks.LIT_REDSTONE_ORE)
@@ -88,6 +92,7 @@ public class BlockRedstoneOre extends BlockOre
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.REDSTONE;
@@ -96,6 +101,7 @@ public class BlockRedstoneOre extends BlockOre
 	/**
 	 * Get the quantity dropped based on the given fortune level
 	 */
+	@Override
 	public int quantityDroppedWithBonus(int fortune, Random random)
 	{
 		return this.quantityDropped(random) + random.nextInt(fortune + 1);
@@ -104,6 +110,7 @@ public class BlockRedstoneOre extends BlockOre
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 4 + random.nextInt(2);
@@ -112,6 +119,7 @@ public class BlockRedstoneOre extends BlockOre
 	/**
 	 * Spawns this Block's drops into the World as EntityItems.
 	 */
+	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 		super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
@@ -123,6 +131,7 @@ public class BlockRedstoneOre extends BlockOre
 		}
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
 		if (this.isOn)
@@ -138,52 +147,54 @@ public class BlockRedstoneOre extends BlockOre
 
 		for (int i = 0; i < 6; ++i)
 		{
-			double d1 = (double) ((float) pos.getX() + random.nextFloat());
-			double d2 = (double) ((float) pos.getY() + random.nextFloat());
-			double d3 = (double) ((float) pos.getZ() + random.nextFloat());
+			double d1 = pos.getX() + random.nextFloat();
+			double d2 = pos.getY() + random.nextFloat();
+			double d3 = pos.getZ() + random.nextFloat();
 
 			if (i == 0 && !worldIn.getBlockState(pos.up()).isOpaqueCube())
 			{
-				d2 = (double) pos.getY() + 0.0625D + 1.0D;
+				d2 = pos.getY() + 0.0625D + 1.0D;
 			}
 
 			if (i == 1 && !worldIn.getBlockState(pos.down()).isOpaqueCube())
 			{
-				d2 = (double) pos.getY() - 0.0625D;
+				d2 = pos.getY() - 0.0625D;
 			}
 
 			if (i == 2 && !worldIn.getBlockState(pos.south()).isOpaqueCube())
 			{
-				d3 = (double) pos.getZ() + 0.0625D + 1.0D;
+				d3 = pos.getZ() + 0.0625D + 1.0D;
 			}
 
 			if (i == 3 && !worldIn.getBlockState(pos.north()).isOpaqueCube())
 			{
-				d3 = (double) pos.getZ() - 0.0625D;
+				d3 = pos.getZ() - 0.0625D;
 			}
 
 			if (i == 4 && !worldIn.getBlockState(pos.east()).isOpaqueCube())
 			{
-				d1 = (double) pos.getX() + 0.0625D + 1.0D;
+				d1 = pos.getX() + 0.0625D + 1.0D;
 			}
 
 			if (i == 5 && !worldIn.getBlockState(pos.west()).isOpaqueCube())
 			{
-				d1 = (double) pos.getX() - 0.0625D;
+				d1 = pos.getX() - 0.0625D;
 			}
 
-			if (d1 < (double) pos.getX() || d1 > (double) (pos.getX() + 1) || d2 < 0.0D || d2 > (double) (pos.getY() + 1) || d3 < (double) pos.getZ() || d3 > (double) (pos.getZ() + 1))
+			if (d1 < pos.getX() || d1 > pos.getX() + 1 || d2 < 0.0D || d2 > pos.getY() + 1 || d3 < pos.getZ() || d3 > pos.getZ() + 1)
 			{
 				worldIn.spawnParticle(EnumParticleTypes.REDSTONE, d1, d2, d3, 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
 
+	@Override
 	protected ItemStack getSilkTouchDrop(IBlockState state)
 	{
 		return new ItemStack(Blocks.REDSTONE_ORE);
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(Item.getItemFromBlock(Blocks.REDSTONE_ORE), 1, this.damageDropped(state));

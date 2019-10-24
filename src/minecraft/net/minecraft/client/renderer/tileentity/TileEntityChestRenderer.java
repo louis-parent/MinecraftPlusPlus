@@ -32,6 +32,7 @@ public class TileEntityChestRenderer extends TileEntitySpecialRenderer<TileEntit
 		}
 	}
 
+	@Override
 	public void func_192841_a(TileEntityChest p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
 	{
 		GlStateManager.enableDepth();
@@ -157,7 +158,7 @@ public class TileEntityChestRenderer extends TileEntitySpecialRenderer<TileEntit
 				GlStateManager.translate(0.0F, 0.0F, -1.0F);
 			}
 
-			GlStateManager.rotate((float) j, 0.0F, 1.0F, 0.0F);
+			GlStateManager.rotate(j, 0.0F, 1.0F, 0.0F);
 			GlStateManager.translate(-0.5F, -0.5F, -0.5F);
 			float f = p_192841_1_.prevLidAngle + (p_192841_1_.lidAngle - p_192841_1_.prevLidAngle) * p_192841_8_;
 

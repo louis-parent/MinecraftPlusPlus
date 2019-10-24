@@ -40,6 +40,7 @@ public class Material
 	public static final Material CAKE = (new Material(MapColor.AIR)).setNoPushMobility();
 	public static final Material WEB = (new Material(MapColor.CLOTH)
 	{
+		@Override
 		public boolean blocksMovement()
 		{
 			return false;

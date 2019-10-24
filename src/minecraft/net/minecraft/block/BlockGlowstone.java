@@ -23,6 +23,7 @@ public class BlockGlowstone extends Block
 	/**
 	 * Get the quantity dropped based on the given fortune level
 	 */
+	@Override
 	public int quantityDroppedWithBonus(int fortune, Random random)
 	{
 		return MathHelper.clamp(this.quantityDropped(random) + random.nextInt(fortune + 1), 1, 4);
@@ -31,6 +32,7 @@ public class BlockGlowstone extends Block
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 2 + random.nextInt(3);
@@ -39,6 +41,7 @@ public class BlockGlowstone extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.GLOWSTONE_DUST;
@@ -47,6 +50,7 @@ public class BlockGlowstone extends Block
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
 		return MapColor.SAND;

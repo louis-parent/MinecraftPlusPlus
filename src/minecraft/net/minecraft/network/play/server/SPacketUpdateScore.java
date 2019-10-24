@@ -46,10 +46,11 @@ public class SPacketUpdateScore implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.name = buf.readStringFromBuffer(40);
-		this.action = (SPacketUpdateScore.Action) buf.readEnumValue(SPacketUpdateScore.Action.class);
+		this.action = buf.readEnumValue(SPacketUpdateScore.Action.class);
 		this.objective = buf.readStringFromBuffer(16);
 
 		if (this.action != SPacketUpdateScore.Action.REMOVE)
@@ -61,6 +62,7 @@ public class SPacketUpdateScore implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeString(this.name);
@@ -76,6 +78,7 @@ public class SPacketUpdateScore implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handleUpdateScore(this);

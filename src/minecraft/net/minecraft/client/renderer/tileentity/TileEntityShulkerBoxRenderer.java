@@ -17,6 +17,7 @@ public class TileEntityShulkerBoxRenderer extends TileEntitySpecialRenderer<Tile
 		this.field_191285_a = p_i47216_1_;
 	}
 
+	@Override
 	public void func_192841_a(TileEntityShulkerBox p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
 	{
 		EnumFacing enumfacing = EnumFacing.UP;
@@ -27,7 +28,7 @@ public class TileEntityShulkerBoxRenderer extends TileEntitySpecialRenderer<Tile
 
 			if (iblockstate.getBlock() instanceof BlockShulkerBox)
 			{
-				enumfacing = (EnumFacing) iblockstate.getValue(BlockShulkerBox.field_190957_a);
+				enumfacing = iblockstate.getValue(BlockShulkerBox.field_190957_a);
 			}
 		}
 

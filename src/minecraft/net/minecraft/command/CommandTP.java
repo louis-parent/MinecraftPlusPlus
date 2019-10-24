@@ -20,6 +20,7 @@ public class CommandTP extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "tp";
@@ -28,6 +29,7 @@ public class CommandTP extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
@@ -36,6 +38,7 @@ public class CommandTP extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.tp.usage";
@@ -44,6 +47,7 @@ public class CommandTP extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length < 1)
@@ -78,8 +82,8 @@ public class CommandTP extends CommandBase
 					CommandBase.CoordinateArg commandbase$coordinatearg = parseCoordinate(entity.posX, args[i], true);
 					CommandBase.CoordinateArg commandbase$coordinatearg1 = parseCoordinate(entity.posY, args[k++], -4096, 4096, false);
 					CommandBase.CoordinateArg commandbase$coordinatearg2 = parseCoordinate(entity.posZ, args[k++], true);
-					CommandBase.CoordinateArg commandbase$coordinatearg3 = parseCoordinate((double) entity.rotationYaw, args.length > k ? args[k++] : "~", false);
-					CommandBase.CoordinateArg commandbase$coordinatearg4 = parseCoordinate((double) entity.rotationPitch, args.length > k ? args[k] : "~", false);
+					CommandBase.CoordinateArg commandbase$coordinatearg3 = parseCoordinate(entity.rotationYaw, args.length > k ? args[k++] : "~", false);
+					CommandBase.CoordinateArg commandbase$coordinatearg4 = parseCoordinate(entity.rotationPitch, args.length > k ? args[k] : "~", false);
 					teleportEntityToCoordinates(entity, commandbase$coordinatearg, commandbase$coordinatearg1, commandbase$coordinatearg2, commandbase$coordinatearg3, commandbase$coordinatearg4);
 					notifyCommandListener(sender, this, "commands.tp.success.coordinates", new Object[] { entity.getName(), commandbase$coordinatearg.getResult(), commandbase$coordinatearg1.getResult(), commandbase$coordinatearg2.getResult() });
 				}
@@ -179,6 +183,7 @@ public class CommandTP extends CommandBase
 		}
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		return args.length != 1 && args.length != 2 ? Collections.emptyList() : getListOfStringsMatchingLastWord(args, server.getAllUsernames());
@@ -188,6 +193,7 @@ public class CommandTP extends CommandBase
 	 * Return whether the specified command parameter index is a username
 	 * parameter.
 	 */
+	@Override
 	public boolean isUsernameIndex(String[] args, int index)
 	{
 		return index == 0;

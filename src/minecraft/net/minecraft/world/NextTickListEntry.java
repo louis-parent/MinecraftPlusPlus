@@ -19,11 +19,12 @@ public class NextTickListEntry implements Comparable<NextTickListEntry>
 
 	public NextTickListEntry(BlockPos positionIn, Block blockIn)
 	{
-		this.tickEntryID = (long) (nextTickEntryID++);
+		this.tickEntryID = (nextTickEntryID++);
 		this.position = positionIn.toImmutable();
 		this.block = blockIn;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (!(p_equals_1_ instanceof NextTickListEntry))
@@ -37,6 +38,7 @@ public class NextTickListEntry implements Comparable<NextTickListEntry>
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.position.hashCode();
@@ -56,6 +58,7 @@ public class NextTickListEntry implements Comparable<NextTickListEntry>
 		this.priority = priorityIn;
 	}
 
+	@Override
 	public int compareTo(NextTickListEntry p_compareTo_1_)
 	{
 		if (this.scheduledTime < p_compareTo_1_.scheduledTime)
@@ -80,6 +83,7 @@ public class NextTickListEntry implements Comparable<NextTickListEntry>
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		return Block.getIdFromBlock(this.block) + ": " + this.position + ", " + this.scheduledTime + ", " + this.priority + ", " + this.tickEntryID;

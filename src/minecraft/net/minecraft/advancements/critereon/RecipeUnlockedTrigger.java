@@ -24,11 +24,13 @@ public class RecipeUnlockedTrigger implements ICriterionTrigger<RecipeUnlockedTr
 	private static final ResourceLocation field_192227_a = new ResourceLocation("recipe_unlocked");
 	private final Map<PlayerAdvancements, RecipeUnlockedTrigger.Listeners> field_192228_b = Maps.<PlayerAdvancements, RecipeUnlockedTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192227_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<RecipeUnlockedTrigger.Instance> p_192165_2_)
 	{
 		RecipeUnlockedTrigger.Listeners recipeunlockedtrigger$listeners = this.field_192228_b.get(p_192165_1_);
@@ -42,6 +44,7 @@ public class RecipeUnlockedTrigger implements ICriterionTrigger<RecipeUnlockedTr
 		recipeunlockedtrigger$listeners.func_192528_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<RecipeUnlockedTrigger.Instance> p_192164_2_)
 	{
 		RecipeUnlockedTrigger.Listeners recipeunlockedtrigger$listeners = this.field_192228_b.get(p_192164_1_);
@@ -57,11 +60,13 @@ public class RecipeUnlockedTrigger implements ICriterionTrigger<RecipeUnlockedTr
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192228_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public RecipeUnlockedTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		ResourceLocation resourcelocation = new ResourceLocation(JsonUtils.getString(p_192166_1_, "recipe"));
@@ -134,7 +139,7 @@ public class RecipeUnlockedTrigger implements ICriterionTrigger<RecipeUnlockedTr
 
 			for (ICriterionTrigger.Listener<RecipeUnlockedTrigger.Instance> listener : this.field_192530_b)
 			{
-				if (((RecipeUnlockedTrigger.Instance) listener.func_192158_a()).func_193215_a(p_193493_1_))
+				if (listener.func_192158_a().func_193215_a(p_193493_1_))
 				{
 					if (list == null)
 					{

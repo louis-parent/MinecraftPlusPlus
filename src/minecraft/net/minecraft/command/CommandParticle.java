@@ -18,6 +18,7 @@ public class CommandParticle extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "particle";
@@ -26,6 +27,7 @@ public class CommandParticle extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
@@ -34,6 +36,7 @@ public class CommandParticle extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.particle.usage";
@@ -42,6 +45,7 @@ public class CommandParticle extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length < 8)
@@ -61,13 +65,13 @@ public class CommandParticle extends CommandBase
 			{
 				String s = args[0];
 				Vec3d vec3d = sender.getPositionVector();
-				double d0 = (double) ((float) parseDouble(vec3d.xCoord, args[1], true));
-				double d1 = (double) ((float) parseDouble(vec3d.yCoord, args[2], true));
-				double d2 = (double) ((float) parseDouble(vec3d.zCoord, args[3], true));
-				double d3 = (double) ((float) parseDouble(args[4]));
-				double d4 = (double) ((float) parseDouble(args[5]));
-				double d5 = (double) ((float) parseDouble(args[6]));
-				double d6 = (double) ((float) parseDouble(args[7]));
+				double d0 = ((float) parseDouble(vec3d.xCoord, args[1], true));
+				double d1 = ((float) parseDouble(vec3d.yCoord, args[2], true));
+				double d2 = ((float) parseDouble(vec3d.zCoord, args[3], true));
+				double d3 = ((float) parseDouble(args[4]));
+				double d4 = ((float) parseDouble(args[5]));
+				double d5 = ((float) parseDouble(args[6]));
+				double d6 = ((float) parseDouble(args[7]));
 				int i = 0;
 
 				if (args.length > 8)
@@ -131,6 +135,7 @@ public class CommandParticle extends CommandBase
 		}
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		if (args.length == 1)
@@ -155,6 +160,7 @@ public class CommandParticle extends CommandBase
 	 * Return whether the specified command parameter index is a username
 	 * parameter.
 	 */
+	@Override
 	public boolean isUsernameIndex(String[] args, int index)
 	{
 		return index == 10;

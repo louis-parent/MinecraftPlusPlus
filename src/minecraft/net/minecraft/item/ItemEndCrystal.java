@@ -28,6 +28,7 @@ public class ItemEndCrystal extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
@@ -57,9 +58,9 @@ public class ItemEndCrystal extends Item
 				}
 				else
 				{
-					double d0 = (double) blockpos.getX();
-					double d1 = (double) blockpos.getY();
-					double d2 = (double) blockpos.getZ();
+					double d0 = blockpos.getX();
+					double d1 = blockpos.getY();
+					double d2 = blockpos.getZ();
 					List<Entity> list = playerIn.getEntitiesWithinAABBExcludingEntity((Entity) null, new AxisAlignedBB(d0, d1, d2, d0 + 1.0D, d1 + 2.0D, d2 + 1.0D));
 
 					if (!list.isEmpty())
@@ -70,7 +71,7 @@ public class ItemEndCrystal extends Item
 					{
 						if (!playerIn.isRemote)
 						{
-							EntityEnderCrystal entityendercrystal = new EntityEnderCrystal(playerIn, (double) ((float) worldIn.getX() + 0.5F), (double) (worldIn.getY() + 1), (double) ((float) worldIn.getZ() + 0.5F));
+							EntityEnderCrystal entityendercrystal = new EntityEnderCrystal(playerIn, worldIn.getX() + 0.5F, worldIn.getY() + 1, worldIn.getZ() + 0.5F);
 							entityendercrystal.setShowBottom(false);
 							playerIn.spawnEntityInWorld(entityendercrystal);
 
@@ -89,6 +90,7 @@ public class ItemEndCrystal extends Item
 		}
 	}
 
+	@Override
 	public boolean hasEffect(ItemStack stack)
 	{
 		return true;

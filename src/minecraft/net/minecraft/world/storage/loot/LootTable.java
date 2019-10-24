@@ -71,11 +71,11 @@ public class LootTable
 
 			if (itemstack.isNotValid())
 			{
-				inventory.setInventorySlotContents(((Integer) list1.remove(list1.size() - 1)).intValue(), ItemStack.EMPTY_ITEM_STACK);
+				inventory.setInventorySlotContents(list1.remove(list1.size() - 1).intValue(), ItemStack.EMPTY_ITEM_STACK);
 			}
 			else
 			{
-				inventory.setInventorySlotContents(((Integer) list1.remove(list1.size() - 1)).intValue(), itemstack);
+				inventory.setInventorySlotContents(list1.remove(list1.size() - 1).intValue(), itemstack);
 			}
 		}
 	}
@@ -152,13 +152,15 @@ public class LootTable
 
 	public static class Serializer implements JsonDeserializer<LootTable>, JsonSerializer<LootTable>
 	{
+		@Override
 		public LootTable deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "loot table");
-			LootPool[] alootpool = (LootPool[]) JsonUtils.deserializeClass(jsonobject, "pools", new LootPool[0], p_deserialize_3_, LootPool[].class);
+			LootPool[] alootpool = JsonUtils.deserializeClass(jsonobject, "pools", new LootPool[0], p_deserialize_3_, LootPool[].class);
 			return new LootTable(alootpool);
 		}
 
+		@Override
 		public JsonElement serialize(LootTable p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			JsonObject jsonobject = new JsonObject();

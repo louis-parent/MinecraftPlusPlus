@@ -47,10 +47,11 @@ public class GuiLanguage extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
-		this.forceUnicodeFontBtn = (GuiOptionButton) this.addButton(new GuiOptionButton(100, this.width / 2 - 155, this.height - 38, GameSettings.Options.FORCE_UNICODE_FONT, this.game_settings_3.getKeyBinding(GameSettings.Options.FORCE_UNICODE_FONT)));
-		this.confirmSettingsBtn = (GuiOptionButton) this.addButton(new GuiOptionButton(6, this.width / 2 - 155 + 160, this.height - 38, I18n.format("gui.done")));
+		this.forceUnicodeFontBtn = this.addButton(new GuiOptionButton(100, this.width / 2 - 155, this.height - 38, GameSettings.Options.FORCE_UNICODE_FONT, this.game_settings_3.getKeyBinding(GameSettings.Options.FORCE_UNICODE_FONT)));
+		this.confirmSettingsBtn = this.addButton(new GuiOptionButton(6, this.width / 2 - 155 + 160, this.height - 38, I18n.format("gui.done")));
 		this.list = new GuiLanguage.List(this.mc);
 		this.list.registerScrollButtons(7, 8);
 	}
@@ -58,6 +59,7 @@ public class GuiLanguage extends GuiScreen
 	/**
 	 * Handles mouse input.
 	 */
+	@Override
 	public void handleMouseInput() throws IOException
 	{
 		super.handleMouseInput();
@@ -68,6 +70,7 @@ public class GuiLanguage extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.enabled)
@@ -103,6 +106,7 @@ public class GuiLanguage extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.list.drawScreen(mouseX, mouseY, partialTicks);
@@ -127,11 +131,13 @@ public class GuiLanguage extends GuiScreen
 			}
 		}
 
+		@Override
 		protected int getSize()
 		{
 			return this.langCodeList.size();
 		}
 
+		@Override
 		protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 		{
 			Language language = this.languageMap.get(this.langCodeList.get(slotIndex));
@@ -145,25 +151,29 @@ public class GuiLanguage extends GuiScreen
 			GuiLanguage.this.game_settings_3.saveOptions();
 		}
 
+		@Override
 		protected boolean isSelected(int slotIndex)
 		{
-			return ((String) this.langCodeList.get(slotIndex)).equals(GuiLanguage.this.languageManager.getCurrentLanguage().getLanguageCode());
+			return this.langCodeList.get(slotIndex).equals(GuiLanguage.this.languageManager.getCurrentLanguage().getLanguageCode());
 		}
 
+		@Override
 		protected int getContentHeight()
 		{
 			return this.getSize() * 18;
 		}
 
+		@Override
 		protected void drawBackground()
 		{
 			GuiLanguage.this.drawDefaultBackground();
 		}
 
+		@Override
 		protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 		{
 			GuiLanguage.this.fontRendererObj.setBidiFlag(true);
-			GuiLanguage.this.drawCenteredString(GuiLanguage.this.fontRendererObj, ((Language) this.languageMap.get(this.langCodeList.get(p_192637_1_))).toString(), this.width / 2, p_192637_3_ + 1, 16777215);
+			GuiLanguage.this.drawCenteredString(GuiLanguage.this.fontRendererObj, this.languageMap.get(this.langCodeList.get(p_192637_1_)).toString(), this.width / 2, p_192637_3_ + 1, 16777215);
 			GuiLanguage.this.fontRendererObj.setBidiFlag(GuiLanguage.this.languageManager.getCurrentLanguage().isBidirectional());
 		}
 	}

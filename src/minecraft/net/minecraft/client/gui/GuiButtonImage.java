@@ -26,6 +26,7 @@ public class GuiButtonImage extends GuiButton
 		this.yPosition = p_191746_2_;
 	}
 
+	@Override
 	public void func_191745_a(Minecraft p_191745_1_, int p_191745_2_, int p_191745_3_, float p_191745_4_)
 	{
 		if (this.visible)

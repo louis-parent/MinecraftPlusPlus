@@ -9,11 +9,13 @@ public class ZombieProfToType implements IFixableData
 {
 	private static final Random RANDOM = new Random();
 
+	@Override
 	public int getFixVersion()
 	{
 		return 502;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("Zombie".equals(compound.getString("id")) && compound.getBoolean("IsVillager"))

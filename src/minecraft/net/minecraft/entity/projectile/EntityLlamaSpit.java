@@ -32,7 +32,7 @@ public class EntityLlamaSpit extends Entity implements IProjectile
 	{
 		super(p_i47273_1_);
 		this.field_190539_a = p_i47273_2_;
-		this.setPosition(p_i47273_2_.posX - (double) (p_i47273_2_.width + 1.0F) * 0.5D * (double) MathHelper.sin(p_i47273_2_.renderYawOffset * 0.017453292F), p_i47273_2_.posY + (double) p_i47273_2_.getEyeHeight() - 0.10000000149011612D, p_i47273_2_.posZ + (double) (p_i47273_2_.width + 1.0F) * 0.5D * (double) MathHelper.cos(p_i47273_2_.renderYawOffset * 0.017453292F));
+		this.setPosition(p_i47273_2_.posX - (p_i47273_2_.width + 1.0F) * 0.5D * MathHelper.sin(p_i47273_2_.renderYawOffset * 0.017453292F), p_i47273_2_.posY + p_i47273_2_.getEyeHeight() - 0.10000000149011612D, p_i47273_2_.posZ + (p_i47273_2_.width + 1.0F) * 0.5D * MathHelper.cos(p_i47273_2_.renderYawOffset * 0.017453292F));
 		this.setSize(0.25F, 0.25F);
 	}
 
@@ -43,7 +43,7 @@ public class EntityLlamaSpit extends Entity implements IProjectile
 
 		for (int i = 0; i < 7; ++i)
 		{
-			double d0 = 0.4D + 0.1D * (double) i;
+			double d0 = 0.4D + 0.1D * i;
 			p_i47274_1_.spawnParticle(EnumParticleTypes.SPIT, p_i47274_2_, p_i47274_4_, p_i47274_6_, p_i47274_8_ * d0, p_i47274_10_, p_i47274_12_ * d0);
 		}
 
@@ -55,6 +55,7 @@ public class EntityLlamaSpit extends Entity implements IProjectile
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -93,7 +94,7 @@ public class EntityLlamaSpit extends Entity implements IProjectile
 		float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
 
-		for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, (double) f) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+		for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, f) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
 		{
 			;
 		}
@@ -144,6 +145,7 @@ public class EntityLlamaSpit extends Entity implements IProjectile
 	/**
 	 * Updates the velocity of the entity to a new value.
 	 */
+	@Override
 	public void setVelocity(double x, double y, double z)
 	{
 		this.motionX = x;
@@ -153,7 +155,7 @@ public class EntityLlamaSpit extends Entity implements IProjectile
 		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
 		{
 			float f = MathHelper.sqrt(x * x + z * z);
-			this.rotationPitch = (float) (MathHelper.atan2(y, (double) f) * (180D / Math.PI));
+			this.rotationPitch = (float) (MathHelper.atan2(y, f) * (180D / Math.PI));
 			this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
 			this.prevRotationPitch = this.rotationPitch;
 			this.prevRotationYaw = this.rotationYaw;
@@ -195,24 +197,25 @@ public class EntityLlamaSpit extends Entity implements IProjectile
 	 * Similar to setArrowHeading, it's point the throwable entity to a x, y, z
 	 * direction.
 	 */
+	@Override
 	public void setThrowableHeading(double x, double y, double z, float velocity, float inaccuracy)
 	{
 		float f = MathHelper.sqrt(x * x + y * y + z * z);
-		x = x / (double) f;
-		y = y / (double) f;
-		z = z / (double) f;
-		x = x + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-		y = y + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-		z = z + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-		x = x * (double) velocity;
-		y = y * (double) velocity;
-		z = z * (double) velocity;
+		x = x / f;
+		y = y / f;
+		z = z / f;
+		x = x + this.rand.nextGaussian() * 0.007499999832361937D * inaccuracy;
+		y = y + this.rand.nextGaussian() * 0.007499999832361937D * inaccuracy;
+		z = z + this.rand.nextGaussian() * 0.007499999832361937D * inaccuracy;
+		x = x * velocity;
+		y = y * velocity;
+		z = z * velocity;
 		this.motionX = x;
 		this.motionY = y;
 		this.motionZ = z;
 		float f1 = MathHelper.sqrt(x * x + z * z);
 		this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-		this.rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * (180D / Math.PI));
+		this.rotationPitch = (float) (MathHelper.atan2(y, f1) * (180D / Math.PI));
 		this.prevRotationYaw = this.rotationYaw;
 		this.prevRotationPitch = this.rotationPitch;
 	}
@@ -230,6 +233,7 @@ public class EntityLlamaSpit extends Entity implements IProjectile
 		}
 	}
 
+	@Override
 	protected void entityInit()
 	{
 	}
@@ -237,6 +241,7 @@ public class EntityLlamaSpit extends Entity implements IProjectile
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		if (compound.hasKey("Owner", 10))
@@ -248,6 +253,7 @@ public class EntityLlamaSpit extends Entity implements IProjectile
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 		if (this.field_190539_a != null)

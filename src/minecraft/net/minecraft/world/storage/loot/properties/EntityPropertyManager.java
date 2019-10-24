@@ -33,7 +33,7 @@ public class EntityPropertyManager
 
 	public static EntityProperty.Serializer<?> getSerializerForName(ResourceLocation p_186646_0_)
 	{
-		EntityProperty.Serializer<?> serializer = (EntityProperty.Serializer) NAME_TO_SERIALIZER_MAP.get(p_186646_0_);
+		EntityProperty.Serializer<?> serializer = NAME_TO_SERIALIZER_MAP.get(p_186646_0_);
 
 		if (serializer == null)
 		{
@@ -47,7 +47,7 @@ public class EntityPropertyManager
 
 	public static <T extends EntityProperty> EntityProperty.Serializer<T> getSerializerFor(T property)
 	{
-		EntityProperty.Serializer<?> serializer = (EntityProperty.Serializer) CLASS_TO_SERIALIZER_MAP.get(property.getClass());
+		EntityProperty.Serializer<?> serializer = CLASS_TO_SERIALIZER_MAP.get(property.getClass());
 
 		if (serializer == null)
 		{

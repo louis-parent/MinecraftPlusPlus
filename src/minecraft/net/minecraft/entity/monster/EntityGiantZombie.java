@@ -23,11 +23,13 @@ public class EntityGiantZombie extends EntityMob
 		EntityLiving.registerFixesMob(fixer, EntityGiantZombie.class);
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return 10.440001F;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -36,11 +38,13 @@ public class EntityGiantZombie extends EntityMob
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(50.0D);
 	}
 
+	@Override
 	public float getBlockPathWeight(BlockPos pos)
 	{
 		return this.world.getLightBrightness(pos) - 0.5F;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{

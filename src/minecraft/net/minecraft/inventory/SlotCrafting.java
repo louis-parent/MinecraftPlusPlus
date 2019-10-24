@@ -33,6 +33,7 @@ public class SlotCrafting extends Slot
 	 * Check if the stack is allowed to be placed in this slot, used for armor
 	 * slots as well as furnace fuel.
 	 */
+	@Override
 	public boolean isItemValid(ItemStack stack)
 	{
 		return false;
@@ -42,6 +43,7 @@ public class SlotCrafting extends Slot
 	 * Decrease the size of the stack in slot (first int arg) by the amount of
 	 * the second int arg. Returns the new stack.
 	 */
+	@Override
 	public ItemStack decrStackSize(int amount)
 	{
 		if (this.getHasStack())
@@ -57,12 +59,14 @@ public class SlotCrafting extends Slot
 	 * not ore and wood. Typically increases an internal count then calls
 	 * onCrafting(item).
 	 */
+	@Override
 	protected void onCrafting(ItemStack stack, int amount)
 	{
 		this.amountCrafted += amount;
 		this.onCrafting(stack);
 	}
 
+	@Override
 	protected void func_190900_b(int p_190900_1_)
 	{
 		this.amountCrafted += p_190900_1_;
@@ -72,6 +76,7 @@ public class SlotCrafting extends Slot
 	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes,
 	 * not ore and wood.
 	 */
+	@Override
 	protected void onCrafting(ItemStack stack)
 	{
 		if (this.amountCrafted > 0)
@@ -90,6 +95,7 @@ public class SlotCrafting extends Slot
 		}
 	}
 
+	@Override
 	public ItemStack func_190901_a(EntityPlayer p_190901_1_, ItemStack p_190901_2_)
 	{
 		this.onCrafting(p_190901_2_);

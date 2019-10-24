@@ -33,11 +33,13 @@ public class FallbackResourceManager implements IResourceManager
 		this.resourcePacks.add(resourcePack);
 	}
 
+	@Override
 	public Set<String> getResourceDomains()
 	{
 		return Collections.<String>emptySet();
 	}
 
+	@Override
 	public IResource getResource(ResourceLocation location) throws IOException
 	{
 		this.checkResourcePath(location);
@@ -72,7 +74,7 @@ public class FallbackResourceManager implements IResourceManager
 	protected InputStream getInputStream(ResourceLocation location, IResourcePack resourcePack) throws IOException
 	{
 		InputStream inputstream = resourcePack.getInputStream(location);
-		return (InputStream) (LOGGER.isDebugEnabled() ? new FallbackResourceManager.InputStreamLeakedResourceLogger(inputstream, location, resourcePack.getPackName()) : inputstream);
+		return LOGGER.isDebugEnabled() ? new FallbackResourceManager.InputStreamLeakedResourceLogger(inputstream, location, resourcePack.getPackName()) : inputstream;
 	}
 
 	private void checkResourcePath(ResourceLocation p_188552_1_) throws IOException
@@ -83,6 +85,7 @@ public class FallbackResourceManager implements IResourceManager
 		}
 	}
 
+	@Override
 	public List<IResource> getAllResources(ResourceLocation location) throws IOException
 	{
 		this.checkResourcePath(location);
@@ -127,12 +130,14 @@ public class FallbackResourceManager implements IResourceManager
 			this.message = "Leaked resource: '" + location + "' loaded from pack: '" + resourcePack + "'\n" + bytearrayoutputstream;
 		}
 
+		@Override
 		public void close() throws IOException
 		{
 			this.inputStream.close();
 			this.isClosed = true;
 		}
 
+		@Override
 		protected void finalize() throws Throwable
 		{
 			if (!this.isClosed)
@@ -143,6 +148,7 @@ public class FallbackResourceManager implements IResourceManager
 			super.finalize();
 		}
 
+		@Override
 		public int read() throws IOException
 		{
 			return this.inputStream.read();

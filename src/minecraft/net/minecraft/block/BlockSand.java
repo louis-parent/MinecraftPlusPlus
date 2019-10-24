@@ -26,15 +26,17 @@ public class BlockSand extends BlockFalling
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((BlockSand.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (BlockSand.EnumType blocksand$enumtype : BlockSand.EnumType.values())
@@ -46,14 +48,16 @@ public class BlockSand extends BlockFalling
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
-		return ((BlockSand.EnumType) state.getValue(VARIANT)).getMapColor();
+		return state.getValue(VARIANT).getMapColor();
 	}
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(VARIANT, BlockSand.EnumType.byMetadata(meta));
@@ -62,19 +66,22 @@ public class BlockSand extends BlockFalling
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((BlockSand.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { VARIANT });
 	}
 
+	@Override
 	public int getDustColor(IBlockState p_189876_1_)
 	{
-		BlockSand.EnumType blocksand$enumtype = (BlockSand.EnumType) p_189876_1_.getValue(VARIANT);
+		BlockSand.EnumType blocksand$enumtype = p_189876_1_.getValue(VARIANT);
 		return blocksand$enumtype.getDustColor();
 	}
 
@@ -108,6 +115,7 @@ public class BlockSand extends BlockFalling
 			return this.meta;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -128,6 +136,7 @@ public class BlockSand extends BlockFalling
 			return META_LOOKUP[meta];
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

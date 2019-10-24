@@ -18,6 +18,7 @@ public class RenderLlamaSpit extends Render<EntityLlamaSpit>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityLlamaSpit entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		GlStateManager.pushMatrix();
@@ -48,6 +49,7 @@ public class RenderLlamaSpit extends Render<EntityLlamaSpit>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityLlamaSpit entity)
 	{
 		return field_191333_a;

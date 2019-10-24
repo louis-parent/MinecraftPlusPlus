@@ -36,6 +36,7 @@ public class EntityElderGuardian extends EntityGuardian
 		}
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -49,12 +50,14 @@ public class EntityElderGuardian extends EntityGuardian
 		EntityLiving.registerFixesMob(p_190768_0_, EntityElderGuardian.class);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.ENTITIES_ELDER_GUARDIAN;
 	}
 
+	@Override
 	public int getAttackDuration()
 	{
 		return 60;
@@ -66,26 +69,31 @@ public class EntityElderGuardian extends EntityGuardian
 		this.clientSideSpikesAnimationO = this.clientSideSpikesAnimation;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return this.isInWater() ? SoundEvents.ENTITY_ELDER_GUARDIAN_AMBIENT : SoundEvents.ENTITY_ELDERGUARDIAN_AMBIENTLAND;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return this.isInWater() ? SoundEvents.ENTITY_ELDER_GUARDIAN_HURT : SoundEvents.ENTITY_ELDER_GUARDIAN_HURT_LAND;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return this.isInWater() ? SoundEvents.ENTITY_ELDER_GUARDIAN_DEATH : SoundEvents.ENTITY_ELDER_GUARDIAN_DEATH_LAND;
 	}
 
+	@Override
 	protected SoundEvent func_190765_dj()
 	{
 		return SoundEvents.field_191240_aK;
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		super.updateAITasks();
@@ -96,6 +104,7 @@ public class EntityElderGuardian extends EntityGuardian
 			Potion potion = MobEffects.MINING_FATIGUE;
 			List<EntityPlayerMP> list = this.world.<EntityPlayerMP>getPlayers(EntityPlayerMP.class, new Predicate<EntityPlayerMP>()
 			{
+				@Override
 				public boolean apply(@Nullable EntityPlayerMP p_apply_1_)
 				{
 					return EntityElderGuardian.this.getDistanceSqToEntity(p_apply_1_) < 2500.0D && p_apply_1_.interactionManager.survivalOrAdventure();

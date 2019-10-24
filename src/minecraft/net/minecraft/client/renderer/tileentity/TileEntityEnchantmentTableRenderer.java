@@ -13,11 +13,12 @@ public class TileEntityEnchantmentTableRenderer extends TileEntitySpecialRendere
 	private static final ResourceLocation TEXTURE_BOOK = new ResourceLocation("textures/entity/enchanting_table_book.png");
 	private final ModelBook modelBook = new ModelBook();
 
+	@Override
 	public void func_192841_a(TileEntityEnchantmentTable p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
 	{
 		GlStateManager.pushMatrix();
 		GlStateManager.translate((float) p_192841_2_ + 0.5F, (float) p_192841_4_ + 0.75F, (float) p_192841_6_ + 0.5F);
-		float f = (float) p_192841_1_.tickCount + p_192841_8_;
+		float f = p_192841_1_.tickCount + p_192841_8_;
 		GlStateManager.translate(0.0F, 0.1F + MathHelper.sin(f * 0.1F) * 0.01F, 0.0F);
 		float f1;
 
@@ -37,8 +38,8 @@ public class TileEntityEnchantmentTableRenderer extends TileEntitySpecialRendere
 		this.bindTexture(TEXTURE_BOOK);
 		float f3 = p_192841_1_.pageFlipPrev + (p_192841_1_.pageFlip - p_192841_1_.pageFlipPrev) * p_192841_8_ + 0.25F;
 		float f4 = p_192841_1_.pageFlipPrev + (p_192841_1_.pageFlip - p_192841_1_.pageFlipPrev) * p_192841_8_ + 0.75F;
-		f3 = (f3 - (float) MathHelper.fastFloor((double) f3)) * 1.6F - 0.3F;
-		f4 = (f4 - (float) MathHelper.fastFloor((double) f4)) * 1.6F - 0.3F;
+		f3 = (f3 - MathHelper.fastFloor(f3)) * 1.6F - 0.3F;
+		f4 = (f4 - MathHelper.fastFloor(f4)) * 1.6F - 0.3F;
 
 		if (f3 < 0.0F)
 		{

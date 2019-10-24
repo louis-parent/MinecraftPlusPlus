@@ -27,11 +27,13 @@ public class InventoryMerchant implements IInventory
 	/**
 	 * Returns the number of slots in the inventory.
 	 */
+	@Override
 	public int getSizeInventory()
 	{
 		return this.theInventory.size();
 	}
 
+	@Override
 	public boolean isStackNotValid()
 	{
 		for (ItemStack itemstack : this.theInventory)
@@ -48,6 +50,7 @@ public class InventoryMerchant implements IInventory
 	/**
 	 * Returns the stack in the given slot.
 	 */
+	@Override
 	public ItemStack getStackInSlot(int index)
 	{
 		return this.theInventory.get(index);
@@ -57,6 +60,7 @@ public class InventoryMerchant implements IInventory
 	 * Removes up to a specified number of items from an inventory slot and
 	 * returns them in a new stack.
 	 */
+	@Override
 	public ItemStack decrStackSize(int index, int count)
 	{
 		ItemStack itemstack = this.theInventory.get(index);
@@ -89,6 +93,7 @@ public class InventoryMerchant implements IInventory
 	/**
 	 * Removes a stack from the given slot and returns it.
 	 */
+	@Override
 	public ItemStack removeStackFromSlot(int index)
 	{
 		return ItemStackHelper.getAndRemove(this.theInventory, index);
@@ -98,6 +103,7 @@ public class InventoryMerchant implements IInventory
 	 * Sets the given item stack to the specified slot in the inventory (can be
 	 * crafting or armor sections).
 	 */
+	@Override
 	public void setInventorySlotContents(int index, ItemStack stack)
 	{
 		this.theInventory.set(index, stack);
@@ -116,6 +122,7 @@ public class InventoryMerchant implements IInventory
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return "mob.villager";
@@ -124,6 +131,7 @@ public class InventoryMerchant implements IInventory
 	/**
 	 * Returns true if this thing is named
 	 */
+	@Override
 	public boolean hasCustomName()
 	{
 		return false;
@@ -133,15 +141,17 @@ public class InventoryMerchant implements IInventory
 	 * Get the formatted ChatComponent that will be used for the sender's
 	 * username in chat
 	 */
+	@Override
 	public ITextComponent getDisplayName()
 	{
-		return (ITextComponent) (this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]));
+		return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]);
 	}
 
 	/**
 	 * Returns the maximum stack size for a inventory slot. Seems to always be
 	 * 64, possibly will be extended.
 	 */
+	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
@@ -151,15 +161,18 @@ public class InventoryMerchant implements IInventory
 	 * Don't rename this method to canInteractWith due to conflicts with
 	 * Container
 	 */
+	@Override
 	public boolean isUsableByPlayer(EntityPlayer player)
 	{
 		return this.theMerchant.getCustomer() == player;
 	}
 
+	@Override
 	public void openInventory(EntityPlayer player)
 	{
 	}
 
+	@Override
 	public void closeInventory(EntityPlayer player)
 	{
 	}
@@ -168,6 +181,7 @@ public class InventoryMerchant implements IInventory
 	 * Returns true if automation is allowed to insert the given stack (ignoring
 	 * stack size) into the given slot. For guis use Slot.isItemValid
 	 */
+	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack)
 	{
 		return true;
@@ -177,6 +191,7 @@ public class InventoryMerchant implements IInventory
 	 * For tile entities, ensures the chunk containing the tile entity is saved
 	 * to disk later - the game won't think it hasn't changed and skip it.
 	 */
+	@Override
 	public void markDirty()
 	{
 		this.resetRecipeAndSlots();
@@ -246,20 +261,24 @@ public class InventoryMerchant implements IInventory
 		this.resetRecipeAndSlots();
 	}
 
+	@Override
 	public int getField(int id)
 	{
 		return 0;
 	}
 
+	@Override
 	public void setField(int id, int value)
 	{
 	}
 
+	@Override
 	public int getFieldCount()
 	{
 		return 0;
 	}
 
+	@Override
 	public void clear()
 	{
 		this.theInventory.clear();

@@ -19,6 +19,7 @@ public class ItemLeaves extends ItemBlock
 	 * placed in the world when this Item is placed as a Block (mostly used with
 	 * ItemBlocks).
 	 */
+	@Override
 	public int getMetadata(int damage)
 	{
 		return damage | 4;
@@ -29,6 +30,7 @@ public class ItemLeaves extends ItemBlock
 	 * ItemStack so different stacks can have different names based on their
 	 * damage or NBT.
 	 */
+	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		return super.getUnlocalizedName() + "." + this.leaves.getWoodType(stack.getMetadata()).getUnlocalizedName();

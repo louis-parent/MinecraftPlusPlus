@@ -68,11 +68,13 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 	/**
 	 * Returns the number of slots in the inventory.
 	 */
+	@Override
 	public int getSizeInventory()
 	{
 		return 27;
 	}
 
+	@Override
 	public boolean isStackNotValid()
 	{
 		for (ItemStack itemstack : this.chestContents)
@@ -89,6 +91,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.hasCustomName() ? this.field_190577_o : "container.chest";
@@ -99,6 +102,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 		fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityChest.class, new String[] { "Items" }));
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -115,6 +119,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 		}
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -136,11 +141,13 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 	 * Returns the maximum stack size for a inventory slot. Seems to always be
 	 * 64, possibly will be extended.
 	 */
+	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
 	}
 
+	@Override
 	public void updateContainingBlockInfo()
 	{
 		super.updateContainingBlockInfo();
@@ -243,6 +250,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		this.checkForAdjacentChests();
@@ -256,7 +264,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 			this.numPlayersUsing = 0;
 			float f = 5.0F;
 
-			for (EntityPlayer entityplayer : this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB((double) ((float) i - 5.0F), (double) ((float) j - 5.0F), (double) ((float) k - 5.0F), (double) ((float) (i + 1) + 5.0F), (double) ((float) (j + 1) + 5.0F), (double) ((float) (k + 1) + 5.0F))))
+			for (EntityPlayer entityplayer : this.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(i - 5.0F, j - 5.0F, k - 5.0F, i + 1 + 5.0F, j + 1 + 5.0F, k + 1 + 5.0F)))
 			{
 				if (entityplayer.openContainer instanceof ContainerChest)
 				{
@@ -275,8 +283,8 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 
 		if (this.numPlayersUsing > 0 && this.lidAngle == 0.0F && this.adjacentChestZNeg == null && this.adjacentChestXNeg == null)
 		{
-			double d1 = (double) i + 0.5D;
-			double d2 = (double) k + 0.5D;
+			double d1 = i + 0.5D;
+			double d2 = k + 0.5D;
 
 			if (this.adjacentChestZPos != null)
 			{
@@ -288,7 +296,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 				d1 += 0.5D;
 			}
 
-			this.world.playSound((EntityPlayer) null, d1, (double) j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
+			this.world.playSound((EntityPlayer) null, d1, j + 0.5D, d2, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
 		}
 
 		if (this.numPlayersUsing == 0 && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F)
@@ -313,8 +321,8 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 
 			if (this.lidAngle < 0.5F && f2 >= 0.5F && this.adjacentChestZNeg == null && this.adjacentChestXNeg == null)
 			{
-				double d3 = (double) i + 0.5D;
-				double d0 = (double) k + 0.5D;
+				double d3 = i + 0.5D;
+				double d0 = k + 0.5D;
 
 				if (this.adjacentChestZPos != null)
 				{
@@ -326,7 +334,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 					d3 += 0.5D;
 				}
 
-				this.world.playSound((EntityPlayer) null, d3, (double) j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
+				this.world.playSound((EntityPlayer) null, d3, j + 0.5D, d0, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
 			}
 
 			if (this.lidAngle < 0.0F)
@@ -336,6 +344,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 		}
 	}
 
+	@Override
 	public boolean receiveClientEvent(int id, int type)
 	{
 		if (id == 1)
@@ -349,6 +358,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 		}
 	}
 
+	@Override
 	public void openInventory(EntityPlayer player)
 	{
 		if (!player.isSpectator())
@@ -369,6 +379,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 		}
 	}
 
+	@Override
 	public void closeInventory(EntityPlayer player)
 	{
 		if (!player.isSpectator() && this.getBlockType() instanceof BlockChest)
@@ -387,6 +398,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 	/**
 	 * invalidates a tile entity
 	 */
+	@Override
 	public void invalidate()
 	{
 		super.invalidate();
@@ -409,17 +421,20 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 		return this.cachedChestType;
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return "minecraft:chest";
 	}
 
+	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
 		this.fillWithLoot(playerIn);
 		return new ContainerChest(playerInventory, this, playerIn);
 	}
 
+	@Override
 	protected NonNullList<ItemStack> func_190576_q()
 	{
 		return this.chestContents;

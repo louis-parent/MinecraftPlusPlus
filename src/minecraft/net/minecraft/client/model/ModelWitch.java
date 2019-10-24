@@ -45,16 +45,17 @@ public class ModelWitch extends ModelVillager
 	 * the time(so that arms and legs swing back and forth) and par2 represents
 	 * how "far" arms and legs can swing at most.
 	 */
+	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
 		this.villagerNose.offsetX = 0.0F;
 		this.villagerNose.offsetY = 0.0F;
 		this.villagerNose.offsetZ = 0.0F;
-		float f = 0.01F * (float) (entityIn.getEntityId() % 10);
-		this.villagerNose.rotateAngleX = MathHelper.sin((float) entityIn.ticksExisted * f) * 4.5F * 0.017453292F;
+		float f = 0.01F * (entityIn.getEntityId() % 10);
+		this.villagerNose.rotateAngleX = MathHelper.sin(entityIn.ticksExisted * f) * 4.5F * 0.017453292F;
 		this.villagerNose.rotateAngleY = 0.0F;
-		this.villagerNose.rotateAngleZ = MathHelper.cos((float) entityIn.ticksExisted * f) * 2.5F * 0.017453292F;
+		this.villagerNose.rotateAngleZ = MathHelper.cos(entityIn.ticksExisted * f) * 2.5F * 0.017453292F;
 
 		if (this.holdingItem)
 		{

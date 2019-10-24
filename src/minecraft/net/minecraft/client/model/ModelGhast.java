@@ -22,8 +22,8 @@ public class ModelGhast extends ModelBase
 		for (int j = 0; j < this.tentacles.length; ++j)
 		{
 			this.tentacles[j] = new ModelRenderer(this, 0, 0);
-			float f = (((float) (j % 3) - (float) (j / 3 % 2) * 0.5F + 0.25F) / 2.0F * 2.0F - 1.0F) * 5.0F;
-			float f1 = ((float) (j / 3) / 2.0F * 2.0F - 1.0F) * 5.0F;
+			float f = ((j % 3 - j / 3 % 2 * 0.5F + 0.25F) / 2.0F * 2.0F - 1.0F) * 5.0F;
+			float f1 = (j / 3 / 2.0F * 2.0F - 1.0F) * 5.0F;
 			int k = random.nextInt(7) + 8;
 			this.tentacles[j].addBox(-1.0F, 0.0F, -1.0F, 2, k, 2);
 			this.tentacles[j].rotationPointX = f;
@@ -38,17 +38,19 @@ public class ModelGhast extends ModelBase
 	 * the time(so that arms and legs swing back and forth) and par2 represents
 	 * how "far" arms and legs can swing at most.
 	 */
+	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
 		for (int i = 0; i < this.tentacles.length; ++i)
 		{
-			this.tentacles[i].rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) i) + 0.4F;
+			this.tentacles[i].rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + i) + 0.4F;
 		}
 	}
 
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);

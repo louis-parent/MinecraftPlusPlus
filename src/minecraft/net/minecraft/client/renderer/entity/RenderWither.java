@@ -21,6 +21,7 @@ public class RenderWither extends RenderLiving<EntityWither>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityWither entity)
 	{
 		int i = entity.getInvulTime();
@@ -31,6 +32,7 @@ public class RenderWither extends RenderLiving<EntityWither>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityWither entitylivingbaseIn, float partialTickTime)
 	{
 		float f = 2.0F;
@@ -38,7 +40,7 @@ public class RenderWither extends RenderLiving<EntityWither>
 
 		if (i > 0)
 		{
-			f -= ((float) i - partialTickTime) / 220.0F * 0.5F;
+			f -= (i - partialTickTime) / 220.0F * 0.5F;
 		}
 
 		GlStateManager.scale(f, f, f);

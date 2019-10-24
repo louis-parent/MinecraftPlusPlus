@@ -63,11 +63,13 @@ public class InventoryEnderChest extends InventoryBasic
 	 * Don't rename this method to canInteractWith due to conflicts with
 	 * Container
 	 */
+	@Override
 	public boolean isUsableByPlayer(EntityPlayer player)
 	{
 		return this.associatedChest != null && !this.associatedChest.canBeUsed(player) ? false : super.isUsableByPlayer(player);
 	}
 
+	@Override
 	public void openInventory(EntityPlayer player)
 	{
 		if (this.associatedChest != null)
@@ -78,6 +80,7 @@ public class InventoryEnderChest extends InventoryBasic
 		super.openInventory(player);
 	}
 
+	@Override
 	public void closeInventory(EntityPlayer player)
 	{
 		if (this.associatedChest != null)

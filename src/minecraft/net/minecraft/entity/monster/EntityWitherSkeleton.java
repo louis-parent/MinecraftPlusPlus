@@ -36,27 +36,32 @@ public class EntityWitherSkeleton extends AbstractSkeleton
 		EntityLiving.registerFixesMob(p_190729_0_, EntityWitherSkeleton.class);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.ENTITIES_WITHER_SKELETON;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_WITHER_SKELETON_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_WITHER_SKELETON_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_WITHER_SKELETON_DEATH;
 	}
 
+	@Override
 	SoundEvent func_190727_o()
 	{
 		return SoundEvents.ENTITY_WITHER_SKELETON_STEP;
@@ -65,6 +70,7 @@ public class EntityWitherSkeleton extends AbstractSkeleton
 	/**
 	 * Called when the mob's health reaches 0.
 	 */
+	@Override
 	public void onDeath(DamageSource cause)
 	{
 		super.onDeath(cause);
@@ -84,6 +90,7 @@ public class EntityWitherSkeleton extends AbstractSkeleton
 	/**
 	 * Gives armor or weapon for entity based on given DifficultyInstance
 	 */
+	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
 		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
@@ -92,10 +99,12 @@ public class EntityWitherSkeleton extends AbstractSkeleton
 	/**
 	 * Enchants Entity's current equipments based on given DifficultyInstance
 	 */
+	@Override
 	protected void setEnchantmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -111,11 +120,13 @@ public class EntityWitherSkeleton extends AbstractSkeleton
 		return ientitylivingdata;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return 2.1F;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
 		if (!super.attackEntityAsMob(entityIn))
@@ -133,6 +144,7 @@ public class EntityWitherSkeleton extends AbstractSkeleton
 		}
 	}
 
+	@Override
 	protected EntityArrow func_190726_a(float p_190726_1_)
 	{
 		EntityArrow entityarrow = super.func_190726_a(p_190726_1_);

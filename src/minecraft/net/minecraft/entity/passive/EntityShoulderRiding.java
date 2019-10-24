@@ -33,6 +33,7 @@ public abstract class EntityShoulderRiding extends EntityTameable
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		++this.field_191996_bB;

@@ -12,6 +12,7 @@ public class GuiScreenWorking extends GuiScreen implements IProgressUpdate
 	/**
 	 * Shows the 'Saving level' string.
 	 */
+	@Override
 	public void displaySavingString(String message)
 	{
 		this.resetProgressAndMessage(message);
@@ -22,6 +23,7 @@ public class GuiScreenWorking extends GuiScreen implements IProgressUpdate
 	 * lines shown. This resets progress to 0, and the WorkingString to
 	 * "working...".
 	 */
+	@Override
 	public void resetProgressAndMessage(String message)
 	{
 		this.title = message;
@@ -32,6 +34,7 @@ public class GuiScreenWorking extends GuiScreen implements IProgressUpdate
 	 * Displays a string on the loading screen supposed to indicate what is
 	 * being done currently.
 	 */
+	@Override
 	public void displayLoadingString(String message)
 	{
 		this.stage = message;
@@ -41,11 +44,13 @@ public class GuiScreenWorking extends GuiScreen implements IProgressUpdate
 	/**
 	 * Updates the progress bar on the loading screen to the specified amount.
 	 */
+	@Override
 	public void setLoadingProgress(int progress)
 	{
 		this.progress = progress;
 	}
 
+	@Override
 	public void setDoneWorking()
 	{
 		this.doneWorking = true;
@@ -54,6 +59,7 @@ public class GuiScreenWorking extends GuiScreen implements IProgressUpdate
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		if (this.doneWorking)

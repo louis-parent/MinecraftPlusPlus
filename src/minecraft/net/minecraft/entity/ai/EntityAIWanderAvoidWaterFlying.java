@@ -20,6 +20,7 @@ public class EntityAIWanderAvoidWaterFlying extends EntityAIWanderAvoidWater
 		super(p_i47413_1_, p_i47413_2_);
 	}
 
+	@Override
 	@Nullable
 	protected Vec3d func_190864_f()
 	{
@@ -44,7 +45,7 @@ public class EntityAIWanderAvoidWaterFlying extends EntityAIWanderAvoidWater
 		BlockPos blockpos = new BlockPos(this.entity);
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 		BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
-		Iterable<BlockPos.MutableBlockPos> iterable = BlockPos.MutableBlockPos.func_191531_b(MathHelper.floor(this.entity.posX - 3.0D), MathHelper.floor(this.entity.posY - 6.0D), MathHelper.floor(this.entity.posZ - 3.0D), MathHelper.floor(this.entity.posX + 3.0D), MathHelper.floor(this.entity.posY + 6.0D), MathHelper.floor(this.entity.posZ + 3.0D));
+		Iterable<BlockPos.MutableBlockPos> iterable = BlockPos.func_191531_b(MathHelper.floor(this.entity.posX - 3.0D), MathHelper.floor(this.entity.posY - 6.0D), MathHelper.floor(this.entity.posZ - 3.0D), MathHelper.floor(this.entity.posX + 3.0D), MathHelper.floor(this.entity.posY + 6.0D), MathHelper.floor(this.entity.posZ + 3.0D));
 		Iterator iterator = iterable.iterator();
 		BlockPos blockpos1;
 
@@ -69,6 +70,6 @@ public class EntityAIWanderAvoidWaterFlying extends EntityAIWanderAvoidWater
 			}
 		}
 
-		return new Vec3d((double) blockpos1.getX(), (double) blockpos1.getY(), (double) blockpos1.getZ());
+		return new Vec3d(blockpos1.getX(), blockpos1.getY(), blockpos1.getZ());
 	}
 }

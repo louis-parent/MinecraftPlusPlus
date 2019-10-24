@@ -22,11 +22,13 @@ public class PlayerHurtEntityTrigger implements ICriterionTrigger<PlayerHurtEnti
 	private static final ResourceLocation field_192222_a = new ResourceLocation("player_hurt_entity");
 	private final Map<PlayerAdvancements, PlayerHurtEntityTrigger.Listeners> field_192223_b = Maps.<PlayerAdvancements, PlayerHurtEntityTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192222_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<PlayerHurtEntityTrigger.Instance> p_192165_2_)
 	{
 		PlayerHurtEntityTrigger.Listeners playerhurtentitytrigger$listeners = this.field_192223_b.get(p_192165_1_);
@@ -40,6 +42,7 @@ public class PlayerHurtEntityTrigger implements ICriterionTrigger<PlayerHurtEnti
 		playerhurtentitytrigger$listeners.func_192522_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<PlayerHurtEntityTrigger.Instance> p_192164_2_)
 	{
 		PlayerHurtEntityTrigger.Listeners playerhurtentitytrigger$listeners = this.field_192223_b.get(p_192164_1_);
@@ -55,11 +58,13 @@ public class PlayerHurtEntityTrigger implements ICriterionTrigger<PlayerHurtEnti
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192223_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public PlayerHurtEntityTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		DamagePredicate damagepredicate = DamagePredicate.func_192364_a(p_192166_1_.get("damage"));
@@ -133,7 +138,7 @@ public class PlayerHurtEntityTrigger implements ICriterionTrigger<PlayerHurtEnti
 
 			for (ICriterionTrigger.Listener<PlayerHurtEntityTrigger.Instance> listener : this.field_192524_b)
 			{
-				if (((PlayerHurtEntityTrigger.Instance) listener.func_192158_a()).func_192278_a(p_192521_1_, p_192521_2_, p_192521_3_, p_192521_4_, p_192521_5_, p_192521_6_))
+				if (listener.func_192158_a().func_192278_a(p_192521_1_, p_192521_2_, p_192521_3_, p_192521_4_, p_192521_5_, p_192521_6_))
 				{
 					if (list == null)
 					{

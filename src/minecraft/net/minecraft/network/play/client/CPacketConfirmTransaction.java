@@ -26,6 +26,7 @@ public class CPacketConfirmTransaction implements Packet<INetHandlerPlayServer>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayServer handler)
 	{
 		handler.processConfirmTransaction(this);
@@ -34,6 +35,7 @@ public class CPacketConfirmTransaction implements Packet<INetHandlerPlayServer>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.windowId = buf.readByte();
@@ -44,6 +46,7 @@ public class CPacketConfirmTransaction implements Packet<INetHandlerPlayServer>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeByte(this.windowId);

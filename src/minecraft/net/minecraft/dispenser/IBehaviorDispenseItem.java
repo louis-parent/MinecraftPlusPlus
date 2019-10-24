@@ -6,6 +6,7 @@ public interface IBehaviorDispenseItem
 {
 	IBehaviorDispenseItem DEFAULT_BEHAVIOR = new IBehaviorDispenseItem()
 	{
+		@Override
 		public ItemStack dispense(IBlockSource source, ItemStack stack)
 		{
 			return stack;

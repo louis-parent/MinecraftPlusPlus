@@ -20,8 +20,8 @@ public class BakedQuadRetextured extends BakedQuad
 		for (int i = 0; i < 4; ++i)
 		{
 			int j = 7 * i;
-			this.vertexData[j + 4] = Float.floatToRawIntBits(this.texture.getInterpolatedU((double) this.sprite.getUnInterpolatedU(Float.intBitsToFloat(this.vertexData[j + 4]))));
-			this.vertexData[j + 4 + 1] = Float.floatToRawIntBits(this.texture.getInterpolatedV((double) this.sprite.getUnInterpolatedV(Float.intBitsToFloat(this.vertexData[j + 4 + 1]))));
+			this.vertexData[j + 4] = Float.floatToRawIntBits(this.texture.getInterpolatedU(this.sprite.getUnInterpolatedU(Float.intBitsToFloat(this.vertexData[j + 4]))));
+			this.vertexData[j + 4 + 1] = Float.floatToRawIntBits(this.texture.getInterpolatedV(this.sprite.getUnInterpolatedV(Float.intBitsToFloat(this.vertexData[j + 4 + 1]))));
 		}
 	}
 }

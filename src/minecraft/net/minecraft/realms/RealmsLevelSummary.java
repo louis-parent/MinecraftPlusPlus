@@ -56,6 +56,7 @@ public class RealmsLevelSummary implements Comparable<RealmsLevelSummary>
 		return this.levelSummary.getSizeOnDisk();
 	}
 
+	@Override
 	public int compareTo(RealmsLevelSummary p_compareTo_1_)
 	{
 		if (this.levelSummary.getLastTimePlayed() < p_compareTo_1_.getLastPlayed())

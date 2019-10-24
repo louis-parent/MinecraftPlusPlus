@@ -13,12 +13,14 @@ public class CooldownTrackerServer extends CooldownTracker
 		this.player = playerIn;
 	}
 
+	@Override
 	protected void notifyOnSet(Item itemIn, int ticksIn)
 	{
 		super.notifyOnSet(itemIn, ticksIn);
 		this.player.connection.sendPacket(new SPacketCooldown(itemIn, ticksIn));
 	}
 
+	@Override
 	protected void notifyOnRemove(Item itemIn)
 	{
 		super.notifyOnRemove(itemIn);

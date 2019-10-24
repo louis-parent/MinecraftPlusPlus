@@ -69,7 +69,7 @@ public abstract class MobSpawnerBaseLogic
 	private boolean isActivated()
 	{
 		BlockPos blockpos = this.getSpawnerPosition();
-		return this.getSpawnerWorld().isAnyPlayerWithinRangeAt((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 0.5D, (double) blockpos.getZ() + 0.5D, (double) this.activatingRangeFromPlayer);
+		return this.getSpawnerWorld().isAnyPlayerWithinRangeAt(blockpos.getX() + 0.5D, blockpos.getY() + 0.5D, blockpos.getZ() + 0.5D, this.activatingRangeFromPlayer);
 	}
 
 	public void updateSpawner()
@@ -84,9 +84,9 @@ public abstract class MobSpawnerBaseLogic
 
 			if (this.getSpawnerWorld().isRemote)
 			{
-				double d3 = (double) ((float) blockpos.getX() + this.getSpawnerWorld().rand.nextFloat());
-				double d4 = (double) ((float) blockpos.getY() + this.getSpawnerWorld().rand.nextFloat());
-				double d5 = (double) ((float) blockpos.getZ() + this.getSpawnerWorld().rand.nextFloat());
+				double d3 = blockpos.getX() + this.getSpawnerWorld().rand.nextFloat();
+				double d4 = blockpos.getY() + this.getSpawnerWorld().rand.nextFloat();
+				double d5 = blockpos.getZ() + this.getSpawnerWorld().rand.nextFloat();
 				this.getSpawnerWorld().spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d3, d4, d5, 0.0D, 0.0D, 0.0D);
 				this.getSpawnerWorld().spawnParticle(EnumParticleTypes.FLAME, d3, d4, d5, 0.0D, 0.0D, 0.0D);
 
@@ -96,7 +96,7 @@ public abstract class MobSpawnerBaseLogic
 				}
 
 				this.prevMobRotation = this.mobRotation;
-				this.mobRotation = (this.mobRotation + (double) (1000.0F / ((float) this.spawnDelay + 200.0F))) % 360.0D;
+				this.mobRotation = (this.mobRotation + 1000.0F / (this.spawnDelay + 200.0F)) % 360.0D;
 			}
 			else
 			{
@@ -119,9 +119,9 @@ public abstract class MobSpawnerBaseLogic
 					NBTTagList nbttaglist = nbttagcompound.getTagList("Pos", 6);
 					World world = this.getSpawnerWorld();
 					int j = nbttaglist.tagCount();
-					double d0 = j >= 1 ? nbttaglist.getDoubleAt(0) : (double) blockpos.getX() + (world.rand.nextDouble() - world.rand.nextDouble()) * (double) this.spawnRange + 0.5D;
+					double d0 = j >= 1 ? nbttaglist.getDoubleAt(0) : blockpos.getX() + (world.rand.nextDouble() - world.rand.nextDouble()) * this.spawnRange + 0.5D;
 					double d1 = j >= 2 ? nbttaglist.getDoubleAt(1) : (double) (blockpos.getY() + world.rand.nextInt(3) - 1);
-					double d2 = j >= 3 ? nbttaglist.getDoubleAt(2) : (double) blockpos.getZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * (double) this.spawnRange + 0.5D;
+					double d2 = j >= 3 ? nbttaglist.getDoubleAt(2) : blockpos.getZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * this.spawnRange + 0.5D;
 					Entity entity = AnvilChunkLoader.readWorldEntityPos(nbttagcompound, world, d0, d1, d2, false);
 
 					if (entity == null)
@@ -129,7 +129,7 @@ public abstract class MobSpawnerBaseLogic
 						return;
 					}
 
-					int k = world.getEntitiesWithinAABB(entity.getClass(), (new AxisAlignedBB((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ(), (double) (blockpos.getX() + 1), (double) (blockpos.getY() + 1), (double) (blockpos.getZ() + 1))).expandXyz((double) this.spawnRange)).size();
+					int k = world.getEntitiesWithinAABB(entity.getClass(), (new AxisAlignedBB(blockpos.getX(), blockpos.getY(), blockpos.getZ(), blockpos.getX() + 1, blockpos.getY() + 1, blockpos.getZ() + 1)).expandXyz(this.spawnRange)).size();
 
 					if (k >= this.maxNearbyEntities)
 					{
@@ -181,7 +181,7 @@ public abstract class MobSpawnerBaseLogic
 
 		if (!this.potentialSpawns.isEmpty())
 		{
-			this.setNextSpawnData((WeightedSpawnerEntity) WeightedRandom.getRandomItem(this.getSpawnerWorld().rand, this.potentialSpawns));
+			this.setNextSpawnData(WeightedRandom.getRandomItem(this.getSpawnerWorld().rand, this.potentialSpawns));
 		}
 
 		this.broadcastEvent(1);
@@ -208,7 +208,7 @@ public abstract class MobSpawnerBaseLogic
 		}
 		else if (!this.potentialSpawns.isEmpty())
 		{
-			this.setNextSpawnData((WeightedSpawnerEntity) WeightedRandom.getRandomItem(this.getSpawnerWorld().rand, this.potentialSpawns));
+			this.setNextSpawnData(WeightedRandom.getRandomItem(this.getSpawnerWorld().rand, this.potentialSpawns));
 		}
 
 		if (nbt.hasKey("MinSpawnDelay", 99))

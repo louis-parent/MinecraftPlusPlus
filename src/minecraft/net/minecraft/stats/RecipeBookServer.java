@@ -70,7 +70,7 @@ public class RecipeBookServer extends RecipeBook
 
 		for (IRecipe irecipe : this.func_194079_d())
 		{
-			nbttaglist.appendTag(new NBTTagString(((ResourceLocation) CraftingManager.recipeMap.getNameForObject(irecipe)).toString()));
+			nbttaglist.appendTag(new NBTTagString(CraftingManager.recipeMap.getNameForObject(irecipe).toString()));
 		}
 
 		nbttagcompound.setTag("recipes", nbttaglist);
@@ -78,7 +78,7 @@ public class RecipeBookServer extends RecipeBook
 
 		for (IRecipe irecipe1 : this.func_194080_e())
 		{
-			nbttaglist1.appendTag(new NBTTagString(((ResourceLocation) CraftingManager.recipeMap.getNameForObject(irecipe1)).toString()));
+			nbttaglist1.appendTag(new NBTTagString(CraftingManager.recipeMap.getNameForObject(irecipe1).toString()));
 		}
 
 		nbttagcompound.setTag("toBeDisplayed", nbttaglist1);
@@ -98,7 +98,7 @@ public class RecipeBookServer extends RecipeBook
 
 			if (irecipe == null)
 			{
-				field_192828_d.info("Tried to load unrecognized recipe: {} removed now.", (Object) resourcelocation);
+				field_192828_d.info("Tried to load unrecognized recipe: {} removed now.", resourcelocation);
 			}
 			else
 			{
@@ -115,7 +115,7 @@ public class RecipeBookServer extends RecipeBook
 
 			if (irecipe1 == null)
 			{
-				field_192828_d.info("Tried to load unrecognized recipe: {} removed now.", (Object) resourcelocation1);
+				field_192828_d.info("Tried to load unrecognized recipe: {} removed now.", resourcelocation1);
 			}
 			else
 			{

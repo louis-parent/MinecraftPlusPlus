@@ -5,11 +5,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class HorseSplit implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 703;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("EntityHorse".equals(compound.getString("id")))

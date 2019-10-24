@@ -45,6 +45,7 @@ public abstract class StructureComponentTemplate extends StructureComponent
 	/**
 	 * (abstract) Helper method to write subclass data to NBT
 	 */
+	@Override
 	protected void writeStructureToNBT(NBTTagCompound tagCompound)
 	{
 		tagCompound.setInteger("TPX", this.templatePosition.getX());
@@ -55,6 +56,7 @@ public abstract class StructureComponentTemplate extends StructureComponent
 	/**
 	 * (abstract) Helper method to read subclass data from NBT
 	 */
+	@Override
 	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 	{
 		this.templatePosition = new BlockPos(tagCompound.getInteger("TPX"), tagCompound.getInteger("TPY"), tagCompound.getInteger("TPZ"));
@@ -64,6 +66,7 @@ public abstract class StructureComponentTemplate extends StructureComponent
 	 * second Part of Structure generating, this for example places Spiderwebs,
 	 * Mob Spawners, it closes Mineshafts at the end, it adds Fences...
 	 */
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
 		this.placeSettings.setBoundingBox(structureBoundingBoxIn);
@@ -159,6 +162,7 @@ public abstract class StructureComponentTemplate extends StructureComponent
 		this.boundingBox.offset(this.templatePosition.getX(), this.templatePosition.getY(), this.templatePosition.getZ());
 	}
 
+	@Override
 	public void offset(int x, int y, int z)
 	{
 		super.offset(x, y, z);

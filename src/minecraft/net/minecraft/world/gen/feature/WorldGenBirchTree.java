@@ -24,6 +24,7 @@ public class WorldGenBirchTree extends WorldGenAbstractTree
 		this.useExtraRandomHeight = useExtraRandomHeightIn;
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		int i = rand.nextInt(3) + 5;

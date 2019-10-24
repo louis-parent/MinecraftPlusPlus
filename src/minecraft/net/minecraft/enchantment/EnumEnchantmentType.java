@@ -16,6 +16,7 @@ public enum EnumEnchantmentType
 {
 	ALL
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			for (EnumEnchantmentType enumenchantmenttype : EnumEnchantmentType.values())
@@ -31,6 +32,7 @@ public enum EnumEnchantmentType
 	},
 	ARMOR
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			return itemIn instanceof ItemArmor;
@@ -38,6 +40,7 @@ public enum EnumEnchantmentType
 	},
 	ARMOR_FEET
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			return itemIn instanceof ItemArmor && ((ItemArmor) itemIn).armorType == EntityArmorSlot.FEET;
@@ -45,6 +48,7 @@ public enum EnumEnchantmentType
 	},
 	ARMOR_LEGS
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			return itemIn instanceof ItemArmor && ((ItemArmor) itemIn).armorType == EntityArmorSlot.LEGS;
@@ -52,6 +56,7 @@ public enum EnumEnchantmentType
 	},
 	ARMOR_CHEST
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			return itemIn instanceof ItemArmor && ((ItemArmor) itemIn).armorType == EntityArmorSlot.CHEST;
@@ -59,6 +64,7 @@ public enum EnumEnchantmentType
 	},
 	ARMOR_HEAD
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			return itemIn instanceof ItemArmor && ((ItemArmor) itemIn).armorType == EntityArmorSlot.HEAD;
@@ -66,6 +72,7 @@ public enum EnumEnchantmentType
 	},
 	WEAPON
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			return itemIn instanceof ItemSword;
@@ -73,6 +80,7 @@ public enum EnumEnchantmentType
 	},
 	DIGGER
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			return itemIn instanceof ItemTool;
@@ -80,6 +88,7 @@ public enum EnumEnchantmentType
 	},
 	FISHING_ROD
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			return itemIn instanceof ItemFishingRod;
@@ -87,6 +96,7 @@ public enum EnumEnchantmentType
 	},
 	BREAKABLE
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			return itemIn.isDamageable();
@@ -94,6 +104,7 @@ public enum EnumEnchantmentType
 	},
 	BOW
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			return itemIn instanceof ItemBow;
@@ -101,6 +112,7 @@ public enum EnumEnchantmentType
 	},
 	WEARABLE
 	{
+		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
 			boolean flag = itemIn instanceof ItemBlock && ((ItemBlock) itemIn).getBlock() instanceof BlockPumpkin;

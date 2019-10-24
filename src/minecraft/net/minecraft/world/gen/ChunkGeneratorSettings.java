@@ -276,7 +276,7 @@ public class ChunkGeneratorSettings
 			{
 				try
 				{
-					return (ChunkGeneratorSettings.Factory) JsonUtils.gsonDeserialize(JSON_ADAPTER, p_177865_0_, ChunkGeneratorSettings.Factory.class);
+					return JsonUtils.gsonDeserialize(JSON_ADAPTER, p_177865_0_, ChunkGeneratorSettings.Factory.class);
 				}
 				catch (Exception var2)
 				{
@@ -285,6 +285,7 @@ public class ChunkGeneratorSettings
 			}
 		}
 
+		@Override
 		public String toString()
 		{
 			return JSON_ADAPTER.toJson(this);
@@ -378,6 +379,7 @@ public class ChunkGeneratorSettings
 			this.lapisSpread = 16;
 		}
 
+		@Override
 		public boolean equals(Object p_equals_1_)
 		{
 			if (this == p_equals_1_)
@@ -711,6 +713,7 @@ public class ChunkGeneratorSettings
 			}
 		}
 
+		@Override
 		public int hashCode()
 		{
 			int i = this.coordinateScale == 0.0F ? 0 : Float.floatToIntBits(this.coordinateScale);
@@ -803,6 +806,7 @@ public class ChunkGeneratorSettings
 
 	public static class Serializer implements JsonDeserializer<ChunkGeneratorSettings.Factory>, JsonSerializer<ChunkGeneratorSettings.Factory>
 	{
+		@Override
 		public ChunkGeneratorSettings.Factory deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();
@@ -911,6 +915,7 @@ public class ChunkGeneratorSettings
 			return chunkgeneratorsettings$factory;
 		}
 
+		@Override
 		public JsonElement serialize(ChunkGeneratorSettings.Factory p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			JsonObject jsonobject = new JsonObject();

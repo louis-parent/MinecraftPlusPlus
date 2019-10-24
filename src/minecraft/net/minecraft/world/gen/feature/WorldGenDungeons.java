@@ -25,6 +25,7 @@ public class WorldGenDungeons extends WorldGenerator
 	private static final Logger LOGGER = LogManager.getLogger();
 	private static final ResourceLocation[] SPAWNERTYPES = new ResourceLocation[] { EntityList.func_191306_a(EntitySkeleton.class), EntityList.func_191306_a(EntityZombie.class), EntityList.func_191306_a(EntityZombie.class), EntityList.func_191306_a(EntitySpider.class) };
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		int i = 3;

@@ -31,6 +31,7 @@ public class Vec3i implements Comparable<Vec3i>
 		this(MathHelper.floor(xIn), MathHelper.floor(yIn), MathHelper.floor(zIn));
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -60,11 +61,13 @@ public class Vec3i implements Comparable<Vec3i>
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return (this.getY() + this.getZ() * 31) * 31 + this.getX();
 	}
 
+	@Override
 	public int compareTo(Vec3i p_compareTo_1_)
 	{
 		if (this.getY() == p_compareTo_1_.getY())
@@ -111,9 +114,9 @@ public class Vec3i implements Comparable<Vec3i>
 
 	public double getDistance(int xIn, int yIn, int zIn)
 	{
-		double d0 = (double) (this.getX() - xIn);
-		double d1 = (double) (this.getY() - yIn);
-		double d2 = (double) (this.getZ() - zIn);
+		double d0 = this.getX() - xIn;
+		double d1 = this.getY() - yIn;
+		double d2 = this.getZ() - zIn;
 		return Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
 	}
 
@@ -122,9 +125,9 @@ public class Vec3i implements Comparable<Vec3i>
 	 */
 	public double distanceSq(double toX, double toY, double toZ)
 	{
-		double d0 = (double) this.getX() - toX;
-		double d1 = (double) this.getY() - toY;
-		double d2 = (double) this.getZ() - toZ;
+		double d0 = this.getX() - toX;
+		double d1 = this.getY() - toY;
+		double d2 = this.getZ() - toZ;
 		return d0 * d0 + d1 * d1 + d2 * d2;
 	}
 
@@ -133,9 +136,9 @@ public class Vec3i implements Comparable<Vec3i>
 	 */
 	public double distanceSqToCenter(double xIn, double yIn, double zIn)
 	{
-		double d0 = (double) this.getX() + 0.5D - xIn;
-		double d1 = (double) this.getY() + 0.5D - yIn;
-		double d2 = (double) this.getZ() + 0.5D - zIn;
+		double d0 = this.getX() + 0.5D - xIn;
+		double d1 = this.getY() + 0.5D - yIn;
+		double d2 = this.getZ() + 0.5D - zIn;
 		return d0 * d0 + d1 * d1 + d2 * d2;
 	}
 
@@ -144,9 +147,10 @@ public class Vec3i implements Comparable<Vec3i>
 	 */
 	public double distanceSq(Vec3i to)
 	{
-		return this.distanceSq((double) to.getX(), (double) to.getY(), (double) to.getZ());
+		return this.distanceSq(to.getX(), to.getY(), to.getZ());
 	}
 
+	@Override
 	public String toString()
 	{
 		return MoreObjects.toStringHelper(this).add("x", this.getX()).add("y", this.getY()).add("z", this.getZ()).toString();

@@ -26,7 +26,7 @@ public abstract class StateMapperBase implements IStateMapper
 				stringbuilder.append(",");
 			}
 
-			IProperty<?> iproperty = (IProperty) entry.getKey();
+			IProperty<?> iproperty = entry.getKey();
 			stringbuilder.append(iproperty.getName());
 			stringbuilder.append("=");
 			stringbuilder.append(this.getPropertyName(iproperty, entry.getValue()));
@@ -45,6 +45,7 @@ public abstract class StateMapperBase implements IStateMapper
 		return property.getName((T) value);
 	}
 
+	@Override
 	public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block blockIn)
 	{
 		UnmodifiableIterator unmodifiableiterator = blockIn.getBlockState().getValidStates().iterator();

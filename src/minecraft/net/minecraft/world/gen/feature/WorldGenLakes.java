@@ -19,6 +19,7 @@ public class WorldGenLakes extends WorldGenerator
 		this.block = blockIn;
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		for (position = position.add(-8, 0, -8); position.getY() > 5 && worldIn.isAirBlock(position); position = position.down())
@@ -51,9 +52,9 @@ public class WorldGenLakes extends WorldGenerator
 					{
 						for (int j1 = 1; j1 < 7; ++j1)
 						{
-							double d6 = ((double) l - d3) / (d0 / 2.0D);
-							double d7 = ((double) j1 - d4) / (d1 / 2.0D);
-							double d8 = ((double) i1 - d5) / (d2 / 2.0D);
+							double d6 = (l - d3) / (d0 / 2.0D);
+							double d7 = (j1 - d4) / (d1 / 2.0D);
+							double d8 = (i1 - d5) / (d2 / 2.0D);
 							double d9 = d6 * d6 + d7 * d7 + d8 * d8;
 
 							if (d9 < 1.0D)

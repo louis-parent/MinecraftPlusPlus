@@ -13,16 +13,19 @@ public class PositionImpl implements IPosition
 		this.z = zCoord;
 	}
 
+	@Override
 	public double getX()
 	{
 		return this.x;
 	}
 
+	@Override
 	public double getY()
 	{
 		return this.y;
 	}
 
+	@Override
 	public double getZ()
 	{
 		return this.z;

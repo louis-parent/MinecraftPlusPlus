@@ -221,7 +221,7 @@ public class MapStorage
 
 					for (String s : this.idCounts.keySet())
 					{
-						nbttagcompound.setShort(s, ((Short) this.idCounts.get(s)).shortValue());
+						nbttagcompound.setShort(s, this.idCounts.get(s).shortValue());
 					}
 
 					DataOutputStream dataoutputstream = new DataOutputStream(new FileOutputStream(file1));

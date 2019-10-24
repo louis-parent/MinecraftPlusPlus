@@ -24,11 +24,13 @@ public class ChangeDimensionTrigger implements ICriterionTrigger<ChangeDimension
 	private static final ResourceLocation field_193144_a = new ResourceLocation("changed_dimension");
 	private final Map<PlayerAdvancements, ChangeDimensionTrigger.Listeners> field_193145_b = Maps.<PlayerAdvancements, ChangeDimensionTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_193144_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<ChangeDimensionTrigger.Instance> p_192165_2_)
 	{
 		ChangeDimensionTrigger.Listeners changedimensiontrigger$listeners = this.field_193145_b.get(p_192165_1_);
@@ -42,6 +44,7 @@ public class ChangeDimensionTrigger implements ICriterionTrigger<ChangeDimension
 		changedimensiontrigger$listeners.func_193233_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<ChangeDimensionTrigger.Instance> p_192164_2_)
 	{
 		ChangeDimensionTrigger.Listeners changedimensiontrigger$listeners = this.field_193145_b.get(p_192164_1_);
@@ -57,11 +60,13 @@ public class ChangeDimensionTrigger implements ICriterionTrigger<ChangeDimension
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_193145_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public ChangeDimensionTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		DimensionType dimensiontype = p_192166_1_.has("from") ? DimensionType.func_193417_a(JsonUtils.getString(p_192166_1_, "from")) : null;
@@ -137,7 +142,7 @@ public class ChangeDimensionTrigger implements ICriterionTrigger<ChangeDimension
 
 			for (ICriterionTrigger.Listener<ChangeDimensionTrigger.Instance> listener : this.field_193236_b)
 			{
-				if (((ChangeDimensionTrigger.Instance) listener.func_192158_a()).func_193190_a(p_193234_1_, p_193234_2_))
+				if (listener.func_192158_a().func_193190_a(p_193234_1_, p_193234_2_))
 				{
 					if (list == null)
 					{

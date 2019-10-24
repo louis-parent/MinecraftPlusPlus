@@ -13,6 +13,7 @@ public class GuiSlotRealmsProxy extends GuiSlot
 		this.selectionList = selectionListIn;
 	}
 
+	@Override
 	protected int getSize()
 	{
 		return this.selectionList.getItemCount();
@@ -22,6 +23,7 @@ public class GuiSlotRealmsProxy extends GuiSlot
 	 * The element in the slot that was clicked, boolean for whether it was
 	 * double clicked or not
 	 */
+	@Override
 	protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 	{
 		this.selectionList.selectItem(slotIndex, isDoubleClick, mouseX, mouseY);
@@ -30,16 +32,19 @@ public class GuiSlotRealmsProxy extends GuiSlot
 	/**
 	 * Returns true if the element passed in is currently selected
 	 */
+	@Override
 	protected boolean isSelected(int slotIndex)
 	{
 		return this.selectionList.isSelectedItem(slotIndex);
 	}
 
+	@Override
 	protected void drawBackground()
 	{
 		this.selectionList.renderBackground();
 	}
 
+	@Override
 	protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 	{
 		this.selectionList.renderItem(p_192637_1_, p_192637_2_, p_192637_3_, p_192637_4_, p_192637_5_, p_192637_6_);
@@ -63,16 +68,19 @@ public class GuiSlotRealmsProxy extends GuiSlot
 	/**
 	 * Return the height of the content being scrolled
 	 */
+	@Override
 	protected int getContentHeight()
 	{
 		return this.selectionList.getMaxPosition();
 	}
 
+	@Override
 	protected int getScrollBarX()
 	{
 		return this.selectionList.getScrollbarPosition();
 	}
 
+	@Override
 	public void handleMouseInput()
 	{
 		super.handleMouseInput();

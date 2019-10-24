@@ -69,7 +69,7 @@ public class ItemMap extends ItemMapBase
 			s = "map_" + stack.getMetadata();
 			mapdata = new MapData(s);
 			mapdata.scale = 3;
-			mapdata.calculateMapCenter((double) worldIn.getWorldInfo().getSpawnX(), (double) worldIn.getWorldInfo().getSpawnZ(), mapdata.scale);
+			mapdata.calculateMapCenter(worldIn.getWorldInfo().getSpawnX(), worldIn.getWorldInfo().getSpawnZ(), mapdata.scale);
 			mapdata.dimension = (byte) worldIn.provider.getDimensionType().getId();
 			mapdata.markDirty();
 			worldIn.setItemData(s, mapdata);
@@ -85,8 +85,8 @@ public class ItemMap extends ItemMapBase
 			int i = 1 << data.scale;
 			int j = data.xCenter;
 			int k = data.zCenter;
-			int l = MathHelper.floor(viewer.posX - (double) j) / i + 64;
-			int i1 = MathHelper.floor(viewer.posZ - (double) k) / i + 64;
+			int l = MathHelper.floor(viewer.posX - j) / i + 64;
+			int i1 = MathHelper.floor(viewer.posZ - k) / i + 64;
 			int j1 = 128 / i;
 
 			if (worldIn.provider.getHasNoSky())
@@ -196,7 +196,7 @@ public class ItemMap extends ItemMapBase
 								}
 
 								k3 = k3 / (i * i);
-								double d2 = (d1 - d0) * 4.0D / (double) (i + 4) + ((double) (k1 + l1 & 1) - 0.5D) * 0.4D;
+								double d2 = (d1 - d0) * 4.0D / (i + 4) + ((k1 + l1 & 1) - 0.5D) * 0.4D;
 								int i5 = 1;
 
 								if (d2 > 0.6D)
@@ -209,11 +209,11 @@ public class ItemMap extends ItemMapBase
 									i5 = 0;
 								}
 
-								MapColor mapcolor = (MapColor) Iterables.getFirst(Multisets.copyHighestCountFirst(multiset), MapColor.AIR);
+								MapColor mapcolor = Iterables.getFirst(Multisets.copyHighestCountFirst(multiset), MapColor.AIR);
 
 								if (mapcolor == MapColor.WATER)
 								{
-									d2 = (double) k3 * 0.1D + (double) (k1 + l1 & 1) * 0.2D;
+									d2 = k3 * 0.1D + (k1 + l1 & 1) * 0.2D;
 									i5 = 1;
 
 									if (d2 < 0.5D)
@@ -323,7 +323,7 @@ public class ItemMap extends ItemMapBase
 
 									if (i2 > 7 && i1 % 2 == 0)
 									{
-										l1 = (l + (int) (MathHelper.sin((float) i1 + 0.0F) * 7.0F)) / 8 % 5;
+										l1 = (l + (int) (MathHelper.sin(i1 + 0.0F) * 7.0F)) / 8 % 5;
 
 										if (l1 == 3)
 										{
@@ -382,6 +382,7 @@ public class ItemMap extends ItemMapBase
 	 * Called each tick as long the item is on a player inventory. Uses by maps
 	 * to check if is on a player hand and update it's contents.
 	 */
+	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
 	{
 		if (!worldIn.isRemote)
@@ -401,6 +402,7 @@ public class ItemMap extends ItemMapBase
 		}
 	}
 
+	@Override
 	@Nullable
 	public Packet<?> createMapDataPacket(ItemStack stack, World worldIn, EntityPlayer player)
 	{
@@ -410,6 +412,7 @@ public class ItemMap extends ItemMapBase
 	/**
 	 * Called when item is crafted/smelted. Used only by maps so far.
 	 */
+	@Override
 	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn)
 	{
 		NBTTagCompound nbttagcompound = stack.getTagCompound();
@@ -439,7 +442,7 @@ public class ItemMap extends ItemMapBase
 		{
 			mapdata1.scale = (byte) MathHelper.clamp(mapdata.scale + p_185063_2_, 0, 4);
 			mapdata1.trackingPosition = mapdata.trackingPosition;
-			mapdata1.calculateMapCenter((double) mapdata.xCenter, (double) mapdata.zCenter, mapdata1.scale);
+			mapdata1.calculateMapCenter(mapdata.xCenter, mapdata.zCenter, mapdata1.scale);
 			mapdata1.dimension = mapdata.dimension;
 			mapdata1.markDirty();
 			p_185063_1_.setItemData("map_" + p_185063_0_.getMetadata(), mapdata1);
@@ -468,6 +471,7 @@ public class ItemMap extends ItemMapBase
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		if (advanced.func_194127_a())

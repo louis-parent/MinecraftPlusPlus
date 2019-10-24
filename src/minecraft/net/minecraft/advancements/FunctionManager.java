@@ -35,21 +35,25 @@ public class FunctionManager implements ITickable
 	private boolean field_194021_h = false;
 	private final ICommandSender field_193073_g = new ICommandSender()
 	{
+		@Override
 		public String getName()
 		{
 			return FunctionManager.this.field_193071_e;
 		}
 
+		@Override
 		public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 		{
 			return permLevel <= 2;
 		}
 
+		@Override
 		public World getEntityWorld()
 		{
 			return FunctionManager.this.field_193069_c.worldServers[0];
 		}
 
+		@Override
 		public MinecraftServer getServer()
 		{
 			return FunctionManager.this.field_193069_c;
@@ -87,6 +91,7 @@ public class FunctionManager implements ITickable
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		String s = this.field_193069_c.worldServers[0].getGameRules().getString("gameLoopFunction");
@@ -219,6 +224,7 @@ public class FunctionManager implements ITickable
 			this.field_194225_c.func_194145_a(this.field_194223_a, this.field_194224_b, p_194222_1_, p_194222_2_);
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.field_194225_c.toString();

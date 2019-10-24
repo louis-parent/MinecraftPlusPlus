@@ -20,6 +20,7 @@ public abstract class PhaseBase implements IPhase
 		this.dragon = dragonIn;
 	}
 
+	@Override
 	public boolean getIsStationary()
 	{
 		return false;
@@ -30,6 +31,7 @@ public abstract class PhaseBase implements IPhase
 	 * sounds). Called by dragon's onLivingUpdate. Only used when
 	 * worldObj.isRemote.
 	 */
+	@Override
 	public void doClientRenderEffects()
 	{
 	}
@@ -38,10 +40,12 @@ public abstract class PhaseBase implements IPhase
 	 * Gives the phase a chance to update its status. Called by dragon's
 	 * onLivingUpdate. Only used when !worldObj.isRemote.
 	 */
+	@Override
 	public void doLocalUpdate()
 	{
 	}
 
+	@Override
 	public void onCrystalDestroyed(EntityEnderCrystal crystal, BlockPos pos, DamageSource dmgSrc, @Nullable EntityPlayer plyr)
 	{
 	}
@@ -49,10 +53,12 @@ public abstract class PhaseBase implements IPhase
 	/**
 	 * Called when this phase is set to active
 	 */
+	@Override
 	public void initPhase()
 	{
 	}
 
+	@Override
 	public void removeAreaEffect()
 	{
 	}
@@ -60,11 +66,13 @@ public abstract class PhaseBase implements IPhase
 	/**
 	 * Returns the maximum amount dragon may rise or fall during this phase
 	 */
+	@Override
 	public float getMaxRiseOrFall()
 	{
 		return 0.6F;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -79,11 +87,13 @@ public abstract class PhaseBase implements IPhase
 	 * Normally, just returns damage. If dragon is sitting and src is an arrow,
 	 * arrow is enflamed and zero damage returned.
 	 */
+	@Override
 	public float getAdjustedDamage(MultiPartEntityPart pt, DamageSource src, float damage)
 	{
 		return damage;
 	}
 
+	@Override
 	public float getYawFactor()
 	{
 		float f = MathHelper.sqrt(this.dragon.motionX * this.dragon.motionX + this.dragon.motionZ * this.dragon.motionZ) + 1.0F;

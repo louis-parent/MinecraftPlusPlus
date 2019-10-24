@@ -44,34 +44,40 @@ public class NonNullList<E> extends AbstractList<E>
 		this.emptyElement = emptyElements;
 	}
 
+	@Override
 	@Nonnull
 	public E get(int ind)
 	{
 		return this.list.get(ind);
 	}
 
+	@Override
 	public E set(int ind, E element)
 	{
 		Validate.notNull(element);
 		return this.list.set(ind, element);
 	}
 
+	@Override
 	public void add(int ind, E element)
 	{
 		Validate.notNull(element);
 		this.list.add(ind, element);
 	}
 
+	@Override
 	public E remove(int ind)
 	{
 		return this.list.remove(ind);
 	}
 
+	@Override
 	public int size()
 	{
 		return this.list.size();
 	}
 
+	@Override
 	public void clear()
 	{
 		if (this.emptyElement == null)

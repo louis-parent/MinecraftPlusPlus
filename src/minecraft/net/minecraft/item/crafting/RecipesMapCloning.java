@@ -11,6 +11,7 @@ public class RecipesMapCloning implements IRecipe
 	/**
 	 * Used to check if a recipe matches current crafting inventory
 	 */
+	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn)
 	{
 		int i = 0;
@@ -49,6 +50,7 @@ public class RecipesMapCloning implements IRecipe
 	/**
 	 * Returns an Item that is the result of this recipe
 	 */
+	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
 		int i = 0;
@@ -103,11 +105,13 @@ public class RecipesMapCloning implements IRecipe
 		}
 	}
 
+	@Override
 	public ItemStack getRecipeOutput()
 	{
 		return ItemStack.EMPTY_ITEM_STACK;
 	}
 
+	@Override
 	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
 	{
 		NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
@@ -125,11 +129,13 @@ public class RecipesMapCloning implements IRecipe
 		return nonnulllist;
 	}
 
+	@Override
 	public boolean hideInCraftingTabs()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
 	{
 		return p_194133_1_ >= 3 && p_194133_2_ >= 3;

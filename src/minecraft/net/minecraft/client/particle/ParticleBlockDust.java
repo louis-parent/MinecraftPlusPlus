@@ -19,6 +19,7 @@ public class ParticleBlockDust extends ParticleDigging
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		@Nullable
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{

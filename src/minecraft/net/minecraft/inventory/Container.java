@@ -78,7 +78,7 @@ public abstract class Container
 
 		for (int i = 0; i < this.inventorySlots.size(); ++i)
 		{
-			nonnulllist.add(((Slot) this.inventorySlots.get(i)).getStack());
+			nonnulllist.add(this.inventorySlots.get(i).getStack());
 		}
 
 		return nonnulllist;
@@ -91,7 +91,7 @@ public abstract class Container
 	{
 		for (int i = 0; i < this.inventorySlots.size(); ++i)
 		{
-			ItemStack itemstack = ((Slot) this.inventorySlots.get(i)).getStack();
+			ItemStack itemstack = this.inventorySlots.get(i).getStack();
 			ItemStack itemstack1 = this.inventoryItemStacks.get(i);
 
 			if (!ItemStack.areItemStacksEqual(itemstack1, itemstack))
@@ -101,7 +101,7 @@ public abstract class Container
 
 				for (int j = 0; j < this.listeners.size(); ++j)
 				{
-					((IContainerListener) this.listeners.get(j)).sendSlotContents(this, i, itemstack1);
+					this.listeners.get(j).sendSlotContents(this, i, itemstack1);
 				}
 			}
 		}
@@ -869,7 +869,7 @@ public abstract class Container
 				}
 			}
 
-			f = f / (float) inv.getSizeInventory();
+			f = f / inv.getSizeInventory();
 			return MathHelper.floor(f * 14.0F) + (i > 0 ? 1 : 0);
 		}
 	}

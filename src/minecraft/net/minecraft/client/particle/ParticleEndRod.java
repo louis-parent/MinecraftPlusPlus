@@ -15,6 +15,7 @@ public class ParticleEndRod extends ParticleSimpleAnimated
 		this.setColorFade(15916745);
 	}
 
+	@Override
 	public void moveEntity(double x, double y, double z)
 	{
 		this.setEntityBoundingBox(this.getEntityBoundingBox().offset(x, y, z));
@@ -23,6 +24,7 @@ public class ParticleEndRod extends ParticleSimpleAnimated
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleEndRod(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);

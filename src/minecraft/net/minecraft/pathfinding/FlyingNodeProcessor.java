@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 
 public class FlyingNodeProcessor extends WalkNodeProcessor
 {
+	@Override
 	public void initProcessor(IBlockAccess sourceIn, EntityLiving mob)
 	{
 		super.initProcessor(sourceIn, mob);
@@ -29,12 +30,14 @@ public class FlyingNodeProcessor extends WalkNodeProcessor
 	 * {@link net.minecraft.world.pathfinder.WalkNodeProcessor#avoidsWater
 	 * avoidsWater}
 	 */
+	@Override
 	public void postProcess()
 	{
 		this.entity.setPathPriority(PathNodeType.WATER, this.avoidsWater);
 		super.postProcess();
 	}
 
+	@Override
 	public PathPoint getStart()
 	{
 		int i;
@@ -61,10 +64,10 @@ public class FlyingNodeProcessor extends WalkNodeProcessor
 		if (this.entity.getPathPriority(pathnodetype1) < 0.0F)
 		{
 			Set<BlockPos> set = Sets.<BlockPos>newHashSet();
-			set.add(new BlockPos(this.entity.getEntityBoundingBox().minX, (double) i, this.entity.getEntityBoundingBox().minZ));
-			set.add(new BlockPos(this.entity.getEntityBoundingBox().minX, (double) i, this.entity.getEntityBoundingBox().maxZ));
-			set.add(new BlockPos(this.entity.getEntityBoundingBox().maxX, (double) i, this.entity.getEntityBoundingBox().minZ));
-			set.add(new BlockPos(this.entity.getEntityBoundingBox().maxX, (double) i, this.entity.getEntityBoundingBox().maxZ));
+			set.add(new BlockPos(this.entity.getEntityBoundingBox().minX, i, this.entity.getEntityBoundingBox().minZ));
+			set.add(new BlockPos(this.entity.getEntityBoundingBox().minX, i, this.entity.getEntityBoundingBox().maxZ));
+			set.add(new BlockPos(this.entity.getEntityBoundingBox().maxX, i, this.entity.getEntityBoundingBox().minZ));
+			set.add(new BlockPos(this.entity.getEntityBoundingBox().maxX, i, this.entity.getEntityBoundingBox().maxZ));
 
 			for (BlockPos blockpos : set)
 			{
@@ -83,11 +86,13 @@ public class FlyingNodeProcessor extends WalkNodeProcessor
 	/**
 	 * Returns PathPoint for given coordinates
 	 */
+	@Override
 	public PathPoint getPathPointToCoords(double x, double y, double z)
 	{
 		return super.openPoint(MathHelper.floor(x), MathHelper.floor(y), MathHelper.floor(z));
 	}
 
+	@Override
 	public int findPathOptions(PathPoint[] pathOptions, PathPoint currentPoint, PathPoint targetPoint, float maxDistance)
 	{
 		int i = 0;
@@ -258,6 +263,7 @@ public class FlyingNodeProcessor extends WalkNodeProcessor
 		return i;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -284,6 +290,7 @@ public class FlyingNodeProcessor extends WalkNodeProcessor
 		return pathnodetype != PathNodeType.OPEN && pathnodetype != PathNodeType.WALKABLE ? pathpoint : pathpoint;
 	}
 
+	@Override
 	public PathNodeType getPathNodeType(IBlockAccess blockaccessIn, int x, int y, int z, EntityLiving entitylivingIn, int xSize, int ySize, int zSize, boolean canBreakDoorsIn, boolean canEnterDoorsIn)
 	{
 		EnumSet<PathNodeType> enumset = EnumSet.<PathNodeType>noneOf(PathNodeType.class);
@@ -323,6 +330,7 @@ public class FlyingNodeProcessor extends WalkNodeProcessor
 		}
 	}
 
+	@Override
 	public PathNodeType getPathNodeType(IBlockAccess blockaccessIn, int x, int y, int z)
 	{
 		PathNodeType pathnodetype = this.getPathNodeTypeRaw(blockaccessIn, x, y, z);

@@ -113,7 +113,7 @@ public class GameRules
 	public String[] getRules()
 	{
 		Set<String> set = this.theGameRules.keySet();
-		return (String[]) set.toArray(new String[set.size()]);
+		return set.toArray(new String[set.size()]);
 	}
 
 	/**

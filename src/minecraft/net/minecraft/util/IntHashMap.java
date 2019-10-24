@@ -49,7 +49,7 @@ public class IntHashMap<V>
 			}
 		}
 
-		return (V) null;
+		return null;
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class IntHashMap<V>
 			IntHashMap.Entry<V>[] entry1 = new IntHashMap.Entry[p_76047_1_];
 			this.copyTo(entry1);
 			this.slots = entry1;
-			this.threshold = (int) ((float) p_76047_1_ * this.growFactor);
+			this.threshold = (int) (p_76047_1_ * this.growFactor);
 		}
 	}
 
@@ -158,7 +158,7 @@ public class IntHashMap<V>
 	public V removeObject(int p_76049_1_)
 	{
 		IntHashMap.Entry<V> entry = this.removeEntry(p_76049_1_);
-		return (V) (entry == null ? null : entry.valueEntry);
+		return entry == null ? null : entry.valueEntry;
 	}
 
 	@Nullable
@@ -250,6 +250,7 @@ public class IntHashMap<V>
 			return this.valueEntry;
 		}
 
+		@Override
 		public final boolean equals(Object p_equals_1_)
 		{
 			if (!(p_equals_1_ instanceof IntHashMap.Entry))
@@ -275,11 +276,13 @@ public class IntHashMap<V>
 			}
 		}
 
+		@Override
 		public final int hashCode()
 		{
 			return IntHashMap.computeHash(this.hashEntry);
 		}
 
+		@Override
 		public final String toString()
 		{
 			return this.getHash() + "=" + this.getValue();

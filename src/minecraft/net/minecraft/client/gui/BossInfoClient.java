@@ -21,6 +21,7 @@ public class BossInfoClient extends BossInfo
 		this.setCreateFog(packetIn.shouldCreateFog());
 	}
 
+	@Override
 	public void setPercent(float percentIn)
 	{
 		this.percent = this.getPercent();
@@ -28,10 +29,11 @@ public class BossInfoClient extends BossInfo
 		this.percentSetTime = Minecraft.getSystemTime();
 	}
 
+	@Override
 	public float getPercent()
 	{
 		long i = Minecraft.getSystemTime() - this.percentSetTime;
-		float f = MathHelper.clamp((float) i / 100.0F, 0.0F, 1.0F);
+		float f = MathHelper.clamp(i / 100.0F, 0.0F, 1.0F);
 		return this.percent + (this.rawPercent - this.percent) * f;
 	}
 

@@ -115,9 +115,9 @@ public class PotionUtils
 				{
 					int k = potioneffect.getPotion().getLiquidColor();
 					int l = potioneffect.getAmplifier() + 1;
-					f += (float) (l * (k >> 16 & 255)) / 255.0F;
-					f1 += (float) (l * (k >> 8 & 255)) / 255.0F;
-					f2 += (float) (l * (k >> 0 & 255)) / 255.0F;
+					f += l * (k >> 16 & 255) / 255.0F;
+					f1 += l * (k >> 8 & 255) / 255.0F;
+					f2 += l * (k >> 0 & 255) / 255.0F;
 					j += l;
 				}
 			}
@@ -128,9 +128,9 @@ public class PotionUtils
 			}
 			else
 			{
-				f = f / (float) j * 255.0F;
-				f1 = f1 / (float) j * 255.0F;
-				f2 = f2 / (float) j * 255.0F;
+				f = f / j * 255.0F;
+				f1 = f1 / j * 255.0F;
+				f2 = f2 / j * 255.0F;
 				return (int) f << 16 | (int) f1 << 8 | (int) f2;
 			}
 		}
@@ -185,7 +185,7 @@ public class PotionUtils
 		}
 		else
 		{
-			NBTTagCompound nbttagcompound = (NBTTagCompound) MoreObjects.firstNonNull(itemIn.getTagCompound(), new NBTTagCompound());
+			NBTTagCompound nbttagcompound = MoreObjects.firstNonNull(itemIn.getTagCompound(), new NBTTagCompound());
 			NBTTagList nbttaglist = nbttagcompound.getTagList("CustomPotionEffects", 9);
 
 			for (PotionEffect potioneffect : effects)
@@ -223,7 +223,7 @@ public class PotionUtils
 					{
 						AttributeModifier attributemodifier = entry.getValue();
 						AttributeModifier attributemodifier1 = new AttributeModifier(attributemodifier.getName(), potion.getAttributeModifierAmount(potioneffect.getAmplifier(), attributemodifier), attributemodifier.getOperation());
-						list1.add(new Tuple(((IAttribute) entry.getKey()).getAttributeUnlocalizedName(), attributemodifier1));
+						list1.add(new Tuple(entry.getKey().getAttributeUnlocalizedName(), attributemodifier1));
 					}
 				}
 
@@ -270,12 +270,12 @@ public class PotionUtils
 
 				if (d0 > 0.0D)
 				{
-					lores.add(TextFormatting.BLUE + I18n.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier2.getOperation(), ItemStack.DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + (String) tuple.getFirst())));
+					lores.add(TextFormatting.BLUE + I18n.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier2.getOperation(), ItemStack.DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + tuple.getFirst())));
 				}
 				else if (d0 < 0.0D)
 				{
 					d1 = d1 * -1.0D;
-					lores.add(TextFormatting.RED + I18n.translateToLocalFormatted("attribute.modifier.take." + attributemodifier2.getOperation(), ItemStack.DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + (String) tuple.getFirst())));
+					lores.add(TextFormatting.RED + I18n.translateToLocalFormatted("attribute.modifier.take." + attributemodifier2.getOperation(), ItemStack.DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + tuple.getFirst())));
 				}
 			}
 		}

@@ -25,13 +25,14 @@ public class SPacketSetPassengers implements Packet<INetHandlerPlayClient>
 
 		for (int i = 0; i < list.size(); ++i)
 		{
-			this.passengerIds[i] = ((Entity) list.get(i)).getEntityId();
+			this.passengerIds[i] = list.get(i).getEntityId();
 		}
 	}
 
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.entityId = buf.readVarIntFromBuffer();
@@ -41,6 +42,7 @@ public class SPacketSetPassengers implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeVarIntToBuffer(this.entityId);
@@ -50,6 +52,7 @@ public class SPacketSetPassengers implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handleSetPassengers(this);

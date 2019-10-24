@@ -53,6 +53,7 @@ public class BlockStateContainer implements IBlockStatePaletteResizer
 		}
 	}
 
+	@Override
 	public int onResize(int p_186008_1_, IBlockState state)
 	{
 		BitArray bitarray = this.storage;

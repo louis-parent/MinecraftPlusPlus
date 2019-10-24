@@ -27,15 +27,17 @@ public class RegistryNamespaced<K, V> extends RegistrySimple<K, V> implements IO
 		this.putObject(key, value);
 	}
 
+	@Override
 	protected Map<K, V> createUnderlyingMap()
 	{
 		return HashBiMap.<K, V>create();
 	}
 
+	@Override
 	@Nullable
 	public V getObject(@Nullable K name)
 	{
-		return (V) super.getObject(name);
+		return super.getObject(name);
 	}
 
 	@Nullable
@@ -51,6 +53,7 @@ public class RegistryNamespaced<K, V> extends RegistrySimple<K, V> implements IO
 	/**
 	 * Does this registry contain an entry for the given key?
 	 */
+	@Override
 	public boolean containsKey(K key)
 	{
 		return super.containsKey(key);
@@ -74,6 +77,7 @@ public class RegistryNamespaced<K, V> extends RegistrySimple<K, V> implements IO
 		return this.underlyingIntegerMap.get(id);
 	}
 
+	@Override
 	public Iterator<V> iterator()
 	{
 		return this.underlyingIntegerMap.iterator();

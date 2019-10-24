@@ -22,6 +22,7 @@ public class ModelElytra extends ModelBase
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		GlStateManager.disableRescaleNormal();
@@ -49,6 +50,7 @@ public class ModelElytra extends ModelBase
 	 * the time(so that arms and legs swing back and forth) and par2 represents
 	 * how "far" arms and legs can swing at most.
 	 */
+	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
@@ -84,9 +86,9 @@ public class ModelElytra extends ModelBase
 		if (entityIn instanceof AbstractClientPlayer)
 		{
 			AbstractClientPlayer abstractclientplayer = (AbstractClientPlayer) entityIn;
-			abstractclientplayer.rotateElytraX = (float) ((double) abstractclientplayer.rotateElytraX + (double) (f - abstractclientplayer.rotateElytraX) * 0.1D);
-			abstractclientplayer.rotateElytraY = (float) ((double) abstractclientplayer.rotateElytraY + (double) (f3 - abstractclientplayer.rotateElytraY) * 0.1D);
-			abstractclientplayer.rotateElytraZ = (float) ((double) abstractclientplayer.rotateElytraZ + (double) (f1 - abstractclientplayer.rotateElytraZ) * 0.1D);
+			abstractclientplayer.rotateElytraX = (float) (abstractclientplayer.rotateElytraX + (f - abstractclientplayer.rotateElytraX) * 0.1D);
+			abstractclientplayer.rotateElytraY = (float) (abstractclientplayer.rotateElytraY + (f3 - abstractclientplayer.rotateElytraY) * 0.1D);
+			abstractclientplayer.rotateElytraZ = (float) (abstractclientplayer.rotateElytraZ + (f1 - abstractclientplayer.rotateElytraZ) * 0.1D);
 			this.leftWing.rotateAngleX = abstractclientplayer.rotateElytraX;
 			this.leftWing.rotateAngleY = abstractclientplayer.rotateElytraY;
 			this.leftWing.rotateAngleZ = abstractclientplayer.rotateElytraZ;

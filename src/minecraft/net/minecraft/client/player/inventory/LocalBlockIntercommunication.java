@@ -17,6 +17,7 @@ public class LocalBlockIntercommunication implements IInteractionObject
 		this.displayName = displayNameIn;
 	}
 
+	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
 		throw new UnsupportedOperationException();
@@ -25,6 +26,7 @@ public class LocalBlockIntercommunication implements IInteractionObject
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.displayName.getUnformattedText();
@@ -33,11 +35,13 @@ public class LocalBlockIntercommunication implements IInteractionObject
 	/**
 	 * Returns true if this thing is named
 	 */
+	@Override
 	public boolean hasCustomName()
 	{
 		return true;
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return this.guiID;
@@ -47,6 +51,7 @@ public class LocalBlockIntercommunication implements IInteractionObject
 	 * Get the formatted ChatComponent that will be used for the sender's
 	 * username in chat
 	 */
+	@Override
 	public ITextComponent getDisplayName()
 	{
 		return this.displayName;

@@ -21,11 +21,13 @@ public class SummonedEntityTrigger implements ICriterionTrigger<SummonedEntityTr
 	private static final ResourceLocation field_192232_a = new ResourceLocation("summoned_entity");
 	private final Map<PlayerAdvancements, SummonedEntityTrigger.Listeners> field_192233_b = Maps.<PlayerAdvancements, SummonedEntityTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192232_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<SummonedEntityTrigger.Instance> p_192165_2_)
 	{
 		SummonedEntityTrigger.Listeners summonedentitytrigger$listeners = this.field_192233_b.get(p_192165_1_);
@@ -39,6 +41,7 @@ public class SummonedEntityTrigger implements ICriterionTrigger<SummonedEntityTr
 		summonedentitytrigger$listeners.func_192534_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<SummonedEntityTrigger.Instance> p_192164_2_)
 	{
 		SummonedEntityTrigger.Listeners summonedentitytrigger$listeners = this.field_192233_b.get(p_192164_1_);
@@ -54,11 +57,13 @@ public class SummonedEntityTrigger implements ICriterionTrigger<SummonedEntityTr
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192233_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public SummonedEntityTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		EntityPredicate entitypredicate = EntityPredicate.func_192481_a(p_192166_1_.get("entity"));
@@ -122,7 +127,7 @@ public class SummonedEntityTrigger implements ICriterionTrigger<SummonedEntityTr
 
 			for (ICriterionTrigger.Listener<SummonedEntityTrigger.Instance> listener : this.field_192536_b)
 			{
-				if (((SummonedEntityTrigger.Instance) listener.func_192158_a()).func_192283_a(p_192533_1_, p_192533_2_))
+				if (listener.func_192158_a().func_192283_a(p_192533_1_, p_192533_2_))
 				{
 					if (list == null)
 					{

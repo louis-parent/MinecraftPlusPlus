@@ -14,6 +14,7 @@ public class EnchantmentWaterWorker extends Enchantment
 	 * Returns the minimal value of enchantability needed on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMinEnchantability(int enchantmentLevel)
 	{
 		return 1;
@@ -23,6 +24,7 @@ public class EnchantmentWaterWorker extends Enchantment
 	 * Returns the maximum value of enchantability nedded on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMaxEnchantability(int enchantmentLevel)
 	{
 		return this.getMinEnchantability(enchantmentLevel) + 40;
@@ -31,6 +33,7 @@ public class EnchantmentWaterWorker extends Enchantment
 	/**
 	 * Returns the maximum level that the enchantment can have.
 	 */
+	@Override
 	public int getMaxLevel()
 	{
 		return 1;

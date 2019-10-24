@@ -41,6 +41,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 		fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityHopper.class, new String[] { "Items" }));
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -59,6 +60,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 		this.transferCooldown = compound.getInteger("TransferCooldown");
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -81,6 +83,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 	/**
 	 * Returns the number of slots in the inventory.
 	 */
+	@Override
 	public int getSizeInventory()
 	{
 		return this.inventory.size();
@@ -90,6 +93,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 	 * Removes up to a specified number of items from an inventory slot and
 	 * returns them in a new stack.
 	 */
+	@Override
 	public ItemStack decrStackSize(int index, int count)
 	{
 		this.fillWithLoot((EntityPlayer) null);
@@ -101,6 +105,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 	 * Sets the given item stack to the specified slot in the inventory (can be
 	 * crafting or armor sections).
 	 */
+	@Override
 	public void setInventorySlotContents(int index, ItemStack stack)
 	{
 		this.fillWithLoot((EntityPlayer) null);
@@ -115,6 +120,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.hasCustomName() ? this.field_190577_o : "container.hopper";
@@ -124,6 +130,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 	 * Returns the maximum stack size for a inventory slot. Seems to always be
 	 * 64, possibly will be extended.
 	 */
+	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
@@ -132,6 +139,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		if (this.world != null && !this.world.isRemote)
@@ -194,6 +202,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 		return true;
 	}
 
+	@Override
 	public boolean isStackNotValid()
 	{
 		return this.isEmpty();
@@ -553,7 +562,7 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 	private IInventory getInventoryForHopperTransfer()
 	{
 		EnumFacing enumfacing = BlockHopper.getFacing(this.getBlockMetadata());
-		return getInventoryAtPosition(this.getWorld(), this.getXPos() + (double) enumfacing.getFrontOffsetX(), this.getYPos() + (double) enumfacing.getFrontOffsetY(), this.getZPos() + (double) enumfacing.getFrontOffsetZ());
+		return getInventoryAtPosition(this.getWorld(), this.getXPos() + enumfacing.getFrontOffsetX(), this.getYPos() + enumfacing.getFrontOffsetY(), this.getZPos() + enumfacing.getFrontOffsetZ());
 	}
 
 	/**
@@ -633,25 +642,28 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 	/**
 	 * Gets the world X position for this hopper entity.
 	 */
+	@Override
 	public double getXPos()
 	{
-		return (double) this.pos.getX() + 0.5D;
+		return this.pos.getX() + 0.5D;
 	}
 
 	/**
 	 * Gets the world Y position for this hopper entity.
 	 */
+	@Override
 	public double getYPos()
 	{
-		return (double) this.pos.getY() + 0.5D;
+		return this.pos.getY() + 0.5D;
 	}
 
 	/**
 	 * Gets the world Z position for this hopper entity.
 	 */
+	@Override
 	public double getZPos()
 	{
-		return (double) this.pos.getZ() + 0.5D;
+		return this.pos.getZ() + 0.5D;
 	}
 
 	private void setTransferCooldown(int ticks)
@@ -669,17 +681,20 @@ public class TileEntityHopper extends TileEntityLockableLoot implements IHopper,
 		return this.transferCooldown > 8;
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return "minecraft:hopper";
 	}
 
+	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
 		this.fillWithLoot(playerIn);
 		return new ContainerHopper(playerInventory, this, playerIn);
 	}
 
+	@Override
 	protected NonNullList<ItemStack> func_190576_q()
 	{
 		return this.inventory;

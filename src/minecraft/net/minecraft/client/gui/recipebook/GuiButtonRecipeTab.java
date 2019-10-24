@@ -55,17 +55,18 @@ public class GuiButtonRecipeTab extends GuiButtonToggle
 		}
 	}
 
+	@Override
 	public void func_191745_a(Minecraft p_191745_1_, int p_191745_2_, int p_191745_3_, float p_191745_4_)
 	{
 		if (this.visible)
 		{
 			if (this.field_193922_v > 0.0F)
 			{
-				float f = 1.0F + 0.1F * (float) Math.sin((double) (this.field_193922_v / 15.0F * (float) Math.PI));
+				float f = 1.0F + 0.1F * (float) Math.sin(this.field_193922_v / 15.0F * (float) Math.PI);
 				GlStateManager.pushMatrix();
-				GlStateManager.translate((float) (this.xPosition + 8), (float) (this.yPosition + 12), 0.0F);
+				GlStateManager.translate(this.xPosition + 8, this.yPosition + 12, 0.0F);
 				GlStateManager.scale(1.0F, f, 1.0F);
-				GlStateManager.translate((float) (-(this.xPosition + 8)), (float) (-(this.yPosition + 12)), 0.0F);
+				GlStateManager.translate((-(this.xPosition + 8)), (-(this.yPosition + 12)), 0.0F);
 			}
 
 			this.hovered = p_191745_2_ >= this.xPosition && p_191745_3_ >= this.yPosition && p_191745_2_ < this.xPosition + this.width && p_191745_3_ < this.yPosition + this.height;
@@ -135,7 +136,7 @@ public class GuiButtonRecipeTab extends GuiButtonToggle
 
 	public boolean func_193919_e()
 	{
-		List<RecipeList> list = (List) RecipeBookClient.field_194086_e.get(this.field_193921_u);
+		List<RecipeList> list = RecipeBookClient.field_194086_e.get(this.field_193921_u);
 		this.visible = false;
 
 		for (RecipeList recipelist : list)

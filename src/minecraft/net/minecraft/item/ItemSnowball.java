@@ -19,6 +19,7 @@ public class ItemSnowball extends Item
 		this.setCreativeTab(CreativeTabs.MISC);
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);

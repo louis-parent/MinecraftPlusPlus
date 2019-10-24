@@ -45,11 +45,13 @@ public class SaveFormatOld implements ISaveFormat
 	/**
 	 * Returns the name of the save format.
 	 */
+	@Override
 	public String getName()
 	{
 		return "Old Format";
 	}
 
+	@Override
 	public List<WorldSummary> getSaveList() throws AnvilConverterException
 	{
 		List<WorldSummary> list = Lists.<WorldSummary>newArrayList();
@@ -68,10 +70,12 @@ public class SaveFormatOld implements ISaveFormat
 		return list;
 	}
 
+	@Override
 	public void flushCache()
 	{
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -124,6 +128,7 @@ public class SaveFormatOld implements ISaveFormat
 	 * Renames the world by storing the new name in level.dat. It does *not*
 	 * rename the directory containing the world data.
 	 */
+	@Override
 	public void renameWorld(String dirName, String newName)
 	{
 		File file1 = new File(this.savesDirectory, dirName);
@@ -149,6 +154,7 @@ public class SaveFormatOld implements ISaveFormat
 		}
 	}
 
+	@Override
 	public boolean isNewLevelIdAcceptable(String saveName)
 	{
 		File file1 = new File(this.savesDirectory, saveName);
@@ -176,6 +182,7 @@ public class SaveFormatOld implements ISaveFormat
 	/**
 	 * Deletes a world directory.
 	 */
+	@Override
 	public boolean deleteWorldDirectory(String saveName)
 	{
 		File file1 = new File(this.savesDirectory, saveName);
@@ -186,11 +193,11 @@ public class SaveFormatOld implements ISaveFormat
 		}
 		else
 		{
-			LOGGER.info("Deleting level {}", (Object) saveName);
+			LOGGER.info("Deleting level {}", saveName);
 
 			for (int i = 1; i <= 5; ++i)
 			{
-				LOGGER.info("Attempt {}...", (int) i);
+				LOGGER.info("Attempt {}...", i);
 
 				if (deleteFiles(file1.listFiles()))
 				{
@@ -223,17 +230,17 @@ public class SaveFormatOld implements ISaveFormat
 	{
 		for (File file1 : files)
 		{
-			LOGGER.debug("Deleting {}", (Object) file1);
+			LOGGER.debug("Deleting {}", file1);
 
 			if (file1.isDirectory() && !deleteFiles(file1.listFiles()))
 			{
-				LOGGER.warn("Couldn't delete directory {}", (Object) file1);
+				LOGGER.warn("Couldn't delete directory {}", file1);
 				return false;
 			}
 
 			if (!file1.delete())
 			{
-				LOGGER.warn("Couldn't delete file {}", (Object) file1);
+				LOGGER.warn("Couldn't delete file {}", file1);
 				return false;
 			}
 		}
@@ -244,11 +251,13 @@ public class SaveFormatOld implements ISaveFormat
 	/**
 	 * Returns back a loader for the specified save directory
 	 */
+	@Override
 	public ISaveHandler getSaveLoader(String saveName, boolean storePlayerdata)
 	{
 		return new SaveHandler(this.savesDirectory, saveName, storePlayerdata, this.dataFixer);
 	}
 
+	@Override
 	public boolean isConvertible(String saveName)
 	{
 		return false;
@@ -257,6 +266,7 @@ public class SaveFormatOld implements ISaveFormat
 	/**
 	 * gets if the map is old chunk saving (true) or McRegion (false)
 	 */
+	@Override
 	public boolean isOldMapFormat(String saveName)
 	{
 		return false;
@@ -265,6 +275,7 @@ public class SaveFormatOld implements ISaveFormat
 	/**
 	 * converts the map to mcRegion
 	 */
+	@Override
 	public boolean convertMapFormat(String filename, IProgressUpdate progressCallback)
 	{
 		return false;
@@ -273,12 +284,14 @@ public class SaveFormatOld implements ISaveFormat
 	/**
 	 * Return whether the given world can be loaded.
 	 */
+	@Override
 	public boolean canLoadWorld(String saveName)
 	{
 		File file1 = new File(this.savesDirectory, saveName);
 		return file1.isDirectory();
 	}
 
+	@Override
 	public File getFile(String p_186352_1_, String p_186352_2_)
 	{
 		return new File(new File(this.savesDirectory, p_186352_1_), p_186352_2_);

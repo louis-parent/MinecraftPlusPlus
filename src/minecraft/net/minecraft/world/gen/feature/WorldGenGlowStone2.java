@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 
 public class WorldGenGlowStone2 extends WorldGenerator
 {
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		if (!worldIn.isAirBlock(position))

@@ -14,6 +14,7 @@ public class ItemStackData extends Filtered
 		this.matchingTags = p_i47311_2_;
 	}
 
+	@Override
 	NBTTagCompound filteredProcess(IDataFixer fixer, NBTTagCompound compound, int versionIn)
 	{
 		for (String s : this.matchingTags)

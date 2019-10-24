@@ -24,6 +24,7 @@ public class RenderZombieVillager extends RenderBiped<EntityZombieVillager>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityZombieVillager entity)
 	{
 		switch (entity.func_190736_dl())
@@ -49,11 +50,12 @@ public class RenderZombieVillager extends RenderBiped<EntityZombieVillager>
 		}
 	}
 
+	@Override
 	protected void rotateCorpse(EntityZombieVillager entityLiving, float p_77043_2_, float p_77043_3_, float partialTicks)
 	{
 		if (entityLiving.isConverting())
 		{
-			p_77043_3_ += (float) (Math.cos((double) entityLiving.ticksExisted * 3.25D) * Math.PI * 0.25D);
+			p_77043_3_ += (float) (Math.cos(entityLiving.ticksExisted * 3.25D) * Math.PI * 0.25D);
 		}
 
 		super.rotateCorpse(entityLiving, p_77043_2_, p_77043_3_, partialTicks);

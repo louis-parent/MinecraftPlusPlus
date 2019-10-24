@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 
 public class ItemLingeringPotion extends ItemPotion
 {
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		return I18n.translateToLocal(PotionUtils.getPotionFromItem(stack).getNamePrefixed("lingering_potion.effect."));
@@ -28,11 +29,13 @@ public class ItemLingeringPotion extends ItemPotion
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		PotionUtils.addPotionTooltip(stack, tooltip, 0.25F);
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);

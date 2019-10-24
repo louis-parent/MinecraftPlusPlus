@@ -286,7 +286,7 @@ public enum EnumConnectionState
 
 	protected EnumConnectionState registerPacket(EnumPacketDirection direction, Class<? extends Packet<?>> packetClass)
 	{
-		BiMap<Integer, Class<? extends Packet<?>>> bimap = (BiMap) this.directionMaps.get(direction);
+		BiMap<Integer, Class<? extends Packet<?>>> bimap = this.directionMaps.get(direction);
 
 		if (bimap == null)
 		{

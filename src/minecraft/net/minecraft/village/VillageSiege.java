@@ -49,7 +49,7 @@ public class VillageSiege
 			{
 				float f = this.worldObj.getCelestialAngle(0.0F);
 
-				if ((double) f < 0.5D || (double) f > 0.501D)
+				if (f < 0.5D || f > 0.501D)
 				{
 					return;
 				}
@@ -118,15 +118,15 @@ public class VillageSiege
 				if (this.theVillage != null && this.theVillage.getNumVillageDoors() >= 10 && this.theVillage.getTicksSinceLastDoorAdding() >= 20 && this.theVillage.getNumVillagers() >= 20)
 				{
 					BlockPos blockpos = this.theVillage.getCenter();
-					float f = (float) this.theVillage.getVillageRadius();
+					float f = this.theVillage.getVillageRadius();
 					boolean flag = false;
 
 					for (int i = 0; i < 10; ++i)
 					{
 						float f1 = this.worldObj.rand.nextFloat() * ((float) Math.PI * 2F);
-						this.spawnX = blockpos.getX() + (int) ((double) (MathHelper.cos(f1) * f) * 0.9D);
+						this.spawnX = blockpos.getX() + (int) (MathHelper.cos(f1) * f * 0.9D);
 						this.spawnY = blockpos.getY();
-						this.spawnZ = blockpos.getZ() + (int) ((double) (MathHelper.sin(f1) * f) * 0.9D);
+						this.spawnZ = blockpos.getZ() + (int) (MathHelper.sin(f1) * f * 0.9D);
 						flag = false;
 
 						for (Village village : this.worldObj.getVillageCollection().getVillageList())
@@ -204,7 +204,7 @@ public class VillageSiege
 
 			if (this.theVillage.isBlockPosWithinSqVillageRadius(blockpos) && WorldEntitySpawner.canCreatureTypeSpawnAtLocation(EntityLiving.SpawnPlacementType.ON_GROUND, this.worldObj, blockpos))
 			{
-				return new Vec3d((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ());
+				return new Vec3d(blockpos.getX(), blockpos.getY(), blockpos.getZ());
 			}
 		}
 

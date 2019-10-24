@@ -28,6 +28,7 @@ public class SPacketStatistics implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handleStatistics(this);
@@ -36,6 +37,7 @@ public class SPacketStatistics implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		int i = buf.readVarIntFromBuffer();
@@ -56,6 +58,7 @@ public class SPacketStatistics implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeVarIntToBuffer(this.statisticMap.size());
@@ -63,7 +66,7 @@ public class SPacketStatistics implements Packet<INetHandlerPlayClient>
 		for (Entry<StatBase, Integer> entry : this.statisticMap.entrySet())
 		{
 			buf.writeString((entry.getKey()).statId);
-			buf.writeVarIntToBuffer(((Integer) entry.getValue()).intValue());
+			buf.writeVarIntToBuffer(entry.getValue().intValue());
 		}
 	}
 

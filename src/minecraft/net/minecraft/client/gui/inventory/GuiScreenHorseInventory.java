@@ -41,6 +41,7 @@ public class GuiScreenHorseInventory extends GuiContainer
 	 * Draw the foreground layer for the GuiContainer (everything in front of
 	 * the items)
 	 */
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		this.fontRendererObj.drawString(this.horseInventory.getDisplayName().getUnformattedText(), 8, 6, 4210752);
@@ -50,6 +51,7 @@ public class GuiScreenHorseInventory extends GuiContainer
 	/**
 	 * Draws the background layer of this container (behind the items).
 	 */
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -85,17 +87,18 @@ public class GuiScreenHorseInventory extends GuiContainer
 			}
 		}
 
-		GuiInventory.drawEntityOnScreen(i + 51, j + 60, 17, (float) (i + 51) - this.mousePosx, (float) (j + 75 - 50) - this.mousePosY, this.horseEntity);
+		GuiInventory.drawEntityOnScreen(i + 51, j + 60, 17, i + 51 - this.mousePosx, j + 75 - 50 - this.mousePosY, this.horseEntity);
 	}
 
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
-		this.mousePosx = (float) mouseX;
-		this.mousePosY = (float) mouseY;
+		this.mousePosx = mouseX;
+		this.mousePosY = mouseY;
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.func_191948_b(mouseX, mouseY);
 	}

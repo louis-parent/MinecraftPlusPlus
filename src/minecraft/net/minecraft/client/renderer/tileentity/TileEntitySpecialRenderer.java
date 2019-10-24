@@ -83,7 +83,7 @@ public abstract class TileEntitySpecialRenderer<T extends TileEntity>
 		Entity entity = this.rendererDispatcher.entity;
 		double d0 = te.getDistanceSq(entity.posX, entity.posY, entity.posZ);
 
-		if (d0 <= (double) (maxDistance * maxDistance))
+		if (d0 <= maxDistance * maxDistance)
 		{
 			float f = this.rendererDispatcher.entityYaw;
 			float f1 = this.rendererDispatcher.entityPitch;

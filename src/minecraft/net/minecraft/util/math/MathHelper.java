@@ -46,7 +46,7 @@ public class MathHelper
 
 	public static float sqrt(float value)
 	{
-		return (float) Math.sqrt((double) value);
+		return (float) Math.sqrt(value);
 	}
 
 	public static float sqrt(double value)
@@ -60,7 +60,7 @@ public class MathHelper
 	public static int floor(float value)
 	{
 		int i = (int) value;
-		return value < (float) i ? i - 1 : i;
+		return value < i ? i - 1 : i;
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class MathHelper
 	public static int floor(double value)
 	{
 		int i = (int) value;
-		return value < (double) i ? i - 1 : i;
+		return value < i ? i - 1 : i;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class MathHelper
 	public static long lFloor(double value)
 	{
 		long i = (long) value;
-		return value < (double) i ? i - 1L : i;
+		return value < i ? i - 1L : i;
 	}
 
 	public static int absFloor(double value)
@@ -110,13 +110,13 @@ public class MathHelper
 	public static int ceil(float value)
 	{
 		int i = (int) value;
-		return value > (float) i ? i + 1 : i;
+		return value > i ? i + 1 : i;
 	}
 
 	public static int ceil(double value)
 	{
 		int i = (int) value;
-		return value > (double) i ? i + 1 : i;
+		return value > i ? i + 1 : i;
 	}
 
 	/**
@@ -385,7 +385,7 @@ public class MathHelper
 	public static int log2DeBruijn(int value)
 	{
 		value = isPowerOfTwo(value) ? value : smallestEncompassingPowerOfTwo(value);
-		return MULTIPLY_DE_BRUIJN_BIT_POSITION[(int) ((long) value * 125613361L >> 27) & 31];
+		return MULTIPLY_DE_BRUIJN_BIT_POSITION[(int) (value * 125613361L >> 27) & 31];
 	}
 
 	/**
@@ -475,7 +475,7 @@ public class MathHelper
 
 	public static long getCoordinateRandom(int x, int y, int z)
 	{
-		long i = (long) (x * 3129871) ^ (long) z * 116129781L ^ (long) y;
+		long i = x * 3129871 ^ z * 116129781L ^ y;
 		i = i * i * 42317861L + i * 11L;
 		return i;
 	}
@@ -577,7 +577,7 @@ public class MathHelper
 	public static int hsvToRGB(float hue, float saturation, float value)
 	{
 		int i = (int) (hue * 6.0F) % 6;
-		float f = hue * 6.0F - (float) i;
+		float f = hue * 6.0F - i;
 		float f1 = value * (1.0F - saturation);
 		float f2 = value * (1.0F - f * saturation);
 		float f3 = value * (1.0F - (1.0F - f) * saturation);
@@ -647,7 +647,7 @@ public class MathHelper
 	{
 		for (int i = 0; i < 65536; ++i)
 		{
-			SIN_TABLE[i] = (float) Math.sin((double) i * Math.PI * 2.0D / 65536.0D);
+			SIN_TABLE[i] = (float) Math.sin(i * Math.PI * 2.0D / 65536.0D);
 		}
 
 		MULTIPLY_DE_BRUIJN_BIT_POSITION = new int[] { 0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8, 31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9 };
@@ -657,7 +657,7 @@ public class MathHelper
 
 		for (int j = 0; j < 257; ++j)
 		{
-			double d0 = (double) j / 256.0D;
+			double d0 = j / 256.0D;
 			double d1 = Math.asin(d0);
 			COS_TAB[j] = Math.cos(d1);
 			ASINE_TAB[j] = d1;

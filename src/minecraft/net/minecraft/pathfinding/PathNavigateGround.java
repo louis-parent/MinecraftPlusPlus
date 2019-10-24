@@ -19,6 +19,7 @@ public class PathNavigateGround extends PathNavigate
 		super(entitylivingIn, worldIn);
 	}
 
+	@Override
 	protected PathFinder getPathFinder()
 	{
 		this.nodeProcessor = new WalkNodeProcessor();
@@ -29,19 +30,22 @@ public class PathNavigateGround extends PathNavigate
 	/**
 	 * If on ground or swimming and can swim
 	 */
+	@Override
 	protected boolean canNavigate()
 	{
 		return this.theEntity.onGround || this.getCanSwim() && this.isInLiquid() || this.theEntity.isRiding();
 	}
 
+	@Override
 	protected Vec3d getEntityPosition()
 	{
-		return new Vec3d(this.theEntity.posX, (double) this.getPathablePosY(), this.theEntity.posZ);
+		return new Vec3d(this.theEntity.posX, this.getPathablePosY(), this.theEntity.posZ);
 	}
 
 	/**
 	 * Returns path to given BlockPos
 	 */
+	@Override
 	public Path getPathToPos(BlockPos pos)
 	{
 		if (this.worldObj.getBlockState(pos).getMaterial() == Material.AIR)
@@ -86,6 +90,7 @@ public class PathNavigateGround extends PathNavigate
 	/**
 	 * Returns the path to the given EntityLiving. Args : entity
 	 */
+	@Override
 	public Path getPathToEntityLiving(Entity entityIn)
 	{
 		return this.getPathToPos(new BlockPos(entityIn));
@@ -126,6 +131,7 @@ public class PathNavigateGround extends PathNavigate
 	/**
 	 * Trims path data from the end to the first sun covered block
 	 */
+	@Override
 	protected void removeSunnyPath()
 	{
 		super.removeSunnyPath();
@@ -153,6 +159,7 @@ public class PathNavigateGround extends PathNavigate
 	/**
 	 * Checks if the specified entity can safely walk to the specified location.
 	 */
+	@Override
 	protected boolean isDirectPathBetweenPoints(Vec3d posVec31, Vec3d posVec32, int sizeX, int sizeY, int sizeZ)
 	{
 		int i = MathHelper.floor(posVec31.xCoord);
@@ -183,8 +190,8 @@ public class PathNavigateGround extends PathNavigate
 				sizeZ = sizeZ - 2;
 				double d4 = 1.0D / Math.abs(d0);
 				double d5 = 1.0D / Math.abs(d1);
-				double d6 = (double) i - posVec31.xCoord;
-				double d7 = (double) j - posVec31.zCoord;
+				double d6 = i - posVec31.xCoord;
+				double d7 = j - posVec31.zCoord;
 
 				if (d0 >= 0.0D)
 				{
@@ -250,8 +257,8 @@ public class PathNavigateGround extends PathNavigate
 			{
 				for (int l = j; l < j + sizeZ; ++l)
 				{
-					double d0 = (double) k + 0.5D - vec31.xCoord;
-					double d1 = (double) l + 0.5D - vec31.zCoord;
+					double d0 = k + 0.5D - vec31.xCoord;
+					double d1 = l + 0.5D - vec31.zCoord;
 
 					if (d0 * p_179683_8_ + d1 * p_179683_10_ >= 0.0D)
 					{
@@ -300,8 +307,8 @@ public class PathNavigateGround extends PathNavigate
 	{
 		for (BlockPos blockpos : BlockPos.getAllInBox(new BlockPos(p_179692_1_, p_179692_2_, p_179692_3_), new BlockPos(p_179692_1_ + p_179692_4_ - 1, p_179692_2_ + p_179692_5_ - 1, p_179692_3_ + p_179692_6_ - 1)))
 		{
-			double d0 = (double) blockpos.getX() + 0.5D - p_179692_7_.xCoord;
-			double d1 = (double) blockpos.getZ() + 0.5D - p_179692_7_.zCoord;
+			double d0 = blockpos.getX() + 0.5D - p_179692_7_.xCoord;
+			double d1 = blockpos.getZ() + 0.5D - p_179692_7_.zCoord;
 
 			if (d0 * p_179692_8_ + d1 * p_179692_10_ >= 0.0D)
 			{

@@ -24,11 +24,13 @@ public class RenderBiped<T extends EntityLiving> extends RenderLiving<T>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(T entity)
 	{
 		return DEFAULT_RES_LOC;
 	}
 
+	@Override
 	public void transformHeldFull3DItemLayer()
 	{
 		GlStateManager.translate(0.0F, 0.1875F, 0.0F);

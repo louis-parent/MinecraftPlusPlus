@@ -55,6 +55,7 @@ public class RayTraceResult
 		return this.blockPos;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "HitResult{type=" + this.typeOfHit + ", blockpos=" + this.blockPos + ", f=" + this.sideHit + ", pos=" + this.hitVec + ", entity=" + this.entityHit + '}';

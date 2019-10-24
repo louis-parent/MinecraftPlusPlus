@@ -29,6 +29,7 @@ public class CPacketPlayer implements Packet<INetHandlerPlayServer>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayServer handler)
 	{
 		handler.processPlayer(this);
@@ -37,6 +38,7 @@ public class CPacketPlayer implements Packet<INetHandlerPlayServer>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.onGround = buf.readUnsignedByte() != 0;
@@ -45,6 +47,7 @@ public class CPacketPlayer implements Packet<INetHandlerPlayServer>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeByte(this.onGround ? 1 : 0);
@@ -96,6 +99,7 @@ public class CPacketPlayer implements Packet<INetHandlerPlayServer>
 			this.moving = true;
 		}
 
+		@Override
 		public void readPacketData(PacketBuffer buf) throws IOException
 		{
 			this.x = buf.readDouble();
@@ -104,6 +108,7 @@ public class CPacketPlayer implements Packet<INetHandlerPlayServer>
 			super.readPacketData(buf);
 		}
 
+		@Override
 		public void writePacketData(PacketBuffer buf) throws IOException
 		{
 			buf.writeDouble(this.x);
@@ -133,6 +138,7 @@ public class CPacketPlayer implements Packet<INetHandlerPlayServer>
 			this.moving = true;
 		}
 
+		@Override
 		public void readPacketData(PacketBuffer buf) throws IOException
 		{
 			this.x = buf.readDouble();
@@ -143,6 +149,7 @@ public class CPacketPlayer implements Packet<INetHandlerPlayServer>
 			super.readPacketData(buf);
 		}
 
+		@Override
 		public void writePacketData(PacketBuffer buf) throws IOException
 		{
 			buf.writeDouble(this.x);
@@ -169,6 +176,7 @@ public class CPacketPlayer implements Packet<INetHandlerPlayServer>
 			this.rotating = true;
 		}
 
+		@Override
 		public void readPacketData(PacketBuffer buf) throws IOException
 		{
 			this.yaw = buf.readFloat();
@@ -176,6 +184,7 @@ public class CPacketPlayer implements Packet<INetHandlerPlayServer>
 			super.readPacketData(buf);
 		}
 
+		@Override
 		public void writePacketData(PacketBuffer buf) throws IOException
 		{
 			buf.writeFloat(this.yaw);

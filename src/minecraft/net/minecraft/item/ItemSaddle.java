@@ -20,6 +20,7 @@ public class ItemSaddle extends Item
 	 * Returns true if the item can be used on the given entity, e.g. shears on
 	 * sheep.
 	 */
+	@Override
 	public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand)
 	{
 		if (target instanceof EntityPig)

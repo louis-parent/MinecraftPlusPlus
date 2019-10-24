@@ -21,6 +21,7 @@ public class DataParameter<T>
 		return this.serializer;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -38,6 +39,7 @@ public class DataParameter<T>
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.id;

@@ -19,6 +19,7 @@ public class RConConsoleSource implements ICommandSender
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return "Rcon";
@@ -27,6 +28,7 @@ public class RConConsoleSource implements ICommandSender
 	/**
 	 * Send a chat message to the CommandSender
 	 */
+	@Override
 	public void addChatMessage(ITextComponent component)
 	{
 		this.buffer.append(component.getUnformattedText());
@@ -36,6 +38,7 @@ public class RConConsoleSource implements ICommandSender
 	 * Returns {@code true} if the CommandSender is allowed to execute the
 	 * command, {@code false} if not
 	 */
+	@Override
 	public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 	{
 		return true;
@@ -45,6 +48,7 @@ public class RConConsoleSource implements ICommandSender
 	 * Get the world, if available. <b>{@code null} is not allowed!</b> If you
 	 * are not an entity in the world, return the overworld
 	 */
+	@Override
 	public World getEntityWorld()
 	{
 		return this.server.getEntityWorld();
@@ -54,6 +58,7 @@ public class RConConsoleSource implements ICommandSender
 	 * Returns true if the command sender should be sent feedback about executed
 	 * commands
 	 */
+	@Override
 	public boolean sendCommandFeedback()
 	{
 		return true;
@@ -62,6 +67,7 @@ public class RConConsoleSource implements ICommandSender
 	/**
 	 * Get the Minecraft server instance
 	 */
+	@Override
 	public MinecraftServer getServer()
 	{
 		return this.server;

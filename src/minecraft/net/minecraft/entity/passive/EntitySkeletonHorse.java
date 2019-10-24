@@ -29,6 +29,7 @@ public class EntitySkeletonHorse extends AbstractHorse
 		super(p_i47295_1_);
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -37,18 +38,21 @@ public class EntitySkeletonHorse extends AbstractHorse
 		this.getEntityAttribute(JUMP_STRENGTH).setBaseValue(this.getModifiedJumpStrength());
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		super.getAmbientSound();
 		return SoundEvents.ENTITY_SKELETON_HORSE_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		super.getDeathSound();
 		return SoundEvents.ENTITY_SKELETON_HORSE_DEATH;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		super.getHurtSound(p_184601_1_);
@@ -58,6 +62,7 @@ public class EntitySkeletonHorse extends AbstractHorse
 	/**
 	 * Get this Entity's EnumCreatureAttribute
 	 */
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
@@ -67,11 +72,13 @@ public class EntitySkeletonHorse extends AbstractHorse
 	 * Returns the Y offset from the entity's position for any entity riding
 	 * this one.
 	 */
+	@Override
 	public double getMountedYOffset()
 	{
 		return super.getMountedYOffset() - 0.1875D;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -83,6 +90,7 @@ public class EntitySkeletonHorse extends AbstractHorse
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -101,6 +109,7 @@ public class EntitySkeletonHorse extends AbstractHorse
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -111,6 +120,7 @@ public class EntitySkeletonHorse extends AbstractHorse
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -140,6 +150,7 @@ public class EntitySkeletonHorse extends AbstractHorse
 		}
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);

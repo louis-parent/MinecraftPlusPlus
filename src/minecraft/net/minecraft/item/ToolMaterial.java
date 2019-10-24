@@ -26,21 +26,25 @@ public enum ToolMaterial implements IToolMaterial
 		this.enchantability = enchantability;
 	}
 
+	@Override
 	public int getMaxUses()
 	{
 		return this.maxUses;
 	}
 
+	@Override
 	public float getEfficiencyOnProperMaterial()
 	{
 		return this.efficiencyOnProperMaterial;
 	}
 
+	@Override
 	public int getHarvestLevel()
 	{
 		return this.harvestLevel;
 	}
 
+	@Override
 	public int getEnchantability()
 	{
 		return this.enchantability;

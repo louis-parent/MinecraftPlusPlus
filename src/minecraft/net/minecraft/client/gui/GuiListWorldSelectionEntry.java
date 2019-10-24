@@ -59,6 +59,7 @@ public class GuiListWorldSelectionEntry implements GuiListExtended.IGuiListEntry
 		this.loadServerIcon();
 	}
 
+	@Override
 	public void func_192634_a(int p_192634_1_, int p_192634_2_, int p_192634_3_, int p_192634_4_, int p_192634_5_, int p_192634_6_, int p_192634_7_, boolean p_192634_8_, float p_192634_9_)
 	{
 		String s = this.worldSummary.getDisplayName();
@@ -126,11 +127,11 @@ public class GuiListWorldSelectionEntry implements GuiListExtended.IGuiListEntry
 
 			if (this.worldSummary.markVersionInList())
 			{
-				Gui.drawModalRectWithCustomSizedTexture(p_192634_2_, p_192634_3_, 32.0F, (float) i, 32, 32, 256.0F, 256.0F);
+				Gui.drawModalRectWithCustomSizedTexture(p_192634_2_, p_192634_3_, 32.0F, i, 32, 32, 256.0F, 256.0F);
 
 				if (this.worldSummary.askToOpenWorld())
 				{
-					Gui.drawModalRectWithCustomSizedTexture(p_192634_2_, p_192634_3_, 96.0F, (float) i, 32, 32, 256.0F, 256.0F);
+					Gui.drawModalRectWithCustomSizedTexture(p_192634_2_, p_192634_3_, 96.0F, i, 32, 32, 256.0F, 256.0F);
 
 					if (j < 32)
 					{
@@ -139,7 +140,7 @@ public class GuiListWorldSelectionEntry implements GuiListExtended.IGuiListEntry
 				}
 				else
 				{
-					Gui.drawModalRectWithCustomSizedTexture(p_192634_2_, p_192634_3_, 64.0F, (float) i, 32, 32, 256.0F, 256.0F);
+					Gui.drawModalRectWithCustomSizedTexture(p_192634_2_, p_192634_3_, 64.0F, i, 32, 32, 256.0F, 256.0F);
 
 					if (j < 32)
 					{
@@ -149,7 +150,7 @@ public class GuiListWorldSelectionEntry implements GuiListExtended.IGuiListEntry
 			}
 			else
 			{
-				Gui.drawModalRectWithCustomSizedTexture(p_192634_2_, p_192634_3_, 0.0F, (float) i, 32, 32, 256.0F, 256.0F);
+				Gui.drawModalRectWithCustomSizedTexture(p_192634_2_, p_192634_3_, 0.0F, i, 32, 32, 256.0F, 256.0F);
 			}
 		}
 	}
@@ -159,6 +160,7 @@ public class GuiListWorldSelectionEntry implements GuiListExtended.IGuiListEntry
 	 * that something within this entry was clicked and the list should not be
 	 * dragged.
 	 */
+	@Override
 	public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY)
 	{
 		this.containingListSel.selectWorld(slotIndex);
@@ -186,6 +188,7 @@ public class GuiListWorldSelectionEntry implements GuiListExtended.IGuiListEntry
 		{
 			this.client.displayGuiScreen(new GuiYesNo(new GuiYesNoCallback()
 			{
+				@Override
 				public void confirmClicked(boolean result, int id)
 				{
 					if (result)
@@ -209,6 +212,7 @@ public class GuiListWorldSelectionEntry implements GuiListExtended.IGuiListEntry
 	{
 		this.client.displayGuiScreen(new GuiYesNo(new GuiYesNoCallback()
 		{
+			@Override
 			public void confirmClicked(boolean result, int id)
 			{
 				if (result)
@@ -296,10 +300,12 @@ public class GuiListWorldSelectionEntry implements GuiListExtended.IGuiListEntry
 	 * Fired when the mouse button is released. Arguments: index, x, y,
 	 * mouseEvent, relativeX, relativeY
 	 */
+	@Override
 	public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY)
 	{
 	}
 
+	@Override
 	public void func_192633_a(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
 	{
 	}

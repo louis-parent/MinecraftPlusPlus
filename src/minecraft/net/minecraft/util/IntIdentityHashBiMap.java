@@ -21,7 +21,7 @@ public class IntIdentityHashBiMap<K> implements IObjectIntIterable<K>
 
 	public IntIdentityHashBiMap(int initialCapacity)
 	{
-		initialCapacity = (int) ((float) initialCapacity / 0.8F);
+		initialCapacity = (int) (initialCapacity / 0.8F);
 		this.values = (K[]) (new Object[initialCapacity]);
 		this.intKeys = new int[initialCapacity];
 		this.byId = (K[]) (new Object[initialCapacity]);
@@ -35,7 +35,7 @@ public class IntIdentityHashBiMap<K> implements IObjectIntIterable<K>
 	@Nullable
 	public K get(int idIn)
 	{
-		return (K) (idIn >= 0 && idIn < this.byId.length ? this.byId[idIn] : null);
+		return idIn >= 0 && idIn < this.byId.length ? this.byId[idIn] : null;
 	}
 
 	private int getValue(int p_186805_1_)
@@ -92,7 +92,7 @@ public class IntIdentityHashBiMap<K> implements IObjectIntIterable<K>
 	{
 		int i = Math.max(intKey, this.mapSize + 1);
 
-		if ((float) i >= (float) this.values.length * 0.8F)
+		if (i >= this.values.length * 0.8F)
 		{
 			int j;
 
@@ -173,6 +173,7 @@ public class IntIdentityHashBiMap<K> implements IObjectIntIterable<K>
 		throw new RuntimeException("Overflowed :(");
 	}
 
+	@Override
 	public Iterator<K> iterator()
 	{
 		return Iterators.filter(Iterators.forArray(this.byId), Predicates.notNull());

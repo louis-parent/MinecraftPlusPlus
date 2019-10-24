@@ -26,6 +26,7 @@ public class GuiBrewingStand extends GuiContainer
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
@@ -37,6 +38,7 @@ public class GuiBrewingStand extends GuiContainer
 	 * Draw the foreground layer for the GuiContainer (everything in front of
 	 * the items)
 	 */
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		String s = this.tileBrewingStand.getDisplayName().getUnformattedText();
@@ -47,6 +49,7 @@ public class GuiBrewingStand extends GuiContainer
 	/**
 	 * Draws the background layer of this container (behind the items).
 	 */
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -66,7 +69,7 @@ public class GuiBrewingStand extends GuiContainer
 
 		if (i1 > 0)
 		{
-			int j1 = (int) (28.0F * (1.0F - (float) i1 / 400.0F));
+			int j1 = (int) (28.0F * (1.0F - i1 / 400.0F));
 
 			if (j1 > 0)
 			{

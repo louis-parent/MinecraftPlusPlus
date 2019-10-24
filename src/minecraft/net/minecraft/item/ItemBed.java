@@ -3,6 +3,7 @@ package net.minecraft.item;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -32,6 +33,7 @@ public class ItemBed extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		if (playerIn.isRemote)
@@ -53,7 +55,7 @@ public class ItemBed extends Item
 				worldIn = worldIn.up();
 			}
 
-			int i = MathHelper.floor((double) (stack.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+			int i = MathHelper.floor(stack.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 			EnumFacing enumfacing = EnumFacing.getHorizontal(i);
 			BlockPos blockpos = worldIn.offset(enumfacing);
 			ItemStack itemstack = stack.getHeldItem(pos);
@@ -67,7 +69,7 @@ public class ItemBed extends Item
 
 				if (flag2 && flag3 && playerIn.getBlockState(worldIn.down()).isFullyOpaque() && playerIn.getBlockState(blockpos.down()).isFullyOpaque())
 				{
-					IBlockState iblockstate2 = Blocks.BED.getDefaultState().withProperty(BlockBed.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockBed.FACING, enumfacing).withProperty(BlockBed.PART, BlockBed.EnumPartType.FOOT);
+					IBlockState iblockstate2 = Blocks.BED.getDefaultState().withProperty(BlockBed.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockHorizontal.FACING, enumfacing).withProperty(BlockBed.PART, BlockBed.EnumPartType.FOOT);
 					playerIn.setBlockState(worldIn, iblockstate2, 10);
 					playerIn.setBlockState(blockpos, iblockstate2.withProperty(BlockBed.PART, BlockBed.EnumPartType.HEAD), 10);
 					SoundType soundtype = iblockstate2.getBlock().getSoundType();
@@ -114,6 +116,7 @@ public class ItemBed extends Item
 	 * ItemStack so different stacks can have different names based on their
 	 * damage or NBT.
 	 */
+	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		return super.getUnlocalizedName() + "." + EnumDyeColor.byMetadata(stack.getMetadata()).getUnlocalizedName();
@@ -123,6 +126,7 @@ public class ItemBed extends Item
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
+	@Override
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (this.func_194125_a(itemIn))

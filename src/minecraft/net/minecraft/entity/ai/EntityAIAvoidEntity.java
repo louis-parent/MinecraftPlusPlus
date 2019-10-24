@@ -42,6 +42,7 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
 	{
 		this.canBeSeenSelector = new Predicate<Entity>()
 		{
+			@Override
 			public boolean apply(@Nullable Entity p_apply_1_)
 			{
 				return p_apply_1_.isEntityAlive() && EntityAIAvoidEntity.this.theEntity.getEntitySenses().canSee(p_apply_1_) && !EntityAIAvoidEntity.this.theEntity.isOnSameTeam(p_apply_1_);
@@ -60,9 +61,10 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
-		List<T> list = this.theEntity.world.<T>getEntitiesWithinAABB(this.classToAvoid, this.theEntity.getEntityBoundingBox().expand((double) this.avoidDistance, 3.0D, (double) this.avoidDistance), Predicates.and(EntitySelectors.CAN_AI_TARGET, this.canBeSeenSelector, this.avoidTargetSelector));
+		List<T> list = this.theEntity.world.<T>getEntitiesWithinAABB(this.classToAvoid, this.theEntity.getEntityBoundingBox().expand(this.avoidDistance, 3.0D, this.avoidDistance), Predicates.and(EntitySelectors.CAN_AI_TARGET, this.canBeSeenSelector, this.avoidTargetSelector));
 
 		if (list.isEmpty())
 		{
@@ -92,6 +94,7 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return !this.entityPathNavigate.noPath();
@@ -100,6 +103,7 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.entityPathNavigate.setPath(this.entityPathEntity, this.farSpeed);
@@ -108,6 +112,7 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.closestLivingEntity = null;
@@ -116,6 +121,7 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		if (this.theEntity.getDistanceSqToEntity(this.closestLivingEntity) < 49.0D)

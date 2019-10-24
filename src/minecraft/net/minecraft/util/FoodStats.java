@@ -1,10 +1,7 @@
 package net.minecraft.util;
 
 import fr.minecraftpp.generator.item.food.IFood;
-import fr.minecraftpp.item.DynamicItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.EnumDifficulty;
@@ -30,7 +27,7 @@ public class FoodStats
 	public void addStats(int foodLevelIn, float foodSaturationModifier)
 	{
 		this.foodLevel = Math.min(foodLevelIn + this.foodLevel, 20);
-		this.foodSaturationLevel = Math.min(this.foodSaturationLevel + (float) foodLevelIn * foodSaturationModifier * 2.0F, (float) this.foodLevel);
+		this.foodSaturationLevel = Math.min(this.foodSaturationLevel + foodLevelIn * foodSaturationModifier * 2.0F, this.foodLevel);
 	}
 
 	public void addStats(IFood food, ItemStack stack)

@@ -30,7 +30,7 @@ public class SPacketMaps implements Packet<INetHandlerPlayClient>
 		this.mapId = mapIdIn;
 		this.mapScale = mapScaleIn;
 		this.trackingPosition = trackingPositionIn;
-		this.icons = (MapDecoration[]) iconsIn.toArray(new MapDecoration[iconsIn.size()]);
+		this.icons = iconsIn.toArray(new MapDecoration[iconsIn.size()]);
 		this.minX = minXIn;
 		this.minZ = minZIn;
 		this.columns = columnsIn;
@@ -49,6 +49,7 @@ public class SPacketMaps implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.mapId = buf.readVarIntFromBuffer();
@@ -58,7 +59,7 @@ public class SPacketMaps implements Packet<INetHandlerPlayClient>
 
 		for (int i = 0; i < this.icons.length; ++i)
 		{
-			short short1 = (short) buf.readByte();
+			short short1 = buf.readByte();
 			this.icons[i] = new MapDecoration(MapDecoration.Type.func_191159_a((byte) (short1 >> 4 & 15)), buf.readByte(), buf.readByte(), (byte) (short1 & 15));
 		}
 
@@ -76,6 +77,7 @@ public class SPacketMaps implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeVarIntToBuffer(this.mapId);
@@ -104,6 +106,7 @@ public class SPacketMaps implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handleMaps(this);

@@ -6,6 +6,7 @@ public class Score
 {
 	public static final Comparator<Score> SCORE_COMPARATOR = new Comparator<Score>()
 	{
+		@Override
 		public int compare(Score p_compare_1_, Score p_compare_2_)
 		{
 			if (p_compare_1_.getScorePoints() > p_compare_2_.getScorePoints())

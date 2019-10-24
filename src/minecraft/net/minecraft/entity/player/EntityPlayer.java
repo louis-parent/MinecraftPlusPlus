@@ -212,10 +212,11 @@ public abstract class EntityPlayer extends EntityLivingBase
 		this.inventoryContainer = new ContainerPlayer(this.inventory, !worldIn.isRemote, this);
 		this.openContainer = this.inventoryContainer;
 		BlockPos blockpos = worldIn.getSpawnPoint();
-		this.setLocationAndAngles((double) blockpos.getX() + 0.5D, (double) (blockpos.getY() + 1), (double) blockpos.getZ() + 0.5D, 0.0F, 0.0F);
+		this.setLocationAndAngles(blockpos.getX() + 0.5D, blockpos.getY() + 1, blockpos.getZ() + 0.5D, 0.0F, 0.0F);
 		this.unused180 = 180.0F;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -225,6 +226,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		this.getAttributeMap().registerAttribute(SharedMonsterAttributes.LUCK);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -239,6 +241,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		this.noClip = this.isSpectator();
@@ -421,7 +424,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		if (f != this.width || f1 != this.height)
 		{
 			AxisAlignedBB axisalignedbb = this.getEntityBoundingBox();
-			axisalignedbb = new AxisAlignedBB(axisalignedbb.minX, axisalignedbb.minY, axisalignedbb.minZ, axisalignedbb.minX + (double) f, axisalignedbb.minY + (double) f1, axisalignedbb.minZ + (double) f);
+			axisalignedbb = new AxisAlignedBB(axisalignedbb.minX, axisalignedbb.minY, axisalignedbb.minZ, axisalignedbb.minX + f, axisalignedbb.minY + f1, axisalignedbb.minZ + f);
 
 			if (!this.world.collidesWithAnyBlock(axisalignedbb))
 			{
@@ -434,16 +437,19 @@ public abstract class EntityPlayer extends EntityLivingBase
 	 * Return the amount of time this entity should stay in a portal before
 	 * being transported.
 	 */
+	@Override
 	public int getMaxInPortalTime()
 	{
 		return this.capabilities.disableDamage ? 1 : 80;
 	}
 
+	@Override
 	protected SoundEvent getSwimSound()
 	{
 		return SoundEvents.ENTITY_PLAYER_SWIM;
 	}
 
+	@Override
 	protected SoundEvent getSplashSound()
 	{
 		return SoundEvents.ENTITY_PLAYER_SPLASH;
@@ -452,26 +458,31 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Return the amount of cooldown before this entity can use a portal again.
 	 */
+	@Override
 	public int getPortalCooldown()
 	{
 		return 10;
 	}
 
+	@Override
 	public void playSound(SoundEvent soundIn, float volume, float pitch)
 	{
 		this.world.playSound(this, this.posX, this.posY, this.posZ, soundIn, this.getSoundCategory(), volume, pitch);
 	}
 
+	@Override
 	public SoundCategory getSoundCategory()
 	{
 		return SoundCategory.PLAYERS;
 	}
 
+	@Override
 	protected int func_190531_bD()
 	{
 		return 20;
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 9)
@@ -495,6 +506,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Dead and sleeping entities cannot move
 	 */
+	@Override
 	protected boolean isMovementBlocked()
 	{
 		return this.getHealth() <= 0.0F || this.isPlayerSleeping();
@@ -511,6 +523,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Handles updating while being ridden by an entity
 	 */
+	@Override
 	public void updateRidden()
 	{
 		if (!this.world.isRemote && this.isSneaking() && this.isRiding())
@@ -544,6 +557,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	 * requirements for this entity to be spawned (only actually used on players
 	 * though its also on Entity)
 	 */
+	@Override
 	public void preparePlayerToSpawn()
 	{
 		this.setSize(0.6F, 1.8F);
@@ -552,6 +566,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		this.deathTime = 0;
 	}
 
+	@Override
 	protected void updateEntityActionState()
 	{
 		super.updateEntityActionState();
@@ -564,6 +579,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.flyToggleTimer > 0)
@@ -591,14 +607,14 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 		if (!this.world.isRemote)
 		{
-			iattributeinstance.setBaseValue((double) this.capabilities.getWalkSpeed());
+			iattributeinstance.setBaseValue(this.capabilities.getWalkSpeed());
 		}
 
 		this.jumpMovementFactor = this.speedInAir;
 
 		if (this.isSprinting())
 		{
-			this.jumpMovementFactor = (float) ((double) this.jumpMovementFactor + (double) this.speedInAir * 0.3D);
+			this.jumpMovementFactor = (float) (this.jumpMovementFactor + this.speedInAir * 0.3D);
 		}
 
 		this.setAIMoveSpeed((float) iattributeinstance.getAttributeValue());
@@ -678,7 +694,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 	public int getScore()
 	{
-		return ((Integer) this.dataManager.get(PLAYER_SCORE)).intValue();
+		return this.dataManager.get(PLAYER_SCORE).intValue();
 	}
 
 	/**
@@ -701,6 +717,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Called when the mob's health reaches 0.
 	 */
+	@Override
 	public void onDeath(DamageSource cause)
 	{
 		super.onDeath(cause);
@@ -721,8 +738,8 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 		if (cause != null)
 		{
-			this.motionX = (double) (-MathHelper.cos((this.attackedAtYaw + this.rotationYaw) * 0.017453292F) * 0.1F);
-			this.motionZ = (double) (-MathHelper.sin((this.attackedAtYaw + this.rotationYaw) * 0.017453292F) * 0.1F);
+			this.motionX = -MathHelper.cos((this.attackedAtYaw + this.rotationYaw) * 0.017453292F) * 0.1F;
+			this.motionZ = -MathHelper.sin((this.attackedAtYaw + this.rotationYaw) * 0.017453292F) * 0.1F;
 		}
 		else
 		{
@@ -749,6 +766,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		}
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		if (p_184601_1_ == DamageSource.onFire)
@@ -761,6 +779,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		}
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_PLAYER_DEATH;
@@ -796,7 +815,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		}
 		else
 		{
-			double d0 = this.posY - 0.30000001192092896D + (double) this.getEyeHeight();
+			double d0 = this.posY - 0.30000001192092896D + this.getEyeHeight();
 			EntityItem entityitem = new EntityItem(this.world, this.posX, d0, this.posZ, droppedItem);
 			entityitem.setPickupDelay(40);
 
@@ -809,21 +828,21 @@ public abstract class EntityPlayer extends EntityLivingBase
 			{
 				float f = this.rand.nextFloat() * 0.5F;
 				float f1 = this.rand.nextFloat() * ((float) Math.PI * 2F);
-				entityitem.motionX = (double) (-MathHelper.sin(f1) * f);
-				entityitem.motionZ = (double) (MathHelper.cos(f1) * f);
+				entityitem.motionX = -MathHelper.sin(f1) * f;
+				entityitem.motionZ = MathHelper.cos(f1) * f;
 				entityitem.motionY = 0.20000000298023224D;
 			}
 			else
 			{
 				float f2 = 0.3F;
-				entityitem.motionX = (double) (-MathHelper.sin(this.rotationYaw * 0.017453292F) * MathHelper.cos(this.rotationPitch * 0.017453292F) * f2);
-				entityitem.motionZ = (double) (MathHelper.cos(this.rotationYaw * 0.017453292F) * MathHelper.cos(this.rotationPitch * 0.017453292F) * f2);
-				entityitem.motionY = (double) (-MathHelper.sin(this.rotationPitch * 0.017453292F) * f2 + 0.1F);
+				entityitem.motionX = -MathHelper.sin(this.rotationYaw * 0.017453292F) * MathHelper.cos(this.rotationPitch * 0.017453292F) * f2;
+				entityitem.motionZ = MathHelper.cos(this.rotationYaw * 0.017453292F) * MathHelper.cos(this.rotationPitch * 0.017453292F) * f2;
+				entityitem.motionY = -MathHelper.sin(this.rotationPitch * 0.017453292F) * f2 + 0.1F;
 				float f3 = this.rand.nextFloat() * ((float) Math.PI * 2F);
 				f2 = 0.02F * this.rand.nextFloat();
-				entityitem.motionX += Math.cos((double) f3) * (double) f2;
-				entityitem.motionY += (double) ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F);
-				entityitem.motionZ += Math.sin((double) f3) * (double) f2;
+				entityitem.motionX += Math.cos(f3) * f2;
+				entityitem.motionY += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F;
+				entityitem.motionZ += Math.sin(f3) * f2;
 			}
 
 			ItemStack itemstack = this.dropItemAndGetStack(entityitem);
@@ -859,13 +878,13 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 			if (i > 0 && !itemstack.isNotValid())
 			{
-				f += (float) (i * i + 1);
+				f += i * i + 1;
 			}
 		}
 
 		if (this.isPotionActive(MobEffects.HASTE))
 		{
-			f *= 1.0F + (float) (this.getActivePotionEffect(MobEffects.HASTE).getAmplifier() + 1) * 0.2F;
+			f *= 1.0F + (this.getActivePotionEffect(MobEffects.HASTE).getAmplifier() + 1) * 0.2F;
 		}
 
 		if (this.isPotionActive(MobEffects.MINING_FATIGUE))
@@ -916,6 +935,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	{
 		fixer.registerWalker(FixTypes.PLAYER, new IDataWalker()
 		{
+			@Override
 			public NBTTagCompound process(IDataFixer fixer, NBTTagCompound compound, int versionIn)
 			{
 				DataFixesManager.processInventory(fixer, compound, versionIn, "Inventory");
@@ -939,6 +959,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -995,6 +1016,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -1035,6 +1057,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -1085,6 +1108,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		}
 	}
 
+	@Override
 	protected void func_190629_c(EntityLivingBase p_190629_1_)
 	{
 		super.func_190629_c(p_190629_1_);
@@ -1110,11 +1134,13 @@ public abstract class EntityPlayer extends EntityLivingBase
 		}
 	}
 
+	@Override
 	protected void damageArmor(float damage)
 	{
 		this.inventory.damageArmor(damage);
 	}
 
+	@Override
 	protected void damageShield(float damage)
 	{
 		if (damage >= 3.0F && this.activeItemStack.getItem() == Items.SHIELD)
@@ -1164,6 +1190,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	 * Deals damage to the entity. This will take the armor of the entity into
 	 * consideration before damaging the health bar.
 	 */
+	@Override
 	protected void damageEntity(DamageSource damageSrc, float damageAmount)
 	{
 		if (!this.isEntityInvulnerable(damageSrc))
@@ -1281,11 +1308,13 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Returns the Y Offset of this entity.
 	 */
+	@Override
 	public double getYOffset()
 	{
 		return -0.35D;
 	}
 
+	@Override
 	public void dismountRidingEntity()
 	{
 		super.dismountRidingEntity();
@@ -1343,9 +1372,9 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 					f = f + f1;
 					boolean flag3 = false;
-					double d0 = (double) (this.distanceWalkedModified - this.prevDistanceWalkedModified);
+					double d0 = this.distanceWalkedModified - this.prevDistanceWalkedModified;
 
-					if (flag && !flag2 && !flag1 && this.onGround && d0 < (double) this.getAIMoveSpeed())
+					if (flag && !flag2 && !flag1 && this.onGround && d0 < this.getAIMoveSpeed())
 					{
 						ItemStack itemstack = this.getHeldItem(EnumHand.MAIN_HAND);
 
@@ -1381,11 +1410,11 @@ public abstract class EntityPlayer extends EntityLivingBase
 						{
 							if (targetEntity instanceof EntityLivingBase)
 							{
-								((EntityLivingBase) targetEntity).knockBack(this, (float) i * 0.5F, (double) MathHelper.sin(this.rotationYaw * 0.017453292F), (double) (-MathHelper.cos(this.rotationYaw * 0.017453292F)));
+								((EntityLivingBase) targetEntity).knockBack(this, i * 0.5F, MathHelper.sin(this.rotationYaw * 0.017453292F), (-MathHelper.cos(this.rotationYaw * 0.017453292F)));
 							}
 							else
 							{
-								targetEntity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * 0.017453292F) * (float) i * 0.5F), 0.1D, (double) (MathHelper.cos(this.rotationYaw * 0.017453292F) * (float) i * 0.5F));
+								targetEntity.addVelocity(-MathHelper.sin(this.rotationYaw * 0.017453292F) * i * 0.5F, 0.1D, MathHelper.cos(this.rotationYaw * 0.017453292F) * i * 0.5F);
 							}
 
 							this.motionX *= 0.6D;
@@ -1401,7 +1430,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 							{
 								if (entitylivingbase != this && entitylivingbase != targetEntity && !this.isOnSameTeam(entitylivingbase) && this.getDistanceSqToEntity(entitylivingbase) < 9.0D)
 								{
-									entitylivingbase.knockBack(this, 0.4F, (double) MathHelper.sin(this.rotationYaw * 0.017453292F), (double) (-MathHelper.cos(this.rotationYaw * 0.017453292F)));
+									entitylivingbase.knockBack(this, 0.4F, MathHelper.sin(this.rotationYaw * 0.017453292F), (-MathHelper.cos(this.rotationYaw * 0.017453292F)));
 									entitylivingbase.attackEntityFrom(DamageSource.causePlayerDamage(this), f3);
 								}
 							}
@@ -1485,8 +1514,8 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 							if (this.world instanceof WorldServer && f5 > 2.0F)
 							{
-								int k = (int) ((double) f5 * 0.5D);
-								((WorldServer) this.world).spawnParticle(EnumParticleTypes.DAMAGE_INDICATOR, targetEntity.posX, targetEntity.posY + (double) (targetEntity.height * 0.5F), targetEntity.posZ, k, 0.1D, 0.0D, 0.1D, 0.2D);
+								int k = (int) (f5 * 0.5D);
+								((WorldServer) this.world).spawnParticle(EnumParticleTypes.DAMAGE_INDICATOR, targetEntity.posX, targetEntity.posY + targetEntity.height * 0.5F, targetEntity.posZ, k, 0.1D, 0.0D, 0.1D, 0.2D);
 							}
 						}
 
@@ -1508,7 +1537,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 	public void func_190777_m(boolean p_190777_1_)
 	{
-		float f = 0.25F + (float) EnchantmentHelper.getEfficiencyModifier(this) * 0.05F;
+		float f = 0.25F + EnchantmentHelper.getEfficiencyModifier(this) * 0.05F;
 
 		if (p_190777_1_)
 		{
@@ -1536,12 +1565,12 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 	public void spawnSweepParticles()
 	{
-		double d0 = (double) (-MathHelper.sin(this.rotationYaw * 0.017453292F));
-		double d1 = (double) MathHelper.cos(this.rotationYaw * 0.017453292F);
+		double d0 = (-MathHelper.sin(this.rotationYaw * 0.017453292F));
+		double d1 = MathHelper.cos(this.rotationYaw * 0.017453292F);
 
 		if (this.world instanceof WorldServer)
 		{
-			((WorldServer) this.world).spawnParticle(EnumParticleTypes.SWEEP_ATTACK, this.posX + d0, this.posY + (double) this.height * 0.5D, this.posZ + d1, 0, d0, 0.0D, d1, 0.0D);
+			((WorldServer) this.world).spawnParticle(EnumParticleTypes.SWEEP_ATTACK, this.posX + d0, this.posY + this.height * 0.5D, this.posZ + d1, 0, d0, 0.0D, d1, 0.0D);
 		}
 	}
 
@@ -1552,6 +1581,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Will get destroyed next tick.
 	 */
+	@Override
 	public void setDead()
 	{
 		super.setDead();
@@ -1566,6 +1596,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Checks if this entity is inside of an opaque block
 	 */
+	@Override
 	public boolean isEntityInsideOpaqueBlock()
 	{
 		return !this.sleeping && super.isEntityInsideOpaqueBlock();
@@ -1589,7 +1620,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 	public EntityPlayer.SleepResult trySleep(BlockPos bedLocation)
 	{
-		EnumFacing enumfacing = (EnumFacing) this.world.getBlockState(bedLocation).getValue(BlockHorizontal.FACING);
+		EnumFacing enumfacing = this.world.getBlockState(bedLocation).getValue(BlockHorizontal.FACING);
 
 		if (!this.world.isRemote)
 		{
@@ -1615,7 +1646,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 			double d0 = 8.0D;
 			double d1 = 5.0D;
-			List<EntityMob> list = this.world.<EntityMob>getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB((double) bedLocation.getX() - 8.0D, (double) bedLocation.getY() - 5.0D, (double) bedLocation.getZ() - 8.0D, (double) bedLocation.getX() + 8.0D, (double) bedLocation.getY() + 5.0D, (double) bedLocation.getZ() + 8.0D), new EntityPlayer.SleepEnemyPredicate(this));
+			List<EntityMob> list = this.world.<EntityMob>getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB(bedLocation.getX() - 8.0D, bedLocation.getY() - 5.0D, bedLocation.getZ() - 8.0D, bedLocation.getX() + 8.0D, bedLocation.getY() + 5.0D, bedLocation.getZ() + 8.0D), new EntityPlayer.SleepEnemyPredicate(this));
 
 			if (!list.isEmpty())
 			{
@@ -1633,14 +1664,14 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 		if (this.world.isBlockLoaded(bedLocation))
 		{
-			float f1 = 0.5F + (float) enumfacing.getFrontOffsetX() * 0.4F;
-			float f = 0.5F + (float) enumfacing.getFrontOffsetZ() * 0.4F;
+			float f1 = 0.5F + enumfacing.getFrontOffsetX() * 0.4F;
+			float f = 0.5F + enumfacing.getFrontOffsetZ() * 0.4F;
 			this.setRenderOffsetForSleep(enumfacing);
-			this.setPosition((double) ((float) bedLocation.getX() + f1), (double) ((float) bedLocation.getY() + 0.6875F), (double) ((float) bedLocation.getZ() + f));
+			this.setPosition(bedLocation.getX() + f1, bedLocation.getY() + 0.6875F, bedLocation.getZ() + f);
 		}
 		else
 		{
-			this.setPosition((double) ((float) bedLocation.getX() + 0.5F), (double) ((float) bedLocation.getY() + 0.6875F), (double) ((float) bedLocation.getZ() + 0.5F));
+			this.setPosition(bedLocation.getX() + 0.5F, bedLocation.getY() + 0.6875F, bedLocation.getZ() + 0.5F);
 		}
 
 		this.sleeping = true;
@@ -1660,21 +1691,21 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 	private boolean func_190774_a(BlockPos p_190774_1_, EnumFacing p_190774_2_)
 	{
-		if (Math.abs(this.posX - (double) p_190774_1_.getX()) <= 3.0D && Math.abs(this.posY - (double) p_190774_1_.getY()) <= 2.0D && Math.abs(this.posZ - (double) p_190774_1_.getZ()) <= 3.0D)
+		if (Math.abs(this.posX - p_190774_1_.getX()) <= 3.0D && Math.abs(this.posY - p_190774_1_.getY()) <= 2.0D && Math.abs(this.posZ - p_190774_1_.getZ()) <= 3.0D)
 		{
 			return true;
 		}
 		else
 		{
 			BlockPos blockpos = p_190774_1_.offset(p_190774_2_.getOpposite());
-			return Math.abs(this.posX - (double) blockpos.getX()) <= 3.0D && Math.abs(this.posY - (double) blockpos.getY()) <= 2.0D && Math.abs(this.posZ - (double) blockpos.getZ()) <= 3.0D;
+			return Math.abs(this.posX - blockpos.getX()) <= 3.0D && Math.abs(this.posY - blockpos.getY()) <= 2.0D && Math.abs(this.posZ - blockpos.getZ()) <= 3.0D;
 		}
 	}
 
 	private void setRenderOffsetForSleep(EnumFacing p_175139_1_)
 	{
-		this.renderOffsetX = -1.8F * (float) p_175139_1_.getFrontOffsetX();
-		this.renderOffsetZ = -1.8F * (float) p_175139_1_.getFrontOffsetZ();
+		this.renderOffsetX = -1.8F * p_175139_1_.getFrontOffsetX();
+		this.renderOffsetZ = -1.8F * p_175139_1_.getFrontOffsetZ();
 	}
 
 	/**
@@ -1695,7 +1726,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 				blockpos = this.bedLocation.up();
 			}
 
-			this.setPosition((double) ((float) blockpos.getX() + 0.5F), (double) ((float) blockpos.getY() + 0.1F), (double) ((float) blockpos.getZ() + 0.5F));
+			this.setPosition(blockpos.getX() + 0.5F, blockpos.getY() + 0.1F, blockpos.getZ() + 0.5F);
 		}
 
 		this.sleeping = false;
@@ -1753,7 +1784,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	{
 		if (this.bedLocation != null)
 		{
-			EnumFacing enumfacing = (EnumFacing) this.world.getBlockState(this.bedLocation).getValue(BlockHorizontal.FACING);
+			EnumFacing enumfacing = this.world.getBlockState(this.bedLocation).getValue(BlockHorizontal.FACING);
 
 			switch (enumfacing)
 			{
@@ -1777,6 +1808,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Returns whether player is sleeping or not
 	 */
+	@Override
 	public boolean isPlayerSleeping()
 	{
 		return this.sleeping;
@@ -1858,6 +1890,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Causes this entity to do an upwards motion (jumping).
 	 */
+	@Override
 	public void jump()
 	{
 		super.jump();
@@ -1873,6 +1906,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public void func_191986_a(float p_191986_1_, float p_191986_2_, float p_191986_3_)
 	{
 		double d0 = this.posX;
@@ -1883,7 +1917,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		{
 			double d3 = this.motionY;
 			float f = this.jumpMovementFactor;
-			this.jumpMovementFactor = this.capabilities.getFlySpeed() * (float) (this.isSprinting() ? 2 : 1);
+			this.jumpMovementFactor = this.capabilities.getFlySpeed() * (this.isSprinting() ? 2 : 1);
 			super.func_191986_a(p_191986_1_, p_191986_2_, p_191986_3_);
 			this.motionY = d3 * 0.6D;
 			this.jumpMovementFactor = f;
@@ -1901,6 +1935,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * the movespeed used for the new AI system
 	 */
+	@Override
 	public float getAIMoveSpeed()
 	{
 		return (float) this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
@@ -1921,7 +1956,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 				if (i > 0)
 				{
 					this.addStat(StatList.DIVE_ONE_CM, i);
-					this.addExhaustion(0.01F * (float) i * 0.01F);
+					this.addExhaustion(0.01F * i * 0.01F);
 				}
 			}
 			else if (this.isInWater())
@@ -1931,7 +1966,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 				if (j > 0)
 				{
 					this.addStat(StatList.SWIM_ONE_CM, j);
-					this.addExhaustion(0.01F * (float) j * 0.01F);
+					this.addExhaustion(0.01F * j * 0.01F);
 				}
 			}
 			else if (this.isOnLadder())
@@ -1950,17 +1985,17 @@ public abstract class EntityPlayer extends EntityLivingBase
 					if (this.isSprinting())
 					{
 						this.addStat(StatList.SPRINT_ONE_CM, k);
-						this.addExhaustion(0.1F * (float) k * 0.01F);
+						this.addExhaustion(0.1F * k * 0.01F);
 					}
 					else if (this.isSneaking())
 					{
 						this.addStat(StatList.CROUCH_ONE_CM, k);
-						this.addExhaustion(0.0F * (float) k * 0.01F);
+						this.addExhaustion(0.0F * k * 0.01F);
 					}
 					else
 					{
 						this.addStat(StatList.WALK_ONE_CM, k);
-						this.addExhaustion(0.0F * (float) k * 0.01F);
+						this.addExhaustion(0.0F * k * 0.01F);
 					}
 				}
 			}
@@ -2013,13 +2048,14 @@ public abstract class EntityPlayer extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 		if (!this.capabilities.allowFlying)
 		{
 			if (distance >= 2.0F)
 			{
-				this.addStat(StatList.FALL_ONE_CM, (int) Math.round((double) distance * 100.0D));
+				this.addStat(StatList.FALL_ONE_CM, (int) Math.round(distance * 100.0D));
 			}
 
 			super.fall(distance, damageMultiplier);
@@ -2030,6 +2066,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	 * sets the players height back to normal after doing things like sleeping
 	 * and dieing
 	 */
+	@Override
 	protected void resetHeight()
 	{
 		if (!this.isSpectator())
@@ -2038,6 +2075,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		}
 	}
 
+	@Override
 	protected SoundEvent getFallSound(int heightIn)
 	{
 		return heightIn > 4 ? SoundEvents.ENTITY_PLAYER_BIG_FALL : SoundEvents.ENTITY_PLAYER_SMALL_FALL;
@@ -2046,6 +2084,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * This method gets called when the entity kills another one.
 	 */
+	@Override
 	public void onKillEntity(EntityLivingBase entityLivingIn)
 	{
 		EntityList.EntityEggInfo entitylist$entityegginfo = EntityList.ENTITY_EGGS.get(EntityList.func_191301_a(entityLivingIn));
@@ -2059,6 +2098,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Sets the Entity inside a web block.
 	 */
+	@Override
 	public void setInWeb()
 	{
 		if (!this.capabilities.isFlying)
@@ -2082,9 +2122,9 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 		this.experience += (float) amount / (float) this.xpBarCap();
 
-		for (this.experienceTotal += amount; this.experience >= 1.0F; this.experience /= (float) this.xpBarCap())
+		for (this.experienceTotal += amount; this.experience >= 1.0F; this.experience /= this.xpBarCap())
 		{
-			this.experience = (this.experience - 1.0F) * (float) this.xpBarCap();
+			this.experience = (this.experience - 1.0F) * this.xpBarCap();
 			this.addExperienceLevel(1);
 		}
 	}
@@ -2122,9 +2162,9 @@ public abstract class EntityPlayer extends EntityLivingBase
 			this.experienceTotal = 0;
 		}
 
-		if (levels > 0 && this.experienceLevel % 5 == 0 && (float) this.lastXPSound < (float) this.ticksExisted - 100.0F)
+		if (levels > 0 && this.experienceLevel % 5 == 0 && this.lastXPSound < this.ticksExisted - 100.0F)
 		{
-			float f = this.experienceLevel > 30 ? 1.0F : (float) this.experienceLevel / 30.0F;
+			float f = this.experienceLevel > 30 ? 1.0F : this.experienceLevel / 30.0F;
 			this.world.playSound((EntityPlayer) null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_PLAYER_LEVELUP, this.getSoundCategory(), f * 0.75F, 1.0F);
 			this.lastXPSound = this.ticksExisted;
 		}
@@ -2208,6 +2248,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Get the experience points the entity currently has.
 	 */
+	@Override
 	protected int getExperiencePoints(EntityPlayer player)
 	{
 		if (!this.world.getGameRules().getBoolean("keepInventory") && !this.isSpectator())
@@ -2225,11 +2266,13 @@ public abstract class EntityPlayer extends EntityLivingBase
 	 * Only use is to identify if class is an instance of player for experience
 	 * dropping
 	 */
+	@Override
 	protected boolean isPlayer()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean getAlwaysRenderNameTagForRender()
 	{
 		return true;
@@ -2239,6 +2282,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	 * returns if this entity triggers Block.onEntityWalking on the blocks they
 	 * walk on. used for spiders and wolves to prevent them from trampling crops
 	 */
+	@Override
 	protected boolean canTriggerWalking()
 	{
 		return !this.capabilities.isFlying;
@@ -2261,6 +2305,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.gameProfile.getName();
@@ -2274,6 +2319,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		return this.theInventoryEnderChest;
 	}
 
+	@Override
 	public ItemStack getItemStackFromSlot(EntityEquipmentSlot slot)
 	{
 		if (slot == EntityHandSlot.MAINHAND)
@@ -2290,6 +2336,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public void setItemStackToSlot(EntityEquipmentSlot slot, ItemStack stack)
 	{
 		if (slot == EntityHandSlot.MAINHAND)
@@ -2315,11 +2362,13 @@ public abstract class EntityPlayer extends EntityLivingBase
 		return this.inventory.addItemStackToInventory(p_191521_1_);
 	}
 
+	@Override
 	public Iterable<ItemStack> getHeldEquipment()
 	{
 		return Lists.newArrayList(this.getHeldItemMainhand(), this.getHeldItemOffhand());
 	}
 
+	@Override
 	public Iterable<ItemStack> getArmorInventoryList()
 	{
 		return this.inventory.armorInventory;
@@ -2380,6 +2429,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	 * invisible. For EntityLivingBase subclasses, returning false when
 	 * invisible will render the entity semitransparent.
 	 */
+	@Override
 	public boolean isInvisibleToPlayer(EntityPlayer player)
 	{
 		if (!this.isInvisible())
@@ -2404,6 +2454,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 	public abstract boolean isCreative();
 
+	@Override
 	public boolean isPushedByWater()
 	{
 		return !this.capabilities.isFlying;
@@ -2414,6 +2465,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		return this.world.getScoreboard();
 	}
 
+	@Override
 	public Team getTeam()
 	{
 		return this.getWorldScoreboard().getPlayersTeam(this.getName());
@@ -2423,6 +2475,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	 * Get the formatted ChatComponent that will be used for the sender's
 	 * username in chat
 	 */
+	@Override
 	public ITextComponent getDisplayName()
 	{
 		ITextComponent itextcomponent = new TextComponentString(ScorePlayerTeam.formatPlayerName(this.getTeam(), this.getName()));
@@ -2432,6 +2485,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		return itextcomponent;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		float f = 1.62F;
@@ -2455,6 +2509,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		return f;
 	}
 
+	@Override
 	public void setAbsorptionAmount(float amount)
 	{
 		if (amount < 0.0F)
@@ -2468,9 +2523,10 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Returns the amount of health added by the Absorption effect.
 	 */
+	@Override
 	public float getAbsorptionAmount()
 	{
-		return ((Float) this.getDataManager().get(ABSORPTION)).floatValue();
+		return this.getDataManager().get(ABSORPTION).floatValue();
 	}
 
 	/**
@@ -2512,18 +2568,20 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 	public boolean isWearing(EnumPlayerModelParts part)
 	{
-		return (((Byte) this.getDataManager().get(PLAYER_MODEL_FLAG)).byteValue() & part.getPartMask()) == part.getPartMask();
+		return (this.getDataManager().get(PLAYER_MODEL_FLAG).byteValue() & part.getPartMask()) == part.getPartMask();
 	}
 
 	/**
 	 * Returns true if the command sender should be sent feedback about executed
 	 * commands
 	 */
+	@Override
 	public boolean sendCommandFeedback()
 	{
 		return this.getServer().worldServers[0].getGameRules().getBoolean("sendCommandFeedback");
 	}
 
+	@Override
 	public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn)
 	{
 		if (inventorySlot >= 0 && inventorySlot < this.inventory.mainInventory.size())
@@ -2616,9 +2674,10 @@ public abstract class EntityPlayer extends EntityLivingBase
 		this.hasReducedDebug = reducedDebug;
 	}
 
+	@Override
 	public EnumHandSide getPrimaryHand()
 	{
-		return ((Byte) this.dataManager.get(MAIN_HAND)).byteValue() == 0 ? EnumHandSide.LEFT : EnumHandSide.RIGHT;
+		return this.dataManager.get(MAIN_HAND).byteValue() == 0 ? EnumHandSide.LEFT : EnumHandSide.RIGHT;
 	}
 
 	public void setPrimaryHand(EnumHandSide hand)
@@ -2628,7 +2687,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 	public NBTTagCompound func_192023_dk()
 	{
-		return (NBTTagCompound) this.dataManager.get(field_192032_bt);
+		return this.dataManager.get(field_192032_bt);
 	}
 
 	protected void func_192029_h(NBTTagCompound p_192029_1_)
@@ -2638,7 +2697,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 	public NBTTagCompound func_192025_dl()
 	{
-		return (NBTTagCompound) this.dataManager.get(field_192033_bu);
+		return this.dataManager.get(field_192033_bu);
 	}
 
 	protected void func_192031_i(NBTTagCompound p_192031_1_)
@@ -2657,7 +2716,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	 */
 	public float getCooledAttackStrength(float adjustTicks)
 	{
-		return MathHelper.clamp(((float) this.ticksSinceLastSwing + adjustTicks) / this.getCooldownPeriod(), 0.0F, 1.0F);
+		return MathHelper.clamp((this.ticksSinceLastSwing + adjustTicks) / this.getCooldownPeriod(), 0.0F, 1.0F);
 	}
 
 	public void resetCooldown()
@@ -2673,6 +2732,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	/**
 	 * Applies a velocity to the entities, to push them away from eachother.
 	 */
+	@Override
 	public void applyEntityCollision(Entity entityIn)
 	{
 		if (!this.isPlayerSleeping())
@@ -2742,6 +2802,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 			this.field_192387_a = p_i47461_1_;
 		}
 
+		@Override
 		public boolean apply(@Nullable EntityMob p_apply_1_)
 		{
 			return p_apply_1_.func_191990_c(this.field_192387_a);

@@ -28,7 +28,7 @@ public class JsonException extends IOException
 
 	public void prependJsonKey(String p_151380_1_)
 	{
-		((JsonException.Entry) this.entries.get(0)).addJsonKey(p_151380_1_);
+		this.entries.get(0).addJsonKey(p_151380_1_);
 	}
 
 	public void setFilenameAndFlush(String p_151381_1_)
@@ -37,6 +37,7 @@ public class JsonException extends IOException
 		this.entries.add(0, new JsonException.Entry());
 	}
 
+	@Override
 	public String getMessage()
 	{
 		return "Invalid " + this.entries.get(this.entries.size() - 1) + ": " + this.message;
@@ -78,9 +79,10 @@ public class JsonException extends IOException
 
 		public String getJsonKeys()
 		{
-			return StringUtils.join((Iterable) this.jsonKeys, "->");
+			return StringUtils.join(this.jsonKeys, "->");
 		}
 
+		@Override
 		public String toString()
 		{
 			if (this.filename != null)

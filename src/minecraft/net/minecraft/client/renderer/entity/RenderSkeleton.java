@@ -17,6 +17,7 @@ public class RenderSkeleton extends RenderBiped<AbstractSkeleton>
 		this.addLayer(new LayerHeldItem(this));
 		this.addLayer(new LayerBipedArmor(this)
 		{
+			@Override
 			protected void initArmor()
 			{
 				this.modelLeggings = new ModelSkeleton(0.5F, true);
@@ -25,6 +26,7 @@ public class RenderSkeleton extends RenderBiped<AbstractSkeleton>
 		});
 	}
 
+	@Override
 	public void transformHeldFull3DItemLayer()
 	{
 		GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
@@ -34,6 +36,7 @@ public class RenderSkeleton extends RenderBiped<AbstractSkeleton>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(AbstractSkeleton entity)
 	{
 		return SKELETON_TEXTURES;

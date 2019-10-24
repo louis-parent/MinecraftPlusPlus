@@ -37,6 +37,7 @@ public class BlockOre extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		if (this == Blocks.COAL_ORE)
@@ -64,6 +65,7 @@ public class BlockOre extends Block
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return this == Blocks.LAPIS_ORE ? 4 + random.nextInt(5) : 1;
@@ -72,9 +74,10 @@ public class BlockOre extends Block
 	/**
 	 * Get the quantity dropped based on the given fortune level
 	 */
+	@Override
 	public int quantityDroppedWithBonus(int fortune, Random random)
 	{
-		if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped((IBlockState) this.getBlockState().getValidStates().iterator().next(), random, fortune))
+		if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(this.getBlockState().getValidStates().iterator().next(), random, fortune))
 		{
 			int i = random.nextInt(fortune + 2) - 1;
 
@@ -94,6 +97,7 @@ public class BlockOre extends Block
 	/**
 	 * Spawns this Block's drops into the World as EntityItems.
 	 */
+	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 		super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
@@ -127,6 +131,7 @@ public class BlockOre extends Block
 		}
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(this);
@@ -137,6 +142,7 @@ public class BlockOre extends Block
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
 		return this == Blocks.LAPIS_ORE ? EnumDyeColor.BLUE.getDyeDamage() : 0;

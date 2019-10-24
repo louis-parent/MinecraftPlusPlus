@@ -20,15 +20,16 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityTNTPrimed entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
 		GlStateManager.pushMatrix();
 		GlStateManager.translate((float) x, (float) y + 0.5F, (float) z);
 
-		if ((float) entity.getFuse() - partialTicks + 1.0F < 10.0F)
+		if (entity.getFuse() - partialTicks + 1.0F < 10.0F)
 		{
-			float f = 1.0F - ((float) entity.getFuse() - partialTicks + 1.0F) / 10.0F;
+			float f = 1.0F - (entity.getFuse() - partialTicks + 1.0F) / 10.0F;
 			f = MathHelper.clamp(f, 0.0F, 1.0F);
 			f = f * f;
 			f = f * f;
@@ -36,7 +37,7 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
 			GlStateManager.scale(f1, f1, f1);
 		}
 
-		float f2 = (1.0F - ((float) entity.getFuse() - partialTicks + 1.0F) / 100.0F) * 0.8F;
+		float f2 = (1.0F - (entity.getFuse() - partialTicks + 1.0F) / 100.0F) * 0.8F;
 		this.bindEntityTexture(entity);
 		GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
 		GlStateManager.translate(-0.5F, -0.5F, 0.5F);
@@ -77,6 +78,7 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityTNTPrimed entity)
 	{
 		return TextureMap.LOCATION_BLOCKS_TEXTURE;

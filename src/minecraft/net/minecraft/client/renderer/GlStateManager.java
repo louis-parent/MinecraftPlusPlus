@@ -201,10 +201,10 @@ public class GlStateManager
 
 	public static void enableOutlineMode(int p_187431_0_)
 	{
-		BUF_FLOAT_4.put(0, (float) (p_187431_0_ >> 16 & 255) / 255.0F);
-		BUF_FLOAT_4.put(1, (float) (p_187431_0_ >> 8 & 255) / 255.0F);
-		BUF_FLOAT_4.put(2, (float) (p_187431_0_ >> 0 & 255) / 255.0F);
-		BUF_FLOAT_4.put(3, (float) (p_187431_0_ >> 24 & 255) / 255.0F);
+		BUF_FLOAT_4.put(0, (p_187431_0_ >> 16 & 255) / 255.0F);
+		BUF_FLOAT_4.put(1, (p_187431_0_ >> 8 & 255) / 255.0F);
+		BUF_FLOAT_4.put(2, (p_187431_0_ >> 0 & 255) / 255.0F);
+		BUF_FLOAT_4.put(3, (p_187431_0_ >> 24 & 255) / 255.0F);
 		glTexEnv(8960, 8705, BUF_FLOAT_4);
 		glTexEnvi(8960, 8704, 34160);
 		glTexEnvi(8960, 34161, 7681);
@@ -714,7 +714,7 @@ public class GlStateManager
 
 	public static void glTexCoordPointer(int p_187405_0_, int p_187405_1_, int p_187405_2_, int p_187405_3_)
 	{
-		GL11.glTexCoordPointer(p_187405_0_, p_187405_1_, p_187405_2_, (long) p_187405_3_);
+		GL11.glTexCoordPointer(p_187405_0_, p_187405_1_, p_187405_2_, p_187405_3_);
 	}
 
 	public static void glTexCoordPointer(int p_187404_0_, int p_187404_1_, int p_187404_2_, ByteBuffer p_187404_3_)
@@ -724,7 +724,7 @@ public class GlStateManager
 
 	public static void glVertexPointer(int p_187420_0_, int p_187420_1_, int p_187420_2_, int p_187420_3_)
 	{
-		GL11.glVertexPointer(p_187420_0_, p_187420_1_, p_187420_2_, (long) p_187420_3_);
+		GL11.glVertexPointer(p_187420_0_, p_187420_1_, p_187420_2_, p_187420_3_);
 	}
 
 	public static void glVertexPointer(int p_187427_0_, int p_187427_1_, int p_187427_2_, ByteBuffer p_187427_3_)
@@ -734,7 +734,7 @@ public class GlStateManager
 
 	public static void glColorPointer(int p_187406_0_, int p_187406_1_, int p_187406_2_, int p_187406_3_)
 	{
-		GL11.glColorPointer(p_187406_0_, p_187406_1_, p_187406_2_, (long) p_187406_3_);
+		GL11.glColorPointer(p_187406_0_, p_187406_1_, p_187406_2_, p_187406_3_);
 	}
 
 	public static void glColorPointer(int p_187400_0_, int p_187400_1_, int p_187400_2_, ByteBuffer p_187400_3_)
@@ -1126,6 +1126,7 @@ public class GlStateManager
 	{
 		DEFAULT
 		{
+			@Override
 			public void apply()
 			{
 				GlStateManager.disableAlpha();
@@ -1229,18 +1230,21 @@ public class GlStateManager
 				GL11.glPolygonMode(GL11.GL_BACK, GL11.GL_FILL);
 			}
 
+			@Override
 			public void clean()
 			{
 			}
 		},
 		PLAYER_SKIN
 		{
+			@Override
 			public void apply()
 			{
 				GlStateManager.enableBlend();
 				GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
 			}
 
+			@Override
 			public void clean()
 			{
 				GlStateManager.disableBlend();
@@ -1248,6 +1252,7 @@ public class GlStateManager
 		},
 		TRANSPARENT_MODEL
 		{
+			@Override
 			public void apply()
 			{
 				GlStateManager.color(1.0F, 1.0F, 1.0F, 0.15F);
@@ -1257,6 +1262,7 @@ public class GlStateManager
 				GlStateManager.alphaFunc(516, 0.003921569F);
 			}
 
+			@Override
 			public void clean()
 			{
 				GlStateManager.disableBlend();

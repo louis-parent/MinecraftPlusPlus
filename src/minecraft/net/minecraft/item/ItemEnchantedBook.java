@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 
 public class ItemEnchantedBook extends Item
 {
+	@Override
 	public boolean hasEffect(ItemStack stack)
 	{
 		return true;
@@ -24,6 +25,7 @@ public class ItemEnchantedBook extends Item
 	/**
 	 * Checks isDamagable and if it cannot be stacked
 	 */
+	@Override
 	public boolean isItemTool(ItemStack stack)
 	{
 		return false;
@@ -32,6 +34,7 @@ public class ItemEnchantedBook extends Item
 	/**
 	 * Return an item rarity from EnumRarity
 	 */
+	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
 		return getEnchantments(stack).hasNoTags() ? super.getRarity(stack) : EnumRarity.UNCOMMON;
@@ -47,6 +50,7 @@ public class ItemEnchantedBook extends Item
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		super.addInformation(stack, playerIn, tooltip, advanced);
@@ -119,6 +123,7 @@ public class ItemEnchantedBook extends Item
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
+	@Override
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (itemIn == CreativeTabs.SEARCH)

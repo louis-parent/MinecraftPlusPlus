@@ -56,6 +56,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 	public static final AttributeKey<EnumConnectionState> PROTOCOL_ATTRIBUTE_KEY = AttributeKey.<EnumConnectionState>valueOf("protocol");
 	public static final LazyLoadBase<NioEventLoopGroup> CLIENT_NIO_EVENTLOOP = new LazyLoadBase<NioEventLoopGroup>()
 	{
+		@Override
 		protected NioEventLoopGroup load()
 		{
 			return new NioEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Client IO #%d").setDaemon(true).build());
@@ -63,6 +64,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 	};
 	public static final LazyLoadBase<EpollEventLoopGroup> CLIENT_EPOLL_EVENTLOOP = new LazyLoadBase<EpollEventLoopGroup>()
 	{
+		@Override
 		protected EpollEventLoopGroup load()
 		{
 			return new EpollEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Epoll Client IO #%d").setDaemon(true).build());
@@ -70,6 +72,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 	};
 	public static final LazyLoadBase<LocalEventLoopGroup> CLIENT_LOCAL_EVENTLOOP = new LazyLoadBase<LocalEventLoopGroup>()
 	{
+		@Override
 		protected LocalEventLoopGroup load()
 		{
 			return new LocalEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Local Client IO #%d").setDaemon(true).build());
@@ -98,6 +101,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 		this.direction = packetDirection;
 	}
 
+	@Override
 	public void channelActive(ChannelHandlerContext p_channelActive_1_) throws Exception
 	{
 		super.channelActive(p_channelActive_1_);
@@ -125,11 +129,13 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 		LOGGER.debug("Enabled auto read");
 	}
 
+	@Override
 	public void channelInactive(ChannelHandlerContext p_channelInactive_1_) throws Exception
 	{
 		this.closeChannel(new TextComponentTranslation("disconnect.endOfStream", new Object[0]));
 	}
 
+	@Override
 	public void exceptionCaught(ChannelHandlerContext p_exceptionCaught_1_, Throwable p_exceptionCaught_2_) throws Exception
 	{
 		TextComponentTranslation textcomponenttranslation;
@@ -147,6 +153,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 		this.closeChannel(textcomponenttranslation);
 	}
 
+	@Override
 	protected void channelRead0(ChannelHandlerContext p_channelRead0_1_, Packet<?> p_channelRead0_2_) throws Exception
 	{
 		if (this.channel.isOpen())
@@ -200,7 +207,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 		if (this.isChannelOpen())
 		{
 			this.flushOutboundQueue();
-			this.dispatchPacket(packetIn, (GenericFutureListener[]) ArrayUtils.add(listeners, 0, listener));
+			this.dispatchPacket(packetIn, ArrayUtils.add(listeners, 0, listener));
 		}
 		else
 		{
@@ -208,7 +215,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 
 			try
 			{
-				this.outboundPacketsQueue.add(new NetworkManager.InboundHandlerTuplePacketListener(packetIn, (GenericFutureListener[]) ArrayUtils.add(listeners, 0, listener)));
+				this.outboundPacketsQueue.add(new NetworkManager.InboundHandlerTuplePacketListener(packetIn, ArrayUtils.add(listeners, 0, listener)));
 			}
 			finally
 			{
@@ -225,7 +232,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 	private void dispatchPacket(final Packet<?> inPacket, @Nullable final GenericFutureListener<? extends Future<? super Void>>[] futureListeners)
 	{
 		final EnumConnectionState enumconnectionstate = EnumConnectionState.getFromPacket(inPacket);
-		final EnumConnectionState enumconnectionstate1 = (EnumConnectionState) this.channel.attr(PROTOCOL_ATTRIBUTE_KEY).get();
+		final EnumConnectionState enumconnectionstate1 = this.channel.attr(PROTOCOL_ATTRIBUTE_KEY).get();
 
 		if (enumconnectionstate1 != enumconnectionstate)
 		{
@@ -253,6 +260,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 		{
 			this.channel.eventLoop().execute(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					if (enumconnectionstate != enumconnectionstate1)
@@ -367,8 +375,9 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 			lazyloadbase = CLIENT_NIO_EVENTLOOP;
 		}
 
-		((Bootstrap) ((Bootstrap) ((Bootstrap) (new Bootstrap()).group(lazyloadbase.getValue())).handler(new ChannelInitializer<Channel>()
+		(new Bootstrap()).group(lazyloadbase.getValue()).handler(new ChannelInitializer<Channel>()
 		{
+			@Override
 			protected void initChannel(Channel p_initChannel_1_) throws Exception
 			{
 				try
@@ -382,7 +391,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 
 				p_initChannel_1_.pipeline().addLast("timeout", new ReadTimeoutHandler(30)).addLast("splitter", new NettyVarint21FrameDecoder()).addLast("decoder", new NettyPacketDecoder(EnumPacketDirection.CLIENTBOUND)).addLast("prepender", new NettyVarint21FrameEncoder()).addLast("encoder", new NettyPacketEncoder(EnumPacketDirection.SERVERBOUND)).addLast("packet_handler", networkmanager);
 			}
-		})).channel(oclass)).connect(address, serverPort).syncUninterruptibly();
+		}).channel(oclass).connect(address, serverPort).syncUninterruptibly();
 		return networkmanager;
 	}
 
@@ -394,13 +403,14 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>>
 	public static NetworkManager provideLocalClient(SocketAddress address)
 	{
 		final NetworkManager networkmanager = new NetworkManager(EnumPacketDirection.CLIENTBOUND);
-		((Bootstrap) ((Bootstrap) ((Bootstrap) (new Bootstrap()).group(CLIENT_LOCAL_EVENTLOOP.getValue())).handler(new ChannelInitializer<Channel>()
+		(new Bootstrap()).group(CLIENT_LOCAL_EVENTLOOP.getValue()).handler(new ChannelInitializer<Channel>()
 		{
+			@Override
 			protected void initChannel(Channel p_initChannel_1_) throws Exception
 			{
 				p_initChannel_1_.pipeline().addLast("packet_handler", networkmanager);
 			}
-		})).channel(LocalChannel.class)).connect(address).syncUninterruptibly();
+		}).channel(LocalChannel.class).connect(address).syncUninterruptibly();
 		return networkmanager;
 	}
 

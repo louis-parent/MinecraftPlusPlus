@@ -20,6 +20,7 @@ public class ItemMultiTexture extends ItemBlock
 	{
 		this(block, block2, new ItemMultiTexture.Mapper()
 		{
+			@Override
 			public String apply(ItemStack p_apply_1_)
 			{
 				int i = p_apply_1_.getMetadata();
@@ -39,6 +40,7 @@ public class ItemMultiTexture extends ItemBlock
 	 * placed in the world when this Item is placed as a Block (mostly used with
 	 * ItemBlocks).
 	 */
+	@Override
 	public int getMetadata(int damage)
 	{
 		return damage;
@@ -49,6 +51,7 @@ public class ItemMultiTexture extends ItemBlock
 	 * ItemStack so different stacks can have different names based on their
 	 * damage or NBT.
 	 */
+	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		return super.getUnlocalizedName() + "." + this.nameFunction.apply(stack);

@@ -28,6 +28,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
 		this.mc = Minecraft.getMinecraft();
 	}
 
+	@Override
 	public void func_192634_a(int p_192634_1_, int p_192634_2_, int p_192634_3_, int p_192634_4_, int p_192634_5_, int p_192634_6_, int p_192634_7_, boolean p_192634_8_, float p_192634_9_)
 	{
 		int i = this.getResourcePackFormat();
@@ -121,12 +122,12 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
 			s = this.mc.fontRendererObj.trimStringToWidth(s, 157 - this.mc.fontRendererObj.getStringWidth("...")) + "...";
 		}
 
-		this.mc.fontRendererObj.drawStringWithShadow(s, (float) (p_192634_2_ + 32 + 2), (float) (p_192634_3_ + 1), 16777215);
+		this.mc.fontRendererObj.drawStringWithShadow(s, p_192634_2_ + 32 + 2, p_192634_3_ + 1, 16777215);
 		List<String> list = this.mc.fontRendererObj.listFormattedStringToWidth(s1, 157);
 
 		for (int l = 0; l < 2 && l < list.size(); ++l)
 		{
-			this.mc.fontRendererObj.drawStringWithShadow(list.get(l), (float) (p_192634_2_ + 32 + 2), (float) (p_192634_3_ + 12 + 10 * l), 8421504);
+			this.mc.fontRendererObj.drawStringWithShadow(list.get(l), p_192634_2_ + 32 + 2, p_192634_3_ + 12 + 10 * l, 8421504);
 		}
 	}
 
@@ -157,14 +158,14 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
 	{
 		List<ResourcePackListEntry> list = this.resourcePacksGUI.getListContaining(this);
 		int i = list.indexOf(this);
-		return i > 0 && ((ResourcePackListEntry) list.get(i - 1)).showHoverOverlay();
+		return i > 0 && list.get(i - 1).showHoverOverlay();
 	}
 
 	protected boolean canMoveDown()
 	{
 		List<ResourcePackListEntry> list = this.resourcePacksGUI.getListContaining(this);
 		int i = list.indexOf(this);
-		return i >= 0 && i < list.size() - 1 && ((ResourcePackListEntry) list.get(i + 1)).showHoverOverlay();
+		return i >= 0 && i < list.size() - 1 && list.get(i + 1).showHoverOverlay();
 	}
 
 	/**
@@ -172,6 +173,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
 	 * that something within this entry was clicked and the list should not be
 	 * dragged.
 	 */
+	@Override
 	public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY)
 	{
 		if (this.showHoverOverlay() && relativeX <= 32)
@@ -179,7 +181,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
 			if (this.canMoveRight())
 			{
 				this.resourcePacksGUI.markChanged();
-				final int j = ((ResourcePackListEntry) this.resourcePacksGUI.getSelectedResourcePacks().get(0)).isServerPack() ? 1 : 0;
+				final int j = this.resourcePacksGUI.getSelectedResourcePacks().get(0).isServerPack() ? 1 : 0;
 				int l = this.getResourcePackFormat();
 
 				if (l == 3)
@@ -193,6 +195,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
 					String s1 = I18n.format("resourcePack.incompatible.confirm." + (l > 3 ? "new" : "old"));
 					this.mc.displayGuiScreen(new GuiYesNo(new GuiYesNoCallback()
 					{
+						@Override
 						public void confirmClicked(boolean result, int id)
 						{
 							List<ResourcePackListEntry> list2 = ResourcePackListEntry.this.resourcePacksGUI.getListContaining(ResourcePackListEntry.this);
@@ -242,6 +245,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
 		return false;
 	}
 
+	@Override
 	public void func_192633_a(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
 	{
 	}
@@ -250,6 +254,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
 	 * Fired when the mouse button is released. Arguments: index, x, y,
 	 * mouseEvent, relativeX, relativeY
 	 */
+	@Override
 	public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY)
 	{
 	}

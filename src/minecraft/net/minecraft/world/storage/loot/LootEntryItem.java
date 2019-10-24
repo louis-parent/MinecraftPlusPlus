@@ -27,6 +27,7 @@ public class LootEntryItem extends LootEntry
 		this.functions = functionsIn;
 	}
 
+	@Override
 	public void addLoot(Collection<ItemStack> stacks, Random rand, LootContext context)
 	{
 		ItemStack itemstack = new ItemStack(this.item);
@@ -60,6 +61,7 @@ public class LootEntryItem extends LootEntry
 		}
 	}
 
+	@Override
 	protected void serialize(JsonObject json, JsonSerializationContext context)
 	{
 		if (this.functions != null && this.functions.length > 0)
@@ -86,7 +88,7 @@ public class LootEntryItem extends LootEntry
 
 		if (object.has("functions"))
 		{
-			alootfunction = (LootFunction[]) JsonUtils.deserializeClass(object, "functions", deserializationContext, LootFunction[].class);
+			alootfunction = JsonUtils.deserializeClass(object, "functions", deserializationContext, LootFunction[].class);
 		}
 		else
 		{

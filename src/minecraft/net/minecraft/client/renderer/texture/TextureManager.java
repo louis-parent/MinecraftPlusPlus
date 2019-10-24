@@ -87,6 +87,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
 			crashreportcategory.addCrashSection("Resource location", textureLocation);
 			crashreportcategory.setDetail("Texture object class", new ICrashReportDetail<String>()
 			{
+				@Override
 				public String call() throws Exception
 				{
 					return textureObjf.getClass().getName();
@@ -123,6 +124,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
 		return resourcelocation;
 	}
 
+	@Override
 	public void tick()
 	{
 		for (ITickable itickable : this.listTickables)
@@ -141,13 +143,14 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
 		}
 	}
 
+	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager)
 	{
 		Iterator<Entry<ResourceLocation, ITextureObject>> iterator = this.mapTextureObjects.entrySet().iterator();
 
 		while (iterator.hasNext())
 		{
-			Entry<ResourceLocation, ITextureObject> entry = (Entry) iterator.next();
+			Entry<ResourceLocation, ITextureObject> entry = iterator.next();
 			ITextureObject itextureobject = entry.getValue();
 
 			if (itextureobject == TextureUtil.MISSING_TEXTURE)

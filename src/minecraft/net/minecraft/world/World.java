@@ -188,6 +188,7 @@ public abstract class World implements IBlockAccess
 		return this;
 	}
 
+	@Override
 	public Biome getBiome(final BlockPos pos)
 	{
 		if (this.isBlockLoaded(pos))
@@ -204,6 +205,7 @@ public abstract class World implements IBlockAccess
 				CrashReportCategory crashreportcategory = crashreport.makeCategory("Coordinates of biome request");
 				crashreportcategory.setDetail("Location", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
 						return CrashReportCategory.getCoordinateInfo(pos);
@@ -279,6 +281,7 @@ public abstract class World implements IBlockAccess
 	 * this only checks to see if the blocks material is set to air, meaning it
 	 * is possible for non-vanilla blocks to still pass this check.
 	 */
+	@Override
 	public boolean isAirBlock(BlockPos pos)
 	{
 		return this.getBlockState(pos).getMaterial() == Material.AIR;
@@ -474,7 +477,7 @@ public abstract class World implements IBlockAccess
 	{
 		for (int i = 0; i < this.eventListeners.size(); ++i)
 		{
-			((IWorldEventListener) this.eventListeners.get(i)).notifyBlockUpdate(this, pos, oldState, newState, flags);
+			this.eventListeners.get(i).notifyBlockUpdate(this, pos, oldState, newState, flags);
 		}
 	}
 
@@ -522,7 +525,7 @@ public abstract class World implements IBlockAccess
 	{
 		for (int i = 0; i < this.eventListeners.size(); ++i)
 		{
-			((IWorldEventListener) this.eventListeners.get(i)).markBlockRangeForRenderUpdate(x1, y1, z1, x2, y2, z2);
+			this.eventListeners.get(i).markBlockRangeForRenderUpdate(x1, y1, z1, x2, y2, z2);
 		}
 	}
 
@@ -600,6 +603,7 @@ public abstract class World implements IBlockAccess
 				CrashReportCategory crashreportcategory = crashreport.makeCategory("Block being updated");
 				crashreportcategory.setDetail("Source block type", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
 						try
@@ -636,6 +640,7 @@ public abstract class World implements IBlockAccess
 					CrashReportCategory crashreportcategory = crashreport.makeCategory("Block being updated");
 					crashreportcategory.setDetail("Source block type", new ICrashReportDetail<String>()
 					{
+						@Override
 						public String call() throws Exception
 						{
 							try
@@ -932,10 +937,11 @@ public abstract class World implements IBlockAccess
 	{
 		for (int i = 0; i < this.eventListeners.size(); ++i)
 		{
-			((IWorldEventListener) this.eventListeners.get(i)).notifyLightSet(pos);
+			this.eventListeners.get(i).notifyLightSet(pos);
 		}
 	}
 
+	@Override
 	public int getCombinedLight(BlockPos pos, int lightValue)
 	{
 		int i = this.getLightFromNeighborsFor(EnumSkyBlock.SKY, pos);
@@ -954,6 +960,7 @@ public abstract class World implements IBlockAccess
 		return this.provider.getLightBrightnessTable()[this.getLightFromNeighbors(pos)];
 	}
 
+	@Override
 	public IBlockState getBlockState(BlockPos pos)
 	{
 		if (this.isOutsideBuildHeight(pos))
@@ -1048,11 +1055,11 @@ public abstract class World implements IBlockAccess
 
 					if (i > l)
 					{
-						d0 = (double) l + 1.0D;
+						d0 = l + 1.0D;
 					}
 					else if (i < l)
 					{
-						d0 = (double) l + 0.0D;
+						d0 = l + 0.0D;
 					}
 					else
 					{
@@ -1061,11 +1068,11 @@ public abstract class World implements IBlockAccess
 
 					if (j > i1)
 					{
-						d1 = (double) i1 + 1.0D;
+						d1 = i1 + 1.0D;
 					}
 					else if (j < i1)
 					{
-						d1 = (double) i1 + 0.0D;
+						d1 = i1 + 0.0D;
 					}
 					else
 					{
@@ -1074,11 +1081,11 @@ public abstract class World implements IBlockAccess
 
 					if (k > j1)
 					{
-						d2 = (double) j1 + 1.0D;
+						d2 = j1 + 1.0D;
 					}
 					else if (k < j1)
 					{
-						d2 = (double) j1 + 0.0D;
+						d2 = j1 + 0.0D;
 					}
 					else
 					{
@@ -1184,14 +1191,14 @@ public abstract class World implements IBlockAccess
 	 */
 	public void playSound(@Nullable EntityPlayer player, BlockPos pos, SoundEvent soundIn, SoundCategory category, float volume, float pitch)
 	{
-		this.playSound(player, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, soundIn, category, volume, pitch);
+		this.playSound(player, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, soundIn, category, volume, pitch);
 	}
 
 	public void playSound(@Nullable EntityPlayer player, double x, double y, double z, SoundEvent soundIn, SoundCategory category, float volume, float pitch)
 	{
 		for (int i = 0; i < this.eventListeners.size(); ++i)
 		{
-			((IWorldEventListener) this.eventListeners.get(i)).playSoundToAllNearExcept(player, soundIn, category, x, y, z, volume, pitch);
+			this.eventListeners.get(i).playSoundToAllNearExcept(player, soundIn, category, x, y, z, volume, pitch);
 		}
 	}
 
@@ -1203,7 +1210,7 @@ public abstract class World implements IBlockAccess
 	{
 		for (int i = 0; i < this.eventListeners.size(); ++i)
 		{
-			((IWorldEventListener) this.eventListeners.get(i)).playRecord(soundEventIn, blockPositionIn);
+			this.eventListeners.get(i).playRecord(soundEventIn, blockPositionIn);
 		}
 	}
 
@@ -1216,7 +1223,7 @@ public abstract class World implements IBlockAccess
 	{
 		for (int i = 0; i < this.eventListeners.size(); ++i)
 		{
-			((IWorldEventListener) this.eventListeners.get(i)).func_190570_a(p_190523_1_, false, true, p_190523_2_, p_190523_4_, p_190523_6_, p_190523_8_, p_190523_10_, p_190523_12_, p_190523_14_);
+			this.eventListeners.get(i).func_190570_a(p_190523_1_, false, true, p_190523_2_, p_190523_4_, p_190523_6_, p_190523_8_, p_190523_10_, p_190523_12_, p_190523_14_);
 		}
 	}
 
@@ -1229,7 +1236,7 @@ public abstract class World implements IBlockAccess
 	{
 		for (int i = 0; i < this.eventListeners.size(); ++i)
 		{
-			((IWorldEventListener) this.eventListeners.get(i)).spawnParticle(particleID, ignoreRange, xCood, yCoord, zCoord, xSpeed, ySpeed, zSpeed, parameters);
+			this.eventListeners.get(i).spawnParticle(particleID, ignoreRange, xCood, yCoord, zCoord, xSpeed, ySpeed, zSpeed, parameters);
 		}
 	}
 
@@ -1280,7 +1287,7 @@ public abstract class World implements IBlockAccess
 	{
 		for (int i = 0; i < this.eventListeners.size(); ++i)
 		{
-			((IWorldEventListener) this.eventListeners.get(i)).onEntityAdded(entityIn);
+			this.eventListeners.get(i).onEntityAdded(entityIn);
 		}
 	}
 
@@ -1288,7 +1295,7 @@ public abstract class World implements IBlockAccess
 	{
 		for (int i = 0; i < this.eventListeners.size(); ++i)
 		{
-			((IWorldEventListener) this.eventListeners.get(i)).onEntityRemoved(entityIn);
+			this.eventListeners.get(i).onEntityRemoved(entityIn);
 		}
 	}
 
@@ -1512,8 +1519,8 @@ public abstract class World implements IBlockAccess
 		float f1 = 1.0F - (MathHelper.cos(f * ((float) Math.PI * 2F)) * 2.0F + 0.5F);
 		f1 = MathHelper.clamp(f1, 0.0F, 1.0F);
 		f1 = 1.0F - f1;
-		f1 = (float) ((double) f1 * (1.0D - (double) (this.getRainStrength(partialTicks) * 5.0F) / 16.0D));
-		f1 = (float) ((double) f1 * (1.0D - (double) (this.getThunderStrength(partialTicks) * 5.0F) / 16.0D));
+		f1 = (float) (f1 * (1.0D - this.getRainStrength(partialTicks) * 5.0F / 16.0D));
+		f1 = (float) (f1 * (1.0D - this.getThunderStrength(partialTicks) * 5.0F / 16.0D));
 		f1 = 1.0F - f1;
 		return (int) (f1 * 11.0F);
 	}
@@ -1527,8 +1534,8 @@ public abstract class World implements IBlockAccess
 		float f1 = 1.0F - (MathHelper.cos(f * ((float) Math.PI * 2F)) * 2.0F + 0.2F);
 		f1 = MathHelper.clamp(f1, 0.0F, 1.0F);
 		f1 = 1.0F - f1;
-		f1 = (float) ((double) f1 * (1.0D - (double) (this.getRainStrength(p_72971_1_) * 5.0F) / 16.0D));
-		f1 = (float) ((double) f1 * (1.0D - (double) (this.getThunderStrength(p_72971_1_) * 5.0F) / 16.0D));
+		f1 = (float) (f1 * (1.0D - this.getRainStrength(p_72971_1_) * 5.0F / 16.0D));
+		f1 = (float) (f1 * (1.0D - this.getThunderStrength(p_72971_1_) * 5.0F / 16.0D));
 		return f1 * 0.8F + 0.2F;
 	}
 
@@ -1547,9 +1554,9 @@ public abstract class World implements IBlockAccess
 		Biome biome = this.getBiome(blockpos);
 		float f2 = biome.getFloatTemperature(blockpos);
 		int l = biome.getSkyColorByTemp(f2);
-		float f3 = (float) (l >> 16 & 255) / 255.0F;
-		float f4 = (float) (l >> 8 & 255) / 255.0F;
-		float f5 = (float) (l & 255) / 255.0F;
+		float f3 = (l >> 16 & 255) / 255.0F;
+		float f4 = (l >> 8 & 255) / 255.0F;
+		float f5 = (l & 255) / 255.0F;
 		f3 = f3 * f1;
 		f4 = f4 * f1;
 		f5 = f5 * f1;
@@ -1577,7 +1584,7 @@ public abstract class World implements IBlockAccess
 
 		if (this.lastLightningBolt > 0)
 		{
-			float f12 = (float) this.lastLightningBolt - partialTicks;
+			float f12 = this.lastLightningBolt - partialTicks;
 
 			if (f12 > 1.0F)
 			{
@@ -1590,7 +1597,7 @@ public abstract class World implements IBlockAccess
 			f5 = f5 * (1.0F - f12) + 1.0F * f12;
 		}
 
-		return new Vec3d((double) f3, (double) f4, (double) f5);
+		return new Vec3d(f3, f4, f5);
 	}
 
 	/**
@@ -1657,7 +1664,7 @@ public abstract class World implements IBlockAccess
 			f4 = f4 * f8 + f10 * (1.0F - f8);
 		}
 
-		return new Vec3d((double) f2, (double) f3, (double) f4);
+		return new Vec3d(f2, f3, f4);
 	}
 
 	/**
@@ -2029,12 +2036,12 @@ public abstract class World implements IBlockAccess
 			entityIn.posZ = entityIn.lastTickPosZ;
 		}
 
-		if (Double.isNaN((double) entityIn.rotationPitch) || Double.isInfinite((double) entityIn.rotationPitch))
+		if (Double.isNaN(entityIn.rotationPitch) || Double.isInfinite(entityIn.rotationPitch))
 		{
 			entityIn.rotationPitch = entityIn.prevRotationPitch;
 		}
 
-		if (Double.isNaN((double) entityIn.rotationYaw) || Double.isInfinite((double) entityIn.rotationYaw))
+		if (Double.isNaN(entityIn.rotationYaw) || Double.isInfinite(entityIn.rotationYaw))
 		{
 			entityIn.rotationYaw = entityIn.prevRotationYaw;
 		}
@@ -2248,9 +2255,9 @@ public abstract class World implements IBlockAccess
 
 						if (iblockstate.getMaterial() == materialIn)
 						{
-							double d0 = (double) ((float) (l1 + 1) - BlockLiquid.getLiquidHeightPercent(((Integer) iblockstate.getValue(BlockLiquid.LEVEL)).intValue()));
+							double d0 = l1 + 1 - BlockLiquid.getLiquidHeightPercent(iblockstate.getValue(BlockLiquid.LEVEL).intValue());
 
-							if ((double) l >= d0)
+							if (l >= d0)
 							{
 								flag = true;
 								vec3d = block.modifyAcceleration(this, blockpos$pooledmutableblockpos, entityIn, vec3d);
@@ -2344,15 +2351,15 @@ public abstract class World implements IBlockAccess
 			int i = 0;
 			int j = 0;
 
-			for (float f = 0.0F; f <= 1.0F; f = (float) ((double) f + d0))
+			for (float f = 0.0F; f <= 1.0F; f = (float) (f + d0))
 			{
-				for (float f1 = 0.0F; f1 <= 1.0F; f1 = (float) ((double) f1 + d1))
+				for (float f1 = 0.0F; f1 <= 1.0F; f1 = (float) (f1 + d1))
 				{
-					for (float f2 = 0.0F; f2 <= 1.0F; f2 = (float) ((double) f2 + d2))
+					for (float f2 = 0.0F; f2 <= 1.0F; f2 = (float) (f2 + d2))
 					{
-						double d5 = bb.minX + (bb.maxX - bb.minX) * (double) f;
-						double d6 = bb.minY + (bb.maxY - bb.minY) * (double) f1;
-						double d7 = bb.minZ + (bb.maxZ - bb.minZ) * (double) f2;
+						double d5 = bb.minX + (bb.maxX - bb.minX) * f;
+						double d6 = bb.minY + (bb.maxY - bb.minY) * f1;
+						double d7 = bb.minZ + (bb.maxZ - bb.minZ) * f2;
 
 						if (this.rayTraceBlocks(new Vec3d(d5 + d3, d6, d7 + d4), vec) == null)
 						{
@@ -2409,6 +2416,7 @@ public abstract class World implements IBlockAccess
 		return this.chunkProvider.makeString();
 	}
 
+	@Override
 	@Nullable
 	public TileEntity getTileEntity(BlockPos pos)
 	{
@@ -2673,11 +2681,11 @@ public abstract class World implements IBlockAccess
 
 				if (this.worldInfo.isThundering())
 				{
-					this.thunderingStrength = (float) ((double) this.thunderingStrength + 0.01D);
+					this.thunderingStrength = (float) (this.thunderingStrength + 0.01D);
 				}
 				else
 				{
-					this.thunderingStrength = (float) ((double) this.thunderingStrength - 0.01D);
+					this.thunderingStrength = (float) (this.thunderingStrength - 0.01D);
 				}
 
 				this.thunderingStrength = MathHelper.clamp(this.thunderingStrength, 0.0F, 1.0F);
@@ -2685,11 +2693,11 @@ public abstract class World implements IBlockAccess
 
 				if (this.worldInfo.isRaining())
 				{
-					this.rainingStrength = (float) ((double) this.rainingStrength + 0.01D);
+					this.rainingStrength = (float) (this.rainingStrength + 0.01D);
 				}
 				else
 				{
-					this.rainingStrength = (float) ((double) this.rainingStrength - 0.01D);
+					this.rainingStrength = (float) (this.rainingStrength - 0.01D);
 				}
 
 				this.rainingStrength = MathHelper.clamp(this.rainingStrength, 0.0F, 1.0F);
@@ -2742,7 +2750,7 @@ public abstract class World implements IBlockAccess
 				IBlockState iblockstate = this.getBlockState(pos);
 				Block block = iblockstate.getBlock();
 
-				if ((block == Blocks.WATER || block == Blocks.FLOWING_WATER) && ((Integer) iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0)
+				if ((block == Blocks.WATER || block == Blocks.FLOWING_WATER) && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0)
 				{
 					if (!noWaterAdj)
 					{
@@ -3236,11 +3244,13 @@ public abstract class World implements IBlockAccess
 		this.seaLevel = seaLevelIn;
 	}
 
+	@Override
 	public int getStrongPower(BlockPos pos, EnumFacing direction)
 	{
 		return this.getBlockState(pos).getStrongPower(this, pos, direction);
 	}
 
+	@Override
 	public WorldType getWorldType()
 	{
 		return this.worldInfo.getTerrainType();
@@ -3444,7 +3454,7 @@ public abstract class World implements IBlockAccess
 	@Nullable
 	public EntityPlayer getNearestAttackablePlayer(BlockPos pos, double maxXZDistance, double maxYDistance)
 	{
-		return this.getNearestAttackablePlayer((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F), maxXZDistance, maxYDistance, (Function) null, (Predicate) null);
+		return this.getNearestAttackablePlayer(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, maxXZDistance, maxYDistance, (Function) null, (Predicate) null);
 	}
 
 	@Nullable
@@ -3476,12 +3486,12 @@ public abstract class World implements IBlockAccess
 						f = 0.1F;
 					}
 
-					d2 *= (double) (0.7F * f);
+					d2 *= 0.7F * f;
 				}
 
 				if (playerToDouble != null)
 				{
-					d2 *= ((Double) MoreObjects.firstNonNull(playerToDouble.apply(entityplayer1), Double.valueOf(1.0D))).doubleValue();
+					d2 *= MoreObjects.firstNonNull(playerToDouble.apply(entityplayer1), Double.valueOf(1.0D)).doubleValue();
 				}
 
 				if ((maxYDistance < 0.0D || Math.abs(entityplayer1.posY - posY) < maxYDistance * maxYDistance) && (maxXZDistance < 0.0D || d1 < d2 * d2) && (d0 == -1.0D || d1 < d0))
@@ -3714,7 +3724,7 @@ public abstract class World implements IBlockAccess
 	 */
 	public boolean isThundering()
 	{
-		return (double) this.getThunderStrength(1.0F) > 0.9D;
+		return this.getThunderStrength(1.0F) > 0.9D;
 	}
 
 	/**
@@ -3722,7 +3732,7 @@ public abstract class World implements IBlockAccess
 	 */
 	public boolean isRaining()
 	{
-		return (double) this.getRainStrength(1.0F) > 0.2D;
+		return this.getRainStrength(1.0F) > 0.2D;
 	}
 
 	/**
@@ -3803,7 +3813,7 @@ public abstract class World implements IBlockAccess
 	{
 		for (int i = 0; i < this.eventListeners.size(); ++i)
 		{
-			((IWorldEventListener) this.eventListeners.get(i)).broadcastSound(id, pos, data);
+			this.eventListeners.get(i).broadcastSound(id, pos, data);
 		}
 	}
 
@@ -3818,7 +3828,7 @@ public abstract class World implements IBlockAccess
 		{
 			for (int i = 0; i < this.eventListeners.size(); ++i)
 			{
-				((IWorldEventListener) this.eventListeners.get(i)).playEvent(player, type, pos, data);
+				this.eventListeners.get(i).playEvent(player, type, pos, data);
 			}
 		}
 		catch (Throwable throwable)
@@ -3854,7 +3864,7 @@ public abstract class World implements IBlockAccess
 	 */
 	public Random setRandomSeed(int p_72843_1_, int p_72843_2_, int p_72843_3_)
 	{
-		long i = (long) p_72843_1_ * 341873128712L + (long) p_72843_2_ * 132897987541L + this.getWorldInfo().getSeed() + (long) p_72843_3_;
+		long i = p_72843_1_ * 341873128712L + p_72843_2_ * 132897987541L + this.getWorldInfo().getSeed() + p_72843_3_;
 		this.rand.setSeed(i);
 		return this.rand;
 	}
@@ -3876,6 +3886,7 @@ public abstract class World implements IBlockAccess
 		crashreportcategory.addCrashSection("Level name", this.worldInfo == null ? "????" : this.worldInfo.getWorldName());
 		crashreportcategory.setDetail("All players", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call()
 			{
 				return World.this.playerEntities.size() + " total; " + World.this.playerEntities;
@@ -3883,6 +3894,7 @@ public abstract class World implements IBlockAccess
 		});
 		crashreportcategory.setDetail("Chunk stats", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call()
 			{
 				return World.this.chunkProvider.makeString();

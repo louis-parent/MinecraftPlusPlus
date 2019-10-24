@@ -119,6 +119,7 @@ public class ServerCommandManager extends CommandHandler implements ICommandList
 	/**
 	 * Send an informative message to the server operators
 	 */
+	@Override
 	public void notifyListener(ICommandSender sender, ICommand command, int flags, String translationKey, Object... translationArgs)
 	{
 		boolean flag = true;
@@ -168,6 +169,7 @@ public class ServerCommandManager extends CommandHandler implements ICommandList
 		}
 	}
 
+	@Override
 	protected MinecraftServer getServer()
 	{
 		return this.server;

@@ -30,6 +30,7 @@ public class ItemColors
 		ItemColors itemcolors = new ItemColors();
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
+			@Override
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				return tintIndex > 0 ? -1 : ((ItemArmor) stack.getItem()).getColor(stack);
@@ -37,6 +38,7 @@ public class ItemColors
 		}, Items.LEATHER_HELMET, Items.LEATHER_CHESTPLATE, Items.LEATHER_LEGGINGS, Items.LEATHER_BOOTS);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
+			@Override
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = BlockDoublePlant.EnumPlantType.byMetadata(stack.getMetadata());
@@ -45,6 +47,7 @@ public class ItemColors
 		}, Blocks.DOUBLE_PLANT);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
+			@Override
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				if (tintIndex != 1)
@@ -91,6 +94,7 @@ public class ItemColors
 		}, Items.FIREWORK_CHARGE);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
+			@Override
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				return tintIndex > 0 ? -1 : PotionUtils.func_190932_c(stack);
@@ -98,6 +102,7 @@ public class ItemColors
 		}, Items.POTIONITEM, Items.SPLASH_POTION, Items.LINGERING_POTION);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
+			@Override
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				EntityList.EntityEggInfo entitylist$entityegginfo = EntityList.ENTITY_EGGS.get(ItemMonsterPlacer.func_190908_h(stack));
@@ -114,6 +119,7 @@ public class ItemColors
 		}, Items.SPAWN_EGG);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
+			@Override
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
@@ -122,6 +128,7 @@ public class ItemColors
 		}, Blocks.GRASS, Blocks.TALLGRASS, Blocks.VINE, Blocks.LEAVES, Blocks.LEAVES2, Blocks.WATERLILY);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
+			@Override
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				return tintIndex == 0 ? PotionUtils.func_190932_c(stack) : -1;
@@ -129,6 +136,7 @@ public class ItemColors
 		}, Items.TIPPED_ARROW);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
+			@Override
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				return tintIndex == 0 ? -1 : ItemMap.func_190907_h(stack);

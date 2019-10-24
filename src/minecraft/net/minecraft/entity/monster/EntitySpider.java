@@ -53,6 +53,7 @@ public class EntitySpider extends EntityMob
 		EntityLiving.registerFixesMob(fixer, EntitySpider.class);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(1, new EntityAISwimming(this));
@@ -70,19 +71,22 @@ public class EntitySpider extends EntityMob
 	 * Returns the Y offset from the entity's position for any entity riding
 	 * this one.
 	 */
+	@Override
 	public double getMountedYOffset()
 	{
-		return (double) (this.height * 0.5F);
+		return this.height * 0.5F;
 	}
 
 	/**
 	 * Returns new PathNavigateGround instance
 	 */
+	@Override
 	protected PathNavigate getNewNavigator(World worldIn)
 	{
 		return new PathNavigateClimber(this, worldIn);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -92,6 +96,7 @@ public class EntitySpider extends EntityMob
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -102,6 +107,7 @@ public class EntitySpider extends EntityMob
 		}
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -109,26 +115,31 @@ public class EntitySpider extends EntityMob
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_SPIDER_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_SPIDER_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_SPIDER_DEATH;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -138,6 +149,7 @@ public class EntitySpider extends EntityMob
 	/**
 	 * returns true if this entity is by a ladder, false otherwise
 	 */
+	@Override
 	public boolean isOnLadder()
 	{
 		return this.isBesideClimbableBlock();
@@ -146,6 +158,7 @@ public class EntitySpider extends EntityMob
 	/**
 	 * Sets the Entity inside a web block.
 	 */
+	@Override
 	public void setInWeb()
 	{
 	}
@@ -153,11 +166,13 @@ public class EntitySpider extends EntityMob
 	/**
 	 * Get this Entity's EnumCreatureAttribute
 	 */
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
+	@Override
 	public boolean isPotionApplicable(PotionEffect potioneffectIn)
 	{
 		return potioneffectIn.getPotion() == MobEffects.POISON ? false : super.isPotionApplicable(potioneffectIn);
@@ -169,7 +184,7 @@ public class EntitySpider extends EntityMob
 	 */
 	public boolean isBesideClimbableBlock()
 	{
-		return (((Byte) this.dataManager.get(CLIMBING)).byteValue() & 1) != 0;
+		return (this.dataManager.get(CLIMBING).byteValue() & 1) != 0;
 	}
 
 	/**
@@ -178,7 +193,7 @@ public class EntitySpider extends EntityMob
 	 */
 	public void setBesideClimbableBlock(boolean climbing)
 	{
-		byte b0 = ((Byte) this.dataManager.get(CLIMBING)).byteValue();
+		byte b0 = this.dataManager.get(CLIMBING).byteValue();
 
 		if (climbing)
 		{
@@ -192,6 +207,7 @@ public class EntitySpider extends EntityMob
 		this.dataManager.set(CLIMBING, Byte.valueOf(b0));
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -235,6 +251,7 @@ public class EntitySpider extends EntityMob
 		return livingdata;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return 0.65F;
@@ -247,6 +264,7 @@ public class EntitySpider extends EntityMob
 			super(spider, 1.0D, true);
 		}
 
+		@Override
 		public boolean continueExecuting()
 		{
 			float f = this.attacker.getBrightness();
@@ -262,9 +280,10 @@ public class EntitySpider extends EntityMob
 			}
 		}
 
+		@Override
 		protected double getAttackReachSqr(EntityLivingBase attackTarget)
 		{
-			return (double) (4.0F + attackTarget.width);
+			return 4.0F + attackTarget.width;
 		}
 	}
 
@@ -275,6 +294,7 @@ public class EntitySpider extends EntityMob
 			super(spider, classTarget, true);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			float f = this.taskOwner.getBrightness();

@@ -47,11 +47,13 @@ public class BlockAnvil extends BlockFalling
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;
@@ -61,6 +63,7 @@ public class BlockAnvil extends BlockFalling
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
@@ -70,6 +73,7 @@ public class BlockAnvil extends BlockFalling
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		EnumFacing enumfacing = placer.getHorizontalFacing().rotateY();
@@ -94,6 +98,7 @@ public class BlockAnvil extends BlockFalling
 		}
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		if (!worldIn.isRemote)
@@ -109,14 +114,16 @@ public class BlockAnvil extends BlockFalling
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((Integer) state.getValue(DAMAGE)).intValue();
+		return state.getValue(DAMAGE).intValue();
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+		EnumFacing enumfacing = state.getValue(FACING);
 		return enumfacing.getAxis() == EnumFacing.Axis.X ? X_AXIS_AABB : Z_AXIS_AABB;
 	}
 
@@ -124,6 +131,7 @@ public class BlockAnvil extends BlockFalling
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		tab.add(new ItemStack(this));
@@ -131,21 +139,25 @@ public class BlockAnvil extends BlockFalling
 		tab.add(new ItemStack(this, 1, 2));
 	}
 
+	@Override
 	protected void onStartFalling(EntityFallingBlock fallingEntity)
 	{
 		fallingEntity.setHurtEntities(true);
 	}
 
+	@Override
 	public void onEndFalling(World worldIn, BlockPos pos, IBlockState p_176502_3_, IBlockState p_176502_4_)
 	{
 		worldIn.playEvent(1031, pos, 0);
 	}
 
-	public void func_190974_b(World p_190974_1_, BlockPos p_190974_2_)
+	@Override
+	public void func_190974_b(World world, BlockPos pos)
 	{
-		p_190974_1_.playEvent(1029, p_190974_2_, 0);
+		world.playEvent(1029, pos, 0);
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return true;
@@ -154,6 +166,7 @@ public class BlockAnvil extends BlockFalling
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta & 3)).withProperty(DAMAGE, Integer.valueOf((meta & 15) >> 2));
@@ -162,11 +175,12 @@ public class BlockAnvil extends BlockFalling
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((EnumFacing) state.getValue(FACING)).getHorizontalIndex();
-		i = i | ((Integer) state.getValue(DAMAGE)).intValue() << 2;
+		i = i | state.getValue(FACING).getHorizontalIndex();
+		i = i | state.getValue(DAMAGE).intValue() << 2;
 		return i;
 	}
 
@@ -174,11 +188,13 @@ public class BlockAnvil extends BlockFalling
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.getBlock() != this ? state : state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.getBlock() != this ? state : state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING, DAMAGE });
@@ -195,26 +211,31 @@ public class BlockAnvil extends BlockFalling
 			this.position = pos;
 		}
 
+		@Override
 		public String getName()
 		{
 			return "anvil";
 		}
 
+		@Override
 		public boolean hasCustomName()
 		{
 			return false;
 		}
 
+		@Override
 		public ITextComponent getDisplayName()
 		{
 			return new TextComponentTranslation(Blocks.ANVIL.getUnlocalizedName() + ".name", new Object[0]);
 		}
 
+		@Override
 		public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 		{
 			return new ContainerRepair(playerInventory, this.world, this.position, playerIn);
 		}
 
+		@Override
 		public String getGuiID()
 		{
 			return "minecraft:anvil";

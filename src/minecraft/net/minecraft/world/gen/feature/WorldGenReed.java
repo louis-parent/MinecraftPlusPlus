@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 
 public class WorldGenReed extends WorldGenerator
 {
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		for (int i = 0; i < 20; ++i)

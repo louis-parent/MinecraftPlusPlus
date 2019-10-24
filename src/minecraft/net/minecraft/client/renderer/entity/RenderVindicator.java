@@ -18,6 +18,7 @@ public class RenderVindicator extends RenderLiving<EntityMob>
 		super(p_i47189_1_, new ModelIllager(0.0F, 0.0F, 64, 64), 0.5F);
 		this.addLayer(new LayerHeldItem(this)
 		{
+			@Override
 			public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 			{
 				if (((EntityVindicator) entitylivingbaseIn).func_190639_o())
@@ -26,6 +27,7 @@ public class RenderVindicator extends RenderLiving<EntityMob>
 				}
 			}
 
+			@Override
 			protected void func_191361_a(EnumHandSide p_191361_1_)
 			{
 				((ModelIllager) this.livingEntityRenderer.getMainModel()).func_191216_a(p_191361_1_).postRender(0.0625F);
@@ -36,6 +38,7 @@ public class RenderVindicator extends RenderLiving<EntityMob>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityMob entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -45,6 +48,7 @@ public class RenderVindicator extends RenderLiving<EntityMob>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityMob entity)
 	{
 		return field_191357_a;
@@ -54,6 +58,7 @@ public class RenderVindicator extends RenderLiving<EntityMob>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityMob entitylivingbaseIn, float partialTickTime)
 	{
 		float f = 0.9375F;

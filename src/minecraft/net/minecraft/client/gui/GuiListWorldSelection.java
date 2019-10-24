@@ -43,7 +43,7 @@ public class GuiListWorldSelection extends GuiListExtended
 		}
 		catch (AnvilConverterException anvilconverterexception)
 		{
-			LOGGER.error("Couldn't load level list", (Throwable) anvilconverterexception);
+			LOGGER.error("Couldn't load level list", anvilconverterexception);
 			this.mc.displayGuiScreen(new GuiErrorScreen(I18n.format("selectWorld.unable_to_load"), anvilconverterexception.getMessage()));
 			return;
 		}
@@ -59,16 +59,19 @@ public class GuiListWorldSelection extends GuiListExtended
 	/**
 	 * Gets the IGuiListEntry object for the given index
 	 */
+	@Override
 	public GuiListWorldSelectionEntry getListEntry(int index)
 	{
 		return this.entries.get(index);
 	}
 
+	@Override
 	protected int getSize()
 	{
 		return this.entries.size();
 	}
 
+	@Override
 	protected int getScrollBarX()
 	{
 		return super.getScrollBarX() + 20;
@@ -77,6 +80,7 @@ public class GuiListWorldSelection extends GuiListExtended
 	/**
 	 * Gets the width of the list
 	 */
+	@Override
 	public int getListWidth()
 	{
 		return super.getListWidth() + 50;
@@ -91,6 +95,7 @@ public class GuiListWorldSelection extends GuiListExtended
 	/**
 	 * Returns true if the element passed in is currently selected
 	 */
+	@Override
 	protected boolean isSelected(int slotIndex)
 	{
 		return slotIndex == this.selectedIdx;

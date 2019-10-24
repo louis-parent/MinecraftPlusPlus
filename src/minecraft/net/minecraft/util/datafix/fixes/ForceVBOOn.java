@@ -5,11 +5,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class ForceVBOOn implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 505;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		compound.setString("useVbo", "true");

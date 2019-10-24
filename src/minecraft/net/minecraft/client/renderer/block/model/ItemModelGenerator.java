@@ -64,8 +64,8 @@ public class ItemModelGenerator
 
 	private List<BlockPart> getBlockParts(TextureAtlasSprite p_178397_1_, String p_178397_2_, int p_178397_3_)
 	{
-		float f = (float) p_178397_1_.getIconWidth();
-		float f1 = (float) p_178397_1_.getIconHeight();
+		float f = p_178397_1_.getIconWidth();
+		float f1 = p_178397_1_.getIconHeight();
 		List<BlockPart> list = Lists.<BlockPart>newArrayList();
 
 		for (ItemModelGenerator.Span itemmodelgenerator$span : this.getSpans(p_178397_1_))
@@ -80,9 +80,9 @@ public class ItemModelGenerator
 			float f9 = 0.0F;
 			float f10 = 0.0F;
 			float f11 = 0.0F;
-			float f12 = (float) itemmodelgenerator$span.getMin();
-			float f13 = (float) itemmodelgenerator$span.getMax();
-			float f14 = (float) itemmodelgenerator$span.getAnchor();
+			float f12 = itemmodelgenerator$span.getMin();
+			float f13 = itemmodelgenerator$span.getMax();
+			float f14 = itemmodelgenerator$span.getAnchor();
 			ItemModelGenerator.SpanFacing itemmodelgenerator$spanfacing = itemmodelgenerator$span.getFacing();
 
 			switch (itemmodelgenerator$spanfacing)

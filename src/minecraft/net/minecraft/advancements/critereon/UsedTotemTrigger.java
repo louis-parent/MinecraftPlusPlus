@@ -21,11 +21,13 @@ public class UsedTotemTrigger implements ICriterionTrigger<UsedTotemTrigger.Inst
 	private static final ResourceLocation field_193188_a = new ResourceLocation("used_totem");
 	private final Map<PlayerAdvancements, UsedTotemTrigger.Listeners> field_193189_b = Maps.<PlayerAdvancements, UsedTotemTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_193188_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<UsedTotemTrigger.Instance> p_192165_2_)
 	{
 		UsedTotemTrigger.Listeners usedtotemtrigger$listeners = this.field_193189_b.get(p_192165_1_);
@@ -39,6 +41,7 @@ public class UsedTotemTrigger implements ICriterionTrigger<UsedTotemTrigger.Inst
 		usedtotemtrigger$listeners.func_193508_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<UsedTotemTrigger.Instance> p_192164_2_)
 	{
 		UsedTotemTrigger.Listeners usedtotemtrigger$listeners = this.field_193189_b.get(p_192164_1_);
@@ -54,11 +57,13 @@ public class UsedTotemTrigger implements ICriterionTrigger<UsedTotemTrigger.Inst
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_193189_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public UsedTotemTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		ItemPredicate itempredicate = ItemPredicate.func_192492_a(p_192166_1_.get("item"));
@@ -122,7 +127,7 @@ public class UsedTotemTrigger implements ICriterionTrigger<UsedTotemTrigger.Inst
 
 			for (ICriterionTrigger.Listener<UsedTotemTrigger.Instance> listener : this.field_193511_b)
 			{
-				if (((UsedTotemTrigger.Instance) listener.func_192158_a()).func_193218_a(p_193509_1_))
+				if (listener.func_192158_a().func_193218_a(p_193509_1_))
 				{
 					if (list == null)
 					{

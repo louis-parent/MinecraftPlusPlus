@@ -20,12 +20,14 @@ public class ParticleSuspendedTown extends Particle
 		this.particleMaxAge = (int) (20.0D / (Math.random() * 0.8D + 0.2D));
 	}
 
+	@Override
 	public void moveEntity(double x, double y, double z)
 	{
 		this.setEntityBoundingBox(this.getEntityBoundingBox().offset(x, y, z));
 		this.resetPositionToBB();
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -44,6 +46,7 @@ public class ParticleSuspendedTown extends Particle
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleSuspendedTown(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
@@ -52,6 +55,7 @@ public class ParticleSuspendedTown extends Particle
 
 	public static class HappyVillagerFactory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			Particle particle = new ParticleSuspendedTown(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);

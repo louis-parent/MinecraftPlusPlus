@@ -33,6 +33,7 @@ public class GuiSnooper extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.title = I18n.format("options.snooper.title");
@@ -44,7 +45,7 @@ public class GuiSnooper extends GuiScreen
 			list.add(s1);
 		}
 
-		this.desc = (String[]) list.toArray(new String[list.size()]);
+		this.desc = list.toArray(new String[list.size()]);
 		this.keys.clear();
 		this.values.clear();
 		this.toggleButton = this.addButton(new GuiButton(1, this.width / 2 - 152, this.height - 30, 150, 20, this.game_settings_2.getKeyBinding(GameSettings.Options.SNOOPER_ENABLED)));
@@ -53,7 +54,7 @@ public class GuiSnooper extends GuiScreen
 
 		for (Entry<String, String> entry : (new TreeMap<String, String>(this.mc.getPlayerUsageSnooper().getCurrentStats())).entrySet())
 		{
-			this.keys.add((flag ? "C " : "") + (String) entry.getKey());
+			this.keys.add((flag ? "C " : "") + entry.getKey());
 			this.values.add(this.fontRendererObj.trimStringToWidth(entry.getValue(), this.width - 220));
 		}
 
@@ -61,7 +62,7 @@ public class GuiSnooper extends GuiScreen
 		{
 			for (Entry<String, String> entry1 : (new TreeMap<String, String>(this.mc.getIntegratedServer().getPlayerUsageSnooper().getCurrentStats())).entrySet())
 			{
-				this.keys.add("S " + (String) entry1.getKey());
+				this.keys.add("S " + entry1.getKey());
 				this.values.add(this.fontRendererObj.trimStringToWidth(entry1.getValue(), this.width - 220));
 			}
 		}
@@ -72,6 +73,7 @@ public class GuiSnooper extends GuiScreen
 	/**
 	 * Handles mouse input.
 	 */
+	@Override
 	public void handleMouseInput() throws IOException
 	{
 		super.handleMouseInput();
@@ -82,6 +84,7 @@ public class GuiSnooper extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.enabled)
@@ -104,6 +107,7 @@ public class GuiSnooper extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
@@ -127,30 +131,36 @@ public class GuiSnooper extends GuiScreen
 			super(GuiSnooper.this.mc, GuiSnooper.this.width, GuiSnooper.this.height, 80, GuiSnooper.this.height - 40, GuiSnooper.this.fontRendererObj.FONT_HEIGHT + 1);
 		}
 
+		@Override
 		protected int getSize()
 		{
 			return GuiSnooper.this.keys.size();
 		}
 
+		@Override
 		protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 		{
 		}
 
+		@Override
 		protected boolean isSelected(int slotIndex)
 		{
 			return false;
 		}
 
+		@Override
 		protected void drawBackground()
 		{
 		}
 
+		@Override
 		protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 		{
 			GuiSnooper.this.fontRendererObj.drawString(GuiSnooper.this.keys.get(p_192637_1_), 10, p_192637_3_, 16777215);
 			GuiSnooper.this.fontRendererObj.drawString(GuiSnooper.this.values.get(p_192637_1_), 230, p_192637_3_, 16777215);
 		}
 
+		@Override
 		protected int getScrollBarX()
 		{
 			return this.width - 10;

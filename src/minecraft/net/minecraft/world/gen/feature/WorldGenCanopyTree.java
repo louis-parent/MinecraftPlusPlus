@@ -24,6 +24,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
 		super(notify);
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		int i = rand.nextInt(3) + rand.nextInt(2) + 6;

@@ -18,6 +18,7 @@ public class GuiSimpleScrolledSelectionListProxy extends GuiSlot
 		this.realmsScrolledSelectionList = p_i45525_1_;
 	}
 
+	@Override
 	protected int getSize()
 	{
 		return this.realmsScrolledSelectionList.getItemCount();
@@ -27,6 +28,7 @@ public class GuiSimpleScrolledSelectionListProxy extends GuiSlot
 	 * The element in the slot that was clicked, boolean for whether it was
 	 * double clicked or not
 	 */
+	@Override
 	protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 	{
 		this.realmsScrolledSelectionList.selectItem(slotIndex, isDoubleClick, mouseX, mouseY);
@@ -35,16 +37,19 @@ public class GuiSimpleScrolledSelectionListProxy extends GuiSlot
 	/**
 	 * Returns true if the element passed in is currently selected
 	 */
+	@Override
 	protected boolean isSelected(int slotIndex)
 	{
 		return this.realmsScrolledSelectionList.isSelectedItem(slotIndex);
 	}
 
+	@Override
 	protected void drawBackground()
 	{
 		this.realmsScrolledSelectionList.renderBackground();
 	}
 
+	@Override
 	protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 	{
 		this.realmsScrolledSelectionList.renderItem(p_192637_1_, p_192637_2_, p_192637_3_, p_192637_4_, p_192637_5_, p_192637_6_);
@@ -68,21 +73,25 @@ public class GuiSimpleScrolledSelectionListProxy extends GuiSlot
 	/**
 	 * Return the height of the content being scrolled
 	 */
+	@Override
 	protected int getContentHeight()
 	{
 		return this.realmsScrolledSelectionList.getMaxPosition();
 	}
 
+	@Override
 	protected int getScrollBarX()
 	{
 		return this.realmsScrolledSelectionList.getScrollbarPosition();
 	}
 
+	@Override
 	public void handleMouseInput()
 	{
 		super.handleMouseInput();
 	}
 
+	@Override
 	public void drawScreen(int mouseXIn, int mouseYIn, float partialTicks)
 	{
 		if (this.visible)
@@ -128,22 +137,22 @@ public class GuiSimpleScrolledSelectionListProxy extends GuiSlot
 				}
 
 				bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-				bufferbuilder.pos((double) i, (double) this.bottom, 0.0D).tex(0.0D, 1.0D).color(0, 0, 0, 255).endVertex();
-				bufferbuilder.pos((double) j, (double) this.bottom, 0.0D).tex(1.0D, 1.0D).color(0, 0, 0, 255).endVertex();
-				bufferbuilder.pos((double) j, (double) this.top, 0.0D).tex(1.0D, 0.0D).color(0, 0, 0, 255).endVertex();
-				bufferbuilder.pos((double) i, (double) this.top, 0.0D).tex(0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
+				bufferbuilder.pos(i, this.bottom, 0.0D).tex(0.0D, 1.0D).color(0, 0, 0, 255).endVertex();
+				bufferbuilder.pos(j, this.bottom, 0.0D).tex(1.0D, 1.0D).color(0, 0, 0, 255).endVertex();
+				bufferbuilder.pos(j, this.top, 0.0D).tex(1.0D, 0.0D).color(0, 0, 0, 255).endVertex();
+				bufferbuilder.pos(i, this.top, 0.0D).tex(0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
 				tessellator.draw();
 				bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-				bufferbuilder.pos((double) i, (double) (k1 + j1), 0.0D).tex(0.0D, 1.0D).color(128, 128, 128, 255).endVertex();
-				bufferbuilder.pos((double) j, (double) (k1 + j1), 0.0D).tex(1.0D, 1.0D).color(128, 128, 128, 255).endVertex();
-				bufferbuilder.pos((double) j, (double) k1, 0.0D).tex(1.0D, 0.0D).color(128, 128, 128, 255).endVertex();
-				bufferbuilder.pos((double) i, (double) k1, 0.0D).tex(0.0D, 0.0D).color(128, 128, 128, 255).endVertex();
+				bufferbuilder.pos(i, k1 + j1, 0.0D).tex(0.0D, 1.0D).color(128, 128, 128, 255).endVertex();
+				bufferbuilder.pos(j, k1 + j1, 0.0D).tex(1.0D, 1.0D).color(128, 128, 128, 255).endVertex();
+				bufferbuilder.pos(j, k1, 0.0D).tex(1.0D, 0.0D).color(128, 128, 128, 255).endVertex();
+				bufferbuilder.pos(i, k1, 0.0D).tex(0.0D, 0.0D).color(128, 128, 128, 255).endVertex();
 				tessellator.draw();
 				bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-				bufferbuilder.pos((double) i, (double) (k1 + j1 - 1), 0.0D).tex(0.0D, 1.0D).color(192, 192, 192, 255).endVertex();
-				bufferbuilder.pos((double) (j - 1), (double) (k1 + j1 - 1), 0.0D).tex(1.0D, 1.0D).color(192, 192, 192, 255).endVertex();
-				bufferbuilder.pos((double) (j - 1), (double) k1, 0.0D).tex(1.0D, 0.0D).color(192, 192, 192, 255).endVertex();
-				bufferbuilder.pos((double) i, (double) k1, 0.0D).tex(0.0D, 0.0D).color(192, 192, 192, 255).endVertex();
+				bufferbuilder.pos(i, k1 + j1 - 1, 0.0D).tex(0.0D, 1.0D).color(192, 192, 192, 255).endVertex();
+				bufferbuilder.pos(j - 1, k1 + j1 - 1, 0.0D).tex(1.0D, 1.0D).color(192, 192, 192, 255).endVertex();
+				bufferbuilder.pos(j - 1, k1, 0.0D).tex(1.0D, 0.0D).color(192, 192, 192, 255).endVertex();
+				bufferbuilder.pos(i, k1, 0.0D).tex(0.0D, 0.0D).color(192, 192, 192, 255).endVertex();
 				tessellator.draw();
 			}
 

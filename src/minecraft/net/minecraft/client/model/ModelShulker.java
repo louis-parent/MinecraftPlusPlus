@@ -31,10 +31,11 @@ public class ModelShulker extends ModelBase
 	 * the time(so that arms and legs swing back and forth) and par2 represents
 	 * how "far" arms and legs can swing at most.
 	 */
+	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
 		EntityShulker entityshulker = (EntityShulker) entityIn;
-		float f = ageInTicks - (float) entityshulker.ticksExisted;
+		float f = ageInTicks - entityshulker.ticksExisted;
 		float f1 = (0.5F + entityshulker.getClientPeekAmount(f)) * (float) Math.PI;
 		float f2 = -1.0F + MathHelper.sin(f1);
 		float f3 = 0.0F;
@@ -62,6 +63,7 @@ public class ModelShulker extends ModelBase
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.base.render(scale);

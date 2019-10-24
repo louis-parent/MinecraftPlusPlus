@@ -36,6 +36,7 @@ public class ContainerDispenser extends Container
 	/**
 	 * Determines whether supplied player can use this container
 	 */
+	@Override
 	public boolean canInteractWith(EntityPlayer playerIn)
 	{
 		return this.dispenserInventory.isUsableByPlayer(playerIn);
@@ -44,6 +45,7 @@ public class ContainerDispenser extends Container
 	/**
 	 * Take a stack from the specified inventory slot.
 	 */
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
 		ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;

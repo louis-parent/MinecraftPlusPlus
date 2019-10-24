@@ -258,9 +258,10 @@ public class ChunkGeneratorHell implements IChunkGenerator
 		}
 	}
 
+	@Override
 	public Chunk provideChunk(int x, int z)
 	{
-		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
+		this.rand.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.prepareHeights(x, z, chunkprimer);
 		this.buildSurfaces(x, z, chunkprimer);
@@ -303,12 +304,12 @@ public class ChunkGeneratorHell implements IChunkGenerator
 
 		for (int j = 0; j < p_185938_6_; ++j)
 		{
-			adouble[j] = Math.cos((double) j * Math.PI * 6.0D / (double) p_185938_6_) * 2.0D;
-			double d2 = (double) j;
+			adouble[j] = Math.cos(j * Math.PI * 6.0D / p_185938_6_) * 2.0D;
+			double d2 = j;
 
 			if (j > p_185938_6_ / 2)
 			{
-				d2 = (double) (p_185938_6_ - 1 - j);
+				d2 = p_185938_6_ - 1 - j;
 			}
 
 			if (d2 < 4.0D)
@@ -349,13 +350,13 @@ public class ChunkGeneratorHell implements IChunkGenerator
 
 					if (k > p_185938_6_ - 4)
 					{
-						double d9 = (double) ((float) (k - (p_185938_6_ - 4)) / 3.0F);
+						double d9 = (k - (p_185938_6_ - 4)) / 3.0F;
 						d8 = d8 * (1.0D - d9) + -10.0D * d9;
 					}
 
-					if ((double) k < 0.0D)
+					if (k < 0.0D)
 					{
-						double d10 = (0.0D - (double) k) / 4.0D;
+						double d10 = (0.0D - k) / 4.0D;
 						d10 = MathHelper.clamp(d10, 0.0D, 1.0D);
 						d8 = d8 * (1.0D - d10) + -10.0D * d10;
 					}
@@ -369,6 +370,7 @@ public class ChunkGeneratorHell implements IChunkGenerator
 		return p_185938_1_;
 	}
 
+	@Override
 	public void populate(int x, int z)
 	{
 		BlockFalling.fallInstantly = true;
@@ -430,11 +432,13 @@ public class ChunkGeneratorHell implements IChunkGenerator
 		BlockFalling.fallInstantly = false;
 	}
 
+	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z)
 	{
 		return false;
 	}
 
+	@Override
 	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
 	{
 		if (creatureType == EnumCreatureType.MONSTER)
@@ -454,17 +458,20 @@ public class ChunkGeneratorHell implements IChunkGenerator
 		return biome.getSpawnableList(creatureType);
 	}
 
+	@Override
 	@Nullable
 	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean p_180513_4_)
 	{
 		return "Fortress".equals(structureName) && this.genNetherBridge != null ? this.genNetherBridge.getClosestStrongholdPos(worldIn, position, p_180513_4_) : null;
 	}
 
+	@Override
 	public boolean func_193414_a(World p_193414_1_, String p_193414_2_, BlockPos p_193414_3_)
 	{
 		return "Fortress".equals(p_193414_2_) && this.genNetherBridge != null ? this.genNetherBridge.isInsideStructure(p_193414_3_) : false;
 	}
 
+	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z)
 	{
 		this.genNetherBridge.generate(this.world, x, z, (ChunkPrimer) null);

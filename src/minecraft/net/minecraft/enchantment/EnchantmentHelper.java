@@ -99,7 +99,7 @@ public class EnchantmentHelper
 
 			if (enchantment != null)
 			{
-				int i = ((Integer) entry.getValue()).intValue();
+				int i = entry.getValue().intValue();
 				NBTTagCompound nbttagcompound = new NBTTagCompound();
 				nbttagcompound.setShort("id", (short) Enchantment.getEnchantmentID(enchantment));
 				nbttagcompound.setShort("lvl", (short) i);
@@ -418,7 +418,7 @@ public class EnchantmentHelper
 		{
 			p_77513_2_ = p_77513_2_ + 1 + randomIn.nextInt(i / 4 + 1) + randomIn.nextInt(i / 4 + 1);
 			float f = (randomIn.nextFloat() + randomIn.nextFloat() - 1.0F) * 0.15F;
-			p_77513_2_ = MathHelper.clamp(Math.round((float) p_77513_2_ + (float) p_77513_2_ * f), 1, Integer.MAX_VALUE);
+			p_77513_2_ = MathHelper.clamp(Math.round(p_77513_2_ + p_77513_2_ * f), 1, Integer.MAX_VALUE);
 			List<EnchantmentData> list1 = getEnchantmentDatas(p_77513_2_, itemStackIn, allowTreasure);
 
 			if (!list1.isEmpty())
@@ -427,7 +427,7 @@ public class EnchantmentHelper
 
 				while (randomIn.nextInt(50) <= p_77513_2_)
 				{
-					removeIncompatible(list1, (EnchantmentData) Util.getLastElement(list));
+					removeIncompatible(list1, Util.getLastElement(list));
 
 					if (list1.isEmpty())
 					{
@@ -489,6 +489,7 @@ public class EnchantmentHelper
 		{
 		}
 
+		@Override
 		public void calculateModifier(Enchantment enchantmentIn, int enchantmentLevel)
 		{
 			enchantmentIn.onEntityDamaged(this.user, this.target, enchantmentLevel);
@@ -504,6 +505,7 @@ public class EnchantmentHelper
 		{
 		}
 
+		@Override
 		public void calculateModifier(Enchantment enchantmentIn, int enchantmentLevel)
 		{
 			enchantmentIn.onUserHurt(this.user, this.attacker, enchantmentLevel);
@@ -524,6 +526,7 @@ public class EnchantmentHelper
 		{
 		}
 
+		@Override
 		public void calculateModifier(Enchantment enchantmentIn, int enchantmentLevel)
 		{
 			this.damageModifier += enchantmentIn.calcModifierDamage(enchantmentLevel, this.source);
@@ -539,6 +542,7 @@ public class EnchantmentHelper
 		{
 		}
 
+		@Override
 		public void calculateModifier(Enchantment enchantmentIn, int enchantmentLevel)
 		{
 			this.livingModifier += enchantmentIn.calcDamageByCreature(enchantmentLevel, this.entityLiving);

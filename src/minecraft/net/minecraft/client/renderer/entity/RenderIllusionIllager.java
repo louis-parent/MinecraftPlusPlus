@@ -20,6 +20,7 @@ public class RenderIllusionIllager extends RenderLiving<EntityMob>
 		super(p_i47477_1_, new ModelIllager(0.0F, 0.0F, 64, 64), 0.5F);
 		this.addLayer(new LayerHeldItem(this)
 		{
+			@Override
 			public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 			{
 				if (((EntityIllusionIllager) entitylivingbaseIn).func_193082_dl() || ((EntityIllusionIllager) entitylivingbaseIn).func_193096_dj())
@@ -28,6 +29,7 @@ public class RenderIllusionIllager extends RenderLiving<EntityMob>
 				}
 			}
 
+			@Override
 			protected void func_191361_a(EnumHandSide p_191361_1_)
 			{
 				((ModelIllager) this.livingEntityRenderer.getMainModel()).func_191216_a(p_191361_1_).postRender(0.0625F);
@@ -40,6 +42,7 @@ public class RenderIllusionIllager extends RenderLiving<EntityMob>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityMob entity)
 	{
 		return field_193121_a;
@@ -49,6 +52,7 @@ public class RenderIllusionIllager extends RenderLiving<EntityMob>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityMob entitylivingbaseIn, float partialTickTime)
 	{
 		float f = 0.9375F;
@@ -58,6 +62,7 @@ public class RenderIllusionIllager extends RenderLiving<EntityMob>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityMob entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		if (entity.isInvisible())
@@ -67,7 +72,7 @@ public class RenderIllusionIllager extends RenderLiving<EntityMob>
 
 			for (int i = 0; i < avec3d.length; ++i)
 			{
-				super.doRender(entity, x + avec3d[i].xCoord + (double) MathHelper.cos((float) i + f * 0.5F) * 0.025D, y + avec3d[i].yCoord + (double) MathHelper.cos((float) i + f * 0.75F) * 0.0125D, z + avec3d[i].zCoord + (double) MathHelper.cos((float) i + f * 0.7F) * 0.025D, entityYaw, partialTicks);
+				super.doRender(entity, x + avec3d[i].xCoord + MathHelper.cos(i + f * 0.5F) * 0.025D, y + avec3d[i].yCoord + MathHelper.cos(i + f * 0.75F) * 0.0125D, z + avec3d[i].zCoord + MathHelper.cos(i + f * 0.7F) * 0.025D, entityYaw, partialTicks);
 			}
 		}
 		else
@@ -76,11 +81,13 @@ public class RenderIllusionIllager extends RenderLiving<EntityMob>
 		}
 	}
 
+	@Override
 	public void renderName(EntityMob entity, double x, double y, double z)
 	{
 		super.renderName(entity, x, y, z);
 	}
 
+	@Override
 	protected boolean func_193115_c(EntityMob p_193115_1_)
 	{
 		return true;

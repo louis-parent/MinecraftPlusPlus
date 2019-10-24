@@ -43,7 +43,7 @@ public class RecipeBookPage
 
 		for (int i = 0; i < this.field_193743_h.size(); ++i)
 		{
-			((GuiButtonRecipe) this.field_193743_h.get(i)).func_191770_c(p_194194_2_ + 11 + 25 * (i % 5), p_194194_3_ + 31 + 25 * (i / 5));
+			this.field_193743_h.get(i).func_191770_c(p_194194_2_ + 11 + 25 * (i % 5), p_194194_3_ + 31 + 25 * (i / 5));
 		}
 
 		this.field_193740_e = new GuiButtonToggle(0, p_194194_2_ + 93, p_194194_3_ + 137, 12, 17, false);
@@ -61,7 +61,7 @@ public class RecipeBookPage
 	public void func_194192_a(List<RecipeList> p_194192_1_, boolean p_194192_2_)
 	{
 		this.field_194203_f = p_194192_1_;
-		this.field_193737_b = (int) Math.ceil((double) p_194192_1_.size() / 20.0D);
+		this.field_193737_b = (int) Math.ceil(p_194192_1_.size() / 20.0D);
 
 		if (this.field_193737_b <= this.field_193738_c || p_194192_2_)
 		{
@@ -200,7 +200,7 @@ public class RecipeBookPage
 					}
 					else if (!this.field_194202_c.func_191839_a() && !guibuttonrecipe.func_193929_d())
 					{
-						this.field_194202_c.func_191845_a(this.field_193754_s, guibuttonrecipe.func_191771_c(), guibuttonrecipe.xPosition, guibuttonrecipe.yPosition, p_194196_4_ + p_194196_6_ / 2, p_194196_5_ + 13 + p_194196_7_ / 2, (float) guibuttonrecipe.getButtonWidth(), this.field_194204_k);
+						this.field_194202_c.func_191845_a(this.field_193754_s, guibuttonrecipe.func_191771_c(), guibuttonrecipe.xPosition, guibuttonrecipe.yPosition, p_194196_4_ + p_194196_6_ / 2, p_194196_5_ + 13 + p_194196_7_ / 2, guibuttonrecipe.getButtonWidth(), this.field_194204_k);
 					}
 
 					return true;

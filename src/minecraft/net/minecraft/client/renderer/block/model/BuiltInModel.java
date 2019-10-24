@@ -20,36 +20,43 @@ public class BuiltInModel implements IBakedModel
 		this.overrideList = p_i46537_2_;
 	}
 
+	@Override
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
 	{
 		return Collections.<BakedQuad>emptyList();
 	}
 
+	@Override
 	public boolean isAmbientOcclusion()
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isGui3d()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean isBuiltInRenderer()
 	{
 		return true;
 	}
 
+	@Override
 	public TextureAtlasSprite getParticleTexture()
 	{
 		return null;
 	}
 
+	@Override
 	public ItemCameraTransforms getItemCameraTransforms()
 	{
 		return this.cameraTransforms;
 	}
 
+	@Override
 	public ItemOverrideList getOverrides()
 	{
 		return this.overrideList;

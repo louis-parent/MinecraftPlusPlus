@@ -89,6 +89,7 @@ public class EntityPainting extends EntityHanging
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		compound.setString("Motive", this.art.title);
@@ -98,6 +99,7 @@ public class EntityPainting extends EntityHanging
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		String s = compound.getString("Motive");
@@ -118,11 +120,13 @@ public class EntityPainting extends EntityHanging
 		super.readEntityFromNBT(compound);
 	}
 
+	@Override
 	public int getWidthPixels()
 	{
 		return this.art.sizeX;
 	}
 
+	@Override
 	public int getHeightPixels()
 	{
 		return this.art.sizeY;
@@ -131,6 +135,7 @@ public class EntityPainting extends EntityHanging
 	/**
 	 * Called when this entity is broken. Entity parameter may be null.
 	 */
+	@Override
 	public void onBroken(@Nullable Entity brokenEntity)
 	{
 		if (this.world.getGameRules().getBoolean("doEntityDrops"))
@@ -151,6 +156,7 @@ public class EntityPainting extends EntityHanging
 		}
 	}
 
+	@Override
 	public void playPlaceSound()
 	{
 		this.playSound(SoundEvents.ENTITY_PAINTING_PLACE, 1.0F, 1.0F);
@@ -159,6 +165,7 @@ public class EntityPainting extends EntityHanging
 	/**
 	 * Sets the location and Yaw/Pitch of an entity in the world
 	 */
+	@Override
 	public void setLocationAndAngles(double x, double y, double z, float yaw, float pitch)
 	{
 		this.setPosition(x, y, z);
@@ -167,10 +174,11 @@ public class EntityPainting extends EntityHanging
 	/**
 	 * Set the position and rotation values directly without any clamping.
 	 */
+	@Override
 	public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport)
 	{
 		BlockPos blockpos = this.hangingPosition.add(x - this.posX, y - this.posY, z - this.posZ);
-		this.setPosition((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ());
+		this.setPosition(blockpos.getX(), blockpos.getY(), blockpos.getZ());
 	}
 
 	public static enum EnumArt

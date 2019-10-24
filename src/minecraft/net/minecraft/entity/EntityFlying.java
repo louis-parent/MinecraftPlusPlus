@@ -12,14 +12,17 @@ public abstract class EntityFlying extends EntityLiving
 		super(worldIn);
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 	}
 
+	@Override
 	protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
 	{
 	}
 
+	@Override
 	public void func_191986_a(float p_191986_1_, float p_191986_2_, float p_191986_3_)
 	{
 		if (this.isInWater())
@@ -57,9 +60,9 @@ public abstract class EntityFlying extends EntityLiving
 			}
 
 			this.moveEntity(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
-			this.motionX *= (double) f;
-			this.motionY *= (double) f;
-			this.motionZ *= (double) f;
+			this.motionX *= f;
+			this.motionY *= f;
+			this.motionZ *= f;
 		}
 
 		this.prevLimbSwingAmount = this.limbSwingAmount;
@@ -79,6 +82,7 @@ public abstract class EntityFlying extends EntityLiving
 	/**
 	 * returns true if this entity is by a ladder, false otherwise
 	 */
+	@Override
 	public boolean isOnLadder()
 	{
 		return false;

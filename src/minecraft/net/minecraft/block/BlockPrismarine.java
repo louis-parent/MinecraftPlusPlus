@@ -31,6 +31,7 @@ public class BlockPrismarine extends Block
 	/**
 	 * Gets the localized name of this block. Used for the statistics page.
 	 */
+	@Override
 	public String getLocalizedName()
 	{
 		return I18n.translateToLocal(this.getUnlocalizedName() + "." + BlockPrismarine.EnumType.ROUGH.getUnlocalizedName() + ".name");
@@ -39,6 +40,7 @@ public class BlockPrismarine extends Block
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
 		return state.getValue(VARIANT) == BlockPrismarine.EnumType.ROUGH ? MapColor.CYAN : MapColor.DIAMOND;
@@ -49,19 +51,22 @@ public class BlockPrismarine extends Block
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((BlockPrismarine.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((BlockPrismarine.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { VARIANT });
@@ -70,6 +75,7 @@ public class BlockPrismarine extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(VARIANT, BlockPrismarine.EnumType.byMetadata(meta));
@@ -79,6 +85,7 @@ public class BlockPrismarine extends Block
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		tab.add(new ItemStack(this, 1, ROUGH_META));
@@ -107,6 +114,7 @@ public class BlockPrismarine extends Block
 			return this.meta;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -122,6 +130,7 @@ public class BlockPrismarine extends Block
 			return META_LOOKUP[meta];
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

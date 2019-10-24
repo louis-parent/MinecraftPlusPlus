@@ -24,17 +24,19 @@ public class StatBase
 	private static final NumberFormat numberFormat = NumberFormat.getIntegerInstance(Locale.US);
 	public static IStatType simpleStatType = new IStatType()
 	{
+		@Override
 		public String format(int number)
 		{
-			return StatBase.numberFormat.format((long) number);
+			return StatBase.numberFormat.format(number);
 		}
 	};
 	private static final DecimalFormat decimalFormat = new DecimalFormat("########0.00");
 	public static IStatType timeStatType = new IStatType()
 	{
+		@Override
 		public String format(int number)
 		{
-			double d0 = (double) number / 20.0D;
+			double d0 = number / 20.0D;
 			double d1 = d0 / 60.0D;
 			double d2 = d1 / 60.0D;
 			double d3 = d2 / 24.0D;
@@ -60,9 +62,10 @@ public class StatBase
 	};
 	public static IStatType distanceStatType = new IStatType()
 	{
+		@Override
 		public String format(int number)
 		{
-			double d0 = (double) number / 100.0D;
+			double d0 = number / 100.0D;
 			double d1 = d0 / 1000.0D;
 
 			if (d1 > 0.5D)
@@ -77,9 +80,10 @@ public class StatBase
 	};
 	public static IStatType divideByTen = new IStatType()
 	{
+		@Override
 		public String format(int number)
 		{
-			return StatBase.decimalFormat.format((double) number * 0.1D);
+			return StatBase.decimalFormat.format(number * 0.1D);
 		}
 	};
 
@@ -136,6 +140,7 @@ public class StatBase
 		return itextcomponent;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -153,11 +158,13 @@ public class StatBase
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.statId.hashCode();
 	}
 
+	@Override
 	public String toString()
 	{
 		return "Stat{id=" + this.statId + ", nameId=" + this.statName + ", awardLocallyOnly=" + this.isIndependent + ", formatter=" + this.formatter + ", objectiveCriteria=" + this.objectiveCriteria + '}';

@@ -43,6 +43,7 @@ public class TextComponentScore extends TextComponentBase
 	 * Gets the text of this component, without any special formatting codes
 	 * added, for chat. TODO: why is this two different methods?
 	 */
+	@Override
 	public String getUnformattedComponentText()
 	{
 		return this.value;
@@ -73,6 +74,7 @@ public class TextComponentScore extends TextComponentBase
 	 * Creates a copy of this component. Almost a deep copy, except the style is
 	 * shallow-copied.
 	 */
+	@Override
 	public TextComponentScore createCopy()
 	{
 		TextComponentScore textcomponentscore = new TextComponentScore(this.name, this.objective);
@@ -87,6 +89,7 @@ public class TextComponentScore extends TextComponentBase
 		return textcomponentscore;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -104,6 +107,7 @@ public class TextComponentScore extends TextComponentBase
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		return "ScoreComponent{name='" + this.name + '\'' + "objective='" + this.objective + '\'' + ", siblings=" + this.siblings + ", style=" + this.getStyle() + '}';

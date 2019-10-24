@@ -26,6 +26,7 @@ public class TutorialToast implements IToast
 		this.field_193678_j = p_i47487_4_;
 	}
 
+	@Override
 	public IToast.Visibility func_193653_a(GuiToast p_193653_1_, long p_193653_2_)
 	{
 		p_193653_1_.func_192989_b().getTextureManager().bindTexture(field_193654_a);
@@ -46,7 +47,7 @@ public class TutorialToast implements IToast
 		if (this.field_193678_j)
 		{
 			Gui.drawRect(3, 28, 157, 29, -1);
-			float f = (float) MathHelper.clampedLerp((double) this.field_193676_h, (double) this.field_193677_i, (double) ((float) (p_193653_2_ - this.field_193675_g) / 100.0F));
+			float f = (float) MathHelper.clampedLerp(this.field_193676_h, this.field_193677_i, (p_193653_2_ - this.field_193675_g) / 100.0F);
 			int i;
 
 			if (this.field_193677_i >= this.field_193676_h)

@@ -23,6 +23,7 @@ public class RegistryNamespacedDefaultedByKey<K, V> extends RegistryNamespaced<K
 		this.defaultValueKey = defaultValueKeyIn;
 	}
 
+	@Override
 	public void register(int id, K key, V value)
 	{
 		if (this.defaultValueKey.equals(key))
@@ -44,12 +45,14 @@ public class RegistryNamespacedDefaultedByKey<K, V> extends RegistryNamespaced<K
 	/**
 	 * Gets the integer ID we use to identify the given object.
 	 */
+	@Override
 	public int getIDForObject(V value)
 	{
 		int i = super.getIDForObject(value);
 		return i == -1 ? super.getIDForObject(this.defaultValue) : i;
 	}
 
+	@Override
 	@Nonnull
 
 	/**
@@ -57,17 +60,19 @@ public class RegistryNamespacedDefaultedByKey<K, V> extends RegistryNamespaced<K
 	 */
 	public K getNameForObject(V value)
 	{
-		K k = (K) super.getNameForObject(value);
-		return (K) (k == null ? this.defaultValueKey : k);
+		K k = super.getNameForObject(value);
+		return k == null ? this.defaultValueKey : k;
 	}
 
+	@Override
 	@Nonnull
 	public V getObject(@Nullable K name)
 	{
-		V v = (V) super.getObject(name);
-		return (V) (v == null ? this.defaultValue : v);
+		V v = super.getObject(name);
+		return v == null ? this.defaultValue : v;
 	}
 
+	@Override
 	@Nonnull
 
 	/**
@@ -75,14 +80,15 @@ public class RegistryNamespacedDefaultedByKey<K, V> extends RegistryNamespaced<K
 	 */
 	public V getObjectById(int id)
 	{
-		V v = (V) super.getObjectById(id);
-		return (V) (v == null ? this.defaultValue : v);
+		V v = super.getObjectById(id);
+		return v == null ? this.defaultValue : v;
 	}
 
+	@Override
 	@Nonnull
 	public V getRandomObject(Random random)
 	{
-		V v = (V) super.getRandomObject(random);
-		return (V) (v == null ? this.defaultValue : v);
+		V v = super.getRandomObject(random);
+		return v == null ? this.defaultValue : v;
 	}
 }

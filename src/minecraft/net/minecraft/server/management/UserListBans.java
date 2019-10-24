@@ -12,6 +12,7 @@ public class UserListBans extends UserList<GameProfile, UserListBansEntry>
 		super(bansFile);
 	}
 
+	@Override
 	protected UserListEntry<GameProfile> createEntry(JsonObject entryData)
 	{
 		return new UserListBansEntry(entryData);
@@ -22,6 +23,7 @@ public class UserListBans extends UserList<GameProfile, UserListBansEntry>
 		return this.hasEntry(profile);
 	}
 
+	@Override
 	public String[] getKeys()
 	{
 		String[] astring = new String[this.getValues().size()];
@@ -29,7 +31,7 @@ public class UserListBans extends UserList<GameProfile, UserListBansEntry>
 
 		for (UserListBansEntry userlistbansentry : this.getValues().values())
 		{
-			astring[i++] = ((GameProfile) userlistbansentry.getValue()).getName();
+			astring[i++] = userlistbansentry.getValue().getName();
 		}
 
 		return astring;
@@ -38,6 +40,7 @@ public class UserListBans extends UserList<GameProfile, UserListBansEntry>
 	/**
 	 * Gets the key value for the given object
 	 */
+	@Override
 	protected String getObjectKey(GameProfile obj)
 	{
 		return obj.getId().toString();
@@ -51,9 +54,9 @@ public class UserListBans extends UserList<GameProfile, UserListBansEntry>
 	{
 		for (UserListBansEntry userlistbansentry : this.getValues().values())
 		{
-			if (username.equalsIgnoreCase(((GameProfile) userlistbansentry.getValue()).getName()))
+			if (username.equalsIgnoreCase(userlistbansentry.getValue().getName()))
 			{
-				return (GameProfile) userlistbansentry.getValue();
+				return userlistbansentry.getValue();
 			}
 		}
 

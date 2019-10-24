@@ -27,26 +27,31 @@ public enum ArmorMaterial implements IArmorMaterial
 		this.toughness = toughness;
 	}
 
+	@Override
 	public int getArmorDurabilityFactor()
 	{
 		return this.maxDamageFactor;
 	}
 
+	@Override
 	public int getDamageReductionAmount(EntityArmorSlot armorType)
 	{
 		return this.damageReductionAmountArray[armorType.getIndex()];
 	}
 
+	@Override
 	public int getEnchantability()
 	{
 		return this.enchantability;
 	}
 
+	@Override
 	public SoundEvent getSoundEvent()
 	{
 		return this.soundEvent;
 	}
 
+	@Override
 	public Item getRepairItem()
 	{
 		if (this == LEATHER)
@@ -71,11 +76,13 @@ public enum ArmorMaterial implements IArmorMaterial
 		}
 	}
 
+	@Override
 	public String getName()
 	{
 		return this.name;
 	}
 
+	@Override
 	public float getToughness()
 	{
 		return this.toughness;

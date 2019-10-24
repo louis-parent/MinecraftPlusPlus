@@ -20,6 +20,7 @@ public class ItemCompass extends Item
 			double rota;
 			long lastUpdateTick;
 
+			@Override
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
 			{
 				if (entityIn == null && !stack.isOnItemFrame())
@@ -29,7 +30,7 @@ public class ItemCompass extends Item
 				else
 				{
 					boolean flag = entityIn != null;
-					Entity entity = (Entity) (flag ? entityIn : stack.getItemFrame());
+					Entity entity = flag ? entityIn : stack.getItemFrame();
 
 					if (worldIn == null)
 					{
@@ -76,13 +77,13 @@ public class ItemCompass extends Item
 
 			private double getFrameRotation(EntityItemFrame p_185094_1_)
 			{
-				return (double) MathHelper.clampAngle(180 + p_185094_1_.facingDirection.getHorizontalIndex() * 90);
+				return MathHelper.clampAngle(180 + p_185094_1_.facingDirection.getHorizontalIndex() * 90);
 			}
 
 			private double getSpawnToAngle(World p_185092_1_, Entity p_185092_2_)
 			{
 				BlockPos blockpos = p_185092_1_.getSpawnPoint();
-				return Math.atan2((double) blockpos.getZ() - p_185092_2_.posZ, (double) blockpos.getX() - p_185092_2_.posX);
+				return Math.atan2(blockpos.getZ() - p_185092_2_.posZ, blockpos.getX() - p_185092_2_.posX);
 			}
 		});
 	}

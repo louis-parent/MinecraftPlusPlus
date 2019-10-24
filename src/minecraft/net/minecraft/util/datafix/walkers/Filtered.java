@@ -28,6 +28,7 @@ public abstract class Filtered implements IDataWalker
 		}
 	}
 
+	@Override
 	public NBTTagCompound process(IDataFixer fixer, NBTTagCompound compound, int versionIn)
 	{
 		if ((new ResourceLocation(compound.getString("id"))).equals(this.key))

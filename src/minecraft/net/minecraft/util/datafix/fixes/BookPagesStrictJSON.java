@@ -13,11 +13,13 @@ import net.minecraft.util.text.TextComponentString;
 
 public class BookPagesStrictJSON implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 165;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("minecraft:written_book".equals(compound.getString("id")))
@@ -39,7 +41,7 @@ public class BookPagesStrictJSON implements IFixableData
 						{
 							try
 							{
-								itextcomponent = (ITextComponent) JsonUtils.gsonDeserialize(SignStrictJSON.GSON_INSTANCE, s, ITextComponent.class, true);
+								itextcomponent = JsonUtils.gsonDeserialize(SignStrictJSON.GSON_INSTANCE, s, ITextComponent.class, true);
 
 								if (itextcomponent == null)
 								{

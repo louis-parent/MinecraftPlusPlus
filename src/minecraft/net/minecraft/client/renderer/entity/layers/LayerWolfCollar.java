@@ -15,6 +15,7 @@ public class LayerWolfCollar implements LayerRenderer<EntityWolf>
 		this.wolfRenderer = wolfRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntityWolf entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		if (entitylivingbaseIn.isTamed() && !entitylivingbaseIn.isInvisible())
@@ -26,6 +27,7 @@ public class LayerWolfCollar implements LayerRenderer<EntityWolf>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return true;

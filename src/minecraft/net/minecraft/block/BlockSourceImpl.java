@@ -17,26 +17,31 @@ public class BlockSourceImpl implements IBlockSource
 		this.pos = posIn;
 	}
 
+	@Override
 	public World getWorld()
 	{
 		return this.worldObj;
 	}
 
+	@Override
 	public double getX()
 	{
-		return (double) this.pos.getX() + 0.5D;
+		return this.pos.getX() + 0.5D;
 	}
 
+	@Override
 	public double getY()
 	{
-		return (double) this.pos.getY() + 0.5D;
+		return this.pos.getY() + 0.5D;
 	}
 
+	@Override
 	public double getZ()
 	{
-		return (double) this.pos.getZ() + 0.5D;
+		return this.pos.getZ() + 0.5D;
 	}
 
+	@Override
 	public BlockPos getBlockPos()
 	{
 		return this.pos;
@@ -47,11 +52,13 @@ public class BlockSourceImpl implements IBlockSource
 	 * 
 	 * @return Block state in this position
 	 */
+	@Override
 	public IBlockState getBlockState()
 	{
 		return this.worldObj.getBlockState(this.pos);
 	}
 
+	@Override
 	public <T extends TileEntity> T getBlockTileEntity()
 	{
 		return (T) this.worldObj.getTileEntity(this.pos);

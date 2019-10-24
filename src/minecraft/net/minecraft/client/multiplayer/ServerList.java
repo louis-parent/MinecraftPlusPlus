@@ -53,7 +53,7 @@ public class ServerList
 		}
 		catch (Exception exception)
 		{
-			LOGGER.error("Couldn't load server list", (Throwable) exception);
+			LOGGER.error("Couldn't load server list", exception);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class ServerList
 		}
 		catch (Exception exception)
 		{
-			LOGGER.error("Couldn't save server list", (Throwable) exception);
+			LOGGER.error("Couldn't save server list", exception);
 		}
 	}
 

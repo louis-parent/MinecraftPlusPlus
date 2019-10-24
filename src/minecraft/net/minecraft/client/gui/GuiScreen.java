@@ -89,12 +89,12 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
 	{
 		for (int i = 0; i < this.buttonList.size(); ++i)
 		{
-			((GuiButton) this.buttonList.get(i)).func_191745_a(this.mc, mouseX, mouseY, partialTicks);
+			this.buttonList.get(i).func_191745_a(this.mc, mouseX, mouseY, partialTicks);
 		}
 
 		for (int j = 0; j < this.labelList.size(); ++j)
 		{
-			((GuiLabel) this.labelList.get(j)).drawLabel(this.mc, mouseX, mouseY);
+			this.labelList.get(j).drawLabel(this.mc, mouseX, mouseY);
 		}
 	}
 
@@ -176,11 +176,11 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
 		{
 			if (i == 0)
 			{
-				list.set(i, p_191927_1_.getRarity().rarityColor + (String) list.get(i));
+				list.set(i, p_191927_1_.getRarity().rarityColor + list.get(i));
 			}
 			else
 			{
-				list.set(i, TextFormatting.GRAY + (String) list.get(i));
+				list.set(i, TextFormatting.GRAY + list.get(i));
 			}
 		}
 
@@ -268,7 +268,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
 			for (int k1 = 0; k1 < textLines.size(); ++k1)
 			{
 				String s1 = textLines.get(k1);
-				this.fontRendererObj.drawStringWithShadow(s1, (float) l1, (float) i2, -1);
+				this.fontRendererObj.drawStringWithShadow(s1, l1, i2, -1);
 
 				if (k1 == 0)
 				{
@@ -438,7 +438,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
 				}
 				else
 				{
-					LOGGER.error("Don't know how to handle {}", (Object) clickevent);
+					LOGGER.error("Don't know how to handle {}", clickevent);
 				}
 
 				return true;
@@ -671,10 +671,10 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		float f = 32.0F;
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-		bufferbuilder.pos(0.0D, (double) this.height, 0.0D).tex(0.0D, (double) ((float) this.height / 32.0F + (float) tint)).color(64, 64, 64, 255).endVertex();
-		bufferbuilder.pos((double) this.width, (double) this.height, 0.0D).tex((double) ((float) this.width / 32.0F), (double) ((float) this.height / 32.0F + (float) tint)).color(64, 64, 64, 255).endVertex();
-		bufferbuilder.pos((double) this.width, 0.0D, 0.0D).tex((double) ((float) this.width / 32.0F), (double) tint).color(64, 64, 64, 255).endVertex();
-		bufferbuilder.pos(0.0D, 0.0D, 0.0D).tex(0.0D, (double) tint).color(64, 64, 64, 255).endVertex();
+		bufferbuilder.pos(0.0D, this.height, 0.0D).tex(0.0D, this.height / 32.0F + tint).color(64, 64, 64, 255).endVertex();
+		bufferbuilder.pos(this.width, this.height, 0.0D).tex(this.width / 32.0F, this.height / 32.0F + tint).color(64, 64, 64, 255).endVertex();
+		bufferbuilder.pos(this.width, 0.0D, 0.0D).tex(this.width / 32.0F, tint).color(64, 64, 64, 255).endVertex();
+		bufferbuilder.pos(0.0D, 0.0D, 0.0D).tex(0.0D, tint).color(64, 64, 64, 255).endVertex();
 		tessellator.draw();
 	}
 
@@ -687,6 +687,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
 		return true;
 	}
 
+	@Override
 	public void confirmClicked(boolean result, int id)
 	{
 		if (id == 31102009)
@@ -712,7 +713,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
 		catch (Throwable throwable1)
 		{
 			Throwable throwable = throwable1.getCause();
-			LOGGER.error("Couldn't open link: {}", (Object) (throwable == null ? "<UNKNOWN>" : throwable.getMessage()));
+			LOGGER.error("Couldn't open link: {}", throwable == null ? "<UNKNOWN>" : throwable.getMessage());
 		}
 	}
 

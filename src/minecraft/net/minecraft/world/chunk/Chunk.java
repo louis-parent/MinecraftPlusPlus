@@ -129,7 +129,7 @@ public class Chunk
 		this.chunkTileEntityMap = Maps.<BlockPos, TileEntity>newHashMap();
 		this.queuedLightChecks = 4096;
 		this.tileEntityPosQueue = Queues.<BlockPos>newConcurrentLinkedQueue();
-		this.entityLists = (ClassInheritanceMultiMap[]) (new ClassInheritanceMultiMap[16]);
+		this.entityLists = (new ClassInheritanceMultiMap[16]);
 		this.worldObj = worldIn;
 		this.xPosition = x;
 		this.zPosition = z;
@@ -586,6 +586,7 @@ public class Chunk
 				CrashReportCategory crashreportcategory = crashreport.makeCategory("Block being got");
 				crashreportcategory.setDetail("Location", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
 						return CrashReportCategory.getCoordinateInfo(x, y, z);
@@ -916,7 +917,7 @@ public class Chunk
 		{
 			if (this.chunkTileEntityMap.containsKey(pos))
 			{
-				((TileEntity) this.chunkTileEntityMap.get(pos)).invalidate();
+				this.chunkTileEntityMap.get(pos).invalidate();
 			}
 
 			tileEntityIn.validate();
@@ -1060,7 +1061,7 @@ public class Chunk
 
 	public Random getRandomWithSeed(long seed)
 	{
-		return new Random(this.worldObj.getSeed() + (long) (this.xPosition * this.xPosition * 4987142) + (long) (this.xPosition * 5947611) + (long) (this.zPosition * this.zPosition) * 4392871L + (long) (this.zPosition * 389711) ^ seed);
+		return new Random(this.worldObj.getSeed() + this.xPosition * this.xPosition * 4987142 + this.xPosition * 5947611 + this.zPosition * this.zPosition * 4392871L + this.zPosition * 389711 ^ seed);
 	}
 
 	public boolean isEmpty()

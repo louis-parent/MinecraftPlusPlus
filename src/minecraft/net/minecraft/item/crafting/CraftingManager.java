@@ -124,24 +124,24 @@ public class CraftingManager
 							try
 							{
 								bufferedreader = Files.newBufferedReader(path1);
-								registerRecipe(s, buildRecipe((JsonObject) JsonUtils.func_193839_a(gson, bufferedreader, JsonObject.class)));
+								registerRecipe(s, buildRecipe(JsonUtils.func_193839_a(gson, bufferedreader, JsonObject.class)));
 							}
 							catch (JsonParseException jsonparseexception)
 							{
-								logger.error("Parsing error loading recipe " + resourcelocation, (Throwable) jsonparseexception);
+								logger.error("Parsing error loading recipe " + resourcelocation, jsonparseexception);
 								flag = false;
 								return flag;
 							}
 							catch (IOException ioexception)
 							{
-								logger.error("Couldn't read recipe " + resourcelocation + " from " + path1, (Throwable) ioexception);
+								logger.error("Couldn't read recipe " + resourcelocation + " from " + path1, ioexception);
 								flag = false;
 								return flag;
 							}
 						}
 						finally
 						{
-							IOUtils.closeQuietly((Reader) bufferedreader);
+							IOUtils.closeQuietly(bufferedreader);
 						}
 					}
 				}
@@ -154,13 +154,13 @@ public class CraftingManager
 		}
 		catch (IOException | URISyntaxException urisyntaxexception)
 		{
-			logger.error("Couldn't get a list of all recipe files", (Throwable) urisyntaxexception);
+			logger.error("Couldn't get a list of all recipe files", urisyntaxexception);
 			flag1 = false;
 			return flag1;
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Closeable) filesystem);
+			IOUtils.closeQuietly(filesystem);
 		}
 
 		return flag1;

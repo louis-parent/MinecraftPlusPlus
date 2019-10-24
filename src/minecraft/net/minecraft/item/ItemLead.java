@@ -23,6 +23,7 @@ public class ItemLead extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		Block block = playerIn.getBlockState(worldIn).getBlock();
@@ -51,7 +52,7 @@ public class ItemLead extends Item
 		int j = fence.getY();
 		int k = fence.getZ();
 
-		for (EntityLiving entityliving : worldIn.getEntitiesWithinAABB(EntityLiving.class, new AxisAlignedBB((double) i - 7.0D, (double) j - 7.0D, (double) k - 7.0D, (double) i + 7.0D, (double) j + 7.0D, (double) k + 7.0D)))
+		for (EntityLiving entityliving : worldIn.getEntitiesWithinAABB(EntityLiving.class, new AxisAlignedBB(i - 7.0D, j - 7.0D, k - 7.0D, i + 7.0D, j + 7.0D, k + 7.0D)))
 		{
 			if (entityliving.getLeashed() && entityliving.getLeashedToEntity() == player)
 			{

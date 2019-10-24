@@ -18,6 +18,7 @@ public class BlockRotationProcessor implements ITemplateProcessor
 		this.random = settings.getRandom(pos);
 	}
 
+	@Override
 	@Nullable
 	public Template.BlockInfo processBlock(World worldIn, BlockPos pos, Template.BlockInfo blockInfoIn)
 	{

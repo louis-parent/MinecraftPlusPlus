@@ -30,6 +30,7 @@ public class MovementStep implements ITutorialStep
 		this.field_193258_e = p_i47581_1_;
 	}
 
+	@Override
 	public void func_193245_a()
 	{
 		++this.field_193261_h;
@@ -82,12 +83,12 @@ public class MovementStep implements ITutorialStep
 
 		if (this.field_193259_f != null)
 		{
-			this.field_193259_f.func_193669_a((float) this.field_193262_i / 40.0F);
+			this.field_193259_f.func_193669_a(this.field_193262_i / 40.0F);
 		}
 
 		if (this.field_193260_g != null)
 		{
-			this.field_193260_g.func_193669_a((float) this.field_193263_j / 40.0F);
+			this.field_193260_g.func_193669_a(this.field_193263_j / 40.0F);
 		}
 
 		if (this.field_193261_h >= 100)
@@ -105,6 +106,7 @@ public class MovementStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193248_b()
 	{
 		if (this.field_193259_f != null)
@@ -120,6 +122,7 @@ public class MovementStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193247_a(MovementInput p_193247_1_)
 	{
 		if (p_193247_1_.forwardKeyDown || p_193247_1_.backKeyDown || p_193247_1_.leftKeyDown || p_193247_1_.rightKeyDown || p_193247_1_.jump)
@@ -128,9 +131,10 @@ public class MovementStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193249_a(MouseHelper p_193249_1_)
 	{
-		if ((double) MathHelper.abs(p_193249_1_.deltaX) > 0.01D || (double) MathHelper.abs(p_193249_1_.deltaY) > 0.01D)
+		if (MathHelper.abs(p_193249_1_.deltaX) > 0.01D || MathHelper.abs(p_193249_1_.deltaY) > 0.01D)
 		{
 			this.field_193265_l = true;
 		}

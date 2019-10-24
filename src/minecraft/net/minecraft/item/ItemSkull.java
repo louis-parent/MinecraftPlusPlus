@@ -41,6 +41,7 @@ public class ItemSkull extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		if (hand == EnumFacing.DOWN)
@@ -78,7 +79,7 @@ public class ItemSkull extends Item
 
 					if (hand == EnumFacing.UP)
 					{
-						i = MathHelper.floor((double) (stack.rotationYaw * 16.0F / 360.0F) + 0.5D) & 15;
+						i = MathHelper.floor(stack.rotationYaw * 16.0F / 360.0F + 0.5D) & 15;
 					}
 
 					TileEntity tileentity = playerIn.getTileEntity(worldIn);
@@ -136,6 +137,7 @@ public class ItemSkull extends Item
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
+	@Override
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (this.func_194125_a(itemIn))
@@ -152,6 +154,7 @@ public class ItemSkull extends Item
 	 * placed in the world when this Item is placed as a Block (mostly used with
 	 * ItemBlocks).
 	 */
+	@Override
 	public int getMetadata(int damage)
 	{
 		return damage;
@@ -162,6 +165,7 @@ public class ItemSkull extends Item
 	 * ItemStack so different stacks can have different names based on their
 	 * damage or NBT.
 	 */
+	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		int i = stack.getMetadata();
@@ -174,6 +178,7 @@ public class ItemSkull extends Item
 		return super.getUnlocalizedName() + "." + SKULL_TYPES[i];
 	}
 
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		if (stack.getMetadata() == 3 && stack.hasTagCompound())
@@ -201,6 +206,7 @@ public class ItemSkull extends Item
 	 * Called when an ItemStack with NBT data is read to potentially that
 	 * ItemStack's NBT data
 	 */
+	@Override
 	public boolean updateItemStackNBT(NBTTagCompound nbt)
 	{
 		super.updateItemStackNBT(nbt);

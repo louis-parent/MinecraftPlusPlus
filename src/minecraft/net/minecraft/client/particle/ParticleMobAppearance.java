@@ -33,11 +33,13 @@ public class ParticleMobAppearance extends Particle
 	 * with. 0 for the particle sprite sheet, 1 for the main Texture atlas, and
 	 * 3 for a custom texture
 	 */
+	@Override
 	public int getFXLayer()
 	{
 		return 3;
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -53,6 +55,7 @@ public class ParticleMobAppearance extends Particle
 	/**
 	 * Renders the particle
 	 */
+	@Override
 	public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
 		if (this.entity != null)
@@ -60,7 +63,7 @@ public class ParticleMobAppearance extends Particle
 			RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
 			rendermanager.setRenderPosition(Particle.interpPosX, Particle.interpPosY, Particle.interpPosZ);
 			float f = 0.42553192F;
-			float f1 = ((float) this.particleAge + partialTicks) / (float) this.particleMaxAge;
+			float f1 = (this.particleAge + partialTicks) / this.particleMaxAge;
 			GlStateManager.depthMask(true);
 			GlStateManager.enableBlend();
 			GlStateManager.enableDepth();
@@ -87,6 +90,7 @@ public class ParticleMobAppearance extends Particle
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleMobAppearance(worldIn, xCoordIn, yCoordIn, zCoordIn);

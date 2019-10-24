@@ -116,7 +116,7 @@ public class Potion
 		}
 		else if (this == MobEffects.HUNGER && entityLivingBaseIn instanceof EntityPlayer)
 		{
-			((EntityPlayer) entityLivingBaseIn).addExhaustion(0.005F * (float) (p_76394_2_ + 1));
+			((EntityPlayer) entityLivingBaseIn).addExhaustion(0.005F * (p_76394_2_ + 1));
 		}
 		else if (this == MobEffects.SATURATION && entityLivingBaseIn instanceof EntityPlayer)
 		{
@@ -129,12 +129,12 @@ public class Potion
 		{
 			if (this == MobEffects.INSTANT_DAMAGE && !entityLivingBaseIn.isEntityUndead() || this == MobEffects.INSTANT_HEALTH && entityLivingBaseIn.isEntityUndead())
 			{
-				entityLivingBaseIn.attackEntityFrom(DamageSource.magic, (float) (6 << p_76394_2_));
+				entityLivingBaseIn.attackEntityFrom(DamageSource.magic, 6 << p_76394_2_);
 			}
 		}
 		else
 		{
-			entityLivingBaseIn.heal((float) Math.max(4 << p_76394_2_, 0));
+			entityLivingBaseIn.heal(Math.max(4 << p_76394_2_, 0));
 		}
 	}
 
@@ -144,22 +144,22 @@ public class Potion
 		{
 			if (this == MobEffects.INSTANT_DAMAGE && !entityLivingBaseIn.isEntityUndead() || this == MobEffects.INSTANT_HEALTH && entityLivingBaseIn.isEntityUndead())
 			{
-				int j = (int) (health * (double) (6 << amplifier) + 0.5D);
+				int j = (int) (health * (6 << amplifier) + 0.5D);
 
 				if (source == null)
 				{
-					entityLivingBaseIn.attackEntityFrom(DamageSource.magic, (float) j);
+					entityLivingBaseIn.attackEntityFrom(DamageSource.magic, j);
 				}
 				else
 				{
-					entityLivingBaseIn.attackEntityFrom(DamageSource.causeIndirectMagicDamage(source, indirectSource), (float) j);
+					entityLivingBaseIn.attackEntityFrom(DamageSource.causeIndirectMagicDamage(source, indirectSource), j);
 				}
 			}
 		}
 		else
 		{
-			int i = (int) (health * (double) (4 << amplifier) + 0.5D);
-			entityLivingBaseIn.heal((float) i);
+			int i = (int) (health * (4 << amplifier) + 0.5D);
+			entityLivingBaseIn.heal(i);
 		}
 	}
 
@@ -273,7 +273,7 @@ public class Potion
 		}
 		else
 		{
-			int i = MathHelper.floor((float) p_188410_0_.getDuration() * p_188410_1_);
+			int i = MathHelper.floor(p_188410_0_.getDuration() * p_188410_1_);
 			return StringUtils.ticksToElapsedTime(i);
 		}
 	}
@@ -337,7 +337,7 @@ public class Potion
 
 	public double getAttributeModifierAmount(int amplifier, AttributeModifier modifier)
 	{
-		return modifier.getAmount() * (double) (amplifier + 1);
+		return modifier.getAmount() * (amplifier + 1);
 	}
 
 	/**

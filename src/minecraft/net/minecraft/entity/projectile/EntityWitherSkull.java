@@ -42,6 +42,7 @@ public class EntityWitherSkull extends EntityFireball
 	 * Return the motion factor for this projectile. The factor is multiplied by
 	 * the original motion.
 	 */
+	@Override
 	protected float getMotionFactor()
 	{
 		return this.isInvulnerable() ? 0.73F : super.getMotionFactor();
@@ -57,6 +58,7 @@ public class EntityWitherSkull extends EntityFireball
 	 * Returns true if the entity is on fire. Used by render to add the fire
 	 * effect on rendering.
 	 */
+	@Override
 	public boolean isBurning()
 	{
 		return false;
@@ -65,6 +67,7 @@ public class EntityWitherSkull extends EntityFireball
 	/**
 	 * Explosion resistance of a block relative to this entity
 	 */
+	@Override
 	public float getExplosionResistance(Explosion explosionIn, World worldIn, BlockPos pos, IBlockState blockStateIn)
 	{
 		float f = super.getExplosionResistance(explosionIn, worldIn, pos, blockStateIn);
@@ -81,6 +84,7 @@ public class EntityWitherSkull extends EntityFireball
 	/**
 	 * Called when this EntityFireball hits a block or entity.
 	 */
+	@Override
 	protected void onImpact(RayTraceResult result)
 	{
 		if (!this.world.isRemote)
@@ -135,6 +139,7 @@ public class EntityWitherSkull extends EntityFireball
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return false;
@@ -143,11 +148,13 @@ public class EntityWitherSkull extends EntityFireball
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		return false;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		this.dataManager.register(INVULNERABLE, Boolean.valueOf(false));
@@ -158,7 +165,7 @@ public class EntityWitherSkull extends EntityFireball
 	 */
 	public boolean isInvulnerable()
 	{
-		return ((Boolean) this.dataManager.get(INVULNERABLE)).booleanValue();
+		return this.dataManager.get(INVULNERABLE).booleanValue();
 	}
 
 	/**
@@ -169,6 +176,7 @@ public class EntityWitherSkull extends EntityFireball
 		this.dataManager.set(INVULNERABLE, Boolean.valueOf(invulnerable));
 	}
 
+	@Override
 	protected boolean isFireballFiery()
 	{
 		return false;

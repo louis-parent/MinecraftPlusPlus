@@ -26,6 +26,7 @@ public class RenderFallingBlock extends Render<EntityFallingBlock>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityFallingBlock entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		if (entity.getBlock() != null)
@@ -52,7 +53,7 @@ public class RenderFallingBlock extends Render<EntityFallingBlock>
 
 					bufferbuilder.begin(7, DefaultVertexFormats.BLOCK);
 					BlockPos blockpos = new BlockPos(entity.posX, entity.getEntityBoundingBox().maxY, entity.posZ);
-					GlStateManager.translate((float) (x - (double) blockpos.getX() - 0.5D), (float) (y - (double) blockpos.getY()), (float) (z - (double) blockpos.getZ() - 0.5D));
+					GlStateManager.translate((float) (x - blockpos.getX() - 0.5D), (float) (y - blockpos.getY()), (float) (z - blockpos.getZ() - 0.5D));
 					BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
 					blockrendererdispatcher.getBlockModelRenderer().renderModel(world, blockrendererdispatcher.getModelForState(iblockstate), iblockstate, blockpos, bufferbuilder, false, MathHelper.getPositionRandom(entity.getOrigin()));
 					tessellator.draw();
@@ -75,6 +76,7 @@ public class RenderFallingBlock extends Render<EntityFallingBlock>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityFallingBlock entity)
 	{
 		return TextureMap.LOCATION_BLOCKS_TEXTURE;

@@ -90,6 +90,7 @@ public abstract class GuiContainer extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		super.initGui();
@@ -101,6 +102,7 @@ public abstract class GuiContainer extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		int i = this.guiLeft;
@@ -113,7 +115,7 @@ public abstract class GuiContainer extends GuiScreen
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		RenderHelper.enableGUIStandardItemLighting();
 		GlStateManager.pushMatrix();
-		GlStateManager.translate((float) i, (float) j, 0.0F);
+		GlStateManager.translate(i, j, 0.0F);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.enableRescaleNormal();
 		this.theSlot = null;
@@ -161,7 +163,7 @@ public abstract class GuiContainer extends GuiScreen
 			if (!this.draggedStack.isNotValid() && this.isRightMouseClick)
 			{
 				itemstack = itemstack.copy();
-				itemstack.setStackSize(MathHelper.ceil((float) itemstack.getStackSize() / 2.0F));
+				itemstack.setStackSize(MathHelper.ceil(itemstack.getStackSize() / 2.0F));
 			}
 			else if (this.dragSplitting && this.dragSplittingSlots.size() > 1)
 			{
@@ -179,7 +181,7 @@ public abstract class GuiContainer extends GuiScreen
 
 		if (!this.returningStack.isNotValid())
 		{
-			float f = (float) (Minecraft.getSystemTime() - this.returningStackTime) / 100.0F;
+			float f = (Minecraft.getSystemTime() - this.returningStackTime) / 100.0F;
 
 			if (f >= 1.0F)
 			{
@@ -189,8 +191,8 @@ public abstract class GuiContainer extends GuiScreen
 
 			int l2 = this.returningStackDestSlot.xDisplayPosition - this.touchUpX;
 			int i3 = this.returningStackDestSlot.yDisplayPosition - this.touchUpY;
-			int l1 = this.touchUpX + (int) ((float) l2 * f);
-			int i2 = this.touchUpY + (int) ((float) i3 * f);
+			int l1 = this.touchUpX + (int) (l2 * f);
+			int i2 = this.touchUpY + (int) (i3 * f);
 			this.drawItemStack(this.returningStack, l1, i2, (String) null);
 		}
 
@@ -372,6 +374,7 @@ public abstract class GuiContainer extends GuiScreen
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		super.mouseClicked(mouseX, mouseY, mouseButton);
@@ -484,6 +487,7 @@ public abstract class GuiContainer extends GuiScreen
 	 * Called when a mouse button is pressed and the mouse is moved around.
 	 * Parameters are : mouseX, mouseY, lastButtonClicked & timeSinceMouseClick.
 	 */
+	@Override
 	protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick)
 	{
 		Slot slot = this.getSlotAtPosition(mouseX, mouseY);
@@ -533,6 +537,7 @@ public abstract class GuiContainer extends GuiScreen
 	/**
 	 * Called when a mouse button is released.
 	 */
+	@Override
 	protected void mouseReleased(int mouseX, int mouseY, int state)
 	{
 		Slot slot = this.getSlotAtPosition(mouseX, mouseY);
@@ -711,6 +716,7 @@ public abstract class GuiContainer extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (keyCode == 1 || keyCode == this.mc.gameSettings.keyBindInventory.getKeyCode())
@@ -759,6 +765,7 @@ public abstract class GuiContainer extends GuiScreen
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		if (this.mc.player != null)
@@ -771,6 +778,7 @@ public abstract class GuiContainer extends GuiScreen
 	 * Returns true if this GUI should pause the game when it is displayed in
 	 * single-player
 	 */
+	@Override
 	public boolean doesGuiPauseGame()
 	{
 		return false;
@@ -779,6 +787,7 @@ public abstract class GuiContainer extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		super.updateScreen();

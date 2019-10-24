@@ -180,7 +180,7 @@ public abstract class Biome
 
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return (WorldGenAbstractTree) (rand.nextInt(10) == 0 ? BIG_TREE_FEATURE : TREE_FEATURE);
+		return rand.nextInt(10) == 0 ? BIG_TREE_FEATURE : TREE_FEATURE;
 	}
 
 	/**
@@ -266,8 +266,8 @@ public abstract class Biome
 	{
 		if (pos.getY() > 64)
 		{
-			float f = (float) (TEMPERATURE_NOISE.getValue((double) ((float) pos.getX() / 8.0F), (double) ((float) pos.getZ() / 8.0F)) * 4.0D);
-			return this.getTemperature() - (f + (float) pos.getY() - 64.0F) * 0.05F / 30.0F;
+			float f = (float) (TEMPERATURE_NOISE.getValue(pos.getX() / 8.0F, pos.getZ() / 8.0F) * 4.0D);
+			return this.getTemperature() - (f + pos.getY() - 64.0F) * 0.05F / 30.0F;
 		}
 		else
 		{
@@ -282,15 +282,15 @@ public abstract class Biome
 
 	public int getGrassColorAtPos(BlockPos pos)
 	{
-		double d0 = (double) MathHelper.clamp(this.getFloatTemperature(pos), 0.0F, 1.0F);
-		double d1 = (double) MathHelper.clamp(this.getRainfall(), 0.0F, 1.0F);
+		double d0 = MathHelper.clamp(this.getFloatTemperature(pos), 0.0F, 1.0F);
+		double d1 = MathHelper.clamp(this.getRainfall(), 0.0F, 1.0F);
 		return ColorizerGrass.getGrassColor(d0, d1);
 	}
 
 	public int getFoliageColorAtPos(BlockPos pos)
 	{
-		double d0 = (double) MathHelper.clamp(this.getFloatTemperature(pos), 0.0F, 1.0F);
-		double d1 = (double) MathHelper.clamp(this.getRainfall(), 0.0F, 1.0F);
+		double d0 = MathHelper.clamp(this.getFloatTemperature(pos), 0.0F, 1.0F);
+		double d1 = MathHelper.clamp(this.getRainfall(), 0.0F, 1.0F);
 		return ColorizerFoliage.getFoliageColor(d0, d1);
 	}
 
@@ -405,13 +405,13 @@ public abstract class Biome
 
 	public Biome.TempCategory getTempCategory()
 	{
-		if ((double) this.getTemperature() < 0.2D)
+		if (this.getTemperature() < 0.2D)
 		{
 			return Biome.TempCategory.COLD;
 		}
 		else
 		{
-			return (double) this.getTemperature() < 1.0D ? Biome.TempCategory.MEDIUM : Biome.TempCategory.WARM;
+			return this.getTemperature() < 1.0D ? Biome.TempCategory.MEDIUM : Biome.TempCategory.WARM;
 		}
 	}
 
@@ -644,6 +644,7 @@ public abstract class Biome
 			this.maxGroupCount = groupCountMax;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.entityClass.getSimpleName() + "*(" + this.minGroupCount + "-" + this.maxGroupCount + "):" + this.itemWeight;

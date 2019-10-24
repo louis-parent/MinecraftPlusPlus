@@ -35,6 +35,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 		this.setupTamedAI();
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -45,6 +46,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -64,6 +66,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -100,6 +103,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 		this.setSitting(compound.getBoolean("Sitting"));
 	}
 
+	@Override
 	public boolean canBeLeashedTo(EntityPlayer player)
 	{
 		return !this.getLeashed();
@@ -123,10 +127,11 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 			double d0 = this.rand.nextGaussian() * 0.02D;
 			double d1 = this.rand.nextGaussian() * 0.02D;
 			double d2 = this.rand.nextGaussian() * 0.02D;
-			this.world.spawnParticle(enumparticletypes, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
+			this.world.spawnParticle(enumparticletypes, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
 		}
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 7)
@@ -145,12 +150,12 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 
 	public boolean isTamed()
 	{
-		return (((Byte) this.dataManager.get(TAMED)).byteValue() & 4) != 0;
+		return (this.dataManager.get(TAMED).byteValue() & 4) != 0;
 	}
 
 	public void setTamed(boolean tamed)
 	{
-		byte b0 = ((Byte) this.dataManager.get(TAMED)).byteValue();
+		byte b0 = this.dataManager.get(TAMED).byteValue();
 
 		if (tamed)
 		{
@@ -170,12 +175,12 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 
 	public boolean isSitting()
 	{
-		return (((Byte) this.dataManager.get(TAMED)).byteValue() & 1) != 0;
+		return (this.dataManager.get(TAMED).byteValue() & 1) != 0;
 	}
 
 	public void setSitting(boolean sitting)
 	{
-		byte b0 = ((Byte) this.dataManager.get(TAMED)).byteValue();
+		byte b0 = this.dataManager.get(TAMED).byteValue();
 
 		if (sitting)
 		{
@@ -187,6 +192,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 		}
 	}
 
+	@Override
 	@Nullable
 	public UUID getOwnerId()
 	{
@@ -209,6 +215,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 		}
 	}
 
+	@Override
 	@Nullable
 	public EntityLivingBase getOwner()
 	{
@@ -241,6 +248,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 		return true;
 	}
 
+	@Override
 	public Team getTeam()
 	{
 		if (this.isTamed())
@@ -259,6 +267,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 	/**
 	 * Returns whether this Entity is on the same team as the given Entity.
 	 */
+	@Override
 	public boolean isOnSameTeam(Entity entityIn)
 	{
 		if (this.isTamed())
@@ -282,6 +291,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 	/**
 	 * Called when the mob's health reaches 0.
 	 */
+	@Override
 	public void onDeath(DamageSource cause)
 	{
 		if (!this.world.isRemote && this.world.getGameRules().getBoolean("showDeathMessages") && this.getOwner() instanceof EntityPlayerMP)

@@ -24,11 +24,13 @@ public class InventoryChangeTrigger implements ICriterionTrigger<InventoryChange
 	private static final ResourceLocation field_192209_a = new ResourceLocation("inventory_changed");
 	private final Map<PlayerAdvancements, InventoryChangeTrigger.Listeners> field_192210_b = Maps.<PlayerAdvancements, InventoryChangeTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192209_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<InventoryChangeTrigger.Instance> p_192165_2_)
 	{
 		InventoryChangeTrigger.Listeners inventorychangetrigger$listeners = this.field_192210_b.get(p_192165_1_);
@@ -42,6 +44,7 @@ public class InventoryChangeTrigger implements ICriterionTrigger<InventoryChange
 		inventorychangetrigger$listeners.func_192489_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<InventoryChangeTrigger.Instance> p_192164_2_)
 	{
 		InventoryChangeTrigger.Listeners inventorychangetrigger$listeners = this.field_192210_b.get(p_192164_1_);
@@ -57,11 +60,13 @@ public class InventoryChangeTrigger implements ICriterionTrigger<InventoryChange
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192210_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public InventoryChangeTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		JsonObject jsonobject = JsonUtils.getJsonObject(p_192166_1_, "slots", new JsonObject());
@@ -136,15 +141,15 @@ public class InventoryChangeTrigger implements ICriterionTrigger<InventoryChange
 				}
 			}
 
-			if (!this.field_192267_b.func_192514_a((float) i))
+			if (!this.field_192267_b.func_192514_a(i))
 			{
 				return false;
 			}
-			else if (!this.field_192268_c.func_192514_a((float) j))
+			else if (!this.field_192268_c.func_192514_a(j))
 			{
 				return false;
 			}
-			else if (!this.field_192266_a.func_192514_a((float) k))
+			else if (!this.field_192266_a.func_192514_a(k))
 			{
 				return false;
 			}
@@ -190,7 +195,7 @@ public class InventoryChangeTrigger implements ICriterionTrigger<InventoryChange
 
 			for (ICriterionTrigger.Listener<InventoryChangeTrigger.Instance> listener : this.field_192491_b)
 			{
-				if (((InventoryChangeTrigger.Instance) listener.func_192158_a()).func_192265_a(p_192486_1_))
+				if (listener.func_192158_a().func_192265_a(p_192486_1_))
 				{
 					if (list == null)
 					{

@@ -134,6 +134,7 @@ public class EntityTrackerEntry
 		this.onGround = entityIn.onGround;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (p_equals_1_ instanceof EntityTrackerEntry)
@@ -146,6 +147,7 @@ public class EntityTrackerEntry
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.trackedEntity.getEntityId();
@@ -499,10 +501,10 @@ public class EntityTrackerEntry
 
 	public boolean isVisibleTo(EntityPlayerMP playerMP)
 	{
-		double d0 = playerMP.posX - (double) this.encodedPosX / 4096.0D;
-		double d1 = playerMP.posZ - (double) this.encodedPosZ / 4096.0D;
+		double d0 = playerMP.posX - this.encodedPosX / 4096.0D;
+		double d1 = playerMP.posZ - this.encodedPosZ / 4096.0D;
 		int i = Math.min(this.range, this.maxRange);
-		return d0 >= (double) (-i) && d0 <= (double) i && d1 >= (double) (-i) && d1 <= (double) i && this.trackedEntity.isSpectatedByPlayer(playerMP);
+		return d0 >= (-i) && d0 <= i && d1 >= (-i) && d1 <= i && this.trackedEntity.isSpectatedByPlayer(playerMP);
 	}
 
 	private boolean isPlayerWatchingThisChunk(EntityPlayerMP playerMP)

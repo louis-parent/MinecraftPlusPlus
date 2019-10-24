@@ -17,6 +17,7 @@ public class LayerEnderDragonEyes implements LayerRenderer<EntityDragon>
 		this.dragonRenderer = dragonRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntityDragon entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.dragonRenderer.bindTexture(TEXTURE);
@@ -40,6 +41,7 @@ public class LayerEnderDragonEyes implements LayerRenderer<EntityDragon>
 		GlStateManager.depthFunc(515);
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;

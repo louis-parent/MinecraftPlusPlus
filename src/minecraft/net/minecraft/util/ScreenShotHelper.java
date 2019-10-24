@@ -76,7 +76,7 @@ public class ScreenShotHelper
 		}
 		catch (Exception exception)
 		{
-			LOGGER.warn("Couldn't save screenshot", (Throwable) exception);
+			LOGGER.warn("Couldn't save screenshot", exception);
 			return new TextComponentTranslation("screenshot.failure", new Object[] { exception.getMessage() });
 		}
 	}

@@ -42,6 +42,7 @@ public class ItemMonsterPlacer extends Item
 		this.setCreativeTab(CreativeTabs.MISC);
 	}
 
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		String s = ("" + I18n.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
@@ -58,6 +59,7 @@ public class ItemMonsterPlacer extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		ItemStack itemstack = stack.getHeldItem(pos);
@@ -97,7 +99,7 @@ public class ItemMonsterPlacer extends Item
 
 			BlockPos blockpos = worldIn.offset(hand);
 			double d0 = this.func_190909_a(playerIn, blockpos);
-			Entity entity = spawnCreature(playerIn, func_190908_h(itemstack), (double) blockpos.getX() + 0.5D, (double) blockpos.getY() + d0, (double) blockpos.getZ() + 0.5D);
+			Entity entity = spawnCreature(playerIn, func_190908_h(itemstack), blockpos.getX() + 0.5D, blockpos.getY() + d0, blockpos.getZ() + 0.5D);
 
 			if (entity != null)
 			{
@@ -136,7 +138,7 @@ public class ItemMonsterPlacer extends Item
 				d0 = Math.max(axisalignedbb1.maxY, d0);
 			}
 
-			return d0 - (double) p_190909_2_.getY();
+			return d0 - p_190909_2_.getY();
 		}
 	}
 
@@ -168,6 +170,7 @@ public class ItemMonsterPlacer extends Item
 		}
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);
@@ -190,7 +193,7 @@ public class ItemMonsterPlacer extends Item
 				}
 				else if (itemStackIn.isBlockModifiable(worldIn, blockpos) && worldIn.canPlayerEdit(blockpos, raytraceresult.sideHit, itemstack))
 				{
-					Entity entity = spawnCreature(itemStackIn, func_190908_h(itemstack), (double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 0.5D, (double) blockpos.getZ() + 0.5D);
+					Entity entity = spawnCreature(itemStackIn, func_190908_h(itemstack), blockpos.getX() + 0.5D, blockpos.getY() + 0.5D, blockpos.getZ() + 0.5D);
 
 					if (entity == null)
 					{
@@ -266,6 +269,7 @@ public class ItemMonsterPlacer extends Item
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
+	@Override
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (this.func_194125_a(itemIn))

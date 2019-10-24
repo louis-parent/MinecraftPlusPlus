@@ -28,6 +28,7 @@ public class SPacketEncryptionRequest implements Packet<INetHandlerLoginClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.hashedServerId = buf.readStringFromBuffer(20);
@@ -38,6 +39,7 @@ public class SPacketEncryptionRequest implements Packet<INetHandlerLoginClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeString(this.hashedServerId);
@@ -48,6 +50,7 @@ public class SPacketEncryptionRequest implements Packet<INetHandlerLoginClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerLoginClient handler)
 	{
 		handler.handleEncryptionRequest(this);

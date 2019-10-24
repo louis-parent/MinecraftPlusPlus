@@ -177,6 +177,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		return false;
@@ -185,10 +186,12 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Heal living entity (param: amount of half-hearts)
 	 */
+	@Override
 	public void heal(float healAmount)
 	{
 	}
 
+	@Override
 	public boolean startRiding(Entity entityIn, boolean force)
 	{
 		if (!super.startRiding(entityIn, force))
@@ -213,6 +216,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		}
 	}
 
+	@Override
 	public void dismountRidingEntity()
 	{
 		super.dismountRidingEntity();
@@ -222,6 +226,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * interpolated look vector
 	 */
+	@Override
 	public Vec3d getLook(float partialTicks)
 	{
 		return this.getVectorForRotation(this.rotationPitch, this.rotationYaw);
@@ -230,6 +235,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		if (this.world.isBlockLoaded(new BlockPos(this.posX, 0.0D, this.posZ)))
@@ -298,8 +304,8 @@ public class EntityPlayerSP extends AbstractClientPlayer
 			double d0 = this.posX - this.lastReportedPosX;
 			double d1 = axisalignedbb.minY - this.lastReportedPosY;
 			double d2 = this.posZ - this.lastReportedPosZ;
-			double d3 = (double) (this.rotationYaw - this.lastReportedYaw);
-			double d4 = (double) (this.rotationPitch - this.lastReportedPitch);
+			double d3 = this.rotationYaw - this.lastReportedYaw;
+			double d4 = this.rotationPitch - this.lastReportedPitch;
 			++this.positionUpdateTicks;
 			boolean flag2 = d0 * d0 + d1 * d1 + d2 * d2 > 9.0E-4D || this.positionUpdateTicks >= 20;
 			boolean flag3 = d3 != 0.0D || d4 != 0.0D;
@@ -345,6 +351,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -358,6 +365,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		return null;
 	}
 
+	@Override
 	protected ItemStack dropItemAndGetStack(EntityItem p_184816_1_)
 	{
 		return ItemStack.EMPTY_ITEM_STACK;
@@ -371,12 +379,14 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		this.connection.sendPacket(new CPacketChatMessage(message));
 	}
 
+	@Override
 	public void swingArm(EnumHand hand)
 	{
 		super.swingArm(hand);
 		this.connection.sendPacket(new CPacketAnimation(hand));
 	}
 
+	@Override
 	public void respawnPlayer()
 	{
 		this.connection.sendPacket(new CPacketClientStatus(CPacketClientStatus.State.PERFORM_RESPAWN));
@@ -386,6 +396,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	 * Deals damage to the entity. This will take the armor of the entity into
 	 * consideration before damaging the health bar.
 	 */
+	@Override
 	protected void damageEntity(DamageSource damageSrc, float damageAmount)
 	{
 		if (!this.isEntityInvulnerable(damageSrc))
@@ -397,6 +408,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * set current crafting inventory back to the 2x2 square
 	 */
+	@Override
 	public void closeScreen()
 	{
 		this.connection.sendPacket(new CPacketCloseWindow(this.openContainer.windowId));
@@ -448,6 +460,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Adds a value to a statistic field.
 	 */
+	@Override
 	public void addStat(StatBase stat, int amount)
 	{
 		if (stat != null)
@@ -462,6 +475,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Sends the player's abilities to the server (if there is one).
 	 */
+	@Override
 	public void sendPlayerAbilities()
 	{
 		this.connection.sendPacket(new CPacketPlayerAbilities(this.capabilities));
@@ -470,6 +484,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * returns true if this is an EntityPlayerSP, or the logged in player.
 	 */
+	@Override
 	public boolean isUser()
 	{
 		return true;
@@ -535,6 +550,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		this.permissionLevel = p_184839_1_;
 	}
 
+	@Override
 	public void addChatComponentMessage(ITextComponent chatComponent, boolean p_146105_2_)
 	{
 		if (p_146105_2_)
@@ -547,6 +563,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		}
 	}
 
+	@Override
 	protected boolean pushOutOfBlocks(double x, double y, double z)
 	{
 		if (this.noClip)
@@ -556,8 +573,8 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		else
 		{
 			BlockPos blockpos = new BlockPos(x, y, z);
-			double d0 = x - (double) blockpos.getX();
-			double d1 = z - (double) blockpos.getZ();
+			double d0 = x - blockpos.getX();
+			double d1 = z - blockpos.getZ();
 
 			if (!this.isOpenBlockSpace(blockpos))
 			{
@@ -627,6 +644,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Set sprinting switch for Entity.
 	 */
+	@Override
 	public void setSprinting(boolean sprinting)
 	{
 		super.setSprinting(sprinting);
@@ -646,6 +664,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Send a chat message to the CommandSender
 	 */
+	@Override
 	public void addChatMessage(ITextComponent component)
 	{
 		this.mc.ingameGUI.getChatGUI().printChatMessage(component);
@@ -655,11 +674,13 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	 * Returns {@code true} if the CommandSender is allowed to execute the
 	 * command, {@code false} if not
 	 */
+	@Override
 	public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 	{
 		return permLevel <= this.getPermissionLevel();
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id >= 24 && id <= 28)
@@ -676,11 +697,13 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	 * Get the position in the world. <b>{@code null} is not allowed!</b> If you
 	 * are not an entity in the world, return the coordinates 0, 0, 0
 	 */
+	@Override
 	public BlockPos getPosition()
 	{
 		return new BlockPos(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D);
 	}
 
+	@Override
 	public void playSound(SoundEvent soundIn, float volume, float pitch)
 	{
 		this.world.playSound(this.posX, this.posY, this.posZ, soundIn, this.getSoundCategory(), volume, pitch, false);
@@ -689,11 +712,13 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Returns whether the entity is in a server world
 	 */
+	@Override
 	public boolean isServerWorld()
 	{
 		return true;
 	}
 
+	@Override
 	public void setActiveHand(EnumHand hand)
 	{
 		ItemStack itemstack = this.getHeldItem(hand);
@@ -706,30 +731,34 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		}
 	}
 
+	@Override
 	public boolean isHandActive()
 	{
 		return this.handActive;
 	}
 
+	@Override
 	public void resetActiveHand()
 	{
 		super.resetActiveHand();
 		this.handActive = false;
 	}
 
+	@Override
 	public EnumHand getActiveHand()
 	{
 		return this.activeHand;
 	}
 
+	@Override
 	public void notifyDataManagerChange(DataParameter<?> key)
 	{
 		super.notifyDataManagerChange(key);
 
 		if (HAND_STATES.equals(key))
 		{
-			boolean flag = (((Byte) this.dataManager.get(HAND_STATES)).byteValue() & 1) > 0;
-			EnumHand enumhand = (((Byte) this.dataManager.get(HAND_STATES)).byteValue() & 2) > 0 ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND;
+			boolean flag = (this.dataManager.get(HAND_STATES).byteValue() & 1) > 0;
+			EnumHand enumhand = (this.dataManager.get(HAND_STATES).byteValue() & 2) > 0 ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND;
 
 			if (flag && !this.handActive)
 			{
@@ -758,26 +787,31 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		return this.horseJumpPower;
 	}
 
+	@Override
 	public void openEditSign(TileEntitySign signTile)
 	{
 		this.mc.displayGuiScreen(new GuiEditSign(signTile));
 	}
 
+	@Override
 	public void displayGuiEditCommandCart(CommandBlockBaseLogic commandBlock)
 	{
 		this.mc.displayGuiScreen(new GuiEditCommandBlockMinecart(commandBlock));
 	}
 
+	@Override
 	public void displayGuiCommandBlock(TileEntityCommandBlock commandBlock)
 	{
 		this.mc.displayGuiScreen(new GuiCommandBlock(commandBlock));
 	}
 
+	@Override
 	public void openEditStructure(TileEntityStructure structure)
 	{
 		this.mc.displayGuiScreen(new GuiEditStructure(structure));
 	}
 
+	@Override
 	public void openBook(ItemStack stack, EnumHand hand)
 	{
 		Item item = stack.getItem();
@@ -791,6 +825,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Displays the GUI for interacting with a chest inventory.
 	 */
+	@Override
 	public void displayGUIChest(IInventory chestInventory)
 	{
 		String s = chestInventory instanceof IInteractionObject ? ((IInteractionObject) chestInventory).getGuiID() : "minecraft:container";
@@ -832,11 +867,13 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		}
 	}
 
+	@Override
 	public void openGuiHorseInventory(AbstractHorse horse, IInventory inventoryIn)
 	{
 		this.mc.displayGuiScreen(new GuiScreenHorseInventory(this.inventory, inventoryIn, horse));
 	}
 
+	@Override
 	public void displayGui(IInteractionObject guiOwner)
 	{
 		String s = guiOwner.getGuiID();
@@ -855,6 +892,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		}
 	}
 
+	@Override
 	public void displayVillagerTradeGui(IMerchant villager)
 	{
 		this.mc.displayGuiScreen(new GuiMerchant(this.inventory, villager, this.world));
@@ -863,11 +901,13 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Called when the entity is dealt a critical hit.
 	 */
+	@Override
 	public void onCriticalHit(Entity entityHit)
 	{
 		this.mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT);
 	}
 
+	@Override
 	public void onEnchantmentCritical(Entity entityHit)
 	{
 		this.mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT_MAGIC);
@@ -876,12 +916,14 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Returns if this entity is sneaking.
 	 */
+	@Override
 	public boolean isSneaking()
 	{
 		boolean flag = this.movementInput != null && this.movementInput.sneak;
 		return flag && !this.sleeping;
 	}
 
+	@Override
 	public void updateEntityActionState()
 	{
 		super.updateEntityActionState();
@@ -893,8 +935,8 @@ public class EntityPlayerSP extends AbstractClientPlayer
 			this.isJumping = this.movementInput.jump;
 			this.prevRenderArmYaw = this.renderArmYaw;
 			this.prevRenderArmPitch = this.renderArmPitch;
-			this.renderArmPitch = (float) ((double) this.renderArmPitch + (double) (this.rotationPitch - this.renderArmPitch) * 0.5D);
-			this.renderArmYaw = (float) ((double) this.renderArmYaw + (double) (this.rotationYaw - this.renderArmYaw) * 0.5D);
+			this.renderArmPitch = (float) (this.renderArmPitch + (this.rotationPitch - this.renderArmPitch) * 0.5D);
+			this.renderArmYaw = (float) (this.renderArmYaw + (this.rotationYaw - this.renderArmYaw) * 0.5D);
 		}
 	}
 
@@ -908,6 +950,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		++this.sprintingTicksLeft;
@@ -991,11 +1034,11 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		}
 
 		AxisAlignedBB axisalignedbb = this.getEntityBoundingBox();
-		this.pushOutOfBlocks(this.posX - (double) this.width * 0.35D, axisalignedbb.minY + 0.5D, this.posZ + (double) this.width * 0.35D);
-		this.pushOutOfBlocks(this.posX - (double) this.width * 0.35D, axisalignedbb.minY + 0.5D, this.posZ - (double) this.width * 0.35D);
-		this.pushOutOfBlocks(this.posX + (double) this.width * 0.35D, axisalignedbb.minY + 0.5D, this.posZ - (double) this.width * 0.35D);
-		this.pushOutOfBlocks(this.posX + (double) this.width * 0.35D, axisalignedbb.minY + 0.5D, this.posZ + (double) this.width * 0.35D);
-		boolean flag4 = (float) this.getFoodStats().getFoodLevel() > 6.0F || this.capabilities.allowFlying;
+		this.pushOutOfBlocks(this.posX - this.width * 0.35D, axisalignedbb.minY + 0.5D, this.posZ + this.width * 0.35D);
+		this.pushOutOfBlocks(this.posX - this.width * 0.35D, axisalignedbb.minY + 0.5D, this.posZ - this.width * 0.35D);
+		this.pushOutOfBlocks(this.posX + this.width * 0.35D, axisalignedbb.minY + 0.5D, this.posZ - this.width * 0.35D);
+		this.pushOutOfBlocks(this.posX + this.width * 0.35D, axisalignedbb.minY + 0.5D, this.posZ + this.width * 0.35D);
+		boolean flag4 = this.getFoodStats().getFoodLevel() > 6.0F || this.capabilities.allowFlying;
 
 		if (this.onGround && !flag1 && !flag2 && this.movementInput.field_192832_b >= 0.8F && !this.isSprinting() && flag4 && !this.isHandActive() && !this.isPotionActive(MobEffects.BLINDNESS))
 		{
@@ -1060,14 +1103,14 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		{
 			if (this.movementInput.sneak)
 			{
-				this.movementInput.moveStrafe = (float) ((double) this.movementInput.moveStrafe / 0.3D);
-				this.movementInput.field_192832_b = (float) ((double) this.movementInput.field_192832_b / 0.3D);
-				this.motionY -= (double) (this.capabilities.getFlySpeed() * 3.0F);
+				this.movementInput.moveStrafe = (float) (this.movementInput.moveStrafe / 0.3D);
+				this.movementInput.field_192832_b = (float) (this.movementInput.field_192832_b / 0.3D);
+				this.motionY -= this.capabilities.getFlySpeed() * 3.0F;
 			}
 
 			if (this.movementInput.jump)
 			{
-				this.motionY += (double) (this.capabilities.getFlySpeed() * 3.0F);
+				this.motionY += this.capabilities.getFlySpeed() * 3.0F;
 			}
 		}
 
@@ -1102,11 +1145,11 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
 				if (this.horseJumpPowerCounter < 10)
 				{
-					this.horseJumpPower = (float) this.horseJumpPowerCounter * 0.1F;
+					this.horseJumpPower = this.horseJumpPowerCounter * 0.1F;
 				}
 				else
 				{
-					this.horseJumpPower = 0.8F + 2.0F / (float) (this.horseJumpPowerCounter - 9) * 0.1F;
+					this.horseJumpPower = 0.8F + 2.0F / (this.horseJumpPowerCounter - 9) * 0.1F;
 				}
 			}
 		}
@@ -1127,6 +1170,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Handles updating while being ridden by an entity
 	 */
+	@Override
 	public void updateRidden()
 	{
 		super.updateRidden();
@@ -1145,6 +1189,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		return this.rowingBoat;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -1165,6 +1210,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	/**
 	 * Tries to move the entity towards the specified location.
 	 */
+	@Override
 	public void moveEntity(MoverType x, double p_70091_2_, double p_70091_4_, double p_70091_6_)
 	{
 		double d0 = this.posX;
@@ -1189,10 +1235,10 @@ public class EntityPlayerSP extends AbstractClientPlayer
 				if (vec2f.x != 0.0F || vec2f.y != 0.0F)
 				{
 					Vec3d vec3d = new Vec3d(this.posX, this.getEntityBoundingBox().minY, this.posZ);
-					double d0 = this.posX + (double) p_189810_1_;
-					double d1 = this.posZ + (double) p_189810_2_;
+					double d0 = this.posX + p_189810_1_;
+					double d1 = this.posZ + p_189810_2_;
 					Vec3d vec3d1 = new Vec3d(d0, this.getEntityBoundingBox().minY, d1);
-					Vec3d vec3d2 = new Vec3d((double) p_189810_1_, 0.0D, (double) p_189810_2_);
+					Vec3d vec3d2 = new Vec3d(p_189810_1_, 0.0D, p_189810_2_);
 					float f = this.getAIMoveSpeed();
 					float f1 = (float) vec3d2.lengthSquared();
 
@@ -1202,7 +1248,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 						float f3 = f * vec2f.y;
 						float f4 = MathHelper.sin(this.rotationYaw * 0.017453292F);
 						float f5 = MathHelper.cos(this.rotationYaw * 0.017453292F);
-						vec3d2 = new Vec3d((double) (f2 * f5 - f3 * f4), vec3d2.yCoord, (double) (f3 * f5 + f2 * f4));
+						vec3d2 = new Vec3d(f2 * f5 - f3 * f4, vec3d2.yCoord, f3 * f5 + f2 * f4);
 						f1 = (float) vec3d2.lengthSquared();
 
 						if (f1 <= 0.001F)
@@ -1211,8 +1257,8 @@ public class EntityPlayerSP extends AbstractClientPlayer
 						}
 					}
 
-					float f12 = (float) MathHelper.fastInvSqrt((double) f1);
-					Vec3d vec3d12 = vec3d2.scale((double) f12);
+					float f12 = (float) MathHelper.fastInvSqrt(f1);
+					Vec3d vec3d12 = vec3d2.scale(f12);
 					Vec3d vec3d13 = this.getForward();
 					float f13 = (float) (vec3d13.xCoord * vec3d12.xCoord + vec3d13.zCoord * vec3d12.zCoord);
 
@@ -1233,18 +1279,18 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
 								if (this.isPotionActive(MobEffects.JUMP_BOOST))
 								{
-									f7 += (float) (this.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier() + 1) * 0.75F;
+									f7 += (this.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier() + 1) * 0.75F;
 								}
 
 								float f8 = Math.max(f * 7.0F, 1.0F / f12);
-								Vec3d vec3d4 = vec3d1.add(vec3d12.scale((double) f8));
+								Vec3d vec3d4 = vec3d1.add(vec3d12.scale(f8));
 								float f9 = this.width;
 								float f10 = this.height;
-								AxisAlignedBB axisalignedbb = (new AxisAlignedBB(vec3d, vec3d4.addVector(0.0D, (double) f10, 0.0D))).expand((double) f9, 0.0D, (double) f9);
+								AxisAlignedBB axisalignedbb = (new AxisAlignedBB(vec3d, vec3d4.addVector(0.0D, f10, 0.0D))).expand(f9, 0.0D, f9);
 								Vec3d lvt_19_1_ = vec3d.addVector(0.0D, 0.5099999904632568D, 0.0D);
 								vec3d4 = vec3d4.addVector(0.0D, 0.5099999904632568D, 0.0D);
 								Vec3d vec3d5 = vec3d12.crossProduct(new Vec3d(0.0D, 1.0D, 0.0D));
-								Vec3d vec3d6 = vec3d5.scale((double) (f9 * 0.5F));
+								Vec3d vec3d6 = vec3d5.scale(f9 * 0.5F);
 								Vec3d vec3d7 = lvt_19_1_.subtract(vec3d6);
 								Vec3d vec3d8 = vec3d4.subtract(vec3d6);
 								Vec3d vec3d9 = lvt_19_1_.add(vec3d6);
@@ -1270,7 +1316,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
 										while (true)
 										{
-											if ((float) i >= f7)
+											if (i >= f7)
 											{
 												break label86;
 											}
@@ -1281,9 +1327,9 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
 											if ((axisalignedbb1 = iblockstate2.getCollisionBoundingBox(this.world, blockpos2)) != null)
 											{
-												f11 = (float) axisalignedbb1.maxY + (float) blockpos2.getY();
+												f11 = (float) axisalignedbb1.maxY + blockpos2.getY();
 
-												if ((double) f11 - this.getEntityBoundingBox().minY > (double) f7)
+												if (f11 - this.getEntityBoundingBox().minY > f7)
 												{
 													return;
 												}
@@ -1307,7 +1353,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
 								if (f11 != Float.MIN_VALUE)
 								{
-									float f14 = (float) ((double) f11 - this.getEntityBoundingBox().minY);
+									float f14 = (float) (f11 - this.getEntityBoundingBox().minY);
 
 									if (f14 > 0.5F && f14 <= f7)
 									{

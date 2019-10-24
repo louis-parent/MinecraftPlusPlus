@@ -19,6 +19,7 @@ public class CreativeCrafting implements IContainerListener
 	/**
 	 * update the crafting window inventory with the items in the list
 	 */
+	@Override
 	public void updateCraftingInventory(Container containerToSend, NonNullList<ItemStack> itemsList)
 	{
 	}
@@ -27,6 +28,7 @@ public class CreativeCrafting implements IContainerListener
 	 * Sends the contents of an inventory slot to the client-side Container.
 	 * This doesn't have to match the actual contents of that slot.
 	 */
+	@Override
 	public void sendSlotContents(Container containerToSend, int slotInd, ItemStack stack)
 	{
 		this.mc.playerController.sendSlotPacket(stack, slotInd);
@@ -38,10 +40,12 @@ public class CreativeCrafting implements IContainerListener
 	 * the first int identifies which variable to update, and the second
 	 * contains the new value. Both are truncated to shorts in non-local SMP.
 	 */
+	@Override
 	public void sendProgressBarUpdate(Container containerIn, int varToUpdate, int newValue)
 	{
 	}
 
+	@Override
 	public void sendAllWindowProperties(Container containerIn, IInventory inventory)
 	{
 	}

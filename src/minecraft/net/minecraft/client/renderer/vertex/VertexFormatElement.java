@@ -53,6 +53,7 @@ public class VertexFormatElement
 		return this.index;
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.elementCount + "," + this.usage.getDisplayName() + "," + this.type.getDisplayName();
@@ -68,6 +69,7 @@ public class VertexFormatElement
 		return this.usage == VertexFormatElement.EnumUsage.POSITION;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -101,6 +103,7 @@ public class VertexFormatElement
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = this.type.hashCode();

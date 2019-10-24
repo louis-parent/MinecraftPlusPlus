@@ -31,27 +31,31 @@ public class BlockNetherWart extends BlockBush
 		this.setCreativeTab((CreativeTabs) null);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		return NETHER_WART_AABB[((Integer) state.getValue(AGE)).intValue()];
+		return NETHER_WART_AABB[state.getValue(AGE).intValue()];
 	}
 
 	/**
 	 * Return true if the block can sustain a Bush
 	 */
+	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
 		return state.getBlock() == Blocks.SOUL_SAND;
 	}
 
+	@Override
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return this.canSustainBush(worldIn.getBlockState(pos.down()));
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
-		int i = ((Integer) state.getValue(AGE)).intValue();
+		int i = state.getValue(AGE).intValue();
 
 		if (i < 3 && rand.nextInt(10) == 0)
 		{
@@ -65,13 +69,14 @@ public class BlockNetherWart extends BlockBush
 	/**
 	 * Spawns this Block's drops into the World as EntityItems.
 	 */
+	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 		if (!worldIn.isRemote)
 		{
 			int i = 1;
 
-			if (((Integer) state.getValue(AGE)).intValue() >= 3)
+			if (state.getValue(AGE).intValue() >= 3)
 			{
 				i = 2 + worldIn.rand.nextInt(3);
 
@@ -91,6 +96,7 @@ public class BlockNetherWart extends BlockBush
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.EMPTY_ITEM;
@@ -99,11 +105,13 @@ public class BlockNetherWart extends BlockBush
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(Items.NETHER_WART);
@@ -112,6 +120,7 @@ public class BlockNetherWart extends BlockBush
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
@@ -120,11 +129,13 @@ public class BlockNetherWart extends BlockBush
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(AGE)).intValue();
+		return state.getValue(AGE).intValue();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { AGE });

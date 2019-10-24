@@ -28,6 +28,7 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
 		this.useBaseHeight = p_i45457_2_;
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		int i = this.getHeight(rand);
@@ -92,6 +93,7 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
 		}
 	}
 
+	@Override
 	public void generateSaplings(World worldIn, Random random, BlockPos pos)
 	{
 		this.placePodzolCircle(worldIn, pos.west().north());

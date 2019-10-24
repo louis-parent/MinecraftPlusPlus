@@ -38,11 +38,13 @@ public abstract class PositionedSound implements ISound
 		this.category = categoryIn;
 	}
 
+	@Override
 	public ResourceLocation getSoundLocation()
 	{
 		return this.positionedSoundLocation;
 	}
 
+	@Override
 	public SoundEventAccessor createAccessor(SoundHandler handler)
 	{
 		this.soundEvent = handler.getAccessor(this.positionedSoundLocation);
@@ -59,51 +61,61 @@ public abstract class PositionedSound implements ISound
 		return this.soundEvent;
 	}
 
+	@Override
 	public Sound getSound()
 	{
 		return this.sound;
 	}
 
+	@Override
 	public SoundCategory getCategory()
 	{
 		return this.category;
 	}
 
+	@Override
 	public boolean canRepeat()
 	{
 		return this.repeat;
 	}
 
+	@Override
 	public int getRepeatDelay()
 	{
 		return this.repeatDelay;
 	}
 
+	@Override
 	public float getVolume()
 	{
 		return this.volume * this.sound.getVolume();
 	}
 
+	@Override
 	public float getPitch()
 	{
 		return this.pitch * this.sound.getPitch();
 	}
 
+	@Override
 	public float getXPosF()
 	{
 		return this.xPosF;
 	}
 
+	@Override
 	public float getYPosF()
 	{
 		return this.yPosF;
 	}
 
+	@Override
 	public float getZPosF()
 	{
 		return this.zPosF;
 	}
 
+	@Override
 	public ISound.AttenuationType getAttenuationType()
 	{
 		return this.attenuationType;

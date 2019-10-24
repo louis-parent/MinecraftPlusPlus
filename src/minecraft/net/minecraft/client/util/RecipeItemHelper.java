@@ -121,7 +121,7 @@ public class RecipeItemHelper
 
 			for (int i = 0; i < this.field_194106_c.size(); ++i)
 			{
-				IntList intlist = ((Ingredient) this.field_194106_c.get(i)).func_194139_b();
+				IntList intlist = this.field_194106_c.get(i).func_194139_b();
 
 				for (int j = 0; j < this.field_194109_f; ++j)
 				{
@@ -151,7 +151,7 @@ public class RecipeItemHelper
 
 					for (int i1 = 0; i1 < l; ++i1)
 					{
-						this.func_194089_c((i1 & 1) == 0, ((Integer) this.field_194111_h.get(i1)).intValue(), ((Integer) this.field_194111_h.get(i1 + 1)).intValue());
+						this.func_194089_c((i1 & 1) == 0, this.field_194111_h.get(i1).intValue(), this.field_194111_h.get(i1 + 1).intValue());
 					}
 
 					this.field_194111_h.clear();
@@ -365,7 +365,7 @@ public class RecipeItemHelper
 
 				for (IntListIterator intlistiterator = ingredient.func_194139_b().iterator(); intlistiterator.hasNext(); l = Math.max(l, RecipeItemHelper.this.field_194124_a.get(i1)))
 				{
-					i1 = ((Integer) intlistiterator.next()).intValue();
+					i1 = intlistiterator.next().intValue();
 				}
 
 				if (k > 0)

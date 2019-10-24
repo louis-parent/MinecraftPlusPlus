@@ -24,38 +24,45 @@ public class TileEntityCommandBlock extends TileEntity
 	private boolean sendToClient;
 	private final CommandBlockBaseLogic commandBlockLogic = new CommandBlockBaseLogic()
 	{
+		@Override
 		public BlockPos getPosition()
 		{
 			return TileEntityCommandBlock.this.pos;
 		}
 
+		@Override
 		public Vec3d getPositionVector()
 		{
-			return new Vec3d((double) TileEntityCommandBlock.this.pos.getX() + 0.5D, (double) TileEntityCommandBlock.this.pos.getY() + 0.5D, (double) TileEntityCommandBlock.this.pos.getZ() + 0.5D);
+			return new Vec3d(TileEntityCommandBlock.this.pos.getX() + 0.5D, TileEntityCommandBlock.this.pos.getY() + 0.5D, TileEntityCommandBlock.this.pos.getZ() + 0.5D);
 		}
 
+		@Override
 		public World getEntityWorld()
 		{
 			return TileEntityCommandBlock.this.getWorld();
 		}
 
+		@Override
 		public void setCommand(String command)
 		{
 			super.setCommand(command);
 			TileEntityCommandBlock.this.markDirty();
 		}
 
+		@Override
 		public void updateCommand()
 		{
 			IBlockState iblockstate = TileEntityCommandBlock.this.world.getBlockState(TileEntityCommandBlock.this.pos);
 			TileEntityCommandBlock.this.getWorld().notifyBlockUpdate(TileEntityCommandBlock.this.pos, iblockstate, iblockstate, 3);
 		}
 
+		@Override
 		public int getCommandBlockType()
 		{
 			return 0;
 		}
 
+		@Override
 		public void fillInInfo(ByteBuf buf)
 		{
 			buf.writeInt(TileEntityCommandBlock.this.pos.getX());
@@ -63,12 +70,14 @@ public class TileEntityCommandBlock extends TileEntity
 			buf.writeInt(TileEntityCommandBlock.this.pos.getZ());
 		}
 
+		@Override
 		public MinecraftServer getServer()
 		{
 			return TileEntityCommandBlock.this.world.getMinecraftServer();
 		}
 	};
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -79,6 +88,7 @@ public class TileEntityCommandBlock extends TileEntity
 		return compound;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -88,6 +98,7 @@ public class TileEntityCommandBlock extends TileEntity
 		this.setAuto(compound.getBoolean("auto"));
 	}
 
+	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
@@ -103,6 +114,7 @@ public class TileEntityCommandBlock extends TileEntity
 		}
 	}
 
+	@Override
 	public boolean onlyOpsCanSetNbt()
 	{
 		return true;
@@ -161,7 +173,7 @@ public class TileEntityCommandBlock extends TileEntity
 
 		if (this.isConditional())
 		{
-			BlockPos blockpos = this.pos.offset(((EnumFacing) this.world.getBlockState(this.pos).getValue(BlockCommandBlock.FACING)).getOpposite());
+			BlockPos blockpos = this.pos.offset(this.world.getBlockState(this.pos).getValue(BlockCommandBlock.FACING).getOpposite());
 
 			if (this.world.getBlockState(blockpos).getBlock() instanceof BlockCommandBlock)
 			{
@@ -208,12 +220,13 @@ public class TileEntityCommandBlock extends TileEntity
 	public boolean isConditional()
 	{
 		IBlockState iblockstate = this.world.getBlockState(this.getPos());
-		return iblockstate.getBlock() instanceof BlockCommandBlock ? ((Boolean) iblockstate.getValue(BlockCommandBlock.CONDITIONAL)).booleanValue() : false;
+		return iblockstate.getBlock() instanceof BlockCommandBlock ? iblockstate.getValue(BlockCommandBlock.CONDITIONAL).booleanValue() : false;
 	}
 
 	/**
 	 * validates a tile entity
 	 */
+	@Override
 	public void validate()
 	{
 		this.blockType = null;

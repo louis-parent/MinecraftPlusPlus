@@ -63,6 +63,7 @@ public class ChunkCache implements IBlockAccess
 		return this.hasExtendedLevels;
 	}
 
+	@Override
 	@Nullable
 	public TileEntity getTileEntity(BlockPos pos)
 	{
@@ -77,6 +78,7 @@ public class ChunkCache implements IBlockAccess
 		return this.chunkArray[i][j].getTileEntity(p_190300_1_, p_190300_2_);
 	}
 
+	@Override
 	public int getCombinedLight(BlockPos pos, int lightValue)
 	{
 		int i = this.getLightForExt(EnumSkyBlock.SKY, pos);
@@ -90,6 +92,7 @@ public class ChunkCache implements IBlockAccess
 		return i << 20 | j << 4;
 	}
 
+	@Override
 	public IBlockState getBlockState(BlockPos pos)
 	{
 		if (pos.getY() >= 0 && pos.getY() < 256)
@@ -111,6 +114,7 @@ public class ChunkCache implements IBlockAccess
 		return Blocks.AIR.getDefaultState();
 	}
 
+	@Override
 	public Biome getBiome(BlockPos pos)
 	{
 		int i = (pos.getX() >> 4) - this.chunkX;
@@ -165,6 +169,7 @@ public class ChunkCache implements IBlockAccess
 	 * this only checks to see if the blocks material is set to air, meaning it
 	 * is possible for non-vanilla blocks to still pass this check.
 	 */
+	@Override
 	public boolean isAirBlock(BlockPos pos)
 	{
 		return this.getBlockState(pos).getMaterial() == Material.AIR;
@@ -184,11 +189,13 @@ public class ChunkCache implements IBlockAccess
 		}
 	}
 
+	@Override
 	public int getStrongPower(BlockPos pos, EnumFacing direction)
 	{
 		return this.getBlockState(pos).getStrongPower(this, pos, direction);
 	}
 
+	@Override
 	public WorldType getWorldType()
 	{
 		return this.worldObj.getWorldType();

@@ -18,6 +18,7 @@ public class RenderStray extends RenderSkeleton
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(AbstractSkeleton entity)
 	{
 		return STRAY_SKELETON_TEXTURES;

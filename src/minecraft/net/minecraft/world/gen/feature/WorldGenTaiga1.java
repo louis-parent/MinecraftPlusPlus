@@ -23,6 +23,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 		super(false);
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		int i = rand.nextInt(5) + 7;

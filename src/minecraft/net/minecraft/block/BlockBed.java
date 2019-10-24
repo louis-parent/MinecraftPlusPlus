@@ -52,6 +52,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
 		if (state.getValue(PART) == BlockBed.EnumPartType.FOOT)
@@ -68,6 +69,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 		return MapColor.CLOTH;
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		if (worldIn.isRemote)
@@ -78,7 +80,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 		{
 			if (state.getValue(PART) != BlockBed.EnumPartType.HEAD)
 			{
-				pos = pos.offset((EnumFacing) state.getValue(FACING));
+				pos = pos.offset(state.getValue(FACING));
 				state = worldIn.getBlockState(pos);
 
 				if (state.getBlock() != this)
@@ -89,7 +91,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 
 			if (worldIn.provider.canRespawnHere() && worldIn.getBiome(pos) != Biomes.HELL)
 			{
-				if (((Boolean) state.getValue(OCCUPIED)).booleanValue())
+				if (state.getValue(OCCUPIED).booleanValue())
 				{
 					EntityPlayer entityplayer = this.getPlayerInBed(worldIn, pos);
 
@@ -132,14 +134,14 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 			else
 			{
 				worldIn.setBlockToAir(pos);
-				BlockPos blockpos = pos.offset(((EnumFacing) state.getValue(FACING)).getOpposite());
+				BlockPos blockpos = pos.offset(state.getValue(FACING).getOpposite());
 
 				if (worldIn.getBlockState(blockpos).getBlock() == this)
 				{
 					worldIn.setBlockToAir(blockpos);
 				}
 
-				worldIn.newExplosion((Entity) null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, 5.0F, true, true);
+				worldIn.newExplosion((Entity) null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 5.0F, true, true);
 				return true;
 			}
 		}
@@ -159,6 +161,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 		return null;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -168,6 +171,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
@@ -176,6 +180,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	/**
 	 * Block's chance to react to a living entity falling on it.
 	 */
+	@Override
 	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
 	{
 		super.onFallenUpon(worldIn, pos, entityIn, fallDistance * 0.5F);
@@ -185,6 +190,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	 * Called when an Entity lands on this Block. This method *must* update
 	 * motionY because the entity will not do that on its own
 	 */
+	@Override
 	public void onLanded(World worldIn, Entity entityIn)
 	{
 		if (entityIn.isSneaking())
@@ -208,9 +214,10 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
-		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+		EnumFacing enumfacing = state.getValue(FACING);
 
 		if (state.getValue(PART) == BlockBed.EnumPartType.FOOT)
 		{
@@ -233,16 +240,19 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return state.getValue(PART) == BlockBed.EnumPartType.FOOT ? Items.EMPTY_ITEM : Items.BED;
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return BED_AABB;
 	}
 
+	@Override
 	public boolean func_190946_v(IBlockState p_190946_1_)
 	{
 		return true;
@@ -255,7 +265,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	 */
 	public static BlockPos getSafeExitLocation(World worldIn, BlockPos pos, int tries)
 	{
-		EnumFacing enumfacing = (EnumFacing) worldIn.getBlockState(pos).getValue(FACING);
+		EnumFacing enumfacing = worldIn.getBlockState(pos).getValue(FACING);
 		int i = pos.getX();
 		int j = pos.getY();
 		int k = pos.getZ();
@@ -297,6 +307,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	/**
 	 * Spawns this Block's drops into the World as EntityItems.
 	 */
+	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 		if (state.getValue(PART) == BlockBed.EnumPartType.HEAD)
@@ -307,11 +318,13 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 		}
 	}
 
+	@Override
 	public EnumPushReaction getMobilityFlag(IBlockState state)
 	{
 		return EnumPushReaction.DESTROY;
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
@@ -322,18 +335,20 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
 	 * INVISIBLE to skip all rendering
 	 */
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		BlockPos blockpos = pos;
 
 		if (state.getValue(PART) == BlockBed.EnumPartType.FOOT)
 		{
-			blockpos = pos.offset((EnumFacing) state.getValue(FACING));
+			blockpos = pos.offset(state.getValue(FACING));
 		}
 
 		TileEntity tileentity = worldIn.getTileEntity(blockpos);
@@ -341,11 +356,12 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 		return new ItemStack(Items.BED, 1, enumdyecolor.getMetadata());
 	}
 
+	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
 		if (player.capabilities.isCreativeMode && state.getValue(PART) == BlockBed.EnumPartType.FOOT)
 		{
-			BlockPos blockpos = pos.offset((EnumFacing) state.getValue(FACING));
+			BlockPos blockpos = pos.offset(state.getValue(FACING));
 
 			if (worldIn.getBlockState(blockpos).getBlock() == this)
 			{
@@ -354,6 +370,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 		}
 	}
 
+	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack)
 	{
 		if (state.getValue(PART) == BlockBed.EnumPartType.HEAD && te instanceof TileEntityBed)
@@ -372,6 +389,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		super.breakBlock(worldIn, pos, state);
@@ -381,6 +399,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
@@ -392,11 +411,12 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	 * applies properties not visible in the metadata, such as fence
 	 * connections.
 	 */
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		if (state.getValue(PART) == BlockBed.EnumPartType.FOOT)
 		{
-			IBlockState iblockstate = worldIn.getBlockState(pos.offset((EnumFacing) state.getValue(FACING)));
+			IBlockState iblockstate = worldIn.getBlockState(pos.offset(state.getValue(FACING)));
 
 			if (iblockstate.getBlock() == this)
 			{
@@ -411,33 +431,36 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((EnumFacing) state.getValue(FACING)).getHorizontalIndex();
+		i = i | state.getValue(FACING).getHorizontalIndex();
 
 		if (state.getValue(PART) == BlockBed.EnumPartType.HEAD)
 		{
 			i |= 8;
 
-			if (((Boolean) state.getValue(OCCUPIED)).booleanValue())
+			if (state.getValue(OCCUPIED).booleanValue())
 			{
 				i |= 4;
 			}
@@ -446,11 +469,13 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 		return i;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING, PART, OCCUPIED });
@@ -460,6 +485,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
+	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityBed();
@@ -481,11 +507,13 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 			this.name = name;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

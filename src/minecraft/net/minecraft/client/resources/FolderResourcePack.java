@@ -39,6 +39,7 @@ public class FolderResourcePack extends AbstractResourcePack
 		return s.endsWith(p_191384_1_);
 	}
 
+	@Override
 	protected InputStream getInputStreamByName(String name) throws IOException
 	{
 		File file1 = this.func_191385_d(name);
@@ -53,6 +54,7 @@ public class FolderResourcePack extends AbstractResourcePack
 		}
 	}
 
+	@Override
 	protected boolean hasResourceName(String name)
 	{
 		return this.func_191385_d(name) != null;
@@ -78,6 +80,7 @@ public class FolderResourcePack extends AbstractResourcePack
 		return null;
 	}
 
+	@Override
 	public Set<String> getResourceDomains()
 	{
 		Set<String> set = Sets.<String>newHashSet();

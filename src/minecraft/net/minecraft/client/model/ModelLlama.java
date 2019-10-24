@@ -59,6 +59,7 @@ public class ModelLlama extends ModelQuadruped
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		AbstractChestHorse abstractchesthorse = (AbstractChestHorse) entityIn;

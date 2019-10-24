@@ -159,9 +159,10 @@ public class KeyBinding implements Comparable<KeyBinding>
 		this.keyCode = keyCode;
 	}
 
+	@Override
 	public int compareTo(KeyBinding p_compareTo_1_)
 	{
-		return this.keyCategory.equals(p_compareTo_1_.keyCategory) ? I18n.format(this.keyDescription).compareTo(I18n.format(p_compareTo_1_.keyDescription)) : ((Integer) field_193627_d.get(this.keyCategory)).compareTo(field_193627_d.get(p_compareTo_1_.keyCategory));
+		return this.keyCategory.equals(p_compareTo_1_.keyCategory) ? I18n.format(this.keyDescription).compareTo(I18n.format(p_compareTo_1_.keyDescription)) : field_193627_d.get(this.keyCategory).compareTo(field_193627_d.get(p_compareTo_1_.keyCategory));
 	}
 
 	public static Supplier<String> func_193626_b(String p_193626_0_)

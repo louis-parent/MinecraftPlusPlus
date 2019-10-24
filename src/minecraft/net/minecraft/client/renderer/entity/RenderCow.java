@@ -17,6 +17,7 @@ public class RenderCow extends RenderLiving<EntityCow>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityCow entity)
 	{
 		return COW_TEXTURES;

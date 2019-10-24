@@ -41,6 +41,7 @@ public class GuiListButton extends GuiButton
 	 * Returns true if the mouse has been pressed on this control. Equivalent of
 	 * MouseListener.mousePressed(MouseEvent e).
 	 */
+	@Override
 	public boolean mousePressed(Minecraft mc, int mouseX, int mouseY)
 	{
 		if (super.mousePressed(mc, mouseX, mouseY))

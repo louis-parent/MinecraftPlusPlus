@@ -97,6 +97,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 	/**
 	 * Gets the File object corresponding to the base directory of this world.
 	 */
+	@Override
 	public File getWorldDirectory()
 	{
 		return this.worldDirectory;
@@ -105,6 +106,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 	/**
 	 * Checks the session lock to prevent save collisions
 	 */
+	@Override
 	public void checkSessionLock() throws MinecraftException
 	{
 		try
@@ -133,11 +135,13 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 	/**
 	 * initializes and returns the chunk loader for the specified world provider
 	 */
+	@Override
 	public IChunkLoader getChunkLoader(WorldProvider provider)
 	{
 		throw new RuntimeException("Old Chunk Storage is no longer supported.");
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -164,6 +168,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 	/**
 	 * Saves the given World Info with the given NBTTagCompound as the Player.
 	 */
+	@Override
 	public void saveWorldInfoWithPlayer(WorldInfo worldInformation, @Nullable NBTTagCompound tagCompound)
 	{
 		NBTTagCompound nbttagcompound = worldInformation.cloneNBTCompound(tagCompound);
@@ -205,6 +210,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 	/**
 	 * used to update level.dat from old format to MCRegion format
 	 */
+	@Override
 	public void saveWorldInfo(WorldInfo worldInformation)
 	{
 		this.saveWorldInfoWithPlayer(worldInformation, (NBTTagCompound) null);
@@ -213,6 +219,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 	/**
 	 * Writes the player data to disk from the specified PlayerEntityMP.
 	 */
+	@Override
 	public void writePlayerData(EntityPlayer player)
 	{
 		try
@@ -231,10 +238,11 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 		}
 		catch (Exception var5)
 		{
-			LOGGER.warn("Failed to save player data for {}", (Object) player.getName());
+			LOGGER.warn("Failed to save player data for {}", player.getName());
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -255,7 +263,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 		}
 		catch (Exception var4)
 		{
-			LOGGER.warn("Failed to load player data for {}", (Object) player.getName());
+			LOGGER.warn("Failed to load player data for {}", player.getName());
 		}
 
 		if (nbttagcompound != null)
@@ -266,6 +274,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 		return nbttagcompound;
 	}
 
+	@Override
 	public IPlayerFileData getPlayerNBTManager()
 	{
 		return this;
@@ -274,6 +283,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 	/**
 	 * Returns an array of usernames for which player.dat exists for.
 	 */
+	@Override
 	public String[] getAvailablePlayerDat()
 	{
 		String[] astring = this.playersDirectory.list();
@@ -297,6 +307,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 	/**
 	 * Called to flush all changes to disk, waiting for them to complete.
 	 */
+	@Override
 	public void flush()
 	{
 	}
@@ -304,11 +315,13 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 	/**
 	 * Gets the file location of the given map
 	 */
+	@Override
 	public File getMapFileFromName(String mapName)
 	{
 		return new File(this.mapDataDir, mapName + ".dat");
 	}
 
+	@Override
 	public TemplateManager getStructureTemplateManager()
 	{
 		return this.structureTemplateManager;

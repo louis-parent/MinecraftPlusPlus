@@ -56,7 +56,7 @@ public class FunctionObject
 			}
 		}
 
-		return new FunctionObject((FunctionObject.Entry[]) list.toArray(new FunctionObject.Entry[list.size()]));
+		return new FunctionObject(list.toArray(new FunctionObject.Entry[list.size()]));
 	}
 
 	public static class CacheableFunction
@@ -94,9 +94,10 @@ public class FunctionObject
 			return this.field_193522_d;
 		}
 
+		@Override
 		public String toString()
 		{
-			return String.valueOf((Object) this.field_193520_b);
+			return String.valueOf(this.field_193520_b);
 		}
 	}
 
@@ -109,11 +110,13 @@ public class FunctionObject
 			this.field_193525_a = p_i47534_1_;
 		}
 
+		@Override
 		public void func_194145_a(FunctionManager p_194145_1_, ICommandSender p_194145_2_, ArrayDeque<FunctionManager.QueuedCommand> p_194145_3_, int p_194145_4_)
 		{
 			p_194145_1_.func_193062_a().executeCommand(p_194145_2_, this.field_193525_a);
 		}
 
+		@Override
 		public String toString()
 		{
 			return "/" + this.field_193525_a;
@@ -134,6 +137,7 @@ public class FunctionObject
 			this.field_193524_a = new FunctionObject.CacheableFunction(p_i47601_1_);
 		}
 
+		@Override
 		public void func_194145_a(FunctionManager p_194145_1_, ICommandSender p_194145_2_, ArrayDeque<FunctionManager.QueuedCommand> p_194145_3_, int p_194145_4_)
 		{
 			FunctionObject functionobject = this.field_193524_a.func_193518_a(p_194145_1_);
@@ -151,6 +155,7 @@ public class FunctionObject
 			}
 		}
 
+		@Override
 		public String toString()
 		{
 			return "/function " + this.field_193524_a;

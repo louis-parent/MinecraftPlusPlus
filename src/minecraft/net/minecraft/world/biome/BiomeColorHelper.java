@@ -7,6 +7,7 @@ public class BiomeColorHelper
 {
 	private static final BiomeColorHelper.ColorResolver GRASS_COLOR = new BiomeColorHelper.ColorResolver()
 	{
+		@Override
 		public int getColorAtPos(Biome biome, BlockPos blockPosition)
 		{
 			return biome.getGrassColorAtPos(blockPosition);
@@ -14,6 +15,7 @@ public class BiomeColorHelper
 	};
 	private static final BiomeColorHelper.ColorResolver FOLIAGE_COLOR = new BiomeColorHelper.ColorResolver()
 	{
+		@Override
 		public int getColorAtPos(Biome biome, BlockPos blockPosition)
 		{
 			return biome.getFoliageColorAtPos(blockPosition);
@@ -21,6 +23,7 @@ public class BiomeColorHelper
 	};
 	private static final BiomeColorHelper.ColorResolver WATER_COLOR = new BiomeColorHelper.ColorResolver()
 	{
+		@Override
 		public int getColorAtPos(Biome biome, BlockPos blockPosition)
 		{
 			return biome.getWaterColor();

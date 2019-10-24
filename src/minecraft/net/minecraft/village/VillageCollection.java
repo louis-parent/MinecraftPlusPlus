@@ -114,9 +114,9 @@ public class VillageCollection extends WorldSavedData
 
 			if (d1 < d0)
 			{
-				float f = (float) (radius + village1.getVillageRadius());
+				float f = radius + village1.getVillageRadius();
 
-				if (d1 <= (double) (f * f))
+				if (d1 <= f * f)
 				{
 					village = village1;
 					d0 = d1;
@@ -283,6 +283,7 @@ public class VillageCollection extends WorldSavedData
 	/**
 	 * reads in data from the NBTTagCompound into this MapDataBase
 	 */
+	@Override
 	public void readFromNBT(NBTTagCompound nbt)
 	{
 		this.tickCounter = nbt.getInteger("Tick");
@@ -297,6 +298,7 @@ public class VillageCollection extends WorldSavedData
 		}
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		compound.setInteger("Tick", this.tickCounter);

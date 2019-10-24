@@ -35,36 +35,43 @@ public class SimpleBakedModel implements IBakedModel
 		this.itemOverrideList = itemOverrideListIn;
 	}
 
+	@Override
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
 	{
 		return side == null ? this.generalQuads : (List) this.faceQuads.get(side);
 	}
 
+	@Override
 	public boolean isAmbientOcclusion()
 	{
 		return this.ambientOcclusion;
 	}
 
+	@Override
 	public boolean isGui3d()
 	{
 		return this.gui3d;
 	}
 
+	@Override
 	public boolean isBuiltInRenderer()
 	{
 		return false;
 	}
 
+	@Override
 	public TextureAtlasSprite getParticleTexture()
 	{
 		return this.texture;
 	}
 
+	@Override
 	public ItemCameraTransforms getItemCameraTransforms()
 	{
 		return this.cameraTransforms;
 	}
 
+	@Override
 	public ItemOverrideList getOverrides()
 	{
 		return this.itemOverrideList;

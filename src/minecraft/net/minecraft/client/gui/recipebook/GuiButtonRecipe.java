@@ -56,6 +56,7 @@ public class GuiButtonRecipe extends GuiButton
 		this.yPosition = p_191770_2_;
 	}
 
+	@Override
 	public void func_191745_a(Minecraft p_191745_1_, int p_191745_2_, int p_191745_3_, float p_191745_4_)
 	{
 		if (this.visible)
@@ -87,18 +88,18 @@ public class GuiButtonRecipe extends GuiButton
 
 			if (flag)
 			{
-				float f = 1.0F + 0.1F * (float) Math.sin((double) (this.field_191778_t / 15.0F * (float) Math.PI));
+				float f = 1.0F + 0.1F * (float) Math.sin(this.field_191778_t / 15.0F * (float) Math.PI);
 				GlStateManager.pushMatrix();
-				GlStateManager.translate((float) (this.xPosition + 8), (float) (this.yPosition + 12), 0.0F);
+				GlStateManager.translate(this.xPosition + 8, this.yPosition + 12, 0.0F);
 				GlStateManager.scale(f, f, 1.0F);
-				GlStateManager.translate((float) (-(this.xPosition + 8)), (float) (-(this.yPosition + 12)), 0.0F);
+				GlStateManager.translate((-(this.xPosition + 8)), (-(this.yPosition + 12)), 0.0F);
 				this.field_191778_t -= p_191745_4_;
 			}
 
 			this.drawTexturedModalRect(this.xPosition, this.yPosition, i, j, this.width, this.height);
 			List<IRecipe> list = this.func_193927_f();
 			this.field_193932_t = MathHelper.floor(this.field_193931_r / 30.0F) % list.size();
-			ItemStack itemstack = ((IRecipe) list.get(this.field_193932_t)).getRecipeOutput();
+			ItemStack itemstack = list.get(this.field_193932_t).getRecipeOutput();
 			int k = 4;
 
 			if (this.field_191774_p.func_194211_e() && this.func_193927_f().size() > 1)
@@ -144,7 +145,7 @@ public class GuiButtonRecipe extends GuiButton
 
 	public List<String> func_191772_a(GuiScreen p_191772_1_)
 	{
-		ItemStack itemstack = ((IRecipe) this.func_193927_f().get(this.field_193932_t)).getRecipeOutput();
+		ItemStack itemstack = this.func_193927_f().get(this.field_193932_t).getRecipeOutput();
 		List<String> list = p_191772_1_.func_191927_a(itemstack);
 
 		if (this.field_191774_p.func_194208_a(this.field_193930_p.func_192815_c()).size() > 1)
@@ -155,6 +156,7 @@ public class GuiButtonRecipe extends GuiButton
 		return list;
 	}
 
+	@Override
 	public int getButtonWidth()
 	{
 		return 25;

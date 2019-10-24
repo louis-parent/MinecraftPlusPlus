@@ -22,11 +22,13 @@ public class VillagerTradeTrigger implements ICriterionTrigger<VillagerTradeTrig
 	private static final ResourceLocation field_192237_a = new ResourceLocation("villager_trade");
 	private final Map<PlayerAdvancements, VillagerTradeTrigger.Listeners> field_192238_b = Maps.<PlayerAdvancements, VillagerTradeTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192237_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<VillagerTradeTrigger.Instance> p_192165_2_)
 	{
 		VillagerTradeTrigger.Listeners villagertradetrigger$listeners = this.field_192238_b.get(p_192165_1_);
@@ -40,6 +42,7 @@ public class VillagerTradeTrigger implements ICriterionTrigger<VillagerTradeTrig
 		villagertradetrigger$listeners.func_192540_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<VillagerTradeTrigger.Instance> p_192164_2_)
 	{
 		VillagerTradeTrigger.Listeners villagertradetrigger$listeners = this.field_192238_b.get(p_192164_1_);
@@ -55,11 +58,13 @@ public class VillagerTradeTrigger implements ICriterionTrigger<VillagerTradeTrig
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192238_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public VillagerTradeTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		EntityPredicate entitypredicate = EntityPredicate.func_192481_a(p_192166_1_.get("villager"));
@@ -133,7 +138,7 @@ public class VillagerTradeTrigger implements ICriterionTrigger<VillagerTradeTrig
 
 			for (ICriterionTrigger.Listener<VillagerTradeTrigger.Instance> listener : this.field_192542_b)
 			{
-				if (((VillagerTradeTrigger.Instance) listener.func_192158_a()).func_192285_a(p_192537_1_, p_192537_2_, p_192537_3_))
+				if (listener.func_192158_a().func_192285_a(p_192537_1_, p_192537_2_, p_192537_3_))
 				{
 					if (list == null)
 					{

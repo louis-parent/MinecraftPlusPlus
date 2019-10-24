@@ -35,6 +35,7 @@ public class ItemSlab extends ItemBlock
 	 * placed in the world when this Item is placed as a Block (mostly used with
 	 * ItemBlocks).
 	 */
+	@Override
 	public int getMetadata(int damage)
 	{
 		return damage;
@@ -45,6 +46,7 @@ public class ItemSlab extends ItemBlock
 	 * ItemStack so different stacks can have different names based on their
 	 * damage or NBT.
 	 */
+	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		return this.singleSlab.getUnlocalizedName(stack.getMetadata());
@@ -53,6 +55,7 @@ public class ItemSlab extends ItemBlock
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		ItemStack itemstack = stack.getHeldItem(pos);
@@ -66,7 +69,7 @@ public class ItemSlab extends ItemBlock
 			{
 				IProperty<?> iproperty = this.singleSlab.getVariantProperty();
 				Comparable<?> comparable1 = iblockstate.getValue(iproperty);
-				BlockSlab.EnumBlockHalf blockslab$enumblockhalf = (BlockSlab.EnumBlockHalf) iblockstate.getValue(BlockSlab.HALF);
+				BlockSlab.EnumBlockHalf blockslab$enumblockhalf = iblockstate.getValue(BlockSlab.HALF);
 
 				if ((hand == EnumFacing.UP && blockslab$enumblockhalf == BlockSlab.EnumBlockHalf.BOTTOM || hand == EnumFacing.DOWN && blockslab$enumblockhalf == BlockSlab.EnumBlockHalf.TOP) && comparable1 == comparable)
 				{
@@ -97,6 +100,7 @@ public class ItemSlab extends ItemBlock
 		}
 	}
 
+	@Override
 	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack)
 	{
 		BlockPos blockpos = pos;

@@ -21,6 +21,7 @@ public class EntityAIFollowParent extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (this.childAnimal.getGrowingAge() >= 0)
@@ -66,6 +67,7 @@ public class EntityAIFollowParent extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		if (this.childAnimal.getGrowingAge() >= 0)
@@ -86,6 +88,7 @@ public class EntityAIFollowParent extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.delayCounter = 0;
@@ -94,6 +97,7 @@ public class EntityAIFollowParent extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.parentAnimal = null;
@@ -102,6 +106,7 @@ public class EntityAIFollowParent extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		if (--this.delayCounter <= 0)

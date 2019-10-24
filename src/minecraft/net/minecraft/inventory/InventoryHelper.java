@@ -14,7 +14,7 @@ public class InventoryHelper
 
 	public static void dropInventoryItems(World worldIn, BlockPos pos, IInventory inventory)
 	{
-		dropInventoryItems(worldIn, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ(), inventory);
+		dropInventoryItems(worldIn, pos.getX(), pos.getY(), pos.getZ(), inventory);
 	}
 
 	public static void dropInventoryItems(World worldIn, Entity entityAt, IInventory inventory)
@@ -43,7 +43,7 @@ public class InventoryHelper
 
 		while (!stack.isNotValid())
 		{
-			EntityItem entityitem = new EntityItem(worldIn, x + (double) f, y + (double) f1, z + (double) f2, stack.splitStack(RANDOM.nextInt(21) + 10));
+			EntityItem entityitem = new EntityItem(worldIn, x + f, y + f1, z + f2, stack.splitStack(RANDOM.nextInt(21) + 10));
 			float f3 = 0.05F;
 			entityitem.motionX = RANDOM.nextGaussian() * 0.05000000074505806D;
 			entityitem.motionY = RANDOM.nextGaussian() * 0.05000000074505806D + 0.20000000298023224D;

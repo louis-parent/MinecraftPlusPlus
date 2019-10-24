@@ -57,16 +57,19 @@ public class PlayerProfileCache
 	private final File usercacheFile;
 	private static final ParameterizedType TYPE = new ParameterizedType()
 	{
+		@Override
 		public Type[] getActualTypeArguments()
 		{
 			return new Type[] { PlayerProfileCache.ProfileEntry.class };
 		}
 
+		@Override
 		public Type getRawType()
 		{
 			return List.class;
 		}
 
+		@Override
 		public Type getOwnerType()
 		{
 			return null;
@@ -88,11 +91,13 @@ public class PlayerProfileCache
 		final GameProfile[] agameprofile = new GameProfile[1];
 		ProfileLookupCallback profilelookupcallback = new ProfileLookupCallback()
 		{
+			@Override
 			public void onProfileLookupSucceeded(GameProfile p_onProfileLookupSucceeded_1_)
 			{
 				agameprofile[0] = p_onProfileLookupSucceeded_1_;
 			}
 
+			@Override
 			public void onProfileLookupFailed(GameProfile p_onProfileLookupFailed_1_, Exception p_onProfileLookupFailed_2_)
 			{
 				agameprofile[0] = null;
@@ -205,7 +210,7 @@ public class PlayerProfileCache
 	public String[] getUsernames()
 	{
 		List<String> list = Lists.newArrayList(this.usernameToProfileEntryMap.keySet());
-		return (String[]) list.toArray(new String[list.size()]);
+		return list.toArray(new String[list.size()]);
 	}
 
 	@Nullable
@@ -272,7 +277,7 @@ public class PlayerProfileCache
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Reader) bufferedreader);
+			IOUtils.closeQuietly(bufferedreader);
 		}
 	}
 
@@ -300,7 +305,7 @@ public class PlayerProfileCache
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Writer) bufferedwriter);
+			IOUtils.closeQuietly(bufferedwriter);
 		}
 	}
 
@@ -349,6 +354,7 @@ public class PlayerProfileCache
 		{
 		}
 
+		@Override
 		public JsonElement serialize(PlayerProfileCache.ProfileEntry p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			JsonObject jsonobject = new JsonObject();
@@ -359,6 +365,7 @@ public class PlayerProfileCache
 			return jsonobject;
 		}
 
+		@Override
 		public PlayerProfileCache.ProfileEntry deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			if (p_deserialize_1_.isJsonObject())

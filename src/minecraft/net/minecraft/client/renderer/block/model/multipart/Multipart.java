@@ -52,6 +52,7 @@ public class Multipart
 		return this.stateContainer;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -79,6 +80,7 @@ public class Multipart
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return 31 * this.selectors.hashCode() + (this.stateContainer == null ? 0 : this.stateContainer.hashCode());
@@ -86,6 +88,7 @@ public class Multipart
 
 	public static class Deserializer implements JsonDeserializer<Multipart>
 	{
+		@Override
 		public Multipart deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			return new Multipart(this.getSelectors(p_deserialize_3_, p_deserialize_1_.getAsJsonArray()));

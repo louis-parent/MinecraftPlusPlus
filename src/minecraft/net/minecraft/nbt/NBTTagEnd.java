@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class NBTTagEnd extends NBTBase
 {
+	@Override
 	void read(DataInput input, int depth, NBTSizeTracker sizeTracker) throws IOException
 	{
 		sizeTracker.read(64L);
@@ -15,6 +16,7 @@ public class NBTTagEnd extends NBTBase
 	 * Write the actual data contents of the tag, implemented in NBT extension
 	 * classes
 	 */
+	@Override
 	void write(DataOutput output) throws IOException
 	{
 	}
@@ -22,11 +24,13 @@ public class NBTTagEnd extends NBTBase
 	/**
 	 * Gets the type byte for the tag.
 	 */
+	@Override
 	public byte getId()
 	{
 		return 0;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "END";
@@ -35,6 +39,7 @@ public class NBTTagEnd extends NBTBase
 	/**
 	 * Creates a clone of the tag.
 	 */
+	@Override
 	public NBTTagEnd copy()
 	{
 		return new NBTTagEnd();

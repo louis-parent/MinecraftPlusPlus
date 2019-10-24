@@ -34,11 +34,13 @@ public class PlacedBlockTrigger implements ICriterionTrigger<PlacedBlockTrigger.
 	private static final ResourceLocation field_193174_a = new ResourceLocation("placed_block");
 	private final Map<PlayerAdvancements, PlacedBlockTrigger.Listeners> field_193175_b = Maps.<PlayerAdvancements, PlacedBlockTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_193174_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<PlacedBlockTrigger.Instance> p_192165_2_)
 	{
 		PlacedBlockTrigger.Listeners placedblocktrigger$listeners = this.field_193175_b.get(p_192165_1_);
@@ -52,6 +54,7 @@ public class PlacedBlockTrigger implements ICriterionTrigger<PlacedBlockTrigger.
 		placedblocktrigger$listeners.func_193490_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<PlacedBlockTrigger.Instance> p_192164_2_)
 	{
 		PlacedBlockTrigger.Listeners placedblocktrigger$listeners = this.field_193175_b.get(p_192164_1_);
@@ -67,11 +70,13 @@ public class PlacedBlockTrigger implements ICriterionTrigger<PlacedBlockTrigger.
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_193175_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public PlacedBlockTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		Block block = null;
@@ -105,7 +110,7 @@ public class PlacedBlockTrigger implements ICriterionTrigger<PlacedBlockTrigger.
 
 				if (iproperty == null)
 				{
-					throw new JsonSyntaxException("Unknown block state property '" + (String) entry.getKey() + "' for block '" + Block.REGISTRY.getNameForObject(block) + "'");
+					throw new JsonSyntaxException("Unknown block state property '" + entry.getKey() + "' for block '" + Block.REGISTRY.getNameForObject(block) + "'");
 				}
 
 				String s = JsonUtils.getString(entry.getValue(), entry.getKey());
@@ -113,7 +118,7 @@ public class PlacedBlockTrigger implements ICriterionTrigger<PlacedBlockTrigger.
 
 				if (!optional.isPresent())
 				{
-					throw new JsonSyntaxException("Invalid block state value '" + s + "' for property '" + (String) entry.getKey() + "' on block '" + Block.REGISTRY.getNameForObject(block) + "'");
+					throw new JsonSyntaxException("Invalid block state value '" + s + "' for property '" + entry.getKey() + "' on block '" + Block.REGISTRY.getNameForObject(block) + "'");
 				}
 
 				if (map == null)
@@ -176,7 +181,7 @@ public class PlacedBlockTrigger implements ICriterionTrigger<PlacedBlockTrigger.
 					}
 				}
 
-				if (!this.field_193213_c.func_193453_a(p_193210_3_, (float) p_193210_2_.getX(), (float) p_193210_2_.getY(), (float) p_193210_2_.getZ()))
+				if (!this.field_193213_c.func_193453_a(p_193210_3_, p_193210_2_.getX(), p_193210_2_.getY(), p_193210_2_.getZ()))
 				{
 					return false;
 				}
@@ -219,7 +224,7 @@ public class PlacedBlockTrigger implements ICriterionTrigger<PlacedBlockTrigger.
 
 			for (ICriterionTrigger.Listener<PlacedBlockTrigger.Instance> listener : this.field_193492_b)
 			{
-				if (((PlacedBlockTrigger.Instance) listener.func_192158_a()).func_193210_a(p_193489_1_, p_193489_2_, p_193489_3_, p_193489_4_))
+				if (listener.func_192158_a().func_193210_a(p_193489_1_, p_193489_2_, p_193489_3_, p_193489_4_))
 				{
 					if (list == null)
 					{

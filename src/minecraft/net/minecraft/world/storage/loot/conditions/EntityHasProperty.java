@@ -27,6 +27,7 @@ public class EntityHasProperty implements LootCondition
 		this.target = targetIn;
 	}
 
+	@Override
 	public boolean testCondition(Random rand, LootContext context)
 	{
 		Entity entity = context.getEntity(this.target);
@@ -56,6 +57,7 @@ public class EntityHasProperty implements LootCondition
 			super(new ResourceLocation("entity_properties"), EntityHasProperty.class);
 		}
 
+		@Override
 		public void serialize(JsonObject json, EntityHasProperty value, JsonSerializationContext context)
 		{
 			JsonObject jsonobject = new JsonObject();
@@ -70,6 +72,7 @@ public class EntityHasProperty implements LootCondition
 			json.add("entity", context.serialize(value.target));
 		}
 
+		@Override
 		public EntityHasProperty deserialize(JsonObject json, JsonDeserializationContext context)
 		{
 			Set<Entry<String, JsonElement>> set = JsonUtils.getJsonObject(json, "properties").entrySet();
@@ -81,7 +84,7 @@ public class EntityHasProperty implements LootCondition
 				aentityproperty[i++] = EntityPropertyManager.getSerializerForName(new ResourceLocation(entry.getKey())).deserialize(entry.getValue(), context);
 			}
 
-			return new EntityHasProperty(aentityproperty, (LootContext.EntityTarget) JsonUtils.deserializeClass(json, "entity", context, LootContext.EntityTarget.class));
+			return new EntityHasProperty(aentityproperty, JsonUtils.deserializeClass(json, "entity", context, LootContext.EntityTarget.class));
 		}
 	}
 }

@@ -18,6 +18,7 @@ public abstract class BlockStateBase implements IBlockState
 	private static final Joiner COMMA_JOINER = Joiner.on(',');
 	private static final Function<Entry<IProperty<?>, Comparable<?>>, String> MAP_ENTRY_TO_STRING = new Function<Entry<IProperty<?>, Comparable<?>>, String>()
 	{
+		@Override
 		@Nullable
 		public String apply(@Nullable Entry<IProperty<?>, Comparable<?>> p_apply_1_)
 		{
@@ -27,7 +28,7 @@ public abstract class BlockStateBase implements IBlockState
 			}
 			else
 			{
-				IProperty<?> iproperty = (IProperty) p_apply_1_.getKey();
+				IProperty<?> iproperty = p_apply_1_.getKey();
 				return iproperty.getName() + "=" + this.getPropertyName(iproperty, p_apply_1_.getValue());
 			}
 		}
@@ -38,6 +39,7 @@ public abstract class BlockStateBase implements IBlockState
 		}
 	};
 
+	@Override
 	public <T extends Comparable<T>> IBlockState cycleProperty(IProperty<T> property)
 	{
 		return this.withProperty(property, cyclePropertyValue(property.getAllowedValues(), this.getValue(property)));
@@ -63,6 +65,7 @@ public abstract class BlockStateBase implements IBlockState
 		return iterator.next();
 	}
 
+	@Override
 	public String toString()
 	{
 		StringBuilder stringbuilder = new StringBuilder();

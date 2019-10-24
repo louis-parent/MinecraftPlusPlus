@@ -42,6 +42,7 @@ public class ChunkRenderWorker implements Runnable
 		this.regionRenderCacheBuilder = regionRenderCacheBuilderIn;
 	}
 
+	@Override
 	public void run()
 	{
 		while (this.shouldRun)
@@ -74,7 +75,7 @@ public class ChunkRenderWorker implements Runnable
 			{
 				if (!generator.isFinished())
 				{
-					LOGGER.warn("Chunk render task was {} when I expected it to be pending; ignoring task", (Object) generator.getStatus());
+					LOGGER.warn("Chunk render task was {} when I expected it to be pending; ignoring task", generator.getStatus());
 				}
 
 				return;
@@ -135,7 +136,7 @@ public class ChunkRenderWorker implements Runnable
 				{
 					if (!generator.isFinished())
 					{
-						LOGGER.warn("Chunk render task was {} when I expected it to be compiling; aborting task", (Object) generator.getStatus());
+						LOGGER.warn("Chunk render task was {} when I expected it to be compiling; aborting task", generator.getStatus());
 					}
 
 					this.freeRenderBuilder(generator);
@@ -170,6 +171,7 @@ public class ChunkRenderWorker implements Runnable
 			final ListenableFuture<List<Object>> listenablefuture = Futures.allAsList(arraylist);
 			generator.addFinishRunnable(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					listenablefuture.cancel(false);
@@ -177,6 +179,7 @@ public class ChunkRenderWorker implements Runnable
 			});
 			Futures.addCallback(listenablefuture, new FutureCallback<List<Object>>()
 			{
+				@Override
 				public void onSuccess(@Nullable List<Object> p_onSuccess_1_)
 				{
 					ChunkRenderWorker.this.freeRenderBuilder(generator);
@@ -193,7 +196,7 @@ public class ChunkRenderWorker implements Runnable
 
 							if (!generator.isFinished())
 							{
-								ChunkRenderWorker.LOGGER.warn("Chunk render task was {} when I expected it to be uploading; aborting task", (Object) generator.getStatus());
+								ChunkRenderWorker.LOGGER.warn("Chunk render task was {} when I expected it to be uploading; aborting task", generator.getStatus());
 							}
 						}
 						finally
@@ -206,6 +209,7 @@ public class ChunkRenderWorker implements Runnable
 					generator.getRenderChunk().setCompiledChunk(compiledchunk);
 				}
 
+				@Override
 				public void onFailure(Throwable p_onFailure_1_)
 				{
 					ChunkRenderWorker.this.freeRenderBuilder(generator);

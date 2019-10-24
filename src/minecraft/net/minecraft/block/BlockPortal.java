@@ -45,9 +45,10 @@ public class BlockPortal extends BlockBreakable
 		this.setTickRandomly(true);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		switch ((EnumFacing.Axis) state.getValue(AXIS))
+		switch (state.getValue(AXIS))
 		{
 			case X:
 				return X_AABB;
@@ -61,6 +62,7 @@ public class BlockPortal extends BlockBreakable
 		}
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		super.updateTick(worldIn, pos, state, rand);
@@ -77,7 +79,7 @@ public class BlockPortal extends BlockBreakable
 
 			if (i > 0 && !worldIn.getBlockState(blockpos.up()).isNormalCube())
 			{
-				Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.func_191306_a(EntityPigZombie.class), (double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 1.1D, (double) blockpos.getZ() + 0.5D);
+				Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.func_191306_a(EntityPigZombie.class), blockpos.getX() + 0.5D, blockpos.getY() + 1.1D, blockpos.getZ() + 0.5D);
 
 				if (entity != null)
 				{
@@ -87,6 +89,7 @@ public class BlockPortal extends BlockBreakable
 		}
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -105,6 +108,7 @@ public class BlockPortal extends BlockBreakable
 		}
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -141,9 +145,10 @@ public class BlockPortal extends BlockBreakable
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
-		EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis) state.getValue(AXIS);
+		EnumFacing.Axis enumfacing$axis = state.getValue(AXIS);
 
 		if (enumfacing$axis == EnumFacing.Axis.X)
 		{
@@ -165,6 +170,7 @@ public class BlockPortal extends BlockBreakable
 		}
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		pos = pos.offset(side);
@@ -172,7 +178,7 @@ public class BlockPortal extends BlockBreakable
 
 		if (blockState.getBlock() == this)
 		{
-			enumfacing$axis = (EnumFacing.Axis) blockState.getValue(AXIS);
+			enumfacing$axis = blockState.getValue(AXIS);
 
 			if (enumfacing$axis == null)
 			{
@@ -218,11 +224,13 @@ public class BlockPortal extends BlockBreakable
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
@@ -231,6 +239,7 @@ public class BlockPortal extends BlockBreakable
 	/**
 	 * Called When an Entity Collided with the Block
 	 */
+	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
 		if (!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss())
@@ -239,38 +248,40 @@ public class BlockPortal extends BlockBreakable
 		}
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
 		if (rand.nextInt(100) == 0)
 		{
-			worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
 		}
 
 		for (int i = 0; i < 4; ++i)
 		{
-			double d0 = (double) ((float) pos.getX() + rand.nextFloat());
-			double d1 = (double) ((float) pos.getY() + rand.nextFloat());
-			double d2 = (double) ((float) pos.getZ() + rand.nextFloat());
-			double d3 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-			double d4 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-			double d5 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+			double d0 = pos.getX() + rand.nextFloat();
+			double d1 = pos.getY() + rand.nextFloat();
+			double d2 = pos.getZ() + rand.nextFloat();
+			double d3 = (rand.nextFloat() - 0.5D) * 0.5D;
+			double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
+			double d5 = (rand.nextFloat() - 0.5D) * 0.5D;
 			int j = rand.nextInt(2) * 2 - 1;
 
 			if (worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this)
 			{
-				d0 = (double) pos.getX() + 0.5D + 0.25D * (double) j;
-				d3 = (double) (rand.nextFloat() * 2.0F * (float) j);
+				d0 = pos.getX() + 0.5D + 0.25D * j;
+				d3 = rand.nextFloat() * 2.0F * j;
 			}
 			else
 			{
-				d2 = (double) pos.getZ() + 0.5D + 0.25D * (double) j;
-				d5 = (double) (rand.nextFloat() * 2.0F * (float) j);
+				d2 = pos.getZ() + 0.5D + 0.25D * j;
+				d5 = rand.nextFloat() * 2.0F * j;
 			}
 
 			worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
 		}
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return ItemStack.EMPTY_ITEM_STACK;
@@ -279,6 +290,7 @@ public class BlockPortal extends BlockBreakable
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(AXIS, (meta & 3) == 2 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
@@ -287,22 +299,24 @@ public class BlockPortal extends BlockBreakable
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return getMetaForAxis((EnumFacing.Axis) state.getValue(AXIS));
+		return getMetaForAxis(state.getValue(AXIS));
 	}
 
 	/**
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
 		switch (rot)
 		{
 			case COUNTERCLOCKWISE_90:
 			case CLOCKWISE_90:
-				switch ((EnumFacing.Axis) state.getValue(AXIS))
+				switch (state.getValue(AXIS))
 				{
 					case X:
 						return state.withProperty(AXIS, EnumFacing.Axis.Z);
@@ -319,6 +333,7 @@ public class BlockPortal extends BlockBreakable
 		}
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { AXIS });
@@ -378,6 +393,7 @@ public class BlockPortal extends BlockBreakable
 		}
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

@@ -47,25 +47,27 @@ public class CPacketUseEntity implements Packet<INetHandlerPlayServer>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.entityId = buf.readVarIntFromBuffer();
-		this.action = (CPacketUseEntity.Action) buf.readEnumValue(CPacketUseEntity.Action.class);
+		this.action = buf.readEnumValue(CPacketUseEntity.Action.class);
 
 		if (this.action == CPacketUseEntity.Action.INTERACT_AT)
 		{
-			this.hitVec = new Vec3d((double) buf.readFloat(), (double) buf.readFloat(), (double) buf.readFloat());
+			this.hitVec = new Vec3d(buf.readFloat(), buf.readFloat(), buf.readFloat());
 		}
 
 		if (this.action == CPacketUseEntity.Action.INTERACT || this.action == CPacketUseEntity.Action.INTERACT_AT)
 		{
-			this.hand = (EnumHand) buf.readEnumValue(EnumHand.class);
+			this.hand = buf.readEnumValue(EnumHand.class);
 		}
 	}
 
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeVarIntToBuffer(this.entityId);
@@ -87,6 +89,7 @@ public class CPacketUseEntity implements Packet<INetHandlerPlayServer>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayServer handler)
 	{
 		handler.processUseEntity(this);

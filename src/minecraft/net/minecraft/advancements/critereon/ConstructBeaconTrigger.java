@@ -21,11 +21,13 @@ public class ConstructBeaconTrigger implements ICriterionTrigger<ConstructBeacon
 	private static final ResourceLocation field_192181_a = new ResourceLocation("construct_beacon");
 	private final Map<PlayerAdvancements, ConstructBeaconTrigger.Listeners> field_192182_b = Maps.<PlayerAdvancements, ConstructBeaconTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192181_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<ConstructBeaconTrigger.Instance> p_192165_2_)
 	{
 		ConstructBeaconTrigger.Listeners constructbeacontrigger$listeners = this.field_192182_b.get(p_192165_1_);
@@ -39,6 +41,7 @@ public class ConstructBeaconTrigger implements ICriterionTrigger<ConstructBeacon
 		constructbeacontrigger$listeners.func_192355_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<ConstructBeaconTrigger.Instance> p_192164_2_)
 	{
 		ConstructBeaconTrigger.Listeners constructbeacontrigger$listeners = this.field_192182_b.get(p_192164_1_);
@@ -54,11 +57,13 @@ public class ConstructBeaconTrigger implements ICriterionTrigger<ConstructBeacon
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192182_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public ConstructBeaconTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		MinMaxBounds minmaxbounds = MinMaxBounds.func_192515_a(p_192166_1_.get("level"));
@@ -87,7 +92,7 @@ public class ConstructBeaconTrigger implements ICriterionTrigger<ConstructBeacon
 
 		public boolean func_192252_a(TileEntityBeacon p_192252_1_)
 		{
-			return this.field_192253_a.func_192514_a((float) p_192252_1_.getLevels());
+			return this.field_192253_a.func_192514_a(p_192252_1_.getLevels());
 		}
 	}
 
@@ -122,7 +127,7 @@ public class ConstructBeaconTrigger implements ICriterionTrigger<ConstructBeacon
 
 			for (ICriterionTrigger.Listener<ConstructBeaconTrigger.Instance> listener : this.field_192357_b)
 			{
-				if (((ConstructBeaconTrigger.Instance) listener.func_192158_a()).func_192252_a(p_192352_1_))
+				if (listener.func_192158_a().func_192252_a(p_192352_1_))
 				{
 					if (list == null)
 					{

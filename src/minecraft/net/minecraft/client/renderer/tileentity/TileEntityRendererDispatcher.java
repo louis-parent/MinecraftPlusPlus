@@ -114,9 +114,9 @@ public class TileEntityRendererDispatcher
 		this.cameraHitResult = p_190056_5_;
 		this.entityYaw = p_190056_4_.prevRotationYaw + (p_190056_4_.rotationYaw - p_190056_4_.prevRotationYaw) * p_190056_6_;
 		this.entityPitch = p_190056_4_.prevRotationPitch + (p_190056_4_.rotationPitch - p_190056_4_.prevRotationPitch) * p_190056_6_;
-		this.entityX = p_190056_4_.lastTickPosX + (p_190056_4_.posX - p_190056_4_.lastTickPosX) * (double) p_190056_6_;
-		this.entityY = p_190056_4_.lastTickPosY + (p_190056_4_.posY - p_190056_4_.lastTickPosY) * (double) p_190056_6_;
-		this.entityZ = p_190056_4_.lastTickPosZ + (p_190056_4_.posZ - p_190056_4_.lastTickPosZ) * (double) p_190056_6_;
+		this.entityX = p_190056_4_.lastTickPosX + (p_190056_4_.posX - p_190056_4_.lastTickPosX) * p_190056_6_;
+		this.entityY = p_190056_4_.lastTickPosY + (p_190056_4_.posY - p_190056_4_.lastTickPosY) * p_190056_6_;
+		this.entityZ = p_190056_4_.lastTickPosZ + (p_190056_4_.posZ - p_190056_4_.lastTickPosZ) * p_190056_6_;
 	}
 
 	public void renderTileEntity(TileEntity tileentityIn, float partialTicks, int destroyStage)
@@ -127,10 +127,10 @@ public class TileEntityRendererDispatcher
 			int i = this.worldObj.getCombinedLight(tileentityIn.getPos(), 0);
 			int j = i % 65536;
 			int k = i / 65536;
-			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
+			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j, k);
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			BlockPos blockpos = tileentityIn.getPos();
-			this.func_192854_a(tileentityIn, (double) blockpos.getX() - staticPlayerX, (double) blockpos.getY() - staticPlayerY, (double) blockpos.getZ() - staticPlayerZ, partialTicks, destroyStage, 1.0F);
+			this.func_192854_a(tileentityIn, blockpos.getX() - staticPlayerX, blockpos.getY() - staticPlayerY, blockpos.getZ() - staticPlayerZ, partialTicks, destroyStage, 1.0F);
 		}
 	}
 

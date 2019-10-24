@@ -54,6 +54,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		Keyboard.enableRepeatEvents(true);
@@ -71,6 +72,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		Keyboard.enableRepeatEvents(false);
@@ -80,6 +82,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		this.inputField.updateCursorCounter();
@@ -90,6 +93,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		this.tabCompleter.resetRequested();
@@ -146,6 +150,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 	/**
 	 * Handles mouse input.
 	 */
+	@Override
 	public void handleMouseInput() throws IOException
 	{
 		super.handleMouseInput();
@@ -175,6 +180,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		if (mouseButton == 0)
@@ -194,6 +200,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 	/**
 	 * Sets the text of the chat
 	 */
+	@Override
 	protected void setText(String newChatText, boolean shouldOverwrite)
 	{
 		if (shouldOverwrite)
@@ -231,7 +238,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 					this.historyBuffer = this.inputField.getText();
 				}
 
-				this.inputField.setText((String) this.mc.ingameGUI.getChatGUI().getSentMessages().get(i));
+				this.inputField.setText(this.mc.ingameGUI.getChatGUI().getSentMessages().get(i));
 				this.sentHistoryCursor = i;
 			}
 		}
@@ -240,6 +247,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		drawRect(2, this.height - 14, this.width - 2, this.height - 2, Integer.MIN_VALUE);
@@ -258,6 +266,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 	 * Returns true if this GUI should pause the game when it is displayed in
 	 * single-player
 	 */
+	@Override
 	public boolean doesGuiPauseGame()
 	{
 		return false;
@@ -267,6 +276,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 	 * Sets the list of tab completions, as long as they were previously
 	 * requested.
 	 */
+	@Override
 	public void setCompletions(String... newCompletions)
 	{
 		this.tabCompleter.setCompletions(newCompletions);
@@ -281,6 +291,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 			super(p_i46749_1_, false);
 		}
 
+		@Override
 		public void complete()
 		{
 			super.complete();
@@ -303,6 +314,7 @@ public class GuiChat extends GuiScreen implements ITabCompleter
 			}
 		}
 
+		@Override
 		@Nullable
 		public BlockPos getTargetBlockPos()
 		{

@@ -27,12 +27,12 @@ public class AxisAlignedBB
 
 	public AxisAlignedBB(BlockPos pos)
 	{
-		this((double) pos.getX(), (double) pos.getY(), (double) pos.getZ(), (double) (pos.getX() + 1), (double) (pos.getY() + 1), (double) (pos.getZ() + 1));
+		this(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
 	}
 
 	public AxisAlignedBB(BlockPos pos1, BlockPos pos2)
 	{
-		this((double) pos1.getX(), (double) pos1.getY(), (double) pos1.getZ(), (double) pos2.getX(), (double) pos2.getY(), (double) pos2.getZ());
+		this(pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ());
 	}
 
 	public AxisAlignedBB(Vec3d min, Vec3d max)
@@ -45,6 +45,7 @@ public class AxisAlignedBB
 		return new AxisAlignedBB(this.minX, this.minY, this.minZ, this.maxX, y2, this.maxZ);
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -86,6 +87,7 @@ public class AxisAlignedBB
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		long i = Double.doubleToLongBits(this.minX);
@@ -237,7 +239,7 @@ public class AxisAlignedBB
 
 	public AxisAlignedBB offset(BlockPos pos)
 	{
-		return new AxisAlignedBB(this.minX + (double) pos.getX(), this.minY + (double) pos.getY(), this.minZ + (double) pos.getZ(), this.maxX + (double) pos.getX(), this.maxY + (double) pos.getY(), this.maxZ + (double) pos.getZ());
+		return new AxisAlignedBB(this.minX + pos.getX(), this.minY + pos.getY(), this.minZ + pos.getZ(), this.maxX + pos.getX(), this.maxY + pos.getY(), this.maxZ + pos.getZ());
 	}
 
 	public AxisAlignedBB func_191194_a(Vec3d p_191194_1_)
@@ -508,6 +510,7 @@ public class AxisAlignedBB
 		return vec.xCoord >= this.minX && vec.xCoord <= this.maxX && vec.yCoord >= this.minY && vec.yCoord <= this.maxY;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "box[" + this.minX + ", " + this.minY + ", " + this.minZ + " -> " + this.maxX + ", " + this.maxY + ", " + this.maxZ + "]";

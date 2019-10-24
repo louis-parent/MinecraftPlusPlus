@@ -24,6 +24,7 @@ public class TeleportToPlayer implements ISpectatorMenuView, ISpectatorMenuObjec
 {
 	private static final Ordering<NetworkPlayerInfo> PROFILE_ORDER = Ordering.from(new Comparator<NetworkPlayerInfo>()
 	{
+		@Override
 		public int compare(NetworkPlayerInfo p_compare_1_, NetworkPlayerInfo p_compare_2_)
 		{
 			return ComparisonChain.start().compare(p_compare_1_.getGameProfile().getId(), p_compare_2_.getGameProfile().getId()).result();
@@ -49,32 +50,38 @@ public class TeleportToPlayer implements ISpectatorMenuView, ISpectatorMenuObjec
 		}
 	}
 
+	@Override
 	public List<ISpectatorMenuObject> getItems()
 	{
 		return this.items;
 	}
 
+	@Override
 	public ITextComponent getPrompt()
 	{
 		return new TextComponentTranslation("spectatorMenu.teleport.prompt", new Object[0]);
 	}
 
+	@Override
 	public void selectItem(SpectatorMenu menu)
 	{
 		menu.selectCategory(this);
 	}
 
+	@Override
 	public ITextComponent getSpectatorName()
 	{
 		return new TextComponentTranslation("spectatorMenu.teleport", new Object[0]);
 	}
 
+	@Override
 	public void renderIcon(float p_178663_1_, int alpha)
 	{
 		Minecraft.getMinecraft().getTextureManager().bindTexture(GuiSpectator.SPECTATOR_WIDGETS);
 		Gui.drawModalRectWithCustomSizedTexture(0, 0, 0.0F, 0.0F, 16, 16, 256.0F, 256.0F);
 	}
 
+	@Override
 	public boolean isEnabled()
 	{
 		return !this.items.isEmpty();

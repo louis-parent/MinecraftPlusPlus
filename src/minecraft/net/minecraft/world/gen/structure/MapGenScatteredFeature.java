@@ -40,18 +40,20 @@ public class MapGenScatteredFeature extends MapGenStructure
 
 		for (Entry<String, String> entry : p_i2061_1_.entrySet())
 		{
-			if (((String) entry.getKey()).equals("distance"))
+			if (entry.getKey().equals("distance"))
 			{
 				this.maxDistanceBetweenScatteredFeatures = MathHelper.getInt(entry.getValue(), this.maxDistanceBetweenScatteredFeatures, 9);
 			}
 		}
 	}
 
+	@Override
 	public String getStructureName()
 	{
 		return "Temple";
 	}
 
+	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
 		int i = chunkX;
@@ -96,12 +98,14 @@ public class MapGenScatteredFeature extends MapGenStructure
 		return false;
 	}
 
+	@Override
 	public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_)
 	{
 		this.worldObj = worldIn;
 		return func_191069_a(worldIn, this, pos, this.maxDistanceBetweenScatteredFeatures, 8, 14357617, false, 100, p_180706_3_);
 	}
 
+	@Override
 	protected StructureStart getStructureStart(int chunkX, int chunkZ)
 	{
 		return new MapGenScatteredFeature.Start(this.worldObj, this.rand, chunkX, chunkZ);

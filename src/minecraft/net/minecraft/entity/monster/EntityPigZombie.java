@@ -47,6 +47,7 @@ public class EntityPigZombie extends EntityZombie
 		this.isImmuneToFire = true;
 	}
 
+	@Override
 	public void setRevengeTarget(@Nullable EntityLivingBase livingBase)
 	{
 		super.setRevengeTarget(livingBase);
@@ -57,12 +58,14 @@ public class EntityPigZombie extends EntityZombie
 		}
 	}
 
+	@Override
 	protected void applyEntityAI()
 	{
 		this.targetTasks.addTask(1, new EntityPigZombie.AIHurtByAggressor(this));
 		this.targetTasks.addTask(2, new EntityPigZombie.AITargetAggressor(this));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -71,6 +74,7 @@ public class EntityPigZombie extends EntityZombie
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
@@ -109,6 +113,7 @@ public class EntityPigZombie extends EntityZombie
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		return this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
@@ -117,6 +122,7 @@ public class EntityPigZombie extends EntityZombie
 	/**
 	 * Checks that the entity is not colliding with any blocks / liquids
 	 */
+	@Override
 	public boolean isNotColliding()
 	{
 		return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
@@ -130,6 +136,7 @@ public class EntityPigZombie extends EntityZombie
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -148,6 +155,7 @@ public class EntityPigZombie extends EntityZombie
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -171,6 +179,7 @@ public class EntityPigZombie extends EntityZombie
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -210,27 +219,32 @@ public class EntityPigZombie extends EntityZombie
 		return this.angerLevel > 0;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_ZOMBIE_PIG_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_ZOMBIE_PIG_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_ZOMBIE_PIG_DEATH;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.ENTITIES_ZOMBIE_PIGMAN;
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		return false;
@@ -239,16 +253,19 @@ public class EntityPigZombie extends EntityZombie
 	/**
 	 * Gives armor or weapon for entity based on given DifficultyInstance
 	 */
+	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
 		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
 	}
 
+	@Override
 	protected ItemStack func_190732_dj()
 	{
 		return ItemStack.EMPTY_ITEM_STACK;
 	}
 
+	@Override
 	public boolean func_191990_c(EntityPlayer p_191990_1_)
 	{
 		return this.isAngry();
@@ -261,6 +278,7 @@ public class EntityPigZombie extends EntityZombie
 			super(p_i45828_1_, true);
 		}
 
+		@Override
 		protected void setEntityAttackTarget(EntityCreature creatureIn, EntityLivingBase entityLivingBaseIn)
 		{
 			super.setEntityAttackTarget(creatureIn, entityLivingBaseIn);
@@ -279,6 +297,7 @@ public class EntityPigZombie extends EntityZombie
 			super(p_i45829_1_, EntityPlayer.class, true);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			return ((EntityPigZombie) this.taskOwner).isAngry() && super.shouldExecute();

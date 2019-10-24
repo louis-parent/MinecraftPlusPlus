@@ -38,6 +38,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
 
 		this.predicate = new Predicate<EntityLivingBase>()
 		{
+			@Override
 			public boolean apply(@Nullable EntityLivingBase p_apply_1_)
 			{
 				double d0 = EntityAIFindEntityNearest.this.getFollowRange();
@@ -53,7 +54,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
 				}
 				else
 				{
-					return (double) p_apply_1_.getDistanceToEntity(EntityAIFindEntityNearest.this.mob) > d0 ? false : EntityAITarget.isSuitableTarget(EntityAIFindEntityNearest.this.mob, p_apply_1_, false, true);
+					return p_apply_1_.getDistanceToEntity(EntityAIFindEntityNearest.this.mob) > d0 ? false : EntityAITarget.isSuitableTarget(EntityAIFindEntityNearest.this.mob, p_apply_1_, false, true);
 				}
 			}
 		};
@@ -63,6 +64,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		double d0 = this.getFollowRange();
@@ -83,6 +85,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		EntityLivingBase entitylivingbase = this.mob.getAttackTarget();
@@ -113,6 +116,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.mob.setAttackTarget(this.target);
@@ -122,6 +126,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.mob.setAttackTarget((EntityLivingBase) null);

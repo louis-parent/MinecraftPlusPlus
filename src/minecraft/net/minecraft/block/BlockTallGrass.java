@@ -35,11 +35,13 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, BlockTallGrass.EnumType.DEAD_BUSH));
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return TALL_GRASS_AABB;
 	}
 
+	@Override
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return this.canSustainBush(worldIn.getBlockState(pos.down()));
@@ -49,6 +51,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 	 * Whether this Block can be replaced directly by other blocks (true for
 	 * e.g. tall grass)
 	 */
+	@Override
 	public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos)
 	{
 		return true;
@@ -57,6 +60,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return rand.nextInt(8) == 0 ? Items.WHEAT_SEEDS : Items.EMPTY_ITEM;
@@ -65,17 +69,19 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 	/**
 	 * Get the quantity dropped based on the given fortune level
 	 */
+	@Override
 	public int quantityDroppedWithBonus(int fortune, Random random)
 	{
 		return 1 + random.nextInt(fortune * 2 + 1);
 	}
 
+	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
 		if (!worldIn.isRemote && stack.getItem() == Items.SHEARS)
 		{
 			player.addStat(StatList.getBlockStats(this));
-			spawnAsEntity(worldIn, pos, new ItemStack(Blocks.TALLGRASS, 1, ((BlockTallGrass.EnumType) state.getValue(TYPE)).getMeta()));
+			spawnAsEntity(worldIn, pos, new ItemStack(Blocks.TALLGRASS, 1, state.getValue(TYPE).getMeta()));
 		}
 		else
 		{
@@ -83,6 +89,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 		}
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(this, 1, state.getBlock().getMetaFromState(state));
@@ -92,6 +99,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (int i = 1; i < 3; ++i)
@@ -103,16 +111,19 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 	/**
 	 * Whether this IGrowable can grow
 	 */
+	@Override
 	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
 	{
 		return state.getValue(TYPE) != BlockTallGrass.EnumType.DEAD_BUSH;
 	}
 
+	@Override
 	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
 	{
 		return true;
 	}
 
+	@Override
 	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
 	{
 		BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = BlockDoublePlant.EnumPlantType.GRASS;
@@ -131,6 +142,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(TYPE, BlockTallGrass.EnumType.byMetadata(meta));
@@ -139,11 +151,13 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((BlockTallGrass.EnumType) state.getValue(TYPE)).getMeta();
+		return state.getValue(TYPE).getMeta();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { TYPE });
@@ -153,6 +167,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 	 * Get the OffsetType for this Block. Determines if the model is rendered
 	 * slightly offset.
 	 */
+	@Override
 	public Block.EnumOffsetType getOffsetType()
 	{
 		return Block.EnumOffsetType.XYZ;
@@ -177,6 +192,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 			return this.meta;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -192,6 +208,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 			return META_LOOKUP[meta];
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

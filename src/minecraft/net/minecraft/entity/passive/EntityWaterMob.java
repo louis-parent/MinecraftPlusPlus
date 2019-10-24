@@ -12,6 +12,7 @@ public abstract class EntityWaterMob extends EntityLiving implements IAnimals
 		super(worldIn);
 	}
 
+	@Override
 	public boolean canBreatheUnderwater()
 	{
 		return true;
@@ -21,6 +22,7 @@ public abstract class EntityWaterMob extends EntityLiving implements IAnimals
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		return true;
@@ -29,6 +31,7 @@ public abstract class EntityWaterMob extends EntityLiving implements IAnimals
 	/**
 	 * Checks that the entity is not colliding with any blocks / liquids
 	 */
+	@Override
 	public boolean isNotColliding()
 	{
 		return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this);
@@ -38,6 +41,7 @@ public abstract class EntityWaterMob extends EntityLiving implements IAnimals
 	 * Get number of ticks, at least during which the living entity will be
 	 * silent.
 	 */
+	@Override
 	public int getTalkInterval()
 	{
 		return 120;
@@ -46,6 +50,7 @@ public abstract class EntityWaterMob extends EntityLiving implements IAnimals
 	/**
 	 * Determines if an entity can be despawned, used on idle far away entities
 	 */
+	@Override
 	protected boolean canDespawn()
 	{
 		return true;
@@ -54,6 +59,7 @@ public abstract class EntityWaterMob extends EntityLiving implements IAnimals
 	/**
 	 * Get the experience points the entity currently has.
 	 */
+	@Override
 	protected int getExperiencePoints(EntityPlayer player)
 	{
 		return 1 + this.world.rand.nextInt(3);
@@ -62,6 +68,7 @@ public abstract class EntityWaterMob extends EntityLiving implements IAnimals
 	/**
 	 * Gets called every tick from main Entity class
 	 */
+	@Override
 	public void onEntityUpdate()
 	{
 		int i = this.getAir();
@@ -84,6 +91,7 @@ public abstract class EntityWaterMob extends EntityLiving implements IAnimals
 		}
 	}
 
+	@Override
 	public boolean isPushedByWater()
 	{
 		return false;

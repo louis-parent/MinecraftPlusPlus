@@ -21,6 +21,7 @@ public class PathWorldListener implements IWorldEventListener
 {
 	private final List<PathNavigate> navigations = Lists.<PathNavigate>newArrayList();
 
+	@Override
 	public void notifyBlockUpdate(World worldIn, BlockPos pos, IBlockState oldState, IBlockState newState, int flags)
 	{
 		if (this.didBlockChange(worldIn, pos, oldState, newState))
@@ -38,10 +39,10 @@ public class PathWorldListener implements IWorldEventListener
 					if (path != null && !path.isFinished() && path.getCurrentPathLength() != 0)
 					{
 						PathPoint pathpoint = pathnavigate.currentPath.getFinalPathPoint();
-						double d0 = pos.distanceSq(((double) pathpoint.xCoord + pathnavigate.theEntity.posX) / 2.0D, ((double) pathpoint.yCoord + pathnavigate.theEntity.posY) / 2.0D, ((double) pathpoint.zCoord + pathnavigate.theEntity.posZ) / 2.0D);
+						double d0 = pos.distanceSq((pathpoint.xCoord + pathnavigate.theEntity.posX) / 2.0D, (pathpoint.yCoord + pathnavigate.theEntity.posY) / 2.0D, (pathpoint.zCoord + pathnavigate.theEntity.posZ) / 2.0D);
 						int k = (path.getCurrentPathLength() - path.getCurrentPathIndex()) * (path.getCurrentPathLength() - path.getCurrentPathIndex());
 
-						if (d0 < (double) k)
+						if (d0 < k)
 						{
 							pathnavigate.updatePath();
 						}
@@ -58,6 +59,7 @@ public class PathWorldListener implements IWorldEventListener
 		return axisalignedbb != axisalignedbb1 && (axisalignedbb == null || !axisalignedbb.equals(axisalignedbb1));
 	}
 
+	@Override
 	public void notifyLightSet(BlockPos pos)
 	{
 	}
@@ -66,18 +68,22 @@ public class PathWorldListener implements IWorldEventListener
 	 * On the client, re-renders all blocks in this range, inclusive. On the
 	 * server, does nothing.
 	 */
+	@Override
 	public void markBlockRangeForRenderUpdate(int x1, int y1, int z1, int x2, int y2, int z2)
 	{
 	}
 
+	@Override
 	public void playSoundToAllNearExcept(@Nullable EntityPlayer player, SoundEvent soundIn, SoundCategory category, double x, double y, double z, float volume, float pitch)
 	{
 	}
 
+	@Override
 	public void spawnParticle(int particleID, boolean ignoreRange, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed, int... parameters)
 	{
 	}
 
+	@Override
 	public void func_190570_a(int p_190570_1_, boolean p_190570_2_, boolean p_190570_3_, double p_190570_4_, double p_190570_6_, double p_190570_8_, double p_190570_10_, double p_190570_12_, double p_190570_14_, int... p_190570_16_)
 	{
 	}
@@ -87,6 +93,7 @@ public class PathWorldListener implements IWorldEventListener
 	 * client worlds, starts downloading any necessary textures. On server
 	 * worlds, adds the entity to the entity tracker.
 	 */
+	@Override
 	public void onEntityAdded(Entity entityIn)
 	{
 		if (entityIn instanceof EntityLiving)
@@ -100,6 +107,7 @@ public class PathWorldListener implements IWorldEventListener
 	 * client worlds, releases any downloaded textures. On server worlds,
 	 * removes the entity from the entity tracker.
 	 */
+	@Override
 	public void onEntityRemoved(Entity entityIn)
 	{
 		if (entityIn instanceof EntityLiving)
@@ -108,18 +116,22 @@ public class PathWorldListener implements IWorldEventListener
 		}
 	}
 
+	@Override
 	public void playRecord(SoundEvent soundIn, BlockPos pos)
 	{
 	}
 
+	@Override
 	public void broadcastSound(int soundID, BlockPos pos, int data)
 	{
 	}
 
+	@Override
 	public void playEvent(EntityPlayer player, int type, BlockPos blockPosIn, int data)
 	{
 	}
 
+	@Override
 	public void sendBlockBreakProgress(int breakerId, BlockPos pos, int progress)
 	{
 	}

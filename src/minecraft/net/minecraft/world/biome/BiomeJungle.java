@@ -58,6 +58,7 @@ public class BiomeJungle extends Biome
 		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 10, 4, 4));
 	}
 
+	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		if (rand.nextInt(10) == 0)
@@ -70,18 +71,20 @@ public class BiomeJungle extends Biome
 		}
 		else
 		{
-			return (WorldGenAbstractTree) (!this.isEdge && rand.nextInt(3) == 0 ? new WorldGenMegaJungle(false, 10, 20, JUNGLE_LOG, JUNGLE_LEAF) : new WorldGenTrees(false, 4 + rand.nextInt(7), JUNGLE_LOG, JUNGLE_LEAF, true));
+			return !this.isEdge && rand.nextInt(3) == 0 ? new WorldGenMegaJungle(false, 10, 20, JUNGLE_LOG, JUNGLE_LEAF) : new WorldGenTrees(false, 4 + rand.nextInt(7), JUNGLE_LOG, JUNGLE_LEAF, true);
 		}
 	}
 
 	/**
 	 * Gets a WorldGen appropriate for this biome.
 	 */
+	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand)
 	{
 		return rand.nextInt(4) == 0 ? new WorldGenTallGrass(BlockTallGrass.EnumType.FERN) : new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
 	}
 
+	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
 		super.decorate(worldIn, rand, pos);

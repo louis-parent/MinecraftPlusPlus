@@ -18,6 +18,7 @@ public class RenderPolarBear extends RenderLiving<EntityPolarBear>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityPolarBear entity)
 	{
 		return POLAR_BEAR_TEXTURE;
@@ -26,6 +27,7 @@ public class RenderPolarBear extends RenderLiving<EntityPolarBear>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityPolarBear entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -35,6 +37,7 @@ public class RenderPolarBear extends RenderLiving<EntityPolarBear>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityPolarBear entitylivingbaseIn, float partialTickTime)
 	{
 		GlStateManager.scale(1.2F, 1.2F, 1.2F);

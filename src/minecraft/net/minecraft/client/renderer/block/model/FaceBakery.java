@@ -19,6 +19,7 @@ public class FaceBakery
 	private static final FaceBakery.Rotation[] UV_ROTATIONS = new FaceBakery.Rotation[ModelRotation.values().length * EnumFacing.values().length];
 	private static final FaceBakery.Rotation UV_ROTATION_0 = new FaceBakery.Rotation()
 	{
+		@Override
 		BlockFaceUV makeRotatedUV(float p_188007_1_, float p_188007_2_, float p_188007_3_, float p_188007_4_)
 		{
 			return new BlockFaceUV(new float[] { p_188007_1_, p_188007_2_, p_188007_3_, p_188007_4_ }, 0);
@@ -26,6 +27,7 @@ public class FaceBakery
 	};
 	private static final FaceBakery.Rotation UV_ROTATION_270 = new FaceBakery.Rotation()
 	{
+		@Override
 		BlockFaceUV makeRotatedUV(float p_188007_1_, float p_188007_2_, float p_188007_3_, float p_188007_4_)
 		{
 			return new BlockFaceUV(new float[] { p_188007_4_, 16.0F - p_188007_1_, p_188007_2_, 16.0F - p_188007_3_ }, 270);
@@ -33,6 +35,7 @@ public class FaceBakery
 	};
 	private static final FaceBakery.Rotation UV_ROTATION_INVERSE = new FaceBakery.Rotation()
 	{
+		@Override
 		BlockFaceUV makeRotatedUV(float p_188007_1_, float p_188007_2_, float p_188007_3_, float p_188007_4_)
 		{
 			return new BlockFaceUV(new float[] { 16.0F - p_188007_1_, 16.0F - p_188007_2_, 16.0F - p_188007_3_, 16.0F - p_188007_4_ }, 0);
@@ -40,6 +43,7 @@ public class FaceBakery
 	};
 	private static final FaceBakery.Rotation UV_ROTATION_90 = new FaceBakery.Rotation()
 	{
+		@Override
 		BlockFaceUV makeRotatedUV(float p_188007_1_, float p_188007_2_, float p_188007_3_, float p_188007_4_)
 		{
 			return new BlockFaceUV(new float[] { 16.0F - p_188007_2_, p_188007_3_, 16.0F - p_188007_4_, p_188007_1_ }, 90);
@@ -143,8 +147,8 @@ public class FaceBakery
 		faceData[i + 1] = Float.floatToRawIntBits(position.y);
 		faceData[i + 2] = Float.floatToRawIntBits(position.z);
 		faceData[i + 3] = shadeColor;
-		faceData[i + 4] = Float.floatToRawIntBits(sprite.getInterpolatedU((double) faceUV.getVertexU(vertexIndex)));
-		faceData[i + 4 + 1] = Float.floatToRawIntBits(sprite.getInterpolatedV((double) faceUV.getVertexV(vertexIndex)));
+		faceData[i + 4] = Float.floatToRawIntBits(sprite.getInterpolatedU(faceUV.getVertexU(vertexIndex)));
+		faceData[i + 4 + 1] = Float.floatToRawIntBits(sprite.getInterpolatedV(faceUV.getVertexV(vertexIndex)));
 	}
 
 	private void rotatePart(Vector3f p_178407_1_, @Nullable BlockPartRotation partRotation)
@@ -234,7 +238,7 @@ public class FaceBakery
 		Vector3f.sub(vector3f, vector3f1, vector3f3);
 		Vector3f.sub(vector3f2, vector3f1, vector3f4);
 		Vector3f.cross(vector3f4, vector3f3, vector3f5);
-		float f = (float) Math.sqrt((double) (vector3f5.x * vector3f5.x + vector3f5.y * vector3f5.y + vector3f5.z * vector3f5.z));
+		float f = (float) Math.sqrt(vector3f5.x * vector3f5.x + vector3f5.y * vector3f5.y + vector3f5.z * vector3f5.z);
 		vector3f5.x /= f;
 		vector3f5.y /= f;
 		vector3f5.z /= f;
@@ -244,7 +248,7 @@ public class FaceBakery
 		for (EnumFacing enumfacing1 : EnumFacing.values())
 		{
 			Vec3i vec3i = enumfacing1.getDirectionVec();
-			Vector3f vector3f6 = new Vector3f((float) vec3i.getX(), (float) vec3i.getY(), (float) vec3i.getZ());
+			Vector3f vector3f6 = new Vector3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 			float f2 = Vector3f.dot(vector3f5, vector3f6);
 
 			if (f2 >= 0.0F && f2 > f1)

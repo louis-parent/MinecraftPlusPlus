@@ -43,14 +43,16 @@ public class BlockDaylightDetector extends BlockContainer
 		this.setUnlocalizedName("daylightDetector");
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return DAYLIGHT_DETECTOR_AABB;
 	}
 
+	@Override
 	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
-		return ((Integer) blockState.getValue(POWER)).intValue();
+		return blockState.getValue(POWER).intValue();
 	}
 
 	public void updatePower(World worldIn, BlockPos pos)
@@ -70,18 +72,19 @@ public class BlockDaylightDetector extends BlockContainer
 			{
 				float f1 = f < (float) Math.PI ? 0.0F : ((float) Math.PI * 2F);
 				f = f + (f1 - f) * 0.2F;
-				i = Math.round((float) i * MathHelper.cos(f));
+				i = Math.round(i * MathHelper.cos(f));
 			}
 
 			i = MathHelper.clamp(i, 0, 15);
 
-			if (((Integer) iblockstate.getValue(POWER)).intValue() != i)
+			if (iblockstate.getValue(POWER).intValue() != i)
 			{
 				worldIn.setBlockState(pos, iblockstate.withProperty(POWER, Integer.valueOf(i)), 3);
 			}
 		}
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		if (playerIn.isAllowEdit())
@@ -115,16 +118,19 @@ public class BlockDaylightDetector extends BlockContainer
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Item.getItemFromBlock(Blocks.DAYLIGHT_DETECTOR);
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(Blocks.DAYLIGHT_DETECTOR);
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -134,6 +140,7 @@ public class BlockDaylightDetector extends BlockContainer
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
@@ -144,6 +151,7 @@ public class BlockDaylightDetector extends BlockContainer
 	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
 	 * INVISIBLE to skip all rendering
 	 */
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.MODEL;
@@ -153,6 +161,7 @@ public class BlockDaylightDetector extends BlockContainer
 	 * Can this block provide power. Only wire currently seems to have this
 	 * change based on its state.
 	 */
+	@Override
 	public boolean canProvidePower(IBlockState state)
 	{
 		return true;
@@ -162,6 +171,7 @@ public class BlockDaylightDetector extends BlockContainer
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
+	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityDaylightDetector();
@@ -170,6 +180,7 @@ public class BlockDaylightDetector extends BlockContainer
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(POWER, Integer.valueOf(meta));
@@ -178,11 +189,13 @@ public class BlockDaylightDetector extends BlockContainer
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(POWER)).intValue();
+		return state.getValue(POWER).intValue();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { POWER });
@@ -192,6 +205,7 @@ public class BlockDaylightDetector extends BlockContainer
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (!this.inverted)
@@ -200,6 +214,7 @@ public class BlockDaylightDetector extends BlockContainer
 		}
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return p_193383_4_ == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;

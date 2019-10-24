@@ -31,7 +31,6 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Queues;
 import com.google.common.collect.Sets;
 
-import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.renderer.ModModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -116,7 +115,7 @@ public class ModelBakery
 					{
 						Collection<ModelResourceLocation> collection = Sets.newHashSet(map.values());
 						modelblockdefinition.getMultipartData().setStateContainer(block.getBlockState());
-						Collection<ModelResourceLocation> collection1 = (Collection) this.multipartVariantMap.get(modelblockdefinition);
+						Collection<ModelResourceLocation> collection1 = this.multipartVariantMap.get(modelblockdefinition);
 
 						if (collection1 == null)
 						{
@@ -126,6 +125,7 @@ public class ModelBakery
 
 						collection1.addAll(Lists.newArrayList(Iterables.filter(collection, new Predicate<ModelResourceLocation>()
 						{
+							@Override
 							public boolean apply(@Nullable ModelResourceLocation p_apply_1_)
 							{
 								return resourcelocation.equals(p_apply_1_);
@@ -265,7 +265,7 @@ public class ModelBakery
 	{
 		for (Entry<ModelBlockDefinition, Collection<ModelResourceLocation>> entry : this.multipartVariantMap.entrySet())
 		{
-			ModelResourceLocation modelresourcelocation = (ModelResourceLocation) (entry.getValue()).iterator().next();
+			ModelResourceLocation modelresourcelocation = (entry.getValue()).iterator().next();
 
 			for (VariantList variantlist : (entry.getKey()).getMultipartVariants())
 			{
@@ -341,7 +341,7 @@ public class ModelBakery
 		finally
 		{
 			IOUtils.closeQuietly(reader);
-			IOUtils.closeQuietly((Closeable) iresource);
+			IOUtils.closeQuietly(iresource);
 		}
 
 		return model;
@@ -451,11 +451,11 @@ public class ModelBakery
 
 	private List<String> getVariantNames(Item stack)
 	{
-		List<String> list = (List) this.variantNames.get(stack);
+		List<String> list = this.variantNames.get(stack);
 
 		if (list == null)
 		{
-			list = Collections.<String>singletonList(((ResourceLocation) Item.REGISTRY.getNameForObject(stack)).toString());
+			list = Collections.<String>singletonList(Item.REGISTRY.getNameForObject(stack).toString());
 		}
 
 		return list;
@@ -483,7 +483,7 @@ public class ModelBakery
 		{
 			ModelBlockDefinition modelblockdefinition = entry.getKey();
 			Multipart multipart = modelblockdefinition.getMultipartData();
-			String s = ((ResourceLocation) Block.REGISTRY.getNameForObject(multipart.getStateContainer().getBlock())).toString();
+			String s = Block.REGISTRY.getNameForObject(multipart.getStateContainer().getBlock()).toString();
 			MultipartBakedModel.Builder multipartbakedmodel$builder = new MultipartBakedModel.Builder();
 
 			for (Selector selector : multipart.getSelectors())
@@ -528,7 +528,7 @@ public class ModelBakery
 				{
 					if (modelblock.getElements().isEmpty())
 					{
-						LOGGER.warn("Missing elements for: {}", (Object) modelLocation);
+						LOGGER.warn("Missing elements for: {}", modelLocation);
 					}
 					else
 					{
@@ -543,7 +543,7 @@ public class ModelBakery
 				}
 				else
 				{
-					LOGGER.warn("Missing model for: {}", (Object) modelLocation);
+					LOGGER.warn("Missing model for: {}", modelLocation);
 				}
 			}
 
@@ -551,7 +551,7 @@ public class ModelBakery
 
 			if (i == 0)
 			{
-				LOGGER.warn("No weighted models for: {}", (Object) modelLocation);
+				LOGGER.warn("No weighted models for: {}", modelLocation);
 			}
 			else if (i == 1)
 			{
@@ -578,7 +578,7 @@ public class ModelBakery
 			{
 				if (modelblock.getElements().isEmpty())
 				{
-					LOGGER.warn("Missing elements for: {}", (Object) resourcelocation);
+					LOGGER.warn("Missing elements for: {}", resourcelocation);
 				}
 				else if (this.isCustomRenderer(modelblock))
 				{
@@ -596,7 +596,7 @@ public class ModelBakery
 			}
 			else
 			{
-				LOGGER.warn("Missing model for: {}", (Object) resourcelocation);
+				LOGGER.warn("Missing model for: {}", resourcelocation);
 			}
 		}
 	}
@@ -607,6 +607,7 @@ public class ModelBakery
 		List<ModelResourceLocation> list = Lists.newArrayList(this.variants.keySet());
 		Collections.sort(list, new Comparator<ModelResourceLocation>()
 		{
+			@Override
 			public int compare(ModelResourceLocation p_compare_1_, ModelResourceLocation p_compare_2_)
 			{
 				return p_compare_1_.toString().compareTo(p_compare_2_.toString());
@@ -623,7 +624,7 @@ public class ModelBakery
 
 				if (modelblock == null)
 				{
-					LOGGER.warn("Missing model for: {}", (Object) modelresourcelocation);
+					LOGGER.warn("Missing model for: {}", modelresourcelocation);
 				}
 				else
 				{
@@ -805,6 +806,7 @@ public class ModelBakery
 		set.remove(TextureMap.LOCATION_MISSING_TEXTURE);
 		ITextureMapPopulator itexturemappopulator = new ITextureMapPopulator()
 		{
+			@Override
 			public void registerSprites(TextureMap textureMapIn)
 			{
 				for (ResourceLocation resourcelocation : set)

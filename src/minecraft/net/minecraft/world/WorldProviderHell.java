@@ -12,6 +12,7 @@ public class WorldProviderHell extends WorldProvider
 	/**
 	 * creates a new world chunk manager for WorldProvider
 	 */
+	@Override
 	public void createBiomeProvider()
 	{
 		this.biomeProvider = new BiomeProviderSingle(Biomes.HELL);
@@ -22,6 +23,7 @@ public class WorldProviderHell extends WorldProvider
 	/**
 	 * Return Vec3D with biome specific fog color
 	 */
+	@Override
 	public Vec3d getFogColor(float p_76562_1_, float p_76562_2_)
 	{
 		return new Vec3d(0.20000000298023224D, 0.029999999329447746D, 0.029999999329447746D);
@@ -30,17 +32,19 @@ public class WorldProviderHell extends WorldProvider
 	/**
 	 * Creates the light to brightness table
 	 */
+	@Override
 	protected void generateLightBrightnessTable()
 	{
 		float f = 0.1F;
 
 		for (int i = 0; i <= 15; ++i)
 		{
-			float f1 = 1.0F - (float) i / 15.0F;
+			float f1 = 1.0F - i / 15.0F;
 			this.lightBrightnessTable[i] = (1.0F - f1) / (f1 * 3.0F + 1.0F) * 0.9F + 0.1F;
 		}
 	}
 
+	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
 		return new ChunkGeneratorHell(this.worldObj, this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.worldObj.getSeed());
@@ -50,6 +54,7 @@ public class WorldProviderHell extends WorldProvider
 	 * Returns 'true' if in the "main surface world", but 'false' if in the
 	 * Nether or End dimensions.
 	 */
+	@Override
 	public boolean isSurfaceWorld()
 	{
 		return false;
@@ -59,6 +64,7 @@ public class WorldProviderHell extends WorldProvider
 	 * Will check if the x, z position specified is alright to be set as the map
 	 * spawn point
 	 */
+	@Override
 	public boolean canCoordinateBeSpawn(int x, int z)
 	{
 		return false;
@@ -68,6 +74,7 @@ public class WorldProviderHell extends WorldProvider
 	 * Calculates the angle of sun and moon in the sky relative to a specified
 	 * time (usually worldTime)
 	 */
+	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks)
 	{
 		return 0.5F;
@@ -77,6 +84,7 @@ public class WorldProviderHell extends WorldProvider
 	 * True if the player can respawn in this dimension (true = overworld, false
 	 * = nether).
 	 */
+	@Override
 	public boolean canRespawnHere()
 	{
 		return false;
@@ -85,20 +93,24 @@ public class WorldProviderHell extends WorldProvider
 	/**
 	 * Returns true if the given X,Z coordinate should show environmental fog.
 	 */
+	@Override
 	public boolean doesXZShowFog(int x, int z)
 	{
 		return true;
 	}
 
+	@Override
 	public WorldBorder createWorldBorder()
 	{
 		return new WorldBorder()
 		{
+			@Override
 			public double getCenterX()
 			{
 				return super.getCenterX() / 8.0D;
 			}
 
+			@Override
 			public double getCenterZ()
 			{
 				return super.getCenterZ() / 8.0D;
@@ -106,6 +118,7 @@ public class WorldProviderHell extends WorldProvider
 		};
 	}
 
+	@Override
 	public DimensionType getDimensionType()
 	{
 		return DimensionType.NETHER;

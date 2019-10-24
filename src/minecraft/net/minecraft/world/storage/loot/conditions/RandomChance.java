@@ -19,6 +19,7 @@ public class RandomChance implements LootCondition
 		this.chance = chanceIn;
 	}
 
+	@Override
 	public boolean testCondition(Random rand, LootContext context)
 	{
 		return rand.nextFloat() < this.chance;
@@ -31,11 +32,13 @@ public class RandomChance implements LootCondition
 			super(new ResourceLocation("random_chance"), RandomChance.class);
 		}
 
+		@Override
 		public void serialize(JsonObject json, RandomChance value, JsonSerializationContext context)
 		{
 			json.addProperty("chance", Float.valueOf(value.chance));
 		}
 
+		@Override
 		public RandomChance deserialize(JsonObject json, JsonDeserializationContext context)
 		{
 			return new RandomChance(JsonUtils.getFloat(json, "chance"));

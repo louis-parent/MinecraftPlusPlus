@@ -15,6 +15,7 @@ public class CommandException extends Exception
 		return this.errorObjects;
 	}
 
+	@Override
 	public synchronized Throwable fillInStackTrace()
 	{
 		return this;

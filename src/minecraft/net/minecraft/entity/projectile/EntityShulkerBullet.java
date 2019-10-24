@@ -51,6 +51,7 @@ public class EntityShulkerBullet extends Entity
 		this.noClip = true;
 	}
 
+	@Override
 	public SoundCategory getSoundCategory()
 	{
 		return SoundCategory.HOSTILE;
@@ -70,9 +71,9 @@ public class EntityShulkerBullet extends Entity
 		this(worldIn);
 		this.owner = ownerIn;
 		BlockPos blockpos = new BlockPos(ownerIn);
-		double d0 = (double) blockpos.getX() + 0.5D;
-		double d1 = (double) blockpos.getY() + 0.5D;
-		double d2 = (double) blockpos.getZ() + 0.5D;
+		double d0 = blockpos.getX() + 0.5D;
+		double d1 = blockpos.getY() + 0.5D;
+		double d2 = blockpos.getZ() + 0.5D;
 		this.setLocationAndAngles(d0, d1, d2, this.rotationYaw, this.rotationPitch);
 		this.target = targetIn;
 		this.direction = EnumFacing.UP;
@@ -82,6 +83,7 @@ public class EntityShulkerBullet extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 		if (this.owner != null)
@@ -118,6 +120,7 @@ public class EntityShulkerBullet extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.steps = compound.getInteger("Steps");
@@ -145,6 +148,7 @@ public class EntityShulkerBullet extends Entity
 		}
 	}
 
+	@Override
 	protected void entityInit()
 	{
 	}
@@ -165,13 +169,13 @@ public class EntityShulkerBullet extends Entity
 		}
 		else
 		{
-			d0 = (double) this.target.height * 0.5D;
+			d0 = this.target.height * 0.5D;
 			blockpos = new BlockPos(this.target.posX, this.target.posY + d0, this.target.posZ);
 		}
 
-		double d1 = (double) blockpos.getX() + 0.5D;
-		double d2 = (double) blockpos.getY() + d0;
-		double d3 = (double) blockpos.getZ() + 0.5D;
+		double d1 = blockpos.getX() + 0.5D;
+		double d2 = blockpos.getY() + d0;
+		double d3 = blockpos.getZ() + 0.5D;
 		EnumFacing enumfacing = null;
 
 		if (blockpos.distanceSqToCenter(this.posX, this.posY, this.posZ) >= 4.0D)
@@ -229,16 +233,16 @@ public class EntityShulkerBullet extends Entity
 				enumfacing = list.get(this.rand.nextInt(list.size()));
 			}
 
-			d1 = this.posX + (double) enumfacing.getFrontOffsetX();
-			d2 = this.posY + (double) enumfacing.getFrontOffsetY();
-			d3 = this.posZ + (double) enumfacing.getFrontOffsetZ();
+			d1 = this.posX + enumfacing.getFrontOffsetX();
+			d2 = this.posY + enumfacing.getFrontOffsetY();
+			d3 = this.posZ + enumfacing.getFrontOffsetZ();
 		}
 
 		this.setDirection(enumfacing);
 		double d6 = d1 - this.posX;
 		double d7 = d2 - this.posY;
 		double d4 = d3 - this.posZ;
-		double d5 = (double) MathHelper.sqrt(d6 * d6 + d7 * d7 + d4 * d4);
+		double d5 = MathHelper.sqrt(d6 * d6 + d7 * d7 + d4 * d4);
 
 		if (d5 == 0.0D)
 		{
@@ -260,6 +264,7 @@ public class EntityShulkerBullet extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		if (!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL)
@@ -371,6 +376,7 @@ public class EntityShulkerBullet extends Entity
 	 * Returns true if the entity is on fire. Used by render to add the fire
 	 * effect on rendering.
 	 */
+	@Override
 	public boolean isBurning()
 	{
 		return false;
@@ -379,6 +385,7 @@ public class EntityShulkerBullet extends Entity
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	public boolean isInRangeToRenderDist(double distance)
 	{
 		return distance < 16384.0D;
@@ -387,11 +394,13 @@ public class EntityShulkerBullet extends Entity
 	/**
 	 * Gets how bright this entity is.
 	 */
+	@Override
 	public float getBrightness()
 	{
 		return 1.0F;
 	}
 
+	@Override
 	public int getBrightnessForRender()
 	{
 		return 15728880;
@@ -426,6 +435,7 @@ public class EntityShulkerBullet extends Entity
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return true;
@@ -434,6 +444,7 @@ public class EntityShulkerBullet extends Entity
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (!this.world.isRemote)

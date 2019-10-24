@@ -80,6 +80,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		GlStateManager.pushMatrix();
@@ -195,7 +196,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 		}
 		catch (Exception exception)
 		{
-			LOGGER.error("Couldn't render entity", (Throwable) exception);
+			LOGGER.error("Couldn't render entity", exception);
 		}
 
 		GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
@@ -324,10 +325,10 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 			}
 			else
 			{
-				float f1 = (float) (i >> 24 & 255) / 255.0F;
-				float f2 = (float) (i >> 16 & 255) / 255.0F;
-				float f3 = (float) (i >> 8 & 255) / 255.0F;
-				float f4 = (float) (i & 255) / 255.0F;
+				float f1 = (i >> 24 & 255) / 255.0F;
+				float f2 = (i >> 16 & 255) / 255.0F;
+				float f3 = (i >> 8 & 255) / 255.0F;
+				float f4 = (i & 255) / 255.0F;
 				this.brightnessBuffer.put(f2);
 				this.brightnessBuffer.put(f3);
 				this.brightnessBuffer.put(f4);
@@ -408,7 +409,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 
 		if (entityLiving.deathTime > 0)
 		{
-			float f = ((float) entityLiving.deathTime + partialTicks - 1.0F) / 20.0F * 1.6F;
+			float f = (entityLiving.deathTime + partialTicks - 1.0F) / 20.0F * 1.6F;
 			f = MathHelper.sqrt(f);
 
 			if (f > 1.0F)
@@ -444,7 +445,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 	 */
 	protected float handleRotationFloat(T livingBase, float partialTicks)
 	{
-		return (float) livingBase.ticksExisted + partialTicks;
+		return livingBase.ticksExisted + partialTicks;
 	}
 
 	protected void renderLayers(T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleIn)
@@ -482,6 +483,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 	{
 	}
 
+	@Override
 	public void renderName(T entity, double x, double y, double z)
 	{
 		if (this.canRenderName(entity))
@@ -489,7 +491,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 			double d0 = entity.getDistanceSqToEntity(this.renderManager.renderViewEntity);
 			float f = entity.isSneaking() ? 32.0F : 64.0F;
 
-			if (d0 < (double) (f * f))
+			if (d0 < f * f)
 			{
 				String s = entity.getDisplayName().getFormattedText();
 				GlStateManager.alphaFunc(516, 0.1F);
@@ -498,6 +500,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 		}
 	}
 
+	@Override
 	protected boolean canRenderName(T entity)
 	{
 		EntityPlayerSP entityplayersp = Minecraft.getMinecraft().player;

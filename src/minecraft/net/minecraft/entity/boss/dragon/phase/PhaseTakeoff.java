@@ -24,6 +24,7 @@ public class PhaseTakeoff extends PhaseBase
 	 * Gives the phase a chance to update its status. Called by dragon's
 	 * onLivingUpdate. Only used when !worldObj.isRemote.
 	 */
+	@Override
 	public void doLocalUpdate()
 	{
 		if (!this.firstTick && this.currentPath != null)
@@ -46,6 +47,7 @@ public class PhaseTakeoff extends PhaseBase
 	/**
 	 * Called when this phase is set to active
 	 */
+	@Override
 	public void initPhase()
 	{
 		this.firstTick = true;
@@ -92,7 +94,7 @@ public class PhaseTakeoff extends PhaseBase
 
 		while (true)
 		{
-			d0 = vec3d.yCoord + (double) (this.dragon.getRNG().nextFloat() * 20.0F);
+			d0 = vec3d.yCoord + this.dragon.getRNG().nextFloat() * 20.0F;
 
 			if (d0 >= vec3d.yCoord)
 			{
@@ -103,6 +105,7 @@ public class PhaseTakeoff extends PhaseBase
 		this.targetLocation = new Vec3d(vec3d.xCoord, d0, vec3d.zCoord);
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -113,6 +116,7 @@ public class PhaseTakeoff extends PhaseBase
 		return this.targetLocation;
 	}
 
+	@Override
 	public PhaseList<PhaseTakeoff> getPhaseList()
 	{
 		return PhaseList.TAKEOFF;

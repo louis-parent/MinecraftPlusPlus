@@ -15,6 +15,7 @@ public class SearchTreeManager implements IResourceManagerReloadListener
 	public static final SearchTreeManager.Key<RecipeList> field_194012_b = new SearchTreeManager.Key<RecipeList>();
 	private final Map<SearchTreeManager.Key<?>, SearchTree<?>> field_194013_c = Maps.<SearchTreeManager.Key<?>, SearchTree<?>>newHashMap();
 
+	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager)
 	{
 		for (SearchTree<?> searchtree : this.field_194013_c.values())

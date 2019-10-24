@@ -22,6 +22,7 @@ public class SPacketPong implements Packet<INetHandlerStatusClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.clientTime = buf.readLong();
@@ -30,6 +31,7 @@ public class SPacketPong implements Packet<INetHandlerStatusClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeLong(this.clientTime);
@@ -38,6 +40,7 @@ public class SPacketPong implements Packet<INetHandlerStatusClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerStatusClient handler)
 	{
 		handler.handlePong(this);

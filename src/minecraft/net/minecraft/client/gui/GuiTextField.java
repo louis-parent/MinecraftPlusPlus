@@ -577,7 +577,7 @@ public class GuiTextField extends Gui
 			if (!s.isEmpty())
 			{
 				String s1 = flag ? s.substring(0, j) : s;
-				j1 = this.fontRendererInstance.drawStringWithShadow(s1, (float) l, (float) i1, i);
+				j1 = this.fontRendererInstance.drawStringWithShadow(s1, l, i1, i);
 			}
 
 			boolean flag2 = this.cursorPosition < this.text.length() || this.text.length() >= this.getMaxStringLength();
@@ -595,7 +595,7 @@ public class GuiTextField extends Gui
 
 			if (!s.isEmpty() && flag && j < s.length())
 			{
-				j1 = this.fontRendererInstance.drawStringWithShadow(s.substring(j), (float) j1, (float) i1, i);
+				j1 = this.fontRendererInstance.drawStringWithShadow(s.substring(j), j1, i1, i);
 			}
 
 			if (flag1)
@@ -606,7 +606,7 @@ public class GuiTextField extends Gui
 				}
 				else
 				{
-					this.fontRendererInstance.drawStringWithShadow("_", (float) k1, (float) i1, i);
+					this.fontRendererInstance.drawStringWithShadow("_", k1, i1, i);
 				}
 			}
 
@@ -654,10 +654,10 @@ public class GuiTextField extends Gui
 		GlStateManager.enableColorLogic();
 		GlStateManager.colorLogicOp(GlStateManager.LogicOp.OR_REVERSE);
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION);
-		bufferbuilder.pos((double) startX, (double) endY, 0.0D).endVertex();
-		bufferbuilder.pos((double) endX, (double) endY, 0.0D).endVertex();
-		bufferbuilder.pos((double) endX, (double) startY, 0.0D).endVertex();
-		bufferbuilder.pos((double) startX, (double) startY, 0.0D).endVertex();
+		bufferbuilder.pos(startX, endY, 0.0D).endVertex();
+		bufferbuilder.pos(endX, endY, 0.0D).endVertex();
+		bufferbuilder.pos(endX, startY, 0.0D).endVertex();
+		bufferbuilder.pos(startX, startY, 0.0D).endVertex();
 		tessellator.draw();
 		GlStateManager.disableColorLogic();
 		GlStateManager.enableTexture2D();

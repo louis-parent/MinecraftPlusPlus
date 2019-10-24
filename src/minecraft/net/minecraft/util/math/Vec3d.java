@@ -39,7 +39,7 @@ public class Vec3d
 
 	public Vec3d(Vec3i vector)
 	{
-		this((double) vector.getX(), (double) vector.getY(), (double) vector.getZ());
+		this(vector.getX(), vector.getY(), vector.getZ());
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class Vec3d
 	 */
 	public Vec3d normalize()
 	{
-		double d0 = (double) MathHelper.sqrt(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
+		double d0 = MathHelper.sqrt(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
 		return d0 < 1.0E-4D ? ZERO : new Vec3d(this.xCoord / d0, this.yCoord / d0, this.zCoord / d0);
 	}
 
@@ -106,7 +106,7 @@ public class Vec3d
 		double d0 = vec.xCoord - this.xCoord;
 		double d1 = vec.yCoord - this.yCoord;
 		double d2 = vec.zCoord - this.zCoord;
-		return (double) MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+		return MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class Vec3d
 	 */
 	public double lengthVector()
 	{
-		return (double) MathHelper.sqrt(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
+		return MathHelper.sqrt(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
 	}
 
 	public double lengthSquared()
@@ -219,6 +219,7 @@ public class Vec3d
 		}
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -248,6 +249,7 @@ public class Vec3d
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		long j = Double.doubleToLongBits(this.xCoord);
@@ -259,6 +261,7 @@ public class Vec3d
 		return i;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "(" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + ")";
@@ -269,8 +272,8 @@ public class Vec3d
 		float f = MathHelper.cos(pitch);
 		float f1 = MathHelper.sin(pitch);
 		double d0 = this.xCoord;
-		double d1 = this.yCoord * (double) f + this.zCoord * (double) f1;
-		double d2 = this.zCoord * (double) f - this.yCoord * (double) f1;
+		double d1 = this.yCoord * f + this.zCoord * f1;
+		double d2 = this.zCoord * f - this.yCoord * f1;
 		return new Vec3d(d0, d1, d2);
 	}
 
@@ -278,9 +281,9 @@ public class Vec3d
 	{
 		float f = MathHelper.cos(yaw);
 		float f1 = MathHelper.sin(yaw);
-		double d0 = this.xCoord * (double) f + this.zCoord * (double) f1;
+		double d0 = this.xCoord * f + this.zCoord * f1;
 		double d1 = this.yCoord;
-		double d2 = this.zCoord * (double) f - this.xCoord * (double) f1;
+		double d2 = this.zCoord * f - this.xCoord * f1;
 		return new Vec3d(d0, d1, d2);
 	}
 
@@ -301,6 +304,6 @@ public class Vec3d
 		float f1 = MathHelper.sin(-p_189986_1_ * 0.017453292F - (float) Math.PI);
 		float f2 = -MathHelper.cos(-p_189986_0_ * 0.017453292F);
 		float f3 = MathHelper.sin(-p_189986_0_ * 0.017453292F);
-		return new Vec3d((double) (f1 * f2), (double) f3, (double) (f * f2));
+		return new Vec3d(f1 * f2, f3, f * f2);
 	}
 }

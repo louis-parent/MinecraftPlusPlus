@@ -42,7 +42,7 @@ public class GuiSubtitleOverlay extends Gui implements ISoundEventListener
 			GlStateManager.pushMatrix();
 			GlStateManager.enableBlend();
 			GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-			Vec3d vec3d = new Vec3d(this.client.player.posX, this.client.player.posY + (double) this.client.player.getEyeHeight(), this.client.player.posZ);
+			Vec3d vec3d = new Vec3d(this.client.player.posX, this.client.player.posY + this.client.player.getEyeHeight(), this.client.player.posZ);
 			Vec3d vec3d1 = (new Vec3d(0.0D, 0.0D, -1.0D)).rotatePitch(-this.client.player.rotationPitch * 0.017453292F).rotateYaw(-this.client.player.rotationYaw * 0.017453292F);
 			Vec3d vec3d2 = (new Vec3d(0.0D, 1.0D, 0.0D)).rotatePitch(-this.client.player.rotationPitch * 0.017453292F).rotateYaw(-this.client.player.rotationYaw * 0.017453292F);
 			Vec3d vec3d3 = vec3d1.crossProduct(vec3d2);
@@ -79,10 +79,10 @@ public class GuiSubtitleOverlay extends Gui implements ISoundEventListener
 				int j1 = i1 / 2;
 				float f = 1.0F;
 				int k1 = this.client.fontRendererObj.getStringWidth(s);
-				int l1 = MathHelper.floor(MathHelper.clampedLerp(255.0D, 75.0D, (double) ((float) (Minecraft.getSystemTime() - guisubtitleoverlay$subtitle1.getStartTime()) / 3000.0F)));
+				int l1 = MathHelper.floor(MathHelper.clampedLerp(255.0D, 75.0D, (Minecraft.getSystemTime() - guisubtitleoverlay$subtitle1.getStartTime()) / 3000.0F));
 				int i2 = l1 << 16 | l1 << 8 | l1;
 				GlStateManager.pushMatrix();
-				GlStateManager.translate((float) resolution.getScaledWidth() - (float) l * 1.0F - 2.0F, (float) (resolution.getScaledHeight() - 30) - (float) (i * (i1 + 1)) * 1.0F, 0.0F);
+				GlStateManager.translate(resolution.getScaledWidth() - l * 1.0F - 2.0F, resolution.getScaledHeight() - 30 - i * (i1 + 1) * 1.0F, 0.0F);
 				GlStateManager.scale(1.0F, 1.0F, 1.0F);
 				drawRect(-l - 1, -j1 - 1, l + 1, j1 + 1, -872415232);
 				GlStateManager.enableBlend();
@@ -109,6 +109,7 @@ public class GuiSubtitleOverlay extends Gui implements ISoundEventListener
 		}
 	}
 
+	@Override
 	public void soundPlay(ISound soundIn, SoundEventAccessor accessor)
 	{
 		if (accessor.getSubtitle() != null)
@@ -121,13 +122,13 @@ public class GuiSubtitleOverlay extends Gui implements ISoundEventListener
 				{
 					if (guisubtitleoverlay$subtitle.getString().equals(s))
 					{
-						guisubtitleoverlay$subtitle.refresh(new Vec3d((double) soundIn.getXPosF(), (double) soundIn.getYPosF(), (double) soundIn.getZPosF()));
+						guisubtitleoverlay$subtitle.refresh(new Vec3d(soundIn.getXPosF(), soundIn.getYPosF(), soundIn.getZPosF()));
 						return;
 					}
 				}
 			}
 
-			this.subtitles.add(new GuiSubtitleOverlay.Subtitle(s, new Vec3d((double) soundIn.getXPosF(), (double) soundIn.getYPosF(), (double) soundIn.getZPosF())));
+			this.subtitles.add(new GuiSubtitleOverlay.Subtitle(s, new Vec3d(soundIn.getXPosF(), soundIn.getYPosF(), soundIn.getZPosF())));
 		}
 	}
 

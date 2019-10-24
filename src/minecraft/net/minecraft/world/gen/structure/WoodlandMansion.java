@@ -28,11 +28,13 @@ public class WoodlandMansion extends MapGenStructure
 		this.field_191075_h = p_i47240_1_;
 	}
 
+	@Override
 	public String getStructureName()
 	{
 		return "Mansion";
 	}
 
+	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
 		int i = chunkX;
@@ -69,6 +71,7 @@ public class WoodlandMansion extends MapGenStructure
 		return false;
 	}
 
+	@Override
 	public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_)
 	{
 		this.worldObj = worldIn;
@@ -76,6 +79,7 @@ public class WoodlandMansion extends MapGenStructure
 		return biomeprovider.func_190944_c() && biomeprovider.func_190943_d() != Biomes.ROOFED_FOREST ? null : func_191069_a(worldIn, this, pos, 80, 20, 10387319, true, 100, p_180706_3_);
 	}
 
+	@Override
 	protected StructureStart getStructureStart(int chunkX, int chunkZ)
 	{
 		return new WoodlandMansion.Start(this.worldObj, this.field_191075_h, this.rand, chunkX, chunkZ);
@@ -138,6 +142,7 @@ public class WoodlandMansion extends MapGenStructure
 			}
 		}
 
+		@Override
 		public void generateStructure(World worldIn, Random rand, StructureBoundingBox structurebb)
 		{
 			super.generateStructure(worldIn, rand, structurebb);
@@ -181,6 +186,7 @@ public class WoodlandMansion extends MapGenStructure
 			}
 		}
 
+		@Override
 		public boolean isSizeableStructure()
 		{
 			return this.field_191093_c;

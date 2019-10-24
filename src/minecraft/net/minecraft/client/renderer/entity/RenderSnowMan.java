@@ -19,11 +19,13 @@ public class RenderSnowMan extends RenderLiving<EntitySnowman>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntitySnowman entity)
 	{
 		return SNOW_MAN_TEXTURES;
 	}
 
+	@Override
 	public ModelSnowMan getMainModel()
 	{
 		return (ModelSnowMan) super.getMainModel();

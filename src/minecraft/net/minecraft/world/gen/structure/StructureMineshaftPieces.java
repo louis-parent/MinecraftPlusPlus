@@ -109,6 +109,7 @@ public class StructureMineshaftPieces
 		{
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -118,6 +119,7 @@ public class StructureMineshaftPieces
 			tagCompound.setInteger("Num", this.sectionCount);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -186,6 +188,7 @@ public class StructureMineshaftPieces
 			return i > 0 ? structureboundingbox : null;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			int i = this.getComponentType();
@@ -298,6 +301,7 @@ public class StructureMineshaftPieces
 			}
 		}
 
+		@Override
 		protected boolean generateChest(World worldIn, StructureBoundingBox structurebb, Random randomIn, int x, int y, int z, ResourceLocation loot)
 		{
 			BlockPos blockpos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
@@ -306,7 +310,7 @@ public class StructureMineshaftPieces
 			{
 				IBlockState iblockstate = Blocks.RAIL.getDefaultState().withProperty(BlockRail.SHAPE, randomIn.nextBoolean() ? BlockRailBase.EnumRailDirection.NORTH_SOUTH : BlockRailBase.EnumRailDirection.EAST_WEST);
 				this.setBlockState(worldIn, iblockstate, x, y, z, structurebb);
-				EntityMinecartChest entityminecartchest = new EntityMinecartChest(worldIn, (double) ((float) blockpos.getX() + 0.5F), (double) ((float) blockpos.getY() + 0.5F), (double) ((float) blockpos.getZ() + 0.5F));
+				EntityMinecartChest entityminecartchest = new EntityMinecartChest(worldIn, blockpos.getX() + 0.5F, blockpos.getY() + 0.5F, blockpos.getZ() + 0.5F);
 				entityminecartchest.setLootTable(loot, randomIn.nextLong());
 				worldIn.spawnEntityInWorld(entityminecartchest);
 				return true;
@@ -317,6 +321,7 @@ public class StructureMineshaftPieces
 			}
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -461,6 +466,7 @@ public class StructureMineshaftPieces
 		{
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -468,6 +474,7 @@ public class StructureMineshaftPieces
 			tagCompound.setInteger("D", this.corridorDirection.getHorizontalIndex());
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -522,6 +529,7 @@ public class StructureMineshaftPieces
 			return StructureComponent.findIntersecting(listIn, structureboundingbox) != null ? null : structureboundingbox;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			int i = this.getComponentType();
@@ -577,6 +585,7 @@ public class StructureMineshaftPieces
 			}
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -644,11 +653,13 @@ public class StructureMineshaftPieces
 			this.mineShaftType = p_i47138_2_;
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			tagCompound.setInteger("MST", this.mineShaftType.ordinal());
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			this.mineShaftType = MapGenMineshaft.Type.byId(tagCompound.getInteger("MST"));
@@ -709,6 +720,7 @@ public class StructureMineshaftPieces
 			this.boundingBox = new StructureBoundingBox(p_i47137_3_, 50, p_i47137_4_, p_i47137_3_ + 7 + p_i47137_2_.nextInt(6), 54 + p_i47137_2_.nextInt(6), p_i47137_4_ + 7 + p_i47137_2_.nextInt(6));
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			int i = this.getComponentType();
@@ -794,6 +806,7 @@ public class StructureMineshaftPieces
 			}
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -815,6 +828,7 @@ public class StructureMineshaftPieces
 			}
 		}
 
+		@Override
 		public void offset(int x, int y, int z)
 		{
 			super.offset(x, y, z);
@@ -825,6 +839,7 @@ public class StructureMineshaftPieces
 			}
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -838,6 +853,7 @@ public class StructureMineshaftPieces
 			tagCompound.setTag("Entrances", nbttaglist);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -893,6 +909,7 @@ public class StructureMineshaftPieces
 			return StructureComponent.findIntersecting(listIn, structureboundingbox) != null ? null : structureboundingbox;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			int i = this.getComponentType();
@@ -921,6 +938,7 @@ public class StructureMineshaftPieces
 			}
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))

@@ -11,11 +11,13 @@ public class AddBedTileEntity implements IFixableData
 {
 	private static final Logger field_193842_a = LogManager.getLogger();
 
+	@Override
 	public int getFixVersion()
 	{
 		return 1125;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		int i = 416;

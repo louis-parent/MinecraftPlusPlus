@@ -11,6 +11,7 @@ public class EntityFlyHelper extends EntityMoveHelper
 		super(p_i47418_1_);
 	}
 
+	@Override
 	public void onUpdateMoveHelper()
 	{
 		if (this.action == EntityMoveHelper.Action.MOVE_TO)
@@ -43,7 +44,7 @@ public class EntityFlyHelper extends EntityMoveHelper
 			}
 
 			this.entity.setAIMoveSpeed(f1);
-			double d4 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
+			double d4 = MathHelper.sqrt(d0 * d0 + d2 * d2);
 			float f2 = (float) (-(MathHelper.atan2(d1, d4) * (180D / Math.PI)));
 			this.entity.rotationPitch = this.limitAngle(this.entity.rotationPitch, f2, 10.0F);
 			this.entity.setMoveForward(d1 > 0.0D ? f1 : -f1);

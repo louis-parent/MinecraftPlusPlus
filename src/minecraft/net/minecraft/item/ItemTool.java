@@ -46,6 +46,7 @@ public abstract class ItemTool extends Item
 	@Mod("Minecraftpp")
 	public abstract ToolType getToolType();
 
+	@Override
 	@Mod("Minecraftpp")
 	public abstract float getStrVsBlock(ItemStack stack, IBlockState state);
 
@@ -53,6 +54,7 @@ public abstract class ItemTool extends Item
 	 * Current implementations of this method in child classes do not use the
 	 * entry argument beside ev. They just raise the damage on the stack.
 	 */
+	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
 	{
 		stack.damageItem(2, attacker);
@@ -63,9 +65,10 @@ public abstract class ItemTool extends Item
 	 * Called when a Block is destroyed using this Item. Return true to trigger
 	 * the "Use Item" statistic.
 	 */
+	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
 	{
-		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D)
+		if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0D)
 		{
 			stack.damageItem(1, entityLiving);
 		}
@@ -76,6 +79,7 @@ public abstract class ItemTool extends Item
 	/**
 	 * Returns True is the item is renderer in full 3D when hold.
 	 */
+	@Override
 	public boolean isFull3D()
 	{
 		return true;
@@ -85,6 +89,7 @@ public abstract class ItemTool extends Item
 	 * Return the enchantability factor of the item, most of the time is based
 	 * on material.
 	 */
+	@Override
 	public int getItemEnchantability()
 	{
 		return this.toolMaterial.getEnchantability();
@@ -101,19 +106,21 @@ public abstract class ItemTool extends Item
 	/**
 	 * Return whether this item is repairable in an anvil.
 	 */
+	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
 	{
 		return this.toolMaterial.getRepairItem() == repair.getItem() ? true : super.getIsRepairable(toRepair, repair);
 	}
 
+	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
 	{
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
 		if (equipmentSlot == EntityHandSlot.MAINHAND)
 		{
-			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double) this.damageVsEntity, 0));
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double) this.attackSpeed, 0));
+			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", this.damageVsEntity, 0));
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", this.attackSpeed, 0));
 		}
 
 		return multimap;

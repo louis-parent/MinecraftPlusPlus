@@ -14,6 +14,7 @@ public class RenderZombie extends RenderBiped<EntityZombie>
 		super(renderManagerIn, new ModelZombie(), 0.5F);
 		LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this)
 		{
+			@Override
 			protected void initArmor()
 			{
 				this.modelLeggings = new ModelZombie(0.5F, true);
@@ -27,6 +28,7 @@ public class RenderZombie extends RenderBiped<EntityZombie>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityZombie entity)
 	{
 		return ZOMBIE_TEXTURES;

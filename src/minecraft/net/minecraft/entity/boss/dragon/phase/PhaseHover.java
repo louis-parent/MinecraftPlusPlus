@@ -18,6 +18,7 @@ public class PhaseHover extends PhaseBase
 	 * Gives the phase a chance to update its status. Called by dragon's
 	 * onLivingUpdate. Only used when !worldObj.isRemote.
 	 */
+	@Override
 	public void doLocalUpdate()
 	{
 		if (this.targetLocation == null)
@@ -26,6 +27,7 @@ public class PhaseHover extends PhaseBase
 		}
 	}
 
+	@Override
 	public boolean getIsStationary()
 	{
 		return true;
@@ -34,6 +36,7 @@ public class PhaseHover extends PhaseBase
 	/**
 	 * Called when this phase is set to active
 	 */
+	@Override
 	public void initPhase()
 	{
 		this.targetLocation = null;
@@ -42,11 +45,13 @@ public class PhaseHover extends PhaseBase
 	/**
 	 * Returns the maximum amount dragon may rise or fall during this phase
 	 */
+	@Override
 	public float getMaxRiseOrFall()
 	{
 		return 1.0F;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -57,6 +62,7 @@ public class PhaseHover extends PhaseBase
 		return this.targetLocation;
 	}
 
+	@Override
 	public PhaseList<PhaseHover> getPhaseList()
 	{
 		return PhaseList.HOVER;

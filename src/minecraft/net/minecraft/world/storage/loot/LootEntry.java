@@ -37,7 +37,7 @@ public abstract class LootEntry
 	 */
 	public int getEffectiveWeight(float luck)
 	{
-		return Math.max(MathHelper.floor((float) this.weight + (float) this.quality * luck), 0);
+		return Math.max(MathHelper.floor(this.weight + this.quality * luck), 0);
 	}
 
 	public abstract void addLoot(Collection<ItemStack> stacks, Random rand, LootContext context);
@@ -46,6 +46,7 @@ public abstract class LootEntry
 
 	public static class Serializer implements JsonDeserializer<LootEntry>, JsonSerializer<LootEntry>
 	{
+		@Override
 		public LootEntry deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "loot item");
@@ -56,7 +57,7 @@ public abstract class LootEntry
 
 			if (jsonobject.has("conditions"))
 			{
-				alootcondition = (LootCondition[]) JsonUtils.deserializeClass(jsonobject, "conditions", p_deserialize_3_, LootCondition[].class);
+				alootcondition = JsonUtils.deserializeClass(jsonobject, "conditions", p_deserialize_3_, LootCondition[].class);
 			}
 			else
 			{
@@ -81,6 +82,7 @@ public abstract class LootEntry
 			}
 		}
 
+		@Override
 		public JsonElement serialize(LootEntry p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			JsonObject jsonobject = new JsonObject();

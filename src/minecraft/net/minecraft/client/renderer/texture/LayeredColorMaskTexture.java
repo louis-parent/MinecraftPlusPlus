@@ -34,6 +34,7 @@ public class LayeredColorMaskTexture extends AbstractTexture
 		this.listDyeColors = p_i46101_3_;
 	}
 
+	@Override
 	public void loadTexture(IResourceManager resourceManager) throws IOException
 	{
 		this.deleteGlTexture();
@@ -69,7 +70,7 @@ public class LayeredColorMaskTexture extends AbstractTexture
 					try
 					{
 						String s = this.listTextures.get(j);
-						int k = ((EnumDyeColor) this.listDyeColors.get(j)).func_193350_e();
+						int k = this.listDyeColors.get(j).func_193350_e();
 
 						if (s != null)
 						{
@@ -100,7 +101,7 @@ public class LayeredColorMaskTexture extends AbstractTexture
 					}
 					finally
 					{
-						IOUtils.closeQuietly((Closeable) iresource1);
+						IOUtils.closeQuietly(iresource1);
 					}
 
 					++j;
@@ -108,11 +109,11 @@ public class LayeredColorMaskTexture extends AbstractTexture
 			}
 			catch (IOException ioexception)
 			{
-				LOG.error("Couldn't load layered image", (Throwable) ioexception);
+				LOG.error("Couldn't load layered image", ioexception);
 			}
 			finally
 			{
-				IOUtils.closeQuietly((Closeable) iresource);
+				IOUtils.closeQuietly(iresource);
 			}
 
 			return;

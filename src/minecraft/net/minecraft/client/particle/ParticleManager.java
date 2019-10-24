@@ -251,6 +251,7 @@ public class ParticleManager
 			final int i = particle.getFXLayer();
 			crashreportcategory.setDetail("Particle", new ICrashReportDetail<String>()
 			{
+				@Override
 				public String call() throws Exception
 				{
 					return particle.toString();
@@ -258,6 +259,7 @@ public class ParticleManager
 			});
 			crashreportcategory.setDetail("Particle Type", new ICrashReportDetail<String>()
 			{
+				@Override
 				public String call() throws Exception
 				{
 					if (i == 0)
@@ -288,9 +290,9 @@ public class ParticleManager
 		float f2 = ActiveRenderInfo.getRotationYZ();
 		float f3 = ActiveRenderInfo.getRotationXY();
 		float f4 = ActiveRenderInfo.getRotationXZ();
-		Particle.interpPosX = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double) partialTicks;
-		Particle.interpPosY = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double) partialTicks;
-		Particle.interpPosZ = entityIn.lastTickPosZ + (entityIn.posZ - entityIn.lastTickPosZ) * (double) partialTicks;
+		Particle.interpPosX = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * partialTicks;
+		Particle.interpPosY = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * partialTicks;
+		Particle.interpPosZ = entityIn.lastTickPosZ + (entityIn.posZ - entityIn.lastTickPosZ) * partialTicks;
 		Particle.cameraViewDir = entityIn.getLook(partialTicks);
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
@@ -342,6 +344,7 @@ public class ParticleManager
 							CrashReportCategory crashreportcategory = crashreport.makeCategory("Particle being rendered");
 							crashreportcategory.setDetail("Particle", new ICrashReportDetail<String>()
 							{
+								@Override
 								public String call() throws Exception
 								{
 									return particle.toString();
@@ -349,6 +352,7 @@ public class ParticleManager
 							});
 							crashreportcategory.setDetail("Particle Type", new ICrashReportDetail<String>()
 							{
+								@Override
 								public String call() throws Exception
 								{
 									if (i == 0)
@@ -433,10 +437,10 @@ public class ParticleManager
 				{
 					for (int l = 0; l < 4; ++l)
 					{
-						double d0 = ((double) j + 0.5D) / 4.0D;
-						double d1 = ((double) k + 0.5D) / 4.0D;
-						double d2 = ((double) l + 0.5D) / 4.0D;
-						this.addEffect((new ParticleDigging(this.worldObj, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, d0 - 0.5D, d1 - 0.5D, d2 - 0.5D, state)).setBlockPos(pos));
+						double d0 = (j + 0.5D) / 4.0D;
+						double d1 = (k + 0.5D) / 4.0D;
+						double d2 = (l + 0.5D) / 4.0D;
+						this.addEffect((new ParticleDigging(this.worldObj, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, d0 - 0.5D, d1 - 0.5D, d2 - 0.5D, state)).setBlockPos(pos));
 					}
 				}
 			}
@@ -457,38 +461,38 @@ public class ParticleManager
 			int k = pos.getZ();
 			float f = 0.1F;
 			AxisAlignedBB axisalignedbb = iblockstate.getBoundingBox(this.worldObj, pos);
-			double d0 = (double) i + this.rand.nextDouble() * (axisalignedbb.maxX - axisalignedbb.minX - 0.20000000298023224D) + 0.10000000149011612D + axisalignedbb.minX;
-			double d1 = (double) j + this.rand.nextDouble() * (axisalignedbb.maxY - axisalignedbb.minY - 0.20000000298023224D) + 0.10000000149011612D + axisalignedbb.minY;
-			double d2 = (double) k + this.rand.nextDouble() * (axisalignedbb.maxZ - axisalignedbb.minZ - 0.20000000298023224D) + 0.10000000149011612D + axisalignedbb.minZ;
+			double d0 = i + this.rand.nextDouble() * (axisalignedbb.maxX - axisalignedbb.minX - 0.20000000298023224D) + 0.10000000149011612D + axisalignedbb.minX;
+			double d1 = j + this.rand.nextDouble() * (axisalignedbb.maxY - axisalignedbb.minY - 0.20000000298023224D) + 0.10000000149011612D + axisalignedbb.minY;
+			double d2 = k + this.rand.nextDouble() * (axisalignedbb.maxZ - axisalignedbb.minZ - 0.20000000298023224D) + 0.10000000149011612D + axisalignedbb.minZ;
 
 			if (side == EnumFacing.DOWN)
 			{
-				d1 = (double) j + axisalignedbb.minY - 0.10000000149011612D;
+				d1 = j + axisalignedbb.minY - 0.10000000149011612D;
 			}
 
 			if (side == EnumFacing.UP)
 			{
-				d1 = (double) j + axisalignedbb.maxY + 0.10000000149011612D;
+				d1 = j + axisalignedbb.maxY + 0.10000000149011612D;
 			}
 
 			if (side == EnumFacing.NORTH)
 			{
-				d2 = (double) k + axisalignedbb.minZ - 0.10000000149011612D;
+				d2 = k + axisalignedbb.minZ - 0.10000000149011612D;
 			}
 
 			if (side == EnumFacing.SOUTH)
 			{
-				d2 = (double) k + axisalignedbb.maxZ + 0.10000000149011612D;
+				d2 = k + axisalignedbb.maxZ + 0.10000000149011612D;
 			}
 
 			if (side == EnumFacing.WEST)
 			{
-				d0 = (double) i + axisalignedbb.minX - 0.10000000149011612D;
+				d0 = i + axisalignedbb.minX - 0.10000000149011612D;
 			}
 
 			if (side == EnumFacing.EAST)
 			{
-				d0 = (double) i + axisalignedbb.maxX + 0.10000000149011612D;
+				d0 = i + axisalignedbb.maxX + 0.10000000149011612D;
 			}
 
 			this.addEffect((new ParticleDigging(this.worldObj, d0, d1, d2, 0.0D, 0.0D, 0.0D, iblockstate)).setBlockPos(pos).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));

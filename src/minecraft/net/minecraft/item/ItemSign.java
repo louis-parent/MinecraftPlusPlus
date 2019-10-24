@@ -28,6 +28,7 @@ public class ItemSign extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
@@ -50,7 +51,7 @@ public class ItemSign extends Item
 
 					if (hand == EnumFacing.UP)
 					{
-						int i = MathHelper.floor((double) ((stack.rotationYaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
+						int i = MathHelper.floor((stack.rotationYaw + 180.0F) * 16.0F / 360.0F + 0.5D) & 15;
 						playerIn.setBlockState(worldIn, Blocks.STANDING_SIGN.getDefaultState().withProperty(BlockStandingSign.ROTATION, Integer.valueOf(i)), 11);
 					}
 					else

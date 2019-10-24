@@ -29,27 +29,32 @@ public class EntitySkeleton extends AbstractSkeleton
 		EntityLiving.registerFixesMob(fixer, EntitySkeleton.class);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.ENTITIES_SKELETON;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_SKELETON_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_SKELETON_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_SKELETON_DEATH;
 	}
 
+	@Override
 	SoundEvent func_190727_o()
 	{
 		return SoundEvents.ENTITY_SKELETON_STEP;
@@ -58,6 +63,7 @@ public class EntitySkeleton extends AbstractSkeleton
 	/**
 	 * Called when the mob's health reaches 0.
 	 */
+	@Override
 	public void onDeath(DamageSource cause)
 	{
 		super.onDeath(cause);
@@ -74,6 +80,7 @@ public class EntitySkeleton extends AbstractSkeleton
 		}
 	}
 
+	@Override
 	protected EntityArrow func_190726_a(float p_190726_1_)
 	{
 		ItemStack itemstack = this.getItemStackFromSlot(EntityHandSlot.OFFHAND);

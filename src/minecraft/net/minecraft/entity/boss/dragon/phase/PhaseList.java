@@ -53,6 +53,7 @@ public class PhaseList<T extends IPhase>
 		return this.id;
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.name + " (#" + this.id + ")";
@@ -71,7 +72,7 @@ public class PhaseList<T extends IPhase>
 	private static <T extends IPhase> PhaseList<T> create(Class<T> phaseIn, String nameIn)
 	{
 		PhaseList<T> phaselist = new PhaseList<T>(phases.length, phaseIn, nameIn);
-		phases = (PhaseList[]) Arrays.copyOf(phases, phases.length + 1);
+		phases = Arrays.copyOf(phases, phases.length + 1);
 		phases[phaselist.getId()] = phaselist;
 		return phaselist;
 	}

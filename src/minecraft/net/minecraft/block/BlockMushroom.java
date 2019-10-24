@@ -20,11 +20,13 @@ public class BlockMushroom extends BlockBush implements IGrowable
 		this.setTickRandomly(true);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return MUSHROOM_AABB;
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (rand.nextInt(25) == 0)
@@ -64,6 +66,7 @@ public class BlockMushroom extends BlockBush implements IGrowable
 		}
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos, this.getDefaultState());
@@ -72,11 +75,13 @@ public class BlockMushroom extends BlockBush implements IGrowable
 	/**
 	 * Return true if the block can sustain a Bush
 	 */
+	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
 		return state.isFullBlock();
 	}
 
+	@Override
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (pos.getY() >= 0 && pos.getY() < 256)
@@ -130,16 +135,19 @@ public class BlockMushroom extends BlockBush implements IGrowable
 	/**
 	 * Whether this IGrowable can grow
 	 */
+	@Override
 	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
 	{
 		return true;
 	}
 
+	@Override
 	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
 	{
-		return (double) rand.nextFloat() < 0.4D;
+		return rand.nextFloat() < 0.4D;
 	}
 
+	@Override
 	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
 	{
 		this.generateBigMushroom(worldIn, pos, state, rand);

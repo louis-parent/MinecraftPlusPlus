@@ -22,18 +22,21 @@ public class ItemFishFood extends ItemFood
 		this.cooked = cooked;
 	}
 
+	@Override
 	public int getHealAmount(ItemStack stack)
 	{
 		ItemFishFood.FishType itemfishfood$fishtype = ItemFishFood.FishType.byItemStack(stack);
 		return this.cooked && itemfishfood$fishtype.canCook() ? itemfishfood$fishtype.getCookedHealAmount() : itemfishfood$fishtype.getUncookedHealAmount();
 	}
 
+	@Override
 	public float getSaturationModifier(ItemStack stack)
 	{
 		ItemFishFood.FishType itemfishfood$fishtype = ItemFishFood.FishType.byItemStack(stack);
 		return this.cooked && itemfishfood$fishtype.canCook() ? itemfishfood$fishtype.getCookedSaturationModifier() : itemfishfood$fishtype.getUncookedSaturationModifier();
 	}
 
+	@Override
 	public void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
 	{
 		ItemFishFood.FishType itemfishfood$fishtype = ItemFishFood.FishType.byItemStack(stack);
@@ -52,6 +55,7 @@ public class ItemFishFood extends ItemFood
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
+	@Override
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (this.func_194125_a(itemIn))
@@ -71,6 +75,7 @@ public class ItemFishFood extends ItemFood
 	 * ItemStack so different stacks can have different names based on their
 	 * damage or NBT.
 	 */
+	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		ItemFishFood.FishType itemfishfood$fishtype = ItemFishFood.FishType.byItemStack(stack);

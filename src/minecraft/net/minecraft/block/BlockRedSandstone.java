@@ -26,15 +26,17 @@ public class BlockRedSandstone extends Block
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((BlockRedSandstone.EnumType) state.getValue(TYPE)).getMetadata();
+		return state.getValue(TYPE).getMetadata();
 	}
 
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (BlockRedSandstone.EnumType blockredsandstone$enumtype : BlockRedSandstone.EnumType.values())
@@ -46,6 +48,7 @@ public class BlockRedSandstone extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(TYPE, BlockRedSandstone.EnumType.byMetadata(meta));
@@ -54,11 +57,13 @@ public class BlockRedSandstone extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((BlockRedSandstone.EnumType) state.getValue(TYPE)).getMetadata();
+		return state.getValue(TYPE).getMetadata();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { TYPE });
@@ -85,6 +90,7 @@ public class BlockRedSandstone extends Block
 			return this.meta;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -100,6 +106,7 @@ public class BlockRedSandstone extends Block
 			return META_LOOKUP[meta];
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

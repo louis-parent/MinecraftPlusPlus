@@ -18,6 +18,7 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (!super.shouldExecute())
@@ -38,6 +39,7 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		super.startExecuting();
@@ -47,6 +49,7 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		double d0 = this.theEntity.getDistanceSq(this.doorPosition);
@@ -70,6 +73,7 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		super.resetTask();
@@ -79,6 +83,7 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		super.updateTask();
@@ -89,7 +94,7 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
 		}
 
 		++this.breakingTime;
-		int i = (int) ((float) this.breakingTime / 240.0F * 10.0F);
+		int i = (int) (this.breakingTime / 240.0F * 10.0F);
 
 		if (i != this.previousBreakProgress)
 		{

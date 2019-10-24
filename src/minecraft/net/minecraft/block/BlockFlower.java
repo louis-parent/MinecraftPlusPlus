@@ -30,6 +30,7 @@ public abstract class BlockFlower extends BlockBush
 		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getTypeProperty(), this.getBlockType() == BlockFlower.EnumFlowerColor.RED ? BlockFlower.EnumFlowerType.POPPY : BlockFlower.EnumFlowerType.DANDELION));
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return super.getBoundingBox(state, source, pos).func_191194_a(state.func_191059_e(source, pos));
@@ -40,15 +41,17 @@ public abstract class BlockFlower extends BlockBush
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((BlockFlower.EnumFlowerType) state.getValue(this.getTypeProperty())).getMeta();
+		return state.getValue(this.getTypeProperty()).getMeta();
 	}
 
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (BlockFlower.EnumFlowerType blockflower$enumflowertype : BlockFlower.EnumFlowerType.getTypes(this.getBlockType()))
@@ -60,6 +63,7 @@ public abstract class BlockFlower extends BlockBush
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(this.getTypeProperty(), BlockFlower.EnumFlowerType.getType(this.getBlockType(), meta));
@@ -76,6 +80,7 @@ public abstract class BlockFlower extends BlockBush
 		{
 			this.type = PropertyEnum.<BlockFlower.EnumFlowerType>create("type", BlockFlower.EnumFlowerType.class, new Predicate<BlockFlower.EnumFlowerType>()
 			{
+				@Override
 				public boolean apply(@Nullable BlockFlower.EnumFlowerType p_apply_1_)
 				{
 					return p_apply_1_.getBlockType() == BlockFlower.this.getBlockType();
@@ -89,11 +94,13 @@ public abstract class BlockFlower extends BlockBush
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((BlockFlower.EnumFlowerType) state.getValue(this.getTypeProperty())).getMeta();
+		return state.getValue(this.getTypeProperty()).getMeta();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { this.getTypeProperty() });
@@ -103,6 +110,7 @@ public abstract class BlockFlower extends BlockBush
 	 * Get the OffsetType for this Block. Determines if the model is rendered
 	 * slightly offset.
 	 */
+	@Override
 	public Block.EnumOffsetType getOffsetType()
 	{
 		return Block.EnumOffsetType.XZ;
@@ -168,11 +176,13 @@ public abstract class BlockFlower extends BlockBush
 			return TYPES_FOR_BLOCK[flowerColor.ordinal()];
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;
@@ -189,12 +199,13 @@ public abstract class BlockFlower extends BlockBush
 			{
 				Collection<BlockFlower.EnumFlowerType> collection = Collections2.<BlockFlower.EnumFlowerType>filter(Lists.newArrayList(values()), new Predicate<BlockFlower.EnumFlowerType>()
 				{
+					@Override
 					public boolean apply(@Nullable BlockFlower.EnumFlowerType p_apply_1_)
 					{
 						return p_apply_1_.getBlockType() == blockflower$enumflowercolor;
 					}
 				});
-				TYPES_FOR_BLOCK[blockflower$enumflowercolor.ordinal()] = (BlockFlower.EnumFlowerType[]) collection.toArray(new BlockFlower.EnumFlowerType[collection.size()]);
+				TYPES_FOR_BLOCK[blockflower$enumflowercolor.ordinal()] = collection.toArray(new BlockFlower.EnumFlowerType[collection.size()]);
 			}
 		}
 	}

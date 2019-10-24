@@ -62,6 +62,7 @@ public class EntityGuardian extends EntityMob
 		this.clientSideTailAnimationO = this.clientSideTailAnimation;
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		EntityAIMoveTowardsRestriction entityaimovetowardsrestriction = new EntityAIMoveTowardsRestriction(this, 1.0D);
@@ -77,6 +78,7 @@ public class EntityGuardian extends EntityMob
 		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 10, true, false, new EntityGuardian.GuardianTargetSelector(this)));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -94,11 +96,13 @@ public class EntityGuardian extends EntityMob
 	/**
 	 * Returns new PathNavigateGround instance
 	 */
+	@Override
 	protected PathNavigate getNewNavigator(World worldIn)
 	{
 		return new PathNavigateSwimmer(this, worldIn);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -108,7 +112,7 @@ public class EntityGuardian extends EntityMob
 
 	public boolean isMoving()
 	{
-		return ((Boolean) this.dataManager.get(field_190766_bz)).booleanValue();
+		return this.dataManager.get(field_190766_bz).booleanValue();
 	}
 
 	private void setMoving(boolean moving)
@@ -128,7 +132,7 @@ public class EntityGuardian extends EntityMob
 
 	public boolean hasTargetedEntity()
 	{
-		return ((Integer) this.dataManager.get(TARGET_ENTITY)).intValue() != 0;
+		return this.dataManager.get(TARGET_ENTITY).intValue() != 0;
 	}
 
 	@Nullable
@@ -146,7 +150,7 @@ public class EntityGuardian extends EntityMob
 			}
 			else
 			{
-				Entity entity = this.world.getEntityByID(((Integer) this.dataManager.get(TARGET_ENTITY)).intValue());
+				Entity entity = this.world.getEntityByID(this.dataManager.get(TARGET_ENTITY).intValue());
 
 				if (entity instanceof EntityLivingBase)
 				{
@@ -165,6 +169,7 @@ public class EntityGuardian extends EntityMob
 		}
 	}
 
+	@Override
 	public void notifyDataManagerChange(DataParameter<?> key)
 	{
 		super.notifyDataManagerChange(key);
@@ -180,21 +185,25 @@ public class EntityGuardian extends EntityMob
 	 * Get number of ticks, at least during which the living entity will be
 	 * silent.
 	 */
+	@Override
 	public int getTalkInterval()
 	{
 		return 160;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return this.isInWater() ? SoundEvents.ENTITY_GUARDIAN_AMBIENT : SoundEvents.ENTITY_GUARDIAN_AMBIENT_LAND;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return this.isInWater() ? SoundEvents.ENTITY_GUARDIAN_HURT : SoundEvents.ENTITY_GUARDIAN_HURT_LAND;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return this.isInWater() ? SoundEvents.ENTITY_GUARDIAN_DEATH : SoundEvents.ENTITY_GUARDIAN_DEATH_LAND;
@@ -204,16 +213,19 @@ public class EntityGuardian extends EntityMob
 	 * returns if this entity triggers Block.onEntityWalking on the blocks they
 	 * walk on. used for spiders and wolves to prevent them from trampling crops
 	 */
+	@Override
 	protected boolean canTriggerWalking()
 	{
 		return false;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return this.height * 0.5F;
 	}
 
+	@Override
 	public float getBlockPathWeight(BlockPos pos)
 	{
 		return this.world.getBlockState(pos).getMaterial() == Material.WATER ? 10.0F + this.world.getLightBrightness(pos) - 0.5F : super.getBlockPathWeight(pos);
@@ -224,6 +236,7 @@ public class EntityGuardian extends EntityMob
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.world.isRemote)
@@ -279,7 +292,7 @@ public class EntityGuardian extends EntityMob
 
 				for (int i = 0; i < 2; ++i)
 				{
-					this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width - vec3d.xCoord * 1.5D, this.posY + this.rand.nextDouble() * (double) this.height - vec3d.yCoord * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width - vec3d.zCoord * 1.5D, 0.0D, 0.0D, 0.0D);
+					this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * this.width - vec3d.xCoord * 1.5D, this.posY + this.rand.nextDouble() * this.height - vec3d.yCoord * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width - vec3d.zCoord * 1.5D, 0.0D, 0.0D, 0.0D);
 				}
 			}
 
@@ -296,9 +309,9 @@ public class EntityGuardian extends EntityMob
 				{
 					this.getLookHelper().setLookPositionWithEntity(entitylivingbase, 90.0F, 90.0F);
 					this.getLookHelper().onUpdateLook();
-					double d5 = (double) this.getAttackAnimationScale(0.0F);
+					double d5 = this.getAttackAnimationScale(0.0F);
 					double d0 = entitylivingbase.posX - this.posX;
-					double d1 = entitylivingbase.posY + (double) (entitylivingbase.height * 0.5F) - (this.posY + (double) this.getEyeHeight());
+					double d1 = entitylivingbase.posY + entitylivingbase.height * 0.5F - (this.posY + this.getEyeHeight());
 					double d2 = entitylivingbase.posZ - this.posZ;
 					double d3 = Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
 					d0 = d0 / d3;
@@ -309,7 +322,7 @@ public class EntityGuardian extends EntityMob
 					while (d4 < d3)
 					{
 						d4 += 1.8D - d5 + this.rand.nextDouble() * (1.7D - d5);
-						this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + d0 * d4, this.posY + d1 * d4 + (double) this.getEyeHeight(), this.posZ + d2 * d4, 0.0D, 0.0D, 0.0D);
+						this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + d0 * d4, this.posY + d1 * d4 + this.getEyeHeight(), this.posZ + d2 * d4, 0.0D, 0.0D, 0.0D);
 					}
 				}
 			}
@@ -322,8 +335,8 @@ public class EntityGuardian extends EntityMob
 		else if (this.onGround)
 		{
 			this.motionY += 0.5D;
-			this.motionX += (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
-			this.motionZ += (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
+			this.motionX += (this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F;
+			this.motionZ += (this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F;
 			this.rotationYaw = this.rand.nextFloat() * 360.0F;
 			this.onGround = false;
 			this.isAirBorne = true;
@@ -354,9 +367,10 @@ public class EntityGuardian extends EntityMob
 
 	public float getAttackAnimationScale(float p_175477_1_)
 	{
-		return ((float) this.clientSideAttackTime + p_175477_1_) / (float) this.getAttackDuration();
+		return (this.clientSideAttackTime + p_175477_1_) / this.getAttackDuration();
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -366,6 +380,7 @@ public class EntityGuardian extends EntityMob
 	/**
 	 * Checks to make sure the light is not too bright where the mob is spawning
 	 */
+	@Override
 	protected boolean isValidLightLevel()
 	{
 		return true;
@@ -374,6 +389,7 @@ public class EntityGuardian extends EntityMob
 	/**
 	 * Checks that the entity is not colliding with any blocks / liquids
 	 */
+	@Override
 	public boolean isNotColliding()
 	{
 		return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty();
@@ -383,6 +399,7 @@ public class EntityGuardian extends EntityMob
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		return (this.rand.nextInt(20) == 0 || !this.world.canBlockSeeSky(new BlockPos(this))) && super.getCanSpawnHere();
@@ -391,6 +408,7 @@ public class EntityGuardian extends EntityMob
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (!this.isMoving() && !source.isMagicDamage() && source.getSourceOfDamage() instanceof EntityLivingBase)
@@ -415,11 +433,13 @@ public class EntityGuardian extends EntityMob
 	 * The speed it takes to move the entityliving's rotationPitch through the
 	 * faceEntity method. This is only currently use in wolves.
 	 */
+	@Override
 	public int getVerticalFaceSpeed()
 	{
 		return 180;
 	}
 
+	@Override
 	public void func_191986_a(float p_191986_1_, float p_191986_2_, float p_191986_3_)
 	{
 		if (this.isServerWorld() && this.isInWater())
@@ -454,17 +474,20 @@ public class EntityGuardian extends EntityMob
 			this.setMutexBits(3);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			EntityLivingBase entitylivingbase = this.theEntity.getAttackTarget();
 			return entitylivingbase != null && entitylivingbase.isEntityAlive();
 		}
 
+		@Override
 		public boolean continueExecuting()
 		{
 			return super.continueExecuting() && (this.field_190881_c || this.theEntity.getDistanceSqToEntity(this.theEntity.getAttackTarget()) > 9.0D);
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			this.tickCounter = -10;
@@ -473,6 +496,7 @@ public class EntityGuardian extends EntityMob
 			this.theEntity.isAirBorne = true;
 		}
 
+		@Override
 		public void resetTask()
 		{
 			this.theEntity.setTargetedEntity(0);
@@ -480,6 +504,7 @@ public class EntityGuardian extends EntityMob
 			this.theEntity.wander.makeUpdate();
 		}
 
+		@Override
 		public void updateTask()
 		{
 			EntityLivingBase entitylivingbase = this.theEntity.getAttackTarget();
@@ -533,6 +558,7 @@ public class EntityGuardian extends EntityMob
 			this.entityGuardian = guardian;
 		}
 
+		@Override
 		public void onUpdateMoveHelper()
 		{
 			if (this.action == EntityMoveHelper.Action.MOVE_TO && !this.entityGuardian.getNavigator().noPath())
@@ -540,24 +566,24 @@ public class EntityGuardian extends EntityMob
 				double d0 = this.posX - this.entityGuardian.posX;
 				double d1 = this.posY - this.entityGuardian.posY;
 				double d2 = this.posZ - this.entityGuardian.posZ;
-				double d3 = (double) MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+				double d3 = MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
 				d1 = d1 / d3;
 				float f = (float) (MathHelper.atan2(d2, d0) * (180D / Math.PI)) - 90.0F;
 				this.entityGuardian.rotationYaw = this.limitAngle(this.entityGuardian.rotationYaw, f, 90.0F);
 				this.entityGuardian.renderYawOffset = this.entityGuardian.rotationYaw;
 				float f1 = (float) (this.speed * this.entityGuardian.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
 				this.entityGuardian.setAIMoveSpeed(this.entityGuardian.getAIMoveSpeed() + (f1 - this.entityGuardian.getAIMoveSpeed()) * 0.125F);
-				double d4 = Math.sin((double) (this.entityGuardian.ticksExisted + this.entityGuardian.getEntityId()) * 0.5D) * 0.05D;
-				double d5 = Math.cos((double) (this.entityGuardian.rotationYaw * 0.017453292F));
-				double d6 = Math.sin((double) (this.entityGuardian.rotationYaw * 0.017453292F));
+				double d4 = Math.sin((this.entityGuardian.ticksExisted + this.entityGuardian.getEntityId()) * 0.5D) * 0.05D;
+				double d5 = Math.cos(this.entityGuardian.rotationYaw * 0.017453292F);
+				double d6 = Math.sin(this.entityGuardian.rotationYaw * 0.017453292F);
 				this.entityGuardian.motionX += d4 * d5;
 				this.entityGuardian.motionZ += d4 * d6;
-				d4 = Math.sin((double) (this.entityGuardian.ticksExisted + this.entityGuardian.getEntityId()) * 0.75D) * 0.05D;
+				d4 = Math.sin((this.entityGuardian.ticksExisted + this.entityGuardian.getEntityId()) * 0.75D) * 0.05D;
 				this.entityGuardian.motionY += d4 * (d6 + d5) * 0.25D;
-				this.entityGuardian.motionY += (double) this.entityGuardian.getAIMoveSpeed() * d1 * 0.1D;
+				this.entityGuardian.motionY += this.entityGuardian.getAIMoveSpeed() * d1 * 0.1D;
 				EntityLookHelper entitylookhelper = this.entityGuardian.getLookHelper();
 				double d7 = this.entityGuardian.posX + d0 / d3 * 2.0D;
-				double d8 = (double) this.entityGuardian.getEyeHeight() + this.entityGuardian.posY + d1 / d3;
+				double d8 = this.entityGuardian.getEyeHeight() + this.entityGuardian.posY + d1 / d3;
 				double d9 = this.entityGuardian.posZ + d2 / d3 * 2.0D;
 				double d10 = entitylookhelper.getLookPosX();
 				double d11 = entitylookhelper.getLookPosY();
@@ -590,6 +616,7 @@ public class EntityGuardian extends EntityMob
 			this.parentEntity = guardian;
 		}
 
+		@Override
 		public boolean apply(@Nullable EntityLivingBase p_apply_1_)
 		{
 			return (p_apply_1_ instanceof EntityPlayer || p_apply_1_ instanceof EntitySquid) && p_apply_1_.getDistanceSqToEntity(this.parentEntity) > 9.0D;

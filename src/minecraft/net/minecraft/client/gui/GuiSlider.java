@@ -56,6 +56,7 @@ public class GuiSlider extends GuiButton
 	 * Returns 0 if the button is disabled, 1 if the mouse is NOT hovering over
 	 * this button and 2 if it IS hovering over this button.
 	 */
+	@Override
 	protected int getHoverState(boolean mouseOver)
 	{
 		return 0;
@@ -65,6 +66,7 @@ public class GuiSlider extends GuiButton
 	 * Fired when the mouse button is dragged. Equivalent of
 	 * MouseListener.mouseDragged(MouseEvent e).
 	 */
+	@Override
 	protected void mouseDragged(Minecraft mc, int mouseX, int mouseY)
 	{
 		if (this.visible)
@@ -88,8 +90,8 @@ public class GuiSlider extends GuiButton
 			}
 
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-			this.drawTexturedModalRect(this.xPosition + (int) (this.sliderPosition * (float) (this.width - 8)), this.yPosition, 0, 66, 4, 20);
-			this.drawTexturedModalRect(this.xPosition + (int) (this.sliderPosition * (float) (this.width - 8)) + 4, this.yPosition, 196, 66, 4, 20);
+			this.drawTexturedModalRect(this.xPosition + (int) (this.sliderPosition * (this.width - 8)), this.yPosition, 0, 66, 4, 20);
+			this.drawTexturedModalRect(this.xPosition + (int) (this.sliderPosition * (this.width - 8)) + 4, this.yPosition, 196, 66, 4, 20);
 		}
 	}
 
@@ -104,6 +106,7 @@ public class GuiSlider extends GuiButton
 	 * Returns true if the mouse has been pressed on this control. Equivalent of
 	 * MouseListener.mousePressed(MouseEvent e).
 	 */
+	@Override
 	public boolean mousePressed(Minecraft mc, int mouseX, int mouseY)
 	{
 		if (super.mousePressed(mc, mouseX, mouseY))
@@ -135,6 +138,7 @@ public class GuiSlider extends GuiButton
 	 * Fired when the mouse button is released. Equivalent of
 	 * MouseListener.mouseReleased(MouseEvent e).
 	 */
+	@Override
 	public void mouseReleased(int mouseX, int mouseY)
 	{
 		this.isMouseDown = false;

@@ -8,6 +8,7 @@ public class CommandToggleDownfall extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "toggledownfall";
@@ -16,6 +17,7 @@ public class CommandToggleDownfall extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
@@ -24,6 +26,7 @@ public class CommandToggleDownfall extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.downfall.usage";
@@ -32,6 +35,7 @@ public class CommandToggleDownfall extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		this.toggleRainfall(server);

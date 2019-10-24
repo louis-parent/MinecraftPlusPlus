@@ -11,6 +11,7 @@ public class ItemMapBase extends Item
 	/**
 	 * false for all Items except sub-classes of ItemMapBase
 	 */
+	@Override
 	public boolean isMap()
 	{
 		return true;

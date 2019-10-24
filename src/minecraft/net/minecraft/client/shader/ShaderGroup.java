@@ -116,7 +116,7 @@ public class ShaderGroup
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Closeable) iresource);
+			IOUtils.closeQuietly(iresource);
 		}
 	}
 
@@ -192,7 +192,7 @@ public class ShaderGroup
 							}
 							finally
 							{
-								IOUtils.closeQuietly((Closeable) iresource);
+								IOUtils.closeQuietly(iresource);
 							}
 
 							p_152764_1_.bindTexture(resourcelocation);
@@ -259,7 +259,7 @@ public class ShaderGroup
 	{
 		JsonObject jsonobject = JsonUtils.getJsonObject(p_148028_1_, "uniform");
 		String s = JsonUtils.getString(jsonobject, "name");
-		ShaderUniform shaderuniform = ((Shader) this.listShaders.get(this.listShaders.size() - 1)).getShaderManager().getShaderUniform(s);
+		ShaderUniform shaderuniform = this.listShaders.get(this.listShaders.size() - 1).getShaderManager().getShaderUniform(s);
 
 		if (shaderuniform == null)
 		{
@@ -353,8 +353,8 @@ public class ShaderGroup
 	{
 		this.projectionMatrix = new Matrix4f();
 		this.projectionMatrix.setIdentity();
-		this.projectionMatrix.m00 = 2.0F / (float) this.mainFramebuffer.framebufferTextureWidth;
-		this.projectionMatrix.m11 = 2.0F / (float) (-this.mainFramebuffer.framebufferTextureHeight);
+		this.projectionMatrix.m00 = 2.0F / this.mainFramebuffer.framebufferTextureWidth;
+		this.projectionMatrix.m11 = 2.0F / (-this.mainFramebuffer.framebufferTextureHeight);
 		this.projectionMatrix.m22 = -0.0020001999F;
 		this.projectionMatrix.m33 = 1.0F;
 		this.projectionMatrix.m03 = -1.0F;

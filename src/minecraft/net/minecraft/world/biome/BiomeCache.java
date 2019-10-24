@@ -30,8 +30,8 @@ public class BiomeCache
 	{
 		x = x >> 4;
 		z = z >> 4;
-		long i = (long) x & 4294967295L | ((long) z & 4294967295L) << 32;
-		BiomeCache.Block biomecache$block = (BiomeCache.Block) this.cacheMap.get(i);
+		long i = x & 4294967295L | (z & 4294967295L) << 32;
+		BiomeCache.Block biomecache$block = this.cacheMap.get(i);
 
 		if (biomecache$block == null)
 		{
@@ -71,7 +71,7 @@ public class BiomeCache
 				if (l > 30000L || l < 0L)
 				{
 					this.cache.remove(k--);
-					long i1 = (long) biomecache$block.xPosition & 4294967295L | ((long) biomecache$block.zPosition & 4294967295L) << 32;
+					long i1 = biomecache$block.xPosition & 4294967295L | (biomecache$block.zPosition & 4294967295L) << 32;
 					this.cacheMap.remove(i1);
 				}
 			}

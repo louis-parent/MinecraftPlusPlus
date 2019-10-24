@@ -147,13 +147,13 @@ public class EntityList
 	@Nullable
 	public static Class<? extends Entity> getClassFromID(int entityID)
 	{
-		return (Class) field_191308_b.getObjectById(entityID);
+		return field_191308_b.getObjectById(entityID);
 	}
 
 	@Nullable
 	public static Class<? extends Entity> func_192839_a(String p_192839_0_)
 	{
-		return (Class) field_191308_b.getObject(new ResourceLocation(p_192839_0_));
+		return field_191308_b.getObject(new ResourceLocation(p_192839_0_));
 	}
 
 	@Nullable
@@ -205,7 +205,7 @@ public class EntityList
 
 		if (entity == null)
 		{
-			LOGGER.warn("Skipping Entity with id {}", (Object) resourcelocation);
+			LOGGER.warn("Skipping Entity with id {}", resourcelocation);
 		}
 		else
 		{
@@ -249,10 +249,10 @@ public class EntityList
 
 		for (ResourceLocation resourcelocation : getEntityNameList())
 		{
-			stringbuilder.append((Object) resourcelocation).append(", ");
+			stringbuilder.append(resourcelocation).append(", ");
 		}
 
-		stringbuilder.append((Object) field_191310_e);
+		stringbuilder.append(field_191310_e);
 		return stringbuilder.toString();
 	}
 

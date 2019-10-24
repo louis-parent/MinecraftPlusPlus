@@ -44,11 +44,13 @@ public class EntityEnderCrystal extends Entity
 	 * returns if this entity triggers Block.onEntityWalking on the blocks they
 	 * walk on. used for spiders and wolves to prevent them from trampling crops
 	 */
+	@Override
 	protected boolean canTriggerWalking()
 	{
 		return false;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		this.getDataManager().register(BEAM_TARGET, Optional.absent());
@@ -58,6 +60,7 @@ public class EntityEnderCrystal extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -79,6 +82,7 @@ public class EntityEnderCrystal extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 		if (this.getBeamTarget() != null)
@@ -92,6 +96,7 @@ public class EntityEnderCrystal extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		if (compound.hasKey("BeamTarget", 10))
@@ -109,6 +114,7 @@ public class EntityEnderCrystal extends Entity
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return true;
@@ -117,6 +123,7 @@ public class EntityEnderCrystal extends Entity
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -151,6 +158,7 @@ public class EntityEnderCrystal extends Entity
 	/**
 	 * Called by the /kill command.
 	 */
+	@Override
 	public void onKillCommand()
 	{
 		this.onCrystalDestroyed(DamageSource.generic);
@@ -189,12 +197,13 @@ public class EntityEnderCrystal extends Entity
 
 	public boolean shouldShowBottom()
 	{
-		return ((Boolean) this.getDataManager().get(SHOW_BOTTOM)).booleanValue();
+		return this.getDataManager().get(SHOW_BOTTOM).booleanValue();
 	}
 
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	public boolean isInRangeToRenderDist(double distance)
 	{
 		return super.isInRangeToRenderDist(distance) || this.getBeamTarget() != null;

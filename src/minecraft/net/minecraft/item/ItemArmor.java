@@ -31,6 +31,7 @@ public abstract class ItemArmor extends Item
 {
 	public static final IBehaviorDispenseItem DISPENSER_BEHAVIOR = new BehaviorDefaultDispenseItem()
 	{
+		@Override
 		protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
 		{
 			ItemStack itemstack = ItemArmor.dispenseArmor(source, stack);
@@ -49,7 +50,7 @@ public abstract class ItemArmor extends Item
 
 	public static ItemStack dispenseArmor(IBlockSource blockSource, ItemStack stack)
 	{
-		BlockPos blockpos = blockSource.getBlockPos().offset((EnumFacing) blockSource.getBlockState().getValue(BlockDispenser.FACING));
+		BlockPos blockpos = blockSource.getBlockPos().offset(blockSource.getBlockState().getValue(BlockDispenser.FACING));
 		List<EntityLivingBase> list = blockSource.getWorld().<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(blockpos), Predicates.and(EntitySelectors.NOT_SPECTATING, new EntitySelectors.ArmoredMob(stack)));
 
 		if (list.isEmpty())
@@ -97,6 +98,7 @@ public abstract class ItemArmor extends Item
 	 * Return the enchantability factor of the item, most of the time is based
 	 * on material.
 	 */
+	@Override
 	public int getItemEnchantability()
 	{
 		return this.material.getEnchantability();
@@ -207,11 +209,13 @@ public abstract class ItemArmor extends Item
 	/**
 	 * Return whether this item is repairable in an anvil.
 	 */
+	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
 	{
 		return this.material.getRepairItem() == repair.getItem() ? true : super.getIsRepairable(toRepair, repair);
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);
@@ -236,8 +240,8 @@ public abstract class ItemArmor extends Item
 
 		if (equipmentSlot == this.armorType)
 		{
-			multimap.put(SharedMonsterAttributes.ARMOR.getAttributeUnlocalizedName(), new AttributeModifier(equipmentSlot.getModifierUUID(), "Armor modifier", (double) this.damageReduceAmount, 0));
-			multimap.put(SharedMonsterAttributes.ARMOR_TOUGHNESS.getAttributeUnlocalizedName(), new AttributeModifier(equipmentSlot.getModifierUUID(), "Armor toughness", (double) this.toughness, 0));
+			multimap.put(SharedMonsterAttributes.ARMOR.getAttributeUnlocalizedName(), new AttributeModifier(equipmentSlot.getModifierUUID(), "Armor modifier", this.damageReduceAmount, 0));
+			multimap.put(SharedMonsterAttributes.ARMOR_TOUGHNESS.getAttributeUnlocalizedName(), new AttributeModifier(equipmentSlot.getModifierUUID(), "Armor toughness", this.toughness, 0));
 		}
 
 		return multimap;

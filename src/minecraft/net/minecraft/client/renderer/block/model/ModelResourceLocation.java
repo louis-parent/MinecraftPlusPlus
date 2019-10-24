@@ -56,6 +56,7 @@ public class ModelResourceLocation extends ResourceLocation
 		return this.variant;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -73,11 +74,13 @@ public class ModelResourceLocation extends ResourceLocation
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return 31 * super.hashCode() + this.variant.hashCode();
 	}
 
+	@Override
 	public String toString()
 	{
 		return super.toString() + '#' + this.variant;

@@ -14,6 +14,7 @@ public class ItemAnvilBlock extends ItemMultiTexture
 	 * placed in the world when this Item is placed as a Block (mostly used with
 	 * ItemBlocks).
 	 */
+	@Override
 	public int getMetadata(int damage)
 	{
 		return damage << 2;

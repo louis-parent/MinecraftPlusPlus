@@ -12,6 +12,7 @@ public class InvalidBlockStateException extends CommandException
 		super(p_i47331_1_, p_i47331_2_);
 	}
 
+	@Override
 	public synchronized Throwable fillInStackTrace()
 	{
 		return this;

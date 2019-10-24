@@ -67,7 +67,7 @@ public class LootConditionManager
 
 	public static LootCondition.Serializer<?> getSerializerForName(ResourceLocation location)
 	{
-		LootCondition.Serializer<?> serializer = (LootCondition.Serializer) NAME_TO_SERIALIZER_MAP.get(location);
+		LootCondition.Serializer<?> serializer = NAME_TO_SERIALIZER_MAP.get(location);
 
 		if (serializer == null)
 		{
@@ -104,6 +104,7 @@ public class LootConditionManager
 
 	public static class Serializer implements JsonDeserializer<LootCondition>, JsonSerializer<LootCondition>
 	{
+		@Override
 		public LootCondition deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "condition");
@@ -122,6 +123,7 @@ public class LootConditionManager
 			return serializer.deserialize(jsonobject, p_deserialize_3_);
 		}
 
+		@Override
 		public JsonElement serialize(LootCondition p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			LootCondition.Serializer<LootCondition> serializer = LootConditionManager.<LootCondition>getSerializerFor(p_serialize_1_);

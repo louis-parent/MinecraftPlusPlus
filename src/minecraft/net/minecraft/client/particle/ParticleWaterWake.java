@@ -22,18 +22,19 @@ public class ParticleWaterWake extends Particle
 		this.motionZ = p_i45073_12_;
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
-		this.motionY -= (double) this.particleGravity;
+		this.motionY -= this.particleGravity;
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
 		this.motionX *= 0.9800000190734863D;
 		this.motionY *= 0.9800000190734863D;
 		this.motionZ *= 0.9800000190734863D;
 		int i = 60 - this.particleMaxAge;
-		float f = (float) i * 0.001F;
+		float f = i * 0.001F;
 		this.setSize(f, f);
 		this.setParticleTextureIndex(19 + i % 4);
 
@@ -45,6 +46,7 @@ public class ParticleWaterWake extends Particle
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleWaterWake(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);

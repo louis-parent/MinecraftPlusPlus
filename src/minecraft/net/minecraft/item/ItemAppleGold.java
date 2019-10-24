@@ -15,6 +15,7 @@ public class ItemAppleGold extends ItemFood
 		this.setHasSubtypes(true);
 	}
 
+	@Override
 	public boolean hasEffect(ItemStack stack)
 	{
 		return super.hasEffect(stack) || stack.getMetadata() > 0;
@@ -23,11 +24,13 @@ public class ItemAppleGold extends ItemFood
 	/**
 	 * Return an item rarity from EnumRarity
 	 */
+	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
 		return stack.getMetadata() == 0 ? EnumRarity.RARE : EnumRarity.EPIC;
 	}
 
+	@Override
 	public void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
 	{
 		if (!worldIn.isRemote)
@@ -51,6 +54,7 @@ public class ItemAppleGold extends ItemFood
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
+	@Override
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (this.func_194125_a(itemIn))

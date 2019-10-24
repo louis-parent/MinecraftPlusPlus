@@ -38,6 +38,7 @@ public class EntityEvokerFangs extends Entity
 		this.setPosition(p_i47276_2_, p_i47276_4_, p_i47276_6_);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 	}
@@ -67,6 +68,7 @@ public class EntityEvokerFangs extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.field_190553_a = compound.getInteger("Warmup");
@@ -76,6 +78,7 @@ public class EntityEvokerFangs extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 		compound.setInteger("Warmup", this.field_190553_a);
@@ -89,6 +92,7 @@ public class EntityEvokerFangs extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -103,9 +107,9 @@ public class EntityEvokerFangs extends Entity
 				{
 					for (int i = 0; i < 12; ++i)
 					{
-						double d0 = this.posX + (this.rand.nextDouble() * 2.0D - 1.0D) * (double) this.width * 0.5D;
+						double d0 = this.posX + (this.rand.nextDouble() * 2.0D - 1.0D) * this.width * 0.5D;
 						double d1 = this.posY + 0.05D + this.rand.nextDouble() * 1.0D;
-						double d2 = this.posZ + (this.rand.nextDouble() * 2.0D - 1.0D) * (double) this.width * 0.5D;
+						double d2 = this.posZ + (this.rand.nextDouble() * 2.0D - 1.0D) * this.width * 0.5D;
 						double d3 = (this.rand.nextDouble() * 2.0D - 1.0D) * 0.3D;
 						double d4 = 0.3D + this.rand.nextDouble() * 0.3D;
 						double d5 = (this.rand.nextDouble() * 2.0D - 1.0D) * 0.3D;
@@ -159,6 +163,7 @@ public class EntityEvokerFangs extends Entity
 		}
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		super.handleStatusUpdate(id);
@@ -183,7 +188,7 @@ public class EntityEvokerFangs extends Entity
 		else
 		{
 			int i = this.field_190555_c - 2;
-			return i <= 0 ? 1.0F : 1.0F - ((float) i - p_190550_1_) / 20.0F;
+			return i <= 0 ? 1.0F : 1.0F - (i - p_190550_1_) / 20.0F;
 		}
 	}
 }

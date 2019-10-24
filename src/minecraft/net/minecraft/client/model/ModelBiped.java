@@ -74,6 +74,7 @@ public class ModelBiped extends ModelBase
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
@@ -115,6 +116,7 @@ public class ModelBiped extends ModelBase
 		GlStateManager.popMatrix();
 	}
 
+	@Override
 	@SuppressWarnings("incomplete-switch")
 
 	/**
@@ -239,7 +241,7 @@ public class ModelBiped extends ModelBase
 			f1 = 1.0F - f1;
 			float f2 = MathHelper.sin(f1 * (float) Math.PI);
 			float f3 = MathHelper.sin(this.swingProgress * (float) Math.PI) * -(this.bipedHead.rotateAngleX - 0.7F) * 0.75F;
-			modelrenderer.rotateAngleX = (float) ((double) modelrenderer.rotateAngleX - ((double) f2 * 1.2D + (double) f3));
+			modelrenderer.rotateAngleX = (float) (modelrenderer.rotateAngleX - (f2 * 1.2D + f3));
 			modelrenderer.rotateAngleY += this.bipedBody.rotateAngleY * 2.0F;
 			modelrenderer.rotateAngleZ += MathHelper.sin(this.swingProgress * (float) Math.PI) * -0.4F;
 		}
@@ -288,6 +290,7 @@ public class ModelBiped extends ModelBase
 		copyModelAngles(this.bipedHead, this.bipedHeadwear);
 	}
 
+	@Override
 	public void setModelAttributes(ModelBase model)
 	{
 		super.setModelAttributes(model);

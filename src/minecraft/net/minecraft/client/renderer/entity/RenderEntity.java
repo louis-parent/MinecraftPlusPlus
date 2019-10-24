@@ -16,6 +16,7 @@ public class RenderEntity extends Render<Entity>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(Entity entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		GlStateManager.pushMatrix();
@@ -24,6 +25,7 @@ public class RenderEntity extends Render<Entity>
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 	}
 
+	@Override
 	@Nullable
 
 	/**

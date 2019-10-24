@@ -28,6 +28,7 @@ public abstract class EntityFireball extends Entity
 		this.setSize(1.0F, 1.0F);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 	}
@@ -35,6 +36,7 @@ public abstract class EntityFireball extends Entity
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	public boolean isInRangeToRenderDist(double distance)
 	{
 		double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 4.0D;
@@ -54,7 +56,7 @@ public abstract class EntityFireball extends Entity
 		this.setSize(1.0F, 1.0F);
 		this.setLocationAndAngles(x, y, z, this.rotationYaw, this.rotationPitch);
 		this.setPosition(x, y, z);
-		double d0 = (double) MathHelper.sqrt(accelX * accelX + accelY * accelY + accelZ * accelZ);
+		double d0 = MathHelper.sqrt(accelX * accelX + accelY * accelY + accelZ * accelZ);
 		this.accelerationX = accelX / d0 * 0.1D;
 		this.accelerationY = accelY / d0 * 0.1D;
 		this.accelerationZ = accelZ / d0 * 0.1D;
@@ -73,7 +75,7 @@ public abstract class EntityFireball extends Entity
 		accelX = accelX + this.rand.nextGaussian() * 0.4D;
 		accelY = accelY + this.rand.nextGaussian() * 0.4D;
 		accelZ = accelZ + this.rand.nextGaussian() * 0.4D;
-		double d0 = (double) MathHelper.sqrt(accelX * accelX + accelY * accelY + accelZ * accelZ);
+		double d0 = MathHelper.sqrt(accelX * accelX + accelY * accelY + accelZ * accelZ);
 		this.accelerationX = accelX / d0 * 0.1D;
 		this.accelerationY = accelY / d0 * 0.1D;
 		this.accelerationZ = accelZ / d0 * 0.1D;
@@ -82,6 +84,7 @@ public abstract class EntityFireball extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		if (this.world.isRemote || (this.shootingEntity == null || !this.shootingEntity.isDead) && this.world.isBlockLoaded(new BlockPos(this)))
@@ -121,9 +124,9 @@ public abstract class EntityFireball extends Entity
 			this.motionX += this.accelerationX;
 			this.motionY += this.accelerationY;
 			this.motionZ += this.accelerationZ;
-			this.motionX *= (double) f;
-			this.motionY *= (double) f;
-			this.motionZ *= (double) f;
+			this.motionX *= f;
+			this.motionY *= f;
+			this.motionZ *= f;
 			this.world.spawnParticle(this.getParticleType(), this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
 			this.setPosition(this.posX, this.posY, this.posZ);
 		}
@@ -164,6 +167,7 @@ public abstract class EntityFireball extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		compound.setTag("direction", this.newDoubleNBTList(new double[] { this.motionX, this.motionY, this.motionZ }));
@@ -174,6 +178,7 @@ public abstract class EntityFireball extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		if (compound.hasKey("power", 9))
@@ -207,11 +212,13 @@ public abstract class EntityFireball extends Entity
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return true;
 	}
 
+	@Override
 	public float getCollisionBorderSize()
 	{
 		return 1.0F;
@@ -220,6 +227,7 @@ public abstract class EntityFireball extends Entity
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -261,11 +269,13 @@ public abstract class EntityFireball extends Entity
 	/**
 	 * Gets how bright this entity is.
 	 */
+	@Override
 	public float getBrightness()
 	{
 		return 1.0F;
 	}
 
+	@Override
 	public int getBrightnessForRender()
 	{
 		return 15728880;

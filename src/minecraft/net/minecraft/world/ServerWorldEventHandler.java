@@ -28,10 +28,12 @@ public class ServerWorldEventHandler implements IWorldEventListener
 		this.theWorldServer = worldServerIn;
 	}
 
+	@Override
 	public void spawnParticle(int particleID, boolean ignoreRange, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed, int... parameters)
 	{
 	}
 
+	@Override
 	public void func_190570_a(int p_190570_1_, boolean p_190570_2_, boolean p_190570_3_, double p_190570_4_, double p_190570_6_, double p_190570_8_, double p_190570_10_, double p_190570_12_, double p_190570_14_, int... p_190570_16_)
 	{
 	}
@@ -41,6 +43,7 @@ public class ServerWorldEventHandler implements IWorldEventListener
 	 * client worlds, starts downloading any necessary textures. On server
 	 * worlds, adds the entity to the entity tracker.
 	 */
+	@Override
 	public void onEntityAdded(Entity entityIn)
 	{
 		this.theWorldServer.getEntityTracker().trackEntity(entityIn);
@@ -56,6 +59,7 @@ public class ServerWorldEventHandler implements IWorldEventListener
 	 * client worlds, releases any downloaded textures. On server worlds,
 	 * removes the entity from the entity tracker.
 	 */
+	@Override
 	public void onEntityRemoved(Entity entityIn)
 	{
 		this.theWorldServer.getEntityTracker().untrackEntity(entityIn);
@@ -67,6 +71,7 @@ public class ServerWorldEventHandler implements IWorldEventListener
 		}
 	}
 
+	@Override
 	public void playSoundToAllNearExcept(@Nullable EntityPlayer player, SoundEvent soundIn, SoundCategory category, double x, double y, double z, float volume, float pitch)
 	{
 		this.mcServer.getPlayerList().sendToAllNearExcept(player, x, y, z, volume > 1.0F ? (double) (16.0F * volume) : 16.0D, this.theWorldServer.provider.getDimensionType().getId(), new SPacketSoundEffect(soundIn, category, x, y, z, volume, pitch));
@@ -76,42 +81,49 @@ public class ServerWorldEventHandler implements IWorldEventListener
 	 * On the client, re-renders all blocks in this range, inclusive. On the
 	 * server, does nothing.
 	 */
+	@Override
 	public void markBlockRangeForRenderUpdate(int x1, int y1, int z1, int x2, int y2, int z2)
 	{
 	}
 
+	@Override
 	public void notifyBlockUpdate(World worldIn, BlockPos pos, IBlockState oldState, IBlockState newState, int flags)
 	{
 		this.theWorldServer.getPlayerChunkMap().markBlockForUpdate(pos);
 	}
 
+	@Override
 	public void notifyLightSet(BlockPos pos)
 	{
 	}
 
+	@Override
 	public void playRecord(SoundEvent soundIn, BlockPos pos)
 	{
 	}
 
+	@Override
 	public void playEvent(EntityPlayer player, int type, BlockPos blockPosIn, int data)
 	{
-		this.mcServer.getPlayerList().sendToAllNearExcept(player, (double) blockPosIn.getX(), (double) blockPosIn.getY(), (double) blockPosIn.getZ(), 64.0D, this.theWorldServer.provider.getDimensionType().getId(), new SPacketEffect(type, blockPosIn, data, false));
+		this.mcServer.getPlayerList().sendToAllNearExcept(player, blockPosIn.getX(), blockPosIn.getY(), blockPosIn.getZ(), 64.0D, this.theWorldServer.provider.getDimensionType().getId(), new SPacketEffect(type, blockPosIn, data, false));
 	}
 
+	@Override
 	public void broadcastSound(int soundID, BlockPos pos, int data)
 	{
 		this.mcServer.getPlayerList().sendPacketToAllPlayers(new SPacketEffect(soundID, pos, data, true));
 	}
 
+	@Override
 	public void sendBlockBreakProgress(int breakerId, BlockPos pos, int progress)
 	{
 		for (EntityPlayerMP entityplayermp : this.mcServer.getPlayerList().getPlayerList())
 		{
 			if (entityplayermp != null && entityplayermp.world == this.theWorldServer && entityplayermp.getEntityId() != breakerId)
 			{
-				double d0 = (double) pos.getX() - entityplayermp.posX;
-				double d1 = (double) pos.getY() - entityplayermp.posY;
-				double d2 = (double) pos.getZ() - entityplayermp.posZ;
+				double d0 = pos.getX() - entityplayermp.posX;
+				double d1 = pos.getY() - entityplayermp.posY;
+				double d2 = pos.getZ() - entityplayermp.posZ;
 
 				if (d0 * d0 + d1 * d1 + d2 * d2 < 1024.0D)
 				{

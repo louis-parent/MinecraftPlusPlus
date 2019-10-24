@@ -70,6 +70,7 @@ public class GuiCreateWorld extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		this.worldNameField.updateCursorCounter();
@@ -81,6 +82,7 @@ public class GuiCreateWorld extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		Keyboard.enableRepeatEvents(true);
@@ -200,6 +202,7 @@ public class GuiCreateWorld extends GuiScreen
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		Keyboard.enableRepeatEvents(false);
@@ -209,6 +212,7 @@ public class GuiCreateWorld extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.enabled)
@@ -243,7 +247,7 @@ public class GuiCreateWorld extends GuiScreen
 					}
 					catch (NumberFormatException var7)
 					{
-						i = (long) s.hashCode();
+						i = s.hashCode();
 					}
 				}
 
@@ -454,6 +458,7 @@ public class GuiCreateWorld extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (this.worldNameField.isFocused() && !this.inMoreWorldOptionsDisplay)
@@ -479,6 +484,7 @@ public class GuiCreateWorld extends GuiScreen
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		super.mouseClicked(mouseX, mouseY, mouseButton);
@@ -496,6 +502,7 @@ public class GuiCreateWorld extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();

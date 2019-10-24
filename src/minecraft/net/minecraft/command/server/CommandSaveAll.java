@@ -20,6 +20,7 @@ public class CommandSaveAll extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "save-all";
@@ -28,6 +29,7 @@ public class CommandSaveAll extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.save.usage";
@@ -36,6 +38,7 @@ public class CommandSaveAll extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		sender.addChatMessage(new TextComponentTranslation("commands.save.start", new Object[0]));
@@ -87,6 +90,7 @@ public class CommandSaveAll extends CommandBase
 		notifyCommandListener(sender, this, "commands.save.success", new Object[0]);
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[] { "flush" }) : Collections.emptyList();

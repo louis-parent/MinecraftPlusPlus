@@ -155,6 +155,7 @@ public class PotionEffect implements Comparable<PotionEffect>
 		return this.potion.getName();
 	}
 
+	@Override
 	public String toString()
 	{
 		String s;
@@ -181,6 +182,7 @@ public class PotionEffect implements Comparable<PotionEffect>
 		return s;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -198,6 +200,7 @@ public class PotionEffect implements Comparable<PotionEffect>
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = this.potion.hashCode();
@@ -265,6 +268,7 @@ public class PotionEffect implements Comparable<PotionEffect>
 		return this.isPotionDurationMax;
 	}
 
+	@Override
 	public int compareTo(PotionEffect p_compareTo_1_)
 	{
 		int i = 32147;

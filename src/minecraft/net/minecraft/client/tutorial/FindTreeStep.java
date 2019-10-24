@@ -33,6 +33,7 @@ public class FindTreeStep implements ITutorialStep
 		this.field_193271_d = p_i47582_1_;
 	}
 
+	@Override
 	public void func_193245_a()
 	{
 		++this.field_193273_f;
@@ -74,6 +75,7 @@ public class FindTreeStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193248_b()
 	{
 		if (this.field_193272_e != null)
@@ -83,6 +85,7 @@ public class FindTreeStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193246_a(WorldClient p_193246_1_, RayTraceResult p_193246_2_)
 	{
 		if (p_193246_2_.typeOfHit == RayTraceResult.Type.BLOCK && p_193246_2_.getBlockPos() != null)
@@ -96,6 +99,7 @@ public class FindTreeStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193252_a(ItemStack p_193252_1_)
 	{
 		for (Block block : field_193268_a)

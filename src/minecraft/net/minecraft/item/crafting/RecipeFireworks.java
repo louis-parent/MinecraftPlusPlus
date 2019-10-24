@@ -19,6 +19,7 @@ public class RecipeFireworks implements IRecipe
 	/**
 	 * Used to check if a recipe matches current crafting inventory
 	 */
+	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn)
 	{
 		this.resultItem = ItemStack.EMPTY_ITEM_STACK;
@@ -164,7 +165,7 @@ public class RecipeFireworks implements IRecipe
 
 				for (int l2 = 0; l2 < aint1.length; ++l2)
 				{
-					aint1[l2] = ((Integer) list.get(l2)).intValue();
+					aint1[l2] = list.get(l2).intValue();
 				}
 
 				nbttagcompound2.setIntArray("Colors", aint1);
@@ -199,7 +200,7 @@ public class RecipeFireworks implements IRecipe
 
 				for (int j2 = 0; j2 < aint.length; ++j2)
 				{
-					aint[j2] = ((Integer) list1.get(j2)).intValue();
+					aint[j2] = list1.get(j2).intValue();
 				}
 
 				if (!this.resultItem.isNotValid() && this.resultItem.hasTagCompound())
@@ -235,21 +236,25 @@ public class RecipeFireworks implements IRecipe
 	/**
 	 * Returns an Item that is the result of this recipe
 	 */
+	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
 		return this.resultItem.copy();
 	}
 
+	@Override
 	public ItemStack getRecipeOutput()
 	{
 		return this.resultItem;
 	}
 
+	@Override
 	public boolean hideInCraftingTabs()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean checkIfCraftingMatrixSizeIsCorrect(int craftingMatrixWidth, int craftingMatrixHeight)
 	{
 		return craftingMatrixWidth * craftingMatrixHeight >= 1;

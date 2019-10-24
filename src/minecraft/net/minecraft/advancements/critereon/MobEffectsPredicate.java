@@ -57,7 +57,7 @@ public class MobEffectsPredicate
 			{
 				PotionEffect potioneffect = p_193470_1_.get(entry.getKey());
 
-				if (!((MobEffectsPredicate.InstancePredicate) entry.getValue()).func_193463_a(potioneffect))
+				if (!entry.getValue().func_193463_a(potioneffect))
 				{
 					return false;
 				}
@@ -119,11 +119,11 @@ public class MobEffectsPredicate
 			{
 				return false;
 			}
-			else if (!this.field_193465_a.func_192514_a((float) p_193463_1_.getAmplifier()))
+			else if (!this.field_193465_a.func_192514_a(p_193463_1_.getAmplifier()))
 			{
 				return false;
 			}
-			else if (!this.field_193466_b.func_192514_a((float) p_193463_1_.getDuration()))
+			else if (!this.field_193466_b.func_192514_a(p_193463_1_.getDuration()))
 			{
 				return false;
 			}

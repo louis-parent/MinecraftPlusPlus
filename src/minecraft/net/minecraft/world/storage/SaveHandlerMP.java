@@ -13,6 +13,7 @@ public class SaveHandlerMP implements ISaveHandler
 	/**
 	 * Loads and returns the world info
 	 */
+	@Override
 	public WorldInfo loadWorldInfo()
 	{
 		return null;
@@ -21,6 +22,7 @@ public class SaveHandlerMP implements ISaveHandler
 	/**
 	 * Checks the session lock to prevent save collisions
 	 */
+	@Override
 	public void checkSessionLock() throws MinecraftException
 	{
 	}
@@ -28,6 +30,7 @@ public class SaveHandlerMP implements ISaveHandler
 	/**
 	 * initializes and returns the chunk loader for the specified world provider
 	 */
+	@Override
 	public IChunkLoader getChunkLoader(WorldProvider provider)
 	{
 		return null;
@@ -36,6 +39,7 @@ public class SaveHandlerMP implements ISaveHandler
 	/**
 	 * Saves the given World Info with the given NBTTagCompound as the Player.
 	 */
+	@Override
 	public void saveWorldInfoWithPlayer(WorldInfo worldInformation, NBTTagCompound tagCompound)
 	{
 	}
@@ -43,10 +47,12 @@ public class SaveHandlerMP implements ISaveHandler
 	/**
 	 * used to update level.dat from old format to MCRegion format
 	 */
+	@Override
 	public void saveWorldInfo(WorldInfo worldInformation)
 	{
 	}
 
+	@Override
 	public IPlayerFileData getPlayerNBTManager()
 	{
 		return null;
@@ -55,6 +61,7 @@ public class SaveHandlerMP implements ISaveHandler
 	/**
 	 * Called to flush all changes to disk, waiting for them to complete.
 	 */
+	@Override
 	public void flush()
 	{
 	}
@@ -62,6 +69,7 @@ public class SaveHandlerMP implements ISaveHandler
 	/**
 	 * Gets the file location of the given map
 	 */
+	@Override
 	public File getMapFileFromName(String mapName)
 	{
 		return null;
@@ -70,11 +78,13 @@ public class SaveHandlerMP implements ISaveHandler
 	/**
 	 * Gets the File object corresponding to the base directory of this world.
 	 */
+	@Override
 	public File getWorldDirectory()
 	{
 		return null;
 	}
 
+	@Override
 	public TemplateManager getStructureTemplateManager()
 	{
 		return null;

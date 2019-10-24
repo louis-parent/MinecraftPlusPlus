@@ -11,7 +11,7 @@ public class ItemStackHelper
 {
 	public static ItemStack getAndSplit(List<ItemStack> stacks, int index, int amount)
 	{
-		return index >= 0 && index < stacks.size() && !((ItemStack) stacks.get(index)).isNotValid() && amount > 0 ? ((ItemStack) stacks.get(index)).splitStack(amount) : ItemStack.EMPTY_ITEM_STACK;
+		return index >= 0 && index < stacks.size() && !stacks.get(index).isNotValid() && amount > 0 ? stacks.get(index).splitStack(amount) : ItemStack.EMPTY_ITEM_STACK;
 	}
 
 	public static ItemStack getAndRemove(List<ItemStack> stacks, int index)

@@ -24,6 +24,7 @@ public class EntityAIRestrictOpenDoor extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (this.entityObj.world.isDaytime())
@@ -49,7 +50,7 @@ public class EntityAIRestrictOpenDoor extends EntityAIBase
 				}
 				else
 				{
-					return (double) this.frontDoor.getDistanceToInsideBlockSq(blockpos) < 2.25D;
+					return this.frontDoor.getDistanceToInsideBlockSq(blockpos) < 2.25D;
 				}
 			}
 		}
@@ -58,6 +59,7 @@ public class EntityAIRestrictOpenDoor extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		if (this.entityObj.world.isDaytime())
@@ -73,6 +75,7 @@ public class EntityAIRestrictOpenDoor extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		((PathNavigateGround) this.entityObj.getNavigator()).setBreakDoors(false);
@@ -82,6 +85,7 @@ public class EntityAIRestrictOpenDoor extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		((PathNavigateGround) this.entityObj.getNavigator()).setBreakDoors(true);
@@ -92,6 +96,7 @@ public class EntityAIRestrictOpenDoor extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		this.frontDoor.incrementDoorOpeningRestrictionCounter();

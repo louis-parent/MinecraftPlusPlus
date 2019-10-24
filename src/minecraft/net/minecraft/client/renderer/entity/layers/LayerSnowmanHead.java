@@ -17,6 +17,7 @@ public class LayerSnowmanHead implements LayerRenderer<EntitySnowman>
 		this.snowManRenderer = snowManRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntitySnowman entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		if (!entitylivingbaseIn.isInvisible() && entitylivingbaseIn.isPumpkinEquipped())
@@ -32,6 +33,7 @@ public class LayerSnowmanHead implements LayerRenderer<EntitySnowman>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return true;

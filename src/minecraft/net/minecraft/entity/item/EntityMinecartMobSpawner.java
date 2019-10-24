@@ -20,16 +20,19 @@ public class EntityMinecartMobSpawner extends EntityMinecart
 	/** Mob spawner logic for this spawner minecart. */
 	private final MobSpawnerBaseLogic mobSpawnerLogic = new MobSpawnerBaseLogic()
 	{
+		@Override
 		public void broadcastEvent(int id)
 		{
 			EntityMinecartMobSpawner.this.world.setEntityState(EntityMinecartMobSpawner.this, (byte) id);
 		}
 
+		@Override
 		public World getSpawnerWorld()
 		{
 			return EntityMinecartMobSpawner.this.world;
 		}
 
+		@Override
 		public BlockPos getSpawnerPosition()
 		{
 			return new BlockPos(EntityMinecartMobSpawner.this);
@@ -51,6 +54,7 @@ public class EntityMinecartMobSpawner extends EntityMinecart
 		registerFixesMinecart(fixer, EntityMinecartMobSpawner.class);
 		fixer.registerWalker(FixTypes.ENTITY, new IDataWalker()
 		{
+			@Override
 			public NBTTagCompound process(IDataFixer fixer, NBTTagCompound compound, int versionIn)
 			{
 				String s = compound.getString("id");
@@ -67,11 +71,13 @@ public class EntityMinecartMobSpawner extends EntityMinecart
 		});
 	}
 
+	@Override
 	public EntityMinecart.Type getType()
 	{
 		return EntityMinecart.Type.SPAWNER;
 	}
 
+	@Override
 	public IBlockState getDefaultDisplayTile()
 	{
 		return Blocks.MOB_SPAWNER.getDefaultState();
@@ -80,6 +86,7 @@ public class EntityMinecartMobSpawner extends EntityMinecart
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -89,12 +96,14 @@ public class EntityMinecartMobSpawner extends EntityMinecart
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
 		this.mobSpawnerLogic.writeToNBT(compound);
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		this.mobSpawnerLogic.setDelayToMin(id);
@@ -103,6 +112,7 @@ public class EntityMinecartMobSpawner extends EntityMinecart
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

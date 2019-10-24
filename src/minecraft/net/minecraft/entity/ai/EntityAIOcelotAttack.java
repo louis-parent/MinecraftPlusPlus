@@ -21,6 +21,7 @@ public class EntityAIOcelotAttack extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		EntityLivingBase entitylivingbase = this.theEntity.getAttackTarget();
@@ -39,6 +40,7 @@ public class EntityAIOcelotAttack extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		if (!this.theVictim.isEntityAlive())
@@ -58,6 +60,7 @@ public class EntityAIOcelotAttack extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.theVictim = null;
@@ -67,10 +70,11 @@ public class EntityAIOcelotAttack extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		this.theEntity.getLookHelper().setLookPositionWithEntity(this.theVictim, 30.0F, 30.0F);
-		double d0 = (double) (this.theEntity.width * 2.0F * this.theEntity.width * 2.0F);
+		double d0 = this.theEntity.width * 2.0F * this.theEntity.width * 2.0F;
 		double d1 = this.theEntity.getDistanceSq(this.theVictim.posX, this.theVictim.getEntityBoundingBox().minY, this.theVictim.posZ);
 		double d2 = 0.8D;
 

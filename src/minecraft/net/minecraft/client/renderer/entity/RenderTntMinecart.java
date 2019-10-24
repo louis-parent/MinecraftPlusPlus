@@ -15,13 +15,14 @@ public class RenderTntMinecart extends RenderMinecart<EntityMinecartTNT>
 		super(renderManagerIn);
 	}
 
+	@Override
 	protected void renderCartContents(EntityMinecartTNT p_188319_1_, float partialTicks, IBlockState p_188319_3_)
 	{
 		int i = p_188319_1_.getFuseTicks();
 
-		if (i > -1 && (float) i - partialTicks + 1.0F < 10.0F)
+		if (i > -1 && i - partialTicks + 1.0F < 10.0F)
 		{
-			float f = 1.0F - ((float) i - partialTicks + 1.0F) / 10.0F;
+			float f = 1.0F - (i - partialTicks + 1.0F) / 10.0F;
 			f = MathHelper.clamp(f, 0.0F, 1.0F);
 			f = f * f;
 			f = f * f;
@@ -38,7 +39,7 @@ public class RenderTntMinecart extends RenderMinecart<EntityMinecartTNT>
 			GlStateManager.disableLighting();
 			GlStateManager.enableBlend();
 			GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
-			GlStateManager.color(1.0F, 1.0F, 1.0F, (1.0F - ((float) i - partialTicks + 1.0F) / 100.0F) * 0.8F);
+			GlStateManager.color(1.0F, 1.0F, 1.0F, (1.0F - (i - partialTicks + 1.0F) / 100.0F) * 0.8F);
 			GlStateManager.pushMatrix();
 			blockrendererdispatcher.renderBlockBrightness(Blocks.TNT.getDefaultState(), 1.0F);
 			GlStateManager.popMatrix();

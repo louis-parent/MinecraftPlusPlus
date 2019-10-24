@@ -23,24 +23,28 @@ public class EntityDonkey extends AbstractChestHorse
 		AbstractChestHorse.func_190694_b(p_190699_0_, EntityDonkey.class);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.field_191190_H;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		super.getAmbientSound();
 		return SoundEvents.ENTITY_DONKEY_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		super.getDeathSound();
 		return SoundEvents.ENTITY_DONKEY_DEATH;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		super.getHurtSound(p_184601_1_);
@@ -50,6 +54,7 @@ public class EntityDonkey extends AbstractChestHorse
 	/**
 	 * Returns true if the mob is currently able to mate with the specified mob.
 	 */
+	@Override
 	public boolean canMateWith(EntityAnimal otherAnimal)
 	{
 		if (otherAnimal == this)
@@ -66,9 +71,10 @@ public class EntityDonkey extends AbstractChestHorse
 		}
 	}
 
+	@Override
 	public EntityAgeable createChild(EntityAgeable ageable)
 	{
-		AbstractHorse abstracthorse = (AbstractHorse) (ageable instanceof EntityHorse ? new EntityMule(this.world) : new EntityDonkey(this.world));
+		AbstractHorse abstracthorse = ageable instanceof EntityHorse ? new EntityMule(this.world) : new EntityDonkey(this.world);
 		this.func_190681_a(ageable, abstracthorse);
 		return abstracthorse;
 	}

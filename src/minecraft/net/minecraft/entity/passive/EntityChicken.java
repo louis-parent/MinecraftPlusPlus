@@ -57,6 +57,7 @@ public class EntityChicken extends EntityAnimal
 		this.setPathPriority(PathNodeType.WATER, 0.0F);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -69,11 +70,13 @@ public class EntityChicken extends EntityAnimal
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return this.height;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -86,12 +89,13 @@ public class EntityChicken extends EntityAnimal
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
 		this.oFlap = this.wingRotation;
 		this.oFlapSpeed = this.destPos;
-		this.destPos = (float) ((double) this.destPos + (double) (this.onGround ? -1 : 4) * 0.3D);
+		this.destPos = (float) (this.destPos + (this.onGround ? -1 : 4) * 0.3D);
 		this.destPos = MathHelper.clamp(this.destPos, 0.0F, 1.0F);
 
 		if (!this.onGround && this.wingRotDelta < 1.0F)
@@ -99,7 +103,7 @@ public class EntityChicken extends EntityAnimal
 			this.wingRotDelta = 1.0F;
 		}
 
-		this.wingRotDelta = (float) ((double) this.wingRotDelta * 0.9D);
+		this.wingRotDelta = (float) (this.wingRotDelta * 0.9D);
 
 		if (!this.onGround && this.motionY < 0.0D)
 		{
@@ -116,36 +120,43 @@ public class EntityChicken extends EntityAnimal
 		}
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_CHICKEN_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_CHICKEN_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_CHICKEN_DEATH;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.ENTITIES_CHICKEN;
 	}
 
+	@Override
 	public EntityChicken createChild(EntityAgeable ageable)
 	{
 		return new EntityChicken(this.world);
@@ -155,6 +166,7 @@ public class EntityChicken extends EntityAnimal
 	 * Checks if the parameter is an item which this animal can be fed to breed
 	 * it (wheat, carrots or seeds depending on the animal type)
 	 */
+	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
 		return TEMPTATION_ITEMS.contains(stack.getItem());
@@ -163,6 +175,7 @@ public class EntityChicken extends EntityAnimal
 	/**
 	 * Get the experience points the entity currently has.
 	 */
+	@Override
 	protected int getExperiencePoints(EntityPlayer player)
 	{
 		return this.isChickenJockey() ? 10 : super.getExperiencePoints(player);
@@ -176,6 +189,7 @@ public class EntityChicken extends EntityAnimal
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -190,6 +204,7 @@ public class EntityChicken extends EntityAnimal
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -200,11 +215,13 @@ public class EntityChicken extends EntityAnimal
 	/**
 	 * Determines if an entity can be despawned, used on idle far away entities
 	 */
+	@Override
 	protected boolean canDespawn()
 	{
 		return this.isChickenJockey() && !this.isBeingRidden();
 	}
 
+	@Override
 	public void updatePassenger(Entity passenger)
 	{
 		super.updatePassenger(passenger);
@@ -212,7 +229,7 @@ public class EntityChicken extends EntityAnimal
 		float f1 = MathHelper.cos(this.renderYawOffset * 0.017453292F);
 		float f2 = 0.1F;
 		float f3 = 0.0F;
-		passenger.setPosition(this.posX + (double) (0.1F * f), this.posY + (double) (this.height * 0.5F) + passenger.getYOffset() + 0.0D, this.posZ - (double) (0.1F * f1));
+		passenger.setPosition(this.posX + 0.1F * f, this.posY + this.height * 0.5F + passenger.getYOffset() + 0.0D, this.posZ - 0.1F * f1);
 
 		if (passenger instanceof EntityLivingBase)
 		{

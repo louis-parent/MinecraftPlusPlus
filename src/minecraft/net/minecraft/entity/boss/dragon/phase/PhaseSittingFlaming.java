@@ -25,6 +25,7 @@ public class PhaseSittingFlaming extends PhaseSittingBase
 	 * sounds). Called by dragon's onLivingUpdate. Only used when
 	 * worldObj.isRemote.
 	 */
+	@Override
 	public void doClientRenderEffects()
 	{
 		++this.flameTicks;
@@ -34,7 +35,7 @@ public class PhaseSittingFlaming extends PhaseSittingBase
 			Vec3d vec3d = this.dragon.getHeadLookVec(1.0F).normalize();
 			vec3d.rotateYaw(-((float) Math.PI / 4F));
 			double d0 = this.dragon.dragonPartHead.posX;
-			double d1 = this.dragon.dragonPartHead.posY + (double) (this.dragon.dragonPartHead.height / 2.0F);
+			double d1 = this.dragon.dragonPartHead.posY + this.dragon.dragonPartHead.height / 2.0F;
 			double d2 = this.dragon.dragonPartHead.posZ;
 
 			for (int i = 0; i < 8; ++i)
@@ -45,7 +46,7 @@ public class PhaseSittingFlaming extends PhaseSittingBase
 
 				for (int j = 0; j < 6; ++j)
 				{
-					this.dragon.world.spawnParticle(EnumParticleTypes.DRAGON_BREATH, d3, d4, d5, -vec3d.xCoord * 0.07999999821186066D * (double) j, -vec3d.yCoord * 0.6000000238418579D, -vec3d.zCoord * 0.07999999821186066D * (double) j);
+					this.dragon.world.spawnParticle(EnumParticleTypes.DRAGON_BREATH, d3, d4, d5, -vec3d.xCoord * 0.07999999821186066D * j, -vec3d.yCoord * 0.6000000238418579D, -vec3d.zCoord * 0.07999999821186066D * j);
 				}
 
 				vec3d.rotateYaw(0.19634955F);
@@ -57,6 +58,7 @@ public class PhaseSittingFlaming extends PhaseSittingBase
 	 * Gives the phase a chance to update its status. Called by dragon's
 	 * onLivingUpdate. Only used when !worldObj.isRemote.
 	 */
+	@Override
 	public void doLocalUpdate()
 	{
 		++this.flameTicks;
@@ -78,7 +80,7 @@ public class PhaseSittingFlaming extends PhaseSittingBase
 			float f = 5.0F;
 			double d0 = this.dragon.dragonPartHead.posX + vec3d.xCoord * 5.0D / 2.0D;
 			double d1 = this.dragon.dragonPartHead.posZ + vec3d.zCoord * 5.0D / 2.0D;
-			double d2 = this.dragon.dragonPartHead.posY + (double) (this.dragon.dragonPartHead.height / 2.0F);
+			double d2 = this.dragon.dragonPartHead.posY + this.dragon.dragonPartHead.height / 2.0F;
 			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(MathHelper.floor(d0), MathHelper.floor(d2), MathHelper.floor(d1));
 
 			while (this.dragon.world.isAirBlock(blockpos$mutableblockpos))
@@ -87,7 +89,7 @@ public class PhaseSittingFlaming extends PhaseSittingBase
 				blockpos$mutableblockpos.setPos(MathHelper.floor(d0), MathHelper.floor(d2), MathHelper.floor(d1));
 			}
 
-			d2 = (double) (MathHelper.floor(d2) + 1);
+			d2 = MathHelper.floor(d2) + 1;
 			this.areaEffectCloud = new EntityAreaEffectCloud(this.dragon.world, d0, d2, d1);
 			this.areaEffectCloud.setOwner(this.dragon);
 			this.areaEffectCloud.setRadius(5.0F);
@@ -101,12 +103,14 @@ public class PhaseSittingFlaming extends PhaseSittingBase
 	/**
 	 * Called when this phase is set to active
 	 */
+	@Override
 	public void initPhase()
 	{
 		this.flameTicks = 0;
 		++this.flameCount;
 	}
 
+	@Override
 	public void removeAreaEffect()
 	{
 		if (this.areaEffectCloud != null)
@@ -116,6 +120,7 @@ public class PhaseSittingFlaming extends PhaseSittingBase
 		}
 	}
 
+	@Override
 	public PhaseList<PhaseSittingFlaming> getPhaseList()
 	{
 		return PhaseList.SITTING_FLAMING;

@@ -31,6 +31,7 @@ public class BlockPressurePlateWeighted extends BlockBasePressurePlate
 		this.maxWeight = p_i46380_2_;
 	}
 
+	@Override
 	protected int computeRedstoneStrength(World worldIn, BlockPos pos)
 	{
 		int i = Math.min(worldIn.getEntitiesWithinAABB(Entity.class, PRESSURE_AABB.offset(pos)).size(), this.maxWeight);
@@ -46,21 +47,25 @@ public class BlockPressurePlateWeighted extends BlockBasePressurePlate
 		}
 	}
 
+	@Override
 	protected void playClickOnSound(World worldIn, BlockPos color)
 	{
 		worldIn.playSound((EntityPlayer) null, color, SoundEvents.BLOCK_METAL_PRESSPLATE_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.90000004F);
 	}
 
+	@Override
 	protected void playClickOffSound(World worldIn, BlockPos pos)
 	{
 		worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_METAL_PRESSPLATE_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.75F);
 	}
 
+	@Override
 	protected int getRedstoneStrength(IBlockState state)
 	{
-		return ((Integer) state.getValue(POWER)).intValue();
+		return state.getValue(POWER).intValue();
 	}
 
+	@Override
 	protected IBlockState setRedstoneStrength(IBlockState state, int strength)
 	{
 		return state.withProperty(POWER, Integer.valueOf(strength));
@@ -69,6 +74,7 @@ public class BlockPressurePlateWeighted extends BlockBasePressurePlate
 	/**
 	 * How many world ticks before ticking
 	 */
+	@Override
 	public int tickRate(World worldIn)
 	{
 		return 10;
@@ -77,6 +83,7 @@ public class BlockPressurePlateWeighted extends BlockBasePressurePlate
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(POWER, Integer.valueOf(meta));
@@ -85,11 +92,13 @@ public class BlockPressurePlateWeighted extends BlockBasePressurePlate
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(POWER)).intValue();
+		return state.getValue(POWER).intValue();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { POWER });

@@ -51,6 +51,7 @@ public class ResourcePackRepository
 	private static final Logger LOGGER = LogManager.getLogger();
 	private static final FileFilter RESOURCE_PACK_FILTER = new FileFilter()
 	{
+		@Override
 		public boolean accept(File p_accept_1_)
 		{
 			boolean flag = p_accept_1_.isFile() && p_accept_1_.getName().endsWith(".zip");
@@ -95,7 +96,7 @@ public class ResourcePackRepository
 					}
 
 					iterator.remove();
-					LOGGER.warn("Removed selected resource pack {} because it's no longer compatible", (Object) resourcepackrepository$entry.getResourcePackName());
+					LOGGER.warn("Removed selected resource pack {} because it's no longer compatible", resourcepackrepository$entry.getResourcePackName());
 				}
 			}
 		}
@@ -116,12 +117,12 @@ public class ResourcePackRepository
 		{
 			if (!this.dirResourcepacks.isDirectory() && (!this.dirResourcepacks.delete() || !this.dirResourcepacks.mkdirs()))
 			{
-				LOGGER.warn("Unable to recreate resourcepack folder, it exists but is not a directory: {}", (Object) this.dirResourcepacks);
+				LOGGER.warn("Unable to recreate resourcepack folder, it exists but is not a directory: {}", this.dirResourcepacks);
 			}
 		}
 		else if (!this.dirResourcepacks.mkdirs())
 		{
-			LOGGER.warn("Unable to create resourcepack folder: {}", (Object) this.dirResourcepacks);
+			LOGGER.warn("Unable to create resourcepack folder: {}", this.dirResourcepacks);
 		}
 	}
 
@@ -262,7 +263,7 @@ public class ResourcePackRepository
 					return listenablefuture1;
 				}
 
-				LOGGER.warn("Deleting file {}", (Object) file1);
+				LOGGER.warn("Deleting file {}", file1);
 				FileUtils.deleteQuietly(file1);
 			}
 
@@ -272,6 +273,7 @@ public class ResourcePackRepository
 			final Minecraft minecraft = Minecraft.getMinecraft();
 			Futures.getUnchecked(minecraft.addScheduledTask(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					minecraft.displayGuiScreen(guiscreenworking);
@@ -281,6 +283,7 @@ public class ResourcePackRepository
 			this.downloadingPacks = HttpUtil.downloadResourcePack(file1, url, map, 52428800, guiscreenworking, minecraft.getProxy());
 			Futures.addCallback(this.downloadingPacks, new FutureCallback<Object>()
 			{
+				@Override
 				public void onSuccess(@Nullable Object p_onSuccess_1_)
 				{
 					if (ResourcePackRepository.this.checkHash(s1, file1))
@@ -290,11 +293,12 @@ public class ResourcePackRepository
 					}
 					else
 					{
-						ResourcePackRepository.LOGGER.warn("Deleting file {}", (Object) file1);
+						ResourcePackRepository.LOGGER.warn("Deleting file {}", file1);
 						FileUtils.deleteQuietly(file1);
 					}
 				}
 
+				@Override
 				public void onFailure(Throwable p_onFailure_1_)
 				{
 					FileUtils.deleteQuietly(file1);
@@ -314,11 +318,11 @@ public class ResourcePackRepository
 	{
 		try
 		{
-			String s = DigestUtils.sha1Hex((InputStream) (new FileInputStream(p_190113_2_)));
+			String s = DigestUtils.sha1Hex((new FileInputStream(p_190113_2_)));
 
 			if (p_190113_1_.isEmpty())
 			{
-				LOGGER.info("Found file {} without verification hash", (Object) p_190113_2_);
+				LOGGER.info("Found file {} without verification hash", p_190113_2_);
 				return true;
 			}
 
@@ -349,7 +353,7 @@ public class ResourcePackRepository
 		}
 		catch (Exception exception)
 		{
-			LOGGER.warn("Server resourcepack is invalid, ignoring it", (Throwable) exception);
+			LOGGER.warn("Server resourcepack is invalid, ignoring it", exception);
 			return false;
 		}
 	}
@@ -369,14 +373,14 @@ public class ResourcePackRepository
 			{
 				if (i++ >= 10)
 				{
-					LOGGER.info("Deleting old server resource pack {}", (Object) file1.getName());
+					LOGGER.info("Deleting old server resource pack {}", file1.getName());
 					FileUtils.deleteQuietly(file1);
 				}
 			}
 		}
 		catch (IllegalArgumentException illegalargumentexception)
 		{
-			LOGGER.error("Error while deleting old server resource pack : {}", (Object) illegalargumentexception.getMessage());
+			LOGGER.error("Error while deleting old server resource pack : {}", illegalargumentexception.getMessage());
 		}
 	}
 
@@ -512,6 +516,7 @@ public class ResourcePackRepository
 			return this.rePackMetadataSection == null ? 0 : this.rePackMetadataSection.getPackFormat();
 		}
 
+		@Override
 		public boolean equals(Object p_equals_1_)
 		{
 			if (this == p_equals_1_)
@@ -524,11 +529,13 @@ public class ResourcePackRepository
 			}
 		}
 
+		@Override
 		public int hashCode()
 		{
 			return this.toString().hashCode();
 		}
 
+		@Override
 		public String toString()
 		{
 			return String.format("%s:%s", this.reResourcePack.getPackName(), this.reResourcePack instanceof FolderResourcePack ? "folder" : "zip");

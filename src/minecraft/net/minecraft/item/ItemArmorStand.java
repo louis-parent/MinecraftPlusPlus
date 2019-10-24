@@ -28,6 +28,7 @@ public class ItemArmorStand extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		if (hand == EnumFacing.DOWN)
@@ -56,9 +57,9 @@ public class ItemArmorStand extends Item
 				}
 				else
 				{
-					double d0 = (double) blockpos.getX();
-					double d1 = (double) blockpos.getY();
-					double d2 = (double) blockpos.getZ();
+					double d0 = blockpos.getX();
+					double d1 = blockpos.getY();
+					double d2 = blockpos.getZ();
 					List<Entity> list = playerIn.getEntitiesWithinAABBExcludingEntity((Entity) null, new AxisAlignedBB(d0, d1, d2, d0 + 1.0D, d1 + 2.0D, d2 + 1.0D));
 
 					if (!list.isEmpty())
@@ -72,7 +73,7 @@ public class ItemArmorStand extends Item
 							playerIn.setBlockToAir(blockpos);
 							playerIn.setBlockToAir(blockpos1);
 							EntityArmorStand entityarmorstand = new EntityArmorStand(playerIn, d0 + 0.5D, d1, d2 + 0.5D);
-							float f = (float) MathHelper.floor((MathHelper.wrapDegrees(stack.rotationYaw - 180.0F) + 22.5F) / 45.0F) * 45.0F;
+							float f = MathHelper.floor((MathHelper.wrapDegrees(stack.rotationYaw - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 							entityarmorstand.setLocationAndAngles(d0 + 0.5D, d1, d2 + 0.5D, f, 0.0F);
 							this.applyRandomRotations(entityarmorstand, playerIn.rand);
 							ItemMonsterPlacer.applyItemEntityDataToEntity(playerIn, stack, itemstack, entityarmorstand);

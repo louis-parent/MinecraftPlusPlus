@@ -27,6 +27,7 @@ public class GuiVideoSettings extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.screenTitle = I18n.format("options.videoTitle");
@@ -60,6 +61,7 @@ public class GuiVideoSettings extends GuiScreen
 	/**
 	 * Handles mouse input.
 	 */
+	@Override
 	public void handleMouseInput() throws IOException
 	{
 		super.handleMouseInput();
@@ -71,6 +73,7 @@ public class GuiVideoSettings extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (keyCode == 1)
@@ -85,6 +88,7 @@ public class GuiVideoSettings extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.enabled)
@@ -100,6 +104,7 @@ public class GuiVideoSettings extends GuiScreen
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		int i = this.guiGameSettings.guiScale;
@@ -118,6 +123,7 @@ public class GuiVideoSettings extends GuiScreen
 	/**
 	 * Called when a mouse button is released.
 	 */
+	@Override
 	protected void mouseReleased(int mouseX, int mouseY, int state)
 	{
 		int i = this.guiGameSettings.guiScale;
@@ -136,6 +142,7 @@ public class GuiVideoSettings extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();

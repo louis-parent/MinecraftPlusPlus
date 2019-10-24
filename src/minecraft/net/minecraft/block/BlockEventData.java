@@ -42,6 +42,7 @@ public class BlockEventData
 		return this.blockType;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (!(p_equals_1_ instanceof BlockEventData))
@@ -55,6 +56,7 @@ public class BlockEventData
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		return "TE(" + this.position + ")," + this.eventID + "," + this.eventParameter + "," + this.blockType;

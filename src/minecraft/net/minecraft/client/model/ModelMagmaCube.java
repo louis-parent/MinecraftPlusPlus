@@ -28,7 +28,7 @@ public class ModelMagmaCube extends ModelBase
 			}
 
 			this.segments[i] = new ModelRenderer(this, j, k);
-			this.segments[i].addBox(-4.0F, (float) (16 + i), -4.0F, 8, 1, 8);
+			this.segments[i].addBox(-4.0F, 16 + i, -4.0F, 8, 1, 8);
 		}
 
 		this.core = new ModelRenderer(this, 0, 16);
@@ -40,6 +40,7 @@ public class ModelMagmaCube extends ModelBase
 	 * float params here are the same second and third as in the
 	 * setRotationAngles method.
 	 */
+	@Override
 	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
 	{
 		EntityMagmaCube entitymagmacube = (EntityMagmaCube) entitylivingbaseIn;
@@ -52,13 +53,14 @@ public class ModelMagmaCube extends ModelBase
 
 		for (int i = 0; i < this.segments.length; ++i)
 		{
-			this.segments[i].rotationPointY = (float) (-(4 - i)) * f * 1.7F;
+			this.segments[i].rotationPointY = (-(4 - i)) * f * 1.7F;
 		}
 	}
 
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);

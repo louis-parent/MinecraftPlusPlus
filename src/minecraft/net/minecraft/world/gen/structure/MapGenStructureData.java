@@ -15,11 +15,13 @@ public class MapGenStructureData extends WorldSavedData
 	/**
 	 * reads in data from the NBTTagCompound into this MapDataBase
 	 */
+	@Override
 	public void readFromNBT(NBTTagCompound nbt)
 	{
 		this.tagCompound = nbt.getCompoundTag("Features");
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		compound.setTag("Features", this.tagCompound);

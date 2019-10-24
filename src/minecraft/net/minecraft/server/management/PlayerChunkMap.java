@@ -28,6 +28,7 @@ public class PlayerChunkMap
 {
 	private static final Predicate<EntityPlayerMP> NOT_SPECTATOR = new Predicate<EntityPlayerMP>()
 	{
+		@Override
 		public boolean apply(@Nullable EntityPlayerMP p_apply_1_)
 		{
 			return p_apply_1_ != null && !p_apply_1_.isSpectator();
@@ -35,6 +36,7 @@ public class PlayerChunkMap
 	};
 	private static final Predicate<EntityPlayerMP> CAN_GENERATE_CHUNKS = new Predicate<EntityPlayerMP>()
 	{
+		@Override
 		public boolean apply(@Nullable EntityPlayerMP p_apply_1_)
 		{
 			return p_apply_1_ != null && (!p_apply_1_.isSpectator() || p_apply_1_.getServerWorld().getGameRules().getBoolean("spectatorsGenerateChunks"));
@@ -78,6 +80,7 @@ public class PlayerChunkMap
 		final Iterator<PlayerChunkMapEntry> iterator = this.playerInstanceList.iterator();
 		return new AbstractIterator<Chunk>()
 		{
+			@Override
 			protected Chunk computeNext()
 			{
 				while (true)
@@ -110,7 +113,7 @@ public class PlayerChunkMap
 						return chunk;
 					}
 
-					return (Chunk) this.endOfData();
+					return this.endOfData();
 				}
 			}
 		};
@@ -150,6 +153,7 @@ public class PlayerChunkMap
 			this.sortMissingChunks = false;
 			Collections.sort(this.playersNeedingChunks, new Comparator<PlayerChunkMapEntry>()
 			{
+				@Override
 				public int compare(PlayerChunkMapEntry p_compare_1_, PlayerChunkMapEntry p_compare_2_)
 				{
 					return ComparisonChain.start().compare(p_compare_1_.getClosestPlayerDistance(), p_compare_2_.getClosestPlayerDistance()).result();
@@ -162,6 +166,7 @@ public class PlayerChunkMap
 			this.sortSendToPlayers = false;
 			Collections.sort(this.pendingSendToPlayers, new Comparator<PlayerChunkMapEntry>()
 			{
+				@Override
 				public int compare(PlayerChunkMapEntry p_compare_1_, PlayerChunkMapEntry p_compare_2_)
 				{
 					return ComparisonChain.start().compare(p_compare_1_.getClosestPlayerDistance(), p_compare_2_.getClosestPlayerDistance()).result();
@@ -245,13 +250,13 @@ public class PlayerChunkMap
 	@Nullable
 	public PlayerChunkMapEntry getEntry(int x, int z)
 	{
-		return (PlayerChunkMapEntry) this.playerInstances.get(getIndex(x, z));
+		return this.playerInstances.get(getIndex(x, z));
 	}
 
 	private PlayerChunkMapEntry getOrCreateEntry(int chunkX, int chunkZ)
 	{
 		long i = getIndex(chunkX, chunkZ);
-		PlayerChunkMapEntry playerchunkmapentry = (PlayerChunkMapEntry) this.playerInstances.get(i);
+		PlayerChunkMapEntry playerchunkmapentry = this.playerInstances.get(i);
 
 		if (playerchunkmapentry == null)
 		{
@@ -471,7 +476,7 @@ public class PlayerChunkMap
 
 	private static long getIndex(int p_187307_0_, int p_187307_1_)
 	{
-		return (long) p_187307_0_ + 2147483647L | (long) p_187307_1_ + 2147483647L << 32;
+		return p_187307_0_ + 2147483647L | p_187307_1_ + 2147483647L << 32;
 	}
 
 	public void addEntry(PlayerChunkMapEntry entry)

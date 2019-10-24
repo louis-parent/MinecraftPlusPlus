@@ -224,27 +224,32 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 			{
 				private long startTime = System.currentTimeMillis();
 
+				@Override
 				public void displaySavingString(String message)
 				{
 				}
 
+				@Override
 				public void resetProgressAndMessage(String message)
 				{
 				}
 
+				@Override
 				public void setLoadingProgress(int progress)
 				{
 					if (System.currentTimeMillis() - this.startTime >= 1000L)
 					{
 						this.startTime = System.currentTimeMillis();
-						MinecraftServer.LOG.info("Converting... {}%", (int) progress);
+						MinecraftServer.LOG.info("Converting... {}%", progress);
 					}
 				}
 
+				@Override
 				public void setDoneWorking()
 				{
 				}
 
+				@Override
 				public void displayLoadingString(String message)
 				{
 				}
@@ -394,7 +399,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 			}
 			catch (UnsupportedEncodingException var5)
 			{
-				LOG.warn("Something went wrong url encoding {}", (Object) worldNameIn);
+				LOG.warn("Something went wrong url encoding {}", worldNameIn);
 			}
 		}
 	}
@@ -532,6 +537,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 		this.serverRunning = false;
 	}
 
+	@Override
 	public void run()
 	{
 		try
@@ -606,7 +612,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 
 			if (crashreport.saveToFile(file1))
 			{
-				LOG.error("This crash report has been saved to: {}", (Object) file1.getAbsolutePath());
+				LOG.error("This crash report has been saved to: {}", file1.getAbsolutePath());
 			}
 			else
 			{
@@ -657,7 +663,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 			}
 			catch (Exception exception)
 			{
-				LOG.error("Couldn't load server icon", (Throwable) exception);
+				LOG.error("Couldn't load server icon", exception);
 			}
 			finally
 			{
@@ -723,7 +729,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 
 			for (int k = 0; k < agameprofile.length; ++k)
 			{
-				agameprofile[k] = ((EntityPlayerMP) this.playerList.getPlayerList().get(j + k)).getGameProfile();
+				agameprofile[k] = this.playerList.getPlayerList().get(j + k).getGameProfile();
 			}
 
 			Collections.shuffle(Arrays.asList(agameprofile));
@@ -831,7 +837,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 
 		for (int k = 0; k < this.tickables.size(); ++k)
 		{
-			((ITickable) this.tickables.get(k)).update();
+			this.tickables.get(k).update();
 		}
 
 		this.theProfiler.endSection();
@@ -931,6 +937,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 	{
 		report.getCategory().setDetail("Profiler Position", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return MinecraftServer.this.theProfiler.profilingEnabled ? MinecraftServer.this.theProfiler.getNameOfLastSection() : "N/A (disabled)";
@@ -941,6 +948,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 		{
 			report.getCategory().setDetail("Player Count", new ICrashReportDetail<String>()
 			{
+				@Override
 				public String call()
 				{
 					return MinecraftServer.this.playerList.getCurrentPlayerCount() + " / " + MinecraftServer.this.playerList.getMaxPlayers() + "; " + MinecraftServer.this.playerList.getPlayerList();
@@ -1008,6 +1016,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return "Server";
@@ -1016,6 +1025,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 	/**
 	 * Send a chat message to the CommandSender
 	 */
+	@Override
 	public void addChatMessage(ITextComponent component)
 	{
 		LOG.info(component.getUnformattedText());
@@ -1025,6 +1035,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 	 * Returns {@code true} if the CommandSender is allowed to execute the
 	 * command, {@code false} if not
 	 */
+	@Override
 	public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 	{
 		return true;
@@ -1162,6 +1173,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 		this.resourcePackHash = hash;
 	}
 
+	@Override
 	public void addServerStatsToSnooper(Snooper playerSnooper)
 	{
 		playerSnooper.addClientStat("whitelist_enabled", Boolean.valueOf(false));
@@ -1203,6 +1215,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 		playerSnooper.addClientStat("worlds", Integer.valueOf(i));
 	}
 
+	@Override
 	public void addServerTypeToSnooper(Snooper playerSnooper)
 	{
 		playerSnooper.addStatToSnooper("singleplayer", Boolean.valueOf(this.isSinglePlayer()));
@@ -1214,6 +1227,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 	/**
 	 * Returns whether snooping is enabled or not.
 	 */
+	@Override
 	public boolean isSnooperEnabled()
 	{
 		return true;
@@ -1374,6 +1388,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 	 * Get the world, if available. <b>{@code null} is not allowed!</b> If you
 	 * are not an entity in the world, return the overworld
 	 */
+	@Override
 	public World getEntityWorld()
 	{
 		return this.worldServers[0];
@@ -1461,6 +1476,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 	 * Returns true if the command sender should be sent feedback about executed
 	 * commands
 	 */
+	@Override
 	public boolean sendCommandFeedback()
 	{
 		return this.worldServers[0].getGameRules().getBoolean("sendCommandFeedback");
@@ -1469,6 +1485,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 	/**
 	 * Get the Minecraft server instance
 	 */
+	@Override
 	public MinecraftServer getServer()
 	{
 		return this;
@@ -1506,12 +1523,14 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 		}
 	}
 
+	@Override
 	public ListenableFuture<Object> addScheduledTask(Runnable runnableToSchedule)
 	{
 		Validate.notNull(runnableToSchedule);
 		return this.<Object>callFromMainThread(Executors.callable(runnableToSchedule));
 	}
 
+	@Override
 	public boolean isCallingFromMinecraftThread()
 	{
 		return Thread.currentThread() == this.serverThread;

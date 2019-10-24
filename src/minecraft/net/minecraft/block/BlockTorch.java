@@ -29,6 +29,7 @@ public class BlockTorch extends Block
 {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", new Predicate<EnumFacing>()
 	{
+		@Override
 		public boolean apply(@Nullable EnumFacing p_apply_1_)
 		{
 			return p_apply_1_ != EnumFacing.DOWN;
@@ -48,9 +49,10 @@ public class BlockTorch extends Block
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		switch ((EnumFacing) state.getValue(FACING))
+		switch (state.getValue(FACING))
 		{
 			case EAST:
 				return TORCH_EAST_AABB;
@@ -69,6 +71,7 @@ public class BlockTorch extends Block
 		}
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -79,11 +82,13 @@ public class BlockTorch extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -105,6 +110,7 @@ public class BlockTorch extends Block
 		}
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		for (EnumFacing enumfacing : FACING.getAllowedValues())
@@ -143,6 +149,7 @@ public class BlockTorch extends Block
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		if (this.canPlaceAt(worldIn, pos, facing))
@@ -167,6 +174,7 @@ public class BlockTorch extends Block
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		this.checkForDrop(worldIn, pos, state);
@@ -178,6 +186,7 @@ public class BlockTorch extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		this.onNeighborChangeInternal(worldIn, pos, state);
@@ -191,7 +200,7 @@ public class BlockTorch extends Block
 		}
 		else
 		{
-			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+			EnumFacing enumfacing = state.getValue(FACING);
 			EnumFacing.Axis enumfacing$axis = enumfacing.getAxis();
 			EnumFacing enumfacing1 = enumfacing.getOpposite();
 			BlockPos blockpos = pos.offset(enumfacing1);
@@ -221,7 +230,7 @@ public class BlockTorch extends Block
 
 	protected boolean checkForDrop(World worldIn, BlockPos pos, IBlockState state)
 	{
-		if (state.getBlock() == this && this.canPlaceAt(worldIn, pos, (EnumFacing) state.getValue(FACING)))
+		if (state.getBlock() == this && this.canPlaceAt(worldIn, pos, state.getValue(FACING)))
 		{
 			return true;
 		}
@@ -237,20 +246,21 @@ public class BlockTorch extends Block
 		}
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
-		EnumFacing enumfacing = (EnumFacing) stateIn.getValue(FACING);
-		double d0 = (double) pos.getX() + 0.5D;
-		double d1 = (double) pos.getY() + 0.7D;
-		double d2 = (double) pos.getZ() + 0.5D;
+		EnumFacing enumfacing = stateIn.getValue(FACING);
+		double d0 = pos.getX() + 0.5D;
+		double d1 = pos.getY() + 0.7D;
+		double d2 = pos.getZ() + 0.5D;
 		double d3 = 0.22D;
 		double d4 = 0.27D;
 
 		if (enumfacing.getAxis().isHorizontal())
 		{
 			EnumFacing enumfacing1 = enumfacing.getOpposite();
-			worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.27D * (double) enumfacing1.getFrontOffsetX(), d1 + 0.22D, d2 + 0.27D * (double) enumfacing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + 0.27D * (double) enumfacing1.getFrontOffsetX(), d1 + 0.22D, d2 + 0.27D * (double) enumfacing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
+			worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.27D * enumfacing1.getFrontOffsetX(), d1 + 0.22D, d2 + 0.27D * enumfacing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + 0.27D * enumfacing1.getFrontOffsetX(), d1 + 0.22D, d2 + 0.27D * enumfacing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
 		}
 		else
 		{
@@ -259,6 +269,7 @@ public class BlockTorch extends Block
 		}
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
@@ -267,6 +278,7 @@ public class BlockTorch extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		IBlockState iblockstate = this.getDefaultState();
@@ -300,11 +312,12 @@ public class BlockTorch extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
 
-		switch ((EnumFacing) state.getValue(FACING))
+		switch (state.getValue(FACING))
 		{
 			case EAST:
 				i = i | 1;
@@ -335,25 +348,29 @@ public class BlockTorch extends Block
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

@@ -15,6 +15,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEnti
 {
 	private final ModelBanner bannerModel = new ModelBanner();
 
+	@Override
 	public void func_192841_a(TileEntityBanner p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
 	{
 		boolean flag = p_192841_1_.getWorld() != null;
@@ -27,7 +28,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEnti
 		if (flag1)
 		{
 			GlStateManager.translate((float) p_192841_2_ + 0.5F, (float) p_192841_4_ + 0.5F, (float) p_192841_6_ + 0.5F);
-			float f1 = (float) (i * 360) / 16.0F;
+			float f1 = i * 360 / 16.0F;
 			GlStateManager.rotate(-f1, 0.0F, 1.0F, 0.0F);
 			this.bannerModel.bannerStand.showModel = true;
 		}

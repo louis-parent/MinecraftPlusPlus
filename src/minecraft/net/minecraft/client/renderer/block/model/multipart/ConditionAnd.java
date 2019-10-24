@@ -19,10 +19,12 @@ public class ConditionAnd implements ICondition
 		this.conditions = conditionsIn;
 	}
 
+	@Override
 	public Predicate<IBlockState> getPredicate(final BlockStateContainer blockState)
 	{
 		return Predicates.and(Iterables.transform(this.conditions, new Function<ICondition, Predicate<IBlockState>>()
 		{
+			@Override
 			@Nullable
 			public Predicate<IBlockState> apply(@Nullable ICondition p_apply_1_)
 			{

@@ -56,6 +56,7 @@ public class EntityIronGolem extends EntityGolem
 		this.setSize(1.4F, 2.7F);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
@@ -70,6 +71,7 @@ public class EntityIronGolem extends EntityGolem
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false, new Class[0]));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 10, false, true, new Predicate<EntityLiving>()
 		{
+			@Override
 			public boolean apply(@Nullable EntityLiving p_apply_1_)
 			{
 				return p_apply_1_ != null && IMob.VISIBLE_MOB_SELECTOR.apply(p_apply_1_) && !(p_apply_1_ instanceof EntityCreeper);
@@ -77,12 +79,14 @@ public class EntityIronGolem extends EntityGolem
 		}));
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataManager.register(PLAYER_CREATED, Byte.valueOf((byte) 0));
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		if (--this.homeCheckTimer <= 0)
@@ -97,13 +101,14 @@ public class EntityIronGolem extends EntityGolem
 			else
 			{
 				BlockPos blockpos = this.villageObj.getCenter();
-				this.setHomePosAndDistance(blockpos, (int) ((float) this.villageObj.getVillageRadius() * 0.6F));
+				this.setHomePosAndDistance(blockpos, (int) (this.villageObj.getVillageRadius() * 0.6F));
 			}
 		}
 
 		super.updateAITasks();
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -115,11 +120,13 @@ public class EntityIronGolem extends EntityGolem
 	/**
 	 * Decrements the entity's air supply when underwater
 	 */
+	@Override
 	protected int decreaseAirSupply(int air)
 	{
 		return air;
 	}
 
+	@Override
 	protected void collideWithEntity(Entity entityIn)
 	{
 		if (entityIn instanceof IMob && !(entityIn instanceof EntityCreeper) && this.getRNG().nextInt(20) == 0)
@@ -135,6 +142,7 @@ public class EntityIronGolem extends EntityGolem
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -158,7 +166,7 @@ public class EntityIronGolem extends EntityGolem
 
 			if (iblockstate.getMaterial() != Material.AIR)
 			{
-				this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width, 4.0D * ((double) this.rand.nextFloat() - 0.5D), 0.5D, ((double) this.rand.nextFloat() - 0.5D) * 4.0D, Block.getStateId(iblockstate));
+				this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + (this.rand.nextFloat() - 0.5D) * this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + (this.rand.nextFloat() - 0.5D) * this.width, 4.0D * (this.rand.nextFloat() - 0.5D), 0.5D, (this.rand.nextFloat() - 0.5D) * 4.0D, Block.getStateId(iblockstate));
 			}
 		}
 	}
@@ -166,6 +174,7 @@ public class EntityIronGolem extends EntityGolem
 	/**
 	 * Returns true if this entity can attack entities of the specified class.
 	 */
+	@Override
 	public boolean canAttackClass(Class<? extends EntityLivingBase> cls)
 	{
 		if (this.isPlayerCreated() && EntityPlayer.class.isAssignableFrom(cls))
@@ -186,6 +195,7 @@ public class EntityIronGolem extends EntityGolem
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -195,17 +205,19 @@ public class EntityIronGolem extends EntityGolem
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
 		this.setPlayerCreated(compound.getBoolean("PlayerCreated"));
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
 		this.attackTimer = 10;
 		this.world.setEntityState(this, (byte) 4);
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) (7 + this.rand.nextInt(15)));
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 7 + this.rand.nextInt(15));
 
 		if (flag)
 		{
@@ -217,6 +229,7 @@ public class EntityIronGolem extends EntityGolem
 		return flag;
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 4)
@@ -262,21 +275,25 @@ public class EntityIronGolem extends EntityGolem
 		}
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_IRONGOLEM_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_IRONGOLEM_DEATH;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 1.0F, 1.0F);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -290,12 +307,12 @@ public class EntityIronGolem extends EntityGolem
 
 	public boolean isPlayerCreated()
 	{
-		return (((Byte) this.dataManager.get(PLAYER_CREATED)).byteValue() & 1) != 0;
+		return (this.dataManager.get(PLAYER_CREATED).byteValue() & 1) != 0;
 	}
 
 	public void setPlayerCreated(boolean playerCreated)
 	{
-		byte b0 = ((Byte) this.dataManager.get(PLAYER_CREATED)).byteValue();
+		byte b0 = this.dataManager.get(PLAYER_CREATED).byteValue();
 
 		if (playerCreated)
 		{
@@ -310,6 +327,7 @@ public class EntityIronGolem extends EntityGolem
 	/**
 	 * Called when the mob's health reaches 0.
 	 */
+	@Override
 	public void onDeath(DamageSource cause)
 	{
 		if (!this.isPlayerCreated() && this.attackingPlayer != null && this.villageObj != null)

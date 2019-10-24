@@ -42,56 +42,67 @@ public class CommandResultStats
 		{
 			ICommandSender icommandsender = new ICommandSender()
 			{
+				@Override
 				public String getName()
 				{
 					return sender.getName();
 				}
 
+				@Override
 				public ITextComponent getDisplayName()
 				{
 					return sender.getDisplayName();
 				}
 
+				@Override
 				public void addChatMessage(ITextComponent component)
 				{
 					sender.addChatMessage(component);
 				}
 
+				@Override
 				public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 				{
 					return true;
 				}
 
+				@Override
 				public BlockPos getPosition()
 				{
 					return sender.getPosition();
 				}
 
+				@Override
 				public Vec3d getPositionVector()
 				{
 					return sender.getPositionVector();
 				}
 
+				@Override
 				public World getEntityWorld()
 				{
 					return sender.getEntityWorld();
 				}
 
+				@Override
 				public Entity getCommandSenderEntity()
 				{
 					return sender.getCommandSenderEntity();
 				}
 
+				@Override
 				public boolean sendCommandFeedback()
 				{
 					return sender.sendCommandFeedback();
 				}
 
+				@Override
 				public void setCommandStat(CommandResultStats.Type type, int amount)
 				{
 					sender.setCommandStat(type, amount);
 				}
 
+				@Override
 				public MinecraftServer getServer()
 				{
 					return sender.getServer();

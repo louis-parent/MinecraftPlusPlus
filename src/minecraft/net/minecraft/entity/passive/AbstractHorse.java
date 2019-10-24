@@ -62,6 +62,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 {
 	private static final Predicate<Entity> IS_HORSE_BREEDING = new Predicate<Entity>()
 	{
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			return p_apply_1_ instanceof AbstractHorse && ((AbstractHorse) p_apply_1_).isBreeding();
@@ -104,6 +105,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		this.initHorseChest();
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -116,6 +118,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -125,12 +128,12 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 
 	protected boolean getHorseWatchableBoolean(int p_110233_1_)
 	{
-		return (((Byte) this.dataManager.get(STATUS)).byteValue() & p_110233_1_) != 0;
+		return (this.dataManager.get(STATUS).byteValue() & p_110233_1_) != 0;
 	}
 
 	protected void setHorseWatchableBoolean(int p_110208_1_, boolean p_110208_2_)
 	{
-		byte b0 = ((Byte) this.dataManager.get(STATUS)).byteValue();
+		byte b0 = this.dataManager.get(STATUS).byteValue();
 
 		if (p_110208_2_)
 		{
@@ -167,6 +170,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	 * "Sets the scale for an ageable entity according to the boolean parameter,
 	 * which says if it's a child."
 	 */
+	@Override
 	public void setScaleForAge(boolean child)
 	{
 		this.setScale(child ? this.getHorseSize() : 1.0F);
@@ -187,11 +191,13 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		this.horseJumping = jumping;
 	}
 
+	@Override
 	public boolean canBeLeashedTo(EntityPlayer player)
 	{
 		return super.canBeLeashedTo(player) && this.getCreatureAttribute() != EnumCreatureAttribute.UNDEAD;
 	}
 
+	@Override
 	protected void onLeashDistance(float p_142017_1_)
 	{
 		if (p_142017_1_ > 6.0F && this.isEatingHaystack())
@@ -245,6 +251,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		Entity entity = source.getEntity();
@@ -255,6 +262,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	 * Returns true if this entity should push and be pushed by other entities
 	 * when colliding.
 	 */
+	@Override
 	public boolean canBePushed()
 	{
 		return !this.isBeingRidden();
@@ -270,6 +278,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		}
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 		if (distance > 1.0F)
@@ -281,17 +290,17 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 
 		if (i > 0)
 		{
-			this.attackEntityFrom(DamageSource.fall, (float) i);
+			this.attackEntityFrom(DamageSource.fall, i);
 
 			if (this.isBeingRidden())
 			{
 				for (Entity entity : this.getRecursivePassengers())
 				{
-					entity.attackEntityFrom(DamageSource.fall, (float) i);
+					entity.attackEntityFrom(DamageSource.fall, i);
 				}
 			}
 
-			IBlockState iblockstate = this.world.getBlockState(new BlockPos(this.posX, this.posY - 0.2D - (double) this.prevRotationYaw, this.posZ));
+			IBlockState iblockstate = this.world.getBlockState(new BlockPos(this.posX, this.posY - 0.2D - this.prevRotationYaw, this.posZ));
 			Block block = iblockstate.getBlock();
 
 			if (iblockstate.getMaterial() != Material.AIR && !this.isSilent())
@@ -348,6 +357,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	 * Called by InventoryBasic.onInventoryChanged() on a array that is never
 	 * filled.
 	 */
+	@Override
 	public void onInventoryChanged(IInventory invBasic)
 	{
 		boolean flag = this.isHorseSaddled();
@@ -384,6 +394,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		return this.getEntityAttribute(JUMP_STRENGTH).getAttributeValue();
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getDeathSound()
 	{
@@ -391,6 +402,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		return null;
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
@@ -404,6 +416,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		return null;
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getAmbientSound()
 	{
@@ -435,6 +448,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		return null;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		if (!blockIn.getDefaultState().getMaterial().isLiquid())
@@ -475,6 +489,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		this.playSound(SoundEvents.ENTITY_HORSE_GALLOP, p_190680_1_.getVolume() * 0.15F, p_190680_1_.getPitch());
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -486,6 +501,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	/**
 	 * Will return how many at most can spawn in a chunk at once.
 	 */
+	@Override
 	public int getMaxSpawnedInChunk()
 	{
 		return 6;
@@ -499,6 +515,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	/**
 	 * Returns the volume for the sounds this mob makes.
 	 */
+	@Override
 	protected float getSoundVolume()
 	{
 		return 0.8F;
@@ -508,6 +525,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	 * Get number of ticks, at least during which the living entity will be
 	 * silent.
 	 */
+	@Override
 	public int getTalkInterval()
 	{
 		return 400;
@@ -586,7 +604,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 
 		if (this.isChild() && i > 0)
 		{
-			this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, 0.0D, 0.0D, 0.0D);
+			this.world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.0D, 0.0D, 0.0D);
 
 			if (!this.world.isRemote)
 			{
@@ -630,6 +648,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	/**
 	 * Dead and sleeping entities cannot move
 	 */
+	@Override
 	protected boolean isMovementBlocked()
 	{
 		return super.isMovementBlocked() && this.isBeingRidden() && this.isHorseSaddled() || this.isEatingHaystack() || this.isRearing();
@@ -639,6 +658,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	 * Checks if the parameter is an item which this animal can be fed to breed
 	 * it (wheat, carrots or seeds depending on the animal type)
 	 */
+	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
 		return false;
@@ -652,6 +672,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	/**
 	 * Called when the mob's health reaches 0.
 	 */
+	@Override
 	public void onDeath(DamageSource cause)
 	{
 		super.onDeath(cause);
@@ -675,6 +696,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.rand.nextInt(200) == 0)
@@ -730,6 +752,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -886,6 +909,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		return true;
 	}
 
+	@Override
 	public void func_191986_a(float p_191986_1_, float p_191986_2_, float p_191986_3_)
 	{
 		if (this.isBeingRidden() && this.canBeSteered() && this.isHorseSaddled())
@@ -914,11 +938,11 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 
 			if (this.jumpPower > 0.0F && !this.isHorseJumping() && this.onGround)
 			{
-				this.motionY = this.getHorseJumpStrength() * (double) this.jumpPower;
+				this.motionY = this.getHorseJumpStrength() * this.jumpPower;
 
 				if (this.isPotionActive(MobEffects.JUMP_BOOST))
 				{
-					this.motionY += (double) ((float) (this.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier() + 1) * 0.1F);
+					this.motionY += (this.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier() + 1) * 0.1F;
 				}
 
 				this.setHorseJumping(true);
@@ -928,8 +952,8 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 				{
 					float f = MathHelper.sin(this.rotationYaw * 0.017453292F);
 					float f1 = MathHelper.cos(this.rotationYaw * 0.017453292F);
-					this.motionX += (double) (-0.4F * f * this.jumpPower);
-					this.motionZ += (double) (0.4F * f1 * this.jumpPower);
+					this.motionX += -0.4F * f * this.jumpPower;
+					this.motionZ += 0.4F * f1 * this.jumpPower;
 					this.playSound(SoundEvents.ENTITY_HORSE_JUMP, 0.4F, 1.0F);
 				}
 
@@ -985,6 +1009,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -1007,6 +1032,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -1054,6 +1080,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	/**
 	 * Returns true if the mob is currently able to mate with the specified mob.
 	 */
+	@Override
 	public boolean canMateWith(EntityAnimal otherAnimal)
 	{
 		return false;
@@ -1068,6 +1095,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		return !this.isBeingRidden() && !this.isRiding() && this.isTame() && !this.isChild() && this.getHealth() >= this.getMaxHealth() && this.isInLove();
 	}
 
+	@Override
 	@Nullable
 	public EntityAgeable createChild(EntityAgeable ageable)
 	{
@@ -1076,7 +1104,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 
 	protected void func_190681_a(EntityAgeable p_190681_1_, AbstractHorse p_190681_2_)
 	{
-		double d0 = this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue() + p_190681_1_.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue() + (double) this.getModifiedMaxHealth();
+		double d0 = this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue() + p_190681_1_.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue() + this.getModifiedMaxHealth();
 		p_190681_2_.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(d0 / 3.0D);
 		double d1 = this.getEntityAttribute(JUMP_STRENGTH).getBaseValue() + p_190681_1_.getEntityAttribute(JUMP_STRENGTH).getBaseValue() + this.getModifiedJumpStrength();
 		p_190681_2_.getEntityAttribute(JUMP_STRENGTH).setBaseValue(d1 / 3.0D);
@@ -1089,6 +1117,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	 * pigs, this is true if it is being ridden by a player and the player is
 	 * holding a carrot-on-a-stick
 	 */
+	@Override
 	public boolean canBeSteered()
 	{
 		return this.getControllingPassenger() instanceof EntityLivingBase;
@@ -1109,6 +1138,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		return this.prevMouthOpenness + (this.mouthOpenness - this.prevMouthOpenness) * p_110201_1_;
 	}
 
+	@Override
 	public void setJumpPower(int jumpPowerIn)
 	{
 		if (this.isHorseSaddled())
@@ -1129,22 +1159,25 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 			}
 			else
 			{
-				this.jumpPower = 0.4F + 0.4F * (float) jumpPowerIn / 90.0F;
+				this.jumpPower = 0.4F + 0.4F * jumpPowerIn / 90.0F;
 			}
 		}
 	}
 
+	@Override
 	public boolean canJump()
 	{
 		return this.isHorseSaddled();
 	}
 
+	@Override
 	public void handleStartJump(int p_184775_1_)
 	{
 		this.allowStandSliding = true;
 		this.makeHorseRear();
 	}
 
+	@Override
 	public void handleStopJump()
 	{
 	}
@@ -1162,10 +1195,11 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 			double d0 = this.rand.nextGaussian() * 0.02D;
 			double d1 = this.rand.nextGaussian() * 0.02D;
 			double d2 = this.rand.nextGaussian() * 0.02D;
-			this.world.spawnParticle(enumparticletypes, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2);
+			this.world.spawnParticle(enumparticletypes, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
 		}
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 7)
@@ -1182,6 +1216,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		}
 	}
 
+	@Override
 	public void updatePassenger(Entity passenger)
 	{
 		super.updatePassenger(passenger);
@@ -1198,7 +1233,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 			float f = MathHelper.cos(this.renderYawOffset * 0.017453292F);
 			float f1 = 0.7F * this.prevRearingAmount;
 			float f2 = 0.15F * this.prevRearingAmount;
-			passenger.setPosition(this.posX + (double) (f1 * f3), this.posY + this.getMountedYOffset() + passenger.getYOffset() + (double) f2, this.posZ - (double) (f1 * f));
+			passenger.setPosition(this.posX + f1 * f3, this.posY + this.getMountedYOffset() + passenger.getYOffset() + f2, this.posZ - f1 * f);
 
 			if (passenger instanceof EntityLivingBase)
 			{
@@ -1212,7 +1247,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	 */
 	protected float getModifiedMaxHealth()
 	{
-		return 15.0F + (float) this.rand.nextInt(8) + (float) this.rand.nextInt(9);
+		return 15.0F + this.rand.nextInt(8) + this.rand.nextInt(9);
 	}
 
 	/**
@@ -1234,11 +1269,13 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 	/**
 	 * returns true if this entity is by a ladder, false otherwise
 	 */
+	@Override
 	public boolean isOnLadder()
 	{
 		return false;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return this.height;
@@ -1254,6 +1291,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		return false;
 	}
 
+	@Override
 	public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn)
 	{
 		int i = inventorySlot - 400;
@@ -1291,6 +1329,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -1303,6 +1342,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		return this.getPassengers().isEmpty() ? null : (Entity) this.getPassengers().get(0);
 	}
 
+	@Override
 	@Nullable
 
 	/**

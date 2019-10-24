@@ -25,11 +25,13 @@ public class BrewedPotionTrigger implements ICriterionTrigger<BrewedPotionTrigge
 	private static final ResourceLocation field_192176_a = new ResourceLocation("brewed_potion");
 	private final Map<PlayerAdvancements, BrewedPotionTrigger.Listeners> field_192177_b = Maps.<PlayerAdvancements, BrewedPotionTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192176_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<BrewedPotionTrigger.Instance> p_192165_2_)
 	{
 		BrewedPotionTrigger.Listeners brewedpotiontrigger$listeners = this.field_192177_b.get(p_192165_1_);
@@ -43,6 +45,7 @@ public class BrewedPotionTrigger implements ICriterionTrigger<BrewedPotionTrigge
 		brewedpotiontrigger$listeners.func_192349_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<BrewedPotionTrigger.Instance> p_192164_2_)
 	{
 		BrewedPotionTrigger.Listeners brewedpotiontrigger$listeners = this.field_192177_b.get(p_192164_1_);
@@ -58,11 +61,13 @@ public class BrewedPotionTrigger implements ICriterionTrigger<BrewedPotionTrigge
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192177_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public BrewedPotionTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		PotionType potiontype = null;
@@ -139,7 +144,7 @@ public class BrewedPotionTrigger implements ICriterionTrigger<BrewedPotionTrigge
 
 			for (ICriterionTrigger.Listener<BrewedPotionTrigger.Instance> listener : this.field_192351_b)
 			{
-				if (((BrewedPotionTrigger.Instance) listener.func_192158_a()).func_192250_a(p_192348_1_))
+				if (listener.func_192158_a().func_192250_a(p_192348_1_))
 				{
 					if (list == null)
 					{

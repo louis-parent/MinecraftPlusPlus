@@ -31,6 +31,7 @@ public class RealmsConnect
 		Realms.setConnectedToRealms(true);
 		(new Thread("Realms-connect-task")
 		{
+			@Override
 			public void run()
 			{
 				InetAddress inetaddress = null;
@@ -76,7 +77,7 @@ public class RealmsConnect
 						return;
 					}
 
-					RealmsConnect.LOGGER.error("Couldn't connect to world", (Throwable) unknownhostexception);
+					RealmsConnect.LOGGER.error("Couldn't connect to world", unknownhostexception);
 					Realms.setScreen(new DisconnectedRealmsScreen(RealmsConnect.this.onlineScreen, "connect.failed", new TextComponentTranslation("disconnect.genericReason", new Object[] { "Unknown host '" + p_connect_1_ + "'" })));
 				}
 				catch (Exception exception)
@@ -88,7 +89,7 @@ public class RealmsConnect
 						return;
 					}
 
-					RealmsConnect.LOGGER.error("Couldn't connect to world", (Throwable) exception);
+					RealmsConnect.LOGGER.error("Couldn't connect to world", exception);
 					String s = exception.toString();
 
 					if (inetaddress != null)

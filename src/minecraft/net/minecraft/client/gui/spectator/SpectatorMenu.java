@@ -21,19 +21,23 @@ public class SpectatorMenu
 	private static final ISpectatorMenuObject SCROLL_RIGHT_DISABLED = new SpectatorMenu.MoveMenuObject(1, false);
 	public static final ISpectatorMenuObject EMPTY_SLOT = new ISpectatorMenuObject()
 	{
+		@Override
 		public void selectItem(SpectatorMenu menu)
 		{
 		}
 
+		@Override
 		public ITextComponent getSpectatorName()
 		{
 			return new TextComponentString("");
 		}
 
+		@Override
 		public void renderIcon(float p_178663_1_, int alpha)
 		{
 		}
 
+		@Override
 		public boolean isEnabled()
 		{
 			return false;
@@ -140,22 +144,26 @@ public class SpectatorMenu
 		{
 		}
 
+		@Override
 		public void selectItem(SpectatorMenu menu)
 		{
 			menu.exit();
 		}
 
+		@Override
 		public ITextComponent getSpectatorName()
 		{
 			return new TextComponentTranslation("spectatorMenu.close", new Object[0]);
 		}
 
+		@Override
 		public void renderIcon(float p_178663_1_, int alpha)
 		{
 			Minecraft.getMinecraft().getTextureManager().bindTexture(GuiSpectator.SPECTATOR_WIDGETS);
 			Gui.drawModalRectWithCustomSizedTexture(0, 0, 128.0F, 0.0F, 16, 16, 256.0F, 256.0F);
 		}
 
+		@Override
 		public boolean isEnabled()
 		{
 			return true;
@@ -173,16 +181,19 @@ public class SpectatorMenu
 			this.enabled = p_i45495_2_;
 		}
 
+		@Override
 		public void selectItem(SpectatorMenu menu)
 		{
 			menu.page = menu.page + this.direction;
 		}
 
+		@Override
 		public ITextComponent getSpectatorName()
 		{
 			return this.direction < 0 ? new TextComponentTranslation("spectatorMenu.previous_page", new Object[0]) : new TextComponentTranslation("spectatorMenu.next_page", new Object[0]);
 		}
 
+		@Override
 		public void renderIcon(float p_178663_1_, int alpha)
 		{
 			Minecraft.getMinecraft().getTextureManager().bindTexture(GuiSpectator.SPECTATOR_WIDGETS);
@@ -197,6 +208,7 @@ public class SpectatorMenu
 			}
 		}
 
+		@Override
 		public boolean isEnabled()
 		{
 			return this.enabled;

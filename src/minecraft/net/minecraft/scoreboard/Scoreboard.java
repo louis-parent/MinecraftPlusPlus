@@ -57,7 +57,7 @@ public class Scoreboard
 			else
 			{
 				scoreobjective = new ScoreObjective(this, name, criteria);
-				List<ScoreObjective> list = (List) this.scoreObjectiveCriterias.get(criteria);
+				List<ScoreObjective> list = this.scoreObjectiveCriterias.get(criteria);
 
 				if (list == null)
 				{
@@ -75,7 +75,7 @@ public class Scoreboard
 
 	public Collection<ScoreObjective> getObjectivesFromCriteria(IScoreCriteria criteria)
 	{
-		Collection<ScoreObjective> collection = (Collection) this.scoreObjectiveCriterias.get(criteria);
+		Collection<ScoreObjective> collection = this.scoreObjectiveCriterias.get(criteria);
 		return collection == null ? Lists.newArrayList() : Lists.newArrayList(collection);
 	}
 
@@ -84,7 +84,7 @@ public class Scoreboard
 	 */
 	public boolean entityHasObjective(String name, ScoreObjective objective)
 	{
-		Map<ScoreObjective, Score> map = (Map) this.entitiesScoreObjectives.get(name);
+		Map<ScoreObjective, Score> map = this.entitiesScoreObjectives.get(name);
 
 		if (map == null)
 		{
@@ -108,7 +108,7 @@ public class Scoreboard
 		}
 		else
 		{
-			Map<ScoreObjective, Score> map = (Map) this.entitiesScoreObjectives.get(username);
+			Map<ScoreObjective, Score> map = this.entitiesScoreObjectives.get(username);
 
 			if (map == null)
 			{
@@ -163,7 +163,7 @@ public class Scoreboard
 	{
 		if (objective == null)
 		{
-			Map<ScoreObjective, Score> map = (Map) this.entitiesScoreObjectives.remove(name);
+			Map<ScoreObjective, Score> map = this.entitiesScoreObjectives.remove(name);
 
 			if (map != null)
 			{
@@ -172,7 +172,7 @@ public class Scoreboard
 		}
 		else
 		{
-			Map<ScoreObjective, Score> map2 = (Map) this.entitiesScoreObjectives.get(name);
+			Map<ScoreObjective, Score> map2 = this.entitiesScoreObjectives.get(name);
 
 			if (map2 != null)
 			{
@@ -180,7 +180,7 @@ public class Scoreboard
 
 				if (map2.size() < 1)
 				{
-					Map<ScoreObjective, Score> map1 = (Map) this.entitiesScoreObjectives.remove(name);
+					Map<ScoreObjective, Score> map1 = this.entitiesScoreObjectives.remove(name);
 
 					if (map1 != null)
 					{
@@ -210,7 +210,7 @@ public class Scoreboard
 
 	public Map<ScoreObjective, Score> getObjectivesForEntity(String name)
 	{
-		Map<ScoreObjective, Score> map = (Map) this.entitiesScoreObjectives.get(name);
+		Map<ScoreObjective, Score> map = this.entitiesScoreObjectives.get(name);
 
 		if (map == null)
 		{
@@ -232,7 +232,7 @@ public class Scoreboard
 			}
 		}
 
-		List<ScoreObjective> list = (List) this.scoreObjectiveCriterias.get(objective.getCriteria());
+		List<ScoreObjective> list = this.scoreObjectiveCriterias.get(objective.getCriteria());
 
 		if (list != null)
 		{

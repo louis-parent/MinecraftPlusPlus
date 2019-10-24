@@ -22,9 +22,10 @@ public class NettyPacketEncoder extends MessageToByteEncoder<Packet<?>>
 		this.direction = direction;
 	}
 
+	@Override
 	protected void encode(ChannelHandlerContext p_encode_1_, Packet<?> p_encode_2_, ByteBuf p_encode_3_) throws IOException, Exception
 	{
-		EnumConnectionState enumconnectionstate = (EnumConnectionState) p_encode_1_.channel().attr(NetworkManager.PROTOCOL_ATTRIBUTE_KEY).get();
+		EnumConnectionState enumconnectionstate = p_encode_1_.channel().attr(NetworkManager.PROTOCOL_ATTRIBUTE_KEY).get();
 
 		if (enumconnectionstate == null)
 		{

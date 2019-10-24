@@ -11,6 +11,7 @@ public class BiomeForestMutated extends BiomeForest
 		super(BiomeForest.Type.BIRCH, properties);
 	}
 
+	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		return rand.nextBoolean() ? BiomeForest.SUPER_BIRCH_TREE : BiomeForest.BIRCH_TREE;

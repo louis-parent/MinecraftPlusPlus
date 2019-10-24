@@ -22,11 +22,13 @@ public class CuredZombieVillagerTrigger implements ICriterionTrigger<CuredZombie
 	private static final ResourceLocation field_192186_a = new ResourceLocation("cured_zombie_villager");
 	private final Map<PlayerAdvancements, CuredZombieVillagerTrigger.Listeners> field_192187_b = Maps.<PlayerAdvancements, CuredZombieVillagerTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192186_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<CuredZombieVillagerTrigger.Instance> p_192165_2_)
 	{
 		CuredZombieVillagerTrigger.Listeners curedzombievillagertrigger$listeners = this.field_192187_b.get(p_192165_1_);
@@ -40,6 +42,7 @@ public class CuredZombieVillagerTrigger implements ICriterionTrigger<CuredZombie
 		curedzombievillagertrigger$listeners.func_192360_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<CuredZombieVillagerTrigger.Instance> p_192164_2_)
 	{
 		CuredZombieVillagerTrigger.Listeners curedzombievillagertrigger$listeners = this.field_192187_b.get(p_192164_1_);
@@ -55,11 +58,13 @@ public class CuredZombieVillagerTrigger implements ICriterionTrigger<CuredZombie
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192187_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public CuredZombieVillagerTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		EntityPredicate entitypredicate = EntityPredicate.func_192481_a(p_192166_1_.get("zombie"));
@@ -133,7 +138,7 @@ public class CuredZombieVillagerTrigger implements ICriterionTrigger<CuredZombie
 
 			for (ICriterionTrigger.Listener<CuredZombieVillagerTrigger.Instance> listener : this.field_192363_b)
 			{
-				if (((CuredZombieVillagerTrigger.Instance) listener.func_192158_a()).func_192254_a(p_192361_1_, p_192361_2_, p_192361_3_))
+				if (listener.func_192158_a().func_192254_a(p_192361_1_, p_192361_2_, p_192361_3_))
 				{
 					if (list == null)
 					{

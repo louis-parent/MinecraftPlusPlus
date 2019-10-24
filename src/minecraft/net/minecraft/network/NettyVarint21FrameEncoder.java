@@ -8,6 +8,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
 @Sharable
 public class NettyVarint21FrameEncoder extends MessageToByteEncoder<ByteBuf>
 {
+	@Override
 	protected void encode(ChannelHandlerContext p_encode_1_, ByteBuf p_encode_2_, ByteBuf p_encode_3_) throws Exception
 	{
 		int i = p_encode_2_.readableBytes();

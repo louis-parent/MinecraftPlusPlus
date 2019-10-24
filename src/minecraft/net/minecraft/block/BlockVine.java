@@ -50,43 +50,45 @@ public class BlockVine extends Block
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return NULL_AABB;
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		state = state.getActualState(source, pos);
 		int i = 0;
 		AxisAlignedBB axisalignedbb = FULL_BLOCK_AABB;
 
-		if (((Boolean) state.getValue(UP)).booleanValue())
+		if (state.getValue(UP).booleanValue())
 		{
 			axisalignedbb = UP_AABB;
 			++i;
 		}
 
-		if (((Boolean) state.getValue(NORTH)).booleanValue())
+		if (state.getValue(NORTH).booleanValue())
 		{
 			axisalignedbb = NORTH_AABB;
 			++i;
 		}
 
-		if (((Boolean) state.getValue(EAST)).booleanValue())
+		if (state.getValue(EAST).booleanValue())
 		{
 			axisalignedbb = EAST_AABB;
 			++i;
 		}
 
-		if (((Boolean) state.getValue(SOUTH)).booleanValue())
+		if (state.getValue(SOUTH).booleanValue())
 		{
 			axisalignedbb = SOUTH_AABB;
 			++i;
 		}
 
-		if (((Boolean) state.getValue(WEST)).booleanValue())
+		if (state.getValue(WEST).booleanValue())
 		{
 			axisalignedbb = WEST_AABB;
 			++i;
@@ -100,6 +102,7 @@ public class BlockVine extends Block
 	 * applies properties not visible in the metadata, such as fence
 	 * connections.
 	 */
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		BlockPos blockpos = pos.up();
@@ -110,11 +113,13 @@ public class BlockVine extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -124,6 +129,7 @@ public class BlockVine extends Block
 	 * Whether this Block can be replaced directly by other blocks (true for
 	 * e.g. tall grass)
 	 */
+	@Override
 	public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos)
 	{
 		return true;
@@ -132,6 +138,7 @@ public class BlockVine extends Block
 	/**
 	 * Check whether this Block can be placed on the given side
 	 */
+	@Override
 	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
 	{
 		return side != EnumFacing.DOWN && side != EnumFacing.UP && this.func_193395_a(worldIn, pos, side);
@@ -162,11 +169,11 @@ public class BlockVine extends Block
 		{
 			PropertyBool propertybool = getPropertyFor(enumfacing);
 
-			if (((Boolean) state.getValue(propertybool)).booleanValue() && !this.func_193395_a(worldIn, pos, enumfacing.getOpposite()))
+			if (state.getValue(propertybool).booleanValue() && !this.func_193395_a(worldIn, pos, enumfacing.getOpposite()))
 			{
 				IBlockState iblockstate1 = worldIn.getBlockState(pos.up());
 
-				if (iblockstate1.getBlock() != this || !((Boolean) iblockstate1.getValue(propertybool)).booleanValue())
+				if (iblockstate1.getBlock() != this || !iblockstate1.getValue(propertybool).booleanValue())
 				{
 					state = state.withProperty(propertybool, Boolean.valueOf(false));
 				}
@@ -194,6 +201,7 @@ public class BlockVine extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!worldIn.isRemote && !this.recheckGrownSides(worldIn, pos, state))
@@ -203,6 +211,7 @@ public class BlockVine extends Block
 		}
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (!worldIn.isRemote)
@@ -253,12 +262,12 @@ public class BlockVine extends Block
 						}
 					}
 
-					if (((Boolean) iblockstate2.getValue(NORTH)).booleanValue() || ((Boolean) iblockstate2.getValue(EAST)).booleanValue() || ((Boolean) iblockstate2.getValue(SOUTH)).booleanValue() || ((Boolean) iblockstate2.getValue(WEST)).booleanValue())
+					if (iblockstate2.getValue(NORTH).booleanValue() || iblockstate2.getValue(EAST).booleanValue() || iblockstate2.getValue(SOUTH).booleanValue() || iblockstate2.getValue(WEST).booleanValue())
 					{
 						worldIn.setBlockState(blockpos2, iblockstate2, 2);
 					}
 				}
-				else if (enumfacing1.getAxis().isHorizontal() && !((Boolean) state.getValue(getPropertyFor(enumfacing1))).booleanValue())
+				else if (enumfacing1.getAxis().isHorizontal() && !state.getValue(getPropertyFor(enumfacing1)).booleanValue())
 				{
 					if (!flag)
 					{
@@ -270,8 +279,8 @@ public class BlockVine extends Block
 						{
 							EnumFacing enumfacing3 = enumfacing1.rotateY();
 							EnumFacing enumfacing4 = enumfacing1.rotateYCCW();
-							boolean flag1 = ((Boolean) state.getValue(getPropertyFor(enumfacing3))).booleanValue();
-							boolean flag2 = ((Boolean) state.getValue(getPropertyFor(enumfacing4))).booleanValue();
+							boolean flag1 = state.getValue(getPropertyFor(enumfacing3)).booleanValue();
+							boolean flag2 = state.getValue(getPropertyFor(enumfacing4)).booleanValue();
 							BlockPos blockpos = blockpos4.offset(enumfacing3);
 							BlockPos blockpos1 = blockpos4.offset(enumfacing4);
 
@@ -318,7 +327,7 @@ public class BlockVine extends Block
 								}
 							}
 
-							if (((Boolean) iblockstate1.getValue(NORTH)).booleanValue() || ((Boolean) iblockstate1.getValue(EAST)).booleanValue() || ((Boolean) iblockstate1.getValue(SOUTH)).booleanValue() || ((Boolean) iblockstate1.getValue(WEST)).booleanValue())
+							if (iblockstate1.getValue(NORTH).booleanValue() || iblockstate1.getValue(EAST).booleanValue() || iblockstate1.getValue(SOUTH).booleanValue() || iblockstate1.getValue(WEST).booleanValue())
 							{
 								worldIn.setBlockState(blockpos3, iblockstate1, 2);
 							}
@@ -331,13 +340,13 @@ public class BlockVine extends Block
 							{
 								PropertyBool propertybool = getPropertyFor(enumfacing5);
 
-								if (rand.nextBoolean() && ((Boolean) state.getValue(propertybool)).booleanValue())
+								if (rand.nextBoolean() && state.getValue(propertybool).booleanValue())
 								{
 									iblockstate4 = iblockstate4.withProperty(propertybool, Boolean.valueOf(true));
 								}
 							}
 
-							if (((Boolean) iblockstate4.getValue(NORTH)).booleanValue() || ((Boolean) iblockstate4.getValue(EAST)).booleanValue() || ((Boolean) iblockstate4.getValue(SOUTH)).booleanValue() || ((Boolean) iblockstate4.getValue(WEST)).booleanValue())
+							if (iblockstate4.getValue(NORTH).booleanValue() || iblockstate4.getValue(EAST).booleanValue() || iblockstate4.getValue(SOUTH).booleanValue() || iblockstate4.getValue(WEST).booleanValue())
 							{
 								worldIn.setBlockState(blockpos3, iblockstate4, 2);
 							}
@@ -352,6 +361,7 @@ public class BlockVine extends Block
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		IBlockState iblockstate = this.getDefaultState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false));
@@ -361,6 +371,7 @@ public class BlockVine extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.EMPTY_ITEM;
@@ -369,11 +380,13 @@ public class BlockVine extends Block
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
 	}
 
+	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
 		if (!worldIn.isRemote && stack.getItem() == Items.SHEARS)
@@ -387,6 +400,7 @@ public class BlockVine extends Block
 		}
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
@@ -395,6 +409,7 @@ public class BlockVine extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(SOUTH, Boolean.valueOf((meta & 1) > 0)).withProperty(WEST, Boolean.valueOf((meta & 2) > 0)).withProperty(NORTH, Boolean.valueOf((meta & 4) > 0)).withProperty(EAST, Boolean.valueOf((meta & 8) > 0));
@@ -403,26 +418,27 @@ public class BlockVine extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
 
-		if (((Boolean) state.getValue(SOUTH)).booleanValue())
+		if (state.getValue(SOUTH).booleanValue())
 		{
 			i |= 1;
 		}
 
-		if (((Boolean) state.getValue(WEST)).booleanValue())
+		if (state.getValue(WEST).booleanValue())
 		{
 			i |= 2;
 		}
 
-		if (((Boolean) state.getValue(NORTH)).booleanValue())
+		if (state.getValue(NORTH).booleanValue())
 		{
 			i |= 4;
 		}
 
-		if (((Boolean) state.getValue(EAST)).booleanValue())
+		if (state.getValue(EAST).booleanValue())
 		{
 			i |= 8;
 		}
@@ -430,6 +446,7 @@ public class BlockVine extends Block
 		return i;
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { UP, NORTH, EAST, SOUTH, WEST });
@@ -439,6 +456,7 @@ public class BlockVine extends Block
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
 		switch (rot)
@@ -461,6 +479,7 @@ public class BlockVine extends Block
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
 		switch (mirrorIn)
@@ -506,7 +525,7 @@ public class BlockVine extends Block
 
 		for (PropertyBool propertybool : ALL_FACES)
 		{
-			if (((Boolean) state.getValue(propertybool)).booleanValue())
+			if (state.getValue(propertybool).booleanValue())
 			{
 				++i;
 			}
@@ -515,6 +534,7 @@ public class BlockVine extends Block
 		return i;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

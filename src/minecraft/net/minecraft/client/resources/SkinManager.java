@@ -43,6 +43,7 @@ public class SkinManager
 		this.sessionService = sessionService;
 		this.skinCacheLoader = CacheBuilder.newBuilder().expireAfterAccess(15L, TimeUnit.SECONDS).<GameProfile, Map<Type, MinecraftProfileTexture>>build(new CacheLoader<GameProfile, Map<Type, MinecraftProfileTexture>>()
 		{
+			@Override
 			public Map<Type, MinecraftProfileTexture> load(GameProfile p_load_1_) throws Exception
 			{
 				try
@@ -89,6 +90,7 @@ public class SkinManager
 			final IImageBuffer iimagebuffer = textureType == Type.SKIN ? new ImageBufferDownload() : null;
 			ThreadDownloadImageData threaddownloadimagedata = new ThreadDownloadImageData(file2, profileTexture.getUrl(), DefaultPlayerSkin.getDefaultSkinLegacy(), new IImageBuffer()
 			{
+				@Override
 				public BufferedImage parseUserSkin(BufferedImage image)
 				{
 					if (iimagebuffer != null)
@@ -99,6 +101,7 @@ public class SkinManager
 					return image;
 				}
 
+				@Override
 				public void skinAvailable()
 				{
 					if (iimagebuffer != null)
@@ -122,6 +125,7 @@ public class SkinManager
 	{
 		THREAD_POOL.submit(new Runnable()
 		{
+			@Override
 			public void run()
 			{
 				final Map<Type, MinecraftProfileTexture> map = Maps.<Type, MinecraftProfileTexture>newHashMap();
@@ -144,6 +148,7 @@ public class SkinManager
 
 				Minecraft.getMinecraft().addScheduledTask(new Runnable()
 				{
+					@Override
 					public void run()
 					{
 						if (map.containsKey(Type.SKIN))
@@ -163,7 +168,7 @@ public class SkinManager
 
 	public Map<Type, MinecraftProfileTexture> loadSkinFromCache(GameProfile profile)
 	{
-		return (Map) this.skinCacheLoader.getUnchecked(profile);
+		return this.skinCacheLoader.getUnchecked(profile);
 	}
 
 	public interface SkinAvailableCallback

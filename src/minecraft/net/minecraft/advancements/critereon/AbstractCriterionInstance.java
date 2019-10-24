@@ -12,11 +12,13 @@ public class AbstractCriterionInstance implements ICriterionInstance
 		this.field_192245_a = p_i47465_1_;
 	}
 
+	@Override
 	public ResourceLocation func_192244_a()
 	{
 		return this.field_192245_a;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "AbstractCriterionInstance{criterion=" + this.field_192245_a + '}';

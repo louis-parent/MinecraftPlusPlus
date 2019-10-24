@@ -26,6 +26,7 @@ public class SPacketSelectAdvancementsTab implements Packet<INetHandlerPlayClien
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.func_194022_a(this);
@@ -34,6 +35,7 @@ public class SPacketSelectAdvancementsTab implements Packet<INetHandlerPlayClien
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		if (buf.readBoolean())
@@ -45,6 +47,7 @@ public class SPacketSelectAdvancementsTab implements Packet<INetHandlerPlayClien
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeBoolean(this.field_194155_a != null);

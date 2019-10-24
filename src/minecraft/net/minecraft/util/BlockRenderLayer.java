@@ -11,6 +11,7 @@ public enum BlockRenderLayer
 		this.layerName = layerNameIn;
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.layerName;

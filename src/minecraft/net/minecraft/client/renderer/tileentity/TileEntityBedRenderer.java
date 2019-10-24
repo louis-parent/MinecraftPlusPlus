@@ -18,6 +18,7 @@ public class TileEntityBedRenderer extends TileEntitySpecialRenderer<TileEntityB
 		this.field_193850_e = this.field_193849_d.func_193770_a();
 	}
 
+	@Override
 	public void func_192841_a(TileEntityBed p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
 	{
 		if (this.field_193850_e != this.field_193849_d.func_193770_a())

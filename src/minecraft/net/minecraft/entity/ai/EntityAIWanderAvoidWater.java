@@ -20,6 +20,7 @@ public class EntityAIWanderAvoidWater extends EntityAIWander
 		this.field_190865_h = p_i47302_4_;
 	}
 
+	@Override
 	@Nullable
 	protected Vec3d func_190864_f()
 	{

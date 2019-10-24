@@ -30,6 +30,7 @@ public class ItemHoe extends ItemTool
 		super(material);
 	}
 
+	@Override
 	@SuppressWarnings("incomplete-switch")
 
 	/**
@@ -58,7 +59,7 @@ public class ItemHoe extends ItemTool
 
 				if (block == Blocks.DIRT)
 				{
-					switch ((BlockDirt.DirtType) iblockstate.getValue(BlockDirt.VARIANT))
+					switch (iblockstate.getValue(BlockDirt.VARIANT))
 					{
 						case DIRT:
 							this.setBlock(itemstack, stack, playerIn, worldIn, Blocks.FARMLAND.getDefaultState());
@@ -79,6 +80,7 @@ public class ItemHoe extends ItemTool
 	 * Current implementations of this method in child classes do not use the
 	 * entry argument beside ev. They just raise the damage on the stack.
 	 */
+	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
 	{
 		stack.damageItem(1, attacker);
@@ -99,6 +101,7 @@ public class ItemHoe extends ItemTool
 	/**
 	 * Returns True is the item is renderer in full 3D when hold.
 	 */
+	@Override
 	public boolean isFull3D()
 	{
 		return true;
@@ -113,6 +116,7 @@ public class ItemHoe extends ItemTool
 		return this.toolMaterial.toString();
 	}
 
+	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
 	{
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
@@ -120,7 +124,7 @@ public class ItemHoe extends ItemTool
 		if (equipmentSlot == EntityHandSlot.MAINHAND)
 		{
 			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 0.0D, 0));
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double) (this.attackSpeed - 4.0F), 0));
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", this.attackSpeed - 4.0F, 0));
 		}
 
 		return multimap;

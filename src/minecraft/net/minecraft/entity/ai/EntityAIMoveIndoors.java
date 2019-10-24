@@ -22,6 +22,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		BlockPos blockpos = new BlockPos(this.entityObj);
@@ -32,7 +33,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
 			{
 				return false;
 			}
-			else if (this.insidePosX != -1 && this.entityObj.getDistanceSq((double) this.insidePosX, this.entityObj.posY, (double) this.insidePosZ) < 4.0D)
+			else if (this.insidePosX != -1 && this.entityObj.getDistanceSq(this.insidePosX, this.entityObj.posY, this.insidePosZ) < 4.0D)
 			{
 				return false;
 			}
@@ -60,6 +61,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return !this.entityObj.getNavigator().noPath();
@@ -68,6 +70,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.insidePosX = -1;
@@ -78,7 +81,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
 
 		if (this.entityObj.getDistanceSq(blockpos) > 256.0D)
 		{
-			Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockTowards(this.entityObj, 14, 3, new Vec3d((double) i + 0.5D, (double) j, (double) k + 0.5D));
+			Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockTowards(this.entityObj, 14, 3, new Vec3d(i + 0.5D, j, k + 0.5D));
 
 			if (vec3d != null)
 			{
@@ -87,13 +90,14 @@ public class EntityAIMoveIndoors extends EntityAIBase
 		}
 		else
 		{
-			this.entityObj.getNavigator().tryMoveToXYZ((double) i + 0.5D, (double) j, (double) k + 0.5D, 1.0D);
+			this.entityObj.getNavigator().tryMoveToXYZ(i + 0.5D, j, k + 0.5D, 1.0D);
 		}
 	}
 
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.insidePosX = this.doorInfo.getInsideBlockPos().getX();

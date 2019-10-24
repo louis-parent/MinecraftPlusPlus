@@ -23,6 +23,7 @@ public class BlockOldLeaf extends BlockLeaves
 {
 	public static final PropertyEnum<BlockPlanks.EnumType> VARIANT = PropertyEnum.<BlockPlanks.EnumType>create("variant", BlockPlanks.EnumType.class, new Predicate<BlockPlanks.EnumType>()
 	{
+		@Override
 		public boolean apply(@Nullable BlockPlanks.EnumType p_apply_1_)
 		{
 			return p_apply_1_.getMetadata() < 4;
@@ -34,6 +35,7 @@ public class BlockOldLeaf extends BlockLeaves
 		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockPlanks.EnumType.OAK).withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
 	}
 
+	@Override
 	protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
 	{
 		if (state.getValue(VARIANT) == BlockPlanks.EnumType.OAK && worldIn.rand.nextInt(chance) == 0)
@@ -42,6 +44,7 @@ public class BlockOldLeaf extends BlockLeaves
 		}
 	}
 
+	@Override
 	protected int getSaplingDropChance(IBlockState state)
 	{
 		return state.getValue(VARIANT) == BlockPlanks.EnumType.JUNGLE ? 40 : super.getSaplingDropChance(state);
@@ -51,6 +54,7 @@ public class BlockOldLeaf extends BlockLeaves
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		tab.add(new ItemStack(this, 1, BlockPlanks.EnumType.OAK.getMetadata()));
@@ -59,14 +63,16 @@ public class BlockOldLeaf extends BlockLeaves
 		tab.add(new ItemStack(this, 1, BlockPlanks.EnumType.JUNGLE.getMetadata()));
 	}
 
+	@Override
 	protected ItemStack getSilkTouchDrop(IBlockState state)
 	{
-		return new ItemStack(Item.getItemFromBlock(this), 1, ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMetadata());
+		return new ItemStack(Item.getItemFromBlock(this), 1, state.getValue(VARIANT).getMetadata());
 	}
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(VARIANT, this.getWoodType(meta)).withProperty(DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
@@ -75,17 +81,18 @@ public class BlockOldLeaf extends BlockLeaves
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMetadata();
+		i = i | state.getValue(VARIANT).getMetadata();
 
-		if (!((Boolean) state.getValue(DECAYABLE)).booleanValue())
+		if (!state.getValue(DECAYABLE).booleanValue())
 		{
 			i |= 4;
 		}
 
-		if (((Boolean) state.getValue(CHECK_DECAY)).booleanValue())
+		if (state.getValue(CHECK_DECAY).booleanValue())
 		{
 			i |= 8;
 		}
@@ -93,11 +100,13 @@ public class BlockOldLeaf extends BlockLeaves
 		return i;
 	}
 
+	@Override
 	public BlockPlanks.EnumType getWoodType(int meta)
 	{
 		return BlockPlanks.EnumType.byMetadata((meta & 3) % 4);
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { VARIANT, CHECK_DECAY, DECAYABLE });
@@ -108,17 +117,19 @@ public class BlockOldLeaf extends BlockLeaves
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
+	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
 		if (!worldIn.isRemote && stack.getItem() == Items.SHEARS)
 		{
 			player.addStat(StatList.getBlockStats(this));
-			spawnAsEntity(worldIn, pos, new ItemStack(Item.getItemFromBlock(this), 1, ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMetadata()));
+			spawnAsEntity(worldIn, pos, new ItemStack(Item.getItemFromBlock(this), 1, state.getValue(VARIANT).getMetadata()));
 		}
 		else
 		{

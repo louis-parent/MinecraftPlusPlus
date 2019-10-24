@@ -80,6 +80,7 @@ public class EntityZombie extends EntityMob
 		this.setSize(0.6F, 1.95F);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -100,6 +101,7 @@ public class EntityZombie extends EntityMob
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityIronGolem.class, true));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -110,6 +112,7 @@ public class EntityZombie extends EntityMob
 		this.getAttributeMap().registerAttribute(SPAWN_REINFORCEMENTS_CHANCE).setBaseValue(this.rand.nextDouble() * 0.10000000149011612D);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -125,7 +128,7 @@ public class EntityZombie extends EntityMob
 
 	public boolean isArmsRaised()
 	{
-		return ((Boolean) this.getDataManager().get(ARMS_RAISED)).booleanValue();
+		return this.getDataManager().get(ARMS_RAISED).booleanValue();
 	}
 
 	public boolean isBreakDoorsTaskSet()
@@ -157,19 +160,21 @@ public class EntityZombie extends EntityMob
 	/**
 	 * If Animal, checks if the age timer is negative
 	 */
+	@Override
 	public boolean isChild()
 	{
-		return ((Boolean) this.getDataManager().get(IS_CHILD)).booleanValue();
+		return this.getDataManager().get(IS_CHILD).booleanValue();
 	}
 
 	/**
 	 * Get the experience points the entity currently has.
 	 */
+	@Override
 	protected int getExperiencePoints(EntityPlayer player)
 	{
 		if (this.isChild())
 		{
-			this.experienceValue = (int) ((float) this.experienceValue * 2.5F);
+			this.experienceValue = (int) (this.experienceValue * 2.5F);
 		}
 
 		return super.getExperiencePoints(player);
@@ -196,6 +201,7 @@ public class EntityZombie extends EntityMob
 		this.setChildSize(childZombie);
 	}
 
+	@Override
 	public void notifyDataManagerChange(DataParameter<?> key)
 	{
 		if (IS_CHILD.equals(key))
@@ -211,13 +217,14 @@ public class EntityZombie extends EntityMob
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.world.isDaytime() && !this.world.isRemote && !this.isChild() && this.func_190730_o())
 		{
 			float f = this.getBrightness();
 
-			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(new BlockPos(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ)))
+			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(new BlockPos(this.posX, this.posY + this.getEyeHeight(), this.posZ)))
 			{
 				boolean flag = true;
 				ItemStack itemstack = this.getItemStackFromSlot(EntityArmorSlot.HEAD);
@@ -256,6 +263,7 @@ public class EntityZombie extends EntityMob
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (super.attackEntityFrom(source, amount))
@@ -267,7 +275,7 @@ public class EntityZombie extends EntityMob
 				entitylivingbase = (EntityLivingBase) source.getEntity();
 			}
 
-			if (entitylivingbase != null && this.world.getDifficulty() == EnumDifficulty.HARD && (double) this.rand.nextFloat() < this.getEntityAttribute(SPAWN_REINFORCEMENTS_CHANCE).getAttributeValue() && this.world.getGameRules().getBoolean("doMobSpawning"))
+			if (entitylivingbase != null && this.world.getDifficulty() == EnumDifficulty.HARD && this.rand.nextFloat() < this.getEntityAttribute(SPAWN_REINFORCEMENTS_CHANCE).getAttributeValue() && this.world.getGameRules().getBoolean("doMobSpawning"))
 			{
 				int i = MathHelper.floor(this.posX);
 				int j = MathHelper.floor(this.posY);
@@ -282,9 +290,9 @@ public class EntityZombie extends EntityMob
 
 					if (this.world.getBlockState(new BlockPos(i1, j1 - 1, k1)).isFullyOpaque() && this.world.getLightFromNeighbors(new BlockPos(i1, j1, k1)) < 10)
 					{
-						entityzombie.setPosition((double) i1, (double) j1, (double) k1);
+						entityzombie.setPosition(i1, j1, k1);
 
-						if (!this.world.isAnyPlayerWithinRangeAt((double) i1, (double) j1, (double) k1, 7.0D) && this.world.checkNoEntityCollision(entityzombie.getEntityBoundingBox(), entityzombie) && this.world.getCollisionBoxes(entityzombie, entityzombie.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(entityzombie.getEntityBoundingBox()))
+						if (!this.world.isAnyPlayerWithinRangeAt(i1, j1, k1, 7.0D) && this.world.checkNoEntityCollision(entityzombie.getEntityBoundingBox(), entityzombie) && this.world.getCollisionBoxes(entityzombie, entityzombie.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(entityzombie.getEntityBoundingBox()))
 						{
 							this.world.spawnEntityInWorld(entityzombie);
 							entityzombie.setAttackTarget(entitylivingbase);
@@ -305,6 +313,7 @@ public class EntityZombie extends EntityMob
 		}
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
 		boolean flag = super.attackEntityAsMob(entityIn);
@@ -322,16 +331,19 @@ public class EntityZombie extends EntityMob
 		return flag;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_ZOMBIE_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_ZOMBIE_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_ZOMBIE_DEATH;
@@ -342,6 +354,7 @@ public class EntityZombie extends EntityMob
 		return SoundEvents.ENTITY_ZOMBIE_STEP;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(this.func_190731_di(), 0.15F, 1.0F);
@@ -350,11 +363,13 @@ public class EntityZombie extends EntityMob
 	/**
 	 * Get this Entity's EnumCreatureAttribute
 	 */
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -364,6 +379,7 @@ public class EntityZombie extends EntityMob
 	/**
 	 * Gives armor or weapon for entity based on given DifficultyInstance
 	 */
+	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
 		super.setEquipmentBasedOnDifficulty(difficulty);
@@ -391,6 +407,7 @@ public class EntityZombie extends EntityMob
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -406,6 +423,7 @@ public class EntityZombie extends EntityMob
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -421,6 +439,7 @@ public class EntityZombie extends EntityMob
 	/**
 	 * This method gets called when the entity kills another one.
 	 */
+	@Override
 	public void onKillEntity(EntityLivingBase entityLivingIn)
 	{
 		super.onKillEntity(entityLivingIn);
@@ -452,23 +471,26 @@ public class EntityZombie extends EntityMob
 		}
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		float f = 1.74F;
 
 		if (this.isChild())
 		{
-			f = (float) ((double) f - 0.81D);
+			f = (float) (f - 0.81D);
 		}
 
 		return f;
 	}
 
+	@Override
 	protected boolean canEquipItem(ItemStack stack)
 	{
 		return stack.getItem() == Items.EGG && this.isChild() && this.isRiding() ? false : super.canEquipItem(stack);
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -495,7 +517,7 @@ public class EntityZombie extends EntityMob
 			{
 				this.setChild(true);
 
-				if ((double) this.world.rand.nextFloat() < 0.05D)
+				if (this.world.rand.nextFloat() < 0.05D)
 				{
 					List<EntityChicken> list = this.world.<EntityChicken>getEntitiesWithinAABB(EntityChicken.class, this.getEntityBoundingBox().expand(5.0D, 3.0D, 5.0D), EntitySelectors.IS_STANDALONE);
 
@@ -506,7 +528,7 @@ public class EntityZombie extends EntityMob
 						this.startRiding(entitychicken);
 					}
 				}
-				else if ((double) this.world.rand.nextFloat() < 0.05D)
+				else if (this.world.rand.nextFloat() < 0.05D)
 				{
 					EntityChicken entitychicken1 = new EntityChicken(this.world);
 					entitychicken1.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
@@ -534,7 +556,7 @@ public class EntityZombie extends EntityMob
 		}
 
 		this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextDouble() * 0.05000000074505806D, 0));
-		double d0 = this.rand.nextDouble() * 1.5D * (double) f;
+		double d0 = this.rand.nextDouble() * 1.5D * f;
 
 		if (d0 > 1.0D)
 		{
@@ -562,6 +584,7 @@ public class EntityZombie extends EntityMob
 	/**
 	 * Sets the width and height of the entity.
 	 */
+	@Override
 	protected final void setSize(float width, float height)
 	{
 		boolean flag = this.zombieWidth > 0.0F && this.zombieHeight > 0.0F;
@@ -585,6 +608,7 @@ public class EntityZombie extends EntityMob
 	/**
 	 * Returns the Y Offset of this entity.
 	 */
+	@Override
 	public double getYOffset()
 	{
 		return this.isChild() ? 0.0D : -0.45D;
@@ -593,6 +617,7 @@ public class EntityZombie extends EntityMob
 	/**
 	 * Called when the mob's health reaches 0.
 	 */
+	@Override
 	public void onDeath(DamageSource cause)
 	{
 		super.onDeath(cause);

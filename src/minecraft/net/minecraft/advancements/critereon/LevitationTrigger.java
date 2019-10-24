@@ -21,11 +21,13 @@ public class LevitationTrigger implements ICriterionTrigger<LevitationTrigger.In
 	private static final ResourceLocation field_193164_a = new ResourceLocation("levitation");
 	private final Map<PlayerAdvancements, LevitationTrigger.Listeners> field_193165_b = Maps.<PlayerAdvancements, LevitationTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_193164_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<LevitationTrigger.Instance> p_192165_2_)
 	{
 		LevitationTrigger.Listeners levitationtrigger$listeners = this.field_193165_b.get(p_192165_1_);
@@ -39,6 +41,7 @@ public class LevitationTrigger implements ICriterionTrigger<LevitationTrigger.In
 		levitationtrigger$listeners.func_193449_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<LevitationTrigger.Instance> p_192164_2_)
 	{
 		LevitationTrigger.Listeners levitationtrigger$listeners = this.field_193165_b.get(p_192164_1_);
@@ -54,11 +57,13 @@ public class LevitationTrigger implements ICriterionTrigger<LevitationTrigger.In
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_193165_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public LevitationTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		DistancePredicate distancepredicate = DistancePredicate.func_193421_a(p_192166_1_.get("distance"));
@@ -96,7 +101,7 @@ public class LevitationTrigger implements ICriterionTrigger<LevitationTrigger.In
 			}
 			else
 			{
-				return this.field_193203_b.func_192514_a((float) p_193201_3_);
+				return this.field_193203_b.func_192514_a(p_193201_3_);
 			}
 		}
 	}
@@ -132,7 +137,7 @@ public class LevitationTrigger implements ICriterionTrigger<LevitationTrigger.In
 
 			for (ICriterionTrigger.Listener<LevitationTrigger.Instance> listener : this.field_193451_b)
 			{
-				if (((LevitationTrigger.Instance) listener.func_192158_a()).func_193201_a(p_193448_1_, p_193448_2_, p_193448_3_))
+				if (listener.func_192158_a().func_193201_a(p_193448_1_, p_193448_2_, p_193448_3_))
 				{
 					if (list == null)
 					{

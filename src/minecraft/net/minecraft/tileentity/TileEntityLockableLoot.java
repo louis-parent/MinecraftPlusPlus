@@ -82,6 +82,7 @@ public abstract class TileEntityLockableLoot extends TileEntityLockable implemen
 		}
 	}
 
+	@Override
 	public ResourceLocation getLootTable()
 	{
 		return this.lootTable;
@@ -96,6 +97,7 @@ public abstract class TileEntityLockableLoot extends TileEntityLockable implemen
 	/**
 	 * Returns true if this thing is named
 	 */
+	@Override
 	public boolean hasCustomName()
 	{
 		return this.field_190577_o != null && !this.field_190577_o.isEmpty();
@@ -109,16 +111,18 @@ public abstract class TileEntityLockableLoot extends TileEntityLockable implemen
 	/**
 	 * Returns the stack in the given slot.
 	 */
+	@Override
 	public ItemStack getStackInSlot(int index)
 	{
 		this.fillWithLoot((EntityPlayer) null);
-		return (ItemStack) this.func_190576_q().get(index);
+		return this.func_190576_q().get(index);
 	}
 
 	/**
 	 * Removes up to a specified number of items from an inventory slot and
 	 * returns them in a new stack.
 	 */
+	@Override
 	public ItemStack decrStackSize(int index, int count)
 	{
 		this.fillWithLoot((EntityPlayer) null);
@@ -135,6 +139,7 @@ public abstract class TileEntityLockableLoot extends TileEntityLockable implemen
 	/**
 	 * Removes a stack from the given slot and returns it.
 	 */
+	@Override
 	public ItemStack removeStackFromSlot(int index)
 	{
 		this.fillWithLoot((EntityPlayer) null);
@@ -145,6 +150,7 @@ public abstract class TileEntityLockableLoot extends TileEntityLockable implemen
 	 * Sets the given item stack to the specified slot in the inventory (can be
 	 * crafting or armor sections).
 	 */
+	@Override
 	public void setInventorySlotContents(int index, @Nullable ItemStack stack)
 	{
 		this.fillWithLoot((EntityPlayer) null);
@@ -162,6 +168,7 @@ public abstract class TileEntityLockableLoot extends TileEntityLockable implemen
 	 * Don't rename this method to canInteractWith due to conflicts with
 	 * Container
 	 */
+	@Override
 	public boolean isUsableByPlayer(EntityPlayer player)
 	{
 		if (this.world.getTileEntity(this.pos) != this)
@@ -170,14 +177,16 @@ public abstract class TileEntityLockableLoot extends TileEntityLockable implemen
 		}
 		else
 		{
-			return player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+			return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
 		}
 	}
 
+	@Override
 	public void openInventory(EntityPlayer player)
 	{
 	}
 
+	@Override
 	public void closeInventory(EntityPlayer player)
 	{
 	}
@@ -186,25 +195,30 @@ public abstract class TileEntityLockableLoot extends TileEntityLockable implemen
 	 * Returns true if automation is allowed to insert the given stack (ignoring
 	 * stack size) into the given slot. For guis use Slot.isItemValid
 	 */
+	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack)
 	{
 		return true;
 	}
 
+	@Override
 	public int getField(int id)
 	{
 		return 0;
 	}
 
+	@Override
 	public void setField(int id, int value)
 	{
 	}
 
+	@Override
 	public int getFieldCount()
 	{
 		return 0;
 	}
 
+	@Override
 	public void clear()
 	{
 		this.fillWithLoot((EntityPlayer) null);

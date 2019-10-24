@@ -68,6 +68,7 @@ public abstract class EntityAITarget extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		EntityLivingBase entitylivingbase = this.taskOwner.getAttackTarget();
@@ -139,6 +140,7 @@ public abstract class EntityAITarget extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.targetSearchStatus = 0;
@@ -149,6 +151,7 @@ public abstract class EntityAITarget extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.taskOwner.setAttackTarget((EntityLivingBase) null);
@@ -266,7 +269,7 @@ public abstract class EntityAITarget extends EntityAIBase
 			{
 				int i = pathpoint.xCoord - MathHelper.floor(target.posX);
 				int j = pathpoint.zCoord - MathHelper.floor(target.posZ);
-				return (double) (i * i + j * j) <= 2.25D;
+				return i * i + j * j <= 2.25D;
 			}
 		}
 	}

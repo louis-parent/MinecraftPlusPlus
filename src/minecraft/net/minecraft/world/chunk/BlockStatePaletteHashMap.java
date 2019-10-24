@@ -20,6 +20,7 @@ public class BlockStatePaletteHashMap implements IBlockStatePalette
 		this.statePaletteMap = new IntIdentityHashBiMap<IBlockState>(1 << bitsIn);
 	}
 
+	@Override
 	public int idFor(IBlockState state)
 	{
 		int i = this.statePaletteMap.getId(state);
@@ -37,6 +38,7 @@ public class BlockStatePaletteHashMap implements IBlockStatePalette
 		return i;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -47,6 +49,7 @@ public class BlockStatePaletteHashMap implements IBlockStatePalette
 		return this.statePaletteMap.get(indexKey);
 	}
 
+	@Override
 	public void read(PacketBuffer buf)
 	{
 		this.statePaletteMap.clear();
@@ -58,6 +61,7 @@ public class BlockStatePaletteHashMap implements IBlockStatePalette
 		}
 	}
 
+	@Override
 	public void write(PacketBuffer buf)
 	{
 		int i = this.statePaletteMap.size();
@@ -69,6 +73,7 @@ public class BlockStatePaletteHashMap implements IBlockStatePalette
 		}
 	}
 
+	@Override
 	public int getSerializedState()
 	{
 		int i = PacketBuffer.getVarIntSize(this.statePaletteMap.size());

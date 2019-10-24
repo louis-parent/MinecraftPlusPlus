@@ -30,23 +30,25 @@ public abstract class AbstractChestHorse extends AbstractHorse
 		this.field_190688_bE = false;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataManager.register(field_190698_bG, Boolean.valueOf(false));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((double) this.getModifiedMaxHealth());
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getModifiedMaxHealth());
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.17499999701976776D);
 		this.getEntityAttribute(JUMP_STRENGTH).setBaseValue(0.5D);
 	}
 
 	public boolean func_190695_dh()
 	{
-		return ((Boolean) this.dataManager.get(field_190698_bG)).booleanValue();
+		return this.dataManager.get(field_190698_bG).booleanValue();
 	}
 
 	public void setChested(boolean chested)
@@ -54,6 +56,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 		this.dataManager.set(field_190698_bG, Boolean.valueOf(chested));
 	}
 
+	@Override
 	protected int func_190686_di()
 	{
 		return this.func_190695_dh() ? 17 : super.func_190686_di();
@@ -63,11 +66,13 @@ public abstract class AbstractChestHorse extends AbstractHorse
 	 * Returns the Y offset from the entity's position for any entity riding
 	 * this one.
 	 */
+	@Override
 	public double getMountedYOffset()
 	{
 		return super.getMountedYOffset() - 0.25D;
 	}
 
+	@Override
 	protected SoundEvent getAngrySound()
 	{
 		super.getAngrySound();
@@ -77,6 +82,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 	/**
 	 * Called when the mob's health reaches 0.
 	 */
+	@Override
 	public void onDeath(DamageSource cause)
 	{
 		super.onDeath(cause);
@@ -101,6 +107,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -130,6 +137,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -155,6 +163,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 		this.updateHorseSlots();
 	}
 
+	@Override
 	public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn)
 	{
 		if (inventorySlot == 499)
@@ -177,6 +186,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 		return super.replaceItemInInventory(inventorySlot, itemStackIn);
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);

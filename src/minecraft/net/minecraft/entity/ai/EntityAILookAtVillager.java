@@ -18,6 +18,7 @@ public class EntityAILookAtVillager extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (!this.theGolem.world.isDaytime())
@@ -38,6 +39,7 @@ public class EntityAILookAtVillager extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return this.lookTime > 0;
@@ -46,6 +48,7 @@ public class EntityAILookAtVillager extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.lookTime = 400;
@@ -55,6 +58,7 @@ public class EntityAILookAtVillager extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.theGolem.setHoldingRose(false);
@@ -64,6 +68,7 @@ public class EntityAILookAtVillager extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		this.theGolem.getLookHelper().setLookPositionWithEntity(this.theVillager, 30.0F, 30.0F);

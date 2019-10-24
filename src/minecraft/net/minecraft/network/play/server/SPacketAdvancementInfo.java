@@ -44,6 +44,7 @@ public class SPacketAdvancementInfo implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.func_191981_a(this);
@@ -52,6 +53,7 @@ public class SPacketAdvancementInfo implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.field_192605_a = buf.readBoolean();
@@ -87,6 +89,7 @@ public class SPacketAdvancementInfo implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeBoolean(this.field_192605_a);
@@ -112,7 +115,7 @@ public class SPacketAdvancementInfo implements Packet<INetHandlerPlayClient>
 		for (Entry<ResourceLocation, AdvancementProgress> entry1 : this.field_192608_d.entrySet())
 		{
 			buf.func_192572_a(entry1.getKey());
-			((AdvancementProgress) entry1.getValue()).func_192104_a(buf);
+			entry1.getValue().func_192104_a(buf);
 		}
 	}
 

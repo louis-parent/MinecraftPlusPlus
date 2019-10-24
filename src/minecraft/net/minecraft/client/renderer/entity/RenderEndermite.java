@@ -13,6 +13,7 @@ public class RenderEndermite extends RenderLiving<EntityEndermite>
 		super(renderManagerIn, new ModelEnderMite(), 0.3F);
 	}
 
+	@Override
 	protected float getDeathMaxRotation(EntityEndermite entityLivingBaseIn)
 	{
 		return 180.0F;
@@ -22,6 +23,7 @@ public class RenderEndermite extends RenderLiving<EntityEndermite>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityEndermite entity)
 	{
 		return ENDERMITE_TEXTURES;

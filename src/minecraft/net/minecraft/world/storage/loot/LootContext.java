@@ -164,11 +164,13 @@ public class LootContext
 
 		public static class Serializer extends TypeAdapter<LootContext.EntityTarget>
 		{
+			@Override
 			public void write(JsonWriter p_write_1_, LootContext.EntityTarget p_write_2_) throws IOException
 			{
 				p_write_1_.value(p_write_2_.targetType);
 			}
 
+			@Override
 			public LootContext.EntityTarget read(JsonReader p_read_1_) throws IOException
 			{
 				return LootContext.EntityTarget.fromString(p_read_1_.nextString());

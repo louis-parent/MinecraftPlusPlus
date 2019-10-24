@@ -36,11 +36,13 @@ public class PropertyInteger extends PropertyHelper<Integer>
 		}
 	}
 
+	@Override
 	public Collection<Integer> getAllowedValues()
 	{
 		return this.allowedValues;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -58,6 +60,7 @@ public class PropertyInteger extends PropertyHelper<Integer>
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return 31 * super.hashCode() + this.allowedValues.hashCode();
@@ -68,6 +71,7 @@ public class PropertyInteger extends PropertyHelper<Integer>
 		return new PropertyInteger(name, min, max);
 	}
 
+	@Override
 	public Optional<Integer> parseValue(String value)
 	{
 		try
@@ -84,6 +88,7 @@ public class PropertyInteger extends PropertyHelper<Integer>
 	/**
 	 * Get the name for the given value.
 	 */
+	@Override
 	public String getName(Integer value)
 	{
 		return value.toString();

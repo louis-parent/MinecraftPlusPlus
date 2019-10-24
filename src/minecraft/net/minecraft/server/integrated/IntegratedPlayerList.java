@@ -25,6 +25,7 @@ public class IntegratedPlayerList extends PlayerList
 	/**
 	 * also stores the NBTTags if this is an intergratedPlayerList
 	 */
+	@Override
 	protected void writePlayerData(EntityPlayerMP playerIn)
 	{
 		if (playerIn.getName().equals(this.getServerInstance().getServerOwner()))
@@ -39,11 +40,13 @@ public class IntegratedPlayerList extends PlayerList
 	 * checks ban-lists, then white-lists, then space for the server. Returns
 	 * null on success, or an error message
 	 */
+	@Override
 	public String allowUserToConnect(SocketAddress address, GameProfile profile)
 	{
 		return profile.getName().equalsIgnoreCase(this.getServerInstance().getServerOwner()) && this.getPlayerByUsername(profile.getName()) != null ? "That name is already taken." : super.allowUserToConnect(address, profile);
 	}
 
+	@Override
 	public IntegratedServer getServerInstance()
 	{
 		return (IntegratedServer) super.getServerInstance();
@@ -53,6 +56,7 @@ public class IntegratedPlayerList extends PlayerList
 	 * On integrated servers, returns the host's player data to be written to
 	 * level.dat.
 	 */
+	@Override
 	public NBTTagCompound getHostPlayerData()
 	{
 		return this.hostPlayerData;

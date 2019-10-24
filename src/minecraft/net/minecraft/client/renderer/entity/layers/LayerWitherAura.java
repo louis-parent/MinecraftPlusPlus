@@ -19,6 +19,7 @@ public class LayerWitherAura implements LayerRenderer<EntityWither>
 		this.witherRenderer = witherRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntityWither entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		if (entitylivingbaseIn.isArmored())
@@ -27,7 +28,7 @@ public class LayerWitherAura implements LayerRenderer<EntityWither>
 			this.witherRenderer.bindTexture(WITHER_ARMOR);
 			GlStateManager.matrixMode(5890);
 			GlStateManager.loadIdentity();
-			float f = (float) entitylivingbaseIn.ticksExisted + partialTicks;
+			float f = entitylivingbaseIn.ticksExisted + partialTicks;
 			float f1 = MathHelper.cos(f * 0.02F) * 3.0F;
 			float f2 = f * 0.01F;
 			GlStateManager.translate(f1, f2, 0.0F);
@@ -50,6 +51,7 @@ public class LayerWitherAura implements LayerRenderer<EntityWither>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;

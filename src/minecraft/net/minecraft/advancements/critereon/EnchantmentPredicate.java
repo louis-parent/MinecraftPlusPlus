@@ -40,9 +40,9 @@ public class EnchantmentPredicate
 				return false;
 			}
 
-			int i = ((Integer) p_192463_1_.get(this.field_192467_b)).intValue();
+			int i = p_192463_1_.get(this.field_192467_b).intValue();
 
-			if (this.field_192468_c != null && !this.field_192468_c.func_192514_a((float) i))
+			if (this.field_192468_c != null && !this.field_192468_c.func_192514_a(i))
 			{
 				return false;
 			}
@@ -51,7 +51,7 @@ public class EnchantmentPredicate
 		{
 			for (Integer integer : p_192463_1_.values())
 			{
-				if (this.field_192468_c.func_192514_a((float) integer.intValue()))
+				if (this.field_192468_c.func_192514_a(integer.intValue()))
 				{
 					return true;
 				}

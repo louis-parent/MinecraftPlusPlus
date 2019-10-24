@@ -88,7 +88,7 @@ public class DebugRenderer
 
 	public static void func_191556_a(String p_191556_0_, int p_191556_1_, int p_191556_2_, int p_191556_3_, float p_191556_4_, int p_191556_5_)
 	{
-		renderDebugText(p_191556_0_, (double) p_191556_1_ + 0.5D, (double) p_191556_2_ + 0.5D, (double) p_191556_3_ + 0.5D, p_191556_4_, p_191556_5_);
+		renderDebugText(p_191556_0_, p_191556_1_ + 0.5D, p_191556_2_ + 0.5D, p_191556_3_ + 0.5D, p_191556_4_, p_191556_5_);
 	}
 
 	public static void renderDebugText(String str, double x, double y, double z, float partialTicks, int color)
@@ -99,16 +99,16 @@ public class DebugRenderer
 		{
 			FontRenderer fontrenderer = minecraft.fontRendererObj;
 			EntityPlayer entityplayer = minecraft.player;
-			double d0 = entityplayer.lastTickPosX + (entityplayer.posX - entityplayer.lastTickPosX) * (double) partialTicks;
-			double d1 = entityplayer.lastTickPosY + (entityplayer.posY - entityplayer.lastTickPosY) * (double) partialTicks;
-			double d2 = entityplayer.lastTickPosZ + (entityplayer.posZ - entityplayer.lastTickPosZ) * (double) partialTicks;
+			double d0 = entityplayer.lastTickPosX + (entityplayer.posX - entityplayer.lastTickPosX) * partialTicks;
+			double d1 = entityplayer.lastTickPosY + (entityplayer.posY - entityplayer.lastTickPosY) * partialTicks;
+			double d2 = entityplayer.lastTickPosZ + (entityplayer.posZ - entityplayer.lastTickPosZ) * partialTicks;
 			GlStateManager.pushMatrix();
 			GlStateManager.translate((float) (x - d0), (float) (y - d1) + 0.07F, (float) (z - d2));
 			GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
 			GlStateManager.scale(0.02F, -0.02F, 0.02F);
 			RenderManager rendermanager = minecraft.getRenderManager();
 			GlStateManager.rotate(-rendermanager.playerViewY, 0.0F, 1.0F, 0.0F);
-			GlStateManager.rotate((float) (rendermanager.options.thirdPersonView == 2 ? 1 : -1) * rendermanager.playerViewX, 1.0F, 0.0F, 0.0F);
+			GlStateManager.rotate((rendermanager.options.thirdPersonView == 2 ? 1 : -1) * rendermanager.playerViewX, 1.0F, 0.0F, 0.0F);
 			GlStateManager.disableLighting();
 			GlStateManager.enableTexture2D();
 			GlStateManager.enableDepth();

@@ -571,6 +571,7 @@ public final class ItemStack
 		return this.getItem().getUnlocalizedName(this);
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.stackSize + "x" + this.getItem().getUnlocalizedName() + "@" + this.itemDamage;
@@ -871,7 +872,7 @@ public final class ItemStack
 						if (attributemodifier.getID() == Item.ATTACK_DAMAGE_MODIFIER)
 						{
 							d0 = d0 + playerIn.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
-							d0 = d0 + (double) EnchantmentHelper.getModifierForCreature(this, EnumCreatureAttribute.UNDEFINED);
+							d0 = d0 + EnchantmentHelper.getModifierForCreature(this, EnumCreatureAttribute.UNDEFINED);
 							flag = true;
 						}
 						else if (attributemodifier.getID() == Item.ATTACK_SPEED_MODIFIER)
@@ -894,16 +895,16 @@ public final class ItemStack
 
 					if (flag)
 					{
-						list.add(" " + I18n.translateToLocalFormatted("attribute.modifier.equals." + attributemodifier.getOperation(), DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + (String) entry.getKey())));
+						list.add(" " + I18n.translateToLocalFormatted("attribute.modifier.equals." + attributemodifier.getOperation(), DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + entry.getKey())));
 					}
 					else if (d0 > 0.0D)
 					{
-						list.add(TextFormatting.BLUE + " " + I18n.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier.getOperation(), DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + (String) entry.getKey())));
+						list.add(TextFormatting.BLUE + " " + I18n.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier.getOperation(), DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + entry.getKey())));
 					}
 					else if (d0 < 0.0D)
 					{
 						d1 = d1 * -1.0D;
-						list.add(TextFormatting.RED + " " + I18n.translateToLocalFormatted("attribute.modifier.take." + attributemodifier.getOperation(), DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + (String) entry.getKey())));
+						list.add(TextFormatting.RED + " " + I18n.translateToLocalFormatted("attribute.modifier.take." + attributemodifier.getOperation(), DECIMALFORMAT.format(d1), I18n.translateToLocal("attribute.name." + entry.getKey())));
 					}
 				}
 			}
@@ -971,7 +972,7 @@ public final class ItemStack
 				list.add(I18n.translateToLocalFormatted("item.durability", this.getMaxDamage() - this.getItemDamage(), this.getMaxDamage()));
 			}
 
-			list.add(TextFormatting.DARK_GRAY + ((ResourceLocation) Item.REGISTRY.getNameForObject(this.item)).toString());
+			list.add(TextFormatting.DARK_GRAY + Item.REGISTRY.getNameForObject(this.item).toString());
 
 			if (this.hasTagCompound())
 			{
@@ -1025,7 +1026,7 @@ public final class ItemStack
 		NBTTagList nbttaglist = this.stackTagCompound.getTagList("ench", 10);
 		NBTTagCompound nbttagcompound = new NBTTagCompound();
 		nbttagcompound.setShort("id", (short) Enchantment.getEnchantmentID(ench));
-		nbttagcompound.setShort("lvl", (short) ((byte) level));
+		nbttagcompound.setShort("lvl", ((byte) level));
 		nbttaglist.appendTag(nbttagcompound);
 	}
 

@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 
 public class BiomeHellDecorator extends BiomeDecorator
 {
+	@Override
 	public void decorate(World worldIn, Random random, Biome biome, BlockPos pos)
 	{
 	}

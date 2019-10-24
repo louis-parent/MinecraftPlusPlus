@@ -26,6 +26,7 @@ public class CommandHelp extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "help";
@@ -34,6 +35,7 @@ public class CommandHelp extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 0;
@@ -42,11 +44,13 @@ public class CommandHelp extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.help.usage";
 	}
 
+	@Override
 	public List<String> getCommandAliases()
 	{
 		return Arrays.<String>asList("?");
@@ -55,6 +59,7 @@ public class CommandHelp extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (sender instanceof CommandBlockBaseLogic)
@@ -124,12 +129,13 @@ public class CommandHelp extends CommandBase
 		return server.getCommandManager().getCommands();
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		if (args.length == 1)
 		{
 			Set<String> set = this.getCommandMap(server).keySet();
-			return getListOfStringsMatchingLastWord(args, (String[]) set.toArray(new String[set.size()]));
+			return getListOfStringsMatchingLastWord(args, set.toArray(new String[set.size()]));
 		}
 		else
 		{

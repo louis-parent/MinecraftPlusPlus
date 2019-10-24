@@ -20,13 +20,14 @@ public class DebugRendererHeightMap implements DebugRenderer.IDebugRenderer
 		this.minecraft = minecraftIn;
 	}
 
+	@Override
 	public void render(float p_190060_1_, long p_190060_2_)
 	{
 		EntityPlayer entityplayer = this.minecraft.player;
 		World world = this.minecraft.world;
-		double d0 = entityplayer.lastTickPosX + (entityplayer.posX - entityplayer.lastTickPosX) * (double) p_190060_1_;
-		double d1 = entityplayer.lastTickPosY + (entityplayer.posY - entityplayer.lastTickPosY) * (double) p_190060_1_;
-		double d2 = entityplayer.lastTickPosZ + (entityplayer.posZ - entityplayer.lastTickPosZ) * (double) p_190060_1_;
+		double d0 = entityplayer.lastTickPosX + (entityplayer.posX - entityplayer.lastTickPosX) * p_190060_1_;
+		double d1 = entityplayer.lastTickPosY + (entityplayer.posY - entityplayer.lastTickPosY) * p_190060_1_;
+		double d2 = entityplayer.lastTickPosZ + (entityplayer.posZ - entityplayer.lastTickPosZ) * p_190060_1_;
 		GlStateManager.pushMatrix();
 		GlStateManager.enableBlend();
 		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
@@ -43,11 +44,11 @@ public class DebugRendererHeightMap implements DebugRenderer.IDebugRenderer
 
 			if (world.getBlockState(blockpos1.add(0, i, 0).down()) == Blocks.AIR.getDefaultState())
 			{
-				RenderGlobal.addChainedFilledBoxVertices(bufferbuilder, (double) ((float) blockpos1.getX() + 0.25F) - d0, (double) i - d1, (double) ((float) blockpos1.getZ() + 0.25F) - d2, (double) ((float) blockpos1.getX() + 0.75F) - d0, (double) i + 0.09375D - d1, (double) ((float) blockpos1.getZ() + 0.75F) - d2, 0.0F, 0.0F, 1.0F, 0.5F);
+				RenderGlobal.addChainedFilledBoxVertices(bufferbuilder, blockpos1.getX() + 0.25F - d0, i - d1, blockpos1.getZ() + 0.25F - d2, blockpos1.getX() + 0.75F - d0, i + 0.09375D - d1, blockpos1.getZ() + 0.75F - d2, 0.0F, 0.0F, 1.0F, 0.5F);
 			}
 			else
 			{
-				RenderGlobal.addChainedFilledBoxVertices(bufferbuilder, (double) ((float) blockpos1.getX() + 0.25F) - d0, (double) i - d1, (double) ((float) blockpos1.getZ() + 0.25F) - d2, (double) ((float) blockpos1.getX() + 0.75F) - d0, (double) i + 0.09375D - d1, (double) ((float) blockpos1.getZ() + 0.75F) - d2, 0.0F, 1.0F, 0.0F, 0.5F);
+				RenderGlobal.addChainedFilledBoxVertices(bufferbuilder, blockpos1.getX() + 0.25F - d0, i - d1, blockpos1.getZ() + 0.25F - d2, blockpos1.getX() + 0.75F - d0, i + 0.09375D - d1, blockpos1.getZ() + 0.75F - d2, 0.0F, 1.0F, 0.0F, 0.5F);
 			}
 		}
 

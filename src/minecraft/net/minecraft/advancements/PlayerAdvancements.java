@@ -98,7 +98,7 @@ public class PlayerAdvancements
 
 		for (Entry<Advancement, AdvancementProgress> entry : this.field_192758_f.entrySet())
 		{
-			if (((AdvancementProgress) entry.getValue()).func_192105_a())
+			if (entry.getValue().func_192105_a())
 			{
 				list.add(entry.getKey());
 				this.field_192761_i.add(entry.getKey());
@@ -155,11 +155,11 @@ public class PlayerAdvancements
 			}
 			catch (JsonParseException jsonparseexception)
 			{
-				field_192753_a.error("Couldn't parse player advancements in " + this.field_192757_e, (Throwable) jsonparseexception);
+				field_192753_a.error("Couldn't parse player advancements in " + this.field_192757_e, jsonparseexception);
 			}
 			catch (IOException ioexception)
 			{
-				field_192753_a.error("Couldn't access player advancements in " + this.field_192757_e, (Throwable) ioexception);
+				field_192753_a.error("Couldn't access player advancements in " + this.field_192757_e, ioexception);
 			}
 		}
 
@@ -178,7 +178,7 @@ public class PlayerAdvancements
 
 			if (advancementprogress.func_192108_b())
 			{
-				map.put(((Advancement) entry.getKey()).func_192067_g(), advancementprogress);
+				map.put(entry.getKey().func_192067_g(), advancementprogress);
 			}
 		}
 
@@ -193,7 +193,7 @@ public class PlayerAdvancements
 		}
 		catch (IOException ioexception)
 		{
-			field_192753_a.error("Couldn't save player advancements to " + this.field_192757_e, (Throwable) ioexception);
+			field_192753_a.error("Couldn't save player advancements to " + this.field_192757_e, ioexception);
 		}
 	}
 
@@ -260,7 +260,7 @@ public class PlayerAdvancements
 
 				if (criterionprogress != null && !criterionprogress.func_192151_a())
 				{
-					ICriterionInstance icriterioninstance = ((Criterion) entry.getValue()).func_192143_a();
+					ICriterionInstance icriterioninstance = entry.getValue().func_192143_a();
 
 					if (icriterioninstance != null)
 					{
@@ -286,7 +286,7 @@ public class PlayerAdvancements
 
 			if (criterionprogress != null && (criterionprogress.func_192151_a() || advancementprogress.func_192105_a()))
 			{
-				ICriterionInstance icriterioninstance = ((Criterion) entry.getValue()).func_192143_a();
+				ICriterionInstance icriterioninstance = entry.getValue().func_192143_a();
 
 				if (icriterioninstance != null)
 				{

@@ -7,11 +7,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class OptionsLowerCaseLanguage implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 816;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if (compound.hasKey("lang", 8))

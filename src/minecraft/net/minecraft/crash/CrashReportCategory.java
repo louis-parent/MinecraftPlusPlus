@@ -206,7 +206,7 @@ public class CrashReportCategory
 			for (StackTraceElement stacktraceelement : this.stackTrace)
 			{
 				builder.append("\n\tat ");
-				builder.append((Object) stacktraceelement);
+				builder.append(stacktraceelement);
 			}
 		}
 	}
@@ -221,6 +221,7 @@ public class CrashReportCategory
 		final int i = Block.getIdFromBlock(blockIn);
 		category.setDetail("Block type", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				try
@@ -235,6 +236,7 @@ public class CrashReportCategory
 		});
 		category.setDetail("Block data value", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				if (blockData < 0)
@@ -250,6 +252,7 @@ public class CrashReportCategory
 		});
 		category.setDetail("Block location", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return CrashReportCategory.getCoordinateInfo(pos);
@@ -261,6 +264,7 @@ public class CrashReportCategory
 	{
 		category.setDetail("Block", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return state.toString();
@@ -268,6 +272,7 @@ public class CrashReportCategory
 		});
 		category.setDetail("Block location", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return CrashReportCategory.getCoordinateInfo(pos);

@@ -21,6 +21,7 @@ public class SignStrictJSON implements IFixableData
 {
 	public static final Gson GSON_INSTANCE = (new GsonBuilder()).registerTypeAdapter(ITextComponent.class, new JsonDeserializer<ITextComponent>()
 	{
+		@Override
 		public ITextComponent deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			if (p_deserialize_1_.isJsonPrimitive())
@@ -55,11 +56,13 @@ public class SignStrictJSON implements IFixableData
 		}
 	}).create();
 
+	@Override
 	public int getFixVersion()
 	{
 		return 101;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("Sign".equals(compound.getString("id")))
@@ -84,7 +87,7 @@ public class SignStrictJSON implements IFixableData
 			{
 				try
 				{
-					itextcomponent = (ITextComponent) JsonUtils.gsonDeserialize(GSON_INSTANCE, s, ITextComponent.class, true);
+					itextcomponent = JsonUtils.gsonDeserialize(GSON_INSTANCE, s, ITextComponent.class, true);
 
 					if (itextcomponent == null)
 					{

@@ -37,6 +37,7 @@ public class EntitySmallFireball extends EntityFireball
 	/**
 	 * Called when this EntityFireball hits a block or entity.
 	 */
+	@Override
 	protected void onImpact(RayTraceResult result)
 	{
 		if (!this.world.isRemote)
@@ -82,6 +83,7 @@ public class EntitySmallFireball extends EntityFireball
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return false;
@@ -90,6 +92,7 @@ public class EntitySmallFireball extends EntityFireball
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		return false;

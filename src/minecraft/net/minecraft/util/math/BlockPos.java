@@ -61,7 +61,7 @@ public class BlockPos extends Vec3i
 	 */
 	public BlockPos add(double x, double y, double z)
 	{
-		return x == 0.0D && y == 0.0D && z == 0.0D ? this : new BlockPos((double) this.getX() + x, (double) this.getY() + y, (double) this.getZ() + z);
+		return x == 0.0D && y == 0.0D && z == 0.0D ? this : new BlockPos(this.getX() + x, this.getY() + y, this.getZ() + z);
 	}
 
 	/**
@@ -222,6 +222,7 @@ public class BlockPos extends Vec3i
 	/**
 	 * Calculate the cross product of this and the given Vector
 	 */
+	@Override
 	public BlockPos crossProduct(Vec3i vec)
 	{
 		return new BlockPos(this.getY() * vec.getZ() - this.getZ() * vec.getY(), this.getZ() * vec.getX() - this.getX() * vec.getZ(), this.getX() * vec.getY() - this.getY() * vec.getX());
@@ -232,7 +233,7 @@ public class BlockPos extends Vec3i
 	 */
 	public long toLong()
 	{
-		return ((long) this.getX() & X_MASK) << X_SHIFT | ((long) this.getY() & Y_MASK) << Y_SHIFT | ((long) this.getZ() & Z_MASK) << 0;
+		return (this.getX() & X_MASK) << X_SHIFT | (this.getY() & Y_MASK) << Y_SHIFT | (this.getZ() & Z_MASK) << 0;
 	}
 
 	/**
@@ -255,6 +256,7 @@ public class BlockPos extends Vec3i
 	{
 		return new Iterable<BlockPos>()
 		{
+			@Override
 			public Iterator<BlockPos> iterator()
 			{
 				return new AbstractIterator<BlockPos>()
@@ -264,6 +266,7 @@ public class BlockPos extends Vec3i
 					private int field_191536_d;
 					private int field_191537_e;
 
+					@Override
 					protected BlockPos computeNext()
 					{
 						if (this.field_191534_b)
@@ -276,7 +279,7 @@ public class BlockPos extends Vec3i
 						}
 						else if (this.field_191535_c == p_191532_3_ && this.field_191536_d == p_191532_4_ && this.field_191537_e == p_191532_5_)
 						{
-							return (BlockPos) this.endOfData();
+							return this.endOfData();
 						}
 						else
 						{
@@ -326,12 +329,14 @@ public class BlockPos extends Vec3i
 	{
 		return new Iterable<BlockPos.MutableBlockPos>()
 		{
+			@Override
 			public Iterator<BlockPos.MutableBlockPos> iterator()
 			{
 				return new AbstractIterator<BlockPos.MutableBlockPos>()
 				{
 					private BlockPos.MutableBlockPos theBlockPos;
 
+					@Override
 					protected BlockPos.MutableBlockPos computeNext()
 					{
 						if (this.theBlockPos == null)
@@ -341,7 +346,7 @@ public class BlockPos extends Vec3i
 						}
 						else if (this.theBlockPos.x == p_191531_3_ && this.theBlockPos.y == p_191531_4_ && this.theBlockPos.z == p_191531_5_)
 						{
-							return (BlockPos.MutableBlockPos) this.endOfData();
+							return this.endOfData();
 						}
 						else
 						{
@@ -393,36 +398,43 @@ public class BlockPos extends Vec3i
 			this.z = z_;
 		}
 
+		@Override
 		public BlockPos add(double x, double y, double z)
 		{
 			return super.add(x, y, z).toImmutable();
 		}
 
+		@Override
 		public BlockPos add(int x, int y, int z)
 		{
 			return super.add(x, y, z).toImmutable();
 		}
 
+		@Override
 		public BlockPos offset(EnumFacing facing, int n)
 		{
 			return super.offset(facing, n).toImmutable();
 		}
 
+		@Override
 		public BlockPos func_190942_a(Rotation p_190942_1_)
 		{
 			return super.func_190942_a(p_190942_1_).toImmutable();
 		}
 
+		@Override
 		public int getX()
 		{
 			return this.x;
 		}
 
+		@Override
 		public int getY()
 		{
 			return this.y;
 		}
 
+		@Override
 		public int getZ()
 		{
 			return this.z;
@@ -466,6 +478,7 @@ public class BlockPos extends Vec3i
 			this.y = yIn;
 		}
 
+		@Override
 		public BlockPos toImmutable()
 		{
 			return new BlockPos(this);
@@ -530,6 +543,7 @@ public class BlockPos extends Vec3i
 			}
 		}
 
+		@Override
 		public BlockPos.PooledMutableBlockPos setPos(int xIn, int yIn, int zIn)
 		{
 			if (this.released)
@@ -541,26 +555,31 @@ public class BlockPos extends Vec3i
 			return (BlockPos.PooledMutableBlockPos) super.setPos(xIn, yIn, zIn);
 		}
 
+		@Override
 		public BlockPos.PooledMutableBlockPos setPos(Entity entityIn)
 		{
 			return (BlockPos.PooledMutableBlockPos) super.setPos(entityIn);
 		}
 
+		@Override
 		public BlockPos.PooledMutableBlockPos setPos(double xIn, double yIn, double zIn)
 		{
 			return (BlockPos.PooledMutableBlockPos) super.setPos(xIn, yIn, zIn);
 		}
 
+		@Override
 		public BlockPos.PooledMutableBlockPos setPos(Vec3i vec)
 		{
 			return (BlockPos.PooledMutableBlockPos) super.setPos(vec);
 		}
 
+		@Override
 		public BlockPos.PooledMutableBlockPos move(EnumFacing facing)
 		{
 			return (BlockPos.PooledMutableBlockPos) super.move(facing);
 		}
 
+		@Override
 		public BlockPos.PooledMutableBlockPos move(EnumFacing facing, int p_189534_2_)
 		{
 			return (BlockPos.PooledMutableBlockPos) super.move(facing, p_189534_2_);

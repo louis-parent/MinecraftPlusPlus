@@ -49,10 +49,10 @@ public class TextureAtlasSprite
 		this.originX = originInX;
 		this.originY = originInY;
 		this.rotated = rotatedIn;
-		float f = (float) (0.009999999776482582D / (double) inX);
-		float f1 = (float) (0.009999999776482582D / (double) inY);
-		this.minU = (float) originInX / (float) ((double) inX) + f;
-		this.maxU = (float) (originInX + this.width) / (float) ((double) inX) - f;
+		float f = (float) (0.009999999776482582D / inX);
+		float f1 = (float) (0.009999999776482582D / inY);
+		this.minU = originInX / (float) (inX) + f;
+		this.maxU = (originInX + this.width) / (float) (inX) - f;
 		this.minV = (float) originInY / (float) inY + f1;
 		this.maxV = (float) (originInY + this.height) / (float) inY - f1;
 	}
@@ -246,7 +246,7 @@ public class TextureAtlasSprite
 
 	private int interpolateColor(double p_188535_1_, int p_188535_3_, int p_188535_4_)
 	{
-		return (int) (p_188535_1_ * (double) p_188535_3_ + (1.0D - p_188535_1_) * (double) p_188535_4_);
+		return (int) (p_188535_1_ * p_188535_3_ + (1.0D - p_188535_1_) * p_188535_4_);
 	}
 
 	public int[][] getFrameTextureData(int index)
@@ -356,6 +356,7 @@ public class TextureAtlasSprite
 					crashreportcategory.addCrashSection("Frame index", Integer.valueOf(i));
 					crashreportcategory.setDetail("Frame sizes", new ICrashReportDetail<String>()
 					{
+						@Override
 						public String call() throws Exception
 						{
 							StringBuilder stringbuilder = new StringBuilder();
@@ -433,6 +434,7 @@ public class TextureAtlasSprite
 		this.tickCounter = 0;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "TextureAtlasSprite{name='" + this.iconName + '\'' + ", frameCount=" + this.framesTextureData.size() + ", rotated=" + this.rotated + ", x=" + this.originX + ", y=" + this.originY + ", height=" + this.height + ", width=" + this.width + ", u0=" + this.minU + ", u1=" + this.maxU + ", v0=" + this.minV + ", v1=" + this.maxV + '}';

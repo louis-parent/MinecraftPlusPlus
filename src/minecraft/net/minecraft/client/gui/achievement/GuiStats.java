@@ -57,6 +57,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.screenTitle = I18n.format("gui.stats");
@@ -67,6 +68,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 	/**
 	 * Handles mouse input.
 	 */
+	@Override
 	public void handleMouseInput() throws IOException
 	{
 		super.handleMouseInput();
@@ -117,6 +119,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.enabled)
@@ -151,13 +154,14 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		if (this.doesGuiPauseGame)
 		{
 			this.drawDefaultBackground();
 			this.drawCenteredString(this.fontRendererObj, I18n.format("multiplayer.downloadingStats"), this.width / 2, this.height / 2, 16777215);
-			this.drawCenteredString(this.fontRendererObj, LOADING_STRINGS[(int) (Minecraft.getSystemTime() / 150L % (long) LOADING_STRINGS.length)], this.width / 2, this.height / 2 + this.fontRendererObj.FONT_HEIGHT * 2, 16777215);
+			this.drawCenteredString(this.fontRendererObj, LOADING_STRINGS[(int) (Minecraft.getSystemTime() / 150L % LOADING_STRINGS.length)], this.width / 2, this.height / 2 + this.fontRendererObj.FONT_HEIGHT * 2, 16777215);
 		}
 		else
 		{
@@ -167,6 +171,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 		}
 	}
 
+	@Override
 	public void func_193026_g()
 	{
 		if (this.doesGuiPauseGame)
@@ -182,6 +187,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 	 * Returns true if this GUI should pause the game when it is displayed in
 	 * single-player
 	 */
+	@Override
 	public boolean doesGuiPauseGame()
 	{
 		return !this.doesGuiPauseGame;
@@ -219,10 +225,10 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.pos((double) (p_146527_1_ + 0), (double) (p_146527_2_ + 18), (double) this.zLevel).tex((double) ((float) (p_146527_3_ + 0) * 0.0078125F), (double) ((float) (p_146527_4_ + 18) * 0.0078125F)).endVertex();
-		bufferbuilder.pos((double) (p_146527_1_ + 18), (double) (p_146527_2_ + 18), (double) this.zLevel).tex((double) ((float) (p_146527_3_ + 18) * 0.0078125F), (double) ((float) (p_146527_4_ + 18) * 0.0078125F)).endVertex();
-		bufferbuilder.pos((double) (p_146527_1_ + 18), (double) (p_146527_2_ + 0), (double) this.zLevel).tex((double) ((float) (p_146527_3_ + 18) * 0.0078125F), (double) ((float) (p_146527_4_ + 0) * 0.0078125F)).endVertex();
-		bufferbuilder.pos((double) (p_146527_1_ + 0), (double) (p_146527_2_ + 0), (double) this.zLevel).tex((double) ((float) (p_146527_3_ + 0) * 0.0078125F), (double) ((float) (p_146527_4_ + 0) * 0.0078125F)).endVertex();
+		bufferbuilder.pos(p_146527_1_ + 0, p_146527_2_ + 18, this.zLevel).tex((p_146527_3_ + 0) * 0.0078125F, (p_146527_4_ + 18) * 0.0078125F).endVertex();
+		bufferbuilder.pos(p_146527_1_ + 18, p_146527_2_ + 18, this.zLevel).tex((p_146527_3_ + 18) * 0.0078125F, (p_146527_4_ + 18) * 0.0078125F).endVertex();
+		bufferbuilder.pos(p_146527_1_ + 18, p_146527_2_ + 0, this.zLevel).tex((p_146527_3_ + 18) * 0.0078125F, (p_146527_4_ + 0) * 0.0078125F).endVertex();
+		bufferbuilder.pos(p_146527_1_ + 0, p_146527_2_ + 0, this.zLevel).tex((p_146527_3_ + 0) * 0.0078125F, (p_146527_4_ + 0) * 0.0078125F).endVertex();
 		tessellator.draw();
 	}
 
@@ -241,30 +247,36 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			this.setHasListHeader(true, 20);
 		}
 
+		@Override
 		protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 		{
 		}
 
+		@Override
 		protected boolean isSelected(int slotIndex)
 		{
 			return false;
 		}
 
+		@Override
 		public int getListWidth()
 		{
 			return 375;
 		}
 
+		@Override
 		protected int getScrollBarX()
 		{
 			return this.width / 2 + 140;
 		}
 
+		@Override
 		protected void drawBackground()
 		{
 			GuiStats.this.drawDefaultBackground();
 		}
 
+		@Override
 		protected void drawListHeader(int insideLeft, int insideTop, Tessellator tessellatorIn)
 		{
 			if (!Mouse.isButtonDown(0))
@@ -348,6 +360,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			}
 		}
 
+		@Override
 		protected void clickedHeader(int p_148132_1_, int p_148132_2_)
 		{
 			this.headerPressed = -1;
@@ -380,6 +393,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			}
 		}
 
+		@Override
 		protected final int getSize()
 		{
 			return this.statsHolder.size();
@@ -406,6 +420,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			}
 		}
 
+		@Override
 		protected void renderDecorations(int mouseXIn, int mouseYIn)
 		{
 			if (mouseYIn >= this.top && mouseYIn <= this.bottom)
@@ -461,7 +476,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 						int l = mouseYIn - 12;
 						int i1 = GuiStats.this.fontRendererObj.getStringWidth(s);
 						GuiStats.this.drawGradientRect(k - 3, l - 3, k + i1 + 3, l + 8 + 3, -1073741824, -1073741824);
-						GuiStats.this.fontRendererObj.drawStringWithShadow(s, (float) k, (float) l, -1);
+						GuiStats.this.fontRendererObj.drawStringWithShadow(s, k, l, -1);
 					}
 				}
 			}
@@ -482,7 +497,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 					int j = p_148213_3_ - 12;
 					int k = GuiStats.this.fontRendererObj.getStringWidth(s1);
 					GuiStats.this.drawGradientRect(i - 3, j - 3, i + k + 3, j + 8 + 3, -1073741824, -1073741824);
-					GuiStats.this.fontRendererObj.drawStringWithShadow(s1, (float) i, (float) j, -1);
+					GuiStats.this.fontRendererObj.drawStringWithShadow(s1, i, j, -1);
 				}
 			}
 		}
@@ -549,6 +564,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
 			this.statSorter = new Comparator<StatCrafting>()
 			{
+				@Override
 				public int compare(StatCrafting p_compare_1_, StatCrafting p_compare_2_)
 				{
 					Item item1 = p_compare_1_.getItem();
@@ -608,6 +624,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			};
 		}
 
+		@Override
 		protected void drawListHeader(int insideLeft, int insideTop, Tessellator tessellatorIn)
 		{
 			super.drawListHeader(insideLeft, insideTop, tessellatorIn);
@@ -658,6 +675,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			}
 		}
 
+		@Override
 		protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 		{
 			StatCrafting statcrafting = this.getSlotStat(p_192637_1_);
@@ -670,6 +688,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			this.renderStat(StatList.getDroppedObjectStats(item), p_192637_2_ + 315, p_192637_3_, p_192637_1_ % 2 == 0);
 		}
 
+		@Override
 		protected String getHeaderDescriptionId(int p_148210_1_)
 		{
 			if (p_148210_1_ == 0)
@@ -699,30 +718,36 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			this.func_193651_b(false);
 		}
 
+		@Override
 		protected int getSize()
 		{
 			return StatList.BASIC_STATS.size();
 		}
 
+		@Override
 		protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 		{
 		}
 
+		@Override
 		protected boolean isSelected(int slotIndex)
 		{
 			return false;
 		}
 
+		@Override
 		protected int getContentHeight()
 		{
 			return this.getSize() * 10;
 		}
 
+		@Override
 		protected void drawBackground()
 		{
 			GuiStats.this.drawDefaultBackground();
 		}
 
+		@Override
 		protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 		{
 			StatBase statbase = StatList.BASIC_STATS.get(p_192637_1_);
@@ -773,6 +798,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
 			this.statSorter = new Comparator<StatCrafting>()
 			{
+				@Override
 				public int compare(StatCrafting p_compare_1_, StatCrafting p_compare_2_)
 				{
 					Item item1 = p_compare_1_.getItem();
@@ -834,6 +860,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			};
 		}
 
+		@Override
 		protected void drawListHeader(int insideLeft, int insideTop, Tessellator tessellatorIn)
 		{
 			super.drawListHeader(insideLeft, insideTop, tessellatorIn);
@@ -884,6 +911,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			}
 		}
 
+		@Override
 		protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 		{
 			StatCrafting statcrafting = this.getSlotStat(p_192637_1_);
@@ -896,6 +924,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			this.renderStat(StatList.getDroppedObjectStats(item), p_192637_2_ + 315, p_192637_3_, p_192637_1_ % 2 == 0);
 		}
 
+		@Override
 		protected String getHeaderDescriptionId(int p_148210_1_)
 		{
 			if (p_148210_1_ == 1)
@@ -935,30 +964,36 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 			}
 		}
 
+		@Override
 		protected int getSize()
 		{
 			return this.mobs.size();
 		}
 
+		@Override
 		protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 		{
 		}
 
+		@Override
 		protected boolean isSelected(int slotIndex)
 		{
 			return false;
 		}
 
+		@Override
 		protected int getContentHeight()
 		{
 			return this.getSize() * GuiStats.this.fontRendererObj.FONT_HEIGHT * 4;
 		}
 
+		@Override
 		protected void drawBackground()
 		{
 			GuiStats.this.drawDefaultBackground();
 		}
 
+		@Override
 		protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 		{
 			EntityList.EntityEggInfo entitylist$entityegginfo = this.mobs.get(p_192637_1_);

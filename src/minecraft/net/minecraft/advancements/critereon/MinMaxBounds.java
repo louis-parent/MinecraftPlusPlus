@@ -33,13 +33,13 @@ public class MinMaxBounds
 
 	public boolean func_192513_a(double p_192513_1_)
 	{
-		if (this.field_192517_b != null && (double) (this.field_192517_b.floatValue() * this.field_192517_b.floatValue()) > p_192513_1_)
+		if (this.field_192517_b != null && this.field_192517_b.floatValue() * this.field_192517_b.floatValue() > p_192513_1_)
 		{
 			return false;
 		}
 		else
 		{
-			return this.field_192518_c == null || (double) (this.field_192518_c.floatValue() * this.field_192518_c.floatValue()) >= p_192513_1_;
+			return this.field_192518_c == null || this.field_192518_c.floatValue() * this.field_192518_c.floatValue() >= p_192513_1_;
 		}
 	}
 

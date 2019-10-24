@@ -16,6 +16,7 @@ public abstract class NBTBase
 
 	abstract void read(DataInput input, int depth, NBTSizeTracker sizeTracker) throws IOException;
 
+	@Override
 	public abstract String toString();
 
 	/**
@@ -138,11 +139,13 @@ public abstract class NBTBase
 		return false;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		return p_equals_1_ instanceof NBTBase && this.getId() == ((NBTBase) p_equals_1_).getId();
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.getId();

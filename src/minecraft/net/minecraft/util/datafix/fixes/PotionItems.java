@@ -7,11 +7,13 @@ public class PotionItems implements IFixableData
 {
 	private static final String[] POTION_IDS = new String[128];
 
+	@Override
 	public int getFixVersion()
 	{
 		return 102;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("minecraft:potion".equals(compound.getString("id")))

@@ -16,6 +16,7 @@ public class EntityAITradePlayer extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (!this.villager.isEntityAlive())
@@ -56,6 +57,7 @@ public class EntityAITradePlayer extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.villager.getNavigator().clearPathEntity();
@@ -64,6 +66,7 @@ public class EntityAITradePlayer extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.villager.setCustomer((EntityPlayer) null);

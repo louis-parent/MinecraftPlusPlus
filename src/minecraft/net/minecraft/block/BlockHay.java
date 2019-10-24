@@ -20,6 +20,7 @@ public class BlockHay extends BlockRotatedPillar
 	/**
 	 * Block's chance to react to a living entity falling on it.
 	 */
+	@Override
 	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
 	{
 		entityIn.fall(fallDistance, 0.2F);

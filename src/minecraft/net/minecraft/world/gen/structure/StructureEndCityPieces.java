@@ -31,10 +31,12 @@ public class StructureEndCityPieces
 	private static final PlacementSettings INSERT = (new PlacementSettings()).setIgnoreEntities(true).setReplacedBlock(Blocks.AIR);
 	private static final StructureEndCityPieces.IGenerator HOUSE_TOWER_GENERATOR = new StructureEndCityPieces.IGenerator()
 	{
+		@Override
 		public void init()
 		{
 		}
 
+		@Override
 		public boolean func_191086_a(TemplateManager p_191086_1_, int p_191086_2_, StructureEndCityPieces.CityTemplate p_191086_3_, BlockPos p_191086_4_, List<StructureComponent> p_191086_5_, Random p_191086_6_)
 		{
 			if (p_191086_2_ > 8)
@@ -72,10 +74,12 @@ public class StructureEndCityPieces
 	private static final List<Tuple<Rotation, BlockPos>> TOWER_BRIDGES = Lists.newArrayList(new Tuple(Rotation.NONE, new BlockPos(1, -1, 0)), new Tuple(Rotation.CLOCKWISE_90, new BlockPos(6, -1, 1)), new Tuple(Rotation.COUNTERCLOCKWISE_90, new BlockPos(0, -1, 5)), new Tuple(Rotation.CLOCKWISE_180, new BlockPos(5, -1, 6)));
 	private static final StructureEndCityPieces.IGenerator TOWER_GENERATOR = new StructureEndCityPieces.IGenerator()
 	{
+		@Override
 		public void init()
 		{
 		}
 
+		@Override
 		public boolean func_191086_a(TemplateManager p_191086_1_, int p_191086_2_, StructureEndCityPieces.CityTemplate p_191086_3_, BlockPos p_191086_4_, List<StructureComponent> p_191086_5_, Random p_191086_6_)
 		{
 			Rotation rotation = p_191086_3_.placeSettings.getRotation();
@@ -124,11 +128,13 @@ public class StructureEndCityPieces
 	{
 		public boolean shipCreated;
 
+		@Override
 		public void init()
 		{
 			this.shipCreated = false;
 		}
 
+		@Override
 		public boolean func_191086_a(TemplateManager p_191086_1_, int p_191086_2_, StructureEndCityPieces.CityTemplate p_191086_3_, BlockPos p_191086_4_, List<StructureComponent> p_191086_5_, Random p_191086_6_)
 		{
 			Rotation rotation = p_191086_3_.placeSettings.getRotation();
@@ -177,10 +183,12 @@ public class StructureEndCityPieces
 	private static final List<Tuple<Rotation, BlockPos>> FAT_TOWER_BRIDGES = Lists.newArrayList(new Tuple(Rotation.NONE, new BlockPos(4, -1, 0)), new Tuple(Rotation.CLOCKWISE_90, new BlockPos(12, -1, 4)), new Tuple(Rotation.COUNTERCLOCKWISE_90, new BlockPos(0, -1, 8)), new Tuple(Rotation.CLOCKWISE_180, new BlockPos(8, -1, 12)));
 	private static final StructureEndCityPieces.IGenerator FAT_TOWER_GENERATOR = new StructureEndCityPieces.IGenerator()
 	{
+		@Override
 		public void init()
 		{
 		}
 
+		@Override
 		public boolean func_191086_a(TemplateManager p_191086_1_, int p_191086_2_, StructureEndCityPieces.CityTemplate p_191086_3_, BlockPos p_191086_4_, List<StructureComponent> p_191086_5_, Random p_191086_6_)
 		{
 			Rotation rotation = p_191086_3_.placeSettings.getRotation();
@@ -303,6 +311,7 @@ public class StructureEndCityPieces
 			this.setup(template, this.templatePosition, placementsettings);
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -311,6 +320,7 @@ public class StructureEndCityPieces
 			tagCompound.setBoolean("OW", this.overwrite);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -320,6 +330,7 @@ public class StructureEndCityPieces
 			this.func_191085_a(p_143011_2_);
 		}
 
+		@Override
 		protected void handleDataMarker(String p_186175_1_, BlockPos p_186175_2_, World p_186175_3_, Random p_186175_4_, StructureBoundingBox p_186175_5_)
 		{
 			if (p_186175_1_.startsWith("Chest"))
@@ -339,7 +350,7 @@ public class StructureEndCityPieces
 			else if (p_186175_1_.startsWith("Sentry"))
 			{
 				EntityShulker entityshulker = new EntityShulker(p_186175_3_);
-				entityshulker.setPosition((double) p_186175_2_.getX() + 0.5D, (double) p_186175_2_.getY() + 0.5D, (double) p_186175_2_.getZ() + 0.5D);
+				entityshulker.setPosition(p_186175_2_.getX() + 0.5D, p_186175_2_.getY() + 0.5D, p_186175_2_.getZ() + 0.5D);
 				entityshulker.setAttachmentPos(p_186175_2_);
 				p_186175_3_.spawnEntityInWorld(entityshulker);
 			}

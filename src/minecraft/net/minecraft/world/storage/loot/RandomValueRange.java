@@ -54,11 +54,12 @@ public class RandomValueRange
 
 	public boolean isInRange(int value)
 	{
-		return (float) value <= this.max && (float) value >= this.min;
+		return value <= this.max && value >= this.min;
 	}
 
 	public static class Serializer implements JsonDeserializer<RandomValueRange>, JsonSerializer<RandomValueRange>
 	{
+		@Override
 		public RandomValueRange deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			if (JsonUtils.isNumber(p_deserialize_1_))
@@ -74,6 +75,7 @@ public class RandomValueRange
 			}
 		}
 
+		@Override
 		public JsonElement serialize(RandomValueRange p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			if (p_serialize_1_.min == p_serialize_1_.max)

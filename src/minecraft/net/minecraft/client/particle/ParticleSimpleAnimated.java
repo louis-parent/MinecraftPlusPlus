@@ -46,9 +46,9 @@ public class ParticleSimpleAnimated extends Particle
 
 	public void setColor(int p_187146_1_)
 	{
-		float f = (float) ((p_187146_1_ & 16711680) >> 16) / 255.0F;
-		float f1 = (float) ((p_187146_1_ & 65280) >> 8) / 255.0F;
-		float f2 = (float) ((p_187146_1_ & 255) >> 0) / 255.0F;
+		float f = ((p_187146_1_ & 16711680) >> 16) / 255.0F;
+		float f1 = ((p_187146_1_ & 65280) >> 8) / 255.0F;
+		float f2 = ((p_187146_1_ & 255) >> 0) / 255.0F;
 		float f3 = 1.0F;
 		this.setRBGColorF(f * 1.0F, f1 * 1.0F, f2 * 1.0F);
 	}
@@ -59,17 +59,19 @@ public class ParticleSimpleAnimated extends Particle
 	 */
 	public void setColorFade(int rgb)
 	{
-		this.fadeTargetRed = (float) ((rgb & 16711680) >> 16) / 255.0F;
-		this.fadeTargetGreen = (float) ((rgb & 65280) >> 8) / 255.0F;
-		this.fadeTargetBlue = (float) ((rgb & 255) >> 0) / 255.0F;
+		this.fadeTargetRed = ((rgb & 16711680) >> 16) / 255.0F;
+		this.fadeTargetGreen = ((rgb & 65280) >> 8) / 255.0F;
+		this.fadeTargetBlue = ((rgb & 255) >> 0) / 255.0F;
 		this.fadingColor = true;
 	}
 
+	@Override
 	public boolean isTransparent()
 	{
 		return true;
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -83,7 +85,7 @@ public class ParticleSimpleAnimated extends Particle
 
 		if (this.particleAge > this.particleMaxAge / 2)
 		{
-			this.setAlphaF(1.0F - ((float) this.particleAge - (float) (this.particleMaxAge / 2)) / (float) this.particleMaxAge);
+			this.setAlphaF(1.0F - ((float) this.particleAge - (float) (this.particleMaxAge / 2)) / this.particleMaxAge);
 
 			if (this.fadingColor)
 			{
@@ -94,11 +96,11 @@ public class ParticleSimpleAnimated extends Particle
 		}
 
 		this.setParticleTextureIndex(this.textureIdx + (this.numAgingFrames - 1 - this.particleAge * this.numAgingFrames / this.particleMaxAge));
-		this.motionY += (double) this.yAccel;
+		this.motionY += this.yAccel;
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
-		this.motionX *= (double) this.field_191239_M;
-		this.motionY *= (double) this.field_191239_M;
-		this.motionZ *= (double) this.field_191239_M;
+		this.motionX *= this.field_191239_M;
+		this.motionY *= this.field_191239_M;
+		this.motionZ *= this.field_191239_M;
 
 		if (this.isCollided)
 		{
@@ -107,6 +109,7 @@ public class ParticleSimpleAnimated extends Particle
 		}
 	}
 
+	@Override
 	public int getBrightnessForRender(float p_189214_1_)
 	{
 		return 15728880;

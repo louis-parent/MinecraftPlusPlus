@@ -12,6 +12,7 @@ public class EntityNotFoundException extends CommandException
 		super(message, args);
 	}
 
+	@Override
 	public synchronized Throwable fillInStackTrace()
 	{
 		return this;

@@ -37,6 +37,7 @@ public class EntityBat extends EntityAmbientCreature
 		this.setIsBatHanging(true);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -46,6 +47,7 @@ public class EntityBat extends EntityAmbientCreature
 	/**
 	 * Returns the volume for the sounds this mob makes.
 	 */
+	@Override
 	protected float getSoundVolume()
 	{
 		return 0.1F;
@@ -54,22 +56,26 @@ public class EntityBat extends EntityAmbientCreature
 	/**
 	 * Gets the pitch of living sounds in living entities.
 	 */
+	@Override
 	protected float getSoundPitch()
 	{
 		return super.getSoundPitch() * 0.95F;
 	}
 
+	@Override
 	@Nullable
 	public SoundEvent getAmbientSound()
 	{
 		return this.getIsBatHanging() && this.rand.nextInt(4) != 0 ? null : SoundEvents.ENTITY_BAT_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_BAT_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_BAT_DEATH;
@@ -79,19 +85,23 @@ public class EntityBat extends EntityAmbientCreature
 	 * Returns true if this entity should push and be pushed by other entities
 	 * when colliding.
 	 */
+	@Override
 	public boolean canBePushed()
 	{
 		return false;
 	}
 
+	@Override
 	protected void collideWithEntity(Entity entityIn)
 	{
 	}
 
+	@Override
 	protected void collideWithNearbyEntities()
 	{
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -100,12 +110,12 @@ public class EntityBat extends EntityAmbientCreature
 
 	public boolean getIsBatHanging()
 	{
-		return (((Byte) this.dataManager.get(HANGING)).byteValue() & 1) != 0;
+		return (this.dataManager.get(HANGING).byteValue() & 1) != 0;
 	}
 
 	public void setIsBatHanging(boolean isHanging)
 	{
-		byte b0 = ((Byte) this.dataManager.get(HANGING)).byteValue();
+		byte b0 = this.dataManager.get(HANGING).byteValue();
 
 		if (isHanging)
 		{
@@ -120,6 +130,7 @@ public class EntityBat extends EntityAmbientCreature
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -129,7 +140,7 @@ public class EntityBat extends EntityAmbientCreature
 			this.motionX = 0.0D;
 			this.motionY = 0.0D;
 			this.motionZ = 0.0D;
-			this.posY = (double) MathHelper.floor(this.posY) + 1.0D - (double) this.height;
+			this.posY = MathHelper.floor(this.posY) + 1.0D - this.height;
 		}
 		else
 		{
@@ -137,6 +148,7 @@ public class EntityBat extends EntityAmbientCreature
 		}
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		super.updateAITasks();
@@ -149,7 +161,7 @@ public class EntityBat extends EntityAmbientCreature
 			{
 				if (this.rand.nextInt(200) == 0)
 				{
-					this.rotationYawHead = (float) this.rand.nextInt(360);
+					this.rotationYawHead = this.rand.nextInt(360);
 				}
 
 				if (this.world.getNearestPlayerNotCreative(this, 4.0D) != null)
@@ -171,14 +183,14 @@ public class EntityBat extends EntityAmbientCreature
 				this.spawnPosition = null;
 			}
 
-			if (this.spawnPosition == null || this.rand.nextInt(30) == 0 || this.spawnPosition.distanceSq((double) ((int) this.posX), (double) ((int) this.posY), (double) ((int) this.posZ)) < 4.0D)
+			if (this.spawnPosition == null || this.rand.nextInt(30) == 0 || this.spawnPosition.distanceSq(((int) this.posX), ((int) this.posY), ((int) this.posZ)) < 4.0D)
 			{
 				this.spawnPosition = new BlockPos((int) this.posX + this.rand.nextInt(7) - this.rand.nextInt(7), (int) this.posY + this.rand.nextInt(6) - 2, (int) this.posZ + this.rand.nextInt(7) - this.rand.nextInt(7));
 			}
 
-			double d0 = (double) this.spawnPosition.getX() + 0.5D - this.posX;
-			double d1 = (double) this.spawnPosition.getY() + 0.1D - this.posY;
-			double d2 = (double) this.spawnPosition.getZ() + 0.5D - this.posZ;
+			double d0 = this.spawnPosition.getX() + 0.5D - this.posX;
+			double d1 = this.spawnPosition.getY() + 0.1D - this.posY;
+			double d2 = this.spawnPosition.getZ() + 0.5D - this.posZ;
 			this.motionX += (Math.signum(d0) * 0.5D - this.motionX) * 0.10000000149011612D;
 			this.motionY += (Math.signum(d1) * 0.699999988079071D - this.motionY) * 0.10000000149011612D;
 			this.motionZ += (Math.signum(d2) * 0.5D - this.motionZ) * 0.10000000149011612D;
@@ -198,15 +210,18 @@ public class EntityBat extends EntityAmbientCreature
 	 * returns if this entity triggers Block.onEntityWalking on the blocks they
 	 * walk on. used for spiders and wolves to prevent them from trampling crops
 	 */
+	@Override
 	protected boolean canTriggerWalking()
 	{
 		return false;
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 	}
 
+	@Override
 	protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
 	{
 	}
@@ -215,6 +230,7 @@ public class EntityBat extends EntityAmbientCreature
 	 * Return whether this entity should NOT trigger a pressure plate or a
 	 * tripwire.
 	 */
+	@Override
 	public boolean doesEntityNotTriggerPressurePlate()
 	{
 		return true;
@@ -223,6 +239,7 @@ public class EntityBat extends EntityAmbientCreature
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -248,6 +265,7 @@ public class EntityBat extends EntityAmbientCreature
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -257,16 +275,18 @@ public class EntityBat extends EntityAmbientCreature
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
-		compound.setByte("BatFlags", ((Byte) this.dataManager.get(HANGING)).byteValue());
+		compound.setByte("BatFlags", this.dataManager.get(HANGING).byteValue());
 	}
 
 	/**
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		BlockPos blockpos = new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ);
@@ -298,11 +318,13 @@ public class EntityBat extends EntityAmbientCreature
 		return p_175569_1_.get(2) + 1 == 10 && p_175569_1_.get(5) >= 20 || p_175569_1_.get(2) + 1 == 11 && p_175569_1_.get(5) <= 3;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return this.height / 2.0F;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{

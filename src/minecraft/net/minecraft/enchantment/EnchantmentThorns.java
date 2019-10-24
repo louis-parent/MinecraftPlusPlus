@@ -22,6 +22,7 @@ public class EnchantmentThorns extends Enchantment
 	 * Returns the minimal value of enchantability needed on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMinEnchantability(int enchantmentLevel)
 	{
 		return 10 + 20 * (enchantmentLevel - 1);
@@ -31,6 +32,7 @@ public class EnchantmentThorns extends Enchantment
 	 * Returns the maximum value of enchantability nedded on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMaxEnchantability(int enchantmentLevel)
 	{
 		return super.getMinEnchantability(enchantmentLevel) + 50;
@@ -39,6 +41,7 @@ public class EnchantmentThorns extends Enchantment
 	/**
 	 * Returns the maximum level that the enchantment can have.
 	 */
+	@Override
 	public int getMaxLevel()
 	{
 		return 3;
@@ -47,6 +50,7 @@ public class EnchantmentThorns extends Enchantment
 	/**
 	 * Determines if this enchantment can be applied to a specific ItemStack.
 	 */
+	@Override
 	public boolean canApply(ItemStack stack)
 	{
 		return stack.getItem() instanceof ItemArmor ? true : super.canApply(stack);
@@ -56,6 +60,7 @@ public class EnchantmentThorns extends Enchantment
 	 * Whenever an entity that has this enchantment on one of its associated
 	 * items is damaged this method will be called.
 	 */
+	@Override
 	public void onUserHurt(EntityLivingBase user, Entity attacker, int level)
 	{
 		Random random = user.getRNG();
@@ -65,7 +70,7 @@ public class EnchantmentThorns extends Enchantment
 		{
 			if (attacker != null)
 			{
-				attacker.attackEntityFrom(DamageSource.causeThornsDamage(user), (float) getDamage(level, random));
+				attacker.attackEntityFrom(DamageSource.causeThornsDamage(user), getDamage(level, random));
 			}
 
 			if (!itemstack.isNotValid())
@@ -87,7 +92,7 @@ public class EnchantmentThorns extends Enchantment
 		}
 		else
 		{
-			return rnd.nextFloat() < 0.15F * (float) level;
+			return rnd.nextFloat() < 0.15F * level;
 		}
 	}
 

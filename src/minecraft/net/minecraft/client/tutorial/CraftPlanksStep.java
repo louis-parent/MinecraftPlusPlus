@@ -24,6 +24,7 @@ public class CraftPlanksStep implements ITutorialStep
 		this.field_193288_c = p_i47583_1_;
 	}
 
+	@Override
 	public void func_193245_a()
 	{
 		++this.field_193290_e;
@@ -62,6 +63,7 @@ public class CraftPlanksStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193248_b()
 	{
 		if (this.field_193289_d != null)
@@ -71,6 +73,7 @@ public class CraftPlanksStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193252_a(ItemStack p_193252_1_)
 	{
 		if (p_193252_1_.getItem() == Item.getItemFromBlock(Blocks.PLANKS))

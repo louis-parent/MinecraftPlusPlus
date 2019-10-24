@@ -210,6 +210,7 @@ public class ModelHorse extends ModelBase
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		AbstractHorse abstracthorse = (AbstractHorse) entityIn;
@@ -343,6 +344,7 @@ public class ModelHorse extends ModelBase
 	 * float params here are the same second and third as in the
 	 * setRotationAngles method.
 	 */
+	@Override
 	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
 	{
 		super.setLivingAnimations(entitylivingbaseIn, p_78086_2_, p_78086_3_, partialTickTime);
@@ -375,7 +377,7 @@ public class ModelHorse extends ModelBase
 		boolean flag = abstracthorse.tailCounter != 0;
 		boolean flag1 = abstracthorse.isHorseSaddled();
 		boolean flag2 = abstracthorse.isBeingRidden();
-		float f9 = (float) entitylivingbaseIn.ticksExisted + partialTickTime;
+		float f9 = entitylivingbaseIn.ticksExisted + partialTickTime;
 		float f10 = MathHelper.cos(p_78086_2_ * 0.6662F + (float) Math.PI);
 		float f11 = f10 * 0.8F * p_78086_3_;
 		this.head.rotationPointY = 4.0F;

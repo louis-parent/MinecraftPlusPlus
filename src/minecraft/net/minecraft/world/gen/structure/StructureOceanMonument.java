@@ -41,22 +41,24 @@ public class StructureOceanMonument extends MapGenStructure
 
 		for (Entry<String, String> entry : p_i45608_1_.entrySet())
 		{
-			if (((String) entry.getKey()).equals("spacing"))
+			if (entry.getKey().equals("spacing"))
 			{
 				this.spacing = MathHelper.getInt(entry.getValue(), this.spacing, 1);
 			}
-			else if (((String) entry.getKey()).equals("separation"))
+			else if (entry.getKey().equals("separation"))
 			{
 				this.separation = MathHelper.getInt(entry.getValue(), this.separation, 1);
 			}
 		}
 	}
 
+	@Override
 	public String getStructureName()
 	{
 		return "Monument";
 	}
 
+	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
 		int i = chunkX;
@@ -98,12 +100,14 @@ public class StructureOceanMonument extends MapGenStructure
 		return false;
 	}
 
+	@Override
 	public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_)
 	{
 		this.worldObj = worldIn;
 		return func_191069_a(worldIn, this, pos, this.spacing, this.separation, 10387313, true, 100, p_180706_3_);
 	}
 
+	@Override
 	protected StructureStart getStructureStart(int chunkX, int chunkZ)
 	{
 		return new StructureOceanMonument.StartMonument(this.worldObj, this.rand, chunkX, chunkZ);
@@ -139,8 +143,8 @@ public class StructureOceanMonument extends MapGenStructure
 			random.setSeed(worldIn.getSeed());
 			long i = random.nextLong();
 			long j = random.nextLong();
-			long k = (long) chunkX * i;
-			long l = (long) chunkZ * j;
+			long k = chunkX * i;
+			long l = chunkZ * j;
 			random.setSeed(k ^ l ^ worldIn.getSeed());
 			int i1 = chunkX * 16 + 8 - 29;
 			int j1 = chunkZ * 16 + 8 - 29;
@@ -150,6 +154,7 @@ public class StructureOceanMonument extends MapGenStructure
 			this.wasCreated = true;
 		}
 
+		@Override
 		public void generateStructure(World worldIn, Random rand, StructureBoundingBox structurebb)
 		{
 			if (!this.wasCreated)
@@ -161,17 +166,20 @@ public class StructureOceanMonument extends MapGenStructure
 			super.generateStructure(worldIn, rand, structurebb);
 		}
 
+		@Override
 		public boolean isValidForPostProcess(ChunkPos pair)
 		{
 			return this.processed.contains(pair) ? false : super.isValidForPostProcess(pair);
 		}
 
+		@Override
 		public void notifyPostProcessAt(ChunkPos pair)
 		{
 			super.notifyPostProcessAt(pair);
 			this.processed.add(pair);
 		}
 
+		@Override
 		public void writeToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeToNBT(tagCompound);
@@ -188,6 +196,7 @@ public class StructureOceanMonument extends MapGenStructure
 			tagCompound.setTag("Processed", nbttaglist);
 		}
 
+		@Override
 		public void readFromNBT(NBTTagCompound tagCompound)
 		{
 			super.readFromNBT(tagCompound);

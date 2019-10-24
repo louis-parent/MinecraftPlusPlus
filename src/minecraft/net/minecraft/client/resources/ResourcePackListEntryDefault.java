@@ -10,11 +10,13 @@ public class ResourcePackListEntryDefault extends ResourcePackListEntryServer
 		super(resourcePacksGUIIn, Minecraft.getMinecraft().getResourcePackRepository().rprDefaultResourcePack);
 	}
 
+	@Override
 	protected String getResourcePackName()
 	{
 		return "Default";
 	}
 
+	@Override
 	public boolean isServerPack()
 	{
 		return false;

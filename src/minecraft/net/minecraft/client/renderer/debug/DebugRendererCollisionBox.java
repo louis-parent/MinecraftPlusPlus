@@ -22,12 +22,13 @@ public class DebugRendererCollisionBox implements DebugRenderer.IDebugRenderer
 		this.field_191312_a = p_i47215_1_;
 	}
 
+	@Override
 	public void render(float p_190060_1_, long p_190060_2_)
 	{
 		this.field_191313_b = this.field_191312_a.player;
-		this.field_191314_c = this.field_191313_b.lastTickPosX + (this.field_191313_b.posX - this.field_191313_b.lastTickPosX) * (double) p_190060_1_;
-		this.field_191315_d = this.field_191313_b.lastTickPosY + (this.field_191313_b.posY - this.field_191313_b.lastTickPosY) * (double) p_190060_1_;
-		this.field_191316_e = this.field_191313_b.lastTickPosZ + (this.field_191313_b.posZ - this.field_191313_b.lastTickPosZ) * (double) p_190060_1_;
+		this.field_191314_c = this.field_191313_b.lastTickPosX + (this.field_191313_b.posX - this.field_191313_b.lastTickPosX) * p_190060_1_;
+		this.field_191315_d = this.field_191313_b.lastTickPosY + (this.field_191313_b.posY - this.field_191313_b.lastTickPosY) * p_190060_1_;
+		this.field_191316_e = this.field_191313_b.lastTickPosZ + (this.field_191313_b.posZ - this.field_191313_b.lastTickPosZ) * p_190060_1_;
 		World world = this.field_191312_a.player.world;
 		List<AxisAlignedBB> list = world.getCollisionBoxes(this.field_191313_b, this.field_191313_b.getEntityBoundingBox().expandXyz(6.0D));
 		GlStateManager.enableBlend();

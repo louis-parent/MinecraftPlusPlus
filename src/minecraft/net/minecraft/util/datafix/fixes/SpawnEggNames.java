@@ -7,11 +7,13 @@ public class SpawnEggNames implements IFixableData
 {
 	private static final String[] ENTITY_IDS = new String[256];
 
+	@Override
 	public int getFixVersion()
 	{
 		return 105;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("minecraft:spawn_egg".equals(compound.getString("id")))

@@ -31,6 +31,7 @@ public class ChunkGeneratorDebug implements IChunkGenerator
 		this.world = worldIn;
 	}
 
+	@Override
 	public Chunk provideChunk(int x, int z)
 	{
 		ChunkPrimer chunkprimer = new ChunkPrimer();
@@ -88,32 +89,38 @@ public class ChunkGeneratorDebug implements IChunkGenerator
 		return iblockstate;
 	}
 
+	@Override
 	public void populate(int x, int z)
 	{
 	}
 
+	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z)
 	{
 		return false;
 	}
 
+	@Override
 	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
 	{
 		Biome biome = this.world.getBiome(pos);
 		return biome.getSpawnableList(creatureType);
 	}
 
+	@Override
 	@Nullable
 	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean p_180513_4_)
 	{
 		return null;
 	}
 
+	@Override
 	public boolean func_193414_a(World p_193414_1_, String p_193414_2_, BlockPos p_193414_3_)
 	{
 		return false;
 	}
 
+	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z)
 	{
 	}
@@ -125,7 +132,7 @@ public class ChunkGeneratorDebug implements IChunkGenerator
 			ALL_VALID_STATES.addAll(block.getBlockState().getValidStates());
 		}
 
-		GRID_WIDTH = MathHelper.ceil(MathHelper.sqrt((float) ALL_VALID_STATES.size()));
+		GRID_WIDTH = MathHelper.ceil(MathHelper.sqrt(ALL_VALID_STATES.size()));
 		GRID_HEIGHT = MathHelper.ceil((float) ALL_VALID_STATES.size() / (float) GRID_WIDTH);
 	}
 }

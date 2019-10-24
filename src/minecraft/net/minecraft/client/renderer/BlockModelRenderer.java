@@ -115,9 +115,9 @@ public class BlockModelRenderer
 	private void renderQuadsSmooth(IBlockAccess blockAccessIn, IBlockState stateIn, BlockPos posIn, BufferBuilder buffer, List<BakedQuad> list, float[] quadBounds, BitSet bitSet, BlockModelRenderer.AmbientOcclusionFace aoFace)
 	{
 		Vec3d vec3d = stateIn.func_191059_e(blockAccessIn, posIn);
-		double d0 = (double) posIn.getX() + vec3d.xCoord;
-		double d1 = (double) posIn.getY() + vec3d.yCoord;
-		double d2 = (double) posIn.getZ() + vec3d.zCoord;
+		double d0 = posIn.getX() + vec3d.xCoord;
+		double d1 = posIn.getY() + vec3d.yCoord;
+		double d2 = posIn.getZ() + vec3d.zCoord;
 		int i = 0;
 
 		for (int j = list.size(); i < j; ++i)
@@ -137,9 +137,9 @@ public class BlockModelRenderer
 					k = TextureUtil.anaglyphColor(k);
 				}
 
-				float f = (float) (k >> 16 & 255) / 255.0F;
-				float f1 = (float) (k >> 8 & 255) / 255.0F;
-				float f2 = (float) (k & 255) / 255.0F;
+				float f = (k >> 16 & 255) / 255.0F;
+				float f1 = (k >> 8 & 255) / 255.0F;
+				float f2 = (k & 255) / 255.0F;
 				buffer.putColorMultiplier(aoFace.vertexColorMultiplier[0] * f, aoFace.vertexColorMultiplier[0] * f1, aoFace.vertexColorMultiplier[0] * f2, 4);
 				buffer.putColorMultiplier(aoFace.vertexColorMultiplier[1] * f, aoFace.vertexColorMultiplier[1] * f1, aoFace.vertexColorMultiplier[1] * f2, 3);
 				buffer.putColorMultiplier(aoFace.vertexColorMultiplier[2] * f, aoFace.vertexColorMultiplier[2] * f1, aoFace.vertexColorMultiplier[2] * f2, 2);
@@ -235,9 +235,9 @@ public class BlockModelRenderer
 	private void renderQuadsFlat(IBlockAccess blockAccessIn, IBlockState stateIn, BlockPos posIn, int brightnessIn, boolean ownBrightness, BufferBuilder buffer, List<BakedQuad> list, BitSet bitSet)
 	{
 		Vec3d vec3d = stateIn.func_191059_e(blockAccessIn, posIn);
-		double d0 = (double) posIn.getX() + vec3d.xCoord;
-		double d1 = (double) posIn.getY() + vec3d.yCoord;
-		double d2 = (double) posIn.getZ() + vec3d.zCoord;
+		double d0 = posIn.getX() + vec3d.xCoord;
+		double d1 = posIn.getY() + vec3d.yCoord;
+		double d2 = posIn.getZ() + vec3d.zCoord;
 		int i = 0;
 
 		for (int j = list.size(); i < j; ++i)
@@ -263,9 +263,9 @@ public class BlockModelRenderer
 					k = TextureUtil.anaglyphColor(k);
 				}
 
-				float f = (float) (k >> 16 & 255) / 255.0F;
-				float f1 = (float) (k >> 8 & 255) / 255.0F;
-				float f2 = (float) (k & 255) / 255.0F;
+				float f = (k >> 16 & 255) / 255.0F;
+				float f1 = (k >> 8 & 255) / 255.0F;
+				float f2 = (k & 255) / 255.0F;
 				buffer.putColorMultiplier(f, f1, f2, 4);
 				buffer.putColorMultiplier(f, f1, f2, 3);
 				buffer.putColorMultiplier(f, f1, f2, 2);
@@ -302,9 +302,9 @@ public class BlockModelRenderer
 			i = TextureUtil.anaglyphColor(i);
 		}
 
-		float f = (float) (i >> 16 & 255) / 255.0F;
-		float f1 = (float) (i >> 8 & 255) / 255.0F;
-		float f2 = (float) (i & 255) / 255.0F;
+		float f = (i >> 16 & 255) / 255.0F;
+		float f1 = (i >> 8 & 255) / 255.0F;
+		float f2 = (i & 255) / 255.0F;
 
 		if (!p_178266_4_)
 		{
@@ -336,7 +336,7 @@ public class BlockModelRenderer
 			}
 
 			Vec3i vec3i = bakedquad.getFace().getDirectionVec();
-			bufferbuilder.putNormal((float) vec3i.getX(), (float) vec3i.getY(), (float) vec3i.getZ());
+			bufferbuilder.putNormal(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 			tessellator.draw();
 		}
 	}
@@ -516,8 +516,8 @@ public class BlockModelRenderer
 
 		private int getVertexBrightness(int p_178203_1_, int p_178203_2_, int p_178203_3_, int p_178203_4_, float p_178203_5_, float p_178203_6_, float p_178203_7_, float p_178203_8_)
 		{
-			int i = (int) ((float) (p_178203_1_ >> 16 & 255) * p_178203_5_ + (float) (p_178203_2_ >> 16 & 255) * p_178203_6_ + (float) (p_178203_3_ >> 16 & 255) * p_178203_7_ + (float) (p_178203_4_ >> 16 & 255) * p_178203_8_) & 255;
-			int j = (int) ((float) (p_178203_1_ & 255) * p_178203_5_ + (float) (p_178203_2_ & 255) * p_178203_6_ + (float) (p_178203_3_ & 255) * p_178203_7_ + (float) (p_178203_4_ & 255) * p_178203_8_) & 255;
+			int i = (int) ((p_178203_1_ >> 16 & 255) * p_178203_5_ + (p_178203_2_ >> 16 & 255) * p_178203_6_ + (p_178203_3_ >> 16 & 255) * p_178203_7_ + (p_178203_4_ >> 16 & 255) * p_178203_8_) & 255;
+			int j = (int) ((p_178203_1_ & 255) * p_178203_5_ + (p_178203_2_ & 255) * p_178203_6_ + (p_178203_3_ & 255) * p_178203_7_ + (p_178203_4_ & 255) * p_178203_8_) & 255;
 			return i << 16 | j;
 		}
 	}

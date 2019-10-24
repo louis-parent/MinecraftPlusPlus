@@ -61,6 +61,7 @@ public class Snooper
 			this.addOSData();
 			this.threadTrigger.schedule(new TimerTask()
 			{
+				@Override
 				public void run()
 				{
 					if (Snooper.this.playerStatsCollector.isSnooperEnabled())

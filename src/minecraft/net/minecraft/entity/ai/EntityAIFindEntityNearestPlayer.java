@@ -45,6 +45,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
 
 		this.predicate = new Predicate<Entity>()
 		{
+			@Override
 			public boolean apply(@Nullable Entity p_apply_1_)
 			{
 				if (!(p_apply_1_ instanceof EntityPlayer))
@@ -73,10 +74,10 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
 							f = 0.1F;
 						}
 
-						d0 *= (double) (0.7F * f);
+						d0 *= 0.7F * f;
 					}
 
-					return (double) p_apply_1_.getDistanceToEntity(EntityAIFindEntityNearestPlayer.this.entityLiving) > d0 ? false : EntityAITarget.isSuitableTarget(EntityAIFindEntityNearestPlayer.this.entityLiving, (EntityLivingBase) p_apply_1_, false, true);
+					return p_apply_1_.getDistanceToEntity(EntityAIFindEntityNearestPlayer.this.entityLiving) > d0 ? false : EntityAITarget.isSuitableTarget(EntityAIFindEntityNearestPlayer.this.entityLiving, (EntityLivingBase) p_apply_1_, false, true);
 				}
 			}
 		};
@@ -86,6 +87,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		double d0 = this.maxTargetRange();
@@ -106,6 +108,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		EntityLivingBase entitylivingbase = this.entityLiving.getAttackTarget();
@@ -150,6 +153,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.entityLiving.setAttackTarget(this.entityTarget);
@@ -159,6 +163,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.entityLiving.setAttackTarget((EntityLivingBase) null);

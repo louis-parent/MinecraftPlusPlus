@@ -412,9 +412,9 @@ public class PlayerControllerMP
 	{
 		this.syncCurrentPlayItem();
 		ItemStack itemstack = player.getHeldItem(vec);
-		float f = (float) (facing.xCoord - (double) stack.getX());
-		float f1 = (float) (facing.yCoord - (double) stack.getY());
-		float f2 = (float) (facing.zCoord - (double) stack.getZ());
+		float f = (float) (facing.xCoord - stack.getX());
+		float f1 = (float) (facing.yCoord - stack.getY());
+		float f2 = (float) (facing.zCoord - stack.getZ());
 		boolean flag = false;
 
 		if (!this.mc.world.getWorldBorder().contains(stack))

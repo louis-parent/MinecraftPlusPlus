@@ -57,10 +57,11 @@ public class FlatGeneratorInfo
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		StringBuilder stringbuilder = new StringBuilder();
-		stringbuilder.append((int) 3);
+		stringbuilder.append(3);
 		stringbuilder.append(";");
 
 		for (int i = 0; i < this.flatLayers.size(); ++i)
@@ -92,8 +93,8 @@ public class FlatGeneratorInfo
 					stringbuilder.append(",");
 				}
 
-				stringbuilder.append(((String) entry.getKey()).toLowerCase(Locale.ROOT));
-				Map<String, String> map = (Map) entry.getValue();
+				stringbuilder.append(entry.getKey().toLowerCase(Locale.ROOT));
+				Map<String, String> map = entry.getValue();
 
 				if (!map.isEmpty())
 				{

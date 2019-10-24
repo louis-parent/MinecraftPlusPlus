@@ -25,8 +25,8 @@ public class CooldownTracker
 
 		if (cooldowntracker$cooldown != null)
 		{
-			float f = (float) (cooldowntracker$cooldown.expireTicks - cooldowntracker$cooldown.createTicks);
-			float f1 = (float) cooldowntracker$cooldown.expireTicks - ((float) this.ticks + partialTicks);
+			float f = cooldowntracker$cooldown.expireTicks - cooldowntracker$cooldown.createTicks;
+			float f1 = cooldowntracker$cooldown.expireTicks - (this.ticks + partialTicks);
 			return MathHelper.clamp(f1 / f, 0.0F, 1.0F);
 		}
 		else
@@ -45,7 +45,7 @@ public class CooldownTracker
 
 			while (iterator.hasNext())
 			{
-				Entry<Item, CooldownTracker.Cooldown> entry = (Entry) iterator.next();
+				Entry<Item, CooldownTracker.Cooldown> entry = iterator.next();
 
 				if ((entry.getValue()).expireTicks <= this.ticks)
 				{

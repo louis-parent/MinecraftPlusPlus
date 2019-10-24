@@ -131,6 +131,7 @@ public class Template
 	{
 		List<Entity> list = worldIn.<Entity>getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(startPos, endPos), new Predicate<Entity>()
 		{
+			@Override
 			public boolean apply(@Nullable Entity p_apply_1_)
 			{
 				return !(p_apply_1_ instanceof EntityPlayer);
@@ -140,7 +141,7 @@ public class Template
 
 		for (Entity entity : list)
 		{
-			Vec3d vec3d = new Vec3d(entity.posX - (double) startPos.getX(), entity.posY - (double) startPos.getY(), entity.posZ - (double) startPos.getZ());
+			Vec3d vec3d = new Vec3d(entity.posX - startPos.getX(), entity.posY - startPos.getY(), entity.posZ - startPos.getZ());
 			NBTTagCompound nbttagcompound = new NBTTagCompound();
 			entity.writeToNBTOptional(nbttagcompound);
 			BlockPos blockpos;
@@ -317,7 +318,7 @@ public class Template
 			{
 				NBTTagCompound nbttagcompound = template$entityinfo.entityData;
 				Vec3d vec3d = transformedVec3d(template$entityinfo.pos, mirrorIn, rotationIn);
-				Vec3d vec3d1 = vec3d.addVector((double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+				Vec3d vec3d1 = vec3d.addVector(pos.getX(), pos.getY(), pos.getZ());
 				NBTTagList nbttaglist = new NBTTagList();
 				nbttaglist.appendTag(new NBTTagDouble(vec3d1.xCoord));
 				nbttaglist.appendTag(new NBTTagDouble(vec3d1.yCoord));
@@ -471,6 +472,7 @@ public class Template
 	{
 		p_191158_0_.registerWalker(FixTypes.STRUCTURE, new IDataWalker()
 		{
+			@Override
 			public NBTTagCompound process(IDataFixer fixer, NBTTagCompound compound, int versionIn)
 			{
 				if (compound.hasKey("entities", 9))
@@ -669,6 +671,7 @@ public class Template
 			return iblockstate == null ? DEFAULT_BLOCK_STATE : iblockstate;
 		}
 
+		@Override
 		public Iterator<IBlockState> iterator()
 		{
 			return this.ids.iterator();

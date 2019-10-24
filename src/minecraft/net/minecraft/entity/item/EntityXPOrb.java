@@ -44,9 +44,9 @@ public class EntityXPOrb extends Entity
 		this.setSize(0.5F, 0.5F);
 		this.setPosition(x, y, z);
 		this.rotationYaw = (float) (Math.random() * 360.0D);
-		this.motionX = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F);
-		this.motionY = (double) ((float) (Math.random() * 0.2D) * 2.0F);
-		this.motionZ = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F);
+		this.motionX = (float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F;
+		this.motionY = (float) (Math.random() * 0.2D) * 2.0F;
+		this.motionZ = (float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F;
 		this.xpValue = expValue;
 	}
 
@@ -54,6 +54,7 @@ public class EntityXPOrb extends Entity
 	 * returns if this entity triggers Block.onEntityWalking on the blocks they
 	 * walk on. used for spiders and wolves to prevent them from trampling crops
 	 */
+	@Override
 	protected boolean canTriggerWalking()
 	{
 		return false;
@@ -65,10 +66,12 @@ public class EntityXPOrb extends Entity
 		this.setSize(0.25F, 0.25F);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 	}
 
+	@Override
 	public int getBrightnessForRender()
 	{
 		float f = 0.5F;
@@ -89,6 +92,7 @@ public class EntityXPOrb extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -110,8 +114,8 @@ public class EntityXPOrb extends Entity
 		if (this.world.getBlockState(new BlockPos(this)).getMaterial() == Material.LAVA)
 		{
 			this.motionY = 0.20000000298023224D;
-			this.motionX = (double) ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-			this.motionZ = (double) ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+			this.motionX = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F;
+			this.motionZ = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F;
 			this.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
 		}
 
@@ -136,7 +140,7 @@ public class EntityXPOrb extends Entity
 		if (this.closestPlayer != null)
 		{
 			double d1 = (this.closestPlayer.posX - this.posX) / 8.0D;
-			double d2 = (this.closestPlayer.posY + (double) this.closestPlayer.getEyeHeight() / 2.0D - this.posY) / 8.0D;
+			double d2 = (this.closestPlayer.posY + this.closestPlayer.getEyeHeight() / 2.0D - this.posY) / 8.0D;
 			double d3 = (this.closestPlayer.posZ - this.posZ) / 8.0D;
 			double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
 			double d5 = 1.0D - d4;
@@ -158,9 +162,9 @@ public class EntityXPOrb extends Entity
 			f = this.world.getBlockState(new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.getEntityBoundingBox().minY) - 1, MathHelper.floor(this.posZ))).getBlock().slipperiness * 0.98F;
 		}
 
-		this.motionX *= (double) f;
+		this.motionX *= f;
 		this.motionY *= 0.9800000190734863D;
-		this.motionZ *= (double) f;
+		this.motionZ *= f;
 
 		if (this.onGround)
 		{
@@ -180,6 +184,7 @@ public class EntityXPOrb extends Entity
 	 * Returns if this entity is in water and will end up adding the waters
 	 * velocity to the entity
 	 */
+	@Override
 	public boolean handleWaterMovement()
 	{
 		return this.world.handleMaterialAcceleration(this.getEntityBoundingBox(), Material.WATER, this);
@@ -189,14 +194,16 @@ public class EntityXPOrb extends Entity
 	 * Will deal the specified amount of fire damage to the entity if the entity
 	 * isn't immune to fire damage.
 	 */
+	@Override
 	protected void dealFireDamage(int amount)
 	{
-		this.attackEntityFrom(DamageSource.inFire, (float) amount);
+		this.attackEntityFrom(DamageSource.inFire, amount);
 	}
 
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -206,7 +213,7 @@ public class EntityXPOrb extends Entity
 		else
 		{
 			this.setBeenAttacked();
-			this.xpOrbHealth = (int) ((float) this.xpOrbHealth - amount);
+			this.xpOrbHealth = (int) (this.xpOrbHealth - amount);
 
 			if (this.xpOrbHealth <= 0)
 			{
@@ -220,6 +227,7 @@ public class EntityXPOrb extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		compound.setShort("Health", (short) this.xpOrbHealth);
@@ -230,6 +238,7 @@ public class EntityXPOrb extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.xpOrbHealth = compound.getShort("Health");
@@ -240,6 +249,7 @@ public class EntityXPOrb extends Entity
 	/**
 	 * Called by a player entity when they collide with an entity
 	 */
+	@Override
 	public void onCollideWithPlayer(EntityPlayer entityIn)
 	{
 		if (!this.world.isRemote)
@@ -384,6 +394,7 @@ public class EntityXPOrb extends Entity
 	/**
 	 * Returns true if it's possible to attack this entity with an item.
 	 */
+	@Override
 	public boolean canBeAttackedWithItem()
 	{
 		return false;

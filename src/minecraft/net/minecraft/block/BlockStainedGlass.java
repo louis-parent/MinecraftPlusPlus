@@ -33,15 +33,17 @@ public class BlockStainedGlass extends BlockBreakable
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((EnumDyeColor) state.getValue(COLOR)).getMetadata();
+		return state.getValue(COLOR).getMetadata();
 	}
 
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (EnumDyeColor enumdyecolor : EnumDyeColor.values())
@@ -53,11 +55,13 @@ public class BlockStainedGlass extends BlockBreakable
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
-		return MapColor.func_193558_a((EnumDyeColor) state.getValue(COLOR));
+		return MapColor.func_193558_a(state.getValue(COLOR));
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
@@ -66,16 +70,19 @@ public class BlockStainedGlass extends BlockBreakable
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
 	}
 
+	@Override
 	protected boolean canSilkHarvest()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -84,6 +91,7 @@ public class BlockStainedGlass extends BlockBreakable
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(COLOR, EnumDyeColor.byMetadata(meta));
@@ -93,6 +101,7 @@ public class BlockStainedGlass extends BlockBreakable
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (!worldIn.isRemote)
@@ -105,6 +114,7 @@ public class BlockStainedGlass extends BlockBreakable
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (!worldIn.isRemote)
@@ -116,11 +126,13 @@ public class BlockStainedGlass extends BlockBreakable
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((EnumDyeColor) state.getValue(COLOR)).getMetadata();
+		return state.getValue(COLOR).getMetadata();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { COLOR });

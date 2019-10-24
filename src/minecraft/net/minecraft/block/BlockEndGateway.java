@@ -31,11 +31,13 @@ public class BlockEndGateway extends BlockContainer
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
+	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityEndGateway();
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
@@ -43,6 +45,7 @@ public class BlockEndGateway extends BlockContainer
 		return !iblockstate.isOpaqueCube() && block != Blocks.END_GATEWAY;
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -53,11 +56,13 @@ public class BlockEndGateway extends BlockContainer
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -66,11 +71,13 @@ public class BlockEndGateway extends BlockContainer
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
 		TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -81,23 +88,23 @@ public class BlockEndGateway extends BlockContainer
 
 			for (int j = 0; j < i; ++j)
 			{
-				double d0 = (double) ((float) pos.getX() + rand.nextFloat());
-				double d1 = (double) ((float) pos.getY() + rand.nextFloat());
-				double d2 = (double) ((float) pos.getZ() + rand.nextFloat());
-				double d3 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-				double d4 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
-				double d5 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+				double d0 = pos.getX() + rand.nextFloat();
+				double d1 = pos.getY() + rand.nextFloat();
+				double d2 = pos.getZ() + rand.nextFloat();
+				double d3 = (rand.nextFloat() - 0.5D) * 0.5D;
+				double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
+				double d5 = (rand.nextFloat() - 0.5D) * 0.5D;
 				int k = rand.nextInt(2) * 2 - 1;
 
 				if (rand.nextBoolean())
 				{
-					d2 = (double) pos.getZ() + 0.5D + 0.25D * (double) k;
-					d5 = (double) (rand.nextFloat() * 2.0F * (float) k);
+					d2 = pos.getZ() + 0.5D + 0.25D * k;
+					d5 = rand.nextFloat() * 2.0F * k;
 				}
 				else
 				{
-					d0 = (double) pos.getX() + 0.5D + 0.25D * (double) k;
-					d3 = (double) (rand.nextFloat() * 2.0F * (float) k);
+					d0 = pos.getX() + 0.5D + 0.25D * k;
+					d3 = rand.nextFloat() * 2.0F * k;
 				}
 
 				worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
@@ -105,6 +112,7 @@ public class BlockEndGateway extends BlockContainer
 		}
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return ItemStack.EMPTY_ITEM_STACK;
@@ -113,11 +121,13 @@ public class BlockEndGateway extends BlockContainer
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
 		return MapColor.BLACK;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

@@ -66,6 +66,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 		EntityLiving.registerFixesMob(fixer, EntityWitch.class);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(1, new EntityAISwimming(this));
@@ -77,22 +78,26 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.getDataManager().register(IS_AGGRESSIVE, Boolean.valueOf(false));
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_WITCH_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_WITCH_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_WITCH_DEATH;
@@ -108,9 +113,10 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 
 	public boolean isDrinkingPotion()
 	{
-		return ((Boolean) this.getDataManager().get(IS_AGGRESSIVE)).booleanValue();
+		return this.getDataManager().get(IS_AGGRESSIVE).booleanValue();
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -123,6 +129,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		if (!this.world.isRemote)
@@ -193,6 +200,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 		super.onLivingUpdate();
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 15)
@@ -211,6 +219,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 	/**
 	 * Reduces damage, depending on potions
 	 */
+	@Override
 	protected float applyPotionDamageCalculations(DamageSource source, float damage)
 	{
 		damage = super.applyPotionDamageCalculations(source, damage);
@@ -222,12 +231,13 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 
 		if (source.isMagicDamage())
 		{
-			damage = (float) ((double) damage * 0.15D);
+			damage = (float) (damage * 0.15D);
 		}
 
 		return damage;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -241,11 +251,12 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 	 *            How far the target is, normalized and clamped between 0.1 and
 	 *            1.0
 	 */
+	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor)
 	{
 		if (!this.isDrinkingPotion())
 		{
-			double d0 = target.posY + (double) target.getEyeHeight() - 1.100000023841858D;
+			double d0 = target.posY + target.getEyeHeight() - 1.100000023841858D;
 			double d1 = target.posX + target.motionX - this.posX;
 			double d2 = d0 - this.posY;
 			double d3 = target.posZ + target.motionZ - this.posZ;
@@ -267,17 +278,19 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 
 			EntityPotion entitypotion = new EntityPotion(this.world, this, PotionUtils.addPotionToItemStack(new ItemStack(Items.SPLASH_POTION), potiontype));
 			entitypotion.rotationPitch -= -20.0F;
-			entitypotion.setThrowableHeading(d1, d2 + (double) (f * 0.2F), d3, 0.75F, 8.0F);
+			entitypotion.setThrowableHeading(d1, d2 + f * 0.2F, d3, 0.75F, 8.0F);
 			this.world.playSound((EntityPlayer) null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_WITCH_THROW, this.getSoundCategory(), 1.0F, 0.8F + this.rand.nextFloat() * 0.4F);
 			this.world.spawnEntityInWorld(entitypotion);
 		}
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return 1.62F;
 	}
 
+	@Override
 	public void setSwingingArms(boolean swingingArms)
 	{
 	}

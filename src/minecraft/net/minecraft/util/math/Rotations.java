@@ -35,6 +35,7 @@ public class Rotations
 		return nbttaglist;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (!(p_equals_1_ instanceof Rotations))

@@ -36,7 +36,7 @@ public class AdvancementProgress implements Comparable<AdvancementProgress>
 
 		while (iterator.hasNext())
 		{
-			Entry<String, CriterionProgress> entry = (Entry) iterator.next();
+			Entry<String, CriterionProgress> entry = iterator.next();
 
 			if (!set.contains(entry.getKey()))
 			{
@@ -131,6 +131,7 @@ public class AdvancementProgress implements Comparable<AdvancementProgress>
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		return "AdvancementProgress{criteria=" + this.field_192110_a + ", requirements=" + Arrays.deepToString(this.field_192111_b) + '}';
@@ -143,7 +144,7 @@ public class AdvancementProgress implements Comparable<AdvancementProgress>
 		for (Entry<String, CriterionProgress> entry : this.field_192110_a.entrySet())
 		{
 			p_192104_1_.writeString(entry.getKey());
-			((CriterionProgress) entry.getValue()).func_192150_a(p_192104_1_);
+			entry.getValue().func_192150_a(p_192104_1_);
 		}
 	}
 
@@ -174,8 +175,8 @@ public class AdvancementProgress implements Comparable<AdvancementProgress>
 		}
 		else
 		{
-			float f = (float) this.field_192111_b.length;
-			float f1 = (float) this.func_194032_h();
+			float f = this.field_192111_b.length;
+			float f1 = this.func_194032_h();
 			return f1 / f;
 		}
 	}
@@ -237,7 +238,7 @@ public class AdvancementProgress implements Comparable<AdvancementProgress>
 
 		for (Entry<String, CriterionProgress> entry : this.field_192110_a.entrySet())
 		{
-			if (!((CriterionProgress) entry.getValue()).func_192151_a())
+			if (!entry.getValue().func_192151_a())
 			{
 				list.add(entry.getKey());
 			}
@@ -252,7 +253,7 @@ public class AdvancementProgress implements Comparable<AdvancementProgress>
 
 		for (Entry<String, CriterionProgress> entry : this.field_192110_a.entrySet())
 		{
-			if (((CriterionProgress) entry.getValue()).func_192151_a())
+			if (entry.getValue().func_192151_a())
 			{
 				list.add(entry.getKey());
 			}
@@ -277,6 +278,7 @@ public class AdvancementProgress implements Comparable<AdvancementProgress>
 		return date;
 	}
 
+	@Override
 	public int compareTo(AdvancementProgress p_compareTo_1_)
 	{
 		Date date = this.func_193128_g();
@@ -298,6 +300,7 @@ public class AdvancementProgress implements Comparable<AdvancementProgress>
 
 	public static class Serializer implements JsonDeserializer<AdvancementProgress>, JsonSerializer<AdvancementProgress>
 	{
+		@Override
 		public JsonElement serialize(AdvancementProgress p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			JsonObject jsonobject = new JsonObject();
@@ -322,6 +325,7 @@ public class AdvancementProgress implements Comparable<AdvancementProgress>
 			return jsonobject;
 		}
 
+		@Override
 		public AdvancementProgress deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "advancement");

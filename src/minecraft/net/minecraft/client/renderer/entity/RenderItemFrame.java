@@ -36,13 +36,14 @@ public class RenderItemFrame extends Render<EntityItemFrame>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityItemFrame entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		GlStateManager.pushMatrix();
 		BlockPos blockpos = entity.getHangingPosition();
-		double d0 = (double) blockpos.getX() - entity.posX + x;
-		double d1 = (double) blockpos.getY() - entity.posY + y;
-		double d2 = (double) blockpos.getZ() - entity.posZ + z;
+		double d0 = blockpos.getX() - entity.posX + x;
+		double d1 = blockpos.getY() - entity.posY + y;
+		double d2 = blockpos.getZ() - entity.posZ + z;
 		GlStateManager.translate(d0 + 0.5D, d1 + 0.5D, d2 + 0.5D);
 		GlStateManager.rotate(180.0F - entity.rotationYaw, 0.0F, 1.0F, 0.0F);
 		this.renderManager.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
@@ -80,9 +81,10 @@ public class RenderItemFrame extends Render<EntityItemFrame>
 		GlStateManager.translate(0.0F, 0.0F, 0.4375F);
 		this.renderItem(entity);
 		GlStateManager.popMatrix();
-		this.renderName(entity, x + (double) ((float) entity.facingDirection.getFrontOffsetX() * 0.3F), y - 0.25D, z + (double) ((float) entity.facingDirection.getFrontOffsetZ() * 0.3F));
+		this.renderName(entity, x + entity.facingDirection.getFrontOffsetX() * 0.3F, y - 0.25D, z + entity.facingDirection.getFrontOffsetZ() * 0.3F);
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -104,7 +106,7 @@ public class RenderItemFrame extends Render<EntityItemFrame>
 			GlStateManager.disableLighting();
 			boolean flag = itemstack.getItem() == Items.FILLED_MAP;
 			int i = flag ? itemFrame.getRotation() % 4 * 2 : itemFrame.getRotation();
-			GlStateManager.rotate((float) i * 360.0F / 8.0F, 0.0F, 0.0F, 1.0F);
+			GlStateManager.rotate(i * 360.0F / 8.0F, 0.0F, 0.0F, 1.0F);
 
 			if (flag)
 			{
@@ -136,6 +138,7 @@ public class RenderItemFrame extends Render<EntityItemFrame>
 		}
 	}
 
+	@Override
 	protected void renderName(EntityItemFrame entity, double x, double y, double z)
 	{
 		if (Minecraft.isGuiEnabled() && !entity.getDisplayedItem().isNotValid() && entity.getDisplayedItem().hasDisplayName() && this.renderManager.pointedEntity == entity)
@@ -143,7 +146,7 @@ public class RenderItemFrame extends Render<EntityItemFrame>
 			double d0 = entity.getDistanceSqToEntity(this.renderManager.renderViewEntity);
 			float f = entity.isSneaking() ? 32.0F : 64.0F;
 
-			if (d0 < (double) (f * f))
+			if (d0 < f * f)
 			{
 				String s = entity.getDisplayedItem().getDisplayName();
 				this.renderLivingLabel(entity, s, x, y, z, 64);

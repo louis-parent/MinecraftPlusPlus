@@ -40,16 +40,19 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 	/**
 	 * Get the Attribute this is an instance of
 	 */
+	@Override
 	public IAttribute getAttribute()
 	{
 		return this.genericAttribute;
 	}
 
+	@Override
 	public double getBaseValue()
 	{
 		return this.baseValue;
 	}
 
+	@Override
 	public void setBaseValue(double baseValue)
 	{
 		if (baseValue != this.getBaseValue())
@@ -59,11 +62,13 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 		}
 	}
 
+	@Override
 	public Collection<AttributeModifier> getModifiersByOperation(int operation)
 	{
-		return (Collection) this.mapByOperation.get(Integer.valueOf(operation));
+		return this.mapByOperation.get(Integer.valueOf(operation));
 	}
 
+	@Override
 	public Collection<AttributeModifier> getModifiers()
 	{
 		Set<AttributeModifier> set = Sets.<AttributeModifier>newHashSet();
@@ -76,6 +81,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 		return set;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -86,11 +92,13 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 		return this.mapByUUID.get(uuid);
 	}
 
+	@Override
 	public boolean hasModifier(AttributeModifier modifier)
 	{
 		return this.mapByUUID.get(modifier.getID()) != null;
 	}
 
+	@Override
 	public void applyModifier(AttributeModifier modifier)
 	{
 		if (this.getModifier(modifier.getID()) != null)
@@ -99,7 +107,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 		}
 		else
 		{
-			Set<AttributeModifier> set = (Set) this.mapByName.get(modifier.getName());
+			Set<AttributeModifier> set = this.mapByName.get(modifier.getName());
 
 			if (set == null)
 			{
@@ -120,15 +128,16 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 		this.attributeMap.onAttributeModified(this);
 	}
 
+	@Override
 	public void removeModifier(AttributeModifier modifier)
 	{
 		for (int i = 0; i < 3; ++i)
 		{
-			Set<AttributeModifier> set = (Set) this.mapByOperation.get(Integer.valueOf(i));
+			Set<AttributeModifier> set = this.mapByOperation.get(Integer.valueOf(i));
 			set.remove(modifier);
 		}
 
-		Set<AttributeModifier> set1 = (Set) this.mapByName.get(modifier.getName());
+		Set<AttributeModifier> set1 = this.mapByName.get(modifier.getName());
 
 		if (set1 != null)
 		{
@@ -144,6 +153,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 		this.flagForUpdate();
 	}
 
+	@Override
 	public void removeModifier(UUID p_188479_1_)
 	{
 		AttributeModifier attributemodifier = this.getModifier(p_188479_1_);
@@ -154,6 +164,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 		}
 	}
 
+	@Override
 	public void removeAllModifiers()
 	{
 		Collection<AttributeModifier> collection = this.getModifiers();
@@ -167,6 +178,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 		}
 	}
 
+	@Override
 	public double getAttributeValue()
 	{
 		if (this.needsUpdate)

@@ -28,6 +28,7 @@ public class LootingEnchantBonus extends LootFunction
 		this.limit = p_i47145_3_;
 	}
 
+	@Override
 	public ItemStack apply(ItemStack stack, Random rand, LootContext context)
 	{
 		Entity entity = context.getKiller();
@@ -41,7 +42,7 @@ public class LootingEnchantBonus extends LootFunction
 				return stack;
 			}
 
-			float f = (float) i * this.count.generateFloat(rand);
+			float f = i * this.count.generateFloat(rand);
 			stack.increaseStackSize(Math.round(f));
 
 			if (this.limit != 0 && stack.getStackSize() > this.limit)
@@ -60,6 +61,7 @@ public class LootingEnchantBonus extends LootFunction
 			super(new ResourceLocation("looting_enchant"), LootingEnchantBonus.class);
 		}
 
+		@Override
 		public void serialize(JsonObject object, LootingEnchantBonus functionClazz, JsonSerializationContext serializationContext)
 		{
 			object.add("count", serializationContext.serialize(functionClazz.count));
@@ -70,10 +72,11 @@ public class LootingEnchantBonus extends LootFunction
 			}
 		}
 
+		@Override
 		public LootingEnchantBonus deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn)
 		{
 			int i = JsonUtils.getInt(object, "limit", 0);
-			return new LootingEnchantBonus(conditionsIn, (RandomValueRange) JsonUtils.deserializeClass(object, "count", deserializationContext, RandomValueRange.class), i);
+			return new LootingEnchantBonus(conditionsIn, JsonUtils.deserializeClass(object, "count", deserializationContext, RandomValueRange.class), i);
 		}
 	}
 }

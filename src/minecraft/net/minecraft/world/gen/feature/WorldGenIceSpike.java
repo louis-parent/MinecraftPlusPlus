@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 public class WorldGenIceSpike extends WorldGenerator
 {
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		while (worldIn.isAirBlock(position) && position.getY() > 2)
@@ -36,16 +37,16 @@ public class WorldGenIceSpike extends WorldGenerator
 
 			for (int k = 0; k < i; ++k)
 			{
-				float f = (1.0F - (float) k / (float) i) * (float) j;
+				float f = (1.0F - (float) k / (float) i) * j;
 				int l = MathHelper.ceil(f);
 
 				for (int i1 = -l; i1 <= l; ++i1)
 				{
-					float f1 = (float) MathHelper.abs(i1) - 0.25F;
+					float f1 = MathHelper.abs(i1) - 0.25F;
 
 					for (int j1 = -l; j1 <= l; ++j1)
 					{
-						float f2 = (float) MathHelper.abs(j1) - 0.25F;
+						float f2 = MathHelper.abs(j1) - 0.25F;
 
 						if ((i1 == 0 && j1 == 0 || f1 * f1 + f2 * f2 <= f * f) && (i1 != -l && i1 != l && j1 != -l && j1 != l || rand.nextFloat() <= 0.75F))
 						{

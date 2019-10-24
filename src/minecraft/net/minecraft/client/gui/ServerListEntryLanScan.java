@@ -7,6 +7,7 @@ public class ServerListEntryLanScan implements GuiListExtended.IGuiListEntry
 {
 	private final Minecraft mc = Minecraft.getMinecraft();
 
+	@Override
 	public void func_192634_a(int p_192634_1_, int p_192634_2_, int p_192634_3_, int p_192634_4_, int p_192634_5_, int p_192634_6_, int p_192634_7_, boolean p_192634_8_, float p_192634_9_)
 	{
 		int i = p_192634_3_ + p_192634_5_ / 2 - this.mc.fontRendererObj.FONT_HEIGHT / 2;
@@ -32,6 +33,7 @@ public class ServerListEntryLanScan implements GuiListExtended.IGuiListEntry
 		this.mc.fontRendererObj.drawString(s, this.mc.currentScreen.width / 2 - this.mc.fontRendererObj.getStringWidth(s) / 2, i + this.mc.fontRendererObj.FONT_HEIGHT, 8421504);
 	}
 
+	@Override
 	public void func_192633_a(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
 	{
 	}
@@ -41,6 +43,7 @@ public class ServerListEntryLanScan implements GuiListExtended.IGuiListEntry
 	 * that something within this entry was clicked and the list should not be
 	 * dragged.
 	 */
+	@Override
 	public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY)
 	{
 		return false;
@@ -50,6 +53,7 @@ public class ServerListEntryLanScan implements GuiListExtended.IGuiListEntry
 	 * Fired when the mouse button is released. Arguments: index, x, y,
 	 * mouseEvent, relativeX, relativeY
 	 */
+	@Override
 	public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY)
 	{
 	}

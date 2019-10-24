@@ -73,6 +73,7 @@ public class EntityAITempt extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (this.delayTemptCounter > 0)
@@ -103,6 +104,7 @@ public class EntityAITempt extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		if (this.scaredByPlayerMovement)
@@ -114,7 +116,7 @@ public class EntityAITempt extends EntityAIBase
 					return false;
 				}
 
-				if (Math.abs((double) this.temptingPlayer.rotationPitch - this.pitch) > 5.0D || Math.abs((double) this.temptingPlayer.rotationYaw - this.yaw) > 5.0D)
+				if (Math.abs(this.temptingPlayer.rotationPitch - this.pitch) > 5.0D || Math.abs(this.temptingPlayer.rotationYaw - this.yaw) > 5.0D)
 				{
 					return false;
 				}
@@ -126,8 +128,8 @@ public class EntityAITempt extends EntityAIBase
 				this.targetZ = this.temptingPlayer.posZ;
 			}
 
-			this.pitch = (double) this.temptingPlayer.rotationPitch;
-			this.yaw = (double) this.temptingPlayer.rotationYaw;
+			this.pitch = this.temptingPlayer.rotationPitch;
+			this.yaw = this.temptingPlayer.rotationYaw;
 		}
 
 		return this.shouldExecute();
@@ -136,6 +138,7 @@ public class EntityAITempt extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.targetX = this.temptingPlayer.posX;
@@ -147,6 +150,7 @@ public class EntityAITempt extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.temptingPlayer = null;
@@ -158,9 +162,10 @@ public class EntityAITempt extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
-		this.temptedEntity.getLookHelper().setLookPositionWithEntity(this.temptingPlayer, (float) (this.temptedEntity.getHorizontalFaceSpeed() + 20), (float) this.temptedEntity.getVerticalFaceSpeed());
+		this.temptedEntity.getLookHelper().setLookPositionWithEntity(this.temptingPlayer, this.temptedEntity.getHorizontalFaceSpeed() + 20, this.temptedEntity.getVerticalFaceSpeed());
 
 		if (this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 6.25D)
 		{

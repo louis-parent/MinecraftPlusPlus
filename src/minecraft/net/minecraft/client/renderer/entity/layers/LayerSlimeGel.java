@@ -16,6 +16,7 @@ public class LayerSlimeGel implements LayerRenderer<EntitySlime>
 		this.slimeRenderer = slimeRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntitySlime entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		if (!entitylivingbaseIn.isInvisible())
@@ -31,6 +32,7 @@ public class LayerSlimeGel implements LayerRenderer<EntitySlime>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return true;

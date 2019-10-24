@@ -23,6 +23,7 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (!this.horseHost.isTame() && this.horseHost.isBeingRidden())
@@ -50,6 +51,7 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.horseHost.getNavigator().tryMoveToXYZ(this.targetX, this.targetY, this.targetZ, this.speed);
@@ -58,6 +60,7 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return !this.horseHost.isTame() && !this.horseHost.getNavigator().noPath() && this.horseHost.isBeingRidden();
@@ -66,11 +69,12 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		if (!this.horseHost.isTame() && this.horseHost.getRNG().nextInt(50) == 0)
 		{
-			Entity entity = (Entity) this.horseHost.getPassengers().get(0);
+			Entity entity = this.horseHost.getPassengers().get(0);
 
 			if (entity == null)
 			{

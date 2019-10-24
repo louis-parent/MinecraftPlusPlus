@@ -57,10 +57,11 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 
 	public EntityThrowable(World worldIn, EntityLivingBase throwerIn)
 	{
-		this(worldIn, throwerIn.posX, throwerIn.posY + (double) throwerIn.getEyeHeight() - 0.10000000149011612D, throwerIn.posZ);
+		this(worldIn, throwerIn.posX, throwerIn.posY + throwerIn.getEyeHeight() - 0.10000000149011612D, throwerIn.posZ);
 		this.thrower = throwerIn;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 	}
@@ -68,6 +69,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	public boolean isInRangeToRenderDist(double distance)
 	{
 		double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 4.0D;
@@ -89,7 +91,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 		float f = -MathHelper.sin(rotationYawIn * 0.017453292F) * MathHelper.cos(rotationPitchIn * 0.017453292F);
 		float f1 = -MathHelper.sin((rotationPitchIn + pitchOffset) * 0.017453292F);
 		float f2 = MathHelper.cos(rotationYawIn * 0.017453292F) * MathHelper.cos(rotationPitchIn * 0.017453292F);
-		this.setThrowableHeading((double) f, (double) f1, (double) f2, velocity, inaccuracy);
+		this.setThrowableHeading(f, f1, f2, velocity, inaccuracy);
 		this.motionX += entityThrower.motionX;
 		this.motionZ += entityThrower.motionZ;
 
@@ -103,24 +105,25 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 	 * Similar to setArrowHeading, it's point the throwable entity to a x, y, z
 	 * direction.
 	 */
+	@Override
 	public void setThrowableHeading(double x, double y, double z, float velocity, float inaccuracy)
 	{
 		float f = MathHelper.sqrt(x * x + y * y + z * z);
-		x = x / (double) f;
-		y = y / (double) f;
-		z = z / (double) f;
-		x = x + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-		y = y + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-		z = z + this.rand.nextGaussian() * 0.007499999832361937D * (double) inaccuracy;
-		x = x * (double) velocity;
-		y = y * (double) velocity;
-		z = z * (double) velocity;
+		x = x / f;
+		y = y / f;
+		z = z / f;
+		x = x + this.rand.nextGaussian() * 0.007499999832361937D * inaccuracy;
+		y = y + this.rand.nextGaussian() * 0.007499999832361937D * inaccuracy;
+		z = z + this.rand.nextGaussian() * 0.007499999832361937D * inaccuracy;
+		x = x * velocity;
+		y = y * velocity;
+		z = z * velocity;
 		this.motionX = x;
 		this.motionY = y;
 		this.motionZ = z;
 		float f1 = MathHelper.sqrt(x * x + z * z);
 		this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-		this.rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * (180D / Math.PI));
+		this.rotationPitch = (float) (MathHelper.atan2(y, f1) * (180D / Math.PI));
 		this.prevRotationYaw = this.rotationYaw;
 		this.prevRotationPitch = this.rotationPitch;
 		this.ticksInGround = 0;
@@ -129,6 +132,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 	/**
 	 * Updates the velocity of the entity to a new value.
 	 */
+	@Override
 	public void setVelocity(double x, double y, double z)
 	{
 		this.motionX = x;
@@ -139,7 +143,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 		{
 			float f = MathHelper.sqrt(x * x + z * z);
 			this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-			this.rotationPitch = (float) (MathHelper.atan2(y, (double) f) * (180D / Math.PI));
+			this.rotationPitch = (float) (MathHelper.atan2(y, f) * (180D / Math.PI));
 			this.prevRotationYaw = this.rotationYaw;
 			this.prevRotationPitch = this.rotationPitch;
 		}
@@ -148,6 +152,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		this.lastTickPosX = this.posX;
@@ -175,9 +180,9 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 			}
 
 			this.inGround = false;
-			this.motionX *= (double) (this.rand.nextFloat() * 0.2F);
-			this.motionY *= (double) (this.rand.nextFloat() * 0.2F);
-			this.motionZ *= (double) (this.rand.nextFloat() * 0.2F);
+			this.motionX *= this.rand.nextFloat() * 0.2F;
+			this.motionY *= this.rand.nextFloat() * 0.2F;
+			this.motionZ *= this.rand.nextFloat() * 0.2F;
 			this.ticksInGround = 0;
 			this.ticksInAir = 0;
 		}
@@ -272,7 +277,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 		float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
 
-		for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, (double) f) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+		for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, f) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
 		{
 			;
 		}
@@ -308,13 +313,13 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 			f1 = 0.8F;
 		}
 
-		this.motionX *= (double) f1;
-		this.motionY *= (double) f1;
-		this.motionZ *= (double) f1;
+		this.motionX *= f1;
+		this.motionY *= f1;
+		this.motionZ *= f1;
 
 		if (!this.hasNoGravity())
 		{
-			this.motionY -= (double) f2;
+			this.motionY -= f2;
 		}
 
 		this.setPosition(this.posX, this.posY, this.posZ);
@@ -340,6 +345,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		compound.setInteger("xTile", this.xTile);
@@ -361,6 +367,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.xTile = compound.getInteger("xTile");

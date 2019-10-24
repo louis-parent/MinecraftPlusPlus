@@ -15,6 +15,7 @@ public class RenderMooshroom extends RenderLiving<EntityMooshroom>
 		this.addLayer(new LayerMooshroomMushroom(this));
 	}
 
+	@Override
 	public ModelCow getMainModel()
 	{
 		return (ModelCow) super.getMainModel();
@@ -24,6 +25,7 @@ public class RenderMooshroom extends RenderLiving<EntityMooshroom>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityMooshroom entity)
 	{
 		return MOOSHROOM_TEXTURES;

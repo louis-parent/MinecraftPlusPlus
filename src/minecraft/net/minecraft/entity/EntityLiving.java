@@ -132,6 +132,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	{
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -225,6 +226,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	{
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -256,6 +258,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	/**
 	 * Gets called every tick from main Entity class
 	 */
+	@Override
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
@@ -270,6 +273,7 @@ public abstract class EntityLiving extends EntityLivingBase
 		this.world.theProfiler.endSection();
 	}
 
+	@Override
 	protected void playHurtSound(DamageSource source)
 	{
 		this.applyEntityAI();
@@ -284,6 +288,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	/**
 	 * Get the experience points the entity currently has.
 	 */
+	@Override
 	protected int getExperiencePoints(EntityPlayer player)
 	{
 		if (this.experienceValue > 0)
@@ -292,7 +297,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
 			for (int j = 0; j < this.inventoryArmor.size(); ++j)
 			{
-				if (!((ItemStack) this.inventoryArmor.get(j)).isNotValid() && this.inventoryArmorDropChances[j] <= 1.0F)
+				if (!this.inventoryArmor.get(j).isNotValid() && this.inventoryArmorDropChances[j] <= 1.0F)
 				{
 					i += 1 + this.rand.nextInt(3);
 				}
@@ -300,7 +305,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
 			for (int k = 0; k < this.inventoryHands.size(); ++k)
 			{
-				if (!((ItemStack) this.inventoryHands.get(k)).isNotValid() && this.inventoryHandsDropChances[k] <= 1.0F)
+				if (!this.inventoryHands.get(k).isNotValid() && this.inventoryHandsDropChances[k] <= 1.0F)
 				{
 					i += 1 + this.rand.nextInt(3);
 				}
@@ -327,7 +332,7 @@ public abstract class EntityLiving extends EntityLivingBase
 				double d1 = this.rand.nextGaussian() * 0.02D;
 				double d2 = this.rand.nextGaussian() * 0.02D;
 				double d3 = 10.0D;
-				this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width - d0 * 10.0D, this.posY + (double) (this.rand.nextFloat() * this.height) - d1 * 10.0D, this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width - d2 * 10.0D, d0, d1, d2);
+				this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width - d0 * 10.0D, this.posY + this.rand.nextFloat() * this.height - d1 * 10.0D, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width - d2 * 10.0D, d0, d1, d2);
 			}
 		}
 		else
@@ -336,6 +341,7 @@ public abstract class EntityLiving extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 20)
@@ -351,6 +357,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -370,6 +377,7 @@ public abstract class EntityLiving extends EntityLivingBase
 		}
 	}
 
+	@Override
 	protected float updateDistance(float p_110146_1_, float p_110146_2_)
 	{
 		this.bodyHelper.updateRenderAngles();
@@ -391,6 +399,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	/**
 	 * Drop 0-2 items of this living's type
 	 */
+	@Override
 	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
 	{
 		Item item = this.getDropItem();
@@ -419,6 +428,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -513,6 +523,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -591,6 +602,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	/**
 	 * drops the loot of this entity upon death
 	 */
+	@Override
 	protected void dropLoot(boolean wasRecentlyHit, int lootingModifier, DamageSource source)
 	{
 		ResourceLocation resourcelocation = this.deathLootTable;
@@ -642,6 +654,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	/**
 	 * set the movespeed used for the new AI system
 	 */
+	@Override
 	public void setAIMoveSpeed(float speedIn)
 	{
 		super.setAIMoveSpeed(speedIn);
@@ -653,6 +666,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -744,18 +758,18 @@ public abstract class EntityLiving extends EntityLivingBase
 
 			if (entityequipmentslot instanceof EntityHandSlot)
 			{
-				d0 = (double) this.inventoryHandsDropChances[entityequipmentslot.getIndex()];
+				d0 = this.inventoryHandsDropChances[entityequipmentslot.getIndex()];
 			}
 			else if (entityequipmentslot instanceof EntityArmorSlot)
 			{
-				d0 = (double) this.inventoryArmorDropChances[entityequipmentslot.getIndex()];
+				d0 = this.inventoryArmorDropChances[entityequipmentslot.getIndex()];
 			}
 			else
 			{
 				d0 = 0.0D;
 			}
 
-			if (!itemstack1.isNotValid() && (double) (this.rand.nextFloat() - 0.1F) < d0)
+			if (!itemstack1.isNotValid() && this.rand.nextFloat() - 0.1F < d0)
 			{
 				this.entityDropItem(itemstack1, 0.0F);
 			}
@@ -828,6 +842,7 @@ public abstract class EntityLiving extends EntityLivingBase
 		}
 	}
 
+	@Override
 	protected final void updateEntityActionState()
 	{
 		++this.entityAge;
@@ -899,14 +914,14 @@ public abstract class EntityLiving extends EntityLivingBase
 		if (entityIn instanceof EntityLivingBase)
 		{
 			EntityLivingBase entitylivingbase = (EntityLivingBase) entityIn;
-			d1 = entitylivingbase.posY + (double) entitylivingbase.getEyeHeight() - (this.posY + (double) this.getEyeHeight());
+			d1 = entitylivingbase.posY + entitylivingbase.getEyeHeight() - (this.posY + this.getEyeHeight());
 		}
 		else
 		{
-			d1 = (entityIn.getEntityBoundingBox().minY + entityIn.getEntityBoundingBox().maxY) / 2.0D - (this.posY + (double) this.getEyeHeight());
+			d1 = (entityIn.getEntityBoundingBox().minY + entityIn.getEntityBoundingBox().maxY) / 2.0D - (this.posY + this.getEyeHeight());
 		}
 
-		double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
+		double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
 		float f = (float) (MathHelper.atan2(d2, d0) * (180D / Math.PI)) - 90.0F;
 		float f1 = (float) (-(MathHelper.atan2(d1, d3) * (180D / Math.PI)));
 		this.rotationPitch = this.updateRotation(this.rotationPitch, f1, maxPitchIncrease);
@@ -971,6 +986,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	 * The maximum height from where the entity is alowed to jump (used in
 	 * pathfinder)
 	 */
+	@Override
 	public int getMaxFallHeight()
 	{
 		if (this.getAttackTarget() == null)
@@ -991,16 +1007,19 @@ public abstract class EntityLiving extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public Iterable<ItemStack> getHeldEquipment()
 	{
 		return this.inventoryHands;
 	}
 
+	@Override
 	public Iterable<ItemStack> getArmorInventoryList()
 	{
 		return this.inventoryArmor;
 	}
 
+	@Override
 	public ItemStack getItemStackFromSlot(EntityEquipmentSlot slot)
 	{
 		if (slot instanceof EntityHandSlot)
@@ -1019,6 +1038,7 @@ public abstract class EntityLiving extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public void setItemStackToSlot(EntityEquipmentSlot slot, ItemStack stack)
 	{
 		if (slot instanceof EntityHandSlot)
@@ -1034,6 +1054,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	/**
 	 * Drop the equipment for this entity.
 	 */
+	@Override
 	protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier)
 	{
 		for (EntityEquipmentSlot entityequipmentslot : EntityEquipmentSlot.values())
@@ -1043,11 +1064,11 @@ public abstract class EntityLiving extends EntityLivingBase
 
 			if (entityequipmentslot instanceof EntityHandSlot)
 			{
-				d0 = (double) this.inventoryHandsDropChances[entityequipmentslot.getIndex()];
+				d0 = this.inventoryHandsDropChances[entityequipmentslot.getIndex()];
 			}
 			else if (entityequipmentslot instanceof EntityArmorSlot)
 			{
-				d0 = (double) this.inventoryArmorDropChances[entityequipmentslot.getIndex()];
+				d0 = this.inventoryArmorDropChances[entityequipmentslot.getIndex()];
 			}
 			else
 			{
@@ -1056,7 +1077,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
 			boolean flag = d0 > 1.0D;
 
-			if (!itemstack.isNotValid() && !EnchantmentHelper.func_190939_c(itemstack) && (wasRecentlyHit || flag) && (double) (this.rand.nextFloat() - (float) lootingModifier * 0.01F) < d0)
+			if (!itemstack.isNotValid() && !EnchantmentHelper.func_190939_c(itemstack) && (wasRecentlyHit || flag) && this.rand.nextFloat() - lootingModifier * 0.01F < d0)
 			{
 				if (!flag && itemstack.isItemStackDamageable())
 				{
@@ -1259,7 +1280,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
 		if (!this.getHeldItemMainhand().isNotValid() && this.rand.nextFloat() < 0.25F * f)
 		{
-			this.setItemStackToSlot(EntityHandSlot.MAINHAND, EnchantmentHelper.addRandomEnchantment(this.rand, this.getHeldItemMainhand(), (int) (5.0F + f * (float) this.rand.nextInt(18)), false));
+			this.setItemStackToSlot(EntityHandSlot.MAINHAND, EnchantmentHelper.addRandomEnchantment(this.rand, this.getHeldItemMainhand(), (int) (5.0F + f * this.rand.nextInt(18)), false));
 		}
 
 		for (EntityEquipmentSlot entityequipmentslot : EntityEquipmentSlot.values())
@@ -1270,7 +1291,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
 				if (!itemstack.isNotValid() && this.rand.nextFloat() < 0.5F * f)
 				{
-					this.setItemStackToSlot(entityequipmentslot, EnchantmentHelper.addRandomEnchantment(this.rand, itemstack, (int) (5.0F + f * (float) this.rand.nextInt(18)), false));
+					this.setItemStackToSlot(entityequipmentslot, EnchantmentHelper.addRandomEnchantment(this.rand, itemstack, (int) (5.0F + f * this.rand.nextInt(18)), false));
 				}
 			}
 		}
@@ -1348,6 +1369,7 @@ public abstract class EntityLiving extends EntityLivingBase
 		return this.persistenceRequired;
 	}
 
+	@Override
 	public final boolean processInitialInteract(EntityPlayer player, EnumHand stack)
 	{
 		if (this.getLeashed() && this.getLeashedToEntity() == player)
@@ -1458,6 +1480,7 @@ public abstract class EntityLiving extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public boolean startRiding(Entity entityIn, boolean force)
 	{
 		boolean flag = super.startRiding(entityIn, force);
@@ -1508,6 +1531,7 @@ public abstract class EntityLiving extends EntityLivingBase
 		this.leashNBTTag = null;
 	}
 
+	@Override
 	public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn)
 	{
 		EntityEquipmentSlot entityequipmentslot;
@@ -1553,6 +1577,7 @@ public abstract class EntityLiving extends EntityLivingBase
 		}
 	}
 
+	@Override
 	public boolean canPassengerSteer()
 	{
 		return this.canBeSteered() && super.canPassengerSteer();
@@ -1567,6 +1592,7 @@ public abstract class EntityLiving extends EntityLivingBase
 	/**
 	 * Returns whether the entity is in a server world
 	 */
+	@Override
 	public boolean isServerWorld()
 	{
 		return super.isServerWorld() && !this.isAIDisabled();
@@ -1577,13 +1603,13 @@ public abstract class EntityLiving extends EntityLivingBase
 	 */
 	public void setNoAI(boolean disable)
 	{
-		byte b0 = ((Byte) this.dataManager.get(AI_FLAGS)).byteValue();
+		byte b0 = this.dataManager.get(AI_FLAGS).byteValue();
 		this.dataManager.set(AI_FLAGS, Byte.valueOf(disable ? (byte) (b0 | 1) : (byte) (b0 & -2)));
 	}
 
 	public void setLeftHanded(boolean disable)
 	{
-		byte b0 = ((Byte) this.dataManager.get(AI_FLAGS)).byteValue();
+		byte b0 = this.dataManager.get(AI_FLAGS).byteValue();
 		this.dataManager.set(AI_FLAGS, Byte.valueOf(disable ? (byte) (b0 | 2) : (byte) (b0 & -3)));
 	}
 
@@ -1592,14 +1618,15 @@ public abstract class EntityLiving extends EntityLivingBase
 	 */
 	public boolean isAIDisabled()
 	{
-		return (((Byte) this.dataManager.get(AI_FLAGS)).byteValue() & 1) != 0;
+		return (this.dataManager.get(AI_FLAGS).byteValue() & 1) != 0;
 	}
 
 	public boolean isLeftHanded()
 	{
-		return (((Byte) this.dataManager.get(AI_FLAGS)).byteValue() & 2) != 0;
+		return (this.dataManager.get(AI_FLAGS).byteValue() & 2) != 0;
 	}
 
+	@Override
 	public EnumHandSide getPrimaryHand()
 	{
 		return this.isLeftHanded() ? EnumHandSide.LEFT : EnumHandSide.RIGHT;

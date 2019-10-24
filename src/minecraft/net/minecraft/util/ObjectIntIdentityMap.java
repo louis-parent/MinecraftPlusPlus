@@ -47,9 +47,10 @@ public class ObjectIntIdentityMap<T> implements IObjectIntIterable<T>
 	@Nullable
 	public final T getByValue(int value)
 	{
-		return (T) (value >= 0 && value < this.objectList.size() ? this.objectList.get(value) : null);
+		return value >= 0 && value < this.objectList.size() ? this.objectList.get(value) : null;
 	}
 
+	@Override
 	public Iterator<T> iterator()
 	{
 		return Iterators.filter(this.objectList.iterator(), Predicates.notNull());

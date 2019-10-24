@@ -56,6 +56,7 @@ public class EntityPig extends EntityAnimal
 		this.setSize(0.9F, 0.9F);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -69,6 +70,7 @@ public class EntityPig extends EntityAnimal
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -76,6 +78,7 @@ public class EntityPig extends EntityAnimal
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -93,6 +96,7 @@ public class EntityPig extends EntityAnimal
 	 * pigs, this is true if it is being ridden by a player and the player is
 	 * holding a carrot-on-a-stick
 	 */
+	@Override
 	public boolean canBeSteered()
 	{
 		Entity entity = this.getControllingPassenger();
@@ -108,18 +112,20 @@ public class EntityPig extends EntityAnimal
 		}
 	}
 
+	@Override
 	public void notifyDataManagerChange(DataParameter<?> key)
 	{
 		if (field_191520_bx.equals(key) && this.world.isRemote)
 		{
 			this.boosting = true;
 			this.boostTime = 0;
-			this.totalBoostTime = ((Integer) this.dataManager.get(field_191520_bx)).intValue();
+			this.totalBoostTime = this.dataManager.get(field_191520_bx).intValue();
 		}
 
 		super.notifyDataManagerChange(key);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -135,6 +141,7 @@ public class EntityPig extends EntityAnimal
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -144,32 +151,38 @@ public class EntityPig extends EntityAnimal
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
 		this.setSaddled(compound.getBoolean("Saddle"));
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_PIG_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_PIG_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_PIG_DEATH;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		if (!super.processInteract(player, hand))
@@ -209,6 +222,7 @@ public class EntityPig extends EntityAnimal
 	/**
 	 * Called when the mob's health reaches 0.
 	 */
+	@Override
 	public void onDeath(DamageSource cause)
 	{
 		super.onDeath(cause);
@@ -222,6 +236,7 @@ public class EntityPig extends EntityAnimal
 		}
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -233,7 +248,7 @@ public class EntityPig extends EntityAnimal
 	 */
 	public boolean getSaddled()
 	{
-		return ((Boolean) this.dataManager.get(SADDLED)).booleanValue();
+		return this.dataManager.get(SADDLED).booleanValue();
 	}
 
 	/**
@@ -254,6 +269,7 @@ public class EntityPig extends EntityAnimal
 	/**
 	 * Called when a lightning bolt hits the entity.
 	 */
+	@Override
 	public void onStruckByLightning(EntityLightningBolt lightningBolt)
 	{
 		if (!this.world.isRemote && !this.isDead)
@@ -274,6 +290,7 @@ public class EntityPig extends EntityAnimal
 		}
 	}
 
+	@Override
 	public void func_191986_a(float p_191986_1_, float p_191986_2_, float p_191986_3_)
 	{
 		Entity entity = this.getPassengers().isEmpty() ? null : (Entity) this.getPassengers().get(0);
@@ -350,6 +367,7 @@ public class EntityPig extends EntityAnimal
 		}
 	}
 
+	@Override
 	public EntityPig createChild(EntityAgeable ageable)
 	{
 		return new EntityPig(this.world);
@@ -359,6 +377,7 @@ public class EntityPig extends EntityAnimal
 	 * Checks if the parameter is an item which this animal can be fed to breed
 	 * it (wheat, carrots or seeds depending on the animal type)
 	 */
+	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
 		return TEMPTATION_ITEMS.contains(stack.getItem());

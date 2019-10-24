@@ -16,6 +16,7 @@ public class CommandWorldBorder extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "worldborder";
@@ -24,6 +25,7 @@ public class CommandWorldBorder extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
@@ -32,6 +34,7 @@ public class CommandWorldBorder extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.worldborder.usage";
@@ -40,6 +43,7 @@ public class CommandWorldBorder extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length < 1)
@@ -118,8 +122,8 @@ public class CommandWorldBorder extends CommandBase
 				}
 
 				BlockPos blockpos = sender.getPosition();
-				double d1 = parseDouble((double) blockpos.getX() + 0.5D, args[1], true);
-				double d3 = parseDouble((double) blockpos.getZ() + 0.5D, args[2], true);
+				double d1 = parseDouble(blockpos.getX() + 0.5D, args[1], true);
+				double d3 = parseDouble(blockpos.getZ() + 0.5D, args[2], true);
 				worldborder.setCenter(d1, d3);
 				notifyCommandListener(sender, this, "commands.worldborder.center.success", new Object[] { d1, d3 });
 			}
@@ -206,6 +210,7 @@ public class CommandWorldBorder extends CommandBase
 		return server.worldServers[0].getWorldBorder();
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		if (args.length == 1)

@@ -27,7 +27,7 @@ public class HotbarSnapshot extends ArrayList<ItemStack>
 
 		for (int i = 0; i < field_192835_a; ++i)
 		{
-			nbttaglist.appendTag(((ItemStack) this.get(i)).writeToNBT(new NBTTagCompound()));
+			nbttaglist.appendTag(this.get(i).writeToNBT(new NBTTagCompound()));
 		}
 
 		return nbttaglist;
@@ -41,11 +41,12 @@ public class HotbarSnapshot extends ArrayList<ItemStack>
 		}
 	}
 
+	@Override
 	public boolean isEmpty()
 	{
 		for (int i = 0; i < field_192835_a; ++i)
 		{
-			if (!((ItemStack) this.get(i)).isNotValid())
+			if (!this.get(i).isNotValid())
 			{
 				return false;
 			}

@@ -168,7 +168,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
 	private void func_193003_g(boolean p_193003_1_)
 	{
-		List<RecipeList> list = (List) RecipeBookClient.field_194086_e.get(this.field_191913_x.func_191764_e());
+		List<RecipeList> list = RecipeBookClient.field_194086_e.get(this.field_191913_x.func_191764_e());
 		list.forEach((p_193944_1_) ->
 		{
 			p_193944_1_.func_194210_a(this.field_193965_u, this.craftingMatrix.getWidth(), this.craftingMatrix.getHeight(), this.field_193964_s);
@@ -477,6 +477,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 		}
 	}
 
+	@Override
 	public void func_193001_a(List<IRecipe> p_193001_1_)
 	{
 		for (IRecipe irecipe : p_193001_1_)
@@ -573,7 +574,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 
 			while (lvt_10_1_.hasNext())
 			{
-				int k = ((Integer) lvt_10_1_.next()).intValue();
+				int k = lvt_10_1_.next().intValue();
 				int l = RecipeItemHelper.func_194115_b(k).getMaxStackSize();
 
 				if (l < j1)
@@ -695,7 +696,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 				}
 
 				Slot slot = p_193013_2_.get(j1);
-				ItemStack itemstack = RecipeItemHelper.func_194115_b(((Integer) iterator.next()).intValue());
+				ItemStack itemstack = RecipeItemHelper.func_194115_b(iterator.next().intValue());
 
 				if (itemstack.isNotValid())
 				{

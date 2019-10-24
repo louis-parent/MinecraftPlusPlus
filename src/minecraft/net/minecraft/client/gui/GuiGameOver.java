@@ -29,6 +29,7 @@ public class GuiGameOver extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.buttonList.clear();
@@ -61,6 +62,7 @@ public class GuiGameOver extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 	}
@@ -69,6 +71,7 @@ public class GuiGameOver extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		switch (button.id)
@@ -92,6 +95,7 @@ public class GuiGameOver extends GuiScreen
 		}
 	}
 
+	@Override
 	public void confirmClicked(boolean result, int id)
 	{
 		if (result)
@@ -114,6 +118,7 @@ public class GuiGameOver extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		boolean flag = this.mc.world.getWorldInfo().isHardcoreModeEnabled();
@@ -182,6 +187,7 @@ public class GuiGameOver extends GuiScreen
 	 * Returns true if this GUI should pause the game when it is displayed in
 	 * single-player
 	 */
+	@Override
 	public boolean doesGuiPauseGame()
 	{
 		return false;
@@ -190,6 +196,7 @@ public class GuiGameOver extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		super.updateScreen();

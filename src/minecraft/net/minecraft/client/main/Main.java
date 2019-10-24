@@ -58,14 +58,14 @@ public class Main
 			System.out.println("Completely ignored arguments: " + list);
 		}
 
-		String s = (String) optionset.valueOf(optionspec5);
+		String s = optionset.valueOf(optionspec5);
 		Proxy proxy = Proxy.NO_PROXY;
 
 		if (s != null)
 		{
 			try
 			{
-				proxy = new Proxy(Type.SOCKS, new InetSocketAddress(s, ((Integer) optionset.valueOf(optionspec6)).intValue()));
+				proxy = new Proxy(Type.SOCKS, new InetSocketAddress(s, optionset.valueOf(optionspec6).intValue()));
 			}
 			catch (Exception var48)
 			{
@@ -73,13 +73,14 @@ public class Main
 			}
 		}
 
-		final String s1 = (String) optionset.valueOf(optionspec7);
-		final String s2 = (String) optionset.valueOf(optionspec8);
+		final String s1 = optionset.valueOf(optionspec7);
+		final String s2 = optionset.valueOf(optionspec8);
 
 		if (!proxy.equals(Proxy.NO_PROXY) && isNullOrEmpty(s1) && isNullOrEmpty(s2))
 		{
 			Authenticator.setDefault(new Authenticator()
 			{
+				@Override
 				protected PasswordAuthentication getPasswordAuthentication()
 				{
 					return new PasswordAuthentication(s1, s2.toCharArray());
@@ -87,27 +88,28 @@ public class Main
 			});
 		}
 
-		int i = ((Integer) optionset.valueOf(optionspec13)).intValue();
-		int j = ((Integer) optionset.valueOf(optionspec14)).intValue();
+		int i = optionset.valueOf(optionspec13).intValue();
+		int j = optionset.valueOf(optionspec14).intValue();
 		boolean flag = optionset.has("fullscreen");
 		boolean flag1 = optionset.has("checkGlErrors");
 		boolean flag2 = optionset.has("demo");
-		String s3 = (String) optionset.valueOf(optionspec12);
+		String s3 = optionset.valueOf(optionspec12);
 		Gson gson = (new GsonBuilder()).registerTypeAdapter(PropertyMap.class, new Serializer()).create();
-		PropertyMap propertymap = (PropertyMap) JsonUtils.gsonDeserialize(gson, (String) optionset.valueOf(optionspec15), PropertyMap.class);
-		PropertyMap propertymap1 = (PropertyMap) JsonUtils.gsonDeserialize(gson, (String) optionset.valueOf(optionspec16), PropertyMap.class);
-		String s4 = (String) optionset.valueOf(optionspec19);
-		File file1 = (File) optionset.valueOf(optionspec2);
+		PropertyMap propertymap = JsonUtils.gsonDeserialize(gson, optionset.valueOf(optionspec15), PropertyMap.class);
+		PropertyMap propertymap1 = JsonUtils.gsonDeserialize(gson, optionset.valueOf(optionspec16), PropertyMap.class);
+		String s4 = optionset.valueOf(optionspec19);
+		File file1 = optionset.valueOf(optionspec2);
 		File file2 = optionset.has(optionspec3) ? (File) optionset.valueOf(optionspec3) : new File(file1, "assets/");
 		File file3 = optionset.has(optionspec4) ? (File) optionset.valueOf(optionspec4) : new File(file1, "resourcepacks/");
 		String s5 = optionset.has(optionspec10) ? (String) optionspec10.value(optionset) : (String) optionspec9.value(optionset);
 		String s6 = optionset.has(optionspec17) ? (String) optionspec17.value(optionset) : null;
-		String s7 = (String) optionset.valueOf(optionspec);
-		Integer integer = (Integer) optionset.valueOf(optionspec1);
+		String s7 = optionset.valueOf(optionspec);
+		Integer integer = optionset.valueOf(optionspec1);
 		Session session = new Session(optionspec9.value(optionset), s5, optionspec11.value(optionset), optionspec18.value(optionset));
 		GameConfiguration gameconfiguration = new GameConfiguration(new GameConfiguration.UserInformation(session, propertymap, propertymap1, proxy), new GameConfiguration.DisplayInformation(i, j, flag, flag1), new GameConfiguration.FolderInformation(file1, file3, file2, s6), new GameConfiguration.GameInformation(flag2, s3, s4), new GameConfiguration.ServerInformation(s7, integer.intValue()));
 		Runtime.getRuntime().addShutdownHook(new Thread("Client Shutdown Thread")
 		{
+			@Override
 			public void run()
 			{
 				Minecraft.stopIntegratedServer();

@@ -7,6 +7,7 @@ public class ScoreCriteriaReadOnly extends ScoreCriteria
 		super(name);
 	}
 
+	@Override
 	public boolean isReadOnly()
 	{
 		return true;

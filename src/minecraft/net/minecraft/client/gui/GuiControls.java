@@ -38,6 +38,7 @@ public class GuiControls extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.keyBindingList = new GuiKeyBindingList(this, this.mc);
@@ -64,6 +65,7 @@ public class GuiControls extends GuiScreen
 	/**
 	 * Handles mouse input.
 	 */
+	@Override
 	public void handleMouseInput() throws IOException
 	{
 		super.handleMouseInput();
@@ -74,6 +76,7 @@ public class GuiControls extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.id == 200)
@@ -99,6 +102,7 @@ public class GuiControls extends GuiScreen
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		if (this.buttonId != null)
@@ -116,6 +120,7 @@ public class GuiControls extends GuiScreen
 	/**
 	 * Called when a mouse button is released.
 	 */
+	@Override
 	protected void mouseReleased(int mouseX, int mouseY, int state)
 	{
 		if (state != 0 || !this.keyBindingList.mouseReleased(mouseX, mouseY, state))
@@ -129,6 +134,7 @@ public class GuiControls extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (this.buttonId != null)
@@ -159,6 +165,7 @@ public class GuiControls extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();

@@ -307,19 +307,19 @@ public class Block
 		return state;
 	}
 
-	public Block(Material blockMaterialIn, MapColor blockMapColorIn)
+	public Block(Material blockMaterial, MapColor blockMapColor)
 	{
 		this.enableStats = true;
 		this.blockSoundType = SoundType.STONE;
 		this.blockParticleGravity = 1.0F;
 		this.slipperiness = BLOCK_SLIPERNESS;
-		this.blockMaterial = blockMaterialIn;
-		this.blockMapColor = blockMapColorIn;
+		this.blockMaterial = blockMaterial;
+		this.blockMapColor = blockMapColor;
 		this.blockState = this.createBlockState();
 		this.setDefaultState(this.blockState.getBaseState());
 		this.fullBlock = this.getDefaultState().isOpaqueCube();
 		this.lightOpacity = this.fullBlock ? 255 : 0;
-		this.translucent = !blockMaterialIn.blocksLight();
+		this.translucent = !blockMaterial.blocksLight();
 	}
 
 	protected Block(Material materialIn)
@@ -775,10 +775,10 @@ public class Block
 		if (!world.isRemote && !stack.isNotValid() && world.getGameRules().getBoolean("doTileDrops"))
 		{
 			float f = 0.5F;
-			double d0 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
-			double d1 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
-			double d2 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
-			EntityItem entityitem = new EntityItem(world, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, stack);
+			double d0 = world.rand.nextFloat() * 0.5F + 0.25D;
+			double d1 = world.rand.nextFloat() * 0.5F + 0.25D;
+			double d2 = world.rand.nextFloat() * 0.5F + 0.25D;
+			EntityItem entityitem = new EntityItem(world, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, stack);
 			entityitem.setDefaultPickupDelay();
 			world.spawnEntityInWorld(entityitem);
 		}
@@ -795,7 +795,7 @@ public class Block
 			{
 				int i = EntityXPOrb.getXPSplit(amount);
 				amount -= i;
-				world.spawnEntityInWorld(new EntityXPOrb(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, i));
+				world.spawnEntityInWorld(new EntityXPOrb(world, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, i));
 			}
 		}
 	}
@@ -834,10 +834,10 @@ public class Block
 	@Nullable
 	protected RayTraceResult rayTrace(BlockPos pos, Vec3d start, Vec3d end, AxisAlignedBB boundingBox)
 	{
-		Vec3d vec3d = start.subtract((double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
-		Vec3d vec3d1 = end.subtract((double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+		Vec3d vec3d = start.subtract(pos.getX(), pos.getY(), pos.getZ());
+		Vec3d vec3d1 = end.subtract(pos.getX(), pos.getY(), pos.getZ());
 		RayTraceResult raytraceresult = boundingBox.calculateIntercept(vec3d, vec3d1);
-		return raytraceresult == null ? null : new RayTraceResult(raytraceresult.hitVec.addVector((double) pos.getX(), (double) pos.getY(), (double) pos.getZ()), raytraceresult.sideHit, pos);
+		return raytraceresult == null ? null : new RayTraceResult(raytraceresult.hitVec.addVector(pos.getX(), pos.getY(), pos.getZ()), raytraceresult.sideHit, pos);
 	}
 
 	/**
@@ -1190,7 +1190,7 @@ public class Block
 		else
 		{
 			long i = MathHelper.getCoordinateRandom(p_190949_3_.getX(), 0, p_190949_3_.getZ());
-			return new Vec3d(((double) ((float) (i >> 16 & 15L) / 15.0F) - 0.5D) * 0.5D, block$enumoffsettype == Block.EnumOffsetType.XYZ ? ((double) ((float) (i >> 20 & 15L) / 15.0F) - 1.0D) * 0.2D : 0.0D, ((double) ((float) (i >> 24 & 15L) / 15.0F) - 0.5D) * 0.5D);
+			return new Vec3d(((i >> 16 & 15L) / 15.0F - 0.5D) * 0.5D, block$enumoffsettype == Block.EnumOffsetType.XYZ ? ((i >> 20 & 15L) / 15.0F - 1.0D) * 0.2D : 0.0D, ((i >> 24 & 15L) / 15.0F - 0.5D) * 0.5D);
 		}
 	}
 
@@ -1253,6 +1253,7 @@ public class Block
 		return 0;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "Block{" + REGISTRY.getNameForObject(this) + "}";

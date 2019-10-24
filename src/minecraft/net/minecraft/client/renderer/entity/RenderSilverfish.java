@@ -13,6 +13,7 @@ public class RenderSilverfish extends RenderLiving<EntitySilverfish>
 		super(renderManagerIn, new ModelSilverfish(), 0.3F);
 	}
 
+	@Override
 	protected float getDeathMaxRotation(EntitySilverfish entityLivingBaseIn)
 	{
 		return 180.0F;
@@ -22,6 +23,7 @@ public class RenderSilverfish extends RenderLiving<EntitySilverfish>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntitySilverfish entity)
 	{
 		return SILVERFISH_TEXTURES;

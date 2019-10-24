@@ -99,9 +99,9 @@ public class ItemRenderer
 	private void setLightmap()
 	{
 		AbstractClientPlayer abstractclientplayer = this.mc.player;
-		int i = this.mc.world.getCombinedLight(new BlockPos(abstractclientplayer.posX, abstractclientplayer.posY + (double) abstractclientplayer.getEyeHeight(), abstractclientplayer.posZ), 0);
-		float f = (float) (i & 65535);
-		float f1 = (float) (i >> 16);
+		int i = this.mc.world.getCombinedLight(new BlockPos(abstractclientplayer.posX, abstractclientplayer.posY + abstractclientplayer.getEyeHeight(), abstractclientplayer.posZ), 0);
+		float f = i & 65535;
+		float f1 = i >> 16;
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, f, f1);
 	}
 
@@ -271,8 +271,8 @@ public class ItemRenderer
 
 	private void transformEatFirstPerson(float p_187454_1_, EnumHandSide p_187454_2_, ItemStack p_187454_3_)
 	{
-		float f = (float) this.mc.player.getItemInUseCount() - p_187454_1_ + 1.0F;
-		float f1 = f / (float) p_187454_3_.getMaxItemUseDuration();
+		float f = this.mc.player.getItemInUseCount() - p_187454_1_ + 1.0F;
+		float f1 = f / p_187454_3_.getMaxItemUseDuration();
 
 		if (f1 < 0.8F)
 		{
@@ -280,29 +280,29 @@ public class ItemRenderer
 			GlStateManager.translate(0.0F, f2, 0.0F);
 		}
 
-		float f3 = 1.0F - (float) Math.pow((double) f1, 27.0D);
+		float f3 = 1.0F - (float) Math.pow(f1, 27.0D);
 		int i = p_187454_2_ == EnumHandSide.RIGHT ? 1 : -1;
-		GlStateManager.translate(f3 * 0.6F * (float) i, f3 * -0.5F, f3 * 0.0F);
-		GlStateManager.rotate((float) i * f3 * 90.0F, 0.0F, 1.0F, 0.0F);
+		GlStateManager.translate(f3 * 0.6F * i, f3 * -0.5F, f3 * 0.0F);
+		GlStateManager.rotate(i * f3 * 90.0F, 0.0F, 1.0F, 0.0F);
 		GlStateManager.rotate(f3 * 10.0F, 1.0F, 0.0F, 0.0F);
-		GlStateManager.rotate((float) i * f3 * 30.0F, 0.0F, 0.0F, 1.0F);
+		GlStateManager.rotate(i * f3 * 30.0F, 0.0F, 0.0F, 1.0F);
 	}
 
 	private void transformFirstPerson(EnumHandSide p_187453_1_, float p_187453_2_)
 	{
 		int i = p_187453_1_ == EnumHandSide.RIGHT ? 1 : -1;
 		float f = MathHelper.sin(p_187453_2_ * p_187453_2_ * (float) Math.PI);
-		GlStateManager.rotate((float) i * (45.0F + f * -20.0F), 0.0F, 1.0F, 0.0F);
+		GlStateManager.rotate(i * (45.0F + f * -20.0F), 0.0F, 1.0F, 0.0F);
 		float f1 = MathHelper.sin(MathHelper.sqrt(p_187453_2_) * (float) Math.PI);
-		GlStateManager.rotate((float) i * f1 * -20.0F, 0.0F, 0.0F, 1.0F);
+		GlStateManager.rotate(i * f1 * -20.0F, 0.0F, 0.0F, 1.0F);
 		GlStateManager.rotate(f1 * -80.0F, 1.0F, 0.0F, 0.0F);
-		GlStateManager.rotate((float) i * -45.0F, 0.0F, 1.0F, 0.0F);
+		GlStateManager.rotate(i * -45.0F, 0.0F, 1.0F, 0.0F);
 	}
 
 	private void transformSideFirstPerson(EnumHandSide p_187459_1_, float p_187459_2_)
 	{
 		int i = p_187459_1_ == EnumHandSide.RIGHT ? 1 : -1;
-		GlStateManager.translate((float) i * 0.56F, -0.52F + p_187459_2_ * -0.6F, -0.72F);
+		GlStateManager.translate(i * 0.56F, -0.52F + p_187459_2_ * -0.6F, -0.72F);
 	}
 
 	/**
@@ -312,7 +312,7 @@ public class ItemRenderer
 	{
 		AbstractClientPlayer abstractclientplayer = this.mc.player;
 		float f = abstractclientplayer.getSwingProgress(partialTicks);
-		EnumHand enumhand = (EnumHand) MoreObjects.firstNonNull(abstractclientplayer.swingingHand, EnumHand.MAIN_HAND);
+		EnumHand enumhand = MoreObjects.firstNonNull(abstractclientplayer.swingingHand, EnumHand.MAIN_HAND);
 		float f1 = abstractclientplayer.prevRotationPitch + (abstractclientplayer.rotationPitch - abstractclientplayer.prevRotationPitch) * partialTicks;
 		float f2 = abstractclientplayer.prevRotationYaw + (abstractclientplayer.rotationYaw - abstractclientplayer.prevRotationYaw) * partialTicks;
 		boolean flag = true;
@@ -403,11 +403,11 @@ public class ItemRenderer
 
 					case BOW:
 						this.transformSideFirstPerson(enumhandside, p_187457_7_);
-						GlStateManager.translate((float) j * -0.2785682F, 0.18344387F, 0.15731531F);
+						GlStateManager.translate(j * -0.2785682F, 0.18344387F, 0.15731531F);
 						GlStateManager.rotate(-13.935F, 1.0F, 0.0F, 0.0F);
-						GlStateManager.rotate((float) j * 35.3F, 0.0F, 1.0F, 0.0F);
-						GlStateManager.rotate((float) j * -9.785F, 0.0F, 0.0F, 1.0F);
-						float f5 = (float) p_187457_6_.getMaxItemUseDuration() - ((float) this.mc.player.getItemInUseCount() - p_187457_2_ + 1.0F);
+						GlStateManager.rotate(j * 35.3F, 0.0F, 1.0F, 0.0F);
+						GlStateManager.rotate(j * -9.785F, 0.0F, 0.0F, 1.0F);
+						float f5 = p_187457_6_.getMaxItemUseDuration() - (this.mc.player.getItemInUseCount() - p_187457_2_ + 1.0F);
 						float f6 = f5 / 20.0F;
 						f6 = (f6 * f6 + f6 * 2.0F) / 3.0F;
 
@@ -426,7 +426,7 @@ public class ItemRenderer
 
 						GlStateManager.translate(f6 * 0.0F, f6 * 0.0F, f6 * 0.04F);
 						GlStateManager.scale(1.0F, 1.0F, 1.0F + f6 * 0.2F);
-						GlStateManager.rotate((float) j * 45.0F, 0.0F, -1.0F, 0.0F);
+						GlStateManager.rotate(j * 45.0F, 0.0F, -1.0F, 0.0F);
 				}
 			}
 			else
@@ -435,7 +435,7 @@ public class ItemRenderer
 				float f1 = 0.2F * MathHelper.sin(MathHelper.sqrt(p_187457_5_) * ((float) Math.PI * 2F));
 				float f2 = -0.2F * MathHelper.sin(p_187457_5_ * (float) Math.PI);
 				int i = flag1 ? 1 : -1;
-				GlStateManager.translate((float) i * f, f1, f2);
+				GlStateManager.translate(i * f, f1, f2);
 				this.transformSideFirstPerson(enumhandside, p_187457_7_);
 				this.transformFirstPerson(enumhandside, p_187457_5_);
 			}
@@ -460,10 +460,10 @@ public class ItemRenderer
 
 			for (int i = 0; i < 8; ++i)
 			{
-				double d0 = entityplayer.posX + (double) (((float) ((i >> 0) % 2) - 0.5F) * entityplayer.width * 0.8F);
-				double d1 = entityplayer.posY + (double) (((float) ((i >> 1) % 2) - 0.5F) * 0.1F);
-				double d2 = entityplayer.posZ + (double) (((float) ((i >> 2) % 2) - 0.5F) * entityplayer.width * 0.8F);
-				BlockPos blockpos = new BlockPos(d0, d1 + (double) entityplayer.getEyeHeight(), d2);
+				double d0 = entityplayer.posX + ((i >> 0) % 2 - 0.5F) * entityplayer.width * 0.8F;
+				double d1 = entityplayer.posY + ((i >> 1) % 2 - 0.5F) * 0.1F;
+				double d2 = entityplayer.posZ + ((i >> 2) % 2 - 0.5F) * entityplayer.width * 0.8F;
+				BlockPos blockpos = new BlockPos(d0, d1 + entityplayer.getEyeHeight(), d2);
 				IBlockState iblockstate1 = this.mc.world.getBlockState(blockpos);
 
 				if (iblockstate1.func_191058_s())
@@ -515,10 +515,10 @@ public class ItemRenderer
 		float f8 = partialTicks.getMinV();
 		float f9 = partialTicks.getMaxV();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.pos(-1.0D, -1.0D, -0.5D).tex((double) f7, (double) f9).endVertex();
-		bufferbuilder.pos(1.0D, -1.0D, -0.5D).tex((double) f6, (double) f9).endVertex();
-		bufferbuilder.pos(1.0D, 1.0D, -0.5D).tex((double) f6, (double) f8).endVertex();
-		bufferbuilder.pos(-1.0D, 1.0D, -0.5D).tex((double) f7, (double) f8).endVertex();
+		bufferbuilder.pos(-1.0D, -1.0D, -0.5D).tex(f7, f9).endVertex();
+		bufferbuilder.pos(1.0D, -1.0D, -0.5D).tex(f6, f9).endVertex();
+		bufferbuilder.pos(1.0D, 1.0D, -0.5D).tex(f6, f8).endVertex();
+		bufferbuilder.pos(-1.0D, 1.0D, -0.5D).tex(f7, f8).endVertex();
 		tessellator.draw();
 		GlStateManager.popMatrix();
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -548,10 +548,10 @@ public class ItemRenderer
 		float f7 = -this.mc.player.rotationYaw / 64.0F;
 		float f8 = this.mc.player.rotationPitch / 64.0F;
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.pos(-1.0D, -1.0D, -0.5D).tex((double) (4.0F + f7), (double) (4.0F + f8)).endVertex();
-		bufferbuilder.pos(1.0D, -1.0D, -0.5D).tex((double) (0.0F + f7), (double) (4.0F + f8)).endVertex();
-		bufferbuilder.pos(1.0D, 1.0D, -0.5D).tex((double) (0.0F + f7), (double) (0.0F + f8)).endVertex();
-		bufferbuilder.pos(-1.0D, 1.0D, -0.5D).tex((double) (4.0F + f7), (double) (0.0F + f8)).endVertex();
+		bufferbuilder.pos(-1.0D, -1.0D, -0.5D).tex(4.0F + f7, 4.0F + f8).endVertex();
+		bufferbuilder.pos(1.0D, -1.0D, -0.5D).tex(0.0F + f7, 4.0F + f8).endVertex();
+		bufferbuilder.pos(1.0D, 1.0D, -0.5D).tex(0.0F + f7, 0.0F + f8).endVertex();
+		bufferbuilder.pos(-1.0D, 1.0D, -0.5D).tex(4.0F + f7, 0.0F + f8).endVertex();
 		tessellator.draw();
 		GlStateManager.popMatrix();
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -587,13 +587,13 @@ public class ItemRenderer
 			float f7 = -0.5F;
 			float f8 = 0.5F;
 			float f9 = -0.5F;
-			GlStateManager.translate((float) (-(i * 2 - 1)) * 0.24F, -0.3F, 0.0F);
-			GlStateManager.rotate((float) (i * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
+			GlStateManager.translate((-(i * 2 - 1)) * 0.24F, -0.3F, 0.0F);
+			GlStateManager.rotate((i * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
 			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-			bufferbuilder.pos(-0.5D, -0.5D, -0.5D).tex((double) f2, (double) f4).endVertex();
-			bufferbuilder.pos(0.5D, -0.5D, -0.5D).tex((double) f1, (double) f4).endVertex();
-			bufferbuilder.pos(0.5D, 0.5D, -0.5D).tex((double) f1, (double) f3).endVertex();
-			bufferbuilder.pos(-0.5D, 0.5D, -0.5D).tex((double) f2, (double) f3).endVertex();
+			bufferbuilder.pos(-0.5D, -0.5D, -0.5D).tex(f2, f4).endVertex();
+			bufferbuilder.pos(0.5D, -0.5D, -0.5D).tex(f1, f4).endVertex();
+			bufferbuilder.pos(0.5D, 0.5D, -0.5D).tex(f1, f3).endVertex();
+			bufferbuilder.pos(-0.5D, 0.5D, -0.5D).tex(f2, f3).endVertex();
 			tessellator.draw();
 			GlStateManager.popMatrix();
 		}
@@ -621,7 +621,7 @@ public class ItemRenderer
 		{
 			float f = entityplayersp.getCooledAttackStrength(1.0F);
 			this.equippedProgressMainHand += MathHelper.clamp((Objects.equals(this.itemStackMainHand, itemstack) ? f * f * f : 0.0F) - this.equippedProgressMainHand, -0.4F, 0.4F);
-			this.equippedProgressOffHand += MathHelper.clamp((float) (Objects.equals(this.itemStackOffHand, itemstack1) ? 1 : 0) - this.equippedProgressOffHand, -0.4F, 0.4F);
+			this.equippedProgressOffHand += MathHelper.clamp((Objects.equals(this.itemStackOffHand, itemstack1) ? 1 : 0) - this.equippedProgressOffHand, -0.4F, 0.4F);
 		}
 
 		if (this.equippedProgressMainHand < 0.1F)

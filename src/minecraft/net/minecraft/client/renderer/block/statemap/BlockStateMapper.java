@@ -70,6 +70,6 @@ public class BlockStateMapper
 
 	public Map<IBlockState, ModelResourceLocation> getVariants(Block blockIn)
 	{
-		return this.setBuiltInBlocks.contains(blockIn) ? Collections.emptyMap() : ((IStateMapper) MoreObjects.firstNonNull(this.blockStateMap.get(blockIn), new DefaultStateMapper())).putStateModelLocations(blockIn);
+		return this.setBuiltInBlocks.contains(blockIn) ? Collections.emptyMap() : MoreObjects.firstNonNull(this.blockStateMap.get(blockIn), new DefaultStateMapper()).putStateModelLocations(blockIn);
 	}
 }

@@ -85,7 +85,7 @@ public class InventoryPlayer implements IInventory
 	{
 		for (int i = 0; i < this.mainInventory.size(); ++i)
 		{
-			if (((ItemStack) this.mainInventory.get(i)).isNotValid())
+			if (this.mainInventory.get(i).isNotValid())
 			{
 				return i;
 			}
@@ -108,7 +108,7 @@ public class InventoryPlayer implements IInventory
 			{
 				this.currentItem = this.getBestHotbarSlot();
 
-				if (!((ItemStack) this.mainInventory.get(this.currentItem)).isNotValid())
+				if (!this.mainInventory.get(this.currentItem).isNotValid())
 				{
 					int j = this.getFirstEmptyStack();
 
@@ -147,7 +147,7 @@ public class InventoryPlayer implements IInventory
 	{
 		for (int i = 0; i < this.mainInventory.size(); ++i)
 		{
-			if (!((ItemStack) this.mainInventory.get(i)).isNotValid() && this.stackEqualExact(stack, this.mainInventory.get(i)))
+			if (!this.mainInventory.get(i).isNotValid() && this.stackEqualExact(stack, this.mainInventory.get(i)))
 			{
 				return i;
 			}
@@ -162,7 +162,7 @@ public class InventoryPlayer implements IInventory
 		{
 			ItemStack itemstack = this.mainInventory.get(i);
 
-			if (!((ItemStack) this.mainInventory.get(i)).isNotValid() && this.stackEqualExact(p_194014_1_, this.mainInventory.get(i)) && !((ItemStack) this.mainInventory.get(i)).isItemDamaged() && !itemstack.isItemEnchanted() && !itemstack.hasDisplayName())
+			if (!this.mainInventory.get(i).isNotValid() && this.stackEqualExact(p_194014_1_, this.mainInventory.get(i)) && !this.mainInventory.get(i).isItemDamaged() && !itemstack.isItemEnchanted() && !itemstack.hasDisplayName())
 			{
 				return i;
 			}
@@ -177,7 +177,7 @@ public class InventoryPlayer implements IInventory
 		{
 			int j = (this.currentItem + i) % 9;
 
-			if (((ItemStack) this.mainInventory.get(j)).isNotValid())
+			if (this.mainInventory.get(j).isNotValid())
 			{
 				return j;
 			}
@@ -187,7 +187,7 @@ public class InventoryPlayer implements IInventory
 		{
 			int l = (this.currentItem + k) % 9;
 
-			if (!((ItemStack) this.mainInventory.get(l)).isItemEnchanted())
+			if (!this.mainInventory.get(l).isItemEnchanted())
 			{
 				return l;
 			}
@@ -401,9 +401,9 @@ public class InventoryPlayer implements IInventory
 		{
 			for (int i = 0; i < nonnulllist.size(); ++i)
 			{
-				if (!((ItemStack) nonnulllist.get(i)).isNotValid())
+				if (!nonnulllist.get(i).isNotValid())
 				{
-					((ItemStack) nonnulllist.get(i)).updateAnimation(this.player.world, this.player, i, this.currentItem == i);
+					nonnulllist.get(i).updateAnimation(this.player.world, this.player, i, this.currentItem == i);
 				}
 			}
 		}
@@ -437,7 +437,7 @@ public class InventoryPlayer implements IInventory
 					if (p_191971_1_ >= 0)
 					{
 						this.mainInventory.set(p_191971_1_, p_191971_2_.copy());
-						((ItemStack) this.mainInventory.get(p_191971_1_)).setAnimationToGo(5);
+						this.mainInventory.get(p_191971_1_).setAnimationToGo(5);
 						p_191971_2_.setStackSize(0);
 						return true;
 					}
@@ -493,6 +493,7 @@ public class InventoryPlayer implements IInventory
 				crashreportcategory.addCrashSection("Item data", Integer.valueOf(p_191971_2_.getMetadata()));
 				crashreportcategory.setDetail("Item name", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
 						return p_191971_2_.getDisplayName();
@@ -536,6 +537,7 @@ public class InventoryPlayer implements IInventory
 	 * Removes up to a specified number of items from an inventory slot and
 	 * returns them in a new stack.
 	 */
+	@Override
 	public ItemStack decrStackSize(int index, int count)
 	{
 		List<ItemStack> list = null;
@@ -551,7 +553,7 @@ public class InventoryPlayer implements IInventory
 			index -= nonnulllist.size();
 		}
 
-		return list != null && !((ItemStack) list.get(index)).isNotValid() ? ItemStackHelper.getAndSplit(list, index, count) : ItemStack.EMPTY_ITEM_STACK;
+		return list != null && !list.get(index).isNotValid() ? ItemStackHelper.getAndSplit(list, index, count) : ItemStack.EMPTY_ITEM_STACK;
 	}
 
 	public void deleteStack(ItemStack stack)
@@ -572,6 +574,7 @@ public class InventoryPlayer implements IInventory
 	/**
 	 * Removes a stack from the given slot and returns it.
 	 */
+	@Override
 	public ItemStack removeStackFromSlot(int index)
 	{
 		NonNullList<ItemStack> nonnulllist = null;
@@ -587,7 +590,7 @@ public class InventoryPlayer implements IInventory
 			index -= nonnulllist1.size();
 		}
 
-		if (nonnulllist != null && !((ItemStack) nonnulllist.get(index)).isNotValid())
+		if (nonnulllist != null && !nonnulllist.get(index).isNotValid())
 		{
 			ItemStack itemstack = nonnulllist.get(index);
 			nonnulllist.set(index, ItemStack.EMPTY_ITEM_STACK);
@@ -603,6 +606,7 @@ public class InventoryPlayer implements IInventory
 	 * Sets the given item stack to the specified slot in the inventory (can be
 	 * crafting or armor sections).
 	 */
+	@Override
 	public void setInventorySlotContents(int index, ItemStack stack)
 	{
 		NonNullList<ItemStack> nonnulllist = null;
@@ -628,9 +632,9 @@ public class InventoryPlayer implements IInventory
 	{
 		float f = 1.0F;
 
-		if (!((ItemStack) this.mainInventory.get(this.currentItem)).isNotValid())
+		if (!this.mainInventory.get(this.currentItem).isNotValid())
 		{
-			f *= ((ItemStack) this.mainInventory.get(this.currentItem)).getStrVsBlock(state);
+			f *= this.mainInventory.get(this.currentItem).getStrVsBlock(state);
 		}
 
 		return f;
@@ -644,33 +648,33 @@ public class InventoryPlayer implements IInventory
 	{
 		for (int i = 0; i < this.mainInventory.size(); ++i)
 		{
-			if (!((ItemStack) this.mainInventory.get(i)).isNotValid())
+			if (!this.mainInventory.get(i).isNotValid())
 			{
 				NBTTagCompound nbttagcompound = new NBTTagCompound();
 				nbttagcompound.setByte("Slot", (byte) i);
-				((ItemStack) this.mainInventory.get(i)).writeToNBT(nbttagcompound);
+				this.mainInventory.get(i).writeToNBT(nbttagcompound);
 				nbtTagListIn.appendTag(nbttagcompound);
 			}
 		}
 
 		for (int j = 0; j < this.armorInventory.size(); ++j)
 		{
-			if (!((ItemStack) this.armorInventory.get(j)).isNotValid())
+			if (!this.armorInventory.get(j).isNotValid())
 			{
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) (j + 100));
-				((ItemStack) this.armorInventory.get(j)).writeToNBT(nbttagcompound1);
+				this.armorInventory.get(j).writeToNBT(nbttagcompound1);
 				nbtTagListIn.appendTag(nbttagcompound1);
 			}
 		}
 
 		for (int k = 0; k < this.offHandInventory.size(); ++k)
 		{
-			if (!((ItemStack) this.offHandInventory.get(k)).isNotValid())
+			if (!this.offHandInventory.get(k).isNotValid())
 			{
 				NBTTagCompound nbttagcompound2 = new NBTTagCompound();
 				nbttagcompound2.setByte("Slot", (byte) (k + 150));
-				((ItemStack) this.offHandInventory.get(k)).writeToNBT(nbttagcompound2);
+				this.offHandInventory.get(k).writeToNBT(nbttagcompound2);
 				nbtTagListIn.appendTag(nbttagcompound2);
 			}
 		}
@@ -715,11 +719,13 @@ public class InventoryPlayer implements IInventory
 	/**
 	 * Returns the number of slots in the inventory.
 	 */
+	@Override
 	public int getSizeInventory()
 	{
 		return this.mainInventory.size() + this.armorInventory.size() + this.offHandInventory.size();
 	}
 
+	@Override
 	public boolean isStackNotValid()
 	{
 		for (ItemStack itemstack : this.mainInventory)
@@ -752,6 +758,7 @@ public class InventoryPlayer implements IInventory
 	/**
 	 * Returns the stack in the given slot.
 	 */
+	@Override
 	public ItemStack getStackInSlot(int index)
 	{
 		List<ItemStack> list = null;
@@ -773,6 +780,7 @@ public class InventoryPlayer implements IInventory
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return "container.inventory";
@@ -781,6 +789,7 @@ public class InventoryPlayer implements IInventory
 	/**
 	 * Returns true if this thing is named
 	 */
+	@Override
 	public boolean hasCustomName()
 	{
 		return false;
@@ -790,15 +799,17 @@ public class InventoryPlayer implements IInventory
 	 * Get the formatted ChatComponent that will be used for the sender's
 	 * username in chat
 	 */
+	@Override
 	public ITextComponent getDisplayName()
 	{
-		return (ITextComponent) (this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]));
+		return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]);
 	}
 
 	/**
 	 * Returns the maximum stack size for a inventory slot. Seems to always be
 	 * 64, possibly will be extended.
 	 */
+	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
@@ -873,6 +884,7 @@ public class InventoryPlayer implements IInventory
 	 * For tile entities, ensures the chunk containing the tile entity is saved
 	 * to disk later - the game won't think it hasn't changed and skip it.
 	 */
+	@Override
 	public void markDirty()
 	{
 		++this.field_194017_h;
@@ -903,6 +915,7 @@ public class InventoryPlayer implements IInventory
 	 * Don't rename this method to canInteractWith due to conflicts with
 	 * Container
 	 */
+	@Override
 	public boolean isUsableByPlayer(EntityPlayer player)
 	{
 		if (this.player.isDead)
@@ -947,10 +960,12 @@ public class InventoryPlayer implements IInventory
 		return false;
 	}
 
+	@Override
 	public void openInventory(EntityPlayer player)
 	{
 	}
 
+	@Override
 	public void closeInventory(EntityPlayer player)
 	{
 	}
@@ -959,6 +974,7 @@ public class InventoryPlayer implements IInventory
 	 * Returns true if automation is allowed to insert the given stack (ignoring
 	 * stack size) into the given slot. For guis use Slot.isItemValid
 	 */
+	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack)
 	{
 		return true;
@@ -977,20 +993,24 @@ public class InventoryPlayer implements IInventory
 		this.currentItem = playerInventory.currentItem;
 	}
 
+	@Override
 	public int getField(int id)
 	{
 		return 0;
 	}
 
+	@Override
 	public void setField(int id, int value)
 	{
 	}
 
+	@Override
 	public int getFieldCount()
 	{
 		return 0;
 	}
 
+	@Override
 	public void clear()
 	{
 		for (List<ItemStack> list : this.allInventories)

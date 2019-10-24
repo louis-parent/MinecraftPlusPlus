@@ -21,6 +21,7 @@ public class BlockMaterialMatcher implements Predicate<IBlockState>
 		return new BlockMaterialMatcher(materialIn);
 	}
 
+	@Override
 	public boolean apply(@Nullable IBlockState p_apply_1_)
 	{
 		return p_apply_1_ != null && p_apply_1_.getMaterial() == this.material;

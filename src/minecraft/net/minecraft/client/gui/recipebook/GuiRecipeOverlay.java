@@ -41,32 +41,32 @@ public class GuiRecipeOverlay extends Gui
 		int i = list.size();
 		int j = i + list1.size();
 		int k = j <= 16 ? 4 : 5;
-		int l = (int) Math.ceil((double) ((float) j / (float) k));
+		int l = (int) Math.ceil((float) j / (float) k);
 		this.field_191851_i = p_191845_3_;
 		this.field_191852_j = p_191845_4_;
 		int i1 = 25;
-		float f = (float) (this.field_191851_i + Math.min(j, k) * 25);
-		float f1 = (float) (p_191845_5_ + 50);
+		float f = this.field_191851_i + Math.min(j, k) * 25;
+		float f1 = p_191845_5_ + 50;
 
 		if (f > f1)
 		{
-			this.field_191851_i = (int) ((float) this.field_191851_i - p_191845_7_ * (float) ((int) ((f - f1) / p_191845_7_)));
+			this.field_191851_i = (int) (this.field_191851_i - p_191845_7_ * ((int) ((f - f1) / p_191845_7_)));
 		}
 
-		float f2 = (float) (this.field_191852_j + l * 25);
-		float f3 = (float) (p_191845_6_ + 50);
+		float f2 = this.field_191852_j + l * 25;
+		float f3 = p_191845_6_ + 50;
 
 		if (f2 > f3)
 		{
-			this.field_191852_j = (int) ((float) this.field_191852_j - p_191845_7_ * (float) MathHelper.ceil((f2 - f3) / p_191845_7_));
+			this.field_191852_j = (int) (this.field_191852_j - p_191845_7_ * MathHelper.ceil((f2 - f3) / p_191845_7_));
 		}
 
-		float f4 = (float) this.field_191852_j;
-		float f5 = (float) (p_191845_6_ - 100);
+		float f4 = this.field_191852_j;
+		float f5 = p_191845_6_ - 100;
 
 		if (f4 < f5)
 		{
-			this.field_191852_j = (int) ((float) this.field_191852_j - p_191845_7_ * (float) MathHelper.ceil((f4 - f5) / p_191845_7_));
+			this.field_191852_j = (int) (this.field_191852_j - p_191845_7_ * MathHelper.ceil((f4 - f5) / p_191845_7_));
 		}
 
 		this.field_191850_h = true;
@@ -204,6 +204,7 @@ public class GuiRecipeOverlay extends Gui
 			this.field_193925_q = p_i47594_5_;
 		}
 
+		@Override
 		public void func_191745_a(Minecraft p_191745_1_, int p_191745_2_, int p_191745_3_, float p_191745_4_)
 		{
 			RenderHelper.enableGUIStandardItemLighting();
@@ -245,15 +246,15 @@ public class GuiRecipeOverlay extends Gui
 				{
 					if (iterator.hasNext())
 					{
-						ItemStack[] aitemstack = ((Ingredient) iterator.next()).func_193365_a();
+						ItemStack[] aitemstack = iterator.next().func_193365_a();
 
 						if (aitemstack.length != 0)
 						{
 							int l1 = 3 + k1 * 7;
 							GlStateManager.pushMatrix();
 							float f = 0.42F;
-							int i2 = (int) ((float) (this.xPosition + l1) / 0.42F - 3.0F);
-							int j2 = (int) ((float) (this.yPosition + j1) / 0.42F - 3.0F);
+							int i2 = (int) ((this.xPosition + l1) / 0.42F - 3.0F);
+							int j2 = (int) ((this.yPosition + j1) / 0.42F - 3.0F);
 							GlStateManager.scale(0.42F, 0.42F, 1.0F);
 							GlStateManager.enableLighting();
 							p_191745_1_.getRenderItem().renderItemAndEffectIntoGUI(aitemstack[MathHelper.floor(GuiRecipeOverlay.this.field_193974_m / 30.0F) % aitemstack.length], i2, j2);

@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 
 public class TileEntityMobSpawnerRenderer extends TileEntitySpecialRenderer<TileEntityMobSpawner>
 {
+	@Override
 	public void func_192841_a(TileEntityMobSpawner p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
 	{
 		GlStateManager.pushMatrix();
@@ -28,13 +29,13 @@ public class TileEntityMobSpawnerRenderer extends TileEntitySpecialRenderer<Tile
 			float f = 0.53125F;
 			float f1 = Math.max(entity.width, entity.height);
 
-			if ((double) f1 > 1.0D)
+			if (f1 > 1.0D)
 			{
 				f /= f1;
 			}
 
 			GlStateManager.translate(0.0F, 0.4F, 0.0F);
-			GlStateManager.rotate((float) (mobSpawnerLogic.getPrevMobRotation() + (mobSpawnerLogic.getMobRotation() - mobSpawnerLogic.getPrevMobRotation()) * (double) partialTicks) * 10.0F, 0.0F, 1.0F, 0.0F);
+			GlStateManager.rotate((float) (mobSpawnerLogic.getPrevMobRotation() + (mobSpawnerLogic.getMobRotation() - mobSpawnerLogic.getPrevMobRotation()) * partialTicks) * 10.0F, 0.0F, 1.0F, 0.0F);
 			GlStateManager.translate(0.0F, -0.2F, 0.0F);
 			GlStateManager.rotate(-30.0F, 1.0F, 0.0F, 0.0F);
 			GlStateManager.scale(f, f, f);

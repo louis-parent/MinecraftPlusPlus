@@ -48,6 +48,7 @@ public class BlockStateContainer
 	private static final Pattern NAME_PATTERN = Pattern.compile("^[a-z0-9_]+$");
 	private static final Function<IProperty<?>, String> GET_NAME_FUNC = new Function<IProperty<?>, String>()
 	{
+		@Override
 		@Nullable
 		public String apply(@Nullable IProperty<?> p_apply_1_)
 		{
@@ -135,7 +136,7 @@ public class BlockStateContainer
 
 	public IBlockState getBaseState()
 	{
-		return (IBlockState) this.validStates.get(0);
+		return this.validStates.get(0);
 	}
 
 	public Block getBlock()
@@ -148,6 +149,7 @@ public class BlockStateContainer
 		return this.properties.values();
 	}
 
+	@Override
 	public String toString()
 	{
 		return MoreObjects.toStringHelper(this).add("block", Block.REGISTRY.getNameForObject(this.block)).add("properties", Iterables.transform(this.properties.values(), GET_NAME_FUNC)).toString();
@@ -156,7 +158,7 @@ public class BlockStateContainer
 	@Nullable
 	public IProperty<?> getProperty(String propertyName)
 	{
-		return (IProperty) this.properties.get(propertyName);
+		return this.properties.get(propertyName);
 	}
 
 	static class StateImplementation extends BlockStateBase
@@ -171,14 +173,16 @@ public class BlockStateContainer
 			this.properties = propertiesIn;
 		}
 
+		@Override
 		public Collection<IProperty<?>> getPropertyNames()
 		{
 			return Collections.<IProperty<?>>unmodifiableCollection(this.properties.keySet());
 		}
 
+		@Override
 		public <T extends Comparable<T>> T getValue(IProperty<T> property)
 		{
-			Comparable<?> comparable = (Comparable) this.properties.get(property);
+			Comparable<?> comparable = this.properties.get(property);
 
 			if (comparable == null)
 			{
@@ -186,13 +190,14 @@ public class BlockStateContainer
 			}
 			else
 			{
-				return (T) (property.getValueClass().cast(comparable));
+				return (property.getValueClass().cast(comparable));
 			}
 		}
 
+		@Override
 		public <T extends Comparable<T>, V extends T> IBlockState withProperty(IProperty<T> property, V value)
 		{
-			Comparable<?> comparable = (Comparable) this.properties.get(property);
+			Comparable<?> comparable = this.properties.get(property);
 
 			if (comparable == null)
 			{
@@ -204,7 +209,7 @@ public class BlockStateContainer
 			}
 			else
 			{
-				IBlockState iblockstate = (IBlockState) this.propertyValueTable.get(property, value);
+				IBlockState iblockstate = this.propertyValueTable.get(property, value);
 
 				if (iblockstate == null)
 				{
@@ -217,21 +222,25 @@ public class BlockStateContainer
 			}
 		}
 
+		@Override
 		public ImmutableMap<IProperty<?>, Comparable<?>> getProperties()
 		{
 			return this.properties;
 		}
 
+		@Override
 		public Block getBlock()
 		{
 			return this.block;
 		}
 
+		@Override
 		public boolean equals(Object p_equals_1_)
 		{
 			return this == p_equals_1_;
 		}
 
+		@Override
 		public int hashCode()
 		{
 			return this.properties.hashCode();
@@ -251,7 +260,7 @@ public class BlockStateContainer
 				while (unmodifiableiterator.hasNext())
 				{
 					Entry<IProperty<?>, Comparable<?>> entry = (Entry) unmodifiableiterator.next();
-					IProperty<?> iproperty = (IProperty) entry.getKey();
+					IProperty<?> iproperty = entry.getKey();
 
 					for (Comparable<?> comparable : iproperty.getAllowedValues())
 					{
@@ -273,197 +282,236 @@ public class BlockStateContainer
 			return map;
 		}
 
+		@Override
 		public Material getMaterial()
 		{
 			return this.block.getMaterial(this);
 		}
 
+		@Override
 		public boolean isFullBlock()
 		{
 			return this.block.isFullBlock(this);
 		}
 
+		@Override
 		public boolean canEntitySpawn(Entity entityIn)
 		{
 			return this.block.canEntitySpawn(this, entityIn);
 		}
 
+		@Override
 		public int getLightOpacity()
 		{
 			return this.block.getLightOpacity(this);
 		}
 
+		@Override
 		public int getLightValue()
 		{
 			return this.block.getLightValue(this);
 		}
 
+		@Override
 		public boolean isTranslucent()
 		{
 			return this.block.isTranslucent(this);
 		}
 
+		@Override
 		public boolean useNeighborBrightness()
 		{
 			return this.block.getUseNeighborBrightness(this);
 		}
 
+		@Override
 		public MapColor getMapColor(IBlockAccess p_185909_1_, BlockPos p_185909_2_)
 		{
 			return this.block.getMapColor(this, p_185909_1_, p_185909_2_);
 		}
 
+		@Override
 		public IBlockState withRotation(Rotation rot)
 		{
 			return this.block.withRotation(this, rot);
 		}
 
+		@Override
 		public IBlockState withMirror(Mirror mirrorIn)
 		{
 			return this.block.withMirror(this, mirrorIn);
 		}
 
+		@Override
 		public boolean isFullCube()
 		{
 			return this.block.isFullCube(this);
 		}
 
+		@Override
 		public boolean func_191057_i()
 		{
 			return this.block.func_190946_v(this);
 		}
 
+		@Override
 		public EnumBlockRenderType getRenderType()
 		{
 			return this.block.getRenderType(this);
 		}
 
+		@Override
 		public int getPackedLightmapCoords(IBlockAccess source, BlockPos pos)
 		{
 			return this.block.getPackedLightmapCoords(this, source, pos);
 		}
 
+		@Override
 		public float getAmbientOcclusionLightValue()
 		{
 			return this.block.getAmbientOcclusionLightValue(this);
 		}
 
+		@Override
 		public boolean isBlockNormalCube()
 		{
 			return this.block.isBlockNormalCube(this);
 		}
 
+		@Override
 		public boolean isNormalCube()
 		{
 			return this.block.isNormalCube(this);
 		}
 
+		@Override
 		public boolean canProvidePower()
 		{
 			return this.block.canProvidePower(this);
 		}
 
+		@Override
 		public int getWeakPower(IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 		{
 			return this.block.getWeakPower(this, blockAccess, pos, side);
 		}
 
+		@Override
 		public boolean hasComparatorInputOverride()
 		{
 			return this.block.hasComparatorInputOverride(this);
 		}
 
+		@Override
 		public int getComparatorInputOverride(World worldIn, BlockPos pos)
 		{
 			return this.block.getComparatorInputOverride(this, worldIn, pos);
 		}
 
+		@Override
 		public float getBlockHardness(World worldIn, BlockPos pos)
 		{
 			return this.block.getBlockHardness(this, worldIn, pos);
 		}
 
+		@Override
 		public float getPlayerRelativeBlockHardness(EntityPlayer player, World worldIn, BlockPos pos)
 		{
 			return this.block.getPlayerRelativeBlockHardness(this, player, worldIn, pos);
 		}
 
+		@Override
 		public int getStrongPower(IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 		{
 			return this.block.getStrongPower(this, blockAccess, pos, side);
 		}
 
+		@Override
 		public EnumPushReaction getMobilityFlag()
 		{
 			return this.block.getMobilityFlag(this);
 		}
 
+		@Override
 		public IBlockState getActualState(IBlockAccess blockAccess, BlockPos pos)
 		{
 			return this.block.getActualState(this, blockAccess, pos);
 		}
 
+		@Override
 		public AxisAlignedBB getSelectedBoundingBox(World worldIn, BlockPos pos)
 		{
 			return this.block.getSelectedBoundingBox(this, worldIn, pos);
 		}
 
+		@Override
 		public boolean shouldSideBeRendered(IBlockAccess blockAccess, BlockPos pos, EnumFacing facing)
 		{
 			return this.block.shouldSideBeRendered(this, blockAccess, pos, facing);
 		}
 
+		@Override
 		public boolean isOpaqueCube()
 		{
 			return this.block.isOpaqueCube(this);
 		}
 
+		@Override
 		@Nullable
 		public AxisAlignedBB getCollisionBoundingBox(IBlockAccess worldIn, BlockPos pos)
 		{
 			return this.block.getCollisionBoundingBox(this, worldIn, pos);
 		}
 
+		@Override
 		public void addCollisionBoxToList(World worldIn, BlockPos pos, AxisAlignedBB p_185908_3_, List<AxisAlignedBB> p_185908_4_, @Nullable Entity p_185908_5_, boolean p_185908_6_)
 		{
 			this.block.addCollisionBoxToList(this, worldIn, pos, p_185908_3_, p_185908_4_, p_185908_5_, p_185908_6_);
 		}
 
+		@Override
 		public AxisAlignedBB getBoundingBox(IBlockAccess blockAccess, BlockPos pos)
 		{
 			return this.block.getBoundingBox(this, blockAccess, pos);
 		}
 
+		@Override
 		public RayTraceResult collisionRayTrace(World worldIn, BlockPos pos, Vec3d start, Vec3d end)
 		{
 			return this.block.collisionRayTrace(this, worldIn, pos, start, end);
 		}
 
+		@Override
 		public boolean isFullyOpaque()
 		{
 			return this.block.isFullyOpaque(this);
 		}
 
+		@Override
 		public Vec3d func_191059_e(IBlockAccess p_191059_1_, BlockPos p_191059_2_)
 		{
 			return this.block.func_190949_e(this, p_191059_1_, p_191059_2_);
 		}
 
+		@Override
 		public boolean onBlockEventReceived(World worldIn, BlockPos pos, int id, int param)
 		{
 			return this.block.eventReceived(this, worldIn, pos, id, param);
 		}
 
+		@Override
 		public void neighborChanged(World worldIn, BlockPos pos, Block blockIn, BlockPos p_189546_4_)
 		{
 			this.block.neighborChanged(this, worldIn, pos, blockIn, p_189546_4_);
 		}
 
+		@Override
 		public boolean func_191058_s()
 		{
 			return this.block.causesSuffocation(this);
 		}
 
+		@Override
 		public BlockFaceShape func_193401_d(IBlockAccess p_193401_1_, BlockPos p_193401_2_, EnumFacing p_193401_3_)
 		{
 			return this.block.func_193383_a(p_193401_1_, this, p_193401_2_, p_193401_3_);

@@ -22,9 +22,9 @@ public class GuiKeyBindingList extends GuiListExtended
 		super(mcIn, controls.width + 45, controls.height, 63, controls.height - 32, 20);
 		this.controlsScreen = controls;
 		this.mc = mcIn;
-		KeyBinding[] akeybinding = (KeyBinding[]) ArrayUtils.clone(mcIn.gameSettings.keyBindings);
+		KeyBinding[] akeybinding = ArrayUtils.clone(mcIn.gameSettings.keyBindings);
 		this.listEntries = new GuiListExtended.IGuiListEntry[akeybinding.length + KeyBinding.getKeybinds().size()];
-		Arrays.sort((Object[]) akeybinding);
+		Arrays.sort(akeybinding);
 		int i = 0;
 		String s = null;
 
@@ -49,6 +49,7 @@ public class GuiKeyBindingList extends GuiListExtended
 		}
 	}
 
+	@Override
 	protected int getSize()
 	{
 		return this.listEntries.length;
@@ -57,11 +58,13 @@ public class GuiKeyBindingList extends GuiListExtended
 	/**
 	 * Gets the IGuiListEntry object for the given index
 	 */
+	@Override
 	public GuiListExtended.IGuiListEntry getListEntry(int index)
 	{
 		return this.listEntries[index];
 	}
 
+	@Override
 	protected int getScrollBarX()
 	{
 		return super.getScrollBarX() + 15;
@@ -70,6 +73,7 @@ public class GuiKeyBindingList extends GuiListExtended
 	/**
 	 * Gets the width of the list
 	 */
+	@Override
 	public int getListWidth()
 	{
 		return super.getListWidth() + 32;
@@ -86,20 +90,24 @@ public class GuiKeyBindingList extends GuiListExtended
 			this.labelWidth = GuiKeyBindingList.this.mc.fontRendererObj.getStringWidth(this.labelText);
 		}
 
+		@Override
 		public void func_192634_a(int p_192634_1_, int p_192634_2_, int p_192634_3_, int p_192634_4_, int p_192634_5_, int p_192634_6_, int p_192634_7_, boolean p_192634_8_, float p_192634_9_)
 		{
 			GuiKeyBindingList.this.mc.fontRendererObj.drawString(this.labelText, GuiKeyBindingList.this.mc.currentScreen.width / 2 - this.labelWidth / 2, p_192634_3_ + p_192634_5_ - GuiKeyBindingList.this.mc.fontRendererObj.FONT_HEIGHT - 1, 16777215);
 		}
 
+		@Override
 		public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY)
 		{
 			return false;
 		}
 
+		@Override
 		public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY)
 		{
 		}
 
+		@Override
 		public void func_192633_a(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
 		{
 		}
@@ -120,6 +128,7 @@ public class GuiKeyBindingList extends GuiListExtended
 			this.btnReset = new GuiButton(0, 0, 0, 50, 20, I18n.format("controls.reset"));
 		}
 
+		@Override
 		public void func_192634_a(int p_192634_1_, int p_192634_2_, int p_192634_3_, int p_192634_4_, int p_192634_5_, int p_192634_6_, int p_192634_7_, boolean p_192634_8_, float p_192634_9_)
 		{
 			boolean flag = GuiKeyBindingList.this.controlsScreen.buttonId == this.keybinding;
@@ -157,6 +166,7 @@ public class GuiKeyBindingList extends GuiListExtended
 			this.btnChangeKeyBinding.func_191745_a(GuiKeyBindingList.this.mc, p_192634_6_, p_192634_7_, p_192634_9_);
 		}
 
+		@Override
 		public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY)
 		{
 			if (this.btnChangeKeyBinding.mousePressed(GuiKeyBindingList.this.mc, mouseX, mouseY))
@@ -176,12 +186,14 @@ public class GuiKeyBindingList extends GuiListExtended
 			}
 		}
 
+		@Override
 		public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY)
 		{
 			this.btnChangeKeyBinding.mouseReleased(x, y);
 			this.btnReset.mouseReleased(x, y);
 		}
 
+		@Override
 		public void func_192633_a(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
 		{
 		}

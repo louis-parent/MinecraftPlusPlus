@@ -7,11 +7,13 @@ public class ItemIntIDToString implements IFixableData
 {
 	private static final String[] ID_MAP = new String[2268];
 
+	@Override
 	public int getFixVersion()
 	{
 		return 102;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if (compound.hasKey("id", 99))

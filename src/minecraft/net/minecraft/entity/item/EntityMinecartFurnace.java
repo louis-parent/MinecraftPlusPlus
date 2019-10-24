@@ -41,11 +41,13 @@ public class EntityMinecartFurnace extends EntityMinecart
 		EntityMinecart.registerFixesMinecart(fixer, EntityMinecartFurnace.class);
 	}
 
+	@Override
 	public EntityMinecart.Type getType()
 	{
 		return EntityMinecart.Type.FURNACE;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -55,6 +57,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -81,11 +84,13 @@ public class EntityMinecartFurnace extends EntityMinecart
 	/**
 	 * Get's the maximum speed for a minecart
 	 */
+	@Override
 	protected double getMaximumSpeed()
 	{
 		return 0.2D;
 	}
 
+	@Override
 	public void killMinecart(DamageSource source)
 	{
 		super.killMinecart(source);
@@ -96,6 +101,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 		}
 	}
 
+	@Override
 	protected void moveAlongTrack(BlockPos pos, IBlockState state)
 	{
 		super.moveAlongTrack(pos, state);
@@ -103,7 +109,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 
 		if (d0 > 1.0E-4D && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D)
 		{
-			d0 = (double) MathHelper.sqrt(d0);
+			d0 = MathHelper.sqrt(d0);
 			this.pushX /= d0;
 			this.pushZ /= d0;
 
@@ -121,13 +127,14 @@ public class EntityMinecartFurnace extends EntityMinecart
 		}
 	}
 
+	@Override
 	protected void applyDrag()
 	{
 		double d0 = this.pushX * this.pushX + this.pushZ * this.pushZ;
 
 		if (d0 > 1.0E-4D)
 		{
-			d0 = (double) MathHelper.sqrt(d0);
+			d0 = MathHelper.sqrt(d0);
 			this.pushX /= d0;
 			this.pushZ /= d0;
 			double d1 = 1.0D;
@@ -147,6 +154,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 		super.applyDrag();
 	}
 
+	@Override
 	public boolean processInitialInteract(EntityPlayer player, EnumHand stack)
 	{
 		ItemStack itemstack = player.getHeldItem(stack);
@@ -169,6 +177,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -180,6 +189,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -190,7 +200,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 
 	protected boolean isMinecartPowered()
 	{
-		return ((Boolean) this.dataManager.get(POWERED)).booleanValue();
+		return this.dataManager.get(POWERED).booleanValue();
 	}
 
 	protected void setMinecartPowered(boolean p_94107_1_)
@@ -198,6 +208,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 		this.dataManager.set(POWERED, Boolean.valueOf(p_94107_1_));
 	}
 
+	@Override
 	public IBlockState getDefaultDisplayTile()
 	{
 		return (this.isMinecartPowered() ? Blocks.LIT_FURNACE : Blocks.FURNACE).getDefaultState().withProperty(BlockFurnace.FACING, EnumFacing.NORTH);

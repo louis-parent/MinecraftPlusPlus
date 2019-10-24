@@ -173,7 +173,7 @@ public class FurnaceRecipes
 		{
 			if (this.compareItemStacks(stack, entry.getKey()))
 			{
-				return ((Float) entry.getValue()).floatValue();
+				return entry.getValue().floatValue();
 			}
 		}
 

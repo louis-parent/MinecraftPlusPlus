@@ -31,7 +31,7 @@ public class ParticleCrit extends Particle
 		this.particleScale *= p_i46285_14_;
 		this.oSize = this.particleScale;
 		this.particleMaxAge = (int) (6.0D / (Math.random() * 0.8D + 0.6D));
-		this.particleMaxAge = (int) ((float) this.particleMaxAge * p_i46285_14_);
+		this.particleMaxAge = (int) (this.particleMaxAge * p_i46285_14_);
 		this.setParticleTextureIndex(65);
 		this.onUpdate();
 	}
@@ -39,14 +39,16 @@ public class ParticleCrit extends Particle
 	/**
 	 * Renders the particle
 	 */
+	@Override
 	public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
-		float f = ((float) this.particleAge + partialTicks) / (float) this.particleMaxAge * 32.0F;
+		float f = (this.particleAge + partialTicks) / this.particleMaxAge * 32.0F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
 		this.particleScale = this.oSize * f;
 		super.renderParticle(worldRendererIn, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -59,8 +61,8 @@ public class ParticleCrit extends Particle
 		}
 
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
-		this.particleGreen = (float) ((double) this.particleGreen * 0.96D);
-		this.particleBlue = (float) ((double) this.particleBlue * 0.9D);
+		this.particleGreen = (float) (this.particleGreen * 0.96D);
+		this.particleBlue = (float) (this.particleBlue * 0.9D);
 		this.motionX *= 0.699999988079071D;
 		this.motionY *= 0.699999988079071D;
 		this.motionZ *= 0.699999988079071D;
@@ -75,6 +77,7 @@ public class ParticleCrit extends Particle
 
 	public static class DamageIndicatorFactory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			Particle particle = new ParticleCrit(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn + 1.0D, zSpeedIn, 1.0F);
@@ -86,6 +89,7 @@ public class ParticleCrit extends Particle
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleCrit(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
@@ -94,6 +98,7 @@ public class ParticleCrit extends Particle
 
 	public static class MagicFactory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			Particle particle = new ParticleCrit(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);

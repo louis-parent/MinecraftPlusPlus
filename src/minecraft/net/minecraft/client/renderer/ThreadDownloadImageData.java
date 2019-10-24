@@ -60,6 +60,7 @@ public class ThreadDownloadImageData extends SimpleTexture
 		}
 	}
 
+	@Override
 	public int getGlTextureId()
 	{
 		this.checkTextureUploaded();
@@ -76,6 +77,7 @@ public class ThreadDownloadImageData extends SimpleTexture
 		}
 	}
 
+	@Override
 	public void loadTexture(IResourceManager resourceManager) throws IOException
 	{
 		if (this.bufferedImage == null && this.textureLocation != null)
@@ -87,7 +89,7 @@ public class ThreadDownloadImageData extends SimpleTexture
 		{
 			if (this.cacheFile != null && this.cacheFile.isFile())
 			{
-				LOGGER.debug("Loading http texture from local cache ({})", (Object) this.cacheFile);
+				LOGGER.debug("Loading http texture from local cache ({})", this.cacheFile);
 
 				try
 				{
@@ -115,6 +117,7 @@ public class ThreadDownloadImageData extends SimpleTexture
 	{
 		this.imageThread = new Thread("Texture Downloader #" + TEXTURE_DOWNLOADER_THREAD_ID.incrementAndGet())
 		{
+			@Override
 			public void run()
 			{
 				HttpURLConnection httpurlconnection = null;
@@ -152,7 +155,7 @@ public class ThreadDownloadImageData extends SimpleTexture
 				}
 				catch (Exception exception)
 				{
-					ThreadDownloadImageData.LOGGER.error("Couldn't download http texture", (Throwable) exception);
+					ThreadDownloadImageData.LOGGER.error("Couldn't download http texture", exception);
 					return;
 				}
 				finally

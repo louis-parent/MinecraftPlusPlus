@@ -31,8 +31,9 @@ public class PreYggdrasilConverter
 
 	private static void lookupNames(MinecraftServer server, Collection<String> names, ProfileLookupCallback callback)
 	{
-		String[] astring = (String[]) Iterators.toArray(Iterators.filter(names.iterator(), new Predicate<String>()
+		String[] astring = Iterators.toArray(Iterators.filter(names.iterator(), new Predicate<String>()
 		{
+			@Override
 			public boolean apply(@Nullable String p_apply_1_)
 			{
 				return !StringUtils.isNullOrEmpty(p_apply_1_);
@@ -69,19 +70,21 @@ public class PreYggdrasilConverter
 				final List<GameProfile> list = Lists.<GameProfile>newArrayList();
 				ProfileLookupCallback profilelookupcallback = new ProfileLookupCallback()
 				{
+					@Override
 					public void onProfileLookupSucceeded(GameProfile p_onProfileLookupSucceeded_1_)
 					{
 						server.getPlayerProfileCache().addEntry(p_onProfileLookupSucceeded_1_);
 						list.add(p_onProfileLookupSucceeded_1_);
 					}
 
+					@Override
 					public void onProfileLookupFailed(GameProfile p_onProfileLookupFailed_1_, Exception p_onProfileLookupFailed_2_)
 					{
 						PreYggdrasilConverter.LOGGER.warn("Could not lookup user whitelist entry for {}", p_onProfileLookupFailed_1_.getName(), p_onProfileLookupFailed_2_);
 					}
 				};
 				lookupNames(server, Lists.newArrayList(username), profilelookupcallback);
-				return !list.isEmpty() && ((GameProfile) list.get(0)).getId() != null ? ((GameProfile) list.get(0)).getId().toString() : "";
+				return !list.isEmpty() && list.get(0).getId() != null ? list.get(0).getId().toString() : "";
 			}
 			else
 			{

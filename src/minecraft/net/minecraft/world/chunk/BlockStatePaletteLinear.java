@@ -20,6 +20,7 @@ public class BlockStatePaletteLinear implements IBlockStatePalette
 		this.resizeHandler = p_i47088_2_;
 	}
 
+	@Override
 	public int idFor(IBlockState state)
 	{
 		for (int i = 0; i < this.arraySize; ++i)
@@ -44,6 +45,7 @@ public class BlockStatePaletteLinear implements IBlockStatePalette
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -54,6 +56,7 @@ public class BlockStatePaletteLinear implements IBlockStatePalette
 		return indexKey >= 0 && indexKey < this.arraySize ? this.states[indexKey] : null;
 	}
 
+	@Override
 	public void read(PacketBuffer buf)
 	{
 		this.arraySize = buf.readVarIntFromBuffer();
@@ -64,6 +67,7 @@ public class BlockStatePaletteLinear implements IBlockStatePalette
 		}
 	}
 
+	@Override
 	public void write(PacketBuffer buf)
 	{
 		buf.writeVarIntToBuffer(this.arraySize);
@@ -74,6 +78,7 @@ public class BlockStatePaletteLinear implements IBlockStatePalette
 		}
 	}
 
+	@Override
 	public int getSerializedState()
 	{
 		int i = PacketBuffer.getVarIntSize(this.arraySize);

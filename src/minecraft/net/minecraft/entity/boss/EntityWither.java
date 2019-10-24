@@ -70,6 +70,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 	private static final Predicate<Entity> NOT_UNDEAD = new Predicate<Entity>()
 	{
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			return p_apply_1_ instanceof EntityLivingBase && ((EntityLivingBase) p_apply_1_).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD && ((EntityLivingBase) p_apply_1_).func_190631_cK();
@@ -86,6 +87,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 		this.experienceValue = 50;
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(0, new EntityWither.AIDoNothing());
@@ -98,6 +100,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, NOT_UNDEAD));
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -115,6 +118,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -124,6 +128,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -138,22 +143,26 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	/**
 	 * Sets the custom name tag for this entity
 	 */
+	@Override
 	public void setCustomNameTag(String name)
 	{
 		super.setCustomNameTag(name);
 		this.bossInfo.setName(this.getDisplayName());
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_WITHER_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_WITHER_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_WITHER_DEATH;
@@ -164,6 +173,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		this.motionY *= 0.6000000238418579D;
@@ -190,7 +200,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 
 				if (d3 > 9.0D)
 				{
-					double d5 = (double) MathHelper.sqrt(d3);
+					double d5 = MathHelper.sqrt(d3);
 					this.motionX += (d0 / d5 * 0.5D - this.motionX) * 0.6000000238418579D;
 					this.motionZ += (d1 / d5 * 0.5D - this.motionZ) * 0.6000000238418579D;
 				}
@@ -226,9 +236,9 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 				double d12 = this.getHeadY(j + 1);
 				double d13 = this.getHeadZ(j + 1);
 				double d6 = entity1.posX - d11;
-				double d7 = entity1.posY + (double) entity1.getEyeHeight() - d12;
+				double d7 = entity1.posY + entity1.getEyeHeight() - d12;
 				double d8 = entity1.posZ - d13;
-				double d9 = (double) MathHelper.sqrt(d6 * d6 + d8 * d8);
+				double d9 = MathHelper.sqrt(d6 * d6 + d8 * d8);
 				float f = (float) (MathHelper.atan2(d8, d6) * (180D / Math.PI)) - 90.0F;
 				float f1 = (float) (-(MathHelper.atan2(d7, d9) * (180D / Math.PI)));
 				this.xRotationHeads[j] = this.rotlerp(this.xRotationHeads[j], f1, 40.0F);
@@ -259,11 +269,12 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 		{
 			for (int i1 = 0; i1 < 3; ++i1)
 			{
-				this.world.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + this.rand.nextGaussian(), this.posY + (double) (this.rand.nextFloat() * 3.3F), this.posZ + this.rand.nextGaussian(), 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D);
+				this.world.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + this.rand.nextGaussian(), this.posY + this.rand.nextFloat() * 3.3F, this.posZ + this.rand.nextGaussian(), 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D);
 			}
 		}
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		if (this.getInvulTime() > 0)
@@ -272,7 +283,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 
 			if (j1 <= 0)
 			{
-				this.world.newExplosion(this, this.posX, this.posY + (double) this.getEyeHeight(), this.posZ, 7.0F, false, this.world.getGameRules().getBoolean("mobGriefing"));
+				this.world.newExplosion(this, this.posX, this.posY + this.getEyeHeight(), this.posZ, 7.0F, false, this.world.getGameRules().getBoolean("mobGriefing"));
 				this.world.playBroadcastSound(1023, new BlockPos(this), 0);
 			}
 
@@ -441,6 +452,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	/**
 	 * Sets the Entity inside a web block.
 	 */
+	@Override
 	public void setInWeb()
 	{
 	}
@@ -450,6 +462,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	 * instance, a player may track a boss in order to view its associated boss
 	 * bar.
 	 */
+	@Override
 	public void addTrackingPlayer(EntityPlayerMP player)
 	{
 		super.addTrackingPlayer(player);
@@ -460,6 +473,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	 * Removes the given player from the list of players tracking this entity.
 	 * See {@link Entity#addTrackingPlayer} for more information on tracking.
 	 */
+	@Override
 	public void removeTrackingPlayer(EntityPlayerMP player)
 	{
 		super.removeTrackingPlayer(player);
@@ -474,9 +488,9 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 		}
 		else
 		{
-			float f = (this.renderYawOffset + (float) (180 * (p_82214_1_ - 1))) * 0.017453292F;
+			float f = (this.renderYawOffset + 180 * (p_82214_1_ - 1)) * 0.017453292F;
 			float f1 = MathHelper.cos(f);
-			return this.posX + (double) f1 * 1.3D;
+			return this.posX + f1 * 1.3D;
 		}
 	}
 
@@ -493,9 +507,9 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 		}
 		else
 		{
-			float f = (this.renderYawOffset + (float) (180 * (p_82213_1_ - 1))) * 0.017453292F;
+			float f = (this.renderYawOffset + 180 * (p_82213_1_ - 1)) * 0.017453292F;
 			float f1 = MathHelper.sin(f);
-			return this.posZ + (double) f1 * 1.3D;
+			return this.posZ + f1 * 1.3D;
 		}
 	}
 
@@ -518,7 +532,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 
 	private void launchWitherSkullToEntity(int p_82216_1_, EntityLivingBase p_82216_2_)
 	{
-		this.launchWitherSkullToCoords(p_82216_1_, p_82216_2_.posX, p_82216_2_.posY + (double) p_82216_2_.getEyeHeight() * 0.5D, p_82216_2_.posZ, p_82216_1_ == 0 && this.rand.nextFloat() < 0.001F);
+		this.launchWitherSkullToCoords(p_82216_1_, p_82216_2_.posX, p_82216_2_.posY + p_82216_2_.getEyeHeight() * 0.5D, p_82216_2_.posZ, p_82216_1_ == 0 && this.rand.nextFloat() < 0.001F);
 	}
 
 	/**
@@ -553,6 +567,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	 *            How far the target is, normalized and clamped between 0.1 and
 	 *            1.0
 	 */
+	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor)
 	{
 		this.launchWitherSkullToEntity(0, target);
@@ -561,6 +576,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -616,6 +632,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	/**
 	 * Drop 0-2 items of this living's type
 	 */
+	@Override
 	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
 	{
 		EntityItem entityitem = this.dropItem(Items.NETHER_STAR, 1);
@@ -629,16 +646,19 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	/**
 	 * Makes the entity despawn if requirements are reached
 	 */
+	@Override
 	protected void despawnEntity()
 	{
 		this.entityAge = 0;
 	}
 
+	@Override
 	public int getBrightnessForRender()
 	{
 		return 15728880;
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 	}
@@ -646,10 +666,12 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	/**
 	 * adds a PotionEffect to the entity
 	 */
+	@Override
 	public void addPotionEffect(PotionEffect potioneffectIn)
 	{
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -671,7 +693,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 
 	public int getInvulTime()
 	{
-		return ((Integer) this.dataManager.get(INVULNERABILITY_TIME)).intValue();
+		return this.dataManager.get(INVULNERABILITY_TIME).intValue();
 	}
 
 	public void setInvulTime(int time)
@@ -685,7 +707,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	 */
 	public int getWatchedTargetId(int head)
 	{
-		return ((Integer) this.dataManager.get(HEAD_TARGETS[head])).intValue();
+		return this.dataManager.get(HEAD_TARGETS[head]).intValue();
 	}
 
 	/**
@@ -708,11 +730,13 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	/**
 	 * Get this Entity's EnumCreatureAttribute
 	 */
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
 	}
 
+	@Override
 	protected boolean canBeRidden(Entity entityIn)
 	{
 		return false;
@@ -721,11 +745,13 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	/**
 	 * Returns false if this Entity is a boss, true otherwise.
 	 */
+	@Override
 	public boolean isNonBoss()
 	{
 		return false;
 	}
 
+	@Override
 	public void setSwingingArms(boolean swingingArms)
 	{
 	}
@@ -737,6 +763,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 			this.setMutexBits(7);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			return EntityWither.this.getInvulTime() > 0;

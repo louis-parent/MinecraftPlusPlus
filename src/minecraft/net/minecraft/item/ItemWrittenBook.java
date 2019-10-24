@@ -56,6 +56,7 @@ public class ItemWrittenBook extends Item
 		return book.getTagCompound().getInteger("generation");
 	}
 
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		if (stack.hasTagCompound())
@@ -76,6 +77,7 @@ public class ItemWrittenBook extends Item
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		if (stack.hasTagCompound())
@@ -92,6 +94,7 @@ public class ItemWrittenBook extends Item
 		}
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);
@@ -150,6 +153,7 @@ public class ItemWrittenBook extends Item
 		}
 	}
 
+	@Override
 	public boolean hasEffect(ItemStack stack)
 	{
 		return true;

@@ -14,11 +14,13 @@ import net.minecraft.world.World;
 
 public class ItemSplashPotion extends ItemPotion
 {
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		return I18n.translateToLocal(PotionUtils.getPotionFromItem(stack).getNamePrefixed("splash_potion.effect."));
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);

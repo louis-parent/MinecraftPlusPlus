@@ -22,12 +22,13 @@ public class PhaseLanding extends PhaseBase
 	 * sounds). Called by dragon's onLivingUpdate. Only used when
 	 * worldObj.isRemote.
 	 */
+	@Override
 	public void doClientRenderEffects()
 	{
 		Vec3d vec3d = this.dragon.getHeadLookVec(1.0F).normalize();
 		vec3d.rotateYaw(-((float) Math.PI / 4F));
 		double d0 = this.dragon.dragonPartHead.posX;
-		double d1 = this.dragon.dragonPartHead.posY + (double) (this.dragon.dragonPartHead.height / 2.0F);
+		double d1 = this.dragon.dragonPartHead.posY + this.dragon.dragonPartHead.height / 2.0F;
 		double d2 = this.dragon.dragonPartHead.posZ;
 
 		for (int i = 0; i < 8; ++i)
@@ -44,6 +45,7 @@ public class PhaseLanding extends PhaseBase
 	 * Gives the phase a chance to update its status. Called by dragon's
 	 * onLivingUpdate. Only used when !worldObj.isRemote.
 	 */
+	@Override
 	public void doLocalUpdate()
 	{
 		if (this.targetLocation == null)
@@ -53,7 +55,7 @@ public class PhaseLanding extends PhaseBase
 
 		if (this.targetLocation.squareDistanceTo(this.dragon.posX, this.dragon.posY, this.dragon.posZ) < 1.0D)
 		{
-			((PhaseSittingFlaming) this.dragon.getPhaseManager().getPhase(PhaseList.SITTING_FLAMING)).resetFlameCount();
+			this.dragon.getPhaseManager().getPhase(PhaseList.SITTING_FLAMING).resetFlameCount();
 			this.dragon.getPhaseManager().setPhase(PhaseList.SITTING_SCANNING);
 		}
 	}
@@ -61,11 +63,13 @@ public class PhaseLanding extends PhaseBase
 	/**
 	 * Returns the maximum amount dragon may rise or fall during this phase
 	 */
+	@Override
 	public float getMaxRiseOrFall()
 	{
 		return 1.5F;
 	}
 
+	@Override
 	public float getYawFactor()
 	{
 		float f = MathHelper.sqrt(this.dragon.motionX * this.dragon.motionX + this.dragon.motionZ * this.dragon.motionZ) + 1.0F;
@@ -76,11 +80,13 @@ public class PhaseLanding extends PhaseBase
 	/**
 	 * Called when this phase is set to active
 	 */
+	@Override
 	public void initPhase()
 	{
 		this.targetLocation = null;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -91,6 +97,7 @@ public class PhaseLanding extends PhaseBase
 		return this.targetLocation;
 	}
 
+	@Override
 	public PhaseList<PhaseLanding> getPhaseList()
 	{
 		return PhaseList.LANDING;

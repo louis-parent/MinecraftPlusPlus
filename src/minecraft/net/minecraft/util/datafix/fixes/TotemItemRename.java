@@ -5,11 +5,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class TotemItemRename implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 820;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if ("minecraft:totem".equals(compound.getString("id")))

@@ -17,10 +17,12 @@ public class LootEntryEmpty extends LootEntry
 		super(weightIn, qualityIn, conditionsIn);
 	}
 
+	@Override
 	public void addLoot(Collection<ItemStack> stacks, Random rand, LootContext context)
 	{
 	}
 
+	@Override
 	protected void serialize(JsonObject json, JsonSerializationContext context)
 	{
 	}

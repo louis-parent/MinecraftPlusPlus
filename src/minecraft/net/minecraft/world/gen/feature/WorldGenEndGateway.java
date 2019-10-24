@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 
 public class WorldGenEndGateway extends WorldGenerator
 {
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		for (BlockPos.MutableBlockPos blockpos$mutableblockpos : BlockPos.getAllInBoxMutable(position.add(-1, -2, -1), position.add(1, 2, 1)))

@@ -29,6 +29,7 @@ public class EnchantmentProtection extends Enchantment
 	 * Returns the minimal value of enchantability needed on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMinEnchantability(int enchantmentLevel)
 	{
 		return this.protectionType.getMinimalEnchantability() + (enchantmentLevel - 1) * this.protectionType.getEnchantIncreasePerLevel();
@@ -38,6 +39,7 @@ public class EnchantmentProtection extends Enchantment
 	 * Returns the maximum value of enchantability nedded on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMaxEnchantability(int enchantmentLevel)
 	{
 		return this.getMinEnchantability(enchantmentLevel) + this.protectionType.getEnchantIncreasePerLevel();
@@ -46,6 +48,7 @@ public class EnchantmentProtection extends Enchantment
 	/**
 	 * Returns the maximum level that the enchantment can have.
 	 */
+	@Override
 	public int getMaxLevel()
 	{
 		return 4;
@@ -55,6 +58,7 @@ public class EnchantmentProtection extends Enchantment
 	 * Calculates the damage protection of the enchantment based on level and
 	 * damage source passed.
 	 */
+	@Override
 	public int calcModifierDamage(int level, DamageSource source)
 	{
 		if (source.canHarmInCreative())
@@ -86,6 +90,7 @@ public class EnchantmentProtection extends Enchantment
 	/**
 	 * Return the name of key in translation table of this enchantment.
 	 */
+	@Override
 	public String getName()
 	{
 		return "enchantment.protect." + this.protectionType.getTypeName();
@@ -95,6 +100,7 @@ public class EnchantmentProtection extends Enchantment
 	 * Determines if the enchantment passed can be applyied together with this
 	 * enchantment.
 	 */
+	@Override
 	public boolean canApplyTogether(Enchantment ench)
 	{
 		if (ench instanceof EnchantmentProtection)
@@ -138,7 +144,7 @@ public class EnchantmentProtection extends Enchantment
 
 		if (i > 0)
 		{
-			damage -= (double) MathHelper.floor(damage * (double) ((float) i * 0.15F));
+			damage -= MathHelper.floor(damage * (i * 0.15F));
 		}
 
 		return damage;

@@ -24,6 +24,7 @@ public class VariantList
 		return this.variantList;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -41,6 +42,7 @@ public class VariantList
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.variantList.hashCode();
@@ -48,6 +50,7 @@ public class VariantList
 
 	public static class Deserializer implements JsonDeserializer<VariantList>
 	{
+		@Override
 		public VariantList deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			List<Variant> list = Lists.<Variant>newArrayList();

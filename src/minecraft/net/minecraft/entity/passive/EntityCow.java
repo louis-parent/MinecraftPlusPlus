@@ -40,6 +40,7 @@ public class EntityCow extends EntityAnimal
 		EntityLiving.registerFixesMob(fixer, EntityCow.class);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -52,6 +53,7 @@ public class EntityCow extends EntityAnimal
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -59,21 +61,25 @@ public class EntityCow extends EntityAnimal
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_COW_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_COW_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_COW_DEATH;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
@@ -82,17 +88,20 @@ public class EntityCow extends EntityAnimal
 	/**
 	 * Returns the volume for the sounds this mob makes.
 	 */
+	@Override
 	protected float getSoundVolume()
 	{
 		return 0.4F;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.ENTITIES_COW;
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -119,11 +128,13 @@ public class EntityCow extends EntityAnimal
 		}
 	}
 
+	@Override
 	public EntityCow createChild(EntityAgeable ageable)
 	{
 		return new EntityCow(this.world);
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return this.isChild() ? this.height : 1.3F;

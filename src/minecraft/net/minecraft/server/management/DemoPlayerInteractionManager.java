@@ -22,6 +22,7 @@ public class DemoPlayerInteractionManager extends PlayerInteractionManager
 		super(worldIn);
 	}
 
+	@Override
 	public void updateBlockRemoving()
 	{
 		super.updateBlockRemoving();
@@ -87,6 +88,7 @@ public class DemoPlayerInteractionManager extends PlayerInteractionManager
 	 * If not creative, it calls sendBlockBreakProgress until the block is
 	 * broken first. tryHarvestBlock can also be the result of this call.
 	 */
+	@Override
 	public void onBlockClicked(BlockPos pos, EnumFacing side)
 	{
 		if (this.demoTimeExpired)
@@ -99,6 +101,7 @@ public class DemoPlayerInteractionManager extends PlayerInteractionManager
 		}
 	}
 
+	@Override
 	public void blockRemoving(BlockPos pos)
 	{
 		if (!this.demoTimeExpired)
@@ -110,11 +113,13 @@ public class DemoPlayerInteractionManager extends PlayerInteractionManager
 	/**
 	 * Attempts to harvest a block
 	 */
+	@Override
 	public boolean tryHarvestBlock(BlockPos pos)
 	{
 		return this.demoTimeExpired ? false : super.tryHarvestBlock(pos);
 	}
 
+	@Override
 	public EnumActionResult processRightClick(EntityPlayer player, World worldIn, ItemStack stack, EnumHand hand)
 	{
 		if (this.demoTimeExpired)
@@ -128,6 +133,7 @@ public class DemoPlayerInteractionManager extends PlayerInteractionManager
 		}
 	}
 
+	@Override
 	public EnumActionResult processRightClickBlock(EntityPlayer player, World worldIn, ItemStack stack, EnumHand hand, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if (this.demoTimeExpired)

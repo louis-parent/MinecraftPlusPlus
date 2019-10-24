@@ -40,6 +40,7 @@ public interface ICriterionTrigger<T extends ICriterionInstance>
 			p_192159_1_.func_192750_a(this.field_192161_b, this.field_192162_c);
 		}
 
+		@Override
 		public boolean equals(Object p_equals_1_)
 		{
 			if (this == p_equals_1_)
@@ -65,6 +66,7 @@ public interface ICriterionTrigger<T extends ICriterionInstance>
 			}
 		}
 
+		@Override
 		public int hashCode()
 		{
 			int i = this.field_192160_a.hashCode();

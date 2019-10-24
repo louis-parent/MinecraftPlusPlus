@@ -17,6 +17,7 @@ public class TileEntityNote extends TileEntity
 	/** stores the latest redstone state */
 	public boolean previousRedstoneState;
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -25,6 +26,7 @@ public class TileEntityNote extends TileEntity
 		return compound;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);

@@ -15,6 +15,7 @@ import net.minecraft.util.JsonUtils;
 
 public class LanguageMetadataSectionSerializer extends BaseMetadataSectionSerializer<LanguageMetadataSection>
 {
+	@Override
 	public LanguageMetadataSection deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 	{
 		JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();
@@ -56,6 +57,7 @@ public class LanguageMetadataSectionSerializer extends BaseMetadataSectionSerial
 	/**
 	 * The name of this section type as it appears in JSON.
 	 */
+	@Override
 	public String getSectionName()
 	{
 		return "language";

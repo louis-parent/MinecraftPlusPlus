@@ -26,11 +26,12 @@ public class UserListIPBansEntry extends UserListEntryBan<String>
 		return json.has("ip") ? json.get("ip").getAsString() : null;
 	}
 
+	@Override
 	protected void onSerialization(JsonObject data)
 	{
 		if (this.getValue() != null)
 		{
-			data.addProperty("ip", (String) this.getValue());
+			data.addProperty("ip", this.getValue());
 			super.onSerialization(data);
 		}
 	}

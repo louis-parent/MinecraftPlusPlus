@@ -23,6 +23,7 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 		super(p_i47506_1_);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -32,6 +33,7 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -41,12 +43,14 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
 		compound.setInteger("SpellTicks", this.field_193087_b);
 	}
 
+	@Override
 	public AbstractIllager.IllagerArmPose func_193077_p()
 	{
 		return this.func_193082_dl() ? AbstractIllager.IllagerArmPose.SPELLCASTING : AbstractIllager.IllagerArmPose.CROSSED;
@@ -56,7 +60,7 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 	{
 		if (this.world.isRemote)
 		{
-			return ((Byte) this.dataManager.get(field_193088_c)).byteValue() > 0;
+			return this.dataManager.get(field_193088_c).byteValue() > 0;
 		}
 		else
 		{
@@ -72,9 +76,10 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 
 	protected EntitySpellcasterIllager.SpellType func_193083_dm()
 	{
-		return !this.world.isRemote ? this.field_193089_bx : EntitySpellcasterIllager.SpellType.func_193337_a(((Byte) this.dataManager.get(field_193088_c)).byteValue());
+		return !this.world.isRemote ? this.field_193089_bx : EntitySpellcasterIllager.SpellType.func_193337_a(this.dataManager.get(field_193088_c).byteValue());
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		super.updateAITasks();
@@ -88,6 +93,7 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -98,11 +104,11 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 			double d0 = entityspellcasterillager$spelltype.field_193346_h[0];
 			double d1 = entityspellcasterillager$spelltype.field_193346_h[1];
 			double d2 = entityspellcasterillager$spelltype.field_193346_h[2];
-			float f = this.renderYawOffset * 0.017453292F + MathHelper.cos((float) this.ticksExisted * 0.6662F) * 0.25F;
+			float f = this.renderYawOffset * 0.017453292F + MathHelper.cos(this.ticksExisted * 0.6662F) * 0.25F;
 			float f1 = MathHelper.cos(f);
 			float f2 = MathHelper.sin(f);
-			this.world.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + (double) f1 * 0.6D, this.posY + 1.8D, this.posZ + (double) f2 * 0.6D, d0, d1, d2);
-			this.world.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX - (double) f1 * 0.6D, this.posY + 1.8D, this.posZ - (double) f2 * 0.6D, d0, d1, d2);
+			this.world.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + f1 * 0.6D, this.posY + 1.8D, this.posZ + f2 * 0.6D, d0, d1, d2);
+			this.world.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX - f1 * 0.6D, this.posY + 1.8D, this.posZ - f2 * 0.6D, d0, d1, d2);
 		}
 	}
 
@@ -120,28 +126,32 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 			this.setMutexBits(3);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			return EntitySpellcasterIllager.this.func_193085_dn() > 0;
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			super.startExecuting();
 			EntitySpellcasterIllager.this.navigator.clearPathEntity();
 		}
 
+		@Override
 		public void resetTask()
 		{
 			super.resetTask();
 			EntitySpellcasterIllager.this.func_193081_a(EntitySpellcasterIllager.SpellType.NONE);
 		}
 
+		@Override
 		public void updateTask()
 		{
 			if (EntitySpellcasterIllager.this.getAttackTarget() != null)
 			{
-				EntitySpellcasterIllager.this.getLookHelper().setLookPositionWithEntity(EntitySpellcasterIllager.this.getAttackTarget(), (float) EntitySpellcasterIllager.this.getHorizontalFaceSpeed(), (float) EntitySpellcasterIllager.this.getVerticalFaceSpeed());
+				EntitySpellcasterIllager.this.getLookHelper().setLookPositionWithEntity(EntitySpellcasterIllager.this.getAttackTarget(), EntitySpellcasterIllager.this.getHorizontalFaceSpeed(), EntitySpellcasterIllager.this.getVerticalFaceSpeed());
 			}
 		}
 	}
@@ -151,6 +161,7 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 		protected int field_193321_c;
 		protected int field_193322_d;
 
+		@Override
 		public boolean shouldExecute()
 		{
 			if (EntitySpellcasterIllager.this.getAttackTarget() == null)
@@ -167,11 +178,13 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 			}
 		}
 
+		@Override
 		public boolean continueExecuting()
 		{
 			return EntitySpellcasterIllager.this.getAttackTarget() != null && this.field_193321_c > 0;
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			this.field_193321_c = this.func_190867_m();
@@ -187,6 +200,7 @@ public abstract class EntitySpellcasterIllager extends AbstractIllager
 			EntitySpellcasterIllager.this.func_193081_a(this.func_193320_l());
 		}
 
+		@Override
 		public void updateTask()
 		{
 			--this.field_193321_c;

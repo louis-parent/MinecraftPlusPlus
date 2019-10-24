@@ -49,6 +49,7 @@ public class GuiFlatPresets extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.buttonList.clear();
@@ -68,6 +69,7 @@ public class GuiFlatPresets extends GuiScreen
 	/**
 	 * Handles mouse input.
 	 */
+	@Override
 	public void handleMouseInput() throws IOException
 	{
 		super.handleMouseInput();
@@ -78,6 +80,7 @@ public class GuiFlatPresets extends GuiScreen
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		Keyboard.enableRepeatEvents(false);
@@ -86,6 +89,7 @@ public class GuiFlatPresets extends GuiScreen
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		this.export.mouseClicked(mouseX, mouseY, mouseButton);
@@ -97,6 +101,7 @@ public class GuiFlatPresets extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (!this.export.textboxKeyTyped(typedChar, keyCode))
@@ -109,6 +114,7 @@ public class GuiFlatPresets extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.id == 0 && this.hasValidSelection())
@@ -125,6 +131,7 @@ public class GuiFlatPresets extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
@@ -139,6 +146,7 @@ public class GuiFlatPresets extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		this.export.updateCursorCounter();
@@ -244,18 +252,20 @@ public class GuiFlatPresets extends GuiScreen
 			Tessellator tessellator = Tessellator.getInstance();
 			BufferBuilder bufferbuilder = tessellator.getBuffer();
 			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-			bufferbuilder.pos((double) (p_148171_1_ + 0), (double) (p_148171_2_ + 18), (double) GuiFlatPresets.this.zLevel).tex((double) ((float) (p_148171_3_ + 0) * 0.0078125F), (double) ((float) (p_148171_4_ + 18) * 0.0078125F)).endVertex();
-			bufferbuilder.pos((double) (p_148171_1_ + 18), (double) (p_148171_2_ + 18), (double) GuiFlatPresets.this.zLevel).tex((double) ((float) (p_148171_3_ + 18) * 0.0078125F), (double) ((float) (p_148171_4_ + 18) * 0.0078125F)).endVertex();
-			bufferbuilder.pos((double) (p_148171_1_ + 18), (double) (p_148171_2_ + 0), (double) GuiFlatPresets.this.zLevel).tex((double) ((float) (p_148171_3_ + 18) * 0.0078125F), (double) ((float) (p_148171_4_ + 0) * 0.0078125F)).endVertex();
-			bufferbuilder.pos((double) (p_148171_1_ + 0), (double) (p_148171_2_ + 0), (double) GuiFlatPresets.this.zLevel).tex((double) ((float) (p_148171_3_ + 0) * 0.0078125F), (double) ((float) (p_148171_4_ + 0) * 0.0078125F)).endVertex();
+			bufferbuilder.pos(p_148171_1_ + 0, p_148171_2_ + 18, GuiFlatPresets.this.zLevel).tex((p_148171_3_ + 0) * 0.0078125F, (p_148171_4_ + 18) * 0.0078125F).endVertex();
+			bufferbuilder.pos(p_148171_1_ + 18, p_148171_2_ + 18, GuiFlatPresets.this.zLevel).tex((p_148171_3_ + 18) * 0.0078125F, (p_148171_4_ + 18) * 0.0078125F).endVertex();
+			bufferbuilder.pos(p_148171_1_ + 18, p_148171_2_ + 0, GuiFlatPresets.this.zLevel).tex((p_148171_3_ + 18) * 0.0078125F, (p_148171_4_ + 0) * 0.0078125F).endVertex();
+			bufferbuilder.pos(p_148171_1_ + 0, p_148171_2_ + 0, GuiFlatPresets.this.zLevel).tex((p_148171_3_ + 0) * 0.0078125F, (p_148171_4_ + 0) * 0.0078125F).endVertex();
 			tessellator.draw();
 		}
 
+		@Override
 		protected int getSize()
 		{
 			return GuiFlatPresets.FLAT_WORLD_PRESETS.size();
 		}
 
+		@Override
 		protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 		{
 			this.selected = slotIndex;
@@ -263,15 +273,18 @@ public class GuiFlatPresets extends GuiScreen
 			GuiFlatPresets.this.export.setText((GuiFlatPresets.FLAT_WORLD_PRESETS.get(GuiFlatPresets.this.list.selected)).generatorInfo);
 		}
 
+		@Override
 		protected boolean isSelected(int slotIndex)
 		{
 			return slotIndex == this.selected;
 		}
 
+		@Override
 		protected void drawBackground()
 		{
 		}
 
+		@Override
 		protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 		{
 			GuiFlatPresets.LayerItem guiflatpresets$layeritem = GuiFlatPresets.FLAT_WORLD_PRESETS.get(p_192637_1_);

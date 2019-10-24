@@ -18,6 +18,7 @@ public class RenderEvokerFangs extends Render<EntityEvokerFangs>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityEvokerFangs entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		float f = entity.func_190550_a(partialTicks);
@@ -28,7 +29,7 @@ public class RenderEvokerFangs extends Render<EntityEvokerFangs>
 
 			if (f > 0.9F)
 			{
-				f1 = (float) ((double) f1 * ((1.0D - (double) f) / 0.10000000149011612D));
+				f1 = (float) (f1 * ((1.0D - f) / 0.10000000149011612D));
 			}
 
 			GlStateManager.pushMatrix();
@@ -51,6 +52,7 @@ public class RenderEvokerFangs extends Render<EntityEvokerFangs>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityEvokerFangs entity)
 	{
 		return field_191329_a;

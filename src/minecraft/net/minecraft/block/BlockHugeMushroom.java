@@ -34,6 +34,7 @@ public class BlockHugeMushroom extends Block
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return Math.max(0, random.nextInt(10) - 7);
@@ -42,9 +43,10 @@ public class BlockHugeMushroom extends Block
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
-		switch ((BlockHugeMushroom.EnumType) state.getValue(VARIANT))
+		switch (state.getValue(VARIANT))
 		{
 			case ALL_STEM:
 				return MapColor.CLOTH;
@@ -63,11 +65,13 @@ public class BlockHugeMushroom extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Item.getItemFromBlock(this.smallBlock);
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(this.smallBlock);
@@ -77,6 +81,7 @@ public class BlockHugeMushroom extends Block
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getDefaultState();
@@ -85,6 +90,7 @@ public class BlockHugeMushroom extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(VARIANT, BlockHugeMushroom.EnumType.byMetadata(meta));
@@ -93,21 +99,23 @@ public class BlockHugeMushroom extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((BlockHugeMushroom.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
 	/**
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
 		switch (rot)
 		{
 			case CLOCKWISE_180:
-				switch ((BlockHugeMushroom.EnumType) state.getValue(VARIANT))
+				switch (state.getValue(VARIANT))
 				{
 					case STEM:
 						break;
@@ -141,7 +149,7 @@ public class BlockHugeMushroom extends Block
 				}
 
 			case COUNTERCLOCKWISE_90:
-				switch ((BlockHugeMushroom.EnumType) state.getValue(VARIANT))
+				switch (state.getValue(VARIANT))
 				{
 					case STEM:
 						break;
@@ -175,7 +183,7 @@ public class BlockHugeMushroom extends Block
 				}
 
 			case CLOCKWISE_90:
-				switch ((BlockHugeMushroom.EnumType) state.getValue(VARIANT))
+				switch (state.getValue(VARIANT))
 				{
 					case STEM:
 						break;
@@ -213,6 +221,7 @@ public class BlockHugeMushroom extends Block
 		}
 	}
 
+	@Override
 	@SuppressWarnings("incomplete-switch")
 
 	/**
@@ -221,7 +230,7 @@ public class BlockHugeMushroom extends Block
 	 */
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		BlockHugeMushroom.EnumType blockhugemushroom$enumtype = (BlockHugeMushroom.EnumType) state.getValue(VARIANT);
+		BlockHugeMushroom.EnumType blockhugemushroom$enumtype = state.getValue(VARIANT);
 
 		switch (mirrorIn)
 		{
@@ -283,6 +292,7 @@ public class BlockHugeMushroom extends Block
 		return super.withMirror(state, mirrorIn);
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { VARIANT });
@@ -307,6 +317,7 @@ public class BlockHugeMushroom extends Block
 			return this.meta;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -323,6 +334,7 @@ public class BlockHugeMushroom extends Block
 			return blockhugemushroom$enumtype == null ? META_LOOKUP[0] : blockhugemushroom$enumtype;
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

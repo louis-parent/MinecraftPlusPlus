@@ -59,6 +59,7 @@ public class CrashReport
 	{
 		this.theReportCategory.setDetail("Minecraft Version", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call()
 			{
 				return "1.12";
@@ -66,6 +67,7 @@ public class CrashReport
 		});
 		this.theReportCategory.setDetail("Operating System", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call()
 			{
 				return System.getProperty("os.name") + " (" + System.getProperty("os.arch") + ") version " + System.getProperty("os.version");
@@ -73,6 +75,7 @@ public class CrashReport
 		});
 		this.theReportCategory.setDetail("Java Version", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call()
 			{
 				return System.getProperty("java.version") + ", " + System.getProperty("java.vendor");
@@ -80,6 +83,7 @@ public class CrashReport
 		});
 		this.theReportCategory.setDetail("Java VM Version", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call()
 			{
 				return System.getProperty("java.vm.name") + " (" + System.getProperty("java.vm.info") + "), " + System.getProperty("java.vm.vendor");
@@ -87,6 +91,7 @@ public class CrashReport
 		});
 		this.theReportCategory.setDetail("Memory", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call()
 			{
 				Runtime runtime = Runtime.getRuntime();
@@ -101,6 +106,7 @@ public class CrashReport
 		});
 		this.theReportCategory.setDetail("JVM Flags", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call()
 			{
 				RuntimeMXBean runtimemxbean = ManagementFactory.getRuntimeMXBean();
@@ -126,6 +132,7 @@ public class CrashReport
 		});
 		this.theReportCategory.setDetail("IntCache", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return IntCache.getCacheSizes();
@@ -158,7 +165,7 @@ public class CrashReport
 	{
 		if ((this.stacktrace == null || this.stacktrace.length <= 0) && !this.crashReportSections.isEmpty())
 		{
-			this.stacktrace = (StackTraceElement[]) ArrayUtils.subarray(((CrashReportCategory) this.crashReportSections.get(0)).getStackTrace(), 0, 1);
+			this.stacktrace = ArrayUtils.subarray(this.crashReportSections.get(0).getStackTrace(), 0, 1);
 		}
 
 		if (this.stacktrace != null && this.stacktrace.length > 0)
@@ -169,7 +176,7 @@ public class CrashReport
 
 			for (StackTraceElement stacktraceelement : this.stacktrace)
 			{
-				builder.append("\t").append("at ").append((Object) stacktraceelement);
+				builder.append("\t").append("at ").append(stacktraceelement);
 				builder.append("\n");
 			}
 
@@ -224,8 +231,8 @@ public class CrashReport
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Writer) stringwriter);
-			IOUtils.closeQuietly((Writer) printwriter);
+			IOUtils.closeQuietly(stringwriter);
+			IOUtils.closeQuietly(printwriter);
 		}
 
 		return s;
@@ -385,7 +392,7 @@ public class CrashReport
 
 		try
 		{
-			return astring[(int) (System.nanoTime() % (long) astring.length)];
+			return astring[(int) (System.nanoTime() % astring.length)];
 		}
 		catch (Throwable var2)
 		{

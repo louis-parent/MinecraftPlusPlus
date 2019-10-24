@@ -19,6 +19,7 @@ public class EntityAISit extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (!this.theEntity.isTamed())
@@ -51,6 +52,7 @@ public class EntityAISit extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.theEntity.getNavigator().clearPathEntity();
@@ -60,6 +62,7 @@ public class EntityAISit extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.theEntity.setSitting(false);

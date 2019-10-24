@@ -19,10 +19,12 @@ public class ConditionOr implements ICondition
 		this.conditions = conditionsIn;
 	}
 
+	@Override
 	public Predicate<IBlockState> getPredicate(final BlockStateContainer blockState)
 	{
 		return Predicates.or(Iterables.transform(this.conditions, new Function<ICondition, Predicate<IBlockState>>()
 		{
+			@Override
 			@Nullable
 			public Predicate<IBlockState> apply(@Nullable ICondition p_apply_1_)
 			{

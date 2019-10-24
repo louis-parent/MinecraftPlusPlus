@@ -23,6 +23,7 @@ public class SetCount extends LootFunction
 		this.countRange = countRangeIn;
 	}
 
+	@Override
 	public ItemStack apply(ItemStack stack, Random rand, LootContext context)
 	{
 		stack.setStackSize(this.countRange.generateInt(rand));
@@ -36,14 +37,16 @@ public class SetCount extends LootFunction
 			super(new ResourceLocation("set_count"), SetCount.class);
 		}
 
+		@Override
 		public void serialize(JsonObject object, SetCount functionClazz, JsonSerializationContext serializationContext)
 		{
 			object.add("count", serializationContext.serialize(functionClazz.countRange));
 		}
 
+		@Override
 		public SetCount deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn)
 		{
-			return new SetCount(conditionsIn, (RandomValueRange) JsonUtils.deserializeClass(object, "count", deserializationContext, RandomValueRange.class));
+			return new SetCount(conditionsIn, JsonUtils.deserializeClass(object, "count", deserializationContext, RandomValueRange.class));
 		}
 	}
 }

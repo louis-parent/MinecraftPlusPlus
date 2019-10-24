@@ -55,16 +55,18 @@ public class BlockPistonBase extends BlockDirectional
 		this.setCreativeTab(CreativeTabs.REDSTONE);
 	}
 
+	@Override
 	public boolean causesSuffocation(IBlockState p_176214_1_)
 	{
-		return !((Boolean) p_176214_1_.getValue(EXTENDED)).booleanValue();
+		return !p_176214_1_.getValue(EXTENDED).booleanValue();
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		if (((Boolean) state.getValue(EXTENDED)).booleanValue())
+		if (state.getValue(EXTENDED).booleanValue())
 		{
-			switch ((EnumFacing) state.getValue(FACING))
+			switch (state.getValue(FACING))
 			{
 				case DOWN:
 					return PISTON_BASE_DOWN_AABB;
@@ -96,11 +98,13 @@ public class BlockPistonBase extends BlockDirectional
 	 * Checks if an IBlockState represents a block that is opaque and a full
 	 * cube.
 	 */
+	@Override
 	public boolean isFullyOpaque(IBlockState state)
 	{
-		return !((Boolean) state.getValue(EXTENDED)).booleanValue() || state.getValue(FACING) == EnumFacing.DOWN;
+		return !state.getValue(EXTENDED).booleanValue() || state.getValue(FACING) == EnumFacing.DOWN;
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 		addCollisionBoxToList(pos, entityBox, collidingBoxes, state.getBoundingBox(worldIn, pos));
@@ -110,6 +114,7 @@ public class BlockPistonBase extends BlockDirectional
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
@@ -119,6 +124,7 @@ public class BlockPistonBase extends BlockDirectional
 	 * Called by ItemBlocks after a block is set in the world, to allow
 	 * post-place logic
 	 */
+	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		worldIn.setBlockState(pos, state.withProperty(FACING, EnumFacing.func_190914_a(pos, placer)), 2);
@@ -135,6 +141,7 @@ public class BlockPistonBase extends BlockDirectional
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!worldIn.isRemote)
@@ -147,6 +154,7 @@ public class BlockPistonBase extends BlockDirectional
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (!worldIn.isRemote && worldIn.getTileEntity(pos) == null)
@@ -159,6 +167,7 @@ public class BlockPistonBase extends BlockDirectional
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getDefaultState().withProperty(FACING, EnumFacing.func_190914_a(pos, placer)).withProperty(EXTENDED, Boolean.valueOf(false));
@@ -166,17 +175,17 @@ public class BlockPistonBase extends BlockDirectional
 
 	private void checkForMove(World worldIn, BlockPos pos, IBlockState state)
 	{
-		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+		EnumFacing enumfacing = state.getValue(FACING);
 		boolean flag = this.shouldBeExtended(worldIn, pos, enumfacing);
 
-		if (flag && !((Boolean) state.getValue(EXTENDED)).booleanValue())
+		if (flag && !state.getValue(EXTENDED).booleanValue())
 		{
 			if ((new BlockPistonStructureHelper(worldIn, pos, enumfacing, true)).canMove())
 			{
 				worldIn.addBlockEvent(pos, this, 0, enumfacing.getIndex());
 			}
 		}
-		else if (!flag && ((Boolean) state.getValue(EXTENDED)).booleanValue())
+		else if (!flag && state.getValue(EXTENDED).booleanValue())
 		{
 			worldIn.addBlockEvent(pos, this, 1, enumfacing.getIndex());
 		}
@@ -219,9 +228,10 @@ public class BlockPistonBase extends BlockDirectional
 	 * update may involve replacing tile entities, playing sounds, or performing
 	 * other visual actions to reflect the server side changes.
 	 */
+	@Override
 	public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param)
 	{
-		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+		EnumFacing enumfacing = state.getValue(FACING);
 
 		if (!worldIn.isRemote)
 		{
@@ -300,6 +310,7 @@ public class BlockPistonBase extends BlockDirectional
 		return true;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -350,7 +361,7 @@ public class BlockPistonBase extends BlockDirectional
 							return facing == p_185646_5_;
 					}
 				}
-				else if (((Boolean) blockStateIn.getValue(EXTENDED)).booleanValue())
+				else if (blockStateIn.getValue(EXTENDED).booleanValue())
 				{
 					return false;
 				}
@@ -424,7 +435,7 @@ public class BlockPistonBase extends BlockDirectional
 			if (extending)
 			{
 				BlockPistonExtension.EnumPistonType blockpistonextension$enumpistontype = this.isSticky ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT;
-				IBlockState iblockstate3 = Blocks.PISTON_HEAD.getDefaultState().withProperty(BlockPistonExtension.FACING, direction).withProperty(BlockPistonExtension.TYPE, blockpistonextension$enumpistontype);
+				IBlockState iblockstate3 = Blocks.PISTON_HEAD.getDefaultState().withProperty(BlockDirectional.FACING, direction).withProperty(BlockPistonExtension.TYPE, blockpistonextension$enumpistontype);
 				IBlockState iblockstate1 = Blocks.PISTON_EXTENSION.getDefaultState().withProperty(BlockPistonMoving.FACING, direction).withProperty(BlockPistonMoving.TYPE, this.isSticky ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT);
 				worldIn.setBlockState(blockpos2, iblockstate1, 4);
 				worldIn.setTileEntity(blockpos2, BlockPistonMoving.createTilePiston(iblockstate3, direction, true, true));
@@ -452,6 +463,7 @@ public class BlockPistonBase extends BlockDirectional
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(FACING, getFacing(meta)).withProperty(EXTENDED, Boolean.valueOf((meta & 8) > 0));
@@ -460,12 +472,13 @@ public class BlockPistonBase extends BlockDirectional
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((EnumFacing) state.getValue(FACING)).getIndex();
+		i = i | state.getValue(FACING).getIndex();
 
-		if (((Boolean) state.getValue(EXTENDED)).booleanValue())
+		if (state.getValue(EXTENDED).booleanValue())
 		{
 			i |= 8;
 		}
@@ -477,28 +490,32 @@ public class BlockPistonBase extends BlockDirectional
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING, EXTENDED });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		p_193383_2_ = this.getActualState(p_193383_2_, p_193383_1_, p_193383_3_);
-		return p_193383_2_.getValue(FACING) != p_193383_4_.getOpposite() && ((Boolean) p_193383_2_.getValue(EXTENDED)).booleanValue() ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
+		return p_193383_2_.getValue(FACING) != p_193383_4_.getOpposite() && p_193383_2_.getValue(EXTENDED).booleanValue() ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
 	}
 }

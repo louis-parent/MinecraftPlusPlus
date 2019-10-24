@@ -34,6 +34,7 @@ public class GenLayerBiome extends GenLayer
 	 * interpreted as temperatures, rainfall amounts, or biomeList[] indices
 	 * based on the particular GenLayer subclass.
 	 */
+	@Override
 	public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
 	{
 		int[] aint = this.parent.getInts(areaX, areaY, areaWidth, areaHeight);
@@ -43,7 +44,7 @@ public class GenLayerBiome extends GenLayer
 		{
 			for (int j = 0; j < areaWidth; ++j)
 			{
-				this.initChunkSeed((long) (j + areaX), (long) (i + areaY));
+				this.initChunkSeed(j + areaX, i + areaY);
 				int k = aint[j + i * areaWidth];
 				int l = (k & 3840) >> 8;
 				k = k & -3841;

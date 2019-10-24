@@ -29,23 +29,24 @@ public class ParticleItemPickup extends Particle
 	/**
 	 * Renders the particle
 	 */
+	@Override
 	public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
-		float f = ((float) this.age + partialTicks) / (float) this.maxAge;
+		float f = (this.age + partialTicks) / this.maxAge;
 		f = f * f;
 		double d0 = this.item.posX;
 		double d1 = this.item.posY;
 		double d2 = this.item.posZ;
-		double d3 = this.target.lastTickPosX + (this.target.posX - this.target.lastTickPosX) * (double) partialTicks;
-		double d4 = this.target.lastTickPosY + (this.target.posY - this.target.lastTickPosY) * (double) partialTicks + (double) this.yOffset;
-		double d5 = this.target.lastTickPosZ + (this.target.posZ - this.target.lastTickPosZ) * (double) partialTicks;
-		double d6 = d0 + (d3 - d0) * (double) f;
-		double d7 = d1 + (d4 - d1) * (double) f;
-		double d8 = d2 + (d5 - d2) * (double) f;
+		double d3 = this.target.lastTickPosX + (this.target.posX - this.target.lastTickPosX) * partialTicks;
+		double d4 = this.target.lastTickPosY + (this.target.posY - this.target.lastTickPosY) * partialTicks + this.yOffset;
+		double d5 = this.target.lastTickPosZ + (this.target.posZ - this.target.lastTickPosZ) * partialTicks;
+		double d6 = d0 + (d3 - d0) * f;
+		double d7 = d1 + (d4 - d1) * f;
+		double d8 = d2 + (d5 - d2) * f;
 		int i = this.getBrightnessForRender(partialTicks);
 		int j = i % 65536;
 		int k = i / 65536;
-		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
+		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j, k);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		d6 = d6 - interpPosX;
 		d7 = d7 - interpPosY;
@@ -54,6 +55,7 @@ public class ParticleItemPickup extends Particle
 		this.renderManager.doRenderEntity(this.item, d6, d7, d8, this.item.rotationYaw, partialTicks, false);
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		++this.age;
@@ -69,6 +71,7 @@ public class ParticleItemPickup extends Particle
 	 * with. 0 for the particle sprite sheet, 1 for the main Texture atlas, and
 	 * 3 for a custom texture
 	 */
+	@Override
 	public int getFXLayer()
 	{
 		return 3;

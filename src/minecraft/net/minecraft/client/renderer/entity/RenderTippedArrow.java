@@ -17,6 +17,7 @@ public class RenderTippedArrow extends RenderArrow<EntityTippedArrow>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityTippedArrow entity)
 	{
 		return entity.getColor() > 0 ? RES_TIPPED_ARROW : RES_ARROW;

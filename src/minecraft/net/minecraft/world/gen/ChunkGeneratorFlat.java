@@ -50,7 +50,7 @@ public class ChunkGeneratorFlat implements IChunkGenerator
 
 			if (map.containsKey("village"))
 			{
-				Map<String, String> map1 = (Map) map.get("village");
+				Map<String, String> map1 = map.get("village");
 
 				if (!map1.containsKey("size"))
 				{
@@ -124,6 +124,7 @@ public class ChunkGeneratorFlat implements IChunkGenerator
 		this.hasDecoration = flag && this.flatWorldGenInfo.getBiome() != Biome.getIdForBiome(Biomes.VOID) ? false : this.flatWorldGenInfo.getWorldFeatures().containsKey("decoration");
 	}
 
+	@Override
 	public Chunk provideChunk(int x, int z)
 	{
 		ChunkPrimer chunkprimer = new ChunkPrimer();
@@ -162,6 +163,7 @@ public class ChunkGeneratorFlat implements IChunkGenerator
 		return chunk;
 	}
 
+	@Override
 	public void populate(int x, int z)
 	{
 		int i = x * 16;
@@ -172,7 +174,7 @@ public class ChunkGeneratorFlat implements IChunkGenerator
 		this.random.setSeed(this.worldObj.getSeed());
 		long k = this.random.nextLong() / 2L * 2L + 1L;
 		long l = this.random.nextLong() / 2L * 2L + 1L;
-		this.random.setSeed((long) x * k + (long) z * l ^ this.worldObj.getSeed());
+		this.random.setSeed(x * k + z * l ^ this.worldObj.getSeed());
 		ChunkPos chunkpos = new ChunkPos(x, z);
 
 		for (MapGenStructure mapgenstructure : this.structureGenerators.values())
@@ -214,17 +216,20 @@ public class ChunkGeneratorFlat implements IChunkGenerator
 		}
 	}
 
+	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z)
 	{
 		return false;
 	}
 
+	@Override
 	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
 	{
 		Biome biome = this.worldObj.getBiome(pos);
 		return biome.getSpawnableList(creatureType);
 	}
 
+	@Override
 	@Nullable
 	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean p_180513_4_)
 	{
@@ -232,12 +237,14 @@ public class ChunkGeneratorFlat implements IChunkGenerator
 		return mapgenstructure != null ? mapgenstructure.getClosestStrongholdPos(worldIn, position, p_180513_4_) : null;
 	}
 
+	@Override
 	public boolean func_193414_a(World p_193414_1_, String p_193414_2_, BlockPos p_193414_3_)
 	{
 		MapGenStructure mapgenstructure = this.structureGenerators.get(p_193414_2_);
 		return mapgenstructure != null ? mapgenstructure.isInsideStructure(p_193414_3_) : false;
 	}
 
+	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z)
 	{
 		for (MapGenStructure mapgenstructure : this.structureGenerators.values())

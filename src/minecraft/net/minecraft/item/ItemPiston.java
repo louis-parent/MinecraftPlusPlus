@@ -14,6 +14,7 @@ public class ItemPiston extends ItemBlock
 	 * placed in the world when this Item is placed as a Block (mostly used with
 	 * ItemBlocks).
 	 */
+	@Override
 	public int getMetadata(int damage)
 	{
 		return 7;

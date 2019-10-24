@@ -20,6 +20,7 @@ public class PotionHelper
 	private static final List<Ingredient> POTION_ITEMS = Lists.<Ingredient>newArrayList();
 	private static final Predicate<ItemStack> IS_POTION_ITEM = new Predicate<ItemStack>()
 	{
+		@Override
 		public boolean apply(ItemStack p_apply_1_)
 		{
 			for (Ingredient ingredient : PotionHelper.POTION_ITEMS)
@@ -88,7 +89,7 @@ public class PotionHelper
 
 		for (int j = POTION_ITEM_CONVERSIONS.size(); i < j; ++i)
 		{
-			PotionHelper.MixPredicate<Item> mixpredicate = (PotionHelper.MixPredicate) POTION_ITEM_CONVERSIONS.get(i);
+			PotionHelper.MixPredicate<Item> mixpredicate = POTION_ITEM_CONVERSIONS.get(i);
 
 			if (mixpredicate.input == item && mixpredicate.reagent.apply(p_185206_1_))
 			{
@@ -106,7 +107,7 @@ public class PotionHelper
 
 		for (int j = POTION_TYPE_CONVERSIONS.size(); i < j; ++i)
 		{
-			PotionHelper.MixPredicate<PotionType> mixpredicate = (PotionHelper.MixPredicate) POTION_TYPE_CONVERSIONS.get(i);
+			PotionHelper.MixPredicate<PotionType> mixpredicate = POTION_TYPE_CONVERSIONS.get(i);
 
 			if (mixpredicate.input == potiontype && mixpredicate.reagent.apply(p_185209_1_))
 			{
@@ -127,11 +128,11 @@ public class PotionHelper
 
 			for (int j = POTION_ITEM_CONVERSIONS.size(); i < j; ++i)
 			{
-				PotionHelper.MixPredicate<Item> mixpredicate = (PotionHelper.MixPredicate) POTION_ITEM_CONVERSIONS.get(i);
+				PotionHelper.MixPredicate<Item> mixpredicate = POTION_ITEM_CONVERSIONS.get(i);
 
 				if (mixpredicate.input == item && mixpredicate.reagent.apply(reagent))
 				{
-					return PotionUtils.addPotionToItemStack(new ItemStack((Item) mixpredicate.output), potiontype);
+					return PotionUtils.addPotionToItemStack(new ItemStack(mixpredicate.output), potiontype);
 				}
 			}
 
@@ -139,11 +140,11 @@ public class PotionHelper
 
 			for (int k = POTION_TYPE_CONVERSIONS.size(); i < k; ++i)
 			{
-				PotionHelper.MixPredicate<PotionType> mixpredicate1 = (PotionHelper.MixPredicate) POTION_TYPE_CONVERSIONS.get(i);
+				PotionHelper.MixPredicate<PotionType> mixpredicate1 = POTION_TYPE_CONVERSIONS.get(i);
 
 				if (mixpredicate1.input == potiontype && mixpredicate1.reagent.apply(reagent))
 				{
-					return PotionUtils.addPotionToItemStack(new ItemStack(item), (PotionType) mixpredicate1.output);
+					return PotionUtils.addPotionToItemStack(new ItemStack(item), mixpredicate1.output);
 				}
 			}
 		}

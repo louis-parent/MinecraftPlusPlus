@@ -188,9 +188,10 @@ public class ChunkGeneratorEnd implements IChunkGenerator
 		}
 	}
 
+	@Override
 	public Chunk provideChunk(int x, int z)
 	{
-		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
+		this.rand.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
 		this.setBlocksInChunk(x, z, chunkprimer);
@@ -215,8 +216,8 @@ public class ChunkGeneratorEnd implements IChunkGenerator
 
 	private float getIslandHeightValue(int p_185960_1_, int p_185960_2_, int p_185960_3_, int p_185960_4_)
 	{
-		float f = (float) (p_185960_1_ * 2 + p_185960_3_);
-		float f1 = (float) (p_185960_2_ * 2 + p_185960_4_);
+		float f = p_185960_1_ * 2 + p_185960_3_;
+		float f1 = p_185960_2_ * 2 + p_185960_4_;
 		float f2 = 100.0F - MathHelper.sqrt(f * f + f1 * f1) * 8.0F;
 
 		if (f2 > 80.0F)
@@ -233,14 +234,14 @@ public class ChunkGeneratorEnd implements IChunkGenerator
 		{
 			for (int j = -12; j <= 12; ++j)
 			{
-				long k = (long) (p_185960_1_ + i);
-				long l = (long) (p_185960_2_ + j);
+				long k = p_185960_1_ + i;
+				long l = p_185960_2_ + j;
 
-				if (k * k + l * l > 4096L && this.islandNoise.getValue((double) k, (double) l) < -0.8999999761581421D)
+				if (k * k + l * l > 4096L && this.islandNoise.getValue(k, l) < -0.8999999761581421D)
 				{
-					float f3 = (MathHelper.abs((float) k) * 3439.0F + MathHelper.abs((float) l) * 147.0F) % 13.0F + 9.0F;
-					f = (float) (p_185960_3_ - i * 2);
-					f1 = (float) (p_185960_4_ - j * 2);
+					float f3 = (MathHelper.abs(k) * 3439.0F + MathHelper.abs(l) * 147.0F) % 13.0F + 9.0F;
+					f = p_185960_3_ - i * 2;
+					f1 = p_185960_4_ - j * 2;
 					float f4 = 100.0F - MathHelper.sqrt(f * f + f1 * f1) * f3;
 
 					if (f4 > 80.0F)
@@ -313,12 +314,12 @@ public class ChunkGeneratorEnd implements IChunkGenerator
 					}
 
 					d4 = d4 - 8.0D;
-					d4 = d4 + (double) f;
+					d4 = d4 + f;
 					int k1 = 2;
 
 					if (j1 > p_185963_6_ / 2 - k1)
 					{
-						double d6 = (double) ((float) (j1 - (p_185963_6_ / 2 - k1)) / 64.0F);
+						double d6 = (j1 - (p_185963_6_ / 2 - k1)) / 64.0F;
 						d6 = MathHelper.clamp(d6, 0.0D, 1.0D);
 						d4 = d4 * (1.0D - d6) + -3000.0D * d6;
 					}
@@ -327,7 +328,7 @@ public class ChunkGeneratorEnd implements IChunkGenerator
 
 					if (j1 < k1)
 					{
-						double d7 = (double) ((float) (k1 - j1) / ((float) k1 - 1.0F));
+						double d7 = (k1 - j1) / (k1 - 1.0F);
 						d4 = d4 * (1.0D - d7) + -30.0D * d7;
 					}
 
@@ -340,6 +341,7 @@ public class ChunkGeneratorEnd implements IChunkGenerator
 		return p_185963_1_;
 	}
 
+	@Override
 	public void populate(int x, int z)
 	{
 		BlockFalling.fallInstantly = true;
@@ -414,27 +416,32 @@ public class ChunkGeneratorEnd implements IChunkGenerator
 		BlockFalling.fallInstantly = false;
 	}
 
+	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z)
 	{
 		return false;
 	}
 
+	@Override
 	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
 	{
 		return this.worldObj.getBiome(pos).getSpawnableList(creatureType);
 	}
 
+	@Override
 	@Nullable
 	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean p_180513_4_)
 	{
 		return "EndCity".equals(structureName) && this.endCityGen != null ? this.endCityGen.getClosestStrongholdPos(worldIn, position, p_180513_4_) : null;
 	}
 
+	@Override
 	public boolean func_193414_a(World p_193414_1_, String p_193414_2_, BlockPos p_193414_3_)
 	{
 		return "EndCity".equals(p_193414_2_) && this.endCityGen != null ? this.endCityGen.isInsideStructure(p_193414_3_) : false;
 	}
 
+	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z)
 	{
 	}

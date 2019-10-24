@@ -296,7 +296,7 @@ public enum EnumFacing implements IStringSerializable
 
 	public float getHorizontalAngle()
 	{
-		return (float) ((this.horizontalIndex & 3) * 90);
+		return (this.horizontalIndex & 3) * 90;
 	}
 
 	/**
@@ -314,7 +314,7 @@ public enum EnumFacing implements IStringSerializable
 
 		for (EnumFacing enumfacing1 : values())
 		{
-			float f1 = x * (float) enumfacing1.directionVec.getX() + y * (float) enumfacing1.directionVec.getY() + z * (float) enumfacing1.directionVec.getZ();
+			float f1 = x * enumfacing1.directionVec.getX() + y * enumfacing1.directionVec.getY() + z * enumfacing1.directionVec.getZ();
 
 			if (f1 > f)
 			{
@@ -326,11 +326,13 @@ public enum EnumFacing implements IStringSerializable
 		return enumfacing;
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.name;
 	}
 
+	@Override
 	public String getName()
 	{
 		return this.name;
@@ -351,16 +353,16 @@ public enum EnumFacing implements IStringSerializable
 
 	public static EnumFacing func_190914_a(BlockPos p_190914_0_, EntityLivingBase p_190914_1_)
 	{
-		if (Math.abs(p_190914_1_.posX - (double) ((float) p_190914_0_.getX() + 0.5F)) < 2.0D && Math.abs(p_190914_1_.posZ - (double) ((float) p_190914_0_.getZ() + 0.5F)) < 2.0D)
+		if (Math.abs(p_190914_1_.posX - (p_190914_0_.getX() + 0.5F)) < 2.0D && Math.abs(p_190914_1_.posZ - (p_190914_0_.getZ() + 0.5F)) < 2.0D)
 		{
-			double d0 = p_190914_1_.posY + (double) p_190914_1_.getEyeHeight();
+			double d0 = p_190914_1_.posY + p_190914_1_.getEyeHeight();
 
-			if (d0 - (double) p_190914_0_.getY() > 2.0D)
+			if (d0 - p_190914_0_.getY() > 2.0D)
 			{
 				return UP;
 			}
 
-			if ((double) p_190914_0_.getY() - d0 > 0.0D)
+			if (p_190914_0_.getY() - d0 > 0.0D)
 			{
 				return DOWN;
 			}
@@ -427,11 +429,13 @@ public enum EnumFacing implements IStringSerializable
 			return this.plane == EnumFacing.Plane.HORIZONTAL;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
 		}
 
+		@Override
 		public boolean apply(@Nullable EnumFacing p_apply_1_)
 		{
 			return p_apply_1_ != null && p_apply_1_.getAxis() == this;
@@ -442,6 +446,7 @@ public enum EnumFacing implements IStringSerializable
 			return this.plane;
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;
@@ -474,6 +479,7 @@ public enum EnumFacing implements IStringSerializable
 			return this.offset;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.description;
@@ -503,11 +509,13 @@ public enum EnumFacing implements IStringSerializable
 			return aenumfacing[rand.nextInt(aenumfacing.length)];
 		}
 
+		@Override
 		public boolean apply(@Nullable EnumFacing p_apply_1_)
 		{
 			return p_apply_1_ != null && p_apply_1_.getAxis().getPlane() == this;
 		}
 
+		@Override
 		public Iterator<EnumFacing> iterator()
 		{
 			return Iterators.<EnumFacing>forArray(this.facings());

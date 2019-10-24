@@ -12,16 +12,19 @@ public class ScoreCriteriaColored implements IScoreCriteria
 		IScoreCriteria.INSTANCES.put(this.goalName, this);
 	}
 
+	@Override
 	public String getName()
 	{
 		return this.goalName;
 	}
 
+	@Override
 	public boolean isReadOnly()
 	{
 		return false;
 	}
 
+	@Override
 	public IScoreCriteria.EnumRenderType getRenderType()
 	{
 		return IScoreCriteria.EnumRenderType.INTEGER;

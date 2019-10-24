@@ -18,6 +18,7 @@ public final class EntitySelectors
 {
 	public static final Predicate<Entity> IS_ALIVE = new Predicate<Entity>()
 	{
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			return p_apply_1_.isEntityAlive();
@@ -25,6 +26,7 @@ public final class EntitySelectors
 	};
 	public static final Predicate<Entity> IS_STANDALONE = new Predicate<Entity>()
 	{
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			return p_apply_1_.isEntityAlive() && !p_apply_1_.isBeingRidden() && !p_apply_1_.isRiding();
@@ -32,6 +34,7 @@ public final class EntitySelectors
 	};
 	public static final Predicate<Entity> HAS_INVENTORY = new Predicate<Entity>()
 	{
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			return p_apply_1_ instanceof IInventory && p_apply_1_.isEntityAlive();
@@ -39,6 +42,7 @@ public final class EntitySelectors
 	};
 	public static final Predicate<Entity> CAN_AI_TARGET = new Predicate<Entity>()
 	{
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			return !(p_apply_1_ instanceof EntityPlayer) || !((EntityPlayer) p_apply_1_).isSpectator() && !((EntityPlayer) p_apply_1_).isCreative();
@@ -46,6 +50,7 @@ public final class EntitySelectors
 	};
 	public static final Predicate<Entity> NOT_SPECTATING = new Predicate<Entity>()
 	{
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			return !(p_apply_1_ instanceof EntityPlayer) || !((EntityPlayer) p_apply_1_).isSpectator();
@@ -57,6 +62,7 @@ public final class EntitySelectors
 		final double d0 = range * range;
 		return new Predicate<T>()
 		{
+			@Override
 			public boolean apply(@Nullable T p_apply_1_)
 			{
 				return p_apply_1_ != null && p_apply_1_.getDistanceSq(x, y, z) <= d0;
@@ -70,6 +76,7 @@ public final class EntitySelectors
 		final Team.CollisionRule team$collisionrule = team == null ? Team.CollisionRule.ALWAYS : team.getCollisionRule();
 		Predicate<?> ret = team$collisionrule == Team.CollisionRule.NEVER ? Predicates.alwaysFalse() : Predicates.and(NOT_SPECTATING, new Predicate<Entity>()
 		{
+			@Override
 			public boolean apply(@Nullable Entity p_apply_1_)
 			{
 				if (!p_apply_1_.canBePushed())
@@ -112,6 +119,7 @@ public final class EntitySelectors
 	{
 		return new Predicate<Entity>()
 		{
+			@Override
 			public boolean apply(@Nullable Entity p_apply_1_)
 			{
 				while (true)
@@ -143,6 +151,7 @@ public final class EntitySelectors
 			this.armor = armor;
 		}
 
+		@Override
 		public boolean apply(@Nullable Entity p_apply_1_)
 		{
 			if (!p_apply_1_.isEntityAlive())

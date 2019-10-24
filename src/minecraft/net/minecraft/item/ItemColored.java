@@ -22,6 +22,7 @@ public class ItemColored extends ItemBlock
 	 * placed in the world when this Item is placed as a Block (mostly used with
 	 * ItemBlocks).
 	 */
+	@Override
 	public int getMetadata(int damage)
 	{
 		return damage;
@@ -38,6 +39,7 @@ public class ItemColored extends ItemBlock
 	 * ItemStack so different stacks can have different names based on their
 	 * damage or NBT.
 	 */
+	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		if (this.subtypeNames == null)

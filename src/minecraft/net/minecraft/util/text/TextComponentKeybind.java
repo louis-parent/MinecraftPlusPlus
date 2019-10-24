@@ -24,11 +24,12 @@ public class TextComponentKeybind extends TextComponentBase
 	 * Gets the text of this component, without any special formatting codes
 	 * added, for chat. TODO: why is this two different methods?
 	 */
+	@Override
 	public String getUnformattedComponentText()
 	{
 		if (this.field_193639_d == null)
 		{
-			this.field_193639_d = (Supplier) field_193637_b.apply(this.field_193638_c);
+			this.field_193639_d = field_193637_b.apply(this.field_193638_c);
 		}
 
 		return this.field_193639_d.get();
@@ -38,6 +39,7 @@ public class TextComponentKeybind extends TextComponentBase
 	 * Creates a copy of this component. Almost a deep copy, except the style is
 	 * shallow-copied.
 	 */
+	@Override
 	public TextComponentKeybind createCopy()
 	{
 		TextComponentKeybind textcomponentkeybind = new TextComponentKeybind(this.field_193638_c);
@@ -51,6 +53,7 @@ public class TextComponentKeybind extends TextComponentBase
 		return textcomponentkeybind;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -68,6 +71,7 @@ public class TextComponentKeybind extends TextComponentBase
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		return "KeybindComponent{keybind='" + this.field_193638_c + '\'' + ", siblings=" + this.siblings + ", style=" + this.getStyle() + '}';

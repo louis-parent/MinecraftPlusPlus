@@ -18,10 +18,11 @@ public class ItemClock extends Item
 			double rota;
 			long lastUpdateTick;
 
+			@Override
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
 			{
 				boolean flag = entityIn != null;
-				Entity entity = (Entity) (flag ? entityIn : stack.getItemFrame());
+				Entity entity = flag ? entityIn : stack.getItemFrame();
 
 				if (worldIn == null && entity != null)
 				{
@@ -38,7 +39,7 @@ public class ItemClock extends Item
 
 					if (worldIn.provider.isSurfaceWorld())
 					{
-						d0 = (double) worldIn.getCelestialAngle(1.0F);
+						d0 = worldIn.getCelestialAngle(1.0F);
 					}
 					else
 					{

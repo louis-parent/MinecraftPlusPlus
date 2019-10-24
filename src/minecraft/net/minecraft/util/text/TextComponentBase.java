@@ -17,6 +17,7 @@ public abstract class TextComponentBase implements ITextComponent
 	/**
 	 * Appends the given component to the end of this one.
 	 */
+	@Override
 	public ITextComponent appendSibling(ITextComponent component)
 	{
 		component.getStyle().setParentStyle(this.getStyle());
@@ -24,6 +25,7 @@ public abstract class TextComponentBase implements ITextComponent
 		return this;
 	}
 
+	@Override
 	public List<ITextComponent> getSiblings()
 	{
 		return this.siblings;
@@ -32,11 +34,13 @@ public abstract class TextComponentBase implements ITextComponent
 	/**
 	 * Appends the given text to the end of this component.
 	 */
+	@Override
 	public ITextComponent appendText(String text)
 	{
 		return this.appendSibling(new TextComponentString(text));
 	}
 
+	@Override
 	public ITextComponent setStyle(Style style)
 	{
 		this.style = style;
@@ -49,6 +53,7 @@ public abstract class TextComponentBase implements ITextComponent
 		return this;
 	}
 
+	@Override
 	public Style getStyle()
 	{
 		if (this.style == null)
@@ -64,6 +69,7 @@ public abstract class TextComponentBase implements ITextComponent
 		return this.style;
 	}
 
+	@Override
 	public Iterator<ITextComponent> iterator()
 	{
 		return Iterators.<ITextComponent>concat(Iterators.forArray(this), createDeepCopyIterator(this.siblings));
@@ -73,6 +79,7 @@ public abstract class TextComponentBase implements ITextComponent
 	 * Get the text of this component, <em>and all child components</em>, with
 	 * all special formatting codes removed.
 	 */
+	@Override
 	public final String getUnformattedText()
 	{
 		StringBuilder stringbuilder = new StringBuilder();
@@ -89,6 +96,7 @@ public abstract class TextComponentBase implements ITextComponent
 	 * Gets the text of this component, with formatting codes added for
 	 * rendering.
 	 */
+	@Override
 	public final String getFormattedText()
 	{
 		StringBuilder stringbuilder = new StringBuilder();
@@ -101,7 +109,7 @@ public abstract class TextComponentBase implements ITextComponent
 			{
 				stringbuilder.append(itextcomponent.getStyle().getFormattingCode());
 				stringbuilder.append(s);
-				stringbuilder.append((Object) TextFormatting.RESET);
+				stringbuilder.append(TextFormatting.RESET);
 			}
 		}
 
@@ -112,6 +120,7 @@ public abstract class TextComponentBase implements ITextComponent
 	{
 		Iterator<ITextComponent> iterator = Iterators.concat(Iterators.transform(components.iterator(), new Function<ITextComponent, Iterator<ITextComponent>>()
 		{
+			@Override
 			public Iterator<ITextComponent> apply(@Nullable ITextComponent p_apply_1_)
 			{
 				return p_apply_1_.iterator();
@@ -119,6 +128,7 @@ public abstract class TextComponentBase implements ITextComponent
 		}));
 		iterator = Iterators.transform(iterator, new Function<ITextComponent, ITextComponent>()
 		{
+			@Override
 			public ITextComponent apply(@Nullable ITextComponent p_apply_1_)
 			{
 				ITextComponent itextcomponent = p_apply_1_.createCopy();
@@ -129,6 +139,7 @@ public abstract class TextComponentBase implements ITextComponent
 		return iterator;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -146,11 +157,13 @@ public abstract class TextComponentBase implements ITextComponent
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return 31 * this.style.hashCode() + this.siblings.hashCode();
 	}
 
+	@Override
 	public String toString()
 	{
 		return "BaseComponent{style=" + this.style + ", siblings=" + this.siblings + '}';

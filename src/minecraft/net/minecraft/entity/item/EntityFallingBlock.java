@@ -56,7 +56,7 @@ public class EntityFallingBlock extends Entity
 		this.fallTile = fallingBlockState;
 		this.preventEntitySpawning = true;
 		this.setSize(0.98F, 0.98F);
-		this.setPosition(x, y + (double) ((1.0F - this.height) / 2.0F), z);
+		this.setPosition(x, y + (1.0F - this.height) / 2.0F, z);
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
 		this.motionZ = 0.0D;
@@ -69,6 +69,7 @@ public class EntityFallingBlock extends Entity
 	/**
 	 * Returns true if it's possible to attack this entity with an item.
 	 */
+	@Override
 	public boolean canBeAttackedWithItem()
 	{
 		return false;
@@ -81,18 +82,20 @@ public class EntityFallingBlock extends Entity
 
 	public BlockPos getOrigin()
 	{
-		return (BlockPos) this.dataManager.get(ORIGIN);
+		return this.dataManager.get(ORIGIN);
 	}
 
 	/**
 	 * returns if this entity triggers Block.onEntityWalking on the blocks they
 	 * walk on. used for spiders and wolves to prevent them from trampling crops
 	 */
+	@Override
 	protected boolean canTriggerWalking()
 	{
 		return false;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		this.dataManager.register(ORIGIN, BlockPos.ORIGIN);
@@ -102,6 +105,7 @@ public class EntityFallingBlock extends Entity
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return !this.isDead;
@@ -110,6 +114,7 @@ public class EntityFallingBlock extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		Block block = this.fallTile.getBlock();
@@ -245,6 +250,7 @@ public class EntityFallingBlock extends Entity
 		}
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 		Block block = this.fallTile.getBlock();
@@ -261,12 +267,12 @@ public class EntityFallingBlock extends Entity
 
 				for (Entity entity : list)
 				{
-					entity.attackEntityFrom(damagesource, (float) Math.min(MathHelper.floor((float) i * this.fallHurtAmount), this.fallHurtMax));
+					entity.attackEntityFrom(damagesource, Math.min(MathHelper.floor(i * this.fallHurtAmount), this.fallHurtMax));
 				}
 
-				if (flag && (double) this.rand.nextFloat() < 0.05000000074505806D + (double) i * 0.05D)
+				if (flag && this.rand.nextFloat() < 0.05000000074505806D + i * 0.05D)
 				{
-					int j = ((Integer) this.fallTile.getValue(BlockAnvil.DAMAGE)).intValue();
+					int j = this.fallTile.getValue(BlockAnvil.DAMAGE).intValue();
 					++j;
 
 					if (j > 2)
@@ -289,6 +295,7 @@ public class EntityFallingBlock extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 		Block block = this.fallTile != null ? this.fallTile.getBlock() : Blocks.AIR;
@@ -310,6 +317,7 @@ public class EntityFallingBlock extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		int i = compound.getByte("Data") & 255;
@@ -370,11 +378,13 @@ public class EntityFallingBlock extends Entity
 	/**
 	 * Return whether this entity should be rendered as on fire.
 	 */
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return false;
 	}
 
+	@Override
 	public void addEntityCrashInfo(CrashReportCategory category)
 	{
 		super.addEntityCrashInfo(category);
@@ -393,6 +403,7 @@ public class EntityFallingBlock extends Entity
 		return this.fallTile;
 	}
 
+	@Override
 	public boolean ignoreItemEntityData()
 	{
 		return true;

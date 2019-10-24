@@ -12,8 +12,9 @@ public class PotionAttackDamage extends Potion
 		this.bonusPerLevel = bonusPerLevelIn;
 	}
 
+	@Override
 	public double getAttributeModifierAmount(int amplifier, AttributeModifier modifier)
 	{
-		return this.bonusPerLevel * (double) (amplifier + 1);
+		return this.bonusPerLevel * (amplifier + 1);
 	}
 }

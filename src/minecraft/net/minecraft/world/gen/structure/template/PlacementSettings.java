@@ -141,7 +141,7 @@ public class PlacementSettings
 		{
 			int i = p_189947_1_.getX();
 			int j = p_189947_1_.getZ();
-			return new Random((long) (i * i * 4987142 + i * 5947611) + (long) (j * j) * 4392871L + (long) (j * 389711) ^ 987234911L);
+			return new Random(i * i * 4987142 + i * 5947611 + j * j * 4392871L + j * 389711 ^ 987234911L);
 		}
 	}
 

@@ -34,13 +34,15 @@ public class TileEntitySkullRenderer extends TileEntitySpecialRenderer<TileEntit
 	private final ModelSkeletonHead skeletonHead = new ModelSkeletonHead(0, 0, 64, 32);
 	private final ModelSkeletonHead humanoidHead = new ModelHumanoidHead();
 
+	@Override
 	public void func_192841_a(TileEntitySkull p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
 	{
 		EnumFacing enumfacing = EnumFacing.getFront(p_192841_1_.getBlockMetadata() & 7);
 		float f = p_192841_1_.getAnimationProgress(p_192841_8_);
-		this.renderSkull((float) p_192841_2_, (float) p_192841_4_, (float) p_192841_6_, enumfacing, (float) (p_192841_1_.getSkullRotation() * 360) / 16.0F, p_192841_1_.getSkullType(), p_192841_1_.getPlayerProfile(), p_192841_9_, f);
+		this.renderSkull((float) p_192841_2_, (float) p_192841_4_, (float) p_192841_6_, enumfacing, p_192841_1_.getSkullRotation() * 360 / 16.0F, p_192841_1_.getSkullType(), p_192841_1_.getPlayerProfile(), p_192841_9_, f);
 	}
 
+	@Override
 	public void setRendererDispatcher(TileEntityRendererDispatcher rendererDispatcherIn)
 	{
 		super.setRendererDispatcher(rendererDispatcherIn);

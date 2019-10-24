@@ -24,6 +24,7 @@ public class BlockLilyPad extends BlockBush
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 		if (!(entityIn instanceof EntityBoat))
@@ -35,6 +36,7 @@ public class BlockLilyPad extends BlockBush
 	/**
 	 * Called When an Entity Collided with the Block
 	 */
+	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
 		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
@@ -45,6 +47,7 @@ public class BlockLilyPad extends BlockBush
 		}
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return LILY_PAD_AABB;
@@ -53,18 +56,20 @@ public class BlockLilyPad extends BlockBush
 	/**
 	 * Return true if the block can sustain a Bush
 	 */
+	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
 		return state.getBlock() == Blocks.WATER || state.getMaterial() == Material.ICE;
 	}
 
+	@Override
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (pos.getY() >= 0 && pos.getY() < 256)
 		{
 			IBlockState iblockstate = worldIn.getBlockState(pos.down());
 			Material material = iblockstate.getMaterial();
-			return material == Material.WATER && ((Integer) iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0 || material == Material.ICE;
+			return material == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0 || material == Material.ICE;
 		}
 		else
 		{
@@ -75,6 +80,7 @@ public class BlockLilyPad extends BlockBush
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		return 0;

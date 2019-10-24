@@ -31,6 +31,7 @@ public class EntityHasScore implements LootCondition
 		this.target = targetIn;
 	}
 
+	@Override
 	public boolean testCondition(Random rand, LootContext context)
 	{
 		Entity entity = context.getEntity(this.target);
@@ -77,6 +78,7 @@ public class EntityHasScore implements LootCondition
 			super(new ResourceLocation("entity_scores"), EntityHasScore.class);
 		}
 
+		@Override
 		public void serialize(JsonObject json, EntityHasScore value, JsonSerializationContext context)
 		{
 			JsonObject jsonobject = new JsonObject();
@@ -90,6 +92,7 @@ public class EntityHasScore implements LootCondition
 			json.add("entity", context.serialize(value.target));
 		}
 
+		@Override
 		public EntityHasScore deserialize(JsonObject json, JsonDeserializationContext context)
 		{
 			Set<Entry<String, JsonElement>> set = JsonUtils.getJsonObject(json, "scores").entrySet();
@@ -100,7 +103,7 @@ public class EntityHasScore implements LootCondition
 				map.put(entry.getKey(), JsonUtils.deserializeClass(entry.getValue(), "score", context, RandomValueRange.class));
 			}
 
-			return new EntityHasScore(map, (LootContext.EntityTarget) JsonUtils.deserializeClass(json, "entity", context, LootContext.EntityTarget.class));
+			return new EntityHasScore(map, JsonUtils.deserializeClass(json, "entity", context, LootContext.EntityTarget.class));
 		}
 	}
 }

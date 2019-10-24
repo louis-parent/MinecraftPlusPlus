@@ -34,6 +34,7 @@ public class HoverEvent
 		return this.value;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -71,11 +72,13 @@ public class HoverEvent
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		return "HoverEvent{action=" + this.action + ", value='" + this.value + '\'' + '}';
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = this.action.hashCode();

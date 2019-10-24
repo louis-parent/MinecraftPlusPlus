@@ -19,6 +19,7 @@ public class RenderDragonFireball extends Render<EntityDragonFireball>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityDragonFireball entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		GlStateManager.pushMatrix();
@@ -32,7 +33,7 @@ public class RenderDragonFireball extends Render<EntityDragonFireball>
 		float f1 = 0.5F;
 		float f2 = 0.25F;
 		GlStateManager.rotate(180.0F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-		GlStateManager.rotate((float) (this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * -this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+		GlStateManager.rotate((this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * -this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 
 		if (this.renderOutlines)
 		{
@@ -62,6 +63,7 @@ public class RenderDragonFireball extends Render<EntityDragonFireball>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityDragonFireball entity)
 	{
 		return DRAGON_FIREBALL_TEXTURE;

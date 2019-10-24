@@ -215,6 +215,7 @@ public class EntityAITasks
 			this.action = task;
 		}
 
+		@Override
 		public boolean equals(@Nullable Object p_equals_1_)
 		{
 			if (this == p_equals_1_)
@@ -227,6 +228,7 @@ public class EntityAITasks
 			}
 		}
 
+		@Override
 		public int hashCode()
 		{
 			return this.action.hashCode();

@@ -30,6 +30,7 @@ public class SlotMerchantResult extends Slot
 	 * Check if the stack is allowed to be placed in this slot, used for armor
 	 * slots as well as furnace fuel.
 	 */
+	@Override
 	public boolean isItemValid(ItemStack stack)
 	{
 		return false;
@@ -39,6 +40,7 @@ public class SlotMerchantResult extends Slot
 	 * Decrease the size of the stack in slot (first int arg) by the amount of
 	 * the second int arg. Returns the new stack.
 	 */
+	@Override
 	public ItemStack decrStackSize(int amount)
 	{
 		if (this.getHasStack())
@@ -54,6 +56,7 @@ public class SlotMerchantResult extends Slot
 	 * not ore and wood. Typically increases an internal count then calls
 	 * onCrafting(item).
 	 */
+	@Override
 	protected void onCrafting(ItemStack stack, int amount)
 	{
 		this.removeCount += amount;
@@ -64,12 +67,14 @@ public class SlotMerchantResult extends Slot
 	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes,
 	 * not ore and wood.
 	 */
+	@Override
 	protected void onCrafting(ItemStack stack)
 	{
 		stack.onCrafting(this.thePlayer.world, this.thePlayer, this.removeCount);
 		this.removeCount = 0;
 	}
 
+	@Override
 	public ItemStack func_190901_a(EntityPlayer p_190901_1_, ItemStack p_190901_2_)
 	{
 		this.onCrafting(p_190901_2_);

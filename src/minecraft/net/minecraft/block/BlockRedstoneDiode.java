@@ -28,16 +28,19 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 		this.isRepeaterPowered = powered;
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return REDSTONE_DIODE_AABB;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return worldIn.getBlockState(pos.down()).isFullyOpaque() ? super.canPlaceBlockAt(worldIn, pos) : false;
@@ -52,10 +55,12 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 	 * Called randomly when setTickRandomly is set to true (used by e.g. crops
 	 * to grow, etc.)
 	 */
+	@Override
 	public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
 	{
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (!this.isLocked(worldIn, pos, state))
@@ -78,6 +83,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 		}
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return side.getAxis() != EnumFacing.Axis.Y;
@@ -88,11 +94,13 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 		return this.isRepeaterPowered;
 	}
 
+	@Override
 	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return blockState.getWeakPower(blockAccess, pos, side);
 	}
 
+	@Override
 	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		if (!this.isPowered(blockState))
@@ -111,6 +119,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (this.canBlockStay(worldIn, pos))
@@ -165,7 +174,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 
 	protected int calculateInputStrength(World worldIn, BlockPos pos, IBlockState state)
 	{
-		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+		EnumFacing enumfacing = state.getValue(FACING);
 		BlockPos blockpos = pos.offset(enumfacing);
 		int i = worldIn.getRedstonePower(blockpos, enumfacing);
 
@@ -176,13 +185,13 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 		else
 		{
 			IBlockState iblockstate = worldIn.getBlockState(blockpos);
-			return Math.max(i, iblockstate.getBlock() == Blocks.REDSTONE_WIRE ? ((Integer) iblockstate.getValue(BlockRedstoneWire.POWER)).intValue() : 0);
+			return Math.max(i, iblockstate.getBlock() == Blocks.REDSTONE_WIRE ? iblockstate.getValue(BlockRedstoneWire.POWER).intValue() : 0);
 		}
 	}
 
 	protected int getPowerOnSides(IBlockAccess worldIn, BlockPos pos, IBlockState state)
 	{
-		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+		EnumFacing enumfacing = state.getValue(FACING);
 		EnumFacing enumfacing1 = enumfacing.rotateY();
 		EnumFacing enumfacing2 = enumfacing.rotateYCCW();
 		return Math.max(this.getPowerOnSide(worldIn, pos.offset(enumfacing1), enumfacing1), this.getPowerOnSide(worldIn, pos.offset(enumfacing2), enumfacing2));
@@ -201,7 +210,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 			}
 			else
 			{
-				return block == Blocks.REDSTONE_WIRE ? ((Integer) iblockstate.getValue(BlockRedstoneWire.POWER)).intValue() : worldIn.getStrongPower(pos, side);
+				return block == Blocks.REDSTONE_WIRE ? iblockstate.getValue(BlockRedstoneWire.POWER).intValue() : worldIn.getStrongPower(pos, side);
 			}
 		}
 		else
@@ -214,6 +223,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 	 * Can this block provide power. Only wire currently seems to have this
 	 * change based on its state.
 	 */
+	@Override
 	public boolean canProvidePower(IBlockState state)
 	{
 		return true;
@@ -223,6 +233,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
@@ -232,6 +243,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 	 * Called by ItemBlocks after a block is set in the world, to allow
 	 * post-place logic
 	 */
+	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		if (this.shouldBePowered(worldIn, pos, state))
@@ -244,6 +256,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		this.notifyNeighbors(worldIn, pos, state);
@@ -251,7 +264,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 
 	protected void notifyNeighbors(World worldIn, BlockPos pos, IBlockState state)
 	{
-		EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+		EnumFacing enumfacing = state.getValue(FACING);
 		BlockPos blockpos = pos.offset(enumfacing.getOpposite());
 		worldIn.func_190524_a(blockpos, this, pos);
 		worldIn.notifyNeighborsOfStateExcept(blockpos, this, enumfacing);
@@ -260,6 +273,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 	/**
 	 * Called when a player destroys this Block
 	 */
+	@Override
 	public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (this.isRepeaterPowered)
@@ -277,6 +291,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
@@ -305,7 +320,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 
 	public boolean isFacingTowardsRepeater(World worldIn, BlockPos pos, IBlockState state)
 	{
-		EnumFacing enumfacing = ((EnumFacing) state.getValue(FACING)).getOpposite();
+		EnumFacing enumfacing = state.getValue(FACING).getOpposite();
 		BlockPos blockpos = pos.offset(enumfacing);
 
 		if (isDiode(worldIn.getBlockState(blockpos)))
@@ -329,16 +344,19 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 
 	protected abstract IBlockState getUnpoweredState(IBlockState poweredState);
 
+	@Override
 	public boolean isAssociatedBlock(Block other)
 	{
 		return this.isSameDiode(other.getDefaultState());
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return p_193383_4_ == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;

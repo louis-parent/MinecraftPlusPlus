@@ -43,6 +43,7 @@ public class EntityFireworkRocket extends Entity
 		this.setSize(0.25F, 0.25F);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		this.dataManager.register(FIREWORK_ITEM, ItemStack.EMPTY_ITEM_STACK);
@@ -52,11 +53,13 @@ public class EntityFireworkRocket extends Entity
 	/**
 	 * Checks if the entity is in range to render.
 	 */
+	@Override
 	public boolean isInRangeToRenderDist(double distance)
 	{
 		return distance < 4096.0D && !this.func_191511_j();
 	}
 
+	@Override
 	public boolean isInRangeToRender3d(double x, double y, double z)
 	{
 		return super.isInRangeToRender3d(x, y, z) && !this.func_191511_j();
@@ -94,6 +97,7 @@ public class EntityFireworkRocket extends Entity
 	/**
 	 * Updates the velocity of the entity to a new value.
 	 */
+	@Override
 	public void setVelocity(double x, double y, double z)
 	{
 		this.motionX = x;
@@ -104,7 +108,7 @@ public class EntityFireworkRocket extends Entity
 		{
 			float f = MathHelper.sqrt(x * x + z * z);
 			this.rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-			this.rotationPitch = (float) (MathHelper.atan2(y, (double) f) * (180D / Math.PI));
+			this.rotationPitch = (float) (MathHelper.atan2(y, f) * (180D / Math.PI));
 			this.prevRotationYaw = this.rotationYaw;
 			this.prevRotationPitch = this.rotationPitch;
 		}
@@ -113,6 +117,7 @@ public class EntityFireworkRocket extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		this.lastTickPosX = this.posX;
@@ -124,7 +129,7 @@ public class EntityFireworkRocket extends Entity
 		{
 			if (this.field_191513_e == null)
 			{
-				Entity entity = this.world.getEntityByID(((Integer) this.dataManager.get(field_191512_b)).intValue());
+				Entity entity = this.world.getEntityByID(this.dataManager.get(field_191512_b).intValue());
 
 				if (entity instanceof EntityLivingBase)
 				{
@@ -161,7 +166,7 @@ public class EntityFireworkRocket extends Entity
 		float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
 
-		for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, (double) f) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+		for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, f) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
 		{
 			;
 		}
@@ -207,20 +212,20 @@ public class EntityFireworkRocket extends Entity
 	private void func_191510_k()
 	{
 		float f = 0.0F;
-		ItemStack itemstack = (ItemStack) this.dataManager.get(FIREWORK_ITEM);
+		ItemStack itemstack = this.dataManager.get(FIREWORK_ITEM);
 		NBTTagCompound nbttagcompound = itemstack.isNotValid() ? null : itemstack.getSubCompound("Fireworks");
 		NBTTagList nbttaglist = nbttagcompound != null ? nbttagcompound.getTagList("Explosions", 10) : null;
 
 		if (nbttaglist != null && !nbttaglist.hasNoTags())
 		{
-			f = (float) (5 + nbttaglist.tagCount() * 2);
+			f = 5 + nbttaglist.tagCount() * 2;
 		}
 
 		if (f > 0.0F)
 		{
 			if (this.field_191513_e != null)
 			{
-				this.field_191513_e.attackEntityFrom(DamageSource.fireworks, (float) (5 + nbttaglist.tagCount() * 2));
+				this.field_191513_e.attackEntityFrom(DamageSource.fireworks, 5 + nbttaglist.tagCount() * 2);
 			}
 
 			double d0 = 5.0D;
@@ -234,7 +239,7 @@ public class EntityFireworkRocket extends Entity
 
 					for (int i = 0; i < 2; ++i)
 					{
-						RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d, new Vec3d(entitylivingbase.posX, entitylivingbase.posY + (double) entitylivingbase.height * 0.5D * (double) i, entitylivingbase.posZ), false, true, false);
+						RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d, new Vec3d(entitylivingbase.posX, entitylivingbase.posY + entitylivingbase.height * 0.5D * i, entitylivingbase.posZ), false, true, false);
 
 						if (raytraceresult == null || raytraceresult.typeOfHit == RayTraceResult.Type.MISS)
 						{
@@ -245,7 +250,7 @@ public class EntityFireworkRocket extends Entity
 
 					if (flag)
 					{
-						float f1 = f * (float) Math.sqrt((5.0D - (double) this.getDistanceToEntity(entitylivingbase)) / 5.0D);
+						float f1 = f * (float) Math.sqrt((5.0D - this.getDistanceToEntity(entitylivingbase)) / 5.0D);
 						entitylivingbase.attackEntityFrom(DamageSource.fireworks, f1);
 					}
 				}
@@ -255,14 +260,15 @@ public class EntityFireworkRocket extends Entity
 
 	public boolean func_191511_j()
 	{
-		return ((Integer) this.dataManager.get(field_191512_b)).intValue() > 0;
+		return this.dataManager.get(field_191512_b).intValue() > 0;
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 17 && this.world.isRemote)
 		{
-			ItemStack itemstack = (ItemStack) this.dataManager.get(FIREWORK_ITEM);
+			ItemStack itemstack = this.dataManager.get(FIREWORK_ITEM);
 			NBTTagCompound nbttagcompound = itemstack.isNotValid() ? null : itemstack.getSubCompound("Fireworks");
 			this.world.makeFireworks(this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ, nbttagcompound);
 		}
@@ -278,11 +284,12 @@ public class EntityFireworkRocket extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		compound.setInteger("Life", this.fireworkAge);
 		compound.setInteger("LifeTime", this.lifetime);
-		ItemStack itemstack = (ItemStack) this.dataManager.get(FIREWORK_ITEM);
+		ItemStack itemstack = this.dataManager.get(FIREWORK_ITEM);
 
 		if (!itemstack.isNotValid())
 		{
@@ -293,6 +300,7 @@ public class EntityFireworkRocket extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.fireworkAge = compound.getInteger("Life");
@@ -313,6 +321,7 @@ public class EntityFireworkRocket extends Entity
 	/**
 	 * Returns true if it's possible to attack this entity with an item.
 	 */
+	@Override
 	public boolean canBeAttackedWithItem()
 	{
 		return false;

@@ -40,6 +40,7 @@ public class TileEntitySkull extends TileEntity implements ITickable
 		sessionService = sessionServiceIn;
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -56,6 +57,7 @@ public class TileEntitySkull extends TileEntity implements ITickable
 		return compound;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -84,6 +86,7 @@ public class TileEntitySkull extends TileEntity implements ITickable
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		if (this.skullType == 5)
@@ -102,7 +105,7 @@ public class TileEntitySkull extends TileEntity implements ITickable
 
 	public float getAnimationProgress(float p_184295_1_)
 	{
-		return this.dragonAnimated ? (float) this.dragonAnimatedTicks + p_184295_1_ : (float) this.dragonAnimatedTicks;
+		return this.dragonAnimated ? this.dragonAnimatedTicks + p_184295_1_ : (float) this.dragonAnimatedTicks;
 	}
 
 	@Nullable
@@ -111,12 +114,14 @@ public class TileEntitySkull extends TileEntity implements ITickable
 		return this.playerProfile;
 	}
 
+	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		return new SPacketUpdateTileEntity(this.pos, 4, this.getUpdateTag());
 	}
 
+	@Override
 	public NBTTagCompound getUpdateTag()
 	{
 		return this.writeToNBT(new NBTTagCompound());
@@ -195,6 +200,7 @@ public class TileEntitySkull extends TileEntity implements ITickable
 		this.skullRotation = rotation;
 	}
 
+	@Override
 	public void mirror(Mirror p_189668_1_)
 	{
 		if (this.world != null && this.world.getBlockState(this.getPos()).getValue(BlockSkull.FACING) == EnumFacing.UP)
@@ -203,6 +209,7 @@ public class TileEntitySkull extends TileEntity implements ITickable
 		}
 	}
 
+	@Override
 	public void rotate(Rotation p_189667_1_)
 	{
 		if (this.world != null && this.world.getBlockState(this.getPos()).getValue(BlockSkull.FACING) == EnumFacing.UP)

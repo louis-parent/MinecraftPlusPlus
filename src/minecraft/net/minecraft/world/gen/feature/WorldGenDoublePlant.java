@@ -16,6 +16,7 @@ public class WorldGenDoublePlant extends WorldGenerator
 		this.plantType = plantTypeIn;
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		boolean flag = false;

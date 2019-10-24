@@ -86,7 +86,7 @@ public class Criterion
 		for (Entry<String, Criterion> entry : p_192141_0_.entrySet())
 		{
 			p_192141_1_.writeString(entry.getKey());
-			((Criterion) entry.getValue()).func_192140_a(p_192141_1_);
+			entry.getValue().func_192140_a(p_192141_1_);
 		}
 	}
 

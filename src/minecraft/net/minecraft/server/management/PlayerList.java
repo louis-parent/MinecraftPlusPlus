@@ -263,35 +263,42 @@ public abstract class PlayerList
 		this.playerNBTManagerObj = worldServers[0].getSaveHandler().getPlayerNBTManager();
 		worldServers[0].getWorldBorder().addListener(new IBorderListener()
 		{
+			@Override
 			public void onSizeChanged(WorldBorder border, double newSize)
 			{
 				PlayerList.this.sendPacketToAllPlayers(new SPacketWorldBorder(border, SPacketWorldBorder.Action.SET_SIZE));
 			}
 
+			@Override
 			public void onTransitionStarted(WorldBorder border, double oldSize, double newSize, long time)
 			{
 				PlayerList.this.sendPacketToAllPlayers(new SPacketWorldBorder(border, SPacketWorldBorder.Action.LERP_SIZE));
 			}
 
+			@Override
 			public void onCenterChanged(WorldBorder border, double x, double z)
 			{
 				PlayerList.this.sendPacketToAllPlayers(new SPacketWorldBorder(border, SPacketWorldBorder.Action.SET_CENTER));
 			}
 
+			@Override
 			public void onWarningTimeChanged(WorldBorder border, int newTime)
 			{
 				PlayerList.this.sendPacketToAllPlayers(new SPacketWorldBorder(border, SPacketWorldBorder.Action.SET_WARNING_TIME));
 			}
 
+			@Override
 			public void onWarningDistanceChanged(WorldBorder border, int newDistance)
 			{
 				PlayerList.this.sendPacketToAllPlayers(new SPacketWorldBorder(border, SPacketWorldBorder.Action.SET_WARNING_BLOCKS));
 			}
 
+			@Override
 			public void onDamageAmountChanged(WorldBorder border, double newAmount)
 			{
 			}
 
+			@Override
 			public void onDamageBufferChanged(WorldBorder border, double newSize)
 			{
 			}
@@ -453,7 +460,7 @@ public abstract class PlayerList
 	{
 		if (this.bannedPlayers.isBanned(profile))
 		{
-			UserListBansEntry userlistbansentry = (UserListBansEntry) this.bannedPlayers.getEntry(profile);
+			UserListBansEntry userlistbansentry = this.bannedPlayers.getEntry(profile);
 			String s1 = "You are banned from this server!\nReason: " + userlistbansentry.getBanReason();
 
 			if (userlistbansentry.getBanEndDate() != null)
@@ -574,7 +581,7 @@ public abstract class PlayerList
 
 			if (blockpos1 != null)
 			{
-				entityplayermp.setLocationAndAngles((double) ((float) blockpos1.getX() + 0.5F), (double) ((float) blockpos1.getY() + 0.1F), (double) ((float) blockpos1.getZ() + 0.5F), 0.0F, 0.0F);
+				entityplayermp.setLocationAndAngles(blockpos1.getX() + 0.5F, blockpos1.getY() + 0.1F, blockpos1.getZ() + 0.5F, 0.0F, 0.0F);
 				entityplayermp.setSpawnPoint(blockpos, flag);
 			}
 			else
@@ -685,9 +692,9 @@ public abstract class PlayerList
 				blockpos = toWorldIn.getSpawnCoordinate();
 			}
 
-			d0 = (double) blockpos.getX();
-			entityIn.posY = (double) blockpos.getY();
-			d1 = (double) blockpos.getZ();
+			d0 = blockpos.getX();
+			entityIn.posY = blockpos.getY();
+			d1 = blockpos.getZ();
 			entityIn.setLocationAndAngles(d0, entityIn.posY, d1, 90.0F, 0.0F);
 
 			if (entityIn.isEntityAlive())
@@ -701,8 +708,8 @@ public abstract class PlayerList
 		if (lastDimension != 1)
 		{
 			oldWorldIn.theProfiler.startSection("placing");
-			d0 = (double) MathHelper.clamp((int) d0, -29999872, 29999872);
-			d1 = (double) MathHelper.clamp((int) d1, -29999872, 29999872);
+			d0 = MathHelper.clamp((int) d0, -29999872, 29999872);
+			d1 = MathHelper.clamp((int) d1, -29999872, 29999872);
 
 			if (entityIn.isEntityAlive())
 			{
@@ -806,11 +813,11 @@ public abstract class PlayerList
 				s = s + ", ";
 			}
 
-			s = s + ((EntityPlayerMP) list.get(i)).getName();
+			s = s + list.get(i).getName();
 
 			if (includeUUIDs)
 			{
-				s = s + " (" + ((EntityPlayerMP) list.get(i)).getCachedUniqueIdString() + ")";
+				s = s + " (" + list.get(i).getCachedUniqueIdString() + ")";
 			}
 		}
 
@@ -826,7 +833,7 @@ public abstract class PlayerList
 
 		for (int i = 0; i < this.playerEntityList.size(); ++i)
 		{
-			astring[i] = ((EntityPlayerMP) this.playerEntityList.get(i)).getName();
+			astring[i] = this.playerEntityList.get(i).getName();
 		}
 
 		return astring;
@@ -838,7 +845,7 @@ public abstract class PlayerList
 
 		for (int i = 0; i < this.playerEntityList.size(); ++i)
 		{
-			agameprofile[i] = ((EntityPlayerMP) this.playerEntityList.get(i)).getGameProfile();
+			agameprofile[i] = this.playerEntityList.get(i).getGameProfile();
 		}
 
 		return agameprofile;

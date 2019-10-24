@@ -42,6 +42,7 @@ public class SetVisibility
 		return this.bitSet.get(facing.ordinal() + facing2.ordinal() * COUNT_FACES);
 	}
 
+	@Override
 	public String toString()
 	{
 		StringBuilder stringbuilder = new StringBuilder();
@@ -67,7 +68,7 @@ public class SetVisibility
 				else
 				{
 					boolean flag = this.isVisible(enumfacing2, enumfacing1);
-					stringbuilder.append(' ').append((char) (flag ? 'Y' : 'n'));
+					stringbuilder.append(' ').append(flag ? 'Y' : 'n');
 				}
 			}
 

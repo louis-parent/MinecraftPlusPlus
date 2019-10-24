@@ -280,6 +280,7 @@ public class StructureVillagePieces
 			return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175854_1_, structureboundingbox) == null ? new StructureVillagePieces.Church(start, p_175854_7_, rand, structureboundingbox, facing) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)
@@ -378,6 +379,7 @@ public class StructureVillagePieces
 			return true;
 		}
 
+		@Override
 		protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession)
 		{
 			return 2;
@@ -406,6 +408,7 @@ public class StructureVillagePieces
 			this.cropTypeD = this.getRandomCropType(rand);
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -415,6 +418,7 @@ public class StructureVillagePieces
 			tagCompound.setInteger("CD", Block.REGISTRY.getIDForObject(this.cropTypeD));
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -470,6 +474,7 @@ public class StructureVillagePieces
 			return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175851_1_, structureboundingbox) == null ? new StructureVillagePieces.Field1(start, p_175851_7_, rand, structureboundingbox, facing) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)
@@ -549,6 +554,7 @@ public class StructureVillagePieces
 			this.cropTypeB = this.getRandomCropType(rand);
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -556,6 +562,7 @@ public class StructureVillagePieces
 			tagCompound.setInteger("CB", Block.REGISTRY.getIDForObject(this.cropTypeB));
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -589,6 +596,7 @@ public class StructureVillagePieces
 			return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175852_1_, structureboundingbox) == null ? new StructureVillagePieces.Field2(start, p_175852_7_, rand, structureboundingbox, facing) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)
@@ -657,6 +665,7 @@ public class StructureVillagePieces
 			return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175857_1_, structureboundingbox) == null ? new StructureVillagePieces.Hall(start, p_175857_7_, rand, structureboundingbox, facing) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)
@@ -764,6 +773,7 @@ public class StructureVillagePieces
 			return true;
 		}
 
+		@Override
 		protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession)
 		{
 			return villagersSpawnedIn == 0 ? 4 : super.chooseProfession(villagersSpawnedIn, currentVillagerProfession);
@@ -789,6 +799,7 @@ public class StructureVillagePieces
 			return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175850_1_, structureboundingbox) == null ? new StructureVillagePieces.House1(start, p_175850_7_, rand, structureboundingbox, facing) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)
@@ -896,6 +907,7 @@ public class StructureVillagePieces
 			return true;
 		}
 
+		@Override
 		protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession)
 		{
 			return 1;
@@ -923,18 +935,21 @@ public class StructureVillagePieces
 			return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175855_1_, structureboundingbox) == null ? new StructureVillagePieces.House2(start, p_175855_7_, rand, structureboundingbox, facing) : null;
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setBoolean("Chest", this.hasMadeChest);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.hasMadeChest = tagCompound.getBoolean("Chest");
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)
@@ -1024,6 +1039,7 @@ public class StructureVillagePieces
 			return true;
 		}
 
+		@Override
 		protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession)
 		{
 			return 3;
@@ -1049,6 +1065,7 @@ public class StructureVillagePieces
 			return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175849_1_, structureboundingbox) == null ? new StructureVillagePieces.House3(start, p_175849_7_, rand, structureboundingbox, facing) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)
@@ -1215,12 +1232,14 @@ public class StructureVillagePieces
 			this.isRoofAccessible = rand.nextBoolean();
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setBoolean("Terrace", this.isRoofAccessible);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -1233,6 +1252,7 @@ public class StructureVillagePieces
 			return StructureComponent.findIntersecting(p_175858_1_, structureboundingbox) != null ? null : new StructureVillagePieces.House4Garden(start, p_175858_7_, rand, structureboundingbox, facing);
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)
@@ -1354,18 +1374,21 @@ public class StructureVillagePieces
 			this.length = Math.max(p_i45562_4_.getXSize(), p_i45562_4_.getZSize());
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setInteger("Length", this.length);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.length = tagCompound.getInteger("Length");
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			boolean flag = false;
@@ -1454,6 +1477,7 @@ public class StructureVillagePieces
 			return null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			IBlockState iblockstate = this.getBiomeSpecificBlockState(Blocks.GRASS_PATH.getDefaultState());
@@ -1604,6 +1628,7 @@ public class StructureVillagePieces
 			return StructureComponent.findIntersecting(p_175856_1_, structureboundingbox) != null ? null : structureboundingbox;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)
@@ -1654,6 +1679,7 @@ public class StructureVillagePieces
 			}
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			tagCompound.setInteger("HPos", this.averageGroundLvl);
@@ -1662,6 +1688,7 @@ public class StructureVillagePieces
 			tagCompound.setBoolean("Zombie", this.isZombieInfested);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			this.averageGroundLvl = tagCompound.getInteger("HPos");
@@ -1789,7 +1816,7 @@ public class StructureVillagePieces
 					if (this.isZombieInfested)
 					{
 						EntityZombieVillager entityzombievillager = new EntityZombieVillager(worldIn);
-						entityzombievillager.setLocationAndAngles((double) j + 0.5D, (double) k, (double) l + 0.5D, 0.0F, 0.0F);
+						entityzombievillager.setLocationAndAngles(j + 0.5D, k, l + 0.5D, 0.0F, 0.0F);
 						entityzombievillager.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityzombievillager)), (IEntityLivingData) null);
 						entityzombievillager.func_190733_a(this.chooseProfession(i, 0));
 						entityzombievillager.enablePersistence();
@@ -1798,7 +1825,7 @@ public class StructureVillagePieces
 					else
 					{
 						EntityVillager entityvillager = new EntityVillager(worldIn);
-						entityvillager.setLocationAndAngles((double) j + 0.5D, (double) k, (double) l + 0.5D, 0.0F, 0.0F);
+						entityvillager.setLocationAndAngles(j + 0.5D, k, l + 0.5D, 0.0F, 0.0F);
 						entityvillager.setProfession(this.chooseProfession(i, worldIn.rand.nextInt(6)));
 						entityvillager.func_190672_a(worldIn.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData) null, false);
 						worldIn.spawnEntityInWorld(entityvillager);
@@ -1930,6 +1957,7 @@ public class StructureVillagePieces
 			}
 		}
 
+		@Override
 		protected void replaceAirAndLiquidDownwards(World worldIn, IBlockState blockstateIn, int x, int y, int z, StructureBoundingBox boundingboxIn)
 		{
 			IBlockState iblockstate = this.getBiomeSpecificBlockState(blockstateIn);
@@ -1963,6 +1991,7 @@ public class StructureVillagePieces
 			}
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			StructureVillagePieces.generateAndAddRoadPiece((StructureVillagePieces.Start) componentIn, listIn, rand, this.boundingBox.minX - 1, this.boundingBox.maxY - 4, this.boundingBox.minZ + 1, EnumFacing.WEST, this.getComponentType());
@@ -1971,6 +2000,7 @@ public class StructureVillagePieces
 			StructureVillagePieces.generateAndAddRoadPiece((StructureVillagePieces.Start) componentIn, listIn, rand, this.boundingBox.minX + 1, this.boundingBox.maxY - 4, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)
@@ -2036,6 +2066,7 @@ public class StructureVillagePieces
 			this.tablePosition = rand.nextInt(3);
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -2043,6 +2074,7 @@ public class StructureVillagePieces
 			tagCompound.setBoolean("C", this.isTallHouse);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -2056,6 +2088,7 @@ public class StructureVillagePieces
 			return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175853_1_, structureboundingbox) == null ? new StructureVillagePieces.WoodHut(start, p_175853_7_, rand, structureboundingbox, facing) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.averageGroundLvl < 0)

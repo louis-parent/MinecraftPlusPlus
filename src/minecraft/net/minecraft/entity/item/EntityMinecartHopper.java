@@ -37,16 +37,19 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 		super(worldIn, x, y, z);
 	}
 
+	@Override
 	public EntityMinecart.Type getType()
 	{
 		return EntityMinecart.Type.HOPPER;
 	}
 
+	@Override
 	public IBlockState getDefaultDisplayTile()
 	{
 		return Blocks.HOPPER.getDefaultState();
 	}
 
+	@Override
 	public int getDefaultDisplayTileOffset()
 	{
 		return 1;
@@ -55,11 +58,13 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 	/**
 	 * Returns the number of slots in the inventory.
 	 */
+	@Override
 	public int getSizeInventory()
 	{
 		return 5;
 	}
 
+	@Override
 	public boolean processInitialInteract(EntityPlayer player, EnumHand stack)
 	{
 		if (!this.world.isRemote)
@@ -73,6 +78,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 	/**
 	 * Called every tick the minecart is on an activator rail.
 	 */
+	@Override
 	public void onActivatorRailPass(int x, int y, int z, boolean receivingPower)
 	{
 		boolean flag = !receivingPower;
@@ -102,6 +108,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 	/**
 	 * Returns the worldObj for this tileEntity.
 	 */
+	@Override
 	public World getWorld()
 	{
 		return this.world;
@@ -110,6 +117,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 	/**
 	 * Gets the world X position for this hopper entity.
 	 */
+	@Override
 	public double getXPos()
 	{
 		return this.posX;
@@ -118,6 +126,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 	/**
 	 * Gets the world Y position for this hopper entity.
 	 */
+	@Override
 	public double getYPos()
 	{
 		return this.posY + 0.5D;
@@ -126,6 +135,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 	/**
 	 * Gets the world Z position for this hopper entity.
 	 */
+	@Override
 	public double getZPos()
 	{
 		return this.posZ;
@@ -134,6 +144,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -183,6 +194,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 		}
 	}
 
+	@Override
 	public void killMinecart(DamageSource source)
 	{
 		super.killMinecart(source);
@@ -201,6 +213,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -211,6 +224,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -234,11 +248,13 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 		return this.transferTicker > 0;
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return "minecraft:hopper";
 	}
 
+	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
 		return new ContainerHopper(playerInventory, this, playerIn);

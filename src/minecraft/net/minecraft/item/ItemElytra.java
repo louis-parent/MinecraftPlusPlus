@@ -24,6 +24,7 @@ public class ItemElytra extends Item
 		this.setCreativeTab(CreativeTabs.TRANSPORTATION);
 		this.addPropertyOverride(new ResourceLocation("broken"), new IItemPropertyGetter()
 		{
+			@Override
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
 			{
 				return ItemElytra.isBroken(stack) ? 0.0F : 1.0F;
@@ -40,11 +41,13 @@ public class ItemElytra extends Item
 	/**
 	 * Return whether this item is repairable in an anvil.
 	 */
+	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
 	{
 		return repair.getItem() == Items.LEATHER;
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);

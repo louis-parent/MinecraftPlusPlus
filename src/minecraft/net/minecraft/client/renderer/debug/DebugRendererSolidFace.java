@@ -24,12 +24,13 @@ public class DebugRendererSolidFace implements DebugRenderer.IDebugRenderer
 		this.field_193851_a = p_i47478_1_;
 	}
 
+	@Override
 	public void render(float p_190060_1_, long p_190060_2_)
 	{
 		EntityPlayer entityplayer = this.field_193851_a.player;
-		double d0 = entityplayer.lastTickPosX + (entityplayer.posX - entityplayer.lastTickPosX) * (double) p_190060_1_;
-		double d1 = entityplayer.lastTickPosY + (entityplayer.posY - entityplayer.lastTickPosY) * (double) p_190060_1_;
-		double d2 = entityplayer.lastTickPosZ + (entityplayer.posZ - entityplayer.lastTickPosZ) * (double) p_190060_1_;
+		double d0 = entityplayer.lastTickPosX + (entityplayer.posX - entityplayer.lastTickPosX) * p_190060_1_;
+		double d1 = entityplayer.lastTickPosY + (entityplayer.posY - entityplayer.lastTickPosY) * p_190060_1_;
+		double d2 = entityplayer.lastTickPosZ + (entityplayer.posZ - entityplayer.lastTickPosZ) * p_190060_1_;
 		World world = this.field_193851_a.player.world;
 		Iterable<BlockPos> iterable = BlockPos.func_191532_a(MathHelper.floor(entityplayer.posX - 6.0D), MathHelper.floor(entityplayer.posY - 6.0D), MathHelper.floor(entityplayer.posZ - 6.0D), MathHelper.floor(entityplayer.posX + 6.0D), MathHelper.floor(entityplayer.posY + 6.0D), MathHelper.floor(entityplayer.posZ + 6.0D));
 		GlStateManager.enableBlend();

@@ -112,6 +112,7 @@ public class WorldInfo
 	{
 		fixer.registerWalker(FixTypes.LEVEL, new IDataWalker()
 		{
+			@Override
 			public NBTTagCompound process(IDataFixer fixer, NBTTagCompound compound, int versionIn)
 			{
 				if (compound.hasKey("Player", 10))
@@ -406,8 +407,8 @@ public class WorldInfo
 		nbt.setDouble("BorderSafeZone", this.borderSafeZone);
 		nbt.setDouble("BorderDamagePerBlock", this.borderDamagePerBlock);
 		nbt.setDouble("BorderSizeLerpTarget", this.borderSizeLerpTarget);
-		nbt.setDouble("BorderWarningBlocks", (double) this.borderWarningDistance);
-		nbt.setDouble("BorderWarningTime", (double) this.borderWarningTime);
+		nbt.setDouble("BorderWarningBlocks", this.borderWarningDistance);
+		nbt.setDouble("BorderWarningTime", this.borderWarningTime);
 
 		if (this.difficulty != null)
 		{
@@ -420,7 +421,7 @@ public class WorldInfo
 
 		for (Entry<DimensionType, NBTTagCompound> entry : this.dimensionData.entrySet())
 		{
-			nbttagcompound1.setTag(String.valueOf(((DimensionType) entry.getKey()).getId()), entry.getValue());
+			nbttagcompound1.setTag(String.valueOf(entry.getKey().getId()), entry.getValue());
 		}
 
 		nbt.setTag("DimensionData", nbttagcompound1);
@@ -907,6 +908,7 @@ public class WorldInfo
 	{
 		category.setDetail("Level seed", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return String.valueOf(WorldInfo.this.getSeed());
@@ -914,6 +916,7 @@ public class WorldInfo
 		});
 		category.setDetail("Level generator", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return String.format("ID %02d - %s, ver %d. Features enabled: %b", WorldInfo.this.terrainType.getWorldTypeID(), WorldInfo.this.terrainType.getWorldTypeName(), WorldInfo.this.terrainType.getGeneratorVersion(), WorldInfo.this.mapFeaturesEnabled);
@@ -921,6 +924,7 @@ public class WorldInfo
 		});
 		category.setDetail("Level generator options", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return WorldInfo.this.generatorOptions;
@@ -928,6 +932,7 @@ public class WorldInfo
 		});
 		category.setDetail("Level spawn location", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return CrashReportCategory.getCoordinateInfo(WorldInfo.this.spawnX, WorldInfo.this.spawnY, WorldInfo.this.spawnZ);
@@ -935,6 +940,7 @@ public class WorldInfo
 		});
 		category.setDetail("Level time", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return String.format("%d game time, %d day time", WorldInfo.this.totalTime, WorldInfo.this.worldTime);
@@ -942,6 +948,7 @@ public class WorldInfo
 		});
 		category.setDetail("Level dimension", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return String.valueOf(WorldInfo.this.dimension);
@@ -949,6 +956,7 @@ public class WorldInfo
 		});
 		category.setDetail("Level storage version", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				String s = "Unknown?";
@@ -975,6 +983,7 @@ public class WorldInfo
 		});
 		category.setDetail("Level weather", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return String.format("Rain time: %d (now: %b), thunder time: %d (now: %b)", WorldInfo.this.rainTime, WorldInfo.this.raining, WorldInfo.this.thunderTime, WorldInfo.this.thundering);
@@ -982,6 +991,7 @@ public class WorldInfo
 		});
 		category.setDetail("Level game mode", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return String.format("Game mode: %s (ID %d). Hardcore: %b. Cheats: %b", WorldInfo.this.theGameType.getName(), WorldInfo.this.theGameType.getID(), WorldInfo.this.hardcore, WorldInfo.this.allowCommands);

@@ -37,6 +37,7 @@ public class BlockNote extends BlockContainer
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		boolean flag = worldIn.isBlockPowered(pos);
@@ -58,6 +59,7 @@ public class BlockNote extends BlockContainer
 		}
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		if (worldIn.isRemote)
@@ -80,6 +82,7 @@ public class BlockNote extends BlockContainer
 		}
 	}
 
+	@Override
 	public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
 	{
 		if (!worldIn.isRemote)
@@ -98,6 +101,7 @@ public class BlockNote extends BlockContainer
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
+	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityNote();
@@ -120,11 +124,12 @@ public class BlockNote extends BlockContainer
 	 * update may involve replacing tile entities, playing sounds, or performing
 	 * other visual actions to reflect the server side changes.
 	 */
+	@Override
 	public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param)
 	{
-		float f = (float) Math.pow(2.0D, (double) (param - 12) / 12.0D);
+		float f = (float) Math.pow(2.0D, (param - 12) / 12.0D);
 		worldIn.playSound((EntityPlayer) null, pos, this.getInstrument(id), SoundCategory.RECORDS, 3.0F, f);
-		worldIn.spawnParticle(EnumParticleTypes.NOTE, (double) pos.getX() + 0.5D, (double) pos.getY() + 1.2D, (double) pos.getZ() + 0.5D, (double) param / 24.0D, 0.0D, 0.0D);
+		worldIn.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5D, pos.getY() + 1.2D, pos.getZ() + 0.5D, param / 24.0D, 0.0D, 0.0D);
 		return true;
 	}
 
@@ -133,6 +138,7 @@ public class BlockNote extends BlockContainer
 	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
 	 * INVISIBLE to skip all rendering
 	 */
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.MODEL;

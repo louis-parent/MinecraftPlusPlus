@@ -32,11 +32,13 @@ public class BiomeHills extends Biome
 		this.type = p_i46710_1_;
 	}
 
+	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return (WorldGenAbstractTree) (rand.nextInt(3) > 0 ? this.spruceGenerator : super.genBigTreeChance(rand));
+		return rand.nextInt(3) > 0 ? this.spruceGenerator : super.genBigTreeChance(rand);
 	}
 
+	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
 		super.decorate(worldIn, rand, pos);
@@ -64,6 +66,7 @@ public class BiomeHills extends Biome
 		}
 	}
 
+	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
 	{
 		this.topBlock = Blocks.GRASS.getDefaultState();

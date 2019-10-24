@@ -31,6 +31,7 @@ public class BlockSilverfish extends Block
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return 0;
@@ -42,9 +43,10 @@ public class BlockSilverfish extends Block
 		return blockState == Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE) || block == Blocks.COBBLESTONE || block == Blocks.STONEBRICK;
 	}
 
+	@Override
 	protected ItemStack getSilkTouchDrop(IBlockState state)
 	{
-		switch ((BlockSilverfish.EnumType) state.getValue(VARIANT))
+		switch (state.getValue(VARIANT))
 		{
 			case COBBLESTONE:
 				return new ItemStack(Blocks.COBBLESTONE);
@@ -69,17 +71,19 @@ public class BlockSilverfish extends Block
 	/**
 	 * Spawns this Block's drops into the World as EntityItems.
 	 */
+	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 		if (!worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops"))
 		{
 			EntitySilverfish entitysilverfish = new EntitySilverfish(worldIn);
-			entitysilverfish.setLocationAndAngles((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, 0.0F, 0.0F);
+			entitysilverfish.setLocationAndAngles(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0.0F, 0.0F);
 			worldIn.spawnEntityInWorld(entitysilverfish);
 			entitysilverfish.spawnExplosionParticle();
 		}
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(this, 1, state.getBlock().getMetaFromState(state));
@@ -89,6 +93,7 @@ public class BlockSilverfish extends Block
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (BlockSilverfish.EnumType blocksilverfish$enumtype : BlockSilverfish.EnumType.values())
@@ -100,6 +105,7 @@ public class BlockSilverfish extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(VARIANT, BlockSilverfish.EnumType.byMetadata(meta));
@@ -108,11 +114,13 @@ public class BlockSilverfish extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((BlockSilverfish.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { VARIANT });
@@ -122,6 +130,7 @@ public class BlockSilverfish extends Block
 	{
 		STONE(0, "stone")
 		{
+			@Override
 			public IBlockState getModelBlock()
 			{
 				return Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE);
@@ -129,6 +138,7 @@ public class BlockSilverfish extends Block
 		},
 		COBBLESTONE(1, "cobblestone", "cobble")
 		{
+			@Override
 			public IBlockState getModelBlock()
 			{
 				return Blocks.COBBLESTONE.getDefaultState();
@@ -136,6 +146,7 @@ public class BlockSilverfish extends Block
 		},
 		STONEBRICK(2, "stone_brick", "brick")
 		{
+			@Override
 			public IBlockState getModelBlock()
 			{
 				return Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.DEFAULT);
@@ -143,6 +154,7 @@ public class BlockSilverfish extends Block
 		},
 		MOSSY_STONEBRICK(3, "mossy_brick", "mossybrick")
 		{
+			@Override
 			public IBlockState getModelBlock()
 			{
 				return Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY);
@@ -150,6 +162,7 @@ public class BlockSilverfish extends Block
 		},
 		CRACKED_STONEBRICK(4, "cracked_brick", "crackedbrick")
 		{
+			@Override
 			public IBlockState getModelBlock()
 			{
 				return Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CRACKED);
@@ -157,6 +170,7 @@ public class BlockSilverfish extends Block
 		},
 		CHISELED_STONEBRICK(5, "chiseled_brick", "chiseledbrick")
 		{
+			@Override
 			public IBlockState getModelBlock()
 			{
 				return Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CHISELED);
@@ -185,6 +199,7 @@ public class BlockSilverfish extends Block
 			return this.meta;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -200,6 +215,7 @@ public class BlockSilverfish extends Block
 			return META_LOOKUP[meta];
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

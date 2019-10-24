@@ -99,7 +99,7 @@ public class RecipeList
 
 		if (this.field_194218_e)
 		{
-			ItemStack itemstack = ((IRecipe) this.field_192713_b.get(0)).getRecipeOutput();
+			ItemStack itemstack = this.field_192713_b.get(0).getRecipeOutput();
 			ItemStack itemstack1 = p_192709_1_.getRecipeOutput();
 			this.field_194218_e = ItemStack.areItemsEqual(itemstack, itemstack1) && ItemStack.areItemStackTagsEqual(itemstack, itemstack1);
 		}

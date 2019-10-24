@@ -59,13 +59,13 @@ public class Profiler
 		if (this.profilingEnabled)
 		{
 			long i = System.nanoTime();
-			long j = ((Long) this.timestampList.remove(this.timestampList.size() - 1)).longValue();
+			long j = this.timestampList.remove(this.timestampList.size() - 1).longValue();
 			this.sectionList.remove(this.sectionList.size() - 1);
 			long k = i - j;
 
 			if (this.profilingMap.containsKey(this.profilingSection))
 			{
-				this.profilingMap.put(this.profilingSection, Long.valueOf(((Long) this.profilingMap.get(this.profilingSection)).longValue() + k));
+				this.profilingMap.put(this.profilingSection, Long.valueOf(this.profilingMap.get(this.profilingSection).longValue() + k));
 			}
 			else
 			{
@@ -74,7 +74,7 @@ public class Profiler
 
 			if (k > 100000000L)
 			{
-				LOGGER.warn("Something's taking too long! '{}' took aprox {} ms", this.profilingSection, Double.valueOf((double) k / 1000000.0D));
+				LOGGER.warn("Something's taking too long! '{}' took aprox {} ms", this.profilingSection, Double.valueOf(k / 1000000.0D));
 			}
 
 			this.profilingSection = this.sectionList.isEmpty() ? "" : (String) this.sectionList.get(this.sectionList.size() - 1);
@@ -89,8 +89,8 @@ public class Profiler
 		}
 		else
 		{
-			long i = this.profilingMap.containsKey("root") ? ((Long) this.profilingMap.get("root")).longValue() : 0L;
-			long j = this.profilingMap.containsKey(profilerName) ? ((Long) this.profilingMap.get(profilerName)).longValue() : -1L;
+			long i = this.profilingMap.containsKey("root") ? this.profilingMap.get("root").longValue() : 0L;
+			long j = this.profilingMap.containsKey(profilerName) ? this.profilingMap.get(profilerName).longValue() : -1L;
 			List<Profiler.Result> list = Lists.<Profiler.Result>newArrayList();
 
 			if (!profilerName.isEmpty())
@@ -104,11 +104,11 @@ public class Profiler
 			{
 				if (s.length() > profilerName.length() && s.startsWith(profilerName) && s.indexOf(".", profilerName.length() + 1) < 0)
 				{
-					k += ((Long) this.profilingMap.get(s)).longValue();
+					k += this.profilingMap.get(s).longValue();
 				}
 			}
 
-			float f = (float) k;
+			float f = k;
 
 			if (k < j)
 			{
@@ -124,9 +124,9 @@ public class Profiler
 			{
 				if (s1.length() > profilerName.length() && s1.startsWith(profilerName) && s1.indexOf(".", profilerName.length() + 1) < 0)
 				{
-					long l = ((Long) this.profilingMap.get(s1)).longValue();
-					double d0 = (double) l * 100.0D / (double) k;
-					double d1 = (double) l * 100.0D / (double) i;
+					long l = this.profilingMap.get(s1).longValue();
+					double d0 = l * 100.0D / k;
+					double d1 = l * 100.0D / i;
 					String s2 = s1.substring(profilerName.length());
 					list.add(new Profiler.Result(s2, d0, d1));
 				}
@@ -134,16 +134,16 @@ public class Profiler
 
 			for (String s3 : this.profilingMap.keySet())
 			{
-				this.profilingMap.put(s3, Long.valueOf(((Long) this.profilingMap.get(s3)).longValue() * 999L / 1000L));
+				this.profilingMap.put(s3, Long.valueOf(this.profilingMap.get(s3).longValue() * 999L / 1000L));
 			}
 
-			if ((float) k > f)
+			if (k > f)
 			{
-				list.add(new Profiler.Result("unspecified", (double) ((float) k - f) * 100.0D / (double) k, (double) ((float) k - f) * 100.0D / (double) i));
+				list.add(new Profiler.Result("unspecified", (k - f) * 100.0D / k, (k - f) * 100.0D / i));
 			}
 
 			Collections.sort(list);
-			list.add(0, new Profiler.Result(profilerName, 100.0D, (double) k * 100.0D / (double) i));
+			list.add(0, new Profiler.Result(profilerName, 100.0D, k * 100.0D / i));
 			return list;
 		}
 	}
@@ -175,6 +175,7 @@ public class Profiler
 			this.totalUsePercentage = totalUsePercentage;
 		}
 
+		@Override
 		public int compareTo(Profiler.Result p_compareTo_1_)
 		{
 			if (p_compareTo_1_.usePercentage < this.usePercentage)

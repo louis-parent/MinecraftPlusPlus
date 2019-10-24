@@ -97,6 +97,7 @@ public class ServerStatusResponse
 
 		public static class Serializer implements JsonDeserializer<ServerStatusResponse.Players>, JsonSerializer<ServerStatusResponse.Players>
 		{
+			@Override
 			public ServerStatusResponse.Players deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 			{
 				JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "players");
@@ -124,6 +125,7 @@ public class ServerStatusResponse
 				return serverstatusresponse$players;
 			}
 
+			@Override
 			public JsonElement serialize(ServerStatusResponse.Players p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 			{
 				JsonObject jsonobject = new JsonObject();
@@ -153,6 +155,7 @@ public class ServerStatusResponse
 
 	public static class Serializer implements JsonDeserializer<ServerStatusResponse>, JsonSerializer<ServerStatusResponse>
 	{
+		@Override
 		public ServerStatusResponse deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "status");
@@ -181,6 +184,7 @@ public class ServerStatusResponse
 			return serverstatusresponse;
 		}
 
+		@Override
 		public JsonElement serialize(ServerStatusResponse p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			JsonObject jsonobject = new JsonObject();
@@ -232,12 +236,14 @@ public class ServerStatusResponse
 
 		public static class Serializer implements JsonDeserializer<ServerStatusResponse.Version>, JsonSerializer<ServerStatusResponse.Version>
 		{
+			@Override
 			public ServerStatusResponse.Version deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 			{
 				JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "version");
 				return new ServerStatusResponse.Version(JsonUtils.getString(jsonobject, "name"), JsonUtils.getInt(jsonobject, "protocol"));
 			}
 
+			@Override
 			public JsonElement serialize(ServerStatusResponse.Version p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 			{
 				JsonObject jsonobject = new JsonObject();

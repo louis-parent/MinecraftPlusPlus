@@ -46,6 +46,7 @@ public class EntityHorse extends AbstractHorse
 		super(worldIn);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -62,6 +63,7 @@ public class EntityHorse extends AbstractHorse
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -76,6 +78,7 @@ public class EntityHorse extends AbstractHorse
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -102,7 +105,7 @@ public class EntityHorse extends AbstractHorse
 
 	public int getHorseVariant()
 	{
-		return ((Integer) this.dataManager.get(HORSE_VARIANT)).intValue();
+		return this.dataManager.get(HORSE_VARIANT).intValue();
 	}
 
 	private void resetTexturePrefix()
@@ -145,6 +148,7 @@ public class EntityHorse extends AbstractHorse
 	/**
 	 * Updates the items in the saddle and armor slots of the horse's inventory.
 	 */
+	@Override
 	protected void updateHorseSlots()
 	{
 		super.updateHorseSlots();
@@ -168,20 +172,21 @@ public class EntityHorse extends AbstractHorse
 
 			if (i != 0)
 			{
-				this.getEntityAttribute(SharedMonsterAttributes.ARMOR).applyModifier((new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", (double) i, 0)).setSaved(false));
+				this.getEntityAttribute(SharedMonsterAttributes.ARMOR).applyModifier((new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", i, 0)).setSaved(false));
 			}
 		}
 	}
 
 	public HorseArmorType getHorseArmorType()
 	{
-		return HorseArmorType.getByOrdinal(((Integer) this.dataManager.get(HORSE_ARMOR)).intValue());
+		return HorseArmorType.getByOrdinal(this.dataManager.get(HORSE_ARMOR).intValue());
 	}
 
 	/**
 	 * Called by InventoryBasic.onInventoryChanged() on a array that is never
 	 * filled.
 	 */
+	@Override
 	public void onInventoryChanged(IInventory invBasic)
 	{
 		HorseArmorType horsearmortype = this.getHorseArmorType();
@@ -194,6 +199,7 @@ public class EntityHorse extends AbstractHorse
 		}
 	}
 
+	@Override
 	protected void func_190680_a(SoundType p_190680_1_)
 	{
 		super.func_190680_a(p_190680_1_);
@@ -204,10 +210,11 @@ public class EntityHorse extends AbstractHorse
 		}
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((double) this.getModifiedMaxHealth());
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(this.getModifiedMaxHealth());
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(this.getModifiedMovementSpeed());
 		this.getEntityAttribute(JUMP_STRENGTH).setBaseValue(this.getModifiedJumpStrength());
 	}
@@ -215,6 +222,7 @@ public class EntityHorse extends AbstractHorse
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -226,35 +234,41 @@ public class EntityHorse extends AbstractHorse
 		}
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		super.getAmbientSound();
 		return SoundEvents.ENTITY_HORSE_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		super.getDeathSound();
 		return SoundEvents.ENTITY_HORSE_DEATH;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		super.getHurtSound(p_184601_1_);
 		return SoundEvents.ENTITY_HORSE_HURT;
 	}
 
+	@Override
 	protected SoundEvent getAngrySound()
 	{
 		super.getAngrySound();
 		return SoundEvents.ENTITY_HORSE_ANGRY;
 	}
 
+	@Override
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.ENTITIES_HORSE;
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -328,6 +342,7 @@ public class EntityHorse extends AbstractHorse
 	/**
 	 * Returns true if the mob is currently able to mate with the specified mob.
 	 */
+	@Override
 	public boolean canMateWith(EntityAnimal otherAnimal)
 	{
 		if (otherAnimal == this)
@@ -344,6 +359,7 @@ public class EntityHorse extends AbstractHorse
 		}
 	}
 
+	@Override
 	public EntityAgeable createChild(EntityAgeable ageable)
 	{
 		AbstractHorse abstracthorse;
@@ -394,16 +410,19 @@ public class EntityHorse extends AbstractHorse
 		return abstracthorse;
 	}
 
+	@Override
 	public boolean func_190677_dK()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean func_190682_f(ItemStack p_190682_1_)
 	{
 		return HorseArmorType.isHorseArmor(p_190682_1_.getItem());
 	}
 
+	@Override
 	@Nullable
 
 	/**

@@ -18,6 +18,7 @@ public class RenderParrot extends RenderLiving<EntityParrot>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityParrot entity)
 	{
 		return field_192862_a[entity.func_191998_ds()];
@@ -26,6 +27,7 @@ public class RenderParrot extends RenderLiving<EntityParrot>
 	/**
 	 * Defines what float the third param in setRotationAngles of ModelBase is
 	 */
+	@Override
 	public float handleRotationFloat(EntityParrot livingBase, float partialTicks)
 	{
 		return this.func_192861_b(livingBase, partialTicks);

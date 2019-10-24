@@ -50,6 +50,7 @@ public class BlockDispenser extends BlockContainer
 	/**
 	 * How many world ticks before ticking
 	 */
+	@Override
 	public int tickRate(World worldIn)
 	{
 		return 4;
@@ -59,6 +60,7 @@ public class BlockDispenser extends BlockContainer
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		super.onBlockAdded(worldIn, pos, state);
@@ -69,7 +71,7 @@ public class BlockDispenser extends BlockContainer
 	{
 		if (!worldIn.isRemote)
 		{
-			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+			EnumFacing enumfacing = state.getValue(FACING);
 			boolean flag = worldIn.getBlockState(pos.north()).isFullBlock();
 			boolean flag1 = worldIn.getBlockState(pos.south()).isFullBlock();
 
@@ -100,6 +102,7 @@ public class BlockDispenser extends BlockContainer
 		}
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		if (worldIn.isRemote)
@@ -165,10 +168,11 @@ public class BlockDispenser extends BlockContainer
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		boolean flag = worldIn.isBlockPowered(pos) || worldIn.isBlockPowered(pos.up());
-		boolean flag1 = ((Boolean) state.getValue(TRIGGERED)).booleanValue();
+		boolean flag1 = state.getValue(TRIGGERED).booleanValue();
 
 		if (flag && !flag1)
 		{
@@ -181,6 +185,7 @@ public class BlockDispenser extends BlockContainer
 		}
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (!worldIn.isRemote)
@@ -193,6 +198,7 @@ public class BlockDispenser extends BlockContainer
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
+	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityDispenser();
@@ -202,6 +208,7 @@ public class BlockDispenser extends BlockContainer
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getDefaultState().withProperty(FACING, EnumFacing.func_190914_a(pos, placer)).withProperty(TRIGGERED, Boolean.valueOf(false));
@@ -211,6 +218,7 @@ public class BlockDispenser extends BlockContainer
 	 * Called by ItemBlocks after a block is set in the world, to allow
 	 * post-place logic
 	 */
+	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		worldIn.setBlockState(pos, state.withProperty(FACING, EnumFacing.func_190914_a(pos, placer)), 2);
@@ -230,6 +238,7 @@ public class BlockDispenser extends BlockContainer
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -249,18 +258,20 @@ public class BlockDispenser extends BlockContainer
 	 */
 	public static IPosition getDispensePosition(IBlockSource coords)
 	{
-		EnumFacing enumfacing = (EnumFacing) coords.getBlockState().getValue(FACING);
-		double d0 = coords.getX() + 0.7D * (double) enumfacing.getFrontOffsetX();
-		double d1 = coords.getY() + 0.7D * (double) enumfacing.getFrontOffsetY();
-		double d2 = coords.getZ() + 0.7D * (double) enumfacing.getFrontOffsetZ();
+		EnumFacing enumfacing = coords.getBlockState().getValue(FACING);
+		double d0 = coords.getX() + 0.7D * enumfacing.getFrontOffsetX();
+		double d1 = coords.getY() + 0.7D * enumfacing.getFrontOffsetY();
+		double d2 = coords.getZ() + 0.7D * enumfacing.getFrontOffsetZ();
 		return new PositionImpl(d0, d1, d2);
 	}
 
+	@Override
 	public boolean hasComparatorInputOverride(IBlockState state)
 	{
 		return true;
 	}
 
+	@Override
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
 	{
 		return Container.calcRedstone(worldIn.getTileEntity(pos));
@@ -271,6 +282,7 @@ public class BlockDispenser extends BlockContainer
 	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
 	 * INVISIBLE to skip all rendering
 	 */
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.MODEL;
@@ -279,6 +291,7 @@ public class BlockDispenser extends BlockContainer
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(TRIGGERED, Boolean.valueOf((meta & 8) > 0));
@@ -287,12 +300,13 @@ public class BlockDispenser extends BlockContainer
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
-		i = i | ((EnumFacing) state.getValue(FACING)).getIndex();
+		i = i | state.getValue(FACING).getIndex();
 
-		if (((Boolean) state.getValue(TRIGGERED)).booleanValue())
+		if (state.getValue(TRIGGERED).booleanValue())
 		{
 			i |= 8;
 		}
@@ -304,20 +318,23 @@ public class BlockDispenser extends BlockContainer
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING, TRIGGERED });

@@ -37,6 +37,7 @@ public abstract class BlockLeaves extends Block
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		int i = 1;
@@ -56,7 +57,7 @@ public abstract class BlockLeaves extends Block
 						BlockPos blockpos = pos.add(j1, k1, l1);
 						IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-						if (iblockstate.getMaterial() == Material.LEAVES && !((Boolean) iblockstate.getValue(CHECK_DECAY)).booleanValue())
+						if (iblockstate.getMaterial() == Material.LEAVES && !iblockstate.getValue(CHECK_DECAY).booleanValue())
 						{
 							worldIn.setBlockState(blockpos, iblockstate.withProperty(CHECK_DECAY, Boolean.valueOf(true)), 4);
 						}
@@ -66,11 +67,12 @@ public abstract class BlockLeaves extends Block
 		}
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (!worldIn.isRemote)
 		{
-			if (((Boolean) state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean) state.getValue(DECAYABLE)).booleanValue())
+			if (state.getValue(CHECK_DECAY).booleanValue() && state.getValue(DECAYABLE).booleanValue())
 			{
 				int i = 4;
 				int j = 5;
@@ -178,13 +180,14 @@ public abstract class BlockLeaves extends Block
 		}
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
 		if (worldIn.isRainingAt(pos.up()) && !worldIn.getBlockState(pos.down()).isFullyOpaque() && rand.nextInt(15) == 1)
 		{
-			double d0 = (double) ((float) pos.getX() + rand.nextFloat());
-			double d1 = (double) pos.getY() - 0.05D;
-			double d2 = (double) ((float) pos.getZ() + rand.nextFloat());
+			double d0 = pos.getX() + rand.nextFloat();
+			double d1 = pos.getY() - 0.05D;
+			double d2 = pos.getZ() + rand.nextFloat();
 			worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 		}
 	}
@@ -198,6 +201,7 @@ public abstract class BlockLeaves extends Block
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return random.nextInt(20) == 0 ? 1 : 0;
@@ -206,6 +210,7 @@ public abstract class BlockLeaves extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Item.getItemFromBlock(Blocks.SAPLING);
@@ -214,6 +219,7 @@ public abstract class BlockLeaves extends Block
 	/**
 	 * Spawns this Block's drops into the World as EntityItems.
 	 */
+	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 		if (!worldIn.isRemote)
@@ -265,6 +271,7 @@ public abstract class BlockLeaves extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return !this.leavesFancy;
@@ -279,11 +286,13 @@ public abstract class BlockLeaves extends Block
 		this.leavesFancy = fancy;
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return this.leavesFancy ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
 	}
 
+	@Override
 	public boolean causesSuffocation(IBlockState p_176214_1_)
 	{
 		return false;
@@ -291,6 +300,7 @@ public abstract class BlockLeaves extends Block
 
 	public abstract BlockPlanks.EnumType getWoodType(int meta);
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return !this.leavesFancy && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);

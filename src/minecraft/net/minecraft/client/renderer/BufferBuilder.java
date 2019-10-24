@@ -74,7 +74,7 @@ public class BufferBuilder
 
 		for (int j = 0; j < i; ++j)
 		{
-			afloat[j] = getDistanceSq(this.rawFloatBuffer, (float) ((double) p_181674_1_ + this.xOffset), (float) ((double) p_181674_2_ + this.yOffset), (float) ((double) p_181674_3_ + this.zOffset), this.vertexFormat.getIntegerSize(), j * this.vertexFormat.getNextOffset());
+			afloat[j] = getDistanceSq(this.rawFloatBuffer, (float) (p_181674_1_ + this.xOffset), (float) (p_181674_2_ + this.yOffset), (float) (p_181674_3_ + this.zOffset), this.vertexFormat.getIntegerSize(), j * this.vertexFormat.getNextOffset());
 		}
 
 		Integer[] ainteger = new Integer[i];
@@ -86,6 +86,7 @@ public class BufferBuilder
 
 		Arrays.sort(ainteger, new Comparator<Integer>()
 		{
+			@Override
 			public int compare(Integer p_compare_1_, Integer p_compare_2_)
 			{
 				return Floats.compare(afloat[p_compare_2_.intValue()], afloat[p_compare_1_.intValue()]);
@@ -238,8 +239,8 @@ public class BufferBuilder
 		switch (this.vertexFormatElement.getType())
 		{
 			case FLOAT:
-				this.byteBuffer.putFloat(i, (float) p_187314_1_);
-				this.byteBuffer.putFloat(i + 4, (float) p_187314_2_);
+				this.byteBuffer.putFloat(i, p_187314_1_);
+				this.byteBuffer.putFloat(i + 4, p_187314_2_);
 				break;
 
 			case UINT:
@@ -322,17 +323,17 @@ public class BufferBuilder
 
 			if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN)
 			{
-				int k = (int) ((float) (j & 255) * red);
-				int l = (int) ((float) (j >> 8 & 255) * green);
-				int i1 = (int) ((float) (j >> 16 & 255) * blue);
+				int k = (int) ((j & 255) * red);
+				int l = (int) ((j >> 8 & 255) * green);
+				int i1 = (int) ((j >> 16 & 255) * blue);
 				j = j & -16777216;
 				j = j | i1 << 16 | l << 8 | k;
 			}
 			else
 			{
-				int j1 = (int) ((float) (j >> 24 & 255) * red);
-				int k1 = (int) ((float) (j >> 16 & 255) * green);
-				int l1 = (int) ((float) (j >> 8 & 255) * blue);
+				int j1 = (int) ((j >> 24 & 255) * red);
+				int k1 = (int) ((j >> 16 & 255) * green);
+				int l1 = (int) ((j >> 8 & 255) * blue);
 				j = j & 255;
 				j = j | j1 << 24 | k1 << 16 | l1 << 8;
 			}
@@ -405,18 +406,18 @@ public class BufferBuilder
 			switch (this.vertexFormatElement.getType())
 			{
 				case FLOAT:
-					this.byteBuffer.putFloat(i, (float) red / 255.0F);
-					this.byteBuffer.putFloat(i + 4, (float) green / 255.0F);
-					this.byteBuffer.putFloat(i + 8, (float) blue / 255.0F);
-					this.byteBuffer.putFloat(i + 12, (float) alpha / 255.0F);
+					this.byteBuffer.putFloat(i, red / 255.0F);
+					this.byteBuffer.putFloat(i + 4, green / 255.0F);
+					this.byteBuffer.putFloat(i + 8, blue / 255.0F);
+					this.byteBuffer.putFloat(i + 12, alpha / 255.0F);
 					break;
 
 				case UINT:
 				case INT:
-					this.byteBuffer.putFloat(i, (float) red);
-					this.byteBuffer.putFloat(i + 4, (float) green);
-					this.byteBuffer.putFloat(i + 8, (float) blue);
-					this.byteBuffer.putFloat(i + 12, (float) alpha);
+					this.byteBuffer.putFloat(i, red);
+					this.byteBuffer.putFloat(i + 4, green);
+					this.byteBuffer.putFloat(i + 8, blue);
+					this.byteBuffer.putFloat(i + 12, alpha);
 					break;
 
 				case USHORT:

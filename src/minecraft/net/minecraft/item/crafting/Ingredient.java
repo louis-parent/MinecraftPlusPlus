@@ -15,6 +15,7 @@ public class Ingredient implements Predicate<ItemStack>
 {
 	public static final Ingredient INGREDIENT_AIR = new Ingredient(new ItemStack[0])
 	{
+		@Override
 		public boolean apply(@Nullable ItemStack p_apply_1_)
 		{
 			return p_apply_1_.isNotValid();
@@ -33,6 +34,7 @@ public class Ingredient implements Predicate<ItemStack>
 		return this.field_193371_b;
 	}
 
+	@Override
 	public boolean apply(@Nullable ItemStack p_apply_1_)
 	{
 		if (p_apply_1_ == null)

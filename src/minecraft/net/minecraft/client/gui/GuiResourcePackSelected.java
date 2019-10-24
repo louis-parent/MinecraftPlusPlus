@@ -13,6 +13,7 @@ public class GuiResourcePackSelected extends GuiResourcePackList
 		super(mcIn, p_i45056_2_, p_i45056_3_, p_i45056_4_);
 	}
 
+	@Override
 	protected String getListHeader()
 	{
 		return I18n.format("resourcePack.selected.title");

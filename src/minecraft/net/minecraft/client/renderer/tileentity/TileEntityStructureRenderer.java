@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 
 public class TileEntityStructureRenderer extends TileEntitySpecialRenderer<TileEntityStructure>
 {
+	@Override
 	public void func_192841_a(TileEntityStructure p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
 	{
 		if (Minecraft.getMinecraft().player.canUseCommandBlock() || Minecraft.getMinecraft().player.isSpectator())
@@ -27,28 +28,28 @@ public class TileEntityStructureRenderer extends TileEntitySpecialRenderer<TileE
 				if (p_192841_1_.getMode() == TileEntityStructure.Mode.SAVE || p_192841_1_.getMode() == TileEntityStructure.Mode.LOAD)
 				{
 					double d0 = 0.01D;
-					double d1 = (double) blockpos.getX();
-					double d2 = (double) blockpos.getZ();
-					double d6 = p_192841_4_ + (double) blockpos.getY() - 0.01D;
-					double d9 = d6 + (double) blockpos1.getY() + 0.02D;
+					double d1 = blockpos.getX();
+					double d2 = blockpos.getZ();
+					double d6 = p_192841_4_ + blockpos.getY() - 0.01D;
+					double d9 = d6 + blockpos1.getY() + 0.02D;
 					double d3;
 					double d4;
 
 					switch (p_192841_1_.getMirror())
 					{
 						case LEFT_RIGHT:
-							d3 = (double) blockpos1.getX() + 0.02D;
-							d4 = -((double) blockpos1.getZ() + 0.02D);
+							d3 = blockpos1.getX() + 0.02D;
+							d4 = -(blockpos1.getZ() + 0.02D);
 							break;
 
 						case FRONT_BACK:
-							d3 = -((double) blockpos1.getX() + 0.02D);
-							d4 = (double) blockpos1.getZ() + 0.02D;
+							d3 = -(blockpos1.getX() + 0.02D);
+							d4 = blockpos1.getZ() + 0.02D;
 							break;
 
 						default:
-							d3 = (double) blockpos1.getX() + 0.02D;
-							d4 = (double) blockpos1.getZ() + 0.02D;
+							d3 = blockpos1.getX() + 0.02D;
+							d4 = blockpos1.getZ() + 0.02D;
 					}
 
 					double d5;
@@ -138,12 +139,12 @@ public class TileEntityStructureRenderer extends TileEntitySpecialRenderer<TileE
 			if (flag || flag1)
 			{
 				float f = flag ? 0.05F : 0.0F;
-				double d0 = (double) ((float) (blockpos2.getX() - blockpos.getX()) + 0.45F) + p_190054_2_ - (double) f;
-				double d1 = (double) ((float) (blockpos2.getY() - blockpos.getY()) + 0.45F) + p_190054_4_ - (double) f;
-				double d2 = (double) ((float) (blockpos2.getZ() - blockpos.getZ()) + 0.45F) + p_190054_6_ - (double) f;
-				double d3 = (double) ((float) (blockpos2.getX() - blockpos.getX()) + 0.55F) + p_190054_2_ + (double) f;
-				double d4 = (double) ((float) (blockpos2.getY() - blockpos.getY()) + 0.55F) + p_190054_4_ + (double) f;
-				double d5 = (double) ((float) (blockpos2.getZ() - blockpos.getZ()) + 0.55F) + p_190054_6_ + (double) f;
+				double d0 = blockpos2.getX() - blockpos.getX() + 0.45F + p_190054_2_ - f;
+				double d1 = blockpos2.getY() - blockpos.getY() + 0.45F + p_190054_4_ - f;
+				double d2 = blockpos2.getZ() - blockpos.getZ() + 0.45F + p_190054_6_ - f;
+				double d3 = blockpos2.getX() - blockpos.getX() + 0.55F + p_190054_2_ + f;
+				double d4 = blockpos2.getY() - blockpos.getY() + 0.55F + p_190054_4_ + f;
+				double d5 = blockpos2.getZ() - blockpos.getZ() + 0.55F + p_190054_6_ + f;
 
 				if (p_190054_11_)
 				{
@@ -167,7 +168,7 @@ public class TileEntityStructureRenderer extends TileEntitySpecialRenderer<TileE
 	{
 		GlStateManager.glLineWidth(2.0F);
 		p_190055_2_.begin(3, DefaultVertexFormats.POSITION_COLOR);
-		p_190055_2_.pos(p_190055_3_, p_190055_5_, p_190055_7_).color((float) p_190055_16_, (float) p_190055_16_, (float) p_190055_16_, 0.0F).endVertex();
+		p_190055_2_.pos(p_190055_3_, p_190055_5_, p_190055_7_).color(p_190055_16_, p_190055_16_, p_190055_16_, 0.0F).endVertex();
 		p_190055_2_.pos(p_190055_3_, p_190055_5_, p_190055_7_).color(p_190055_16_, p_190055_16_, p_190055_16_, p_190055_15_).endVertex();
 		p_190055_2_.pos(p_190055_9_, p_190055_5_, p_190055_7_).color(p_190055_16_, p_190055_17_, p_190055_17_, p_190055_15_).endVertex();
 		p_190055_2_.pos(p_190055_9_, p_190055_5_, p_190055_13_).color(p_190055_16_, p_190055_16_, p_190055_16_, p_190055_15_).endVertex();
@@ -184,11 +185,12 @@ public class TileEntityStructureRenderer extends TileEntitySpecialRenderer<TileE
 		p_190055_2_.pos(p_190055_9_, p_190055_11_, p_190055_13_).color(p_190055_16_, p_190055_16_, p_190055_16_, p_190055_15_).endVertex();
 		p_190055_2_.pos(p_190055_9_, p_190055_11_, p_190055_7_).color(p_190055_16_, p_190055_16_, p_190055_16_, p_190055_15_).endVertex();
 		p_190055_2_.pos(p_190055_9_, p_190055_5_, p_190055_7_).color(p_190055_16_, p_190055_16_, p_190055_16_, p_190055_15_).endVertex();
-		p_190055_2_.pos(p_190055_9_, p_190055_5_, p_190055_7_).color((float) p_190055_16_, (float) p_190055_16_, (float) p_190055_16_, 0.0F).endVertex();
+		p_190055_2_.pos(p_190055_9_, p_190055_5_, p_190055_7_).color(p_190055_16_, p_190055_16_, p_190055_16_, 0.0F).endVertex();
 		p_190055_1_.draw();
 		GlStateManager.glLineWidth(1.0F);
 	}
 
+	@Override
 	public boolean isGlobalRenderer(TileEntityStructure te)
 	{
 		return true;

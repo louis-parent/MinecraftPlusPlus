@@ -28,16 +28,19 @@ public class BlockPressurePlate extends BlockBasePressurePlate
 		this.sensitivity = sensitivityIn;
 	}
 
+	@Override
 	protected int getRedstoneStrength(IBlockState state)
 	{
-		return ((Boolean) state.getValue(POWERED)).booleanValue() ? 15 : 0;
+		return state.getValue(POWERED).booleanValue() ? 15 : 0;
 	}
 
+	@Override
 	protected IBlockState setRedstoneStrength(IBlockState state, int strength)
 	{
 		return state.withProperty(POWERED, Boolean.valueOf(strength > 0));
 	}
 
+	@Override
 	protected void playClickOnSound(World worldIn, BlockPos color)
 	{
 		if (this.blockMaterial == Material.WOOD)
@@ -50,6 +53,7 @@ public class BlockPressurePlate extends BlockBasePressurePlate
 		}
 	}
 
+	@Override
 	protected void playClickOffSound(World worldIn, BlockPos pos)
 	{
 		if (this.blockMaterial == Material.WOOD)
@@ -62,6 +66,7 @@ public class BlockPressurePlate extends BlockBasePressurePlate
 		}
 	}
 
+	@Override
 	protected int computeRedstoneStrength(World worldIn, BlockPos pos)
 	{
 		AxisAlignedBB axisalignedbb = PRESSURE_AABB.offset(pos);
@@ -98,6 +103,7 @@ public class BlockPressurePlate extends BlockBasePressurePlate
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(POWERED, Boolean.valueOf(meta == 1));
@@ -106,11 +112,13 @@ public class BlockPressurePlate extends BlockBasePressurePlate
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Boolean) state.getValue(POWERED)).booleanValue() ? 1 : 0;
+		return state.getValue(POWERED).booleanValue() ? 1 : 0;
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { POWERED });

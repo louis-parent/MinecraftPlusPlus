@@ -18,11 +18,13 @@ public class RenderSquid extends RenderLiving<EntitySquid>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntitySquid entity)
 	{
 		return SQUID_TEXTURES;
 	}
 
+	@Override
 	protected void rotateCorpse(EntitySquid entityLiving, float p_77043_2_, float p_77043_3_, float partialTicks)
 	{
 		float f = entityLiving.prevSquidPitch + (entityLiving.squidPitch - entityLiving.prevSquidPitch) * partialTicks;
@@ -37,6 +39,7 @@ public class RenderSquid extends RenderLiving<EntitySquid>
 	/**
 	 * Defines what float the third param in setRotationAngles of ModelBase is
 	 */
+	@Override
 	protected float handleRotationFloat(EntitySquid livingBase, float partialTicks)
 	{
 		return livingBase.lastTentacleAngle + (livingBase.tentacleAngle - livingBase.lastTentacleAngle) * partialTicks;

@@ -27,16 +27,19 @@ public class ShapelessRecipes implements IRecipe
 		this.recipeItems = p_i47500_3_;
 	}
 
+	@Override
 	public String getRecipeGroup()
 	{
 		return this.field_194138_c;
 	}
 
+	@Override
 	public ItemStack getRecipeOutput()
 	{
 		return this.recipeOutput;
 	}
 
+	@Override
 	public NonNullList<Ingredient> getListOfIngredients()
 	{
 		return this.recipeItems;
@@ -45,6 +48,7 @@ public class ShapelessRecipes implements IRecipe
 	/**
 	 * Used to check if a recipe matches current crafting inventory
 	 */
+	@Override
 	public boolean matches(InventoryCrafting inv, World worldIn)
 	{
 		List<Ingredient> list = Lists.newArrayList(this.recipeItems);
@@ -83,6 +87,7 @@ public class ShapelessRecipes implements IRecipe
 	/**
 	 * Returns an Item that is the result of this recipe
 	 */
+	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
 		return this.recipeOutput.copy();
@@ -125,6 +130,7 @@ public class ShapelessRecipes implements IRecipe
 		return nonnulllist;
 	}
 
+	@Override
 	public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
 	{
 		return p_194133_1_ * p_194133_2_ >= this.recipeItems.size();

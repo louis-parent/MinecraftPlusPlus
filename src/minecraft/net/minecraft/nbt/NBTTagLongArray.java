@@ -41,6 +41,7 @@ public class NBTTagLongArray extends NBTBase
 	 * Write the actual data contents of the tag, implemented in NBT extension
 	 * classes
 	 */
+	@Override
 	void write(DataOutput output) throws IOException
 	{
 		output.writeInt(this.field_193587_b.length);
@@ -51,11 +52,12 @@ public class NBTTagLongArray extends NBTBase
 		}
 	}
 
+	@Override
 	void read(DataInput input, int depth, NBTSizeTracker sizeTracker) throws IOException
 	{
 		sizeTracker.read(192L);
 		int i = input.readInt();
-		sizeTracker.read((long) (64 * i));
+		sizeTracker.read(64 * i);
 		this.field_193587_b = new long[i];
 
 		for (int j = 0; j < i; ++j)
@@ -67,11 +69,13 @@ public class NBTTagLongArray extends NBTBase
 	/**
 	 * Gets the type byte for the tag.
 	 */
+	@Override
 	public byte getId()
 	{
 		return 12;
 	}
 
+	@Override
 	public String toString()
 	{
 		StringBuilder stringbuilder = new StringBuilder("[L;");
@@ -92,6 +96,7 @@ public class NBTTagLongArray extends NBTBase
 	/**
 	 * Creates a clone of the tag.
 	 */
+	@Override
 	public NBTTagLongArray copy()
 	{
 		long[] along = new long[this.field_193587_b.length];
@@ -99,11 +104,13 @@ public class NBTTagLongArray extends NBTBase
 		return new NBTTagLongArray(along);
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		return super.equals(p_equals_1_) && Arrays.equals(this.field_193587_b, ((NBTTagLongArray) p_equals_1_).field_193587_b);
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return super.hashCode() ^ Arrays.hashCode(this.field_193587_b);

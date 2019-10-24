@@ -26,6 +26,7 @@ public class NBTTagList extends NBTBase
 	 * Write the actual data contents of the tag, implemented in NBT extension
 	 * classes
 	 */
+	@Override
 	void write(DataOutput output) throws IOException
 	{
 		if (this.tagList.isEmpty())
@@ -34,7 +35,7 @@ public class NBTTagList extends NBTBase
 		}
 		else
 		{
-			this.tagType = ((NBTBase) this.tagList.get(0)).getId();
+			this.tagType = this.tagList.get(0).getId();
 		}
 
 		output.writeByte(this.tagType);
@@ -42,10 +43,11 @@ public class NBTTagList extends NBTBase
 
 		for (int i = 0; i < this.tagList.size(); ++i)
 		{
-			((NBTBase) this.tagList.get(i)).write(output);
+			this.tagList.get(i).write(output);
 		}
 	}
 
+	@Override
 	void read(DataInput input, int depth, NBTSizeTracker sizeTracker) throws IOException
 	{
 		sizeTracker.read(296L);
@@ -65,7 +67,7 @@ public class NBTTagList extends NBTBase
 			}
 			else
 			{
-				sizeTracker.read(32L * (long) i);
+				sizeTracker.read(32L * i);
 				this.tagList = Lists.<NBTBase>newArrayListWithCapacity(i);
 
 				for (int j = 0; j < i; ++j)
@@ -81,11 +83,13 @@ public class NBTTagList extends NBTBase
 	/**
 	 * Gets the type byte for the tag.
 	 */
+	@Override
 	public byte getId()
 	{
 		return 9;
 	}
 
+	@Override
 	public String toString()
 	{
 		StringBuilder stringbuilder = new StringBuilder("[");
@@ -169,6 +173,7 @@ public class NBTTagList extends NBTBase
 	/**
 	 * Return whether this compound has no tags.
 	 */
+	@Override
 	public boolean hasNoTags()
 	{
 		return this.tagList.isEmpty();
@@ -273,7 +278,7 @@ public class NBTTagList extends NBTBase
 	 */
 	public NBTBase get(int idx)
 	{
-		return (NBTBase) (idx >= 0 && idx < this.tagList.size() ? (NBTBase) this.tagList.get(idx) : new NBTTagEnd());
+		return idx >= 0 && idx < this.tagList.size() ? (NBTBase) this.tagList.get(idx) : new NBTTagEnd();
 	}
 
 	/**
@@ -287,6 +292,7 @@ public class NBTTagList extends NBTBase
 	/**
 	 * Creates a clone of the tag.
 	 */
+	@Override
 	public NBTTagList copy()
 	{
 		NBTTagList nbttaglist = new NBTTagList();
@@ -301,6 +307,7 @@ public class NBTTagList extends NBTBase
 		return nbttaglist;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (!super.equals(p_equals_1_))
@@ -314,6 +321,7 @@ public class NBTTagList extends NBTBase
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return super.hashCode() ^ this.tagList.hashCode();

@@ -48,6 +48,7 @@ public class EntityZombieVillager extends EntityZombie
 		super(p_i47277_1_);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -62,7 +63,7 @@ public class EntityZombieVillager extends EntityZombie
 
 	public int func_190736_dl()
 	{
-		return Math.max(((Integer) this.dataManager.get(field_190739_c)).intValue() % 6, 0);
+		return Math.max(this.dataManager.get(field_190739_c).intValue() % 6, 0);
 	}
 
 	public static void func_190737_b(DataFixer p_190737_0_)
@@ -73,6 +74,7 @@ public class EntityZombieVillager extends EntityZombie
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -88,6 +90,7 @@ public class EntityZombieVillager extends EntityZombie
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -99,6 +102,7 @@ public class EntityZombieVillager extends EntityZombie
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -115,6 +119,7 @@ public class EntityZombieVillager extends EntityZombie
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		if (!this.world.isRemote && this.isConverting())
@@ -131,6 +136,7 @@ public class EntityZombieVillager extends EntityZombie
 		super.onUpdate();
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -158,6 +164,7 @@ public class EntityZombieVillager extends EntityZombie
 	/**
 	 * Determines if an entity can be despawned, used on idle far away entities
 	 */
+	@Override
 	protected boolean canDespawn()
 	{
 		return !this.isConverting();
@@ -168,7 +175,7 @@ public class EntityZombieVillager extends EntityZombie
 	 */
 	public boolean isConverting()
 	{
-		return ((Boolean) this.getDataManager().get(CONVERTING)).booleanValue();
+		return this.getDataManager().get(CONVERTING).booleanValue();
 	}
 
 	protected void func_191991_a(@Nullable UUID p_191991_1_, int p_191991_2_)
@@ -181,6 +188,7 @@ public class EntityZombieVillager extends EntityZombie
 		this.world.setEntityState(this, (byte) 16);
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 16)
@@ -271,37 +279,44 @@ public class EntityZombieVillager extends EntityZombie
 	/**
 	 * Gets the pitch of living sounds in living entities.
 	 */
+	@Override
 	protected float getSoundPitch()
 	{
 		return this.isChild() ? (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 2.0F : (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F;
 	}
 
+	@Override
 	public SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_ZOMBIE_VILLAGER_AMBIENT;
 	}
 
+	@Override
 	public SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_ZOMBIE_VILLAGER_HURT;
 	}
 
+	@Override
 	public SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_ZOMBIE_VILLAGER_DEATH;
 	}
 
+	@Override
 	public SoundEvent func_190731_di()
 	{
 		return SoundEvents.ENTITY_ZOMBIE_VILLAGER_STEP;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.field_191183_as;
 	}
 
+	@Override
 	protected ItemStack func_190732_dj()
 	{
 		return ItemStack.EMPTY_ITEM_STACK;

@@ -31,6 +31,7 @@ public class GuiOptions extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.title = I18n.format("options.title");
@@ -96,6 +97,7 @@ public class GuiOptions extends GuiScreen
 		return itextcomponent.getFormattedText();
 	}
 
+	@Override
 	public void confirmClicked(boolean result, int id)
 	{
 		this.mc.displayGuiScreen(this);
@@ -114,6 +116,7 @@ public class GuiOptions extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (keyCode == 1)
@@ -128,6 +131,7 @@ public class GuiOptions extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.enabled)
@@ -209,6 +213,7 @@ public class GuiOptions extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();

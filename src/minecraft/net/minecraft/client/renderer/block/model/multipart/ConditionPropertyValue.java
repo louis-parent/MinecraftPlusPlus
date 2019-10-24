@@ -28,6 +28,7 @@ public class ConditionPropertyValue implements ICondition
 		this.value = valueIn;
 	}
 
+	@Override
 	public Predicate<IBlockState> getPredicate(BlockStateContainer blockState)
 	{
 		final IProperty<?> iproperty = blockState.getProperty(this.key);
@@ -64,6 +65,7 @@ public class ConditionPropertyValue implements ICondition
 				{
 					predicate = Predicates.or(Iterables.transform(list, new Function<String, Predicate<IBlockState>>()
 					{
+						@Override
 						@Nullable
 						public Predicate<IBlockState> apply(@Nullable String p_apply_1_)
 						{
@@ -89,6 +91,7 @@ public class ConditionPropertyValue implements ICondition
 		{
 			return new Predicate<IBlockState>()
 			{
+				@Override
 				public boolean apply(@Nullable IBlockState p_apply_1_)
 				{
 					return p_apply_1_ != null && p_apply_1_.getValue(property).equals(optional.get());
@@ -97,6 +100,7 @@ public class ConditionPropertyValue implements ICondition
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		return MoreObjects.toStringHelper(this).add("key", this.key).add("value", this.value).toString();

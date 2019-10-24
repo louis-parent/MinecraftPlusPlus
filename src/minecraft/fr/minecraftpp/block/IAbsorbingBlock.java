@@ -38,9 +38,9 @@ public interface IAbsorbingBlock
 
 		while (!queue.isEmpty())
 		{
-			Tuple<BlockPos, Integer> tuple = (Tuple) queue.poll();
+			Tuple<BlockPos, Integer> tuple = queue.poll();
 			BlockPos blockpos = tuple.getFirst();
-			int j = ((Integer) tuple.getSecond()).intValue();
+			int j = tuple.getSecond().intValue();
 
 			for (EnumFacing enumfacing : EnumFacing.values())
 			{

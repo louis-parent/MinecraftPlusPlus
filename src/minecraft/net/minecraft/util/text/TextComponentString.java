@@ -24,6 +24,7 @@ public class TextComponentString extends TextComponentBase
 	 * Gets the text of this component, without any special formatting codes
 	 * added, for chat. TODO: why is this two different methods?
 	 */
+	@Override
 	public String getUnformattedComponentText()
 	{
 		return this.text;
@@ -33,6 +34,7 @@ public class TextComponentString extends TextComponentBase
 	 * Creates a copy of this component. Almost a deep copy, except the style is
 	 * shallow-copied.
 	 */
+	@Override
 	public TextComponentString createCopy()
 	{
 		TextComponentString textcomponentstring = new TextComponentString(this.text);
@@ -46,6 +48,7 @@ public class TextComponentString extends TextComponentBase
 		return textcomponentstring;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -63,6 +66,7 @@ public class TextComponentString extends TextComponentBase
 		}
 	}
 
+	@Override
 	public String toString()
 	{
 		return "TextComponent{text='" + this.text + '\'' + ", siblings=" + this.siblings + ", style=" + this.getStyle() + '}';

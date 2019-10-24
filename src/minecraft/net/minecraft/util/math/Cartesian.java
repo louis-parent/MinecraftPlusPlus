@@ -18,7 +18,7 @@ public class Cartesian
 {
 	public static <T> Iterable<T[]> cartesianProduct(Class<T> clazz, Iterable<? extends Iterable<? extends T>> sets)
 	{
-		return new Cartesian.Product(clazz, (Iterable[]) toArray(Iterable.class, sets));
+		return new Cartesian.Product(clazz, toArray(Iterable.class, sets));
 	}
 
 	public static <T> Iterable<List<T>> cartesianProduct(Iterable<? extends Iterable<? extends T>> sets)
@@ -54,6 +54,7 @@ public class Cartesian
 		{
 		}
 
+		@Override
 		public List<T> apply(@Nullable Object[] p_apply_1_)
 		{
 			return Arrays.<T>asList((T[]) p_apply_1_);
@@ -71,9 +72,10 @@ public class Cartesian
 			this.iterables = iterables;
 		}
 
+		@Override
 		public Iterator<T[]> iterator()
 		{
-			return (Iterator<T[]>) (this.iterables.length <= 0 ? Collections.singletonList(Cartesian.createArray(this.clazz, 0)).iterator() : new Cartesian.Product.ProductIterator(this.clazz, this.iterables));
+			return this.iterables.length <= 0 ? Collections.singletonList(Cartesian.createArray(this.clazz, 0)).iterator() : new Cartesian.Product.ProductIterator(this.clazz, this.iterables);
 		}
 
 		static class ProductIterator<T> extends UnmodifiableIterator<T[]>
@@ -87,14 +89,14 @@ public class Cartesian
 			{
 				this.index = -2;
 				this.iterables = iterables;
-				this.iterators = (Iterator[]) Cartesian.createArray(Iterator.class, this.iterables.length);
+				this.iterators = Cartesian.createArray(Iterator.class, this.iterables.length);
 
 				for (int i = 0; i < this.iterables.length; ++i)
 				{
 					this.iterators[i] = iterables[i].iterator();
 				}
 
-				this.results = (T[]) Cartesian.createArray(clazz, this.iterators.length);
+				this.results = Cartesian.createArray(clazz, this.iterators.length);
 			}
 
 			private void endOfData()
@@ -104,6 +106,7 @@ public class Cartesian
 				Arrays.fill(this.results, (Object) null);
 			}
 
+			@Override
 			public boolean hasNext()
 			{
 				if (this.index == -2)
@@ -155,6 +158,7 @@ public class Cartesian
 				}
 			}
 
+			@Override
 			public T[] next()
 			{
 				if (!this.hasNext())
@@ -169,7 +173,7 @@ public class Cartesian
 						++this.index;
 					}
 
-					return (T[]) ((Object[]) this.results.clone());
+					return (T[]) (this.results.clone());
 				}
 			}
 		}

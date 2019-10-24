@@ -52,16 +52,19 @@ public class GameSettings
 	private static final Gson GSON = new Gson();
 	private static final Type TYPE_LIST_STRING = new ParameterizedType()
 	{
+		@Override
 		public Type[] getActualTypeArguments()
 		{
 			return new Type[] { String.class };
 		}
 
+		@Override
 		public Type getRawType()
 		{
 			return List.class;
 		}
 
+		@Override
 		public Type getOwnerType()
 		{
 			return null;
@@ -191,7 +194,7 @@ public class GameSettings
 
 	public GameSettings(Minecraft mcIn, File optionsFileIn)
 	{
-		this.keyBindings = (KeyBinding[]) ArrayUtils.addAll(new KeyBinding[] { this.keyBindAttack, this.keyBindUseItem, this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindPlayerList, this.keyBindPickBlock, this.keyBindCommand, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindSpectatorOutlines, this.keyBindSwapHands, this.field_193629_ap, this.field_193630_aq, this.field_194146_ao }, this.keyBindsHotbar);
+		this.keyBindings = ArrayUtils.addAll(new KeyBinding[] { this.keyBindAttack, this.keyBindUseItem, this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindPlayerList, this.keyBindPickBlock, this.keyBindCommand, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindSpectatorOutlines, this.keyBindSwapHands, this.field_193629_ap, this.field_193630_aq, this.field_194146_ao }, this.keyBindsHotbar);
 		this.difficulty = EnumDifficulty.NORMAL;
 		this.lastServer = "";
 		this.fovSetting = 70.0F;
@@ -214,7 +217,7 @@ public class GameSettings
 
 	public GameSettings()
 	{
-		this.keyBindings = (KeyBinding[]) ArrayUtils.addAll(new KeyBinding[] { this.keyBindAttack, this.keyBindUseItem, this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindPlayerList, this.keyBindPickBlock, this.keyBindCommand, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindSpectatorOutlines, this.keyBindSwapHands, this.field_193629_ap, this.field_193630_aq, this.field_194146_ao }, this.keyBindsHotbar);
+		this.keyBindings = ArrayUtils.addAll(new KeyBinding[] { this.keyBindAttack, this.keyBindUseItem, this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindPlayerList, this.keyBindPickBlock, this.keyBindCommand, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindSpectatorOutlines, this.keyBindSwapHands, this.field_193629_ap, this.field_193630_aq, this.field_194146_ao }, this.keyBindsHotbar);
 		this.difficulty = EnumDifficulty.NORMAL;
 		this.lastServer = "";
 		this.fovSetting = 70.0F;
@@ -336,7 +339,7 @@ public class GameSettings
 			int i = this.mipmapLevels;
 			this.mipmapLevels = (int) value;
 
-			if ((float) i != value)
+			if (i != value)
 			{
 				this.mc.getTextureMapBlocks().setMipmapLevels(this.mipmapLevels);
 				this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
@@ -360,7 +363,7 @@ public class GameSettings
 	{
 		if (settingsOption == GameSettings.Options.RENDER_DISTANCE)
 		{
-			this.setOptionFloatValue(settingsOption, MathHelper.clamp((float) (this.renderDistanceChunks + value), settingsOption.getValueMin(), settingsOption.getValueMax()));
+			this.setOptionFloatValue(settingsOption, MathHelper.clamp(this.renderDistanceChunks + value, settingsOption.getValueMin(), settingsOption.getValueMax()));
 		}
 
 		if (settingsOption == GameSettings.Options.MAIN_HAND)
@@ -561,11 +564,11 @@ public class GameSettings
 		}
 		else if (settingOption == GameSettings.Options.FRAMERATE_LIMIT)
 		{
-			return (float) this.limitFramerate;
+			return this.limitFramerate;
 		}
 		else if (settingOption == GameSettings.Options.MIPMAP_LEVELS)
 		{
-			return (float) this.mipmapLevels;
+			return this.mipmapLevels;
 		}
 		else
 		{
@@ -821,7 +824,7 @@ public class GameSettings
 				}
 				catch (Exception var10)
 				{
-					LOGGER.warn("Skipping bad option: {}", (Object) s);
+					LOGGER.warn("Skipping bad option: {}", s);
 				}
 			}
 
@@ -1175,7 +1178,7 @@ public class GameSettings
 		}
 		catch (Exception exception)
 		{
-			LOGGER.error("Failed to load options", (Throwable) exception);
+			LOGGER.error("Failed to load options", exception);
 		}
 	}
 
@@ -1306,11 +1309,11 @@ public class GameSettings
 		}
 		catch (Exception exception)
 		{
-			LOGGER.error("Failed to save options", (Throwable) exception);
+			LOGGER.error("Failed to save options", exception);
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Writer) printwriter);
+			IOUtils.closeQuietly(printwriter);
 		}
 
 		this.sendSettingsToServer();
@@ -1318,7 +1321,7 @@ public class GameSettings
 
 	public float getSoundLevel(SoundCategory category)
 	{
-		return this.soundLevels.containsKey(category) ? ((Float) this.soundLevels.get(category)).floatValue() : 1.0F;
+		return this.soundLevels.containsKey(category) ? this.soundLevels.get(category).floatValue() : 1.0F;
 	}
 
 	public void setSoundLevel(SoundCategory category, float volume)
@@ -1489,7 +1492,7 @@ public class GameSettings
 		{
 			if (this.valueStep > 0.0F)
 			{
-				value = this.valueStep * (float) Math.round(value / this.valueStep);
+				value = this.valueStep * Math.round(value / this.valueStep);
 			}
 
 			return value;

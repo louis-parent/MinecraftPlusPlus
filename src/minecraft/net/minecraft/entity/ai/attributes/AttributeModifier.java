@@ -33,7 +33,7 @@ public class AttributeModifier
 		this.amount = amountIn;
 		this.operation = operationIn;
 		Validate.notEmpty(nameIn, "Modifier name cannot be empty");
-		Validate.inclusiveBetween(0L, 2L, (long) operationIn, "Invalid operation");
+		Validate.inclusiveBetween(0L, 2L, operationIn, "Invalid operation");
 	}
 
 	public UUID getID()
@@ -73,6 +73,7 @@ public class AttributeModifier
 		return this;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -103,11 +104,13 @@ public class AttributeModifier
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.id != null ? this.id.hashCode() : 0;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "AttributeModifier{amount=" + this.amount + ", operation=" + this.operation + ", name='" + this.name + '\'' + ", id=" + this.id + ", serialize=" + this.isSaved + '}';

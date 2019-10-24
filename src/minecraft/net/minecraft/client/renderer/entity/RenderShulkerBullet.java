@@ -36,12 +36,13 @@ public class RenderShulkerBullet extends Render<EntityShulkerBullet>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityShulkerBullet entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		GlStateManager.pushMatrix();
 		float f = this.rotLerp(entity.prevRotationYaw, entity.rotationYaw, partialTicks);
 		float f1 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
-		float f2 = (float) entity.ticksExisted + partialTicks;
+		float f2 = entity.ticksExisted + partialTicks;
 		GlStateManager.translate((float) x, (float) y + 0.15F, (float) z);
 		GlStateManager.rotate(MathHelper.sin(f2 * 0.1F) * 180.0F, 0.0F, 1.0F, 0.0F);
 		GlStateManager.rotate(MathHelper.cos(f2 * 0.1F) * 180.0F, 1.0F, 0.0F, 0.0F);
@@ -64,6 +65,7 @@ public class RenderShulkerBullet extends Render<EntityShulkerBullet>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityShulkerBullet entity)
 	{
 		return SHULKER_SPARK_TEXTURE;

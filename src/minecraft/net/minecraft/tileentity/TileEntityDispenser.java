@@ -22,11 +22,13 @@ public class TileEntityDispenser extends TileEntityLockableLoot
 	/**
 	 * Returns the number of slots in the inventory.
 	 */
+	@Override
 	public int getSizeInventory()
 	{
 		return 9;
 	}
 
+	@Override
 	public boolean isStackNotValid()
 	{
 		for (ItemStack itemstack : this.stacks)
@@ -48,7 +50,7 @@ public class TileEntityDispenser extends TileEntityLockableLoot
 
 		for (int k = 0; k < this.stacks.size(); ++k)
 		{
-			if (!((ItemStack) this.stacks.get(k)).isNotValid() && RNG.nextInt(j++) == 0)
+			if (!this.stacks.get(k).isNotValid() && RNG.nextInt(j++) == 0)
 			{
 				i = k;
 			}
@@ -65,7 +67,7 @@ public class TileEntityDispenser extends TileEntityLockableLoot
 	{
 		for (int i = 0; i < this.stacks.size(); ++i)
 		{
-			if (((ItemStack) this.stacks.get(i)).isNotValid())
+			if (this.stacks.get(i).isNotValid())
 			{
 				this.setInventorySlotContents(i, stack);
 				return i;
@@ -78,6 +80,7 @@ public class TileEntityDispenser extends TileEntityLockableLoot
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.hasCustomName() ? this.field_190577_o : "container.dispenser";
@@ -88,6 +91,7 @@ public class TileEntityDispenser extends TileEntityLockableLoot
 		fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityDispenser.class, new String[] { "Items" }));
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -104,6 +108,7 @@ public class TileEntityDispenser extends TileEntityLockableLoot
 		}
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -125,22 +130,26 @@ public class TileEntityDispenser extends TileEntityLockableLoot
 	 * Returns the maximum stack size for a inventory slot. Seems to always be
 	 * 64, possibly will be extended.
 	 */
+	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return "minecraft:dispenser";
 	}
 
+	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
 		this.fillWithLoot(playerIn);
 		return new ContainerDispenser(playerInventory, this);
 	}
 
+	@Override
 	protected NonNullList<ItemStack> func_190576_q()
 	{
 		return this.stacks;

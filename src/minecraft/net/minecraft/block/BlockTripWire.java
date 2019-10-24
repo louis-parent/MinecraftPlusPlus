@@ -45,9 +45,10 @@ public class BlockTripWire extends Block
 		this.setTickRandomly(true);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		return !((Boolean) state.getValue(ATTACHED)).booleanValue() ? TRIP_WRITE_ATTACHED_AABB : AABB;
+		return !state.getValue(ATTACHED).booleanValue() ? TRIP_WRITE_ATTACHED_AABB : AABB;
 	}
 
 	/**
@@ -55,11 +56,13 @@ public class BlockTripWire extends Block
 	 * applies properties not visible in the metadata, such as fence
 	 * connections.
 	 */
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		return state.withProperty(NORTH, Boolean.valueOf(isConnectedTo(worldIn, pos, state, EnumFacing.NORTH))).withProperty(EAST, Boolean.valueOf(isConnectedTo(worldIn, pos, state, EnumFacing.EAST))).withProperty(SOUTH, Boolean.valueOf(isConnectedTo(worldIn, pos, state, EnumFacing.SOUTH))).withProperty(WEST, Boolean.valueOf(isConnectedTo(worldIn, pos, state, EnumFacing.WEST)));
 	}
 
+	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -70,16 +73,19 @@ public class BlockTripWire extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
@@ -88,11 +94,13 @@ public class BlockTripWire extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.STRING;
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(Items.STRING);
@@ -102,6 +110,7 @@ public class BlockTripWire extends Block
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		worldIn.setBlockState(pos, state, 3);
@@ -112,11 +121,13 @@ public class BlockTripWire extends Block
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		this.notifyHook(worldIn, pos, state.withProperty(POWERED, Boolean.valueOf(true)));
 	}
 
+	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
 		if (!worldIn.isRemote)
@@ -158,11 +169,12 @@ public class BlockTripWire extends Block
 	/**
 	 * Called When an Entity Collided with the Block
 	 */
+	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
 		if (!worldIn.isRemote)
 		{
-			if (!((Boolean) state.getValue(POWERED)).booleanValue())
+			if (!state.getValue(POWERED).booleanValue())
 			{
 				this.updateState(worldIn, pos);
 			}
@@ -173,15 +185,17 @@ public class BlockTripWire extends Block
 	 * Called randomly when setTickRandomly is set to true (used by e.g. crops
 	 * to grow, etc.)
 	 */
+	@Override
 	public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
 	{
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		if (!worldIn.isRemote)
 		{
-			if (((Boolean) worldIn.getBlockState(pos).getValue(POWERED)).booleanValue())
+			if (worldIn.getBlockState(pos).getValue(POWERED).booleanValue())
 			{
 				this.updateState(worldIn, pos);
 			}
@@ -191,7 +205,7 @@ public class BlockTripWire extends Block
 	private void updateState(World worldIn, BlockPos pos)
 	{
 		IBlockState iblockstate = worldIn.getBlockState(pos);
-		boolean flag = ((Boolean) iblockstate.getValue(POWERED)).booleanValue();
+		boolean flag = iblockstate.getValue(POWERED).booleanValue();
 		boolean flag1 = false;
 		List<? extends Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity((Entity) null, iblockstate.getBoundingBox(worldIn, pos).offset(pos));
 
@@ -240,6 +254,7 @@ public class BlockTripWire extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(POWERED, Boolean.valueOf((meta & 1) > 0)).withProperty(ATTACHED, Boolean.valueOf((meta & 4) > 0)).withProperty(DISARMED, Boolean.valueOf((meta & 8) > 0));
@@ -248,21 +263,22 @@ public class BlockTripWire extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		int i = 0;
 
-		if (((Boolean) state.getValue(POWERED)).booleanValue())
+		if (state.getValue(POWERED).booleanValue())
 		{
 			i |= 1;
 		}
 
-		if (((Boolean) state.getValue(ATTACHED)).booleanValue())
+		if (state.getValue(ATTACHED).booleanValue())
 		{
 			i |= 4;
 		}
 
-		if (((Boolean) state.getValue(DISARMED)).booleanValue())
+		if (state.getValue(DISARMED).booleanValue())
 		{
 			i |= 8;
 		}
@@ -274,6 +290,7 @@ public class BlockTripWire extends Block
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
 		switch (rot)
@@ -296,6 +313,7 @@ public class BlockTripWire extends Block
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
 		switch (mirrorIn)
@@ -311,11 +329,13 @@ public class BlockTripWire extends Block
 		}
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { POWERED, ATTACHED, DISARMED, NORTH, EAST, WEST, SOUTH });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

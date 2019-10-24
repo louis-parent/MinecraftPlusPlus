@@ -35,6 +35,7 @@ public class NBTTagCompound extends NBTBase
 	 * Write the actual data contents of the tag, implemented in NBT extension
 	 * classes
 	 */
+	@Override
 	void write(DataOutput output) throws IOException
 	{
 		for (String s : this.tagMap.keySet())
@@ -46,6 +47,7 @@ public class NBTTagCompound extends NBTBase
 		output.writeByte(0);
 	}
 
+	@Override
 	void read(DataInput input, int depth, NBTSizeTracker sizeTracker) throws IOException
 	{
 		sizeTracker.read(384L);
@@ -62,7 +64,7 @@ public class NBTTagCompound extends NBTBase
 			while ((b0 = readType(input, sizeTracker)) != 0)
 			{
 				String s = readKey(input, sizeTracker);
-				sizeTracker.read((long) (224 + 16 * s.length()));
+				sizeTracker.read(224 + 16 * s.length());
 				NBTBase nbtbase = readNBT(b0, s, input, depth + 1, sizeTracker);
 
 				if (this.tagMap.put(s, nbtbase) != null)
@@ -81,6 +83,7 @@ public class NBTTagCompound extends NBTBase
 	/**
 	 * Gets the type byte for the tag.
 	 */
+	@Override
 	public byte getId()
 	{
 		return 10;
@@ -393,7 +396,7 @@ public class NBTTagCompound extends NBTBase
 		{
 			if (this.hasKey(key, 8))
 			{
-				return ((NBTBase) this.tagMap.get(key)).getString();
+				return this.tagMap.get(key).getString();
 			}
 		}
 		catch (ClassCastException var3)
@@ -511,6 +514,7 @@ public class NBTTagCompound extends NBTBase
 		this.tagMap.remove(key);
 	}
 
+	@Override
 	public String toString()
 	{
 		StringBuilder stringbuilder = new StringBuilder("{");
@@ -539,6 +543,7 @@ public class NBTTagCompound extends NBTBase
 	/**
 	 * Return whether this compound has no tags.
 	 */
+	@Override
 	public boolean hasNoTags()
 	{
 		return this.tagMap.isEmpty();
@@ -553,13 +558,15 @@ public class NBTTagCompound extends NBTBase
 		CrashReportCategory crashreportcategory = crashreport.makeCategoryDepth("Corrupt NBT tag", 1);
 		crashreportcategory.setDetail("Tag type found", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
-				return NBTBase.NBT_TYPES[((NBTBase) NBTTagCompound.this.tagMap.get(key)).getId()];
+				return NBTBase.NBT_TYPES[NBTTagCompound.this.tagMap.get(key).getId()];
 			}
 		});
 		crashreportcategory.setDetail("Tag type expected", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return NBTBase.NBT_TYPES[expectedType];
@@ -572,23 +579,26 @@ public class NBTTagCompound extends NBTBase
 	/**
 	 * Creates a clone of the tag.
 	 */
+	@Override
 	public NBTTagCompound copy()
 	{
 		NBTTagCompound nbttagcompound = new NBTTagCompound();
 
 		for (String s : this.tagMap.keySet())
 		{
-			nbttagcompound.setTag(s, ((NBTBase) this.tagMap.get(s)).copy());
+			nbttagcompound.setTag(s, this.tagMap.get(s).copy());
 		}
 
 		return nbttagcompound;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		return super.equals(p_equals_1_) && Objects.equals(this.tagMap.entrySet(), ((NBTTagCompound) p_equals_1_).tagMap.entrySet());
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return super.hashCode() ^ this.tagMap.hashCode();

@@ -25,6 +25,7 @@ public class RenderRabbit extends RenderLiving<EntityRabbit>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityRabbit entity)
 	{
 		String s = TextFormatting.getTextWithoutFormattingCodes(entity.getName());

@@ -42,6 +42,7 @@ public class NBTTagIntArray extends NBTBase
 	 * Write the actual data contents of the tag, implemented in NBT extension
 	 * classes
 	 */
+	@Override
 	void write(DataOutput output) throws IOException
 	{
 		output.writeInt(this.intArray.length);
@@ -52,11 +53,12 @@ public class NBTTagIntArray extends NBTBase
 		}
 	}
 
+	@Override
 	void read(DataInput input, int depth, NBTSizeTracker sizeTracker) throws IOException
 	{
 		sizeTracker.read(192L);
 		int i = input.readInt();
-		sizeTracker.read((long) (32 * i));
+		sizeTracker.read(32 * i);
 		this.intArray = new int[i];
 
 		for (int j = 0; j < i; ++j)
@@ -68,11 +70,13 @@ public class NBTTagIntArray extends NBTBase
 	/**
 	 * Gets the type byte for the tag.
 	 */
+	@Override
 	public byte getId()
 	{
 		return 11;
 	}
 
+	@Override
 	public String toString()
 	{
 		StringBuilder stringbuilder = new StringBuilder("[I;");
@@ -93,6 +97,7 @@ public class NBTTagIntArray extends NBTBase
 	/**
 	 * Creates a clone of the tag.
 	 */
+	@Override
 	public NBTTagIntArray copy()
 	{
 		int[] aint = new int[this.intArray.length];
@@ -100,11 +105,13 @@ public class NBTTagIntArray extends NBTBase
 		return new NBTTagIntArray(aint);
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		return super.equals(p_equals_1_) && Arrays.equals(this.intArray, ((NBTTagIntArray) p_equals_1_).intArray);
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return super.hashCode() ^ Arrays.hashCode(this.intArray);

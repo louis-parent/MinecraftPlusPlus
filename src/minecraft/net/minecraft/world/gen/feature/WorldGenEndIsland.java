@@ -9,9 +9,10 @@ import net.minecraft.world.World;
 
 public class WorldGenEndIsland extends WorldGenerator
 {
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
-		float f = (float) (rand.nextInt(3) + 4);
+		float f = rand.nextInt(3) + 4;
 
 		for (int i = 0; f > 0.5F; --i)
 		{
@@ -19,14 +20,14 @@ public class WorldGenEndIsland extends WorldGenerator
 			{
 				for (int k = MathHelper.floor(-f); k <= MathHelper.ceil(f); ++k)
 				{
-					if ((float) (j * j + k * k) <= (f + 1.0F) * (f + 1.0F))
+					if (j * j + k * k <= (f + 1.0F) * (f + 1.0F))
 					{
 						this.setBlockAndNotifyAdequately(worldIn, position.add(j, i, k), Blocks.END_STONE.getDefaultState());
 					}
 				}
 			}
 
-			f = (float) ((double) f - ((double) rand.nextInt(2) + 0.5D));
+			f = (float) (f - (rand.nextInt(2) + 0.5D));
 		}
 
 		return true;

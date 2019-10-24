@@ -48,7 +48,7 @@ public class ItemOverride
 		{
 			IItemPropertyGetter iitempropertygetter = item.getPropertyGetter(entry.getKey());
 
-			if (iitempropertygetter == null || iitempropertygetter.apply(stack, worldIn, livingEntity) < ((Float) entry.getValue()).floatValue())
+			if (iitempropertygetter == null || iitempropertygetter.apply(stack, worldIn, livingEntity) < entry.getValue().floatValue())
 			{
 				return false;
 			}
@@ -59,6 +59,7 @@ public class ItemOverride
 
 	static class Deserializer implements JsonDeserializer<ItemOverride>
 	{
+		@Override
 		public ItemOverride deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();

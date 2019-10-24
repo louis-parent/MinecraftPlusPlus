@@ -23,6 +23,7 @@ public class AdvancementToast implements IToast
 		this.field_193679_c = p_i47490_1_;
 	}
 
+	@Override
 	public IToast.Visibility func_193653_a(GuiToast p_193653_1_, long p_193653_2_)
 	{
 		p_193653_1_.func_192989_b().getTextureManager().bindTexture(field_193654_a);
@@ -47,12 +48,12 @@ public class AdvancementToast implements IToast
 
 				if (p_193653_2_ < 1500L)
 				{
-					int k = MathHelper.floor(MathHelper.clamp((float) (1500L - p_193653_2_) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
+					int k = MathHelper.floor(MathHelper.clamp((1500L - p_193653_2_) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
 					p_193653_1_.func_192989_b().fontRendererObj.drawString(I18n.format("advancements.toast." + displayinfo.func_192291_d().func_192307_a()), 30, 11, i | k);
 				}
 				else
 				{
-					int i1 = MathHelper.floor(MathHelper.clamp((float) (p_193653_2_ - 1500L) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
+					int i1 = MathHelper.floor(MathHelper.clamp((p_193653_2_ - 1500L) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
 					int l = 16 - list.size() * p_193653_1_.func_192989_b().fontRendererObj.FONT_HEIGHT / 2;
 
 					for (String s : list)

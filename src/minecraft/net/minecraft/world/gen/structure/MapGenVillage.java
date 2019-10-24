@@ -34,22 +34,24 @@ public class MapGenVillage extends MapGenStructure
 
 		for (Entry<String, String> entry : map.entrySet())
 		{
-			if (((String) entry.getKey()).equals("size"))
+			if (entry.getKey().equals("size"))
 			{
 				this.size = MathHelper.getInt(entry.getValue(), this.size, 0);
 			}
-			else if (((String) entry.getKey()).equals("distance"))
+			else if (entry.getKey().equals("distance"))
 			{
 				this.distance = MathHelper.getInt(entry.getValue(), this.distance, 9);
 			}
 		}
 	}
 
+	@Override
 	public String getStructureName()
 	{
 		return "Village";
 	}
 
+	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
 		int i = chunkX;
@@ -86,12 +88,14 @@ public class MapGenVillage extends MapGenStructure
 		return false;
 	}
 
+	@Override
 	public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_)
 	{
 		this.worldObj = worldIn;
 		return func_191069_a(worldIn, this, pos, this.distance, 8, 10387312, false, 100, p_180706_3_);
 	}
 
+	@Override
 	protected StructureStart getStructureStart(int chunkX, int chunkZ)
 	{
 		return new MapGenVillage.Start(this.worldObj, this.rand, chunkX, chunkZ, this.size);
@@ -145,17 +149,20 @@ public class MapGenVillage extends MapGenStructure
 			this.hasMoreThanTwoComponents = k > 2;
 		}
 
+		@Override
 		public boolean isSizeableStructure()
 		{
 			return this.hasMoreThanTwoComponents;
 		}
 
+		@Override
 		public void writeToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeToNBT(tagCompound);
 			tagCompound.setBoolean("Valid", this.hasMoreThanTwoComponents);
 		}
 
+		@Override
 		public void readFromNBT(NBTTagCompound tagCompound)
 		{
 			super.readFromNBT(tagCompound);

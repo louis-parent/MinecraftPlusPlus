@@ -18,6 +18,7 @@ public class RecipesBanners
 {
 	public static class RecipeAddPattern implements IRecipe
 	{
+		@Override
 		public boolean matches(InventoryCrafting inv, World worldIn)
 		{
 			boolean flag = false;
@@ -52,6 +53,7 @@ public class RecipesBanners
 			}
 		}
 
+		@Override
 		public ItemStack getCraftingResult(InventoryCrafting inv)
 		{
 			ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -107,11 +109,13 @@ public class RecipesBanners
 			return itemstack;
 		}
 
+		@Override
 		public ItemStack getRecipeOutput()
 		{
 			return ItemStack.EMPTY_ITEM_STACK;
 		}
 
+		@Override
 		public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
 		{
 			NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
@@ -231,11 +235,13 @@ public class RecipesBanners
 			return null;
 		}
 
+		@Override
 		public boolean hideInCraftingTabs()
 		{
 			return true;
 		}
 
+		@Override
 		public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
 		{
 			return p_194133_1_ >= 3 && p_194133_2_ >= 3;
@@ -244,6 +250,7 @@ public class RecipesBanners
 
 	public static class RecipeDuplicatePattern implements IRecipe
 	{
+		@Override
 		public boolean matches(InventoryCrafting inv, World worldIn)
 		{
 			ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -310,6 +317,7 @@ public class RecipesBanners
 			return !itemstack.isNotValid() && !itemstack1.isNotValid();
 		}
 
+		@Override
 		public ItemStack getCraftingResult(InventoryCrafting inv)
 		{
 			for (int i = 0; i < inv.getSizeInventory(); ++i)
@@ -327,11 +335,13 @@ public class RecipesBanners
 			return ItemStack.EMPTY_ITEM_STACK;
 		}
 
+		@Override
 		public ItemStack getRecipeOutput()
 		{
 			return ItemStack.EMPTY_ITEM_STACK;
 		}
 
+		@Override
 		public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
 		{
 			NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
@@ -358,11 +368,13 @@ public class RecipesBanners
 			return nonnulllist;
 		}
 
+		@Override
 		public boolean hideInCraftingTabs()
 		{
 			return true;
 		}
 
+		@Override
 		public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
 		{
 			return p_194133_1_ * p_194133_2_ >= 2;

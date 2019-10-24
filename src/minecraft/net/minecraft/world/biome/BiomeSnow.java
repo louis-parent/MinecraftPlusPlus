@@ -53,11 +53,13 @@ public class BiomeSnow extends Biome
 	/**
 	 * returns the chance a creature has to spawn.
 	 */
+	@Override
 	public float getSpawningChance()
 	{
 		return 0.07F;
 	}
 
+	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
 		if (this.superIcy)
@@ -80,6 +82,7 @@ public class BiomeSnow extends Biome
 		super.decorate(worldIn, rand, pos);
 	}
 
+	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
 		return new WorldGenTaiga2(false);

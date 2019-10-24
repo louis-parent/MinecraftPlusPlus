@@ -47,6 +47,7 @@ public class MapDecoration
 		return this.field_191181_a.func_191160_b();
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -80,6 +81,7 @@ public class MapDecoration
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = this.field_191181_a.func_191163_a();

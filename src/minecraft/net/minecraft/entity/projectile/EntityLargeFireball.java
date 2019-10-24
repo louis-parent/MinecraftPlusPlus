@@ -30,6 +30,7 @@ public class EntityLargeFireball extends EntityFireball
 	/**
 	 * Called when this EntityFireball hits a block or entity.
 	 */
+	@Override
 	protected void onImpact(RayTraceResult result)
 	{
 		if (!this.world.isRemote)
@@ -41,7 +42,7 @@ public class EntityLargeFireball extends EntityFireball
 			}
 
 			boolean flag = this.world.getGameRules().getBoolean("mobGriefing");
-			this.world.newExplosion((Entity) null, this.posX, this.posY, this.posZ, (float) this.explosionPower, flag, flag);
+			this.world.newExplosion((Entity) null, this.posX, this.posY, this.posZ, this.explosionPower, flag, flag);
 			this.setDead();
 		}
 	}
@@ -54,6 +55,7 @@ public class EntityLargeFireball extends EntityFireball
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -63,6 +65,7 @@ public class EntityLargeFireball extends EntityFireball
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);

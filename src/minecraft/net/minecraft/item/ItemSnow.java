@@ -26,6 +26,7 @@ public class ItemSnow extends ItemBlock
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		ItemStack itemstack = stack.getHeldItem(pos);
@@ -45,7 +46,7 @@ public class ItemSnow extends ItemBlock
 
 			if (block == this.block)
 			{
-				int i = ((Integer) iblockstate.getValue(BlockSnow.LAYERS)).intValue();
+				int i = iblockstate.getValue(BlockSnow.LAYERS).intValue();
 
 				if (i < 8)
 				{
@@ -81,6 +82,7 @@ public class ItemSnow extends ItemBlock
 	 * placed in the world when this Item is placed as a Block (mostly used with
 	 * ItemBlocks).
 	 */
+	@Override
 	public int getMetadata(int damage)
 	{
 		return damage;

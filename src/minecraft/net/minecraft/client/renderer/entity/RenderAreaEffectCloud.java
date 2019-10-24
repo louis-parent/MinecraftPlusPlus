@@ -12,6 +12,7 @@ public class RenderAreaEffectCloud extends Render<EntityAreaEffectCloud>
 		super(manager);
 	}
 
+	@Override
 	@Nullable
 
 	/**

@@ -19,6 +19,7 @@ import net.minecraft.util.JsonUtils;
 
 public class AnimationMetadataSectionSerializer extends BaseMetadataSectionSerializer<AnimationMetadataSection> implements JsonSerializer<AnimationMetadataSection>
 {
+	@Override
 	public AnimationMetadataSection deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 	{
 		List<AnimationFrame> list = Lists.<AnimationFrame>newArrayList();
@@ -27,7 +28,7 @@ public class AnimationMetadataSectionSerializer extends BaseMetadataSectionSeria
 
 		if (i != 1)
 		{
-			Validate.inclusiveBetween(1L, 2147483647L, (long) i, "Invalid default frame time");
+			Validate.inclusiveBetween(1L, 2147483647L, i, "Invalid default frame time");
 		}
 
 		if (jsonobject.has("frames"))
@@ -58,12 +59,12 @@ public class AnimationMetadataSectionSerializer extends BaseMetadataSectionSeria
 
 		if (k != -1)
 		{
-			Validate.inclusiveBetween(1L, 2147483647L, (long) k, "Invalid width");
+			Validate.inclusiveBetween(1L, 2147483647L, k, "Invalid width");
 		}
 
 		if (l != -1)
 		{
-			Validate.inclusiveBetween(1L, 2147483647L, (long) l, "Invalid height");
+			Validate.inclusiveBetween(1L, 2147483647L, l, "Invalid height");
 		}
 
 		boolean flag = JsonUtils.getBoolean(jsonobject, "interpolate", false);
@@ -83,11 +84,11 @@ public class AnimationMetadataSectionSerializer extends BaseMetadataSectionSeria
 
 			if (jsonobject.has("time"))
 			{
-				Validate.inclusiveBetween(1L, 2147483647L, (long) i, "Invalid frame time");
+				Validate.inclusiveBetween(1L, 2147483647L, i, "Invalid frame time");
 			}
 
 			int j = JsonUtils.getInt(jsonobject, "index");
-			Validate.inclusiveBetween(0L, 2147483647L, (long) j, "Invalid frame index");
+			Validate.inclusiveBetween(0L, 2147483647L, j, "Invalid frame index");
 			return new AnimationFrame(j, i);
 		}
 		else
@@ -96,6 +97,7 @@ public class AnimationMetadataSectionSerializer extends BaseMetadataSectionSeria
 		}
 	}
 
+	@Override
 	public JsonElement serialize(AnimationMetadataSection p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 	{
 		JsonObject jsonobject = new JsonObject();
@@ -139,6 +141,7 @@ public class AnimationMetadataSectionSerializer extends BaseMetadataSectionSeria
 	/**
 	 * The name of this section type as it appears in JSON.
 	 */
+	@Override
 	public String getSectionName()
 	{
 		return "animation";

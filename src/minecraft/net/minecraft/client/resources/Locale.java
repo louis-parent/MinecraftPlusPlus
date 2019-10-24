@@ -78,7 +78,7 @@ public class Locale
 		}
 
 		float f = (float) i / (float) j;
-		this.unicode = (double) f > 0.1D;
+		this.unicode = f > 0.1D;
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class Locale
 		{
 			if (!s.isEmpty() && s.charAt(0) != '#')
 			{
-				String[] astring = (String[]) Iterables.toArray(SPLITTER.split(s), String.class);
+				String[] astring = Iterables.toArray(SPLITTER.split(s), String.class);
 
 				if (astring != null && astring.length == 2)
 				{

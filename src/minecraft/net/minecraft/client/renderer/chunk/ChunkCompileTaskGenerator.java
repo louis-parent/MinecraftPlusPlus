@@ -130,6 +130,7 @@ public class ChunkCompileTaskGenerator implements Comparable<ChunkCompileTaskGen
 		return this.finished;
 	}
 
+	@Override
 	public int compareTo(ChunkCompileTaskGenerator p_compareTo_1_)
 	{
 		return Doubles.compare(this.distanceSq, p_compareTo_1_.distanceSq);

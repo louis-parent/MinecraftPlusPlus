@@ -61,7 +61,7 @@ public class LocationPredicate
 		}
 		else
 		{
-			BlockPos blockpos = new BlockPos((double) p_193453_2_, (double) p_193453_3_, (double) p_193453_4_);
+			BlockPos blockpos = new BlockPos(p_193453_2_, p_193453_3_, p_193453_4_);
 
 			if (this.field_193456_b != null && this.field_193456_b != p_193453_1_.getBiome(blockpos))
 			{

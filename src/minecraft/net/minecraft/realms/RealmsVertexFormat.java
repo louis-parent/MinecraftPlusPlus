@@ -104,16 +104,19 @@ public class RealmsVertexFormat
 		return this.v.getIntegerSize();
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		return this.v.equals(p_equals_1_);
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return this.v.hashCode();
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.v.toString();

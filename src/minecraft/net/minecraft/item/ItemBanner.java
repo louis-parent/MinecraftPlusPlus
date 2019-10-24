@@ -42,6 +42,7 @@ public class ItemBanner extends ItemBlock
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
@@ -64,7 +65,7 @@ public class ItemBanner extends ItemBlock
 
 					if (hand == EnumFacing.UP)
 					{
-						int i = MathHelper.floor((double) ((stack.rotationYaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
+						int i = MathHelper.floor((stack.rotationYaw + 180.0F) * 16.0F / 360.0F + 0.5D) & 15;
 						playerIn.setBlockState(worldIn, Blocks.STANDING_BANNER.getDefaultState().withProperty(BlockStandingSign.ROTATION, Integer.valueOf(i)), 3);
 					}
 					else
@@ -99,6 +100,7 @@ public class ItemBanner extends ItemBlock
 		}
 	}
 
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		String s = "item.banner.";
@@ -133,6 +135,7 @@ public class ItemBanner extends ItemBlock
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		appendHoverTextFromTileEntityTag(stack, tooltip);
@@ -142,6 +145,7 @@ public class ItemBanner extends ItemBlock
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
+	@Override
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		if (this.func_194125_a(itemIn))
@@ -168,6 +172,7 @@ public class ItemBanner extends ItemBlock
 	/**
 	 * gets the CreativeTab this item is displayed on
 	 */
+	@Override
 	public CreativeTabs getCreativeTab()
 	{
 		return CreativeTabs.DECORATIONS;

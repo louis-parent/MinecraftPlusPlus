@@ -22,6 +22,7 @@ public class LootEntryTable extends LootEntry
 		this.table = tableIn;
 	}
 
+	@Override
 	public void addLoot(Collection<ItemStack> stacks, Random rand, LootContext context)
 	{
 		LootTable loottable = context.getLootTableManager().getLootTableFromLocation(this.table);
@@ -29,6 +30,7 @@ public class LootEntryTable extends LootEntry
 		stacks.addAll(collection);
 	}
 
+	@Override
 	protected void serialize(JsonObject json, JsonSerializationContext context)
 	{
 		json.addProperty("name", this.table.toString());

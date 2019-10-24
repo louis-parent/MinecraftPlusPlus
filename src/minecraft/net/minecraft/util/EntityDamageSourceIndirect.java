@@ -19,12 +19,14 @@ public class EntityDamageSourceIndirect extends EntityDamageSource
 		this.indirectEntity = indirectEntityIn;
 	}
 
+	@Override
 	@Nullable
 	public Entity getSourceOfDamage()
 	{
 		return this.damageSourceEntity;
 	}
 
+	@Override
 	@Nullable
 	public Entity getEntity()
 	{
@@ -34,6 +36,7 @@ public class EntityDamageSourceIndirect extends EntityDamageSource
 	/**
 	 * Gets the death message that is displayed when the player dies
 	 */
+	@Override
 	public ITextComponent getDeathMessage(EntityLivingBase entityLivingBaseIn)
 	{
 		ITextComponent itextcomponent = this.indirectEntity == null ? this.damageSourceEntity.getDisplayName() : this.indirectEntity.getDisplayName();

@@ -34,6 +34,7 @@ public class MultipartBakedModel implements IBakedModel
 		this.overrides = ibakedmodel.getOverrides();
 	}
 
+	@Override
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand)
 	{
 		List<BakedQuad> list = Lists.<BakedQuad>newArrayList();
@@ -52,31 +53,37 @@ public class MultipartBakedModel implements IBakedModel
 		return list;
 	}
 
+	@Override
 	public boolean isAmbientOcclusion()
 	{
 		return this.ambientOcclusion;
 	}
 
+	@Override
 	public boolean isGui3d()
 	{
 		return this.gui3D;
 	}
 
+	@Override
 	public boolean isBuiltInRenderer()
 	{
 		return false;
 	}
 
+	@Override
 	public TextureAtlasSprite getParticleTexture()
 	{
 		return this.particleTexture;
 	}
 
+	@Override
 	public ItemCameraTransforms getItemCameraTransforms()
 	{
 		return this.cameraTransforms;
 	}
 
+	@Override
 	public ItemOverrideList getOverrides()
 	{
 		return this.overrides;

@@ -66,6 +66,7 @@ public class ModelParrot extends ModelBase
 	/**
 	 * Sets the models various rotation angles then renders the model.
 	 */
+	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.field_192764_a.render(scale);
@@ -83,6 +84,7 @@ public class ModelParrot extends ModelBase
 	 * the time(so that arms and legs swing back and forth) and par2 represents
 	 * how "far" arms and legs can swing at most.
 	 */
+	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
 	{
 		float f = ageInTicks * 0.3F;
@@ -104,13 +106,13 @@ public class ModelParrot extends ModelBase
 
 			if (this.field_192775_l == ModelParrot.State.PARTY)
 			{
-				float f1 = MathHelper.cos((float) entityIn.ticksExisted);
-				float f2 = MathHelper.sin((float) entityIn.ticksExisted);
+				float f1 = MathHelper.cos(entityIn.ticksExisted);
+				float f2 = MathHelper.sin(entityIn.ticksExisted);
 				this.field_192768_e.rotationPointX = f1;
 				this.field_192768_e.rotationPointY = 15.69F + f2;
 				this.field_192768_e.rotateAngleX = 0.0F;
 				this.field_192768_e.rotateAngleY = 0.0F;
-				this.field_192768_e.rotateAngleZ = MathHelper.sin((float) entityIn.ticksExisted) * 0.4F;
+				this.field_192768_e.rotateAngleZ = MathHelper.sin(entityIn.ticksExisted) * 0.4F;
 				this.field_192764_a.rotationPointX = f1;
 				this.field_192764_a.rotationPointY = 16.5F + f2;
 				this.field_192766_c.rotateAngleZ = -0.0873F - ageInTicks;
@@ -145,6 +147,7 @@ public class ModelParrot extends ModelBase
 	 * float params here are the same second and third as in the
 	 * setRotationAngles method.
 	 */
+	@Override
 	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime)
 	{
 		this.field_192772_i.rotateAngleX = -0.2214F;

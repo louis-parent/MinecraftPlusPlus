@@ -28,16 +28,17 @@ public class SetDamage extends LootFunction
 		this.damageRange = damageRangeIn;
 	}
 
+	@Override
 	public ItemStack apply(ItemStack stack, Random rand, LootContext context)
 	{
 		if (stack.isItemStackDamageable())
 		{
 			float f = 1.0F - this.damageRange.generateFloat(rand);
-			stack.setItemDamage(MathHelper.floor(f * (float) stack.getMaxDamage()));
+			stack.setItemDamage(MathHelper.floor(f * stack.getMaxDamage()));
 		}
 		else
 		{
-			LOGGER.warn("Couldn't set damage of loot item {}", (Object) stack);
+			LOGGER.warn("Couldn't set damage of loot item {}", stack);
 		}
 
 		return stack;
@@ -50,14 +51,16 @@ public class SetDamage extends LootFunction
 			super(new ResourceLocation("set_damage"), SetDamage.class);
 		}
 
+		@Override
 		public void serialize(JsonObject object, SetDamage functionClazz, JsonSerializationContext serializationContext)
 		{
 			object.add("damage", serializationContext.serialize(functionClazz.damageRange));
 		}
 
+		@Override
 		public SetDamage deserialize(JsonObject object, JsonDeserializationContext deserializationContext, LootCondition[] conditionsIn)
 		{
-			return new SetDamage(conditionsIn, (RandomValueRange) JsonUtils.deserializeClass(object, "damage", deserializationContext, RandomValueRange.class));
+			return new SetDamage(conditionsIn, JsonUtils.deserializeClass(object, "damage", deserializationContext, RandomValueRange.class));
 		}
 	}
 }

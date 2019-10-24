@@ -21,6 +21,7 @@ public class BiomeEnd extends Biome
 	/**
 	 * takes temperature, returns color
 	 */
+	@Override
 	public int getSkyColorByTemp(float currentTemperature)
 	{
 		return 0;

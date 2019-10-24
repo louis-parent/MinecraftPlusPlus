@@ -65,6 +65,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		if (this.currentLoginState == NetHandlerLoginServer.LoginState.READY_TO_ACCEPT)
@@ -99,7 +100,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
 		}
 		catch (Exception exception)
 		{
-			LOGGER.error("Error whilst disconnecting player", (Throwable) exception);
+			LOGGER.error("Error whilst disconnecting player", exception);
 		}
 	}
 
@@ -124,6 +125,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
 			{
 				this.networkManager.sendPacket(new SPacketEnableCompression(this.server.getNetworkCompressionThreshold()), new ChannelFutureListener()
 				{
+					@Override
 					public void operationComplete(ChannelFuture p_operationComplete_1_) throws Exception
 					{
 						NetHandlerLoginServer.this.networkManager.setCompressionThreshold(NetHandlerLoginServer.this.server.getNetworkCompressionThreshold());
@@ -150,6 +152,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
 	 * Invoked when disconnecting, the parameter is a ChatComponent describing
 	 * the reason for termination
 	 */
+	@Override
 	public void onDisconnect(ITextComponent reason)
 	{
 		LOGGER.info("{} lost connection: {}", this.getConnectionInfo(), reason.getUnformattedText());
@@ -157,9 +160,10 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
 
 	public String getConnectionInfo()
 	{
-		return this.loginGameProfile != null ? this.loginGameProfile + " (" + this.networkManager.getRemoteAddress() + ")" : String.valueOf((Object) this.networkManager.getRemoteAddress());
+		return this.loginGameProfile != null ? this.loginGameProfile + " (" + this.networkManager.getRemoteAddress() + ")" : String.valueOf(this.networkManager.getRemoteAddress());
 	}
 
+	@Override
 	public void processLoginStart(CPacketLoginStart packetIn)
 	{
 		Validate.validState(this.currentLoginState == NetHandlerLoginServer.LoginState.HELLO, "Unexpected hello packet");
@@ -176,6 +180,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
 		}
 	}
 
+	@Override
 	public void processEncryptionResponse(CPacketEncryptionResponse packetIn)
 	{
 		Validate.validState(this.currentLoginState == NetHandlerLoginServer.LoginState.KEY, "Unexpected key packet");
@@ -192,6 +197,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
 			this.networkManager.enableEncryption(this.secretKey);
 			(new Thread("User Authenticator #" + AUTHENTICATOR_THREAD_ID.incrementAndGet())
 			{
+				@Override
 				public void run()
 				{
 					GameProfile gameprofile = NetHandlerLoginServer.this.loginGameProfile;
@@ -215,7 +221,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
 						else
 						{
 							NetHandlerLoginServer.this.func_194026_b(new TextComponentTranslation("multiplayer.disconnect.unverified_username", new Object[0]));
-							NetHandlerLoginServer.LOGGER.error("Username '{}' tried to join with an invalid session", (Object) gameprofile.getName());
+							NetHandlerLoginServer.LOGGER.error("Username '{}' tried to join with an invalid session", gameprofile.getName());
 						}
 					}
 					catch (AuthenticationUnavailableException var3)

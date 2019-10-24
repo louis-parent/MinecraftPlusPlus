@@ -32,6 +32,7 @@ public class EntitySpectralArrow extends EntityArrow
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -42,11 +43,13 @@ public class EntitySpectralArrow extends EntityArrow
 		}
 	}
 
+	@Override
 	protected ItemStack getArrowStack()
 	{
 		return new ItemStack(Items.SPECTRAL_ARROW);
 	}
 
+	@Override
 	protected void arrowHit(EntityLivingBase living)
 	{
 		super.arrowHit(living);
@@ -62,6 +65,7 @@ public class EntitySpectralArrow extends EntityArrow
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -75,6 +79,7 @@ public class EntitySpectralArrow extends EntityArrow
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);

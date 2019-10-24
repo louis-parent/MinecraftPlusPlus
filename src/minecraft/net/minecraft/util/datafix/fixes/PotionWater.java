@@ -5,11 +5,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class PotionWater implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 806;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		String s = compound.getString("id");

@@ -38,23 +38,26 @@ public class BlockEndRod extends BlockDirectional
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	/**
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-		return state.withProperty(FACING, mirrorIn.mirror((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, mirrorIn.mirror(state.getValue(FACING)));
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		switch (((EnumFacing) state.getValue(FACING)).getAxis())
+		switch (state.getValue(FACING).getAxis())
 		{
 			case X:
 			default:
@@ -72,16 +75,19 @@ public class BlockEndRod extends BlockDirectional
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return true;
@@ -91,13 +97,14 @@ public class BlockEndRod extends BlockDirectional
 	 * Called by ItemBlocks just before a block is actually set in the world, to
 	 * allow for adjustments to the IBlockstate
 	 */
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		IBlockState iblockstate = worldIn.getBlockState(pos.offset(facing.getOpposite()));
 
 		if (iblockstate.getBlock() == Blocks.END_ROD)
 		{
-			EnumFacing enumfacing = (EnumFacing) iblockstate.getValue(FACING);
+			EnumFacing enumfacing = iblockstate.getValue(FACING);
 
 			if (enumfacing == facing)
 			{
@@ -108,20 +115,22 @@ public class BlockEndRod extends BlockDirectional
 		return this.getDefaultState().withProperty(FACING, facing);
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
-		EnumFacing enumfacing = (EnumFacing) stateIn.getValue(FACING);
-		double d0 = (double) pos.getX() + 0.55D - (double) (rand.nextFloat() * 0.1F);
-		double d1 = (double) pos.getY() + 0.55D - (double) (rand.nextFloat() * 0.1F);
-		double d2 = (double) pos.getZ() + 0.55D - (double) (rand.nextFloat() * 0.1F);
-		double d3 = (double) (0.4F - (rand.nextFloat() + rand.nextFloat()) * 0.4F);
+		EnumFacing enumfacing = stateIn.getValue(FACING);
+		double d0 = pos.getX() + 0.55D - rand.nextFloat() * 0.1F;
+		double d1 = pos.getY() + 0.55D - rand.nextFloat() * 0.1F;
+		double d2 = pos.getZ() + 0.55D - rand.nextFloat() * 0.1F;
+		double d3 = 0.4F - (rand.nextFloat() + rand.nextFloat()) * 0.4F;
 
 		if (rand.nextInt(5) == 0)
 		{
-			worldIn.spawnParticle(EnumParticleTypes.END_ROD, d0 + (double) enumfacing.getFrontOffsetX() * d3, d1 + (double) enumfacing.getFrontOffsetY() * d3, d2 + (double) enumfacing.getFrontOffsetZ() * d3, rand.nextGaussian() * 0.005D, rand.nextGaussian() * 0.005D, rand.nextGaussian() * 0.005D);
+			worldIn.spawnParticle(EnumParticleTypes.END_ROD, d0 + enumfacing.getFrontOffsetX() * d3, d1 + enumfacing.getFrontOffsetY() * d3, d2 + enumfacing.getFrontOffsetZ() * d3, rand.nextGaussian() * 0.005D, rand.nextGaussian() * 0.005D, rand.nextGaussian() * 0.005D);
 		}
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
@@ -130,6 +139,7 @@ public class BlockEndRod extends BlockDirectional
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		IBlockState iblockstate = this.getDefaultState();
@@ -140,21 +150,25 @@ public class BlockEndRod extends BlockDirectional
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((EnumFacing) state.getValue(FACING)).getIndex();
+		return state.getValue(FACING).getIndex();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { FACING });
 	}
 
+	@Override
 	public EnumPushReaction getMobilityFlag(IBlockState state)
 	{
 		return EnumPushReaction.NORMAL;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

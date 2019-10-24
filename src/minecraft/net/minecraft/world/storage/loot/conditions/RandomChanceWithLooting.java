@@ -23,6 +23,7 @@ public class RandomChanceWithLooting implements LootCondition
 		this.lootingMultiplier = lootingMultiplierIn;
 	}
 
+	@Override
 	public boolean testCondition(Random rand, LootContext context)
 	{
 		int i = 0;
@@ -32,7 +33,7 @@ public class RandomChanceWithLooting implements LootCondition
 			i = EnchantmentHelper.getLootingModifier((EntityLivingBase) context.getKiller());
 		}
 
-		return rand.nextFloat() < this.chance + (float) i * this.lootingMultiplier;
+		return rand.nextFloat() < this.chance + i * this.lootingMultiplier;
 	}
 
 	public static class Serializer extends LootCondition.Serializer<RandomChanceWithLooting>
@@ -42,12 +43,14 @@ public class RandomChanceWithLooting implements LootCondition
 			super(new ResourceLocation("random_chance_with_looting"), RandomChanceWithLooting.class);
 		}
 
+		@Override
 		public void serialize(JsonObject json, RandomChanceWithLooting value, JsonSerializationContext context)
 		{
 			json.addProperty("chance", Float.valueOf(value.chance));
 			json.addProperty("looting_multiplier", Float.valueOf(value.lootingMultiplier));
 		}
 
+		@Override
 		public RandomChanceWithLooting deserialize(JsonObject json, JsonDeserializationContext context)
 		{
 			return new RandomChanceWithLooting(JsonUtils.getFloat(json, "chance"), JsonUtils.getFloat(json, "looting_multiplier"));

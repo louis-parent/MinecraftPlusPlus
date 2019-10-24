@@ -15,11 +15,13 @@ public class BlockButtonStone extends BlockButton
 		super(false);
 	}
 
+	@Override
 	protected void playClickSound(@Nullable EntityPlayer player, World worldIn, BlockPos pos)
 	{
 		worldIn.playSound(player, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.6F);
 	}
 
+	@Override
 	protected void playReleaseSound(World worldIn, BlockPos pos)
 	{
 		worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.5F);

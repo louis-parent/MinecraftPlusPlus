@@ -12,6 +12,7 @@ public abstract class MovingSound extends PositionedSound implements ITickableSo
 		super(soundIn, categoryIn);
 	}
 
+	@Override
 	public boolean isDonePlaying()
 	{
 		return this.donePlaying;

@@ -24,6 +24,7 @@ public class EntityAIVillagerMate extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (this.villagerObj.getGrowingAge() != 0)
@@ -66,6 +67,7 @@ public class EntityAIVillagerMate extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.matingTimeout = 300;
@@ -75,6 +77,7 @@ public class EntityAIVillagerMate extends EntityAIBase
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		this.villageObj = null;
@@ -85,6 +88,7 @@ public class EntityAIVillagerMate extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return this.matingTimeout >= 0 && this.checkSufficientDoorsPresentForNewVillager() && this.villagerObj.getGrowingAge() == 0 && this.villagerObj.getIsWillingToMate(false);
@@ -93,6 +97,7 @@ public class EntityAIVillagerMate extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		--this.matingTimeout;
@@ -121,7 +126,7 @@ public class EntityAIVillagerMate extends EntityAIBase
 		}
 		else
 		{
-			int i = (int) ((double) ((float) this.villageObj.getNumVillageDoors()) * 0.35D);
+			int i = (int) ((this.villageObj.getNumVillageDoors()) * 0.35D);
 			return this.villageObj.getNumVillagers() < i;
 		}
 	}

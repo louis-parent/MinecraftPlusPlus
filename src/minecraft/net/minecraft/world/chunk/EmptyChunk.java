@@ -26,6 +26,7 @@ public class EmptyChunk extends Chunk
 	/**
 	 * Checks whether the chunk is at the X/Z location specified
 	 */
+	@Override
 	public boolean isAtLocation(int x, int z)
 	{
 		return x == this.xPosition && z == this.zPosition;
@@ -34,6 +35,7 @@ public class EmptyChunk extends Chunk
 	/**
 	 * Returns the value in the height map at this x, z coordinate in the chunk
 	 */
+	@Override
 	public int getHeightValue(int x, int z)
 	{
 		return 0;
@@ -42,6 +44,7 @@ public class EmptyChunk extends Chunk
 	/**
 	 * Generates the height map for a chunk from scratch
 	 */
+	@Override
 	public void generateHeightMap()
 	{
 	}
@@ -49,29 +52,35 @@ public class EmptyChunk extends Chunk
 	/**
 	 * Generates the initial skylight map for the chunk upon generation or load.
 	 */
+	@Override
 	public void generateSkylightMap()
 	{
 	}
 
+	@Override
 	public IBlockState getBlockState(BlockPos pos)
 	{
 		return Blocks.AIR.getDefaultState();
 	}
 
+	@Override
 	public int getBlockLightOpacity(BlockPos pos)
 	{
 		return 255;
 	}
 
+	@Override
 	public int getLightFor(EnumSkyBlock p_177413_1_, BlockPos pos)
 	{
 		return p_177413_1_.defaultLightValue;
 	}
 
+	@Override
 	public void setLightFor(EnumSkyBlock p_177431_1_, BlockPos pos, int value)
 	{
 	}
 
+	@Override
 	public int getLightSubtracted(BlockPos pos, int amount)
 	{
 		return 0;
@@ -80,6 +89,7 @@ public class EmptyChunk extends Chunk
 	/**
 	 * Adds an entity to the chunk.
 	 */
+	@Override
 	public void addEntity(Entity entityIn)
 	{
 	}
@@ -87,6 +97,7 @@ public class EmptyChunk extends Chunk
 	/**
 	 * removes entity using its y chunk coordinate as its index
 	 */
+	@Override
 	public void removeEntity(Entity entityIn)
 	{
 	}
@@ -94,29 +105,35 @@ public class EmptyChunk extends Chunk
 	/**
 	 * Removes entity at the specified index from the entity array.
 	 */
+	@Override
 	public void removeEntityAtIndex(Entity entityIn, int index)
 	{
 	}
 
+	@Override
 	public boolean canSeeSky(BlockPos pos)
 	{
 		return false;
 	}
 
+	@Override
 	@Nullable
 	public TileEntity getTileEntity(BlockPos pos, Chunk.EnumCreateEntityType p_177424_2_)
 	{
 		return null;
 	}
 
+	@Override
 	public void addTileEntity(TileEntity tileEntityIn)
 	{
 	}
 
+	@Override
 	public void addTileEntity(BlockPos pos, TileEntity tileEntityIn)
 	{
 	}
 
+	@Override
 	public void removeTileEntity(BlockPos pos)
 	{
 	}
@@ -124,6 +141,7 @@ public class EmptyChunk extends Chunk
 	/**
 	 * Called when this Chunk is loaded by the ChunkProvider
 	 */
+	@Override
 	public void onChunkLoad()
 	{
 	}
@@ -131,6 +149,7 @@ public class EmptyChunk extends Chunk
 	/**
 	 * Called when this Chunk is unloaded by the ChunkProvider
 	 */
+	@Override
 	public void onChunkUnload()
 	{
 	}
@@ -138,6 +157,7 @@ public class EmptyChunk extends Chunk
 	/**
 	 * Sets the isModified flag for this Chunk
 	 */
+	@Override
 	public void setChunkModified()
 	{
 	}
@@ -146,10 +166,12 @@ public class EmptyChunk extends Chunk
 	 * Fills the given list of all entities that intersect within the given
 	 * bounding box that aren't the passed entity.
 	 */
+	@Override
 	public void getEntitiesWithinAABBForEntity(@Nullable Entity entityIn, AxisAlignedBB aabb, List<Entity> listToFill, Predicate<? super Entity> p_177414_4_)
 	{
 	}
 
+	@Override
 	public <T extends Entity> void getEntitiesOfTypeWithinAAAB(Class<? extends T> entityClass, AxisAlignedBB aabb, List<T> listToFill, Predicate<? super T> filter)
 	{
 	}
@@ -157,16 +179,19 @@ public class EmptyChunk extends Chunk
 	/**
 	 * Returns true if this Chunk needs to be saved
 	 */
+	@Override
 	public boolean needsSaving(boolean p_76601_1_)
 	{
 		return false;
 	}
 
+	@Override
 	public Random getRandomWithSeed(long seed)
 	{
-		return new Random(this.getWorld().getSeed() + (long) (this.xPosition * this.xPosition * 4987142) + (long) (this.xPosition * 5947611) + (long) (this.zPosition * this.zPosition) * 4392871L + (long) (this.zPosition * 389711) ^ seed);
+		return new Random(this.getWorld().getSeed() + this.xPosition * this.xPosition * 4987142 + this.xPosition * 5947611 + this.zPosition * this.zPosition * 4392871L + this.zPosition * 389711 ^ seed);
 	}
 
+	@Override
 	public boolean isEmpty()
 	{
 		return true;
@@ -176,6 +201,7 @@ public class EmptyChunk extends Chunk
 	 * Returns whether the ExtendedBlockStorages containing levels (in blocks)
 	 * from arg 1 to arg 2 are fully empty (true) or not (false).
 	 */
+	@Override
 	public boolean getAreLevelsEmpty(int startY, int endY)
 	{
 		return true;

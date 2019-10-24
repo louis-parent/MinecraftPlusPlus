@@ -20,6 +20,7 @@ public class ItemAxe extends ItemTool
 		super(material);
 	}
 
+	@Override
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
 	{
 		Material material = state.getMaterial();

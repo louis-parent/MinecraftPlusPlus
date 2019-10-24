@@ -24,12 +24,13 @@ public class DebugRendererWater implements DebugRenderer.IDebugRenderer
 		this.minecraft = minecraftIn;
 	}
 
+	@Override
 	public void render(float p_190060_1_, long p_190060_2_)
 	{
 		this.player = this.minecraft.player;
-		this.xo = this.player.lastTickPosX + (this.player.posX - this.player.lastTickPosX) * (double) p_190060_1_;
-		this.yo = this.player.lastTickPosY + (this.player.posY - this.player.lastTickPosY) * (double) p_190060_1_;
-		this.zo = this.player.lastTickPosZ + (this.player.posZ - this.player.lastTickPosZ) * (double) p_190060_1_;
+		this.xo = this.player.lastTickPosX + (this.player.posX - this.player.lastTickPosX) * p_190060_1_;
+		this.yo = this.player.lastTickPosY + (this.player.posY - this.player.lastTickPosY) * p_190060_1_;
+		this.zo = this.player.lastTickPosZ + (this.player.posZ - this.player.lastTickPosZ) * p_190060_1_;
 		BlockPos blockpos = this.minecraft.player.getPosition();
 		World world = this.minecraft.player.world;
 		GlStateManager.enableBlend();
@@ -44,8 +45,8 @@ public class DebugRendererWater implements DebugRenderer.IDebugRenderer
 
 			if (iblockstate.getBlock() == Blocks.WATER || iblockstate.getBlock() == Blocks.FLOWING_WATER)
 			{
-				double d0 = (double) BlockLiquid.func_190972_g(iblockstate, world, blockpos1);
-				RenderGlobal.renderFilledBox((new AxisAlignedBB((double) ((float) blockpos1.getX() + 0.01F), (double) ((float) blockpos1.getY() + 0.01F), (double) ((float) blockpos1.getZ() + 0.01F), (double) ((float) blockpos1.getX() + 0.99F), d0, (double) ((float) blockpos1.getZ() + 0.99F))).offset(-this.xo, -this.yo, -this.zo), 1.0F, 1.0F, 1.0F, 0.2F);
+				double d0 = BlockLiquid.func_190972_g(iblockstate, world, blockpos1);
+				RenderGlobal.renderFilledBox((new AxisAlignedBB(blockpos1.getX() + 0.01F, blockpos1.getY() + 0.01F, blockpos1.getZ() + 0.01F, blockpos1.getX() + 0.99F, d0, blockpos1.getZ() + 0.99F)).offset(-this.xo, -this.yo, -this.zo), 1.0F, 1.0F, 1.0F, 0.2F);
 			}
 		}
 
@@ -55,10 +56,10 @@ public class DebugRendererWater implements DebugRenderer.IDebugRenderer
 
 			if (iblockstate1.getBlock() == Blocks.WATER || iblockstate1.getBlock() == Blocks.FLOWING_WATER)
 			{
-				Integer integer = (Integer) iblockstate1.getValue(BlockLiquid.LEVEL);
-				double d1 = integer.intValue() > 7 ? 0.9D : 1.0D - 0.11D * (double) integer.intValue();
+				Integer integer = iblockstate1.getValue(BlockLiquid.LEVEL);
+				double d1 = integer.intValue() > 7 ? 0.9D : 1.0D - 0.11D * integer.intValue();
 				String s = iblockstate1.getBlock() == Blocks.FLOWING_WATER ? "f" : "s";
-				DebugRenderer.renderDebugText(s + " " + integer, (double) blockpos2.getX() + 0.5D, (double) blockpos2.getY() + d1, (double) blockpos2.getZ() + 0.5D, p_190060_1_, -16777216);
+				DebugRenderer.renderDebugText(s + " " + integer, blockpos2.getX() + 0.5D, blockpos2.getY() + d1, blockpos2.getZ() + 0.5D, p_190060_1_, -16777216);
 			}
 		}
 

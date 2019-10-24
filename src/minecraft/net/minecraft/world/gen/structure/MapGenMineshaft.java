@@ -17,6 +17,7 @@ public class MapGenMineshaft extends MapGenStructure
 	{
 	}
 
+	@Override
 	public String getStructureName()
 	{
 		return "Mineshaft";
@@ -26,18 +27,20 @@ public class MapGenMineshaft extends MapGenStructure
 	{
 		for (Entry<String, String> entry : p_i2034_1_.entrySet())
 		{
-			if (((String) entry.getKey()).equals("chance"))
+			if (entry.getKey().equals("chance"))
 			{
 				this.chance = MathHelper.getDouble(entry.getValue(), this.chance);
 			}
 		}
 	}
 
+	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
 		return this.rand.nextDouble() < this.chance && this.rand.nextInt(80) < Math.max(Math.abs(chunkX), Math.abs(chunkZ));
 	}
 
+	@Override
 	public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_)
 	{
 		int i = 1000;
@@ -58,7 +61,7 @@ public class MapGenMineshaft extends MapGenStructure
 					{
 						int k1 = j + i1;
 						int l1 = k + j1;
-						this.rand.setSeed((long) (k1 ^ l1) ^ worldIn.getSeed());
+						this.rand.setSeed(k1 ^ l1 ^ worldIn.getSeed());
 						this.rand.nextInt();
 
 						if (this.canSpawnStructureAtCoords(k1, l1) && (!p_180706_3_ || !worldIn.func_190526_b(k1, l1)))
@@ -73,6 +76,7 @@ public class MapGenMineshaft extends MapGenStructure
 		return null;
 	}
 
+	@Override
 	protected StructureStart getStructureStart(int chunkX, int chunkZ)
 	{
 		Biome biome = this.worldObj.getBiome(new BlockPos((chunkX << 4) + 8, 64, (chunkZ << 4) + 8));

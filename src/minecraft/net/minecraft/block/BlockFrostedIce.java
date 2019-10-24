@@ -24,22 +24,25 @@ public class BlockFrostedIce extends BlockIce
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(AGE)).intValue();
+		return state.getValue(AGE).intValue();
 	}
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(AGE, Integer.valueOf(MathHelper.clamp(meta, 0, 3)));
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
-		if ((rand.nextInt(3) == 0 || this.countNeighbors(worldIn, pos) < 4) && worldIn.getLightFromNeighbors(pos) > 11 - ((Integer) state.getValue(AGE)).intValue() - state.getLightOpacity())
+		if ((rand.nextInt(3) == 0 || this.countNeighbors(worldIn, pos) < 4) && worldIn.getLightFromNeighbors(pos) > 11 - state.getValue(AGE).intValue() - state.getLightOpacity())
 		{
 			this.slightlyMelt(worldIn, pos, state, rand, true);
 		}
@@ -55,6 +58,7 @@ public class BlockFrostedIce extends BlockIce
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (blockIn == this)
@@ -90,7 +94,7 @@ public class BlockFrostedIce extends BlockIce
 
 	protected void slightlyMelt(World p_185681_1_, BlockPos p_185681_2_, IBlockState p_185681_3_, Random p_185681_4_, boolean p_185681_5_)
 	{
-		int i = ((Integer) p_185681_3_.getValue(AGE)).intValue();
+		int i = p_185681_3_.getValue(AGE).intValue();
 
 		if (i < 3)
 		{
@@ -117,11 +121,13 @@ public class BlockFrostedIce extends BlockIce
 		}
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { AGE });
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return ItemStack.EMPTY_ITEM_STACK;

@@ -18,6 +18,7 @@ public class RenderCaveSpider extends RenderSpider<EntityCaveSpider>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityCaveSpider entitylivingbaseIn, float partialTickTime)
 	{
 		GlStateManager.scale(0.7F, 0.7F, 0.7F);
@@ -27,6 +28,7 @@ public class RenderCaveSpider extends RenderSpider<EntityCaveSpider>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityCaveSpider entity)
 	{
 		return CAVE_SPIDER_TEXTURES;

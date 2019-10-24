@@ -17,6 +17,7 @@ public class RenderWitherSkeleton extends RenderSkeleton
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(AbstractSkeleton entity)
 	{
 		return WITHER_SKELETON_TEXTURES;
@@ -26,6 +27,7 @@ public class RenderWitherSkeleton extends RenderSkeleton
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(AbstractSkeleton entitylivingbaseIn, float partialTickTime)
 	{
 		GlStateManager.scale(1.2F, 1.2F, 1.2F);

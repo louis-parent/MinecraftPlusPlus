@@ -7,11 +7,13 @@ public class ScoreCriteriaHealth extends ScoreCriteria
 		super(name);
 	}
 
+	@Override
 	public boolean isReadOnly()
 	{
 		return true;
 	}
 
+	@Override
 	public IScoreCriteria.EnumRenderType getRenderType()
 	{
 		return IScoreCriteria.EnumRenderType.HEARTS;

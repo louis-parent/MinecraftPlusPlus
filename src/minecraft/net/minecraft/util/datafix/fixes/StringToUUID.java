@@ -7,11 +7,13 @@ import net.minecraft.util.datafix.IFixableData;
 
 public class StringToUUID implements IFixableData
 {
+	@Override
 	public int getFixVersion()
 	{
 		return 108;
 	}
 
+	@Override
 	public NBTTagCompound fixTagCompound(NBTTagCompound compound)
 	{
 		if (compound.hasKey("UUID", 8))

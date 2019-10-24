@@ -19,6 +19,7 @@ public class LayerIronGolemFlower implements LayerRenderer<EntityIronGolem>
 		this.ironGolemRenderer = ironGolemRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntityIronGolem entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		if (entitylivingbaseIn.getHoldRoseTick() != 0)
@@ -34,7 +35,7 @@ public class LayerIronGolemFlower implements LayerRenderer<EntityIronGolem>
 			int i = entitylivingbaseIn.getBrightnessForRender();
 			int j = i % 65536;
 			int k = i / 65536;
-			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
+			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j, k);
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			this.ironGolemRenderer.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			blockrendererdispatcher.renderBlockBrightness(Blocks.RED_FLOWER.getDefaultState(), 1.0F);
@@ -43,6 +44,7 @@ public class LayerIronGolemFlower implements LayerRenderer<EntityIronGolem>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;

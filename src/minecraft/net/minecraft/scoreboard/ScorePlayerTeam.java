@@ -34,6 +34,7 @@ public class ScorePlayerTeam extends Team
 	/**
 	 * Retrieve the name by which this team is registered in the scoreboard
 	 */
+	@Override
 	public String getRegisteredName()
 	{
 		return this.registeredName;
@@ -57,6 +58,7 @@ public class ScorePlayerTeam extends Team
 		}
 	}
 
+	@Override
 	public Collection<String> getMembershipCollection()
 	{
 		return this.membershipSet;
@@ -97,6 +99,7 @@ public class ScorePlayerTeam extends Team
 		this.theScoreboard.broadcastTeamInfoUpdate(this);
 	}
 
+	@Override
 	public String formatString(String input)
 	{
 		return this.getColorPrefix() + input + this.getColorSuffix();
@@ -110,6 +113,7 @@ public class ScorePlayerTeam extends Team
 		return teamIn == null ? string : teamIn.formatString(string);
 	}
 
+	@Override
 	public boolean getAllowFriendlyFire()
 	{
 		return this.allowFriendlyFire;
@@ -121,6 +125,7 @@ public class ScorePlayerTeam extends Team
 		this.theScoreboard.broadcastTeamInfoUpdate(this);
 	}
 
+	@Override
 	public boolean getSeeFriendlyInvisiblesEnabled()
 	{
 		return this.canSeeFriendlyInvisibles;
@@ -132,11 +137,13 @@ public class ScorePlayerTeam extends Team
 		this.theScoreboard.broadcastTeamInfoUpdate(this);
 	}
 
+	@Override
 	public Team.EnumVisible getNameTagVisibility()
 	{
 		return this.nameTagVisibility;
 	}
 
+	@Override
 	public Team.EnumVisible getDeathMessageVisibility()
 	{
 		return this.deathMessageVisibility;
@@ -154,6 +161,7 @@ public class ScorePlayerTeam extends Team
 		this.theScoreboard.broadcastTeamInfoUpdate(this);
 	}
 
+	@Override
 	public Team.CollisionRule getCollisionRule()
 	{
 		return this.collisionRule;
@@ -193,6 +201,7 @@ public class ScorePlayerTeam extends Team
 		this.chatFormat = format;
 	}
 
+	@Override
 	public TextFormatting getChatFormat()
 	{
 		return this.chatFormat;

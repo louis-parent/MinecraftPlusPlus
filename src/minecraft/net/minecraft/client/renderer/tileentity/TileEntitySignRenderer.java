@@ -19,6 +19,7 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
 	/** The ModelSign instance for use in this renderer */
 	private final ModelSign model = new ModelSign();
 
+	@Override
 	public void func_192841_a(TileEntitySign p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
 	{
 		Block block = p_192841_1_.getBlockType();
@@ -28,7 +29,7 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
 		if (block == Blocks.STANDING_SIGN)
 		{
 			GlStateManager.translate((float) p_192841_2_ + 0.5F, (float) p_192841_4_ + 0.5F, (float) p_192841_6_ + 0.5F);
-			float f1 = (float) (p_192841_1_.getBlockMetadata() * 360) / 16.0F;
+			float f1 = p_192841_1_.getBlockMetadata() * 360 / 16.0F;
 			GlStateManager.rotate(-f1, 0.0F, 1.0F, 0.0F);
 			this.model.signStick.showModel = true;
 		}
@@ -93,7 +94,7 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
 				{
 					ITextComponent itextcomponent = p_192841_1_.signText[j];
 					List<ITextComponent> list = GuiUtilRenderComponents.splitText(itextcomponent, 90, fontrenderer, false, true);
-					String s = list != null && !list.isEmpty() ? ((ITextComponent) list.get(0)).getFormattedText() : "";
+					String s = list != null && !list.isEmpty() ? list.get(0).getFormattedText() : "";
 
 					if (j == p_192841_1_.lineBeingEdited)
 					{

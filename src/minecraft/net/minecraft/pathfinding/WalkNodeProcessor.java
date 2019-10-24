@@ -27,6 +27,7 @@ public class WalkNodeProcessor extends NodeProcessor
 {
 	protected float avoidsWater;
 
+	@Override
 	public void initProcessor(IBlockAccess sourceIn, EntityLiving mob)
 	{
 		super.initProcessor(sourceIn, mob);
@@ -40,12 +41,14 @@ public class WalkNodeProcessor extends NodeProcessor
 	 * {@link net.minecraft.world.pathfinder.WalkNodeProcessor#avoidsWater
 	 * avoidsWater}
 	 */
+	@Override
 	public void postProcess()
 	{
 		this.entity.setPathPriority(PathNodeType.WATER, this.avoidsWater);
 		super.postProcess();
 	}
 
+	@Override
 	public PathPoint getStart()
 	{
 		int i;
@@ -83,10 +86,10 @@ public class WalkNodeProcessor extends NodeProcessor
 		if (this.entity.getPathPriority(pathnodetype1) < 0.0F)
 		{
 			Set<BlockPos> set = Sets.<BlockPos>newHashSet();
-			set.add(new BlockPos(this.entity.getEntityBoundingBox().minX, (double) i, this.entity.getEntityBoundingBox().minZ));
-			set.add(new BlockPos(this.entity.getEntityBoundingBox().minX, (double) i, this.entity.getEntityBoundingBox().maxZ));
-			set.add(new BlockPos(this.entity.getEntityBoundingBox().maxX, (double) i, this.entity.getEntityBoundingBox().minZ));
-			set.add(new BlockPos(this.entity.getEntityBoundingBox().maxX, (double) i, this.entity.getEntityBoundingBox().maxZ));
+			set.add(new BlockPos(this.entity.getEntityBoundingBox().minX, i, this.entity.getEntityBoundingBox().minZ));
+			set.add(new BlockPos(this.entity.getEntityBoundingBox().minX, i, this.entity.getEntityBoundingBox().maxZ));
+			set.add(new BlockPos(this.entity.getEntityBoundingBox().maxX, i, this.entity.getEntityBoundingBox().minZ));
+			set.add(new BlockPos(this.entity.getEntityBoundingBox().maxX, i, this.entity.getEntityBoundingBox().maxZ));
 
 			for (BlockPos blockpos1 : set)
 			{
@@ -105,11 +108,13 @@ public class WalkNodeProcessor extends NodeProcessor
 	/**
 	 * Returns PathPoint for given coordinates
 	 */
+	@Override
 	public PathPoint getPathPointToCoords(double x, double y, double z)
 	{
 		return this.openPoint(MathHelper.floor(x), MathHelper.floor(y), MathHelper.floor(z));
 	}
 
+	@Override
 	public int findPathOptions(PathPoint[] pathOptions, PathPoint currentPoint, PathPoint targetPoint, float maxDistance)
 	{
 		int i = 0;
@@ -122,7 +127,7 @@ public class WalkNodeProcessor extends NodeProcessor
 		}
 
 		BlockPos blockpos = (new BlockPos(currentPoint.xCoord, currentPoint.yCoord, currentPoint.zCoord)).down();
-		double d0 = (double) currentPoint.yCoord - (1.0D - this.blockaccess.getBlockState(blockpos).getBoundingBox(this.blockaccess, blockpos).maxY);
+		double d0 = currentPoint.yCoord - (1.0D - this.blockaccess.getBlockState(blockpos).getBoundingBox(this.blockaccess, blockpos).maxY);
 		PathPoint pathpoint = this.getSafePoint(currentPoint.xCoord, currentPoint.yCoord, currentPoint.zCoord + 1, j, d0, EnumFacing.SOUTH);
 		PathPoint pathpoint1 = this.getSafePoint(currentPoint.xCoord - 1, currentPoint.yCoord, currentPoint.zCoord, j, d0, EnumFacing.WEST);
 		PathPoint pathpoint2 = this.getSafePoint(currentPoint.xCoord + 1, currentPoint.yCoord, currentPoint.zCoord, j, d0, EnumFacing.EAST);
@@ -206,7 +211,7 @@ public class WalkNodeProcessor extends NodeProcessor
 		PathPoint pathpoint = null;
 		BlockPos blockpos = new BlockPos(x, y, z);
 		BlockPos blockpos1 = blockpos.down();
-		double d0 = (double) y - (1.0D - this.blockaccess.getBlockState(blockpos1).getBoundingBox(this.blockaccess, blockpos1).maxY);
+		double d0 = y - (1.0D - this.blockaccess.getBlockState(blockpos1).getBoundingBox(this.blockaccess, blockpos1).maxY);
 
 		if (d0 - p_186332_5_ > 1.125D)
 		{
@@ -216,7 +221,7 @@ public class WalkNodeProcessor extends NodeProcessor
 		{
 			PathNodeType pathnodetype = this.getPathNodeType(this.entity, x, y, z);
 			float f = this.entity.getPathPriority(pathnodetype);
-			double d1 = (double) this.entity.width / 2.0D;
+			double d1 = this.entity.width / 2.0D;
 
 			if (f >= 0.0F)
 			{
@@ -237,9 +242,9 @@ public class WalkNodeProcessor extends NodeProcessor
 
 					if (pathpoint != null && (pathpoint.nodeType == PathNodeType.OPEN || pathpoint.nodeType == PathNodeType.WALKABLE) && this.entity.width < 1.0F)
 					{
-						double d2 = (double) (x - facing.getFrontOffsetX()) + 0.5D;
-						double d3 = (double) (z - facing.getFrontOffsetZ()) + 0.5D;
-						AxisAlignedBB axisalignedbb = new AxisAlignedBB(d2 - d1, (double) y + 0.001D, d3 - d1, d2 + d1, (double) ((float) y + this.entity.height), d3 + d1);
+						double d2 = x - facing.getFrontOffsetX() + 0.5D;
+						double d3 = z - facing.getFrontOffsetZ() + 0.5D;
+						AxisAlignedBB axisalignedbb = new AxisAlignedBB(d2 - d1, y + 0.001D, d3 - d1, d2 + d1, y + this.entity.height, d3 + d1);
 						AxisAlignedBB axisalignedbb1 = this.blockaccess.getBlockState(blockpos).getBoundingBox(this.blockaccess, blockpos);
 						AxisAlignedBB axisalignedbb2 = axisalignedbb.addCoord(0.0D, axisalignedbb1.maxY - 0.002D, 0.0D);
 
@@ -252,7 +257,7 @@ public class WalkNodeProcessor extends NodeProcessor
 
 				if (pathnodetype == PathNodeType.OPEN)
 				{
-					AxisAlignedBB axisalignedbb3 = new AxisAlignedBB((double) x - d1 + 0.5D, (double) y + 0.001D, (double) z - d1 + 0.5D, (double) x + d1 + 0.5D, (double) ((float) y + this.entity.height), (double) z + d1 + 0.5D);
+					AxisAlignedBB axisalignedbb3 = new AxisAlignedBB(x - d1 + 0.5D, y + 0.001D, z - d1 + 0.5D, x + d1 + 0.5D, y + this.entity.height, z + d1 + 0.5D);
 
 					if (this.entity.world.collidesWithAnyBlock(axisalignedbb3))
 					{
@@ -306,11 +311,12 @@ public class WalkNodeProcessor extends NodeProcessor
 		}
 	}
 
+	@Override
 	public PathNodeType getPathNodeType(IBlockAccess blockaccessIn, int x, int y, int z, EntityLiving entitylivingIn, int xSize, int ySize, int zSize, boolean canBreakDoorsIn, boolean canEnterDoorsIn)
 	{
 		EnumSet<PathNodeType> enumset = EnumSet.<PathNodeType>noneOf(PathNodeType.class);
 		PathNodeType pathnodetype = PathNodeType.BLOCKED;
-		double d0 = (double) entitylivingIn.width / 2.0D;
+		double d0 = entitylivingIn.width / 2.0D;
 		BlockPos blockpos = new BlockPos(entitylivingIn);
 		pathnodetype = this.func_193577_a(blockaccessIn, x, y, z, xSize, ySize, zSize, canBreakDoorsIn, canEnterDoorsIn, enumset, pathnodetype, blockpos);
 
@@ -397,6 +403,7 @@ public class WalkNodeProcessor extends NodeProcessor
 		return this.getPathNodeType(this.blockaccess, x, y, z, entitylivingIn, this.entitySizeX, this.entitySizeY, this.entitySizeZ, this.getCanBreakDoors(), this.getCanEnterDoors());
 	}
 
+	@Override
 	public PathNodeType getPathNodeType(IBlockAccess blockaccessIn, int x, int y, int z)
 	{
 		PathNodeType pathnodetype = this.getPathNodeTypeRaw(blockaccessIn, x, y, z);
@@ -474,15 +481,15 @@ public class WalkNodeProcessor extends NodeProcessor
 			{
 				return PathNodeType.DAMAGE_CACTUS;
 			}
-			else if (block instanceof BlockDoor && material == Material.WOOD && !((Boolean) iblockstate.getValue(BlockDoor.OPEN)).booleanValue())
+			else if (block instanceof BlockDoor && material == Material.WOOD && !iblockstate.getValue(BlockDoor.OPEN).booleanValue())
 			{
 				return PathNodeType.DOOR_WOOD_CLOSED;
 			}
-			else if (block instanceof BlockDoor && material == Material.IRON && !((Boolean) iblockstate.getValue(BlockDoor.OPEN)).booleanValue())
+			else if (block instanceof BlockDoor && material == Material.IRON && !iblockstate.getValue(BlockDoor.OPEN).booleanValue())
 			{
 				return PathNodeType.DOOR_IRON_CLOSED;
 			}
-			else if (block instanceof BlockDoor && ((Boolean) iblockstate.getValue(BlockDoor.OPEN)).booleanValue())
+			else if (block instanceof BlockDoor && iblockstate.getValue(BlockDoor.OPEN).booleanValue())
 			{
 				return PathNodeType.DOOR_OPEN;
 			}
@@ -490,7 +497,7 @@ public class WalkNodeProcessor extends NodeProcessor
 			{
 				return PathNodeType.RAIL;
 			}
-			else if (!(block instanceof BlockFence) && !(block instanceof BlockWall) && (!(block instanceof BlockFenceGate) || ((Boolean) iblockstate.getValue(BlockFenceGate.OPEN)).booleanValue()))
+			else if (!(block instanceof BlockFence) && !(block instanceof BlockWall) && (!(block instanceof BlockFenceGate) || iblockstate.getValue(BlockFenceGate.OPEN).booleanValue()))
 			{
 				if (material == Material.WATER)
 				{

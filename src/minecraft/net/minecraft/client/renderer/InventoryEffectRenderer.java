@@ -25,6 +25,7 @@ public abstract class InventoryEffectRenderer extends GuiContainer
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		super.initGui();
@@ -48,6 +49,7 @@ public abstract class InventoryEffectRenderer extends GuiContainer
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		super.drawScreen(mouseX, mouseY, partialTicks);
@@ -107,9 +109,9 @@ public abstract class InventoryEffectRenderer extends GuiContainer
 					s1 = s1 + " " + I18n.format("enchantment.level.4");
 				}
 
-				this.fontRendererObj.drawStringWithShadow(s1, (float) (i + 10 + 18), (float) (j + 6), 16777215);
+				this.fontRendererObj.drawStringWithShadow(s1, i + 10 + 18, j + 6, 16777215);
 				String s = Potion.getPotionDurationString(potioneffect, 1.0F);
-				this.fontRendererObj.drawStringWithShadow(s, (float) (i + 10 + 18), (float) (j + 6 + 10), 8355711);
+				this.fontRendererObj.drawStringWithShadow(s, i + 10 + 18, j + 6 + 10, 8355711);
 				j += l;
 			}
 		}

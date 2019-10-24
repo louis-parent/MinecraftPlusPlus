@@ -81,8 +81,8 @@ public class RandomPositionGenerator
 
 		if (p_191379_0_.hasHome())
 		{
-			double d0 = p_191379_0_.getHomePosition().distanceSq((double) MathHelper.floor(p_191379_0_.posX), (double) MathHelper.floor(p_191379_0_.posY), (double) MathHelper.floor(p_191379_0_.posZ)) + 4.0D;
-			double d1 = (double) (p_191379_0_.getMaximumHomeDistance() + (float) p_191379_1_);
+			double d0 = p_191379_0_.getHomePosition().distanceSq(MathHelper.floor(p_191379_0_.posX), MathHelper.floor(p_191379_0_.posY), MathHelper.floor(p_191379_0_.posZ)) + 4.0D;
+			double d1 = p_191379_0_.getMaximumHomeDistance() + p_191379_1_;
 			flag = d0 < d1 * d1;
 		}
 		else
@@ -102,13 +102,13 @@ public class RandomPositionGenerator
 			int i1 = random.nextInt(2 * p_191379_2_ + 1) - p_191379_2_;
 			int j1 = random.nextInt(2 * p_191379_1_ + 1) - p_191379_1_;
 
-			if (p_191379_3_ == null || (double) l * p_191379_3_.xCoord + (double) j1 * p_191379_3_.zCoord >= 0.0D)
+			if (p_191379_3_ == null || l * p_191379_3_.xCoord + j1 * p_191379_3_.zCoord >= 0.0D)
 			{
 				if (p_191379_0_.hasHome() && p_191379_1_ > 1)
 				{
 					BlockPos blockpos = p_191379_0_.getHomePosition();
 
-					if (p_191379_0_.posX > (double) blockpos.getX())
+					if (p_191379_0_.posX > blockpos.getX())
 					{
 						l -= random.nextInt(p_191379_1_ / 2);
 					}
@@ -117,7 +117,7 @@ public class RandomPositionGenerator
 						l += random.nextInt(p_191379_1_ / 2);
 					}
 
-					if (p_191379_0_.posZ > (double) blockpos.getZ())
+					if (p_191379_0_.posZ > blockpos.getZ())
 					{
 						j1 -= random.nextInt(p_191379_1_ / 2);
 					}
@@ -127,7 +127,7 @@ public class RandomPositionGenerator
 					}
 				}
 
-				BlockPos blockpos1 = new BlockPos((double) l + p_191379_0_.posX, (double) i1 + p_191379_0_.posY, (double) j1 + p_191379_0_.posZ);
+				BlockPos blockpos1 = new BlockPos(l + p_191379_0_.posX, i1 + p_191379_0_.posY, j1 + p_191379_0_.posZ);
 
 				if ((!flag || p_191379_0_.isWithinHomeDistanceFromPosition(blockpos1)) && pathnavigate.canEntityStandOnPos(blockpos1))
 				{
@@ -157,7 +157,7 @@ public class RandomPositionGenerator
 
 		if (flag1)
 		{
-			return new Vec3d((double) k1 + p_191379_0_.posX, (double) i + p_191379_0_.posY, (double) j + p_191379_0_.posZ);
+			return new Vec3d(k1 + p_191379_0_.posX, i + p_191379_0_.posY, j + p_191379_0_.posZ);
 		}
 		else
 		{

@@ -99,7 +99,7 @@ public class NetworkPlayerInfo
 	public ResourceLocation getLocationSkin()
 	{
 		this.loadPlayerTextures();
-		return (ResourceLocation) MoreObjects.firstNonNull(this.playerTextures.get(Type.SKIN), DefaultPlayerSkin.getDefaultSkin(this.gameProfile.getId()));
+		return MoreObjects.firstNonNull(this.playerTextures.get(Type.SKIN), DefaultPlayerSkin.getDefaultSkin(this.gameProfile.getId()));
 	}
 
 	@Nullable
@@ -135,6 +135,7 @@ public class NetworkPlayerInfo
 				this.playerTexturesLoaded = true;
 				Minecraft.getMinecraft().getSkinManager().loadProfileTextures(this.gameProfile, new SkinManager.SkinAvailableCallback()
 				{
+					@Override
 					public void skinAvailable(Type typeIn, ResourceLocation location, MinecraftProfileTexture profileTexture)
 					{
 						switch (typeIn)

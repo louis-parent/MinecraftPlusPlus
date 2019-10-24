@@ -33,6 +33,7 @@ public class RenderAbstractHorse extends RenderLiving<AbstractHorse>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(AbstractHorse entitylivingbaseIn, float partialTickTime)
 	{
 		GlStateManager.scale(this.field_191360_j, this.field_191360_j, this.field_191360_j);
@@ -43,6 +44,7 @@ public class RenderAbstractHorse extends RenderLiving<AbstractHorse>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(AbstractHorse entity)
 	{
 		return field_191359_a.get(entity.getClass());

@@ -79,6 +79,7 @@ public class WorldClient extends World
 	/**
 	 * Runs a single tick for the world
 	 */
+	@Override
 	public void tick()
 	{
 		super.tick();
@@ -122,12 +123,14 @@ public class WorldClient extends World
 	 * Creates the chunk provider for this world. Called in the constructor.
 	 * Retrieves provider from worldProvider?
 	 */
+	@Override
 	protected IChunkProvider createChunkProvider()
 	{
 		this.clientChunkProvider = new ChunkProviderClient(this);
 		return this.clientChunkProvider;
 	}
 
+	@Override
 	protected boolean isChunkLoaded(int x, int z, boolean allowEmpty)
 	{
 		return allowEmpty || !this.getChunkProvider().provideChunk(x, z).isEmpty();
@@ -152,6 +155,7 @@ public class WorldClient extends World
 		this.theProfiler.endSection();
 	}
 
+	@Override
 	protected void updateBlocks()
 	{
 		this.buildChunkCoordList();
@@ -207,6 +211,7 @@ public class WorldClient extends World
 	/**
 	 * Called when an entity is spawned in the world. This includes players.
 	 */
+	@Override
 	public boolean spawnEntityInWorld(Entity entityIn)
 	{
 		boolean flag = super.spawnEntityInWorld(entityIn);
@@ -231,12 +236,14 @@ public class WorldClient extends World
 	 * Schedule the entity for removal during the next tick. Marks the entity
 	 * dead in anticipation.
 	 */
+	@Override
 	public void removeEntity(Entity entityIn)
 	{
 		super.removeEntity(entityIn);
 		this.entityList.remove(entityIn);
 	}
 
+	@Override
 	protected void onEntityAdded(Entity entityIn)
 	{
 		super.onEntityAdded(entityIn);
@@ -247,6 +254,7 @@ public class WorldClient extends World
 		}
 	}
 
+	@Override
 	protected void onEntityRemoved(Entity entityIn)
 	{
 		super.onEntityRemoved(entityIn);
@@ -287,6 +295,7 @@ public class WorldClient extends World
 		this.entitiesById.addKey(entityID, entityToSpawn);
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -295,7 +304,7 @@ public class WorldClient extends World
 	 */
 	public Entity getEntityByID(int id)
 	{
-		return (Entity) (id == this.mc.player.getEntityId() ? this.mc.player : super.getEntityByID(id));
+		return id == this.mc.player.getEntityId() ? this.mc.player : super.getEntityByID(id);
 	}
 
 	public Entity removeEntityFromWorld(int entityID)
@@ -324,6 +333,7 @@ public class WorldClient extends World
 	/**
 	 * If on MP, sends a quitting packet.
 	 */
+	@Override
 	public void sendQuittingDisconnectingPacket()
 	{
 		this.connection.getNetworkManager().closeChannel(new TextComponentString("Quitting"));
@@ -332,10 +342,12 @@ public class WorldClient extends World
 	/**
 	 * Updates all weather states.
 	 */
+	@Override
 	protected void updateWeather()
 	{
 	}
 
+	@Override
 	protected void playMoodSoundAndCheckLight(int p_147467_1_, int p_147467_2_, Chunk chunkIn)
 	{
 		super.playMoodSoundAndCheckLight(p_147467_1_, p_147467_2_, chunkIn);
@@ -352,9 +364,9 @@ public class WorldClient extends World
 			j = j + p_147467_1_;
 			k = k + p_147467_2_;
 
-			if (iblockstate.getMaterial() == Material.AIR && this.getLight(blockpos) <= this.rand.nextInt(8) && this.getLightFor(EnumSkyBlock.SKY, blockpos) <= 0 && this.mc.player != null && this.mc.player.getDistanceSq((double) j + 0.5D, (double) l + 0.5D, (double) k + 0.5D) > 4.0D)
+			if (iblockstate.getMaterial() == Material.AIR && this.getLight(blockpos) <= this.rand.nextInt(8) && this.getLightFor(EnumSkyBlock.SKY, blockpos) <= 0 && this.mc.player != null && this.mc.player.getDistanceSq(j + 0.5D, l + 0.5D, k + 0.5D) > 4.0D)
 			{
-				this.playSound((double) j + 0.5D, (double) l + 0.5D, (double) k + 0.5D, SoundEvents.AMBIENT_CAVE, SoundCategory.AMBIENT, 0.7F, 0.8F + this.rand.nextFloat() * 0.2F, false);
+				this.playSound(j + 0.5D, l + 0.5D, k + 0.5D, SoundEvents.AMBIENT_CAVE, SoundCategory.AMBIENT, 0.7F, 0.8F + this.rand.nextFloat() * 0.2F, false);
 				this.ambienceTicks = this.rand.nextInt(12000) + 6000;
 			}
 		}
@@ -386,7 +398,7 @@ public class WorldClient extends World
 
 		if (p_184153_6_ && iblockstate.getBlock() == Blocks.BARRIER)
 		{
-			this.spawnParticle(EnumParticleTypes.BARRIER, (double) ((float) i + 0.5F), (double) ((float) j + 0.5F), (double) ((float) k + 0.5F), 0.0D, 0.0D, 0.0D, new int[0]);
+			this.spawnParticle(EnumParticleTypes.BARRIER, i + 0.5F, j + 0.5F, k + 0.5F, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 	}
 
@@ -450,11 +462,13 @@ public class WorldClient extends World
 	/**
 	 * Adds some basic stats of the world to the given crash report.
 	 */
+	@Override
 	public CrashReportCategory addWorldInfoToCrashReport(CrashReport report)
 	{
 		CrashReportCategory crashreportcategory = super.addWorldInfoToCrashReport(report);
 		crashreportcategory.setDetail("Forced entities", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call()
 			{
 				return WorldClient.this.entityList.size() + " total; " + WorldClient.this.entityList;
@@ -462,6 +476,7 @@ public class WorldClient extends World
 		});
 		crashreportcategory.setDetail("Retry entities", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call()
 			{
 				return WorldClient.this.entitySpawnQueue.size() + " total; " + WorldClient.this.entitySpawnQueue;
@@ -469,6 +484,7 @@ public class WorldClient extends World
 		});
 		crashreportcategory.setDetail("Server brand", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return WorldClient.this.mc.player.getServerBrand();
@@ -476,6 +492,7 @@ public class WorldClient extends World
 		});
 		crashreportcategory.setDetail("Server type", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return WorldClient.this.mc.getIntegratedServer() == null ? "Non-integrated multiplayer server" : "Integrated singleplayer server";
@@ -484,6 +501,7 @@ public class WorldClient extends World
 		return crashreportcategory;
 	}
 
+	@Override
 	public void playSound(@Nullable EntityPlayer player, double x, double y, double z, SoundEvent soundIn, SoundCategory category, float volume, float pitch)
 	{
 		if (player == this.mc.player)
@@ -494,9 +512,10 @@ public class WorldClient extends World
 
 	public void playSound(BlockPos pos, SoundEvent soundIn, SoundCategory category, float volume, float pitch, boolean distanceDelay)
 	{
-		this.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, soundIn, category, volume, pitch, distanceDelay);
+		this.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, soundIn, category, volume, pitch, distanceDelay);
 	}
 
+	@Override
 	public void playSound(double x, double y, double z, SoundEvent soundIn, SoundCategory category, float volume, float pitch, boolean distanceDelay)
 	{
 		double d0 = this.mc.getRenderViewEntity().getDistanceSq(x, y, z);
@@ -513,11 +532,13 @@ public class WorldClient extends World
 		}
 	}
 
+	@Override
 	public void makeFireworks(double x, double y, double z, double motionX, double motionY, double motionZ, @Nullable NBTTagCompound compund)
 	{
 		this.mc.effectRenderer.addEffect(new ParticleFirework.Starter(this, x, y, z, motionX, motionY, motionZ, this.mc.effectRenderer, compund));
 	}
 
+	@Override
 	public void sendPacketToServer(Packet<?> packetIn)
 	{
 		this.connection.sendPacket(packetIn);
@@ -531,6 +552,7 @@ public class WorldClient extends World
 	/**
 	 * Sets the world time.
 	 */
+	@Override
 	public void setWorldTime(long time)
 	{
 		if (time < 0L)
@@ -549,6 +571,7 @@ public class WorldClient extends World
 	/**
 	 * gets the world's chunk provider
 	 */
+	@Override
 	public ChunkProviderClient getChunkProvider()
 	{
 		return (ChunkProviderClient) super.getChunkProvider();

@@ -37,7 +37,7 @@ public class GuiBossOverlay extends Gui
 				this.client.getTextureManager().bindTexture(GUI_BARS_TEXTURES);
 				this.render(k, j, bossinfoclient);
 				String s = bossinfoclient.getName().getFormattedText();
-				this.client.fontRendererObj.drawStringWithShadow(s, (float) (i / 2 - this.client.fontRendererObj.getStringWidth(s) / 2), (float) (j - 9), 16777215);
+				this.client.fontRendererObj.drawStringWithShadow(s, i / 2 - this.client.fontRendererObj.getStringWidth(s) / 2, j - 9, 16777215);
 				j += 10 + this.client.fontRendererObj.FONT_HEIGHT;
 
 				if (j >= scaledresolution.getScaledHeight() / 3)
@@ -82,7 +82,7 @@ public class GuiBossOverlay extends Gui
 		}
 		else
 		{
-			((BossInfoClient) this.mapBossInfos.get(packetIn.getUniqueId())).updateFromPacket(packetIn);
+			this.mapBossInfos.get(packetIn.getUniqueId()).updateFromPacket(packetIn);
 		}
 	}
 

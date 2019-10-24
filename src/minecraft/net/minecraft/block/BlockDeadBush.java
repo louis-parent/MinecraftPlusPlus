@@ -28,6 +28,7 @@ public class BlockDeadBush extends BlockBush
 		super(Material.VINE);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return DEAD_BUSH_AABB;
@@ -36,6 +37,7 @@ public class BlockDeadBush extends BlockBush
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
 		return MapColor.WOOD;
@@ -44,6 +46,7 @@ public class BlockDeadBush extends BlockBush
 	/**
 	 * Return true if the block can sustain a Bush
 	 */
+	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
 		return state.getBlock() == Blocks.SAND || state.getBlock() == Blocks.HARDENED_CLAY || state.getBlock() == Blocks.STAINED_HARDENED_CLAY || state.getBlock() == Blocks.DIRT;
@@ -53,6 +56,7 @@ public class BlockDeadBush extends BlockBush
 	 * Whether this Block can be replaced directly by other blocks (true for
 	 * e.g. tall grass)
 	 */
+	@Override
 	public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos)
 	{
 		return true;
@@ -61,6 +65,7 @@ public class BlockDeadBush extends BlockBush
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
+	@Override
 	public int quantityDropped(Random random)
 	{
 		return random.nextInt(3);
@@ -69,11 +74,13 @@ public class BlockDeadBush extends BlockBush
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.STICK;
 	}
 
+	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
 		if (!worldIn.isRemote && stack.getItem() == Items.SHEARS)

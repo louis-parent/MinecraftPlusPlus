@@ -41,6 +41,7 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.field_191947_i.clear();
@@ -49,7 +50,7 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 
 		if (this.field_191940_s == null && !this.field_191947_i.isEmpty())
 		{
-			this.field_191946_h.func_194230_a(((GuiAdvancementTab) this.field_191947_i.values().iterator().next()).func_193935_c(), true);
+			this.field_191946_h.func_194230_a(this.field_191947_i.values().iterator().next().func_193935_c(), true);
 		}
 		else
 		{
@@ -61,6 +62,7 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		this.field_191946_h.func_192798_a((ClientAdvancementManager.IListener) null);
@@ -75,6 +77,7 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		if (mouseButton == 0)
@@ -100,6 +103,7 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (keyCode == this.mc.gameSettings.field_194146_ao.getKeyCode())
@@ -116,6 +120,7 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		int i = (this.width - 252) / 2;
@@ -161,7 +166,7 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 		else
 		{
 			GlStateManager.pushMatrix();
-			GlStateManager.translate((float) (p_191936_3_ + 9), (float) (p_191936_4_ + 18), -400.0F);
+			GlStateManager.translate(p_191936_3_ + 9, p_191936_4_ + 18, -400.0F);
 			GlStateManager.enableDepth();
 			guiadvancementtab.func_191799_a();
 			GlStateManager.popMatrix();
@@ -210,7 +215,7 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 		{
 			GlStateManager.pushMatrix();
 			GlStateManager.enableDepth();
-			GlStateManager.translate((float) (p_191937_3_ + 9), (float) (p_191937_4_ + 18), 400.0F);
+			GlStateManager.translate(p_191937_3_ + 9, p_191937_4_ + 18, 400.0F);
 			this.field_191940_s.func_192991_a(p_191937_1_ - p_191937_3_ - 9, p_191937_2_ - p_191937_4_ - 18, p_191937_3_, p_191937_4_);
 			GlStateManager.disableDepth();
 			GlStateManager.popMatrix();
@@ -228,6 +233,7 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 		}
 	}
 
+	@Override
 	public void func_191931_a(Advancement p_191931_1_)
 	{
 		GuiAdvancementTab guiadvancementtab = GuiAdvancementTab.func_193936_a(this.mc, this, this.field_191947_i.size(), p_191931_1_);
@@ -238,10 +244,12 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 		}
 	}
 
+	@Override
 	public void func_191928_b(Advancement p_191928_1_)
 	{
 	}
 
+	@Override
 	public void func_191932_c(Advancement p_191932_1_)
 	{
 		GuiAdvancementTab guiadvancementtab = this.func_191935_f(p_191932_1_);
@@ -252,10 +260,12 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 		}
 	}
 
+	@Override
 	public void func_191929_d(Advancement p_191929_1_)
 	{
 	}
 
+	@Override
 	public void func_191933_a(Advancement p_191933_1_, AdvancementProgress p_191933_2_)
 	{
 		GuiAdvancement guiadvancement = this.func_191938_e(p_191933_1_);
@@ -266,11 +276,13 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
 		}
 	}
 
+	@Override
 	public void func_193982_e(@Nullable Advancement p_193982_1_)
 	{
 		this.field_191940_s = this.field_191947_i.get(p_193982_1_);
 	}
 
+	@Override
 	public void func_191930_a()
 	{
 		this.field_191947_i.clear();

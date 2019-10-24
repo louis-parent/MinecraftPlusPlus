@@ -48,11 +48,13 @@ public class BlockFlowerPot extends BlockContainer
 	/**
 	 * Gets the localized name of this block. Used for the statistics page.
 	 */
+	@Override
 	public String getLocalizedName()
 	{
 		return I18n.translateToLocal("item.flowerPot.name");
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return FLOWER_POT_AABB;
@@ -62,6 +64,7 @@ public class BlockFlowerPot extends BlockContainer
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
@@ -72,16 +75,19 @@ public class BlockFlowerPot extends BlockContainer
 	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
 	 * INVISIBLE to skip all rendering
 	 */
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.MODEL;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		ItemStack itemstack = playerIn.getHeldItem(hand);
@@ -145,6 +151,7 @@ public class BlockFlowerPot extends BlockContainer
 		}
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		TileEntityFlowerPot tileentityflowerpot = this.getTileEntity(worldIn, pos);
@@ -162,6 +169,7 @@ public class BlockFlowerPot extends BlockContainer
 		return new ItemStack(Items.FLOWER_POT);
 	}
 
+	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
 		return super.canPlaceBlockAt(worldIn, pos) && worldIn.getBlockState(pos.down()).isFullyOpaque();
@@ -173,6 +181,7 @@ public class BlockFlowerPot extends BlockContainer
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!worldIn.getBlockState(pos.down()).isFullyOpaque())
@@ -186,6 +195,7 @@ public class BlockFlowerPot extends BlockContainer
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		TileEntityFlowerPot tileentityflowerpot = this.getTileEntity(worldIn, pos);
@@ -198,6 +208,7 @@ public class BlockFlowerPot extends BlockContainer
 		super.breakBlock(worldIn, pos, state);
 	}
 
+	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
 		super.onBlockHarvested(worldIn, pos, state, player);
@@ -216,6 +227,7 @@ public class BlockFlowerPot extends BlockContainer
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Items.FLOWER_POT;
@@ -232,6 +244,7 @@ public class BlockFlowerPot extends BlockContainer
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
+	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		Block block = null;
@@ -302,6 +315,7 @@ public class BlockFlowerPot extends BlockContainer
 		return new TileEntityFlowerPot(Item.getItemFromBlock(block), i);
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { CONTENTS, LEGACY_DATA });
@@ -310,9 +324,10 @@ public class BlockFlowerPot extends BlockContainer
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(LEGACY_DATA)).intValue();
+		return state.getValue(LEGACY_DATA).intValue();
 	}
 
 	/**
@@ -320,6 +335,7 @@ public class BlockFlowerPot extends BlockContainer
 	 * applies properties not visible in the metadata, such as fence
 	 * connections.
 	 */
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		BlockFlowerPot.EnumFlowerType blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.EMPTY;
@@ -453,11 +469,13 @@ public class BlockFlowerPot extends BlockContainer
 		return state.withProperty(CONTENTS, blockflowerpot$enumflowertype);
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;
@@ -474,11 +492,13 @@ public class BlockFlowerPot extends BlockContainer
 			this.name = name;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

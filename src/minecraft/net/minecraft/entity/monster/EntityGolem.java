@@ -15,22 +15,26 @@ public abstract class EntityGolem extends EntityCreature implements IAnimals
 		super(worldIn);
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getAmbientSound()
 	{
 		return null;
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return null;
 	}
 
+	@Override
 	@Nullable
 	protected SoundEvent getDeathSound()
 	{
@@ -41,6 +45,7 @@ public abstract class EntityGolem extends EntityCreature implements IAnimals
 	 * Get number of ticks, at least during which the living entity will be
 	 * silent.
 	 */
+	@Override
 	public int getTalkInterval()
 	{
 		return 120;
@@ -49,6 +54,7 @@ public abstract class EntityGolem extends EntityCreature implements IAnimals
 	/**
 	 * Determines if an entity can be despawned, used on idle far away entities
 	 */
+	@Override
 	protected boolean canDespawn()
 	{
 		return false;

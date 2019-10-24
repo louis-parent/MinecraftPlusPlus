@@ -33,6 +33,7 @@ public class TileEntitySign extends TileEntity
 	private EntityPlayer player;
 	private final CommandResultStats stats = new CommandResultStats();
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -47,42 +48,50 @@ public class TileEntitySign extends TileEntity
 		return compound;
 	}
 
+	@Override
 	protected void setWorldCreate(World worldIn)
 	{
 		this.setWorldObj(worldIn);
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		this.isEditable = false;
 		super.readFromNBT(compound);
 		ICommandSender icommandsender = new ICommandSender()
 		{
+			@Override
 			public String getName()
 			{
 				return "Sign";
 			}
 
+			@Override
 			public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 			{
 				return true;
 			}
 
+			@Override
 			public BlockPos getPosition()
 			{
 				return TileEntitySign.this.pos;
 			}
 
+			@Override
 			public Vec3d getPositionVector()
 			{
-				return new Vec3d((double) TileEntitySign.this.pos.getX() + 0.5D, (double) TileEntitySign.this.pos.getY() + 0.5D, (double) TileEntitySign.this.pos.getZ() + 0.5D);
+				return new Vec3d(TileEntitySign.this.pos.getX() + 0.5D, TileEntitySign.this.pos.getY() + 0.5D, TileEntitySign.this.pos.getZ() + 0.5D);
 			}
 
+			@Override
 			public World getEntityWorld()
 			{
 				return TileEntitySign.this.world;
 			}
 
+			@Override
 			public MinecraftServer getServer()
 			{
 				return TileEntitySign.this.world.getMinecraftServer();
@@ -107,17 +116,20 @@ public class TileEntitySign extends TileEntity
 		this.stats.readStatsFromNBT(compound);
 	}
 
+	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		return new SPacketUpdateTileEntity(this.pos, 9, this.getUpdateTag());
 	}
 
+	@Override
 	public NBTTagCompound getUpdateTag()
 	{
 		return this.writeToNBT(new NBTTagCompound());
 	}
 
+	@Override
 	public boolean onlyOpsCanSetNbt()
 	{
 		return true;
@@ -155,50 +167,60 @@ public class TileEntitySign extends TileEntity
 	{
 		ICommandSender icommandsender = new ICommandSender()
 		{
+			@Override
 			public String getName()
 			{
 				return playerIn.getName();
 			}
 
+			@Override
 			public ITextComponent getDisplayName()
 			{
 				return playerIn.getDisplayName();
 			}
 
+			@Override
 			public void addChatMessage(ITextComponent component)
 			{
 			}
 
+			@Override
 			public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 			{
 				return permLevel <= 2;
 			}
 
+			@Override
 			public BlockPos getPosition()
 			{
 				return TileEntitySign.this.pos;
 			}
 
+			@Override
 			public Vec3d getPositionVector()
 			{
-				return new Vec3d((double) TileEntitySign.this.pos.getX() + 0.5D, (double) TileEntitySign.this.pos.getY() + 0.5D, (double) TileEntitySign.this.pos.getZ() + 0.5D);
+				return new Vec3d(TileEntitySign.this.pos.getX() + 0.5D, TileEntitySign.this.pos.getY() + 0.5D, TileEntitySign.this.pos.getZ() + 0.5D);
 			}
 
+			@Override
 			public World getEntityWorld()
 			{
 				return playerIn.getEntityWorld();
 			}
 
+			@Override
 			public Entity getCommandSenderEntity()
 			{
 				return playerIn;
 			}
 
+			@Override
 			public boolean sendCommandFeedback()
 			{
 				return false;
 			}
 
+			@Override
 			public void setCommandStat(CommandResultStats.Type type, int amount)
 			{
 				if (TileEntitySign.this.world != null && !TileEntitySign.this.world.isRemote)
@@ -207,6 +229,7 @@ public class TileEntitySign extends TileEntity
 				}
 			}
 
+			@Override
 			public MinecraftServer getServer()
 			{
 				return playerIn.getServer();

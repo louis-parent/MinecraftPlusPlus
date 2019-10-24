@@ -40,11 +40,12 @@ public class ItemRecord extends Item
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
 
-		if (iblockstate.getBlock() == Blocks.JUKEBOX && !((Boolean) iblockstate.getValue(BlockJukebox.HAS_RECORD)).booleanValue())
+		if (iblockstate.getBlock() == Blocks.JUKEBOX && !iblockstate.getValue(BlockJukebox.HAS_RECORD).booleanValue())
 		{
 			if (!playerIn.isRemote)
 			{
@@ -67,6 +68,7 @@ public class ItemRecord extends Item
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		tooltip.add(this.getRecordNameLocal());
@@ -80,6 +82,7 @@ public class ItemRecord extends Item
 	/**
 	 * Return an item rarity from EnumRarity
 	 */
+	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
 		return EnumRarity.RARE;

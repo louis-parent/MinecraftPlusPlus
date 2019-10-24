@@ -34,7 +34,7 @@ public class PngSizeInfo
 		{
 			this.pngWidth = datainputstream.readInt();
 			this.pngHeight = datainputstream.readInt();
-			IOUtils.closeQuietly((InputStream) datainputstream);
+			IOUtils.closeQuietly(datainputstream);
 		}
 	}
 
@@ -48,7 +48,7 @@ public class PngSizeInfo
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Closeable) resource);
+			IOUtils.closeQuietly(resource);
 		}
 
 		return pngsizeinfo;

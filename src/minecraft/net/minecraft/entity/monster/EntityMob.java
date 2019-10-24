@@ -27,6 +27,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
 		this.experienceValue = 5;
 	}
 
+	@Override
 	public SoundCategory getSoundCategory()
 	{
 		return SoundCategory.HOSTILE;
@@ -37,6 +38,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		this.updateArmSwingProgress();
@@ -53,6 +55,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -63,11 +66,13 @@ public abstract class EntityMob extends EntityCreature implements IMob
 		}
 	}
 
+	@Override
 	protected SoundEvent getSwimSound()
 	{
 		return SoundEvents.ENTITY_HOSTILE_SWIM;
 	}
 
+	@Override
 	protected SoundEvent getSplashSound()
 	{
 		return SoundEvents.ENTITY_HOSTILE_SPLASH;
@@ -76,26 +81,31 @@ public abstract class EntityMob extends EntityCreature implements IMob
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		return this.isEntityInvulnerable(source) ? false : super.attackEntityFrom(source, amount);
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_HOSTILE_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_HOSTILE_DEATH;
 	}
 
+	@Override
 	protected SoundEvent getFallSound(int heightIn)
 	{
 		return heightIn > 4 ? SoundEvents.ENTITY_HOSTILE_BIG_FALL : SoundEvents.ENTITY_HOSTILE_SMALL_FALL;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
 		float f = (float) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
@@ -113,7 +123,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
 		{
 			if (i > 0 && entityIn instanceof EntityLivingBase)
 			{
-				((EntityLivingBase) entityIn).knockBack(this, (float) i * 0.5F, (double) MathHelper.sin(this.rotationYaw * 0.017453292F), (double) (-MathHelper.cos(this.rotationYaw * 0.017453292F)));
+				((EntityLivingBase) entityIn).knockBack(this, i * 0.5F, MathHelper.sin(this.rotationYaw * 0.017453292F), (-MathHelper.cos(this.rotationYaw * 0.017453292F)));
 				this.motionX *= 0.6D;
 				this.motionZ *= 0.6D;
 			}
@@ -133,7 +143,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
 
 				if (!itemstack.isNotValid() && !itemstack1.isNotValid() && itemstack.getItem() instanceof ItemAxe && itemstack1.getItem() == Items.SHIELD)
 				{
-					float f1 = 0.25F + (float) EnchantmentHelper.getEfficiencyModifier(this) * 0.05F;
+					float f1 = 0.25F + EnchantmentHelper.getEfficiencyModifier(this) * 0.05F;
 
 					if (this.rand.nextFloat() < f1)
 					{
@@ -149,6 +159,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
 		return flag;
 	}
 
+	@Override
 	public float getBlockPathWeight(BlockPos pos)
 	{
 		return 0.5F - this.world.getLightBrightness(pos);
@@ -185,11 +196,13 @@ public abstract class EntityMob extends EntityCreature implements IMob
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere();
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -199,6 +212,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
 	/**
 	 * Entity won't drop items or experience points if this returns false
 	 */
+	@Override
 	protected boolean canDropLoot()
 	{
 		return true;

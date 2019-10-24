@@ -64,6 +64,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
 		}
 	}
 
+	@Override
 	public SoundCategory getSoundCategory()
 	{
 		return SoundCategory.WEATHER;
@@ -72,6 +73,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -128,6 +130,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
 		}
 	}
 
+	@Override
 	protected void entityInit()
 	{
 	}
@@ -135,6 +138,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 	}
@@ -142,6 +146,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 	}

@@ -25,6 +25,7 @@ public class ItemFishingRod extends Item
 		this.setCreativeTab(CreativeTabs.TOOLS);
 		this.addPropertyOverride(new ResourceLocation("cast"), new IItemPropertyGetter()
 		{
+			@Override
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
 			{
 				if (entityIn == null)
@@ -50,6 +51,7 @@ public class ItemFishingRod extends Item
 	/**
 	 * Returns True is the item is renderer in full 3D when hold.
 	 */
+	@Override
 	public boolean isFull3D()
 	{
 		return true;
@@ -59,11 +61,13 @@ public class ItemFishingRod extends Item
 	 * Returns true if this item should be rotated by 180 degrees around the Y
 	 * axis when being held in an entities hands.
 	 */
+	@Override
 	public boolean shouldRotateAroundWhenRendering()
 	{
 		return true;
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);
@@ -110,6 +114,7 @@ public class ItemFishingRod extends Item
 	 * Return the enchantability factor of the item, most of the time is based
 	 * on material.
 	 */
+	@Override
 	public int getItemEnchantability()
 	{
 		return 1;

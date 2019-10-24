@@ -42,11 +42,13 @@ public class AnvilSaveConverter extends SaveFormatOld
 	/**
 	 * Returns the name of the save format.
 	 */
+	@Override
 	public String getName()
 	{
 		return "Anvil";
 	}
 
+	@Override
 	public List<WorldSummary> getSaveList() throws AnvilConverterException
 	{
 		if (this.savesDirectory != null && this.savesDirectory.exists() && this.savesDirectory.isDirectory())
@@ -90,6 +92,7 @@ public class AnvilSaveConverter extends SaveFormatOld
 		return 19133;
 	}
 
+	@Override
 	public void flushCache()
 	{
 		RegionFileCache.clearRegionFileReferences();
@@ -98,11 +101,13 @@ public class AnvilSaveConverter extends SaveFormatOld
 	/**
 	 * Returns back a loader for the specified save directory
 	 */
+	@Override
 	public ISaveHandler getSaveLoader(String saveName, boolean storePlayerdata)
 	{
 		return new AnvilSaveHandler(this.savesDirectory, saveName, storePlayerdata, this.dataFixer);
 	}
 
+	@Override
 	public boolean isConvertible(String saveName)
 	{
 		WorldInfo worldinfo = this.getWorldInfo(saveName);
@@ -112,6 +117,7 @@ public class AnvilSaveConverter extends SaveFormatOld
 	/**
 	 * gets if the map is old chunk saving (true) or McRegion (false)
 	 */
+	@Override
 	public boolean isOldMapFormat(String saveName)
 	{
 		WorldInfo worldinfo = this.getWorldInfo(saveName);
@@ -121,6 +127,7 @@ public class AnvilSaveConverter extends SaveFormatOld
 	/**
 	 * converts the map to mcRegion
 	 */
+	@Override
 	public boolean convertMapFormat(String filename, IProgressUpdate progressCallback)
 	{
 		progressCallback.setLoadingProgress(0);
@@ -144,7 +151,7 @@ public class AnvilSaveConverter extends SaveFormatOld
 		}
 
 		int i = list.size() + list1.size() + list2.size();
-		LOGGER.info("Total conversion count is {}", (int) i);
+		LOGGER.info("Total conversion count is {}", i);
 		WorldInfo worldinfo = this.getWorldInfo(filename);
 		BiomeProvider biomeprovider;
 
@@ -210,7 +217,7 @@ public class AnvilSaveConverter extends SaveFormatOld
 		{
 			this.convertChunks(baseFolder, file1, p_75813_3_, p_75813_4_, p_75813_5_, progress);
 			++p_75813_4_;
-			int i = (int) Math.round(100.0D * (double) p_75813_4_ / (double) p_75813_5_);
+			int i = (int) Math.round(100.0D * p_75813_4_ / p_75813_5_);
 			progress.setLoadingProgress(i);
 		}
 	}
@@ -256,8 +263,8 @@ public class AnvilSaveConverter extends SaveFormatOld
 					}
 				}
 
-				int k = (int) Math.round(100.0D * (double) (p_75811_4_ * 1024) / (double) (p_75811_5_ * 1024));
-				int l = (int) Math.round(100.0D * (double) ((i + 1) * 32 + p_75811_4_ * 1024) / (double) (p_75811_5_ * 1024));
+				int k = (int) Math.round(100.0D * (p_75811_4_ * 1024) / (p_75811_5_ * 1024));
+				int l = (int) Math.round(100.0D * ((i + 1) * 32 + p_75811_4_ * 1024) / (p_75811_5_ * 1024));
 
 				if (l > k)
 				{
@@ -283,6 +290,7 @@ public class AnvilSaveConverter extends SaveFormatOld
 		File file1 = new File(worldDir, "region");
 		File[] afile = file1.listFiles(new FilenameFilter()
 		{
+			@Override
 			public boolean accept(File p_accept_1_, String p_accept_2_)
 			{
 				return p_accept_2_.endsWith(".mcr");

@@ -25,6 +25,7 @@ public class LayerElytra implements LayerRenderer<EntityLivingBase>
 		this.renderPlayer = p_i47185_1_;
 	}
 
+	@Override
 	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		ItemStack itemstack = entitylivingbaseIn.getItemStackFromSlot(EntityArmorSlot.CHEST);
@@ -72,6 +73,7 @@ public class LayerElytra implements LayerRenderer<EntityLivingBase>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;

@@ -298,7 +298,7 @@ public abstract class PathNavigate
 
 		for (int j = this.currentPath.getCurrentPathIndex(); j < this.currentPath.getCurrentPathLength(); ++j)
 		{
-			if ((double) this.currentPath.getPathPointFromIndex(j).yCoord != Math.floor(vec3d.yCoord))
+			if (this.currentPath.getPathPointFromIndex(j).yCoord != Math.floor(vec3d.yCoord))
 			{
 				i = j;
 				break;
@@ -358,10 +358,10 @@ public abstract class PathNavigate
 			{
 				this.timeoutCachedNode = vec3d;
 				double d0 = positionVec3.distanceTo(this.timeoutCachedNode);
-				this.timeoutLimit = this.theEntity.getAIMoveSpeed() > 0.0F ? d0 / (double) this.theEntity.getAIMoveSpeed() * 1000.0D : 0.0D;
+				this.timeoutLimit = this.theEntity.getAIMoveSpeed() > 0.0F ? d0 / this.theEntity.getAIMoveSpeed() * 1000.0D : 0.0D;
 			}
 
-			if (this.timeoutLimit > 0.0D && (double) this.timeoutTimer > this.timeoutLimit * 3.0D)
+			if (this.timeoutLimit > 0.0D && this.timeoutTimer > this.timeoutLimit * 3.0D)
 			{
 				this.timeoutCachedNode = Vec3d.ZERO;
 				this.timeoutTimer = 0L;

@@ -66,6 +66,7 @@ public class EntityCreeper extends EntityMob
 		this.setSize(0.6F, 1.7F);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(1, new EntityAISwimming(this));
@@ -79,6 +80,7 @@ public class EntityCreeper extends EntityMob
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false, new Class[0]));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -89,15 +91,17 @@ public class EntityCreeper extends EntityMob
 	 * The maximum height from where the entity is alowed to jump (used in
 	 * pathfinder)
 	 */
+	@Override
 	public int getMaxFallHeight()
 	{
 		return this.getAttackTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 		super.fall(distance, damageMultiplier);
-		this.timeSinceIgnited = (int) ((float) this.timeSinceIgnited + distance * 1.5F);
+		this.timeSinceIgnited = (int) (this.timeSinceIgnited + distance * 1.5F);
 
 		if (this.timeSinceIgnited > this.fuseTime - 5)
 		{
@@ -105,6 +109,7 @@ public class EntityCreeper extends EntityMob
 		}
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -121,11 +126,12 @@ public class EntityCreeper extends EntityMob
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
 
-		if (((Boolean) this.dataManager.get(POWERED)).booleanValue())
+		if (this.dataManager.get(POWERED).booleanValue())
 		{
 			compound.setBoolean("powered", true);
 		}
@@ -138,6 +144,7 @@ public class EntityCreeper extends EntityMob
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -162,6 +169,7 @@ public class EntityCreeper extends EntityMob
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		if (this.isEntityAlive())
@@ -197,11 +205,13 @@ public class EntityCreeper extends EntityMob
 		super.onUpdate();
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_CREEPER_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_CREEPER_DEATH;
@@ -210,6 +220,7 @@ public class EntityCreeper extends EntityMob
 	/**
 	 * Called when the mob's health reaches 0.
 	 */
+	@Override
 	public void onDeath(DamageSource cause)
 	{
 		super.onDeath(cause);
@@ -231,6 +242,7 @@ public class EntityCreeper extends EntityMob
 		}
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
 		return true;
@@ -241,7 +253,7 @@ public class EntityCreeper extends EntityMob
 	 */
 	public boolean getPowered()
 	{
-		return ((Boolean) this.dataManager.get(POWERED)).booleanValue();
+		return this.dataManager.get(POWERED).booleanValue();
 	}
 
 	/**
@@ -250,9 +262,10 @@ public class EntityCreeper extends EntityMob
 	 */
 	public float getCreeperFlashIntensity(float p_70831_1_)
 	{
-		return ((float) this.lastActiveTime + (float) (this.timeSinceIgnited - this.lastActiveTime) * p_70831_1_) / (float) (this.fuseTime - 2);
+		return (this.lastActiveTime + (this.timeSinceIgnited - this.lastActiveTime) * p_70831_1_) / (this.fuseTime - 2);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -264,7 +277,7 @@ public class EntityCreeper extends EntityMob
 	 */
 	public int getCreeperState()
 	{
-		return ((Integer) this.dataManager.get(STATE)).intValue();
+		return this.dataManager.get(STATE).intValue();
 	}
 
 	/**
@@ -278,12 +291,14 @@ public class EntityCreeper extends EntityMob
 	/**
 	 * Called when a lightning bolt hits the entity.
 	 */
+	@Override
 	public void onStruckByLightning(EntityLightningBolt lightningBolt)
 	{
 		super.onStruckByLightning(lightningBolt);
 		this.dataManager.set(POWERED, Boolean.valueOf(true));
 	}
 
+	@Override
 	protected boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -315,7 +330,7 @@ public class EntityCreeper extends EntityMob
 			boolean flag = this.world.getGameRules().getBoolean("mobGriefing");
 			float f = this.getPowered() ? 2.0F : 1.0F;
 			this.dead = true;
-			this.world.createExplosion(this, this.posX, this.posY, this.posZ, (float) this.explosionRadius * f, flag);
+			this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius * f, flag);
 			this.setDead();
 			this.func_190741_do();
 		}
@@ -332,7 +347,7 @@ public class EntityCreeper extends EntityMob
 			entityareaeffectcloud.setRadiusOnUse(-0.5F);
 			entityareaeffectcloud.setWaitTime(10);
 			entityareaeffectcloud.setDuration(entityareaeffectcloud.getDuration() / 2);
-			entityareaeffectcloud.setRadiusPerTick(-entityareaeffectcloud.getRadius() / (float) entityareaeffectcloud.getDuration());
+			entityareaeffectcloud.setRadiusPerTick(-entityareaeffectcloud.getRadius() / entityareaeffectcloud.getDuration());
 
 			for (PotionEffect potioneffect : collection)
 			{
@@ -345,7 +360,7 @@ public class EntityCreeper extends EntityMob
 
 	public boolean hasIgnited()
 	{
-		return ((Boolean) this.dataManager.get(IGNITED)).booleanValue();
+		return this.dataManager.get(IGNITED).booleanValue();
 	}
 
 	public void ignite()

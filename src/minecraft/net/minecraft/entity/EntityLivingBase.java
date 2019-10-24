@@ -251,6 +251,7 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * Called by the /kill command.
 	 */
+	@Override
 	public void onKillCommand()
 	{
 		this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
@@ -270,6 +271,7 @@ public abstract class EntityLivingBase extends Entity
 		this.stepHeight = 0.6F;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		this.dataManager.register(HAND_STATES, Byte.valueOf((byte) 0));
@@ -288,6 +290,7 @@ public abstract class EntityLivingBase extends Entity
 		this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS);
 	}
 
+	@Override
 	protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
 	{
 		if (!this.isInWater())
@@ -297,11 +300,11 @@ public abstract class EntityLivingBase extends Entity
 
 		if (!this.world.isRemote && this.fallDistance > 3.0F && onGroundIn)
 		{
-			float f = (float) MathHelper.ceil(this.fallDistance - 3.0F);
+			float f = MathHelper.ceil(this.fallDistance - 3.0F);
 
 			if (state.getMaterial() != Material.AIR)
 			{
-				double d0 = Math.min((double) (0.2F + f / 15.0F), 2.5D);
+				double d0 = Math.min(0.2F + f / 15.0F, 2.5D);
 				int i = (int) (150.0D * d0);
 				((WorldServer) this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY, this.posZ, i, 0.0D, 0.0D, 0.0D, 0.15000000596046448D, Block.getStateId(state));
 			}
@@ -318,6 +321,7 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * Gets called every tick from main Entity class
 	 */
+	@Override
 	public void onEntityUpdate()
 	{
 		this.prevSwingProgress = this.swingProgress;
@@ -341,7 +345,7 @@ public abstract class EntityLivingBase extends Entity
 
 					if (d1 > 0.0D)
 					{
-						this.attackEntityFrom(DamageSource.inWall, (float) Math.max(1, MathHelper.floor(-d0 * d1)));
+						this.attackEntityFrom(DamageSource.inWall, Math.max(1, MathHelper.floor(-d0 * d1)));
 					}
 				}
 			}
@@ -375,7 +379,7 @@ public abstract class EntityLivingBase extends Entity
 							float f2 = this.rand.nextFloat() - this.rand.nextFloat();
 							float f = this.rand.nextFloat() - this.rand.nextFloat();
 							float f1 = this.rand.nextFloat() - this.rand.nextFloat();
-							this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (double) f2, this.posY + (double) f, this.posZ + (double) f1, this.motionX, this.motionY, this.motionZ);
+							this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + f2, this.posY + f, this.posZ + f1, this.motionX, this.motionY, this.motionZ);
 						}
 
 						this.attackEntityFrom(DamageSource.drown, 2.0F);
@@ -503,7 +507,7 @@ public abstract class EntityLivingBase extends Entity
 				double d2 = this.rand.nextGaussian() * 0.02D;
 				double d0 = this.rand.nextGaussian() * 0.02D;
 				double d1 = this.rand.nextGaussian() * 0.02D;
-				this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d2, d0, d1);
+				this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d2, d0, d1);
 			}
 		}
 	}
@@ -616,6 +620,7 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		compound.setFloat("Health", this.getHealth());
@@ -664,6 +669,7 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.setAbsorptionAmount(compound.getFloat("AbsorptionAmount"));
@@ -755,8 +761,8 @@ public abstract class EntityLivingBase extends Entity
 			this.potionsNeedUpdate = false;
 		}
 
-		int i = ((Integer) this.dataManager.get(POTION_EFFECTS)).intValue();
-		boolean flag1 = ((Boolean) this.dataManager.get(HIDE_PARTICLES)).booleanValue();
+		int i = this.dataManager.get(POTION_EFFECTS).intValue();
+		boolean flag1 = this.dataManager.get(HIDE_PARTICLES).booleanValue();
 
 		if (i > 0)
 		{
@@ -778,10 +784,10 @@ public abstract class EntityLivingBase extends Entity
 
 			if (flag && i > 0)
 			{
-				double d0 = (double) (i >> 16 & 255) / 255.0D;
-				double d1 = (double) (i >> 8 & 255) / 255.0D;
-				double d2 = (double) (i >> 0 & 255) / 255.0D;
-				this.world.spawnParticle(flag1 ? EnumParticleTypes.SPELL_MOB_AMBIENT : EnumParticleTypes.SPELL_MOB, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, d0, d1, d2);
+				double d0 = (i >> 16 & 255) / 255.0D;
+				double d1 = (i >> 8 & 255) / 255.0D;
+				double d2 = (i >> 0 & 255) / 255.0D;
+				this.world.spawnParticle(flag1 ? EnumParticleTypes.SPELL_MOB_AMBIENT : EnumParticleTypes.SPELL_MOB, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, d0, d1, d2);
 			}
 		}
 	}
@@ -989,7 +995,7 @@ public abstract class EntityLivingBase extends Entity
 
 	public final float getHealth()
 	{
-		return ((Float) this.dataManager.get(HEALTH)).floatValue();
+		return this.dataManager.get(HEALTH).floatValue();
 	}
 
 	public void setHealth(float health)
@@ -1000,6 +1006,7 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -1055,7 +1062,7 @@ public abstract class EntityLivingBase extends Entity
 				this.limbSwingAmount = 1.5F;
 				boolean flag1 = true;
 
-				if ((float) this.hurtResistantTime > (float) this.maxHurtResistantTime / 2.0F)
+				if (this.hurtResistantTime > this.maxHurtResistantTime / 2.0F)
 				{
 					if (amount <= this.lastDamage)
 					{
@@ -1147,12 +1154,12 @@ public abstract class EntityLivingBase extends Entity
 							d1 = (Math.random() - Math.random()) * 0.01D;
 						}
 
-						this.attackedAtYaw = (float) (MathHelper.atan2(d0, d1) * (180D / Math.PI) - (double) this.rotationYaw);
+						this.attackedAtYaw = (float) (MathHelper.atan2(d0, d1) * (180D / Math.PI) - this.rotationYaw);
 						this.knockBack(entity1, 0.4F, d1, d0);
 					}
 					else
 					{
-						this.attackedAtYaw = (float) ((int) (Math.random() * 2.0D) * 180);
+						this.attackedAtYaw = (int) (Math.random() * 2.0D) * 180;
 					}
 				}
 
@@ -1302,14 +1309,14 @@ public abstract class EntityLivingBase extends Entity
 
 		for (int i = 0; i < 5; ++i)
 		{
-			Vec3d vec3d = new Vec3d(((double) this.rand.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
+			Vec3d vec3d = new Vec3d((this.rand.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
 			vec3d = vec3d.rotatePitch(-this.rotationPitch * 0.017453292F);
 			vec3d = vec3d.rotateYaw(-this.rotationYaw * 0.017453292F);
-			double d0 = (double) (-this.rand.nextFloat()) * 0.6D - 0.3D;
-			Vec3d vec3d1 = new Vec3d(((double) this.rand.nextFloat() - 0.5D) * 0.3D, d0, 0.6D);
+			double d0 = (-this.rand.nextFloat()) * 0.6D - 0.3D;
+			Vec3d vec3d1 = new Vec3d((this.rand.nextFloat() - 0.5D) * 0.3D, d0, 0.6D);
 			vec3d1 = vec3d1.rotatePitch(-this.rotationPitch * 0.017453292F);
 			vec3d1 = vec3d1.rotateYaw(-this.rotationYaw * 0.017453292F);
-			vec3d1 = vec3d1.addVector(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ);
+			vec3d1 = vec3d1.addVector(this.posX, this.posY + this.getEyeHeight(), this.posZ);
 			this.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, vec3d1.xCoord, vec3d1.yCoord, vec3d1.zCoord, vec3d.xCoord, vec3d.yCoord + 0.05D, vec3d.zCoord, Item.getIdFromItem(stack.getItem()));
 		}
 	}
@@ -1399,13 +1406,13 @@ public abstract class EntityLivingBase extends Entity
 			float f = MathHelper.sqrt(xRatio * xRatio + zRatio * zRatio);
 			this.motionX /= 2.0D;
 			this.motionZ /= 2.0D;
-			this.motionX -= xRatio / (double) f * (double) strength;
-			this.motionZ -= zRatio / (double) f * (double) strength;
+			this.motionX -= xRatio / f * strength;
+			this.motionZ -= zRatio / f * strength;
 
 			if (this.onGround)
 			{
 				this.motionY /= 2.0D;
-				this.motionY += (double) strength;
+				this.motionY += strength;
 
 				if (this.motionY > 0.4000000059604645D)
 				{
@@ -1471,7 +1478,7 @@ public abstract class EntityLivingBase extends Entity
 
 	private boolean canGoThroughtTrapDoorOnLadder(BlockPos pos, IBlockState state)
 	{
-		if (((Boolean) state.getValue(BlockTrapDoor.OPEN)).booleanValue())
+		if (state.getValue(BlockTrapDoor.OPEN).booleanValue())
 		{
 			IBlockState iblockstate = this.world.getBlockState(pos.down());
 
@@ -1487,11 +1494,13 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * Checks whether target entity is alive.
 	 */
+	@Override
 	public boolean isEntityAlive()
 	{
 		return !this.isDead && this.getHealth() > 0.0F;
 	}
 
+	@Override
 	public void fall(float distance, float damageMultiplier)
 	{
 		super.fall(distance, damageMultiplier);
@@ -1502,7 +1511,7 @@ public abstract class EntityLivingBase extends Entity
 		if (i > 0)
 		{
 			this.playSound(this.getFallSound(i), 1.0F, 1.0F);
-			this.attackEntityFrom(DamageSource.fall, (float) i);
+			this.attackEntityFrom(DamageSource.fall, i);
 			int j = MathHelper.floor(this.posX);
 			int k = MathHelper.floor(this.posY - 0.20000000298023224D);
 			int l = MathHelper.floor(this.posZ);
@@ -1520,6 +1529,7 @@ public abstract class EntityLivingBase extends Entity
 	 * Setups the entity to do the hurt animation. Only used by packets in
 	 * multiplayer.
 	 */
+	@Override
 	public void performHurtAnimation()
 	{
 		this.maxHurtTime = 10;
@@ -1553,7 +1563,7 @@ public abstract class EntityLivingBase extends Entity
 		if (!source.isUnblockable())
 		{
 			this.damageArmor(damage);
-			damage = CombatRules.getDamageAfterAbsorb(damage, (float) this.getTotalArmorValue(), (float) this.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getAttributeValue());
+			damage = CombatRules.getDamageAfterAbsorb(damage, this.getTotalArmorValue(), (float) this.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getAttributeValue());
 		}
 
 		return damage;
@@ -1574,7 +1584,7 @@ public abstract class EntityLivingBase extends Entity
 			{
 				int i = (this.getActivePotionEffect(MobEffects.RESISTANCE).getAmplifier() + 1) * 5;
 				int j = 25 - i;
-				float f = damage * (float) j;
+				float f = damage * j;
 				damage = f / 25.0F;
 			}
 
@@ -1588,7 +1598,7 @@ public abstract class EntityLivingBase extends Entity
 
 				if (k > 0)
 				{
-					damage = CombatRules.getDamageAfterMagicAbsorb(damage, (float) k);
+					damage = CombatRules.getDamageAfterMagicAbsorb(damage, k);
 				}
 
 				return damage;
@@ -1660,7 +1670,7 @@ public abstract class EntityLivingBase extends Entity
 	 */
 	public final int getArrowCountInEntity()
 	{
-		return ((Integer) this.dataManager.get(ARROW_COUNT_IN_ENTITY)).intValue();
+		return this.dataManager.get(ARROW_COUNT_IN_ENTITY).intValue();
 	}
 
 	/**
@@ -1703,6 +1713,7 @@ public abstract class EntityLivingBase extends Entity
 		}
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		boolean flag = id == 33;
@@ -1778,6 +1789,7 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * sets the dead flag. Used when you fall off the bottom of the world.
 	 */
+	@Override
 	protected void kill()
 	{
 		this.attackEntityFrom(DamageSource.outOfWorld, 4.0F);
@@ -1882,15 +1894,18 @@ public abstract class EntityLivingBase extends Entity
 		return !this.getItemStackFromSlot(p_190630_1_).isNotValid();
 	}
 
+	@Override
 	public abstract Iterable<ItemStack> getArmorInventoryList();
 
 	public abstract ItemStack getItemStackFromSlot(EntityEquipmentSlot slotIn);
 
+	@Override
 	public abstract void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack);
 
 	/**
 	 * Set sprinting switch for Entity.
 	 */
+	@Override
 	public void setSprinting(boolean sprinting)
 	{
 		super.setSprinting(sprinting);
@@ -1939,7 +1954,7 @@ public abstract class EntityLivingBase extends Entity
 		if (!(entityIn instanceof EntityBoat) && !(entityIn instanceof AbstractHorse))
 		{
 			double d1 = entityIn.posX;
-			double d13 = entityIn.getEntityBoundingBox().minY + (double) entityIn.height;
+			double d13 = entityIn.getEntityBoundingBox().minY + entityIn.height;
 			double d14 = entityIn.posZ;
 			EnumFacing enumfacing1 = entityIn.getAdjustedHorizontalFacing();
 
@@ -1951,12 +1966,12 @@ public abstract class EntityLivingBase extends Entity
 				double d6 = Math.floor(this.posZ) + 0.5D;
 				double d7 = this.getEntityBoundingBox().maxX - this.getEntityBoundingBox().minX;
 				double d8 = this.getEntityBoundingBox().maxZ - this.getEntityBoundingBox().minZ;
-				AxisAlignedBB axisalignedbb = new AxisAlignedBB(d5 - d7 / 2.0D, entityIn.getEntityBoundingBox().minY, d6 - d8 / 2.0D, d5 + d7 / 2.0D, Math.floor(entityIn.getEntityBoundingBox().minY) + (double) this.height, d6 + d8 / 2.0D);
+				AxisAlignedBB axisalignedbb = new AxisAlignedBB(d5 - d7 / 2.0D, entityIn.getEntityBoundingBox().minY, d6 - d8 / 2.0D, d5 + d7 / 2.0D, Math.floor(entityIn.getEntityBoundingBox().minY) + this.height, d6 + d8 / 2.0D);
 
 				for (int[] aint : aint1)
 				{
-					double d9 = (double) (enumfacing1.getFrontOffsetX() * aint[0] + enumfacing.getFrontOffsetX() * aint[1]);
-					double d10 = (double) (enumfacing1.getFrontOffsetZ() * aint[0] + enumfacing.getFrontOffsetZ() * aint[1]);
+					double d9 = enumfacing1.getFrontOffsetX() * aint[0] + enumfacing.getFrontOffsetX() * aint[1];
+					double d10 = enumfacing1.getFrontOffsetZ() * aint[0] + enumfacing.getFrontOffsetZ() * aint[1];
 					double d11 = d5 + d9;
 					double d12 = d6 + d10;
 					AxisAlignedBB axisalignedbb1 = axisalignedbb.offset(d9, 0.0D, d10);
@@ -1991,7 +2006,7 @@ public abstract class EntityLivingBase extends Entity
 		}
 		else
 		{
-			double d0 = (double) (this.width / 2.0F + entityIn.width / 2.0F) + 0.4D;
+			double d0 = this.width / 2.0F + entityIn.width / 2.0F + 0.4D;
 			float f;
 
 			if (entityIn instanceof EntityBoat)
@@ -2000,28 +2015,29 @@ public abstract class EntityLivingBase extends Entity
 			}
 			else
 			{
-				f = ((float) Math.PI / 2F) * (float) (this.getPrimaryHand() == EnumHandSide.RIGHT ? -1 : 1);
+				f = ((float) Math.PI / 2F) * (this.getPrimaryHand() == EnumHandSide.RIGHT ? -1 : 1);
 			}
 
 			float f1 = -MathHelper.sin(-this.rotationYaw * 0.017453292F - (float) Math.PI + f);
 			float f2 = -MathHelper.cos(-this.rotationYaw * 0.017453292F - (float) Math.PI + f);
-			double d2 = Math.abs(f1) > Math.abs(f2) ? d0 / (double) Math.abs(f1) : d0 / (double) Math.abs(f2);
-			double d3 = this.posX + (double) f1 * d2;
-			double d4 = this.posZ + (double) f2 * d2;
-			this.setPosition(d3, entityIn.posY + (double) entityIn.height + 0.001D, d4);
+			double d2 = Math.abs(f1) > Math.abs(f2) ? d0 / Math.abs(f1) : d0 / Math.abs(f2);
+			double d3 = this.posX + f1 * d2;
+			double d4 = this.posZ + f2 * d2;
+			this.setPosition(d3, entityIn.posY + entityIn.height + 0.001D, d4);
 
 			if (this.world.collidesWithAnyBlock(this.getEntityBoundingBox()))
 			{
-				this.setPosition(d3, entityIn.posY + (double) entityIn.height + 1.001D, d4);
+				this.setPosition(d3, entityIn.posY + entityIn.height + 1.001D, d4);
 
 				if (this.world.collidesWithAnyBlock(this.getEntityBoundingBox()))
 				{
-					this.setPosition(entityIn.posX, entityIn.posY + (double) this.height + 0.001D, entityIn.posZ);
+					this.setPosition(entityIn.posX, entityIn.posY + this.height + 0.001D, entityIn.posZ);
 				}
 			}
 		}
 	}
 
+	@Override
 	public boolean getAlwaysRenderNameTagForRender()
 	{
 		return this.getAlwaysRenderNameTag();
@@ -2037,18 +2053,18 @@ public abstract class EntityLivingBase extends Entity
 	 */
 	protected void jump()
 	{
-		this.motionY = (double) this.getJumpUpwardsMotion();
+		this.motionY = this.getJumpUpwardsMotion();
 
 		if (this.isPotionActive(MobEffects.JUMP_BOOST))
 		{
-			this.motionY += (double) ((float) (this.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier() + 1) * 0.1F);
+			this.motionY += (this.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier() + 1) * 0.1F;
 		}
 
 		if (this.isSprinting())
 		{
 			float f = this.rotationYaw * 0.017453292F;
-			this.motionX -= (double) (MathHelper.sin(f) * 0.2F);
-			this.motionZ += (double) (MathHelper.cos(f) * 0.2F);
+			this.motionX -= MathHelper.sin(f) * 0.2F;
+			this.motionZ += MathHelper.cos(f) * 0.2F;
 		}
 
 		this.isAirBorne = true;
@@ -2094,11 +2110,11 @@ public abstract class EntityLivingBase extends Entity
 						double d1 = vec3d.lengthVector();
 						float f4 = MathHelper.cos(f);
 						f4 = (float) ((double) f4 * (double) f4 * Math.min(1.0D, d1 / 0.4D));
-						this.motionY += -0.08D + (double) f4 * 0.06D;
+						this.motionY += -0.08D + f4 * 0.06D;
 
 						if (this.motionY < 0.0D && d6 > 0.0D)
 						{
-							double d2 = this.motionY * -0.1D * (double) f4;
+							double d2 = this.motionY * -0.1D * f4;
 							this.motionY += d2;
 							this.motionX += vec3d.xCoord * d2 / d6;
 							this.motionZ += vec3d.zCoord * d2 / d6;
@@ -2106,7 +2122,7 @@ public abstract class EntityLivingBase extends Entity
 
 						if (f < 0.0F)
 						{
-							double d10 = d8 * (double) (-MathHelper.sin(f)) * 0.04D;
+							double d10 = d8 * (-MathHelper.sin(f)) * 0.04D;
 							this.motionY += d10 * 3.2D;
 							this.motionX -= vec3d.xCoord * d10 / d6;
 							this.motionZ -= vec3d.zCoord * d10 / d6;
@@ -2200,7 +2216,7 @@ public abstract class EntityLivingBase extends Entity
 
 						if (this.isPotionActive(MobEffects.LEVITATION))
 						{
-							this.motionY += (0.05D * (double) (this.getActivePotionEffect(MobEffects.LEVITATION).getAmplifier() + 1) - this.motionY) * 0.2D;
+							this.motionY += (0.05D * (this.getActivePotionEffect(MobEffects.LEVITATION).getAmplifier() + 1) - this.motionY) * 0.2D;
 						}
 						else
 						{
@@ -2224,8 +2240,8 @@ public abstract class EntityLivingBase extends Entity
 						}
 
 						this.motionY *= 0.9800000190734863D;
-						this.motionX *= (double) f6;
-						this.motionZ *= (double) f6;
+						this.motionX *= f6;
+						this.motionZ *= f6;
 						blockpos$pooledmutableblockpos.release();
 					}
 				}
@@ -2254,7 +2270,7 @@ public abstract class EntityLivingBase extends Entity
 				double d0 = this.posY;
 				float f1 = this.getWaterSlowDown();
 				float f2 = 0.02F;
-				float f3 = (float) EnchantmentHelper.getDepthStriderModifier(this);
+				float f3 = EnchantmentHelper.getDepthStriderModifier(this);
 
 				if (f3 > 3.0F)
 				{
@@ -2274,9 +2290,9 @@ public abstract class EntityLivingBase extends Entity
 
 				this.func_191958_b(p_191986_1_, p_191986_2_, p_191986_3_, f2);
 				this.moveEntity(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
-				this.motionX *= (double) f1;
+				this.motionX *= f1;
 				this.motionY *= 0.800000011920929D;
-				this.motionZ *= (double) f1;
+				this.motionZ *= f1;
 
 				if (!this.hasNoGravity())
 				{
@@ -2338,6 +2354,7 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -2434,7 +2451,7 @@ public abstract class EntityLivingBase extends Entity
 		if (f3 > 0.0025000002F)
 		{
 			f = 1.0F;
-			f5 = (float) Math.sqrt((double) f3) * 3.0F;
+			f5 = (float) Math.sqrt(f3) * 3.0F;
 			float f1 = (float) MathHelper.atan2(d1, d0) * (180F / (float) Math.PI) - 90.0F;
 			float f2 = MathHelper.abs(MathHelper.wrapDegrees(this.rotationYaw) - f1);
 
@@ -2563,12 +2580,12 @@ public abstract class EntityLivingBase extends Entity
 
 		if (this.newPosRotationIncrements > 0 && !this.canPassengerSteer())
 		{
-			double d0 = this.posX + (this.interpTargetX - this.posX) / (double) this.newPosRotationIncrements;
-			double d1 = this.posY + (this.interpTargetY - this.posY) / (double) this.newPosRotationIncrements;
-			double d2 = this.posZ + (this.interpTargetZ - this.posZ) / (double) this.newPosRotationIncrements;
-			double d3 = MathHelper.wrapDegrees(this.interpTargetYaw - (double) this.rotationYaw);
-			this.rotationYaw = (float) ((double) this.rotationYaw + d3 / (double) this.newPosRotationIncrements);
-			this.rotationPitch = (float) ((double) this.rotationPitch + (this.interpTargetPitch - (double) this.rotationPitch) / (double) this.newPosRotationIncrements);
+			double d0 = this.posX + (this.interpTargetX - this.posX) / this.newPosRotationIncrements;
+			double d1 = this.posY + (this.interpTargetY - this.posY) / this.newPosRotationIncrements;
+			double d2 = this.posZ + (this.interpTargetZ - this.posZ) / this.newPosRotationIncrements;
+			double d3 = MathHelper.wrapDegrees(this.interpTargetYaw - this.rotationYaw);
+			this.rotationYaw = (float) (this.rotationYaw + d3 / this.newPosRotationIncrements);
+			this.rotationPitch = (float) (this.rotationPitch + (this.interpTargetPitch - this.rotationPitch) / this.newPosRotationIncrements);
 			--this.newPosRotationIncrements;
 			this.setPosition(d0, d1, d2);
 			this.setRotation(this.rotationYaw, this.rotationPitch);
@@ -2702,7 +2719,7 @@ public abstract class EntityLivingBase extends Entity
 
 				for (int k = 0; k < list.size(); ++k)
 				{
-					if (!((Entity) list.get(k)).isRiding())
+					if (!list.get(k).isRiding())
 					{
 						++j;
 					}
@@ -2727,6 +2744,7 @@ public abstract class EntityLivingBase extends Entity
 		entityIn.applyEntityCollision(this);
 	}
 
+	@Override
 	public void dismountRidingEntity()
 	{
 		Entity entity = this.getRidingEntity();
@@ -2741,6 +2759,7 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * Handles updating while being ridden by an entity
 	 */
+	@Override
 	public void updateRidden()
 	{
 		super.updateRidden();
@@ -2752,13 +2771,14 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * Set the position and rotation values directly without any clamping.
 	 */
+	@Override
 	public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport)
 	{
 		this.interpTargetX = x;
 		this.interpTargetY = y;
 		this.interpTargetZ = z;
-		this.interpTargetYaw = (double) yaw;
-		this.interpTargetPitch = (double) pitch;
+		this.interpTargetYaw = yaw;
+		this.interpTargetPitch = pitch;
 		this.newPosRotationIncrements = posRotationIncrements;
 	}
 
@@ -2789,12 +2809,13 @@ public abstract class EntityLivingBase extends Entity
 	 */
 	public boolean canEntityBeSeen(Entity entityIn)
 	{
-		return this.world.rayTraceBlocks(new Vec3d(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ), new Vec3d(entityIn.posX, entityIn.posY + (double) entityIn.getEyeHeight(), entityIn.posZ), false, true, false) == null;
+		return this.world.rayTraceBlocks(new Vec3d(this.posX, this.posY + this.getEyeHeight(), this.posZ), new Vec3d(entityIn.posX, entityIn.posY + entityIn.getEyeHeight(), entityIn.posZ), false, true, false) == null;
 	}
 
 	/**
 	 * interpolated look vector
 	 */
+	@Override
 	public Vec3d getLook(float partialTicks)
 	{
 		if (partialTicks == 1.0F)
@@ -2836,6 +2857,7 @@ public abstract class EntityLivingBase extends Entity
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return !this.isDead;
@@ -2845,6 +2867,7 @@ public abstract class EntityLivingBase extends Entity
 	 * Returns true if this entity should push and be pushed by other entities
 	 * when colliding.
 	 */
+	@Override
 	public boolean canBePushed()
 	{
 		return this.isEntityAlive() && !this.isOnLadder();
@@ -2853,11 +2876,13 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * Sets that this entity has been attacked.
 	 */
+	@Override
 	protected void setBeenAttacked()
 	{
 		this.velocityChanged = this.rand.nextDouble() >= this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();
 	}
 
+	@Override
 	public float getRotationYawHead()
 	{
 		return this.rotationYawHead;
@@ -2866,6 +2891,7 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * Sets the head's yaw rotation of the entity.
 	 */
+	@Override
 	public void setRotationYawHead(float rotation)
 	{
 		this.rotationYawHead = rotation;
@@ -2874,6 +2900,7 @@ public abstract class EntityLivingBase extends Entity
 	/**
 	 * Set the render yaw offset
 	 */
+	@Override
 	public void setRenderYawOffset(float offset)
 	{
 		this.renderYawOffset = offset;
@@ -2920,12 +2947,12 @@ public abstract class EntityLivingBase extends Entity
 
 	public boolean isHandActive()
 	{
-		return (((Byte) this.dataManager.get(HAND_STATES)).byteValue() & 1) > 0;
+		return (this.dataManager.get(HAND_STATES).byteValue() & 1) > 0;
 	}
 
 	public EnumHand getActiveHand()
 	{
-		return (((Byte) this.dataManager.get(HAND_STATES)).byteValue() & 2) > 0 ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND;
+		return (this.dataManager.get(HAND_STATES).byteValue() & 2) > 0 ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND;
 	}
 
 	protected void updateActiveHand()
@@ -2976,6 +3003,7 @@ public abstract class EntityLivingBase extends Entity
 		}
 	}
 
+	@Override
 	public void notifyDataManagerChange(DataParameter<?> key)
 	{
 		super.notifyDataManagerChange(key);
@@ -3015,14 +3043,14 @@ public abstract class EntityLivingBase extends Entity
 			{
 				for (int i = 0; i < eatingParticleCount; ++i)
 				{
-					Vec3d vec3d = new Vec3d(((double) this.rand.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
+					Vec3d vec3d = new Vec3d((this.rand.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
 					vec3d = vec3d.rotatePitch(-this.rotationPitch * 0.017453292F);
 					vec3d = vec3d.rotateYaw(-this.rotationYaw * 0.017453292F);
-					double d0 = (double) (-this.rand.nextFloat()) * 0.6D - 0.3D;
-					Vec3d vec3d1 = new Vec3d(((double) this.rand.nextFloat() - 0.5D) * 0.3D, d0, 0.6D);
+					double d0 = (-this.rand.nextFloat()) * 0.6D - 0.3D;
+					Vec3d vec3d1 = new Vec3d((this.rand.nextFloat() - 0.5D) * 0.3D, d0, 0.6D);
 					vec3d1 = vec3d1.rotatePitch(-this.rotationPitch * 0.017453292F);
 					vec3d1 = vec3d1.rotateYaw(-this.rotationYaw * 0.017453292F);
-					vec3d1 = vec3d1.addVector(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ);
+					vec3d1 = vec3d1.addVector(this.posX, this.posY + this.getEyeHeight(), this.posZ);
 
 					if (stack.getHasSubtypes())
 					{
@@ -3034,7 +3062,7 @@ public abstract class EntityLivingBase extends Entity
 					}
 				}
 
-				this.playSound(SoundEvents.ENTITY_GENERIC_EAT, 0.5F + 0.5F * (float) this.rand.nextInt(2), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+				this.playSound(SoundEvents.ENTITY_GENERIC_EAT, 0.5F + 0.5F * this.rand.nextInt(2), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			}
 		}
 	}
@@ -3178,14 +3206,14 @@ public abstract class EntityLivingBase extends Entity
 
 			for (int j = 0; j < 128; ++j)
 			{
-				double d6 = (double) j / 127.0D;
+				double d6 = j / 127.0D;
 				float f = (random.nextFloat() - 0.5F) * 0.2F;
 				float f1 = (random.nextFloat() - 0.5F) * 0.2F;
 				float f2 = (random.nextFloat() - 0.5F) * 0.2F;
-				double d3 = d0 + (this.posX - d0) * d6 + (random.nextDouble() - 0.5D) * (double) this.width * 2.0D;
-				double d4 = d1 + (this.posY - d1) * d6 + random.nextDouble() * (double) this.height;
-				double d5 = d2 + (this.posZ - d2) * d6 + (random.nextDouble() - 0.5D) * (double) this.width * 2.0D;
-				world.spawnParticle(EnumParticleTypes.PORTAL, d3, d4, d5, (double) f, (double) f1, (double) f2);
+				double d3 = d0 + (this.posX - d0) * d6 + (random.nextDouble() - 0.5D) * this.width * 2.0D;
+				double d4 = d1 + (this.posY - d1) * d6 + random.nextDouble() * this.height;
+				double d5 = d2 + (this.posZ - d2) * d6 + (random.nextDouble() - 0.5D) * this.width * 2.0D;
+				world.spawnParticle(EnumParticleTypes.PORTAL, d3, d4, d5, f, f1, f2);
 			}
 
 			if (this instanceof EntityCreature)

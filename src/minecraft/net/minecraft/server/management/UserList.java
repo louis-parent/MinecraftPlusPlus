@@ -37,16 +37,19 @@ public class UserList<K, V extends UserListEntry<K>>
 	private boolean lanServer = true;
 	private static final ParameterizedType USER_LIST_ENTRY_TYPE = new ParameterizedType()
 	{
+		@Override
 		public Type[] getActualTypeArguments()
 		{
 			return new Type[] { UserListEntry.class };
 		}
 
+		@Override
 		public Type getRawType()
 		{
 			return List.class;
 		}
 
+		@Override
 		public Type getOwnerType()
 		{
 			return null;
@@ -84,14 +87,14 @@ public class UserList<K, V extends UserListEntry<K>>
 		}
 		catch (IOException ioexception)
 		{
-			LOGGER.warn("Could not save the list after adding a user.", (Throwable) ioexception);
+			LOGGER.warn("Could not save the list after adding a user.", ioexception);
 		}
 	}
 
 	public V getEntry(K obj)
 	{
 		this.removeExpired();
-		return (V) (this.values.get(this.getObjectKey(obj)));
+		return (this.values.get(this.getObjectKey(obj)));
 	}
 
 	public void removeEntry(K entry)
@@ -104,13 +107,13 @@ public class UserList<K, V extends UserListEntry<K>>
 		}
 		catch (IOException ioexception)
 		{
-			LOGGER.warn("Could not save the list after removing a user.", (Throwable) ioexception);
+			LOGGER.warn("Could not save the list after removing a user.", ioexception);
 		}
 	}
 
 	public String[] getKeys()
 	{
-		return (String[]) this.values.keySet().toArray(new String[this.values.size()]);
+		return this.values.keySet().toArray(new String[this.values.size()]);
 	}
 
 	/**
@@ -170,7 +173,7 @@ public class UserList<K, V extends UserListEntry<K>>
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Writer) bufferedwriter);
+			IOUtils.closeQuietly(bufferedwriter);
 		}
 	}
 
@@ -180,6 +183,7 @@ public class UserList<K, V extends UserListEntry<K>>
 		{
 		}
 
+		@Override
 		public JsonElement serialize(UserListEntry<K> p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			JsonObject jsonobject = new JsonObject();
@@ -187,6 +191,7 @@ public class UserList<K, V extends UserListEntry<K>>
 			return jsonobject;
 		}
 
+		@Override
 		public UserListEntry<K> deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			if (p_deserialize_1_.isJsonObject())

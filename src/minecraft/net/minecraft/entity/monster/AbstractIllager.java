@@ -15,6 +15,7 @@ public abstract class AbstractIllager extends EntityMob
 		super(p_i47509_1_);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -23,13 +24,13 @@ public abstract class AbstractIllager extends EntityMob
 
 	protected boolean func_193078_a(int p_193078_1_)
 	{
-		int i = ((Byte) this.dataManager.get(field_193080_a)).byteValue();
+		int i = this.dataManager.get(field_193080_a).byteValue();
 		return (i & p_193078_1_) != 0;
 	}
 
 	protected void func_193079_a(int p_193079_1_, boolean p_193079_2_)
 	{
-		int i = ((Byte) this.dataManager.get(field_193080_a)).byteValue();
+		int i = this.dataManager.get(field_193080_a).byteValue();
 
 		if (p_193079_2_)
 		{
@@ -46,6 +47,7 @@ public abstract class AbstractIllager extends EntityMob
 	/**
 	 * Get this Entity's EnumCreatureAttribute
 	 */
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.ILLAGER;

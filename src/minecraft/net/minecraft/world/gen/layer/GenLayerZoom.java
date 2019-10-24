@@ -13,6 +13,7 @@ public class GenLayerZoom extends GenLayer
 	 * interpreted as temperatures, rainfall amounts, or biomeList[] indices
 	 * based on the particular GenLayer subclass.
 	 */
+	@Override
 	public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
 	{
 		int i = areaX >> 1;
@@ -32,7 +33,7 @@ public class GenLayerZoom extends GenLayer
 
 			for (int k2 = aint[i2 + 0 + (k1 + 1) * k]; i2 < k - 1; ++i2)
 			{
-				this.initChunkSeed((long) (i2 + i << 1), (long) (k1 + j << 1));
+				this.initChunkSeed(i2 + i << 1, k1 + j << 1);
 				int l2 = aint[i2 + 1 + (k1 + 0) * k];
 				int i3 = aint[i2 + 1 + (k1 + 1) * k];
 				aint1[l1] = j2;
@@ -64,7 +65,7 @@ public class GenLayerZoom extends GenLayer
 
 		for (int i = 0; i < p_75915_3_; ++i)
 		{
-			genlayer = new GenLayerZoom(p_75915_0_ + (long) i, genlayer);
+			genlayer = new GenLayerZoom(p_75915_0_ + i, genlayer);
 		}
 
 		return genlayer;

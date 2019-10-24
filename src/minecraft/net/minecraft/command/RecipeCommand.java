@@ -19,6 +19,7 @@ public class RecipeCommand extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "recipe";
@@ -27,6 +28,7 @@ public class RecipeCommand extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
@@ -35,6 +37,7 @@ public class RecipeCommand extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.recipe.usage";
@@ -43,6 +46,7 @@ public class RecipeCommand extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length < 2)
@@ -118,6 +122,7 @@ public class RecipeCommand extends CommandBase
 		return Lists.newArrayList(CraftingManager.recipeMap);
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		if (args.length == 1)

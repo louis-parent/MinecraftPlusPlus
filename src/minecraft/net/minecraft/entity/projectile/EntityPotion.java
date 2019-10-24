@@ -42,6 +42,7 @@ public class EntityPotion extends EntityThrowable
 	private static final Logger LOGGER = LogManager.getLogger();
 	public static final Predicate<EntityLivingBase> field_190546_d = new Predicate<EntityLivingBase>()
 	{
+		@Override
 		public boolean apply(@Nullable EntityLivingBase p_apply_1_)
 		{
 			return EntityPotion.func_190544_c(p_apply_1_);
@@ -69,6 +70,7 @@ public class EntityPotion extends EntityThrowable
 		}
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		this.getDataManager().register(ITEM, ItemStack.EMPTY_ITEM_STACK);
@@ -76,13 +78,13 @@ public class EntityPotion extends EntityThrowable
 
 	public ItemStack getPotion()
 	{
-		ItemStack itemstack = (ItemStack) this.getDataManager().get(ITEM);
+		ItemStack itemstack = this.getDataManager().get(ITEM);
 
 		if (itemstack.getItem() != Items.SPLASH_POTION && itemstack.getItem() != Items.LINGERING_POTION)
 		{
 			if (this.world != null)
 			{
-				LOGGER.error("ThrownPotion entity {} has no item?!", (int) this.getEntityId());
+				LOGGER.error("ThrownPotion entity {} has no item?!", this.getEntityId());
 			}
 
 			return new ItemStack(Items.SPLASH_POTION);
@@ -102,6 +104,7 @@ public class EntityPotion extends EntityThrowable
 	/**
 	 * Gets the amount of gravity to apply to the thrown entity with each tick.
 	 */
+	@Override
 	protected float getGravityVelocity()
 	{
 		return 0.05F;
@@ -110,6 +113,7 @@ public class EntityPotion extends EntityThrowable
 	/**
 	 * Called when this EntityThrowable hits a block or entity.
 	 */
+	@Override
 	protected void onImpact(RayTraceResult result)
 	{
 		if (!this.world.isRemote)
@@ -203,7 +207,7 @@ public class EntityPotion extends EntityThrowable
 							}
 							else
 							{
-								int i = (int) (d1 * (double) potioneffect.getDuration() + 0.5D);
+								int i = (int) (d1 * potioneffect.getDuration() + 0.5D);
 
 								if (i > 20)
 								{
@@ -224,7 +228,7 @@ public class EntityPotion extends EntityThrowable
 		entityareaeffectcloud.setRadius(3.0F);
 		entityareaeffectcloud.setRadiusOnUse(-0.5F);
 		entityareaeffectcloud.setWaitTime(10);
-		entityareaeffectcloud.setRadiusPerTick(-entityareaeffectcloud.getRadius() / (float) entityareaeffectcloud.getDuration());
+		entityareaeffectcloud.setRadiusPerTick(-entityareaeffectcloud.getRadius() / entityareaeffectcloud.getDuration());
 		entityareaeffectcloud.setPotion(p_190542_2_);
 
 		for (PotionEffect potioneffect : PotionUtils.getFullEffectsFromItem(p_190542_1_))
@@ -264,6 +268,7 @@ public class EntityPotion extends EntityThrowable
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -282,6 +287,7 @@ public class EntityPotion extends EntityThrowable
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);

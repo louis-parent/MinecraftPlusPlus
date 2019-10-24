@@ -18,6 +18,7 @@ public class OpenInventoryStep implements ITutorialStep
 		this.field_193283_c = p_i47580_1_;
 	}
 
+	@Override
 	public void func_193245_a()
 	{
 		++this.field_193285_e;
@@ -36,6 +37,7 @@ public class OpenInventoryStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193248_b()
 	{
 		if (this.field_193284_d != null)
@@ -45,6 +47,7 @@ public class OpenInventoryStep implements ITutorialStep
 		}
 	}
 
+	@Override
 	public void func_193251_c()
 	{
 		this.field_193283_c.func_193292_a(TutorialSteps.CRAFT_PLANKS);

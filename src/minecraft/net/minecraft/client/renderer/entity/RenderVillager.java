@@ -21,6 +21,7 @@ public class RenderVillager extends RenderLiving<EntityVillager>
 		this.addLayer(new LayerCustomHead(this.getMainModel().villagerHead));
 	}
 
+	@Override
 	public ModelVillager getMainModel()
 	{
 		return (ModelVillager) super.getMainModel();
@@ -30,6 +31,7 @@ public class RenderVillager extends RenderLiving<EntityVillager>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityVillager entity)
 	{
 		switch (entity.getProfession())
@@ -59,13 +61,14 @@ public class RenderVillager extends RenderLiving<EntityVillager>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityVillager entitylivingbaseIn, float partialTickTime)
 	{
 		float f = 0.9375F;
 
 		if (entitylivingbaseIn.getGrowingAge() < 0)
 		{
-			f = (float) ((double) f * 0.5D);
+			f = (float) (f * 0.5D);
 			this.shadowSize = 0.25F;
 		}
 		else

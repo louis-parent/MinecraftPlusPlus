@@ -23,6 +23,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
 		super(renderManagerIn, new ModelGuardian(), 0.5F);
 	}
 
+	@Override
 	public boolean shouldRender(EntityGuardian livingEntity, ICamera camera, double camX, double camY, double camZ)
 	{
 		if (super.shouldRender(livingEntity, camera, camX, camY, camZ))
@@ -37,8 +38,8 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
 
 				if (entitylivingbase != null)
 				{
-					Vec3d vec3d = this.getPosition(entitylivingbase, (double) entitylivingbase.height * 0.5D, 1.0F);
-					Vec3d vec3d1 = this.getPosition(livingEntity, (double) livingEntity.getEyeHeight(), 1.0F);
+					Vec3d vec3d = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, 1.0F);
+					Vec3d vec3d1 = this.getPosition(livingEntity, livingEntity.getEyeHeight(), 1.0F);
 
 					if (camera.isBoundingBoxInFrustum(new AxisAlignedBB(vec3d1.xCoord, vec3d1.yCoord, vec3d1.zCoord, vec3d.xCoord, vec3d.yCoord, vec3d.zCoord)))
 					{
@@ -53,15 +54,16 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
 
 	private Vec3d getPosition(EntityLivingBase entityLivingBaseIn, double p_177110_2_, float p_177110_4_)
 	{
-		double d0 = entityLivingBaseIn.lastTickPosX + (entityLivingBaseIn.posX - entityLivingBaseIn.lastTickPosX) * (double) p_177110_4_;
-		double d1 = p_177110_2_ + entityLivingBaseIn.lastTickPosY + (entityLivingBaseIn.posY - entityLivingBaseIn.lastTickPosY) * (double) p_177110_4_;
-		double d2 = entityLivingBaseIn.lastTickPosZ + (entityLivingBaseIn.posZ - entityLivingBaseIn.lastTickPosZ) * (double) p_177110_4_;
+		double d0 = entityLivingBaseIn.lastTickPosX + (entityLivingBaseIn.posX - entityLivingBaseIn.lastTickPosX) * p_177110_4_;
+		double d1 = p_177110_2_ + entityLivingBaseIn.lastTickPosY + (entityLivingBaseIn.posY - entityLivingBaseIn.lastTickPosY) * p_177110_4_;
+		double d2 = entityLivingBaseIn.lastTickPosZ + (entityLivingBaseIn.posZ - entityLivingBaseIn.lastTickPosZ) * p_177110_4_;
 		return new Vec3d(d0, d1, d2);
 	}
 
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityGuardian entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -82,13 +84,13 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
 			float f1 = 240.0F;
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
 			GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-			float f2 = (float) entity.world.getTotalWorldTime() + partialTicks;
+			float f2 = entity.world.getTotalWorldTime() + partialTicks;
 			float f3 = f2 * 0.5F % 1.0F;
 			float f4 = entity.getEyeHeight();
 			GlStateManager.pushMatrix();
 			GlStateManager.translate((float) x, (float) y + f4, (float) z);
-			Vec3d vec3d = this.getPosition(entitylivingbase, (double) entitylivingbase.height * 0.5D, partialTicks);
-			Vec3d vec3d1 = this.getPosition(entity, (double) f4, partialTicks);
+			Vec3d vec3d = this.getPosition(entitylivingbase, entitylivingbase.height * 0.5D, partialTicks);
+			Vec3d vec3d1 = this.getPosition(entity, f4, partialTicks);
 			Vec3d vec3d2 = vec3d.subtract(vec3d1);
 			double d0 = vec3d2.lengthVector() + 1.0D;
 			vec3d2 = vec3d2.normalize();
@@ -97,7 +99,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
 			GlStateManager.rotate((((float) Math.PI / 2F) + -f6) * (180F / (float) Math.PI), 0.0F, 1.0F, 0.0F);
 			GlStateManager.rotate(f5 * (180F / (float) Math.PI), 1.0F, 0.0F, 0.0F);
 			int i = 1;
-			double d1 = (double) f2 * 0.05D * -1.5D;
+			double d1 = f2 * 0.05D * -1.5D;
 			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
 			float f7 = f * f;
 			int j = 64 + (int) (f7 * 191.0F);
@@ -123,7 +125,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
 			double d19 = 0.0D + Math.sin(d1 + (Math.PI * 3D / 2D)) * 0.2D;
 			double d20 = 0.0D;
 			double d21 = 0.4999D;
-			double d22 = (double) (-1.0F + f3);
+			double d22 = -1.0F + f3;
 			double d23 = d0 * 2.5D + d22;
 			bufferbuilder.pos(d12, d0, d13).tex(0.4999D, d23).color(j, k, l, 255).endVertex();
 			bufferbuilder.pos(d12, 0.0D, d13).tex(0.4999D, d22).color(j, k, l, 255).endVertex();
@@ -153,6 +155,7 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityGuardian entity)
 	{
 		return GUARDIAN_TEXTURE;

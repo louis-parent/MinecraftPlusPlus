@@ -27,9 +27,10 @@ public class ChunkPos
 	 */
 	public static long asLong(int x, int z)
 	{
-		return (long) x & 4294967295L | ((long) z & 4294967295L) << 32;
+		return x & 4294967295L | (z & 4294967295L) << 32;
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = 1664525 * this.chunkXPos + 1013904223;
@@ -37,6 +38,7 @@ public class ChunkPos
 		return i ^ j;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -56,8 +58,8 @@ public class ChunkPos
 
 	public double getDistanceSq(Entity entityIn)
 	{
-		double d0 = (double) (this.chunkXPos * 16 + 8);
-		double d1 = (double) (this.chunkZPos * 16 + 8);
+		double d0 = this.chunkXPos * 16 + 8;
+		double d1 = this.chunkZPos * 16 + 8;
 		double d2 = d0 - entityIn.posX;
 		double d3 = d1 - entityIn.posZ;
 		return d2 * d2 + d3 * d3;
@@ -104,6 +106,7 @@ public class ChunkPos
 		return new BlockPos((this.chunkXPos << 4) + x, y, (this.chunkZPos << 4) + z);
 	}
 
+	@Override
 	public String toString()
 	{
 		return "[" + this.chunkXPos + ", " + this.chunkZPos + "]";

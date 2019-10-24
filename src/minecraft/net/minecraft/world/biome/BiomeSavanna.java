@@ -31,11 +31,13 @@ public class BiomeSavanna extends Biome
 		this.theBiomeDecorator.grassPerChunk = 20;
 	}
 
+	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return (WorldGenAbstractTree) (rand.nextInt(5) > 0 ? SAVANNA_TREE : TREE_FEATURE);
+		return rand.nextInt(5) > 0 ? SAVANNA_TREE : TREE_FEATURE;
 	}
 
+	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
 		DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.GRASS);
@@ -51,6 +53,7 @@ public class BiomeSavanna extends Biome
 		super.decorate(worldIn, rand, pos);
 	}
 
+	@Override
 	public Class<? extends Biome> getBiomeClass()
 	{
 		return BiomeSavanna.class;

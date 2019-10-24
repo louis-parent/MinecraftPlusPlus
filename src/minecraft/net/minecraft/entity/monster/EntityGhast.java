@@ -47,6 +47,7 @@ public class EntityGhast extends EntityFlying implements IMob
 		this.moveHelper = new EntityGhast.GhastMoveHelper(this);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(5, new EntityGhast.AIRandomFly(this));
@@ -57,7 +58,7 @@ public class EntityGhast extends EntityFlying implements IMob
 
 	public boolean isAttacking()
 	{
-		return ((Boolean) this.dataManager.get(ATTACKING)).booleanValue();
+		return this.dataManager.get(ATTACKING).booleanValue();
 	}
 
 	public void setAttacking(boolean attacking)
@@ -73,6 +74,7 @@ public class EntityGhast extends EntityFlying implements IMob
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -86,6 +88,7 @@ public class EntityGhast extends EntityFlying implements IMob
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -103,12 +106,14 @@ public class EntityGhast extends EntityFlying implements IMob
 		}
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataManager.register(ATTACKING, Boolean.valueOf(false));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -116,26 +121,31 @@ public class EntityGhast extends EntityFlying implements IMob
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(100.0D);
 	}
 
+	@Override
 	public SoundCategory getSoundCategory()
 	{
 		return SoundCategory.HOSTILE;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_GHAST_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_GHAST_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_GHAST_DEATH;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -145,6 +155,7 @@ public class EntityGhast extends EntityFlying implements IMob
 	/**
 	 * Returns the volume for the sounds this mob makes.
 	 */
+	@Override
 	protected float getSoundVolume()
 	{
 		return 10.0F;
@@ -154,6 +165,7 @@ public class EntityGhast extends EntityFlying implements IMob
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		return this.rand.nextInt(20) == 0 && super.getCanSpawnHere() && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
@@ -162,6 +174,7 @@ public class EntityGhast extends EntityFlying implements IMob
 	/**
 	 * Will return how many at most can spawn in a chunk at once.
 	 */
+	@Override
 	public int getMaxSpawnedInChunk()
 	{
 		return 1;
@@ -175,6 +188,7 @@ public class EntityGhast extends EntityFlying implements IMob
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -184,6 +198,7 @@ public class EntityGhast extends EntityFlying implements IMob
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -194,6 +209,7 @@ public class EntityGhast extends EntityFlying implements IMob
 		}
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return 2.6F;
@@ -209,21 +225,25 @@ public class EntityGhast extends EntityFlying implements IMob
 			this.parentEntity = ghast;
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			return this.parentEntity.getAttackTarget() != null;
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			this.attackTimer = 0;
 		}
 
+		@Override
 		public void resetTask()
 		{
 			this.parentEntity.setAttacking(false);
 		}
 
+		@Override
 		public void updateTask()
 		{
 			EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
@@ -244,13 +264,13 @@ public class EntityGhast extends EntityFlying implements IMob
 					double d1 = 4.0D;
 					Vec3d vec3d = this.parentEntity.getLook(1.0F);
 					double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.xCoord * 4.0D);
-					double d3 = entitylivingbase.getEntityBoundingBox().minY + (double) (entitylivingbase.height / 2.0F) - (0.5D + this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F));
+					double d3 = entitylivingbase.getEntityBoundingBox().minY + entitylivingbase.height / 2.0F - (0.5D + this.parentEntity.posY + this.parentEntity.height / 2.0F);
 					double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.zCoord * 4.0D);
 					world.playEvent((EntityPlayer) null, 1016, new BlockPos(this.parentEntity), 0);
 					EntityLargeFireball entitylargefireball = new EntityLargeFireball(world, this.parentEntity, d2, d3, d4);
 					entitylargefireball.explosionPower = this.parentEntity.getFireballStrength();
 					entitylargefireball.posX = this.parentEntity.posX + vec3d.xCoord * 4.0D;
-					entitylargefireball.posY = this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F) + 0.5D;
+					entitylargefireball.posY = this.parentEntity.posY + this.parentEntity.height / 2.0F + 0.5D;
 					entitylargefireball.posZ = this.parentEntity.posZ + vec3d.zCoord * 4.0D;
 					world.spawnEntityInWorld(entitylargefireball);
 					this.attackTimer = -40;
@@ -275,11 +295,13 @@ public class EntityGhast extends EntityFlying implements IMob
 			this.setMutexBits(2);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			return true;
 		}
 
+		@Override
 		public void updateTask()
 		{
 			if (this.parentEntity.getAttackTarget() == null)
@@ -313,6 +335,7 @@ public class EntityGhast extends EntityFlying implements IMob
 			this.setMutexBits(1);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			EntityMoveHelper entitymovehelper = this.parentEntity.getMoveHelper();
@@ -331,17 +354,19 @@ public class EntityGhast extends EntityFlying implements IMob
 			}
 		}
 
+		@Override
 		public boolean continueExecuting()
 		{
 			return false;
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			Random random = this.parentEntity.getRNG();
-			double d0 = this.parentEntity.posX + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-			double d1 = this.parentEntity.posY + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
-			double d2 = this.parentEntity.posZ + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+			double d0 = this.parentEntity.posX + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
+			double d1 = this.parentEntity.posY + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
+			double d2 = this.parentEntity.posZ + (random.nextFloat() * 2.0F - 1.0F) * 16.0F;
 			this.parentEntity.getMoveHelper().setMoveTo(d0, d1, d2, 1.0D);
 		}
 	}
@@ -357,6 +382,7 @@ public class EntityGhast extends EntityFlying implements IMob
 			this.parentEntity = ghast;
 		}
 
+		@Override
 		public void onUpdateMoveHelper()
 		{
 			if (this.action == EntityMoveHelper.Action.MOVE_TO)
@@ -369,7 +395,7 @@ public class EntityGhast extends EntityFlying implements IMob
 				if (this.courseChangeCooldown-- <= 0)
 				{
 					this.courseChangeCooldown += this.parentEntity.getRNG().nextInt(5) + 2;
-					d3 = (double) MathHelper.sqrt(d3);
+					d3 = MathHelper.sqrt(d3);
 
 					if (this.isNotColliding(this.posX, this.posY, this.posZ, d3))
 					{
@@ -392,7 +418,7 @@ public class EntityGhast extends EntityFlying implements IMob
 			double d2 = (z - this.parentEntity.posZ) / p_179926_7_;
 			AxisAlignedBB axisalignedbb = this.parentEntity.getEntityBoundingBox();
 
-			for (int i = 1; (double) i < p_179926_7_; ++i)
+			for (int i = 1; i < p_179926_7_; ++i)
 			{
 				axisalignedbb = axisalignedbb.offset(d0, d1, d2);
 

@@ -55,9 +55,9 @@ public class EntityItem extends Entity
 		this.setSize(0.25F, 0.25F);
 		this.setPosition(x, y, z);
 		this.rotationYaw = (float) (Math.random() * 360.0D);
-		this.motionX = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D));
+		this.motionX = ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D));
 		this.motionY = 0.20000000298023224D;
-		this.motionZ = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D));
+		this.motionZ = ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D));
 	}
 
 	public EntityItem(World worldIn, double x, double y, double z, ItemStack stack)
@@ -70,6 +70,7 @@ public class EntityItem extends Entity
 	 * returns if this entity triggers Block.onEntityWalking on the blocks they
 	 * walk on. used for spiders and wolves to prevent them from trampling crops
 	 */
+	@Override
 	protected boolean canTriggerWalking()
 	{
 		return false;
@@ -84,6 +85,7 @@ public class EntityItem extends Entity
 		this.setEntityItemStack(ItemStack.EMPTY_ITEM_STACK);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		this.getDataManager().register(ITEM, ItemStack.EMPTY_ITEM_STACK);
@@ -92,6 +94,7 @@ public class EntityItem extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		if (this.getEntityItem().isNotValid())
@@ -136,8 +139,8 @@ public class EntityItem extends Entity
 				if (this.world.getBlockState(new BlockPos(this)).getMaterial() == Material.LAVA)
 				{
 					this.motionY = 0.20000000298023224D;
-					this.motionX = (double) ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-					this.motionZ = (double) ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+					this.motionX = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F;
+					this.motionZ = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F;
 					this.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
 				}
 
@@ -154,9 +157,9 @@ public class EntityItem extends Entity
 				f = this.world.getBlockState(new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.getEntityBoundingBox().minY) - 1, MathHelper.floor(this.posZ))).getBlock().slipperiness * 0.98F;
 			}
 
-			this.motionX *= (double) f;
+			this.motionX *= f;
 			this.motionY *= 0.9800000190734863D;
-			this.motionZ *= (double) f;
+			this.motionZ *= f;
 
 			if (this.onGround)
 			{
@@ -289,6 +292,7 @@ public class EntityItem extends Entity
 	 * Returns if this entity is in water and will end up adding the waters
 	 * velocity to the entity
 	 */
+	@Override
 	public boolean handleWaterMovement()
 	{
 		if (this.world.handleMaterialAcceleration(this.getEntityBoundingBox(), Material.WATER, this))
@@ -312,14 +316,16 @@ public class EntityItem extends Entity
 	 * Will deal the specified amount of fire damage to the entity if the entity
 	 * isn't immune to fire damage.
 	 */
+	@Override
 	protected void dealFireDamage(int amount)
 	{
-		this.attackEntityFrom(DamageSource.inFire, (float) amount);
+		this.attackEntityFrom(DamageSource.inFire, amount);
 	}
 
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -333,7 +339,7 @@ public class EntityItem extends Entity
 		else
 		{
 			this.setBeenAttacked();
-			this.health = (int) ((float) this.health - amount);
+			this.health = (int) (this.health - amount);
 
 			if (this.health <= 0)
 			{
@@ -352,6 +358,7 @@ public class EntityItem extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		compound.setShort("Health", (short) this.health);
@@ -377,6 +384,7 @@ public class EntityItem extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.health = compound.getShort("Health");
@@ -409,6 +417,7 @@ public class EntityItem extends Entity
 	/**
 	 * Called by a player entity when they collide with an entity
 	 */
+	@Override
 	public void onCollideWithPlayer(EntityPlayer entityIn)
 	{
 		if (!this.world.isRemote)
@@ -435,6 +444,7 @@ public class EntityItem extends Entity
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.hasCustomName() ? this.getCustomNameTag() : I18n.translateToLocal("item." + this.getEntityItem().getUnlocalizedName());
@@ -443,11 +453,13 @@ public class EntityItem extends Entity
 	/**
 	 * Returns true if it's possible to attack this entity with an item.
 	 */
+	@Override
 	public boolean canBeAttackedWithItem()
 	{
 		return false;
 	}
 
+	@Override
 	@Nullable
 	public Entity changeDimension(int dimensionIn)
 	{
@@ -468,7 +480,7 @@ public class EntityItem extends Entity
 	 */
 	public ItemStack getEntityItem()
 	{
-		return (ItemStack) this.getDataManager().get(ITEM);
+		return this.getDataManager().get(ITEM);
 	}
 
 	/**

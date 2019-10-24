@@ -39,6 +39,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		super.initGui();
@@ -52,6 +53,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		super.updateScreen();
@@ -61,6 +63,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
@@ -85,6 +88,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	 * Draw the foreground layer for the GuiContainer (everything in front of
 	 * the items)
 	 */
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		this.fontRendererObj.drawString(I18n.format("container.crafting"), 28, 6, 4210752);
@@ -94,6 +98,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	/**
 	 * Draws the background layer of this container (behind the items).
 	 */
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -107,6 +112,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	 * Test if the 2D point is in a rectangle (relative to the GUI). Args :
 	 * rectX, rectY, rectWidth, rectHeight, pointX, pointY
 	 */
+	@Override
 	protected boolean isPointInRegion(int rectX, int rectY, int rectWidth, int rectHeight, int pointX, int pointY)
 	{
 		return (!this.field_193112_y || !this.field_192050_x.func_191878_b()) && super.isPointInRegion(rectX, rectY, rectWidth, rectHeight, pointX, pointY);
@@ -115,6 +121,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		if (!this.field_192050_x.func_191862_a(mouseX, mouseY, mouseButton))
@@ -126,6 +133,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 		}
 	}
 
+	@Override
 	protected boolean func_193983_c(int p_193983_1_, int p_193983_2_, int p_193983_3_, int p_193983_4_)
 	{
 		boolean flag = p_193983_1_ < p_193983_3_ || p_193983_2_ < p_193983_4_ || p_193983_1_ >= p_193983_3_ + this.xSize || p_193983_2_ >= p_193983_4_ + this.ySize;
@@ -136,6 +144,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.id == 10)
@@ -152,6 +161,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (!this.field_192050_x.func_191859_a(typedChar, keyCode))
@@ -163,12 +173,14 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	/**
 	 * Called when the mouse is clicked over a slot or outside the gui.
 	 */
+	@Override
 	protected void handleMouseClick(Slot slotIn, int slotId, int mouseButton, ClickType type)
 	{
 		super.handleMouseClick(slotIn, slotId, mouseButton, type);
 		this.field_192050_x.func_191874_a(slotIn);
 	}
 
+	@Override
 	public void func_192043_J_()
 	{
 		this.field_192050_x.func_193948_e();
@@ -178,6 +190,7 @@ public class GuiCrafting extends GuiContainer implements IRecipeShownListener
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		this.field_192050_x.func_191871_c();

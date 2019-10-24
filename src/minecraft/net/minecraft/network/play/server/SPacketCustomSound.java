@@ -38,10 +38,11 @@ public class SPacketCustomSound implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
 		this.soundName = buf.readStringFromBuffer(256);
-		this.category = (SoundCategory) buf.readEnumValue(SoundCategory.class);
+		this.category = buf.readEnumValue(SoundCategory.class);
 		this.x = buf.readInt();
 		this.y = buf.readInt();
 		this.z = buf.readInt();
@@ -52,6 +53,7 @@ public class SPacketCustomSound implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeString(this.soundName);
@@ -75,17 +77,17 @@ public class SPacketCustomSound implements Packet<INetHandlerPlayClient>
 
 	public double getX()
 	{
-		return (double) ((float) this.x / 8.0F);
+		return this.x / 8.0F;
 	}
 
 	public double getY()
 	{
-		return (double) ((float) this.y / 8.0F);
+		return this.y / 8.0F;
 	}
 
 	public double getZ()
 	{
-		return (double) ((float) this.z / 8.0F);
+		return this.z / 8.0F;
 	}
 
 	public float getVolume()
@@ -101,6 +103,7 @@ public class SPacketCustomSound implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handleCustomSound(this);

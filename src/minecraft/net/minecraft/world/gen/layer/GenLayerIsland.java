@@ -12,6 +12,7 @@ public class GenLayerIsland extends GenLayer
 	 * interpreted as temperatures, rainfall amounts, or biomeList[] indices
 	 * based on the particular GenLayer subclass.
 	 */
+	@Override
 	public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
 	{
 		int[] aint = IntCache.getIntCache(areaWidth * areaHeight);
@@ -20,7 +21,7 @@ public class GenLayerIsland extends GenLayer
 		{
 			for (int j = 0; j < areaWidth; ++j)
 			{
-				this.initChunkSeed((long) (areaX + j), (long) (areaY + i));
+				this.initChunkSeed(areaX + j, areaY + i);
 				aint[j + i * areaWidth] = this.nextInt(10) == 0 ? 1 : 0;
 			}
 		}

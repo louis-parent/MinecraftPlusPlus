@@ -29,12 +29,14 @@ public class EntityCaveSpider extends EntitySpider
 		EntityLiving.registerFixesMob(fixer, EntityCaveSpider.class);
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
 		if (super.attackEntityAsMob(entityIn))
@@ -66,6 +68,7 @@ public class EntityCaveSpider extends EntitySpider
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -78,11 +81,13 @@ public class EntityCaveSpider extends EntitySpider
 		return livingdata;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return 0.45F;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{

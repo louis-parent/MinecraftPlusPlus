@@ -93,55 +93,66 @@ public class AdvancementRewards
 		{
 			ICommandSender icommandsender = new ICommandSender()
 			{
+				@Override
 				public String getName()
 				{
 					return p_192113_1_.getName();
 				}
 
+				@Override
 				public ITextComponent getDisplayName()
 				{
 					return p_192113_1_.getDisplayName();
 				}
 
+				@Override
 				public void addChatMessage(ITextComponent component)
 				{
 				}
 
+				@Override
 				public boolean canCommandSenderUseCommand(int permLevel, String commandName)
 				{
 					return permLevel <= 2;
 				}
 
+				@Override
 				public BlockPos getPosition()
 				{
 					return p_192113_1_.getPosition();
 				}
 
+				@Override
 				public Vec3d getPositionVector()
 				{
 					return p_192113_1_.getPositionVector();
 				}
 
+				@Override
 				public World getEntityWorld()
 				{
 					return p_192113_1_.world;
 				}
 
+				@Override
 				public Entity getCommandSenderEntity()
 				{
 					return p_192113_1_;
 				}
 
+				@Override
 				public boolean sendCommandFeedback()
 				{
 					return minecraftserver.worldServers[0].getGameRules().getBoolean("commandBlockOutput");
 				}
 
+				@Override
 				public void setCommandStat(CommandResultStats.Type type, int amount)
 				{
 					p_192113_1_.setCommandStat(type, amount);
 				}
 
+				@Override
 				public MinecraftServer getServer()
 				{
 					return p_192113_1_.getServer();
@@ -151,13 +162,15 @@ public class AdvancementRewards
 		}
 	}
 
+	@Override
 	public String toString()
 	{
-		return "AdvancementRewards{experience=" + this.field_192115_b + ", loot=" + Arrays.toString((Object[]) this.field_192116_c) + ", recipes=" + Arrays.toString((Object[]) this.field_192117_d) + ", function=" + this.field_193129_e + '}';
+		return "AdvancementRewards{experience=" + this.field_192115_b + ", loot=" + Arrays.toString(this.field_192116_c) + ", recipes=" + Arrays.toString(this.field_192117_d) + ", function=" + this.field_193129_e + '}';
 	}
 
 	public static class Deserializer implements JsonDeserializer<AdvancementRewards>
 	{
+		@Override
 		public AdvancementRewards deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "rewards");

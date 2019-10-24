@@ -29,6 +29,7 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (this.runDelay <= 0)
@@ -49,6 +50,7 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return this.currentTask >= 0 && super.continueExecuting();
@@ -57,10 +59,11 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		super.updateTask();
-		this.theVillager.getLookHelper().setLookPosition((double) this.destinationBlock.getX() + 0.5D, (double) (this.destinationBlock.getY() + 1), (double) this.destinationBlock.getZ() + 0.5D, 10.0F, (float) this.theVillager.getVerticalFaceSpeed());
+		this.theVillager.getLookHelper().setLookPosition(this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 1, this.destinationBlock.getZ() + 0.5D, 10.0F, this.theVillager.getVerticalFaceSpeed());
 
 		if (this.getIsAboveDestination())
 		{
@@ -128,6 +131,7 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
 	/**
 	 * Return true to set given position as destination
 	 */
+	@Override
 	protected boolean shouldMoveTo(World worldIn, BlockPos pos)
 	{
 		Block block = worldIn.getBlockState(pos).getBlock();

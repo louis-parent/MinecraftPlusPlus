@@ -21,6 +21,7 @@ public class RenderShulker extends RenderLiving<EntityShulker>
 		this.addLayer(new RenderShulker.HeadLayer());
 	}
 
+	@Override
 	public ModelShulker getMainModel()
 	{
 		return (ModelShulker) super.getMainModel();
@@ -29,6 +30,7 @@ public class RenderShulker extends RenderLiving<EntityShulker>
 	/**
 	 * Renders the desired {@code T} type Entity.
 	 */
+	@Override
 	public void doRender(EntityShulker entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		int i = entity.getClientTeleportInterp();
@@ -37,11 +39,11 @@ public class RenderShulker extends RenderLiving<EntityShulker>
 		{
 			BlockPos blockpos = entity.getAttachmentPos();
 			BlockPos blockpos1 = entity.getOldAttachPos();
-			double d0 = (double) ((float) i - partialTicks) / 6.0D;
+			double d0 = (i - partialTicks) / 6.0D;
 			d0 = d0 * d0;
-			double d1 = (double) (blockpos.getX() - blockpos1.getX()) * d0;
-			double d2 = (double) (blockpos.getY() - blockpos1.getY()) * d0;
-			double d3 = (double) (blockpos.getZ() - blockpos1.getZ()) * d0;
+			double d1 = (blockpos.getX() - blockpos1.getX()) * d0;
+			double d2 = (blockpos.getY() - blockpos1.getY()) * d0;
+			double d3 = (blockpos.getZ() - blockpos1.getZ()) * d0;
 			super.doRender(entity, x - d1, y - d2, z - d3, entityYaw, partialTicks);
 		}
 		else
@@ -50,6 +52,7 @@ public class RenderShulker extends RenderLiving<EntityShulker>
 		}
 	}
 
+	@Override
 	public boolean shouldRender(EntityShulker livingEntity, ICamera camera, double camX, double camY, double camZ)
 	{
 		if (super.shouldRender(livingEntity, camera, camX, camY, camZ))
@@ -62,8 +65,8 @@ public class RenderShulker extends RenderLiving<EntityShulker>
 			{
 				BlockPos blockpos = livingEntity.getOldAttachPos();
 				BlockPos blockpos1 = livingEntity.getAttachmentPos();
-				Vec3d vec3d = new Vec3d((double) blockpos1.getX(), (double) blockpos1.getY(), (double) blockpos1.getZ());
-				Vec3d vec3d1 = new Vec3d((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ());
+				Vec3d vec3d = new Vec3d(blockpos1.getX(), blockpos1.getY(), blockpos1.getZ());
+				Vec3d vec3d1 = new Vec3d(blockpos.getX(), blockpos.getY(), blockpos.getZ());
 
 				if (camera.isBoundingBoxInFrustum(new AxisAlignedBB(vec3d1.xCoord, vec3d1.yCoord, vec3d1.zCoord, vec3d.xCoord, vec3d.yCoord, vec3d.zCoord)))
 				{
@@ -79,11 +82,13 @@ public class RenderShulker extends RenderLiving<EntityShulker>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityShulker entity)
 	{
 		return SHULKER_ENDERGOLEM_TEXTURE[entity.func_190769_dn().getMetadata()];
 	}
 
+	@Override
 	protected void rotateCorpse(EntityShulker entityLiving, float p_77043_2_, float p_77043_3_, float partialTicks)
 	{
 		super.rotateCorpse(entityLiving, p_77043_2_, p_77043_3_, partialTicks);
@@ -127,6 +132,7 @@ public class RenderShulker extends RenderLiving<EntityShulker>
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
+	@Override
 	protected void preRenderCallback(EntityShulker entitylivingbaseIn, float partialTickTime)
 	{
 		float f = 0.999F;
@@ -139,6 +145,7 @@ public class RenderShulker extends RenderLiving<EntityShulker>
 		{
 		}
 
+		@Override
 		public void doRenderLayer(EntityShulker entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 		{
 			GlStateManager.pushMatrix();
@@ -187,6 +194,7 @@ public class RenderShulker extends RenderLiving<EntityShulker>
 			GlStateManager.popMatrix();
 		}
 
+		@Override
 		public boolean shouldCombineTextures()
 		{
 			return false;

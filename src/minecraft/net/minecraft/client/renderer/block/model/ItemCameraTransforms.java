@@ -73,7 +73,7 @@ public class ItemCameraTransforms
 		if (vec != ItemTransformVec3f.DEFAULT)
 		{
 			int i = leftHand ? -1 : 1;
-			GlStateManager.translate((float) i * (offsetTranslateX + vec.translation.x), offsetTranslateY + vec.translation.y, offsetTranslateZ + vec.translation.z);
+			GlStateManager.translate(i * (offsetTranslateX + vec.translation.x), offsetTranslateY + vec.translation.y, offsetTranslateZ + vec.translation.z);
 			float f = offsetRotationX + vec.rotation.x;
 			float f1 = offsetRotationY + vec.rotation.y;
 			float f2 = offsetRotationZ + vec.rotation.z;
@@ -143,6 +143,7 @@ public class ItemCameraTransforms
 
 	static class Deserializer implements JsonDeserializer<ItemCameraTransforms>
 	{
+		@Override
 		public ItemCameraTransforms deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();

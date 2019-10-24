@@ -21,10 +21,11 @@ public class ParticleDragonBreath extends Particle
 		this.particleBlue = MathHelper.nextFloat(this.rand, 0.8235294F, 0.9764706F);
 		this.particleScale *= 0.75F;
 		this.oSize = this.particleScale;
-		this.particleMaxAge = (int) (20.0D / ((double) this.rand.nextFloat() * 0.8D + 0.2D));
+		this.particleMaxAge = (int) (20.0D / (this.rand.nextFloat() * 0.8D + 0.2D));
 		this.hasHitGround = false;
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -71,14 +72,16 @@ public class ParticleDragonBreath extends Particle
 	/**
 	 * Renders the particle
 	 */
+	@Override
 	public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
-		this.particleScale = this.oSize * MathHelper.clamp(((float) this.particleAge + partialTicks) / (float) this.particleMaxAge * 32.0F, 0.0F, 1.0F);
+		this.particleScale = this.oSize * MathHelper.clamp((this.particleAge + partialTicks) / this.particleMaxAge * 32.0F, 0.0F, 1.0F);
 		super.renderParticle(worldRendererIn, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
 	}
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleDragonBreath(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);

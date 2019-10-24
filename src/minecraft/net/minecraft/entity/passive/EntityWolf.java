@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 
 import fr.minecraftpp.generator.item.food.IFood;
-import fr.minecraftpp.item.DynamicItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -38,7 +37,6 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -84,6 +82,7 @@ public class EntityWolf extends EntityTameable
 		this.setTamed(false);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.aiSit = new EntityAISit(this);
@@ -103,6 +102,7 @@ public class EntityWolf extends EntityTameable
 		this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
 		this.targetTasks.addTask(4, new EntityAITargetNonTamed(this, EntityAnimal.class, false, new Predicate<Entity>()
 		{
+			@Override
 			public boolean apply(@Nullable Entity p_apply_1_)
 			{
 				return p_apply_1_ instanceof EntitySheep || p_apply_1_ instanceof EntityRabbit;
@@ -111,6 +111,7 @@ public class EntityWolf extends EntityTameable
 		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, AbstractSkeleton.class, false));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -131,6 +132,7 @@ public class EntityWolf extends EntityTameable
 	/**
 	 * Sets the active target the Task system uses for tracking
 	 */
+	@Override
 	public void setAttackTarget(@Nullable EntityLivingBase entitylivingbaseIn)
 	{
 		super.setAttackTarget(entitylivingbaseIn);
@@ -145,11 +147,13 @@ public class EntityWolf extends EntityTameable
 		}
 	}
 
+	@Override
 	protected void updateAITasks()
 	{
 		this.dataManager.set(DATA_HEALTH_ID, Float.valueOf(this.getHealth()));
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -158,6 +162,7 @@ public class EntityWolf extends EntityTameable
 		this.dataManager.register(COLLAR_COLOR, Integer.valueOf(EnumDyeColor.RED.getDyeDamage()));
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(SoundEvents.ENTITY_WOLF_STEP, 0.15F, 1.0F);
@@ -171,6 +176,7 @@ public class EntityWolf extends EntityTameable
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -181,6 +187,7 @@ public class EntityWolf extends EntityTameable
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -192,6 +199,7 @@ public class EntityWolf extends EntityTameable
 		}
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		if (this.isAngry())
@@ -200,7 +208,7 @@ public class EntityWolf extends EntityTameable
 		}
 		else if (this.rand.nextInt(3) == 0)
 		{
-			return this.isTamed() && ((Float) this.dataManager.get(DATA_HEALTH_ID)).floatValue() < 10.0F ? SoundEvents.ENTITY_WOLF_WHINE : SoundEvents.ENTITY_WOLF_PANT;
+			return this.isTamed() && this.dataManager.get(DATA_HEALTH_ID).floatValue() < 10.0F ? SoundEvents.ENTITY_WOLF_WHINE : SoundEvents.ENTITY_WOLF_PANT;
 		}
 		else
 		{
@@ -208,11 +216,13 @@ public class EntityWolf extends EntityTameable
 		}
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_WOLF_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_WOLF_DEATH;
@@ -221,11 +231,13 @@ public class EntityWolf extends EntityTameable
 	/**
 	 * Returns the volume for the sounds this mob makes.
 	 */
+	@Override
 	protected float getSoundVolume()
 	{
 		return 0.4F;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -237,6 +249,7 @@ public class EntityWolf extends EntityTameable
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -258,6 +271,7 @@ public class EntityWolf extends EntityTameable
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -306,7 +320,7 @@ public class EntityWolf extends EntityTameable
 				{
 					float f1 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width * 0.5F;
 					float f2 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width * 0.5F;
-					this.world.spawnParticle(EnumParticleTypes.WATER_SPLASH, this.posX + (double) f1, (double) (f + 0.8F), this.posZ + (double) f2, this.motionX, this.motionY, this.motionZ);
+					this.world.spawnParticle(EnumParticleTypes.WATER_SPLASH, this.posX + f1, f + 0.8F, this.posZ + f2, this.motionX, this.motionY, this.motionZ);
 				}
 			}
 		}
@@ -350,6 +364,7 @@ public class EntityWolf extends EntityTameable
 		return (this.headRotationCourseOld + (this.headRotationCourse - this.headRotationCourseOld) * p_70917_1_) * 0.15F * (float) Math.PI;
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return this.height * 0.8F;
@@ -359,6 +374,7 @@ public class EntityWolf extends EntityTameable
 	 * The speed it takes to move the entityliving's rotationPitch through the
 	 * faceEntity method. This is only currently use in wolves.
 	 */
+	@Override
 	public int getVerticalFaceSpeed()
 	{
 		return this.isSitting() ? 20 : super.getVerticalFaceSpeed();
@@ -367,6 +383,7 @@ public class EntityWolf extends EntityTameable
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable(source))
@@ -391,9 +408,10 @@ public class EntityWolf extends EntityTameable
 		}
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()));
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), ((int) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()));
 
 		if (flag)
 		{
@@ -403,6 +421,7 @@ public class EntityWolf extends EntityTameable
 		return flag;
 	}
 
+	@Override
 	public void setTamed(boolean tamed)
 	{
 		super.setTamed(tamed);
@@ -419,6 +438,7 @@ public class EntityWolf extends EntityTameable
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
 	}
 
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -431,14 +451,14 @@ public class EntityWolf extends EntityTameable
 				{
 					IFood itemfood = IFood.getFoodFromItem(itemstack.getItem());
 
-					if (itemfood.isWolfsFavoriteMeat() && ((Float) this.dataManager.get(DATA_HEALTH_ID)).floatValue() < 20.0F)
+					if (itemfood.isWolfsFavoriteMeat() && this.dataManager.get(DATA_HEALTH_ID).floatValue() < 20.0F)
 					{
 						if (!player.capabilities.isCreativeMode)
 						{
 							itemstack.decreaseStackSize(1);
 						}
 
-						this.heal((float) itemfood.getHealAmount(itemstack));
+						this.heal(itemfood.getHealAmount(itemstack));
 						return true;
 					}
 				}
@@ -500,6 +520,7 @@ public class EntityWolf extends EntityTameable
 		return super.processInteract(player, hand);
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 8)
@@ -522,7 +543,7 @@ public class EntityWolf extends EntityTameable
 		}
 		else
 		{
-			return this.isTamed() ? (0.55F - (this.getMaxHealth() - ((Float) this.dataManager.get(DATA_HEALTH_ID)).floatValue()) * 0.02F) * (float) Math.PI : ((float) Math.PI / 5F);
+			return this.isTamed() ? (0.55F - (this.getMaxHealth() - this.dataManager.get(DATA_HEALTH_ID).floatValue()) * 0.02F) * (float) Math.PI : ((float) Math.PI / 5F);
 		}
 	}
 
@@ -530,6 +551,7 @@ public class EntityWolf extends EntityTameable
 	 * Checks if the parameter is an item which this animal can be fed to breed
 	 * it (wheat, carrots or seeds depending on the animal type)
 	 */
+	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
 		return IFood.getFoodFromItem(stack.getItem()).isWolfsFavoriteMeat();
@@ -538,6 +560,7 @@ public class EntityWolf extends EntityTameable
 	/**
 	 * Will return how many at most can spawn in a chunk at once.
 	 */
+	@Override
 	public int getMaxSpawnedInChunk()
 	{
 		return 8;
@@ -548,7 +571,7 @@ public class EntityWolf extends EntityTameable
 	 */
 	public boolean isAngry()
 	{
-		return (((Byte) this.dataManager.get(TAMED)).byteValue() & 2) != 0;
+		return (this.dataManager.get(TAMED).byteValue() & 2) != 0;
 	}
 
 	/**
@@ -556,7 +579,7 @@ public class EntityWolf extends EntityTameable
 	 */
 	public void setAngry(boolean angry)
 	{
-		byte b0 = ((Byte) this.dataManager.get(TAMED)).byteValue();
+		byte b0 = this.dataManager.get(TAMED).byteValue();
 
 		if (angry)
 		{
@@ -570,7 +593,7 @@ public class EntityWolf extends EntityTameable
 
 	public EnumDyeColor getCollarColor()
 	{
-		return EnumDyeColor.byDyeDamage(((Integer) this.dataManager.get(COLLAR_COLOR)).intValue() & 15);
+		return EnumDyeColor.byDyeDamage(this.dataManager.get(COLLAR_COLOR).intValue() & 15);
 	}
 
 	public void setCollarColor(EnumDyeColor collarcolor)
@@ -578,6 +601,7 @@ public class EntityWolf extends EntityTameable
 		this.dataManager.set(COLLAR_COLOR, Integer.valueOf(collarcolor.getDyeDamage()));
 	}
 
+	@Override
 	public EntityWolf createChild(EntityAgeable ageable)
 	{
 		EntityWolf entitywolf = new EntityWolf(this.world);
@@ -600,6 +624,7 @@ public class EntityWolf extends EntityTameable
 	/**
 	 * Returns true if the mob is currently able to mate with the specified mob.
 	 */
+	@Override
 	public boolean canMateWith(EntityAnimal otherAnimal)
 	{
 		if (otherAnimal == this)
@@ -635,9 +660,10 @@ public class EntityWolf extends EntityTameable
 
 	public boolean isBegging()
 	{
-		return ((Boolean) this.dataManager.get(BEGGING)).booleanValue();
+		return this.dataManager.get(BEGGING).booleanValue();
 	}
 
+	@Override
 	public boolean shouldAttackEntity(EntityLivingBase p_142018_1_, EntityLivingBase p_142018_2_)
 	{
 		if (!(p_142018_1_ instanceof EntityCreeper) && !(p_142018_1_ instanceof EntityGhast))
@@ -667,6 +693,7 @@ public class EntityWolf extends EntityTameable
 		}
 	}
 
+	@Override
 	public boolean canBeLeashedTo(EntityPlayer player)
 	{
 		return !this.isAngry() && super.canBeLeashedTo(player);
@@ -682,6 +709,7 @@ public class EntityWolf extends EntityTameable
 			this.field_190856_d = p_i47251_2_;
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			if (super.shouldExecute() && this.closestLivingEntity instanceof EntityLlama)
@@ -699,12 +727,14 @@ public class EntityWolf extends EntityTameable
 			return p_190854_1_.func_190707_dL() >= EntityWolf.this.rand.nextInt(5);
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			EntityWolf.this.setAttackTarget((EntityLivingBase) null);
 			super.startExecuting();
 		}
 
+		@Override
 		public void updateTask()
 		{
 			EntityWolf.this.setAttackTarget((EntityLivingBase) null);

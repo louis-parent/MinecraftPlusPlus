@@ -21,11 +21,13 @@ public class EnchantedItemTrigger implements ICriterionTrigger<EnchantedItemTrig
 	private static final ResourceLocation field_192191_a = new ResourceLocation("enchanted_item");
 	private final Map<PlayerAdvancements, EnchantedItemTrigger.Listeners> field_192192_b = Maps.<PlayerAdvancements, EnchantedItemTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192191_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<EnchantedItemTrigger.Instance> p_192165_2_)
 	{
 		EnchantedItemTrigger.Listeners enchanteditemtrigger$listeners = this.field_192192_b.get(p_192165_1_);
@@ -39,6 +41,7 @@ public class EnchantedItemTrigger implements ICriterionTrigger<EnchantedItemTrig
 		enchanteditemtrigger$listeners.func_192460_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<EnchantedItemTrigger.Instance> p_192164_2_)
 	{
 		EnchantedItemTrigger.Listeners enchanteditemtrigger$listeners = this.field_192192_b.get(p_192164_1_);
@@ -54,11 +57,13 @@ public class EnchantedItemTrigger implements ICriterionTrigger<EnchantedItemTrig
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192192_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public EnchantedItemTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		ItemPredicate itempredicate = ItemPredicate.func_192492_a(p_192166_1_.get("item"));
@@ -96,7 +101,7 @@ public class EnchantedItemTrigger implements ICriterionTrigger<EnchantedItemTrig
 			}
 			else
 			{
-				return this.field_192259_b.func_192514_a((float) p_192257_2_);
+				return this.field_192259_b.func_192514_a(p_192257_2_);
 			}
 		}
 	}
@@ -132,7 +137,7 @@ public class EnchantedItemTrigger implements ICriterionTrigger<EnchantedItemTrig
 
 			for (ICriterionTrigger.Listener<EnchantedItemTrigger.Instance> listener : this.field_192462_b)
 			{
-				if (((EnchantedItemTrigger.Instance) listener.func_192158_a()).func_192257_a(p_192459_1_, p_192459_2_))
+				if (listener.func_192158_a().func_192257_a(p_192459_1_, p_192459_2_))
 				{
 					if (list == null)
 					{

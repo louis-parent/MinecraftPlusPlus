@@ -50,7 +50,7 @@ public class LanguageMap
 			{
 				if (!s.isEmpty() && s.charAt(0) != '#')
 				{
-					String[] astring = (String[]) Iterables.toArray(EQUAL_SIGN_SPLITTER.split(s), String.class);
+					String[] astring = Iterables.toArray(EQUAL_SIGN_SPLITTER.split(s), String.class);
 
 					if (astring != null && astring.length == 2)
 					{

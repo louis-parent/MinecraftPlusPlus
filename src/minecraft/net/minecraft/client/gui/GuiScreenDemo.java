@@ -21,6 +21,7 @@ public class GuiScreenDemo extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.buttonList.clear();
@@ -33,6 +34,7 @@ public class GuiScreenDemo extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		switch (button.id)
@@ -63,6 +65,7 @@ public class GuiScreenDemo extends GuiScreen
 	 * Draws either a gradient over the background screen (when it exists) or a
 	 * flat gradient over background.png
 	 */
+	@Override
 	public void drawDefaultBackground()
 	{
 		super.drawDefaultBackground();
@@ -76,6 +79,7 @@ public class GuiScreenDemo extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();

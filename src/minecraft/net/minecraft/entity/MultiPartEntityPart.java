@@ -17,6 +17,7 @@ public class MultiPartEntityPart extends Entity
 		this.partName = partName;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 	}
@@ -24,6 +25,7 @@ public class MultiPartEntityPart extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 	}
@@ -31,6 +33,7 @@ public class MultiPartEntityPart extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 	}
@@ -39,6 +42,7 @@ public class MultiPartEntityPart extends Entity
 	 * Returns true if other Entities should be prevented from moving through
 	 * this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return true;
@@ -47,6 +51,7 @@ public class MultiPartEntityPart extends Entity
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		return this.isEntityInvulnerable(source) ? false : this.entityDragonObj.attackEntityFromPart(this, source, amount);
@@ -55,6 +60,7 @@ public class MultiPartEntityPart extends Entity
 	/**
 	 * Returns true if Entity argument is equal to this Entity
 	 */
+	@Override
 	public boolean isEntityEqual(Entity entityIn)
 	{
 		return this == entityIn || this.entityDragonObj == entityIn;

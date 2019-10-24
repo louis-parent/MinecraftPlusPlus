@@ -13,6 +13,7 @@ public class GuiResourcePackAvailable extends GuiResourcePackList
 		super(mcIn, p_i45054_2_, p_i45054_3_, p_i45054_4_);
 	}
 
+	@Override
 	protected String getListHeader()
 	{
 		return I18n.format("resourcePack.available.title");

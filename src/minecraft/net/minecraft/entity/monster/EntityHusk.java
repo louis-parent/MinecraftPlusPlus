@@ -33,42 +33,50 @@ public class EntityHusk extends EntityZombie
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		return super.getCanSpawnHere() && this.world.canSeeSky(new BlockPos(this));
 	}
 
+	@Override
 	protected boolean func_190730_o()
 	{
 		return false;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_HUSK_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_HUSK_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_HUSK_DEATH;
 	}
 
+	@Override
 	protected SoundEvent func_190731_di()
 	{
 		return SoundEvents.ENTITY_HUSK_STEP;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.field_191182_ar;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
 		boolean flag = super.attackEntityAsMob(entityIn);
@@ -82,6 +90,7 @@ public class EntityHusk extends EntityZombie
 		return flag;
 	}
 
+	@Override
 	protected ItemStack func_190732_dj()
 	{
 		return ItemStack.EMPTY_ITEM_STACK;

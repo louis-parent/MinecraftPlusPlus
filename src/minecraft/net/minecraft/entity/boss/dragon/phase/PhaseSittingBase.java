@@ -12,6 +12,7 @@ public abstract class PhaseSittingBase extends PhaseBase
 		super(p_i46794_1_);
 	}
 
+	@Override
 	public boolean getIsStationary()
 	{
 		return true;
@@ -21,6 +22,7 @@ public abstract class PhaseSittingBase extends PhaseBase
 	 * Normally, just returns damage. If dragon is sitting and src is an arrow,
 	 * arrow is enflamed and zero damage returned.
 	 */
+	@Override
 	public float getAdjustedDamage(MultiPartEntityPart pt, DamageSource src, float damage)
 	{
 		if (src.getSourceOfDamage() instanceof EntityArrow)

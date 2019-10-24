@@ -18,6 +18,7 @@ public class TileEntityEnderChest extends TileEntity implements ITickable
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		if (++this.ticksSinceSync % 20 * 4 == 0)
@@ -33,9 +34,9 @@ public class TileEntityEnderChest extends TileEntity implements ITickable
 
 		if (this.numPlayersUsing > 0 && this.lidAngle == 0.0F)
 		{
-			double d0 = (double) i + 0.5D;
-			double d1 = (double) k + 0.5D;
-			this.world.playSound((EntityPlayer) null, d0, (double) j + 0.5D, d1, SoundEvents.BLOCK_ENDERCHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
+			double d0 = i + 0.5D;
+			double d1 = k + 0.5D;
+			this.world.playSound((EntityPlayer) null, d0, j + 0.5D, d1, SoundEvents.BLOCK_ENDERCHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
 		}
 
 		if (this.numPlayersUsing == 0 && this.lidAngle > 0.0F || this.numPlayersUsing > 0 && this.lidAngle < 1.0F)
@@ -60,9 +61,9 @@ public class TileEntityEnderChest extends TileEntity implements ITickable
 
 			if (this.lidAngle < 0.5F && f2 >= 0.5F)
 			{
-				double d3 = (double) i + 0.5D;
-				double d2 = (double) k + 0.5D;
-				this.world.playSound((EntityPlayer) null, d3, (double) j + 0.5D, d2, SoundEvents.BLOCK_ENDERCHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
+				double d3 = i + 0.5D;
+				double d2 = k + 0.5D;
+				this.world.playSound((EntityPlayer) null, d3, j + 0.5D, d2, SoundEvents.BLOCK_ENDERCHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
 			}
 
 			if (this.lidAngle < 0.0F)
@@ -72,6 +73,7 @@ public class TileEntityEnderChest extends TileEntity implements ITickable
 		}
 	}
 
+	@Override
 	public boolean receiveClientEvent(int id, int type)
 	{
 		if (id == 1)
@@ -88,6 +90,7 @@ public class TileEntityEnderChest extends TileEntity implements ITickable
 	/**
 	 * invalidates a tile entity
 	 */
+	@Override
 	public void invalidate()
 	{
 		this.updateContainingBlockInfo();
@@ -114,7 +117,7 @@ public class TileEntityEnderChest extends TileEntity implements ITickable
 		}
 		else
 		{
-			return player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+			return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
 		}
 	}
 }

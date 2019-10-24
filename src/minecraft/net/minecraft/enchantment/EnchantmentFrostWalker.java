@@ -25,6 +25,7 @@ public class EnchantmentFrostWalker extends Enchantment
 	 * Returns the minimal value of enchantability needed on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMinEnchantability(int enchantmentLevel)
 	{
 		return enchantmentLevel * 10;
@@ -34,11 +35,13 @@ public class EnchantmentFrostWalker extends Enchantment
 	 * Returns the maximum value of enchantability nedded on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMaxEnchantability(int enchantmentLevel)
 	{
 		return this.getMinEnchantability(enchantmentLevel) + 15;
 	}
 
+	@Override
 	public boolean isTreasureEnchantment()
 	{
 		return true;
@@ -47,6 +50,7 @@ public class EnchantmentFrostWalker extends Enchantment
 	/**
 	 * Returns the maximum level that the enchantment can have.
 	 */
+	@Override
 	public int getMaxLevel()
 	{
 		return 2;
@@ -56,12 +60,12 @@ public class EnchantmentFrostWalker extends Enchantment
 	{
 		if (living.onGround)
 		{
-			float f = (float) Math.min(16, 2 + level);
+			float f = Math.min(16, 2 + level);
 			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(0, 0, 0);
 
-			for (BlockPos.MutableBlockPos blockpos$mutableblockpos1 : BlockPos.getAllInBoxMutable(pos.add((double) (-f), -1.0D, (double) (-f)), pos.add((double) f, -1.0D, (double) f)))
+			for (BlockPos.MutableBlockPos blockpos$mutableblockpos1 : BlockPos.getAllInBoxMutable(pos.add((-f), -1.0D, (-f)), pos.add(f, -1.0D, f)))
 			{
-				if (blockpos$mutableblockpos1.distanceSqToCenter(living.posX, living.posY, living.posZ) <= (double) (f * f))
+				if (blockpos$mutableblockpos1.distanceSqToCenter(living.posX, living.posY, living.posZ) <= f * f)
 				{
 					blockpos$mutableblockpos.setPos(blockpos$mutableblockpos1.getX(), blockpos$mutableblockpos1.getY() + 1, blockpos$mutableblockpos1.getZ());
 					IBlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos);
@@ -70,7 +74,7 @@ public class EnchantmentFrostWalker extends Enchantment
 					{
 						IBlockState iblockstate1 = worldIn.getBlockState(blockpos$mutableblockpos1);
 
-						if (iblockstate1.getMaterial() == Material.WATER && ((Integer) iblockstate1.getValue(BlockLiquid.LEVEL)).intValue() == 0 && worldIn.func_190527_a(Blocks.FROSTED_ICE, blockpos$mutableblockpos1, false, EnumFacing.DOWN, (Entity) null))
+						if (iblockstate1.getMaterial() == Material.WATER && iblockstate1.getValue(BlockLiquid.LEVEL).intValue() == 0 && worldIn.func_190527_a(Blocks.FROSTED_ICE, blockpos$mutableblockpos1, false, EnumFacing.DOWN, (Entity) null))
 						{
 							worldIn.setBlockState(blockpos$mutableblockpos1, Blocks.FROSTED_ICE.getDefaultState());
 							worldIn.scheduleUpdate(blockpos$mutableblockpos1.toImmutable(), Blocks.FROSTED_ICE, MathHelper.getInt(living.getRNG(), 60, 120));
@@ -85,6 +89,7 @@ public class EnchantmentFrostWalker extends Enchantment
 	 * Determines if the enchantment passed can be applyied together with this
 	 * enchantment.
 	 */
+	@Override
 	public boolean canApplyTogether(Enchantment ench)
 	{
 		return super.canApplyTogether(ench) && ench != Enchantments.DEPTH_STRIDER;

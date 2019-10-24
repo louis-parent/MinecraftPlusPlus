@@ -18,6 +18,7 @@ public class RenderChicken extends RenderLiving<EntityChicken>
 	 * Returns the location of an entity's texture. Doesn't seem to be called
 	 * unless you call Render.bindEntityTexture.
 	 */
+	@Override
 	protected ResourceLocation getEntityTexture(EntityChicken entity)
 	{
 		return CHICKEN_TEXTURES;
@@ -26,6 +27,7 @@ public class RenderChicken extends RenderLiving<EntityChicken>
 	/**
 	 * Defines what float the third param in setRotationAngles of ModelBase is
 	 */
+	@Override
 	protected float handleRotationFloat(EntityChicken livingBase, float partialTicks)
 	{
 		float f = livingBase.oFlap + (livingBase.wingRotation - livingBase.oFlap) * partialTicks;

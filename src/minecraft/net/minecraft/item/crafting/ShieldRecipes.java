@@ -11,6 +11,7 @@ public class ShieldRecipes
 {
 	public static class Decoration implements IRecipe
 	{
+		@Override
 		public boolean matches(InventoryCrafting inv, World worldIn)
 		{
 			ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -63,6 +64,7 @@ public class ShieldRecipes
 			}
 		}
 
+		@Override
 		public ItemStack getCraftingResult(InventoryCrafting inv)
 		{
 			ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -99,11 +101,13 @@ public class ShieldRecipes
 			}
 		}
 
+		@Override
 		public ItemStack getRecipeOutput()
 		{
 			return ItemStack.EMPTY_ITEM_STACK;
 		}
 
+		@Override
 		public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
 		{
 			NonNullList<ItemStack> nonnulllist = NonNullList.<ItemStack>getInstanceFilledWith(inv.getSizeInventory(), ItemStack.EMPTY_ITEM_STACK);
@@ -121,11 +125,13 @@ public class ShieldRecipes
 			return nonnulllist;
 		}
 
+		@Override
 		public boolean hideInCraftingTabs()
 		{
 			return true;
 		}
 
+		@Override
 		public boolean checkIfCraftingMatrixSizeIsCorrect(int p_194133_1_, int p_194133_2_)
 		{
 			return p_194133_1_ * p_194133_2_ >= 2;

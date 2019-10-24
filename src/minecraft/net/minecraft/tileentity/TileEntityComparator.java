@@ -6,6 +6,7 @@ public class TileEntityComparator extends TileEntity
 {
 	private int outputSignal;
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -13,6 +14,7 @@ public class TileEntityComparator extends TileEntity
 		return compound;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);

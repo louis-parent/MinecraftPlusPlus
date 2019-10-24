@@ -27,6 +27,7 @@ public class BlockConcretePowder extends BlockFalling
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
+	@Override
 	public void onEndFalling(World worldIn, BlockPos pos, IBlockState p_176502_3_, IBlockState p_176502_4_)
 	{
 		if (p_176502_4_.getMaterial().isLiquid())
@@ -67,6 +68,7 @@ public class BlockConcretePowder extends BlockFalling
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!this.func_192425_e(worldIn, pos, state))
@@ -79,6 +81,7 @@ public class BlockConcretePowder extends BlockFalling
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (!this.func_192425_e(worldIn, pos, state))
@@ -92,15 +95,17 @@ public class BlockConcretePowder extends BlockFalling
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((EnumDyeColor) state.getValue(field_192426_a)).getMetadata();
+		return state.getValue(field_192426_a).getMetadata();
 	}
 
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (EnumDyeColor enumdyecolor : EnumDyeColor.values())
@@ -112,14 +117,16 @@ public class BlockConcretePowder extends BlockFalling
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
-		return MapColor.func_193558_a((EnumDyeColor) state.getValue(field_192426_a));
+		return MapColor.func_193558_a(state.getValue(field_192426_a));
 	}
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(field_192426_a, EnumDyeColor.byMetadata(meta));
@@ -128,11 +135,13 @@ public class BlockConcretePowder extends BlockFalling
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((EnumDyeColor) state.getValue(field_192426_a)).getMetadata();
+		return state.getValue(field_192426_a).getMetadata();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { field_192426_a });

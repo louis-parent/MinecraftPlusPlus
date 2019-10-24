@@ -45,6 +45,7 @@ public class GuiBeacon extends GuiContainer
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		super.initGui();
@@ -58,6 +59,7 @@ public class GuiBeacon extends GuiContainer
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		super.updateScreen();
@@ -135,6 +137,7 @@ public class GuiBeacon extends GuiContainer
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.id == -2)
@@ -181,6 +184,7 @@ public class GuiBeacon extends GuiContainer
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
@@ -192,6 +196,7 @@ public class GuiBeacon extends GuiContainer
 	 * Draw the foreground layer for the GuiContainer (everything in front of
 	 * the items)
 	 */
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		RenderHelper.disableStandardItemLighting();
@@ -213,6 +218,7 @@ public class GuiBeacon extends GuiContainer
 	/**
 	 * Draws the background layer of this container (behind the items).
 	 */
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -245,6 +251,7 @@ public class GuiBeacon extends GuiContainer
 			this.iconY = iconYIn;
 		}
 
+		@Override
 		public void func_191745_a(Minecraft p_191745_1_, int p_191745_2_, int p_191745_3_, float p_191745_4_)
 		{
 			if (this.visible)
@@ -297,6 +304,7 @@ public class GuiBeacon extends GuiContainer
 			super(buttonId, x, y, GuiBeacon.BEACON_GUI_TEXTURES, 112, 220);
 		}
 
+		@Override
 		public void drawButtonForegroundLayer(int mouseX, int mouseY)
 		{
 			GuiBeacon.this.drawCreativeTabHoveringText(I18n.format("gui.cancel"), mouseX, mouseY);
@@ -310,6 +318,7 @@ public class GuiBeacon extends GuiContainer
 			super(buttonId, x, y, GuiBeacon.BEACON_GUI_TEXTURES, 90, 220);
 		}
 
+		@Override
 		public void drawButtonForegroundLayer(int mouseX, int mouseY)
 		{
 			GuiBeacon.this.drawCreativeTabHoveringText(I18n.format("gui.done"), mouseX, mouseY);
@@ -328,6 +337,7 @@ public class GuiBeacon extends GuiContainer
 			this.tier = tierIn;
 		}
 
+		@Override
 		public void drawButtonForegroundLayer(int mouseX, int mouseY)
 		{
 			String s = I18n.format(this.effect.getName());

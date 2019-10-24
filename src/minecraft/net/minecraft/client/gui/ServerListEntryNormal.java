@@ -49,6 +49,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 		this.icon = (DynamicTexture) this.mc.getTextureManager().getTexture(this.serverIcon);
 	}
 
+	@Override
 	public void func_192634_a(int p_192634_1_, int p_192634_2_, int p_192634_3_, int p_192634_4_, int p_192634_5_, int p_192634_6_, int p_192634_7_, boolean p_192634_8_, float p_192634_9_)
 	{
 		if (!this.server.pinged)
@@ -59,6 +60,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 			this.server.populationInfo = "";
 			EXECUTOR.submit(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					try
@@ -144,7 +146,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 		else
 		{
 			k = 1;
-			l = (int) (Minecraft.getSystemTime() / 100L + (long) (p_192634_1_ * 2) & 7L);
+			l = (int) (Minecraft.getSystemTime() / 100L + p_192634_1_ * 2 & 7L);
 
 			if (l > 4)
 			{
@@ -156,7 +158,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(Gui.ICONS);
-		Gui.drawModalRectWithCustomSizedTexture(p_192634_2_ + p_192634_4_ - 15, p_192634_3_, (float) (k * 10), (float) (176 + l * 8), 10, 8, 256.0F, 256.0F);
+		Gui.drawModalRectWithCustomSizedTexture(p_192634_2_ + p_192634_4_ - 15, p_192634_3_, k * 10, 176 + l * 8, 10, 8, 256.0F, 256.0F);
 
 		if (this.server.getBase64EncodedIconData() != null && !this.server.getBase64EncodedIconData().equals(this.lastIconB64))
 		{
@@ -254,7 +256,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 		}
 		else
 		{
-			ByteBuf bytebuf = Unpooled.copiedBuffer((CharSequence) this.server.getBase64EncodedIconData(), StandardCharsets.UTF_8);
+			ByteBuf bytebuf = Unpooled.copiedBuffer(this.server.getBase64EncodedIconData(), StandardCharsets.UTF_8);
 			ByteBuf bytebuf1 = null;
 			BufferedImage bufferedimage;
 			label99:
@@ -301,6 +303,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 	 * that something within this entry was clicked and the list should not be
 	 * dragged.
 	 */
+	@Override
 	public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY)
 	{
 		if (relativeX <= 32)
@@ -336,6 +339,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 		return false;
 	}
 
+	@Override
 	public void func_192633_a(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
 	{
 	}
@@ -344,6 +348,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 	 * Fired when the mouse button is released. Arguments: index, x, y,
 	 * mouseEvent, relativeX, relativeY
 	 */
+	@Override
 	public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY)
 	{
 	}

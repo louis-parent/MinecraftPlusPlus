@@ -13,16 +13,19 @@ public class CompiledChunk
 {
 	public static final CompiledChunk DUMMY = new CompiledChunk()
 	{
+		@Override
 		protected void setLayerUsed(BlockRenderLayer layer)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public void setLayerStarted(BlockRenderLayer layer)
 		{
 			throw new UnsupportedOperationException();
 		}
 
+		@Override
 		public boolean isVisible(EnumFacing facing, EnumFacing facing2)
 		{
 			return false;

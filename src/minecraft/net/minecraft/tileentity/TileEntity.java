@@ -106,7 +106,7 @@ public abstract class TileEntity
 
 		try
 		{
-			Class<? extends TileEntity> oclass = (Class) field_190562_f.getObject(new ResourceLocation(s));
+			Class<? extends TileEntity> oclass = field_190562_f.getObject(new ResourceLocation(s));
 
 			if (oclass != null)
 			{
@@ -133,7 +133,7 @@ public abstract class TileEntity
 		}
 		else
 		{
-			LOGGER.warn("Skipping BlockEntity with id {}", (Object) s);
+			LOGGER.warn("Skipping BlockEntity with id {}", s);
 		}
 
 		return tileentity;
@@ -179,9 +179,9 @@ public abstract class TileEntity
 	 */
 	public double getDistanceSq(double x, double y, double z)
 	{
-		double d0 = (double) this.pos.getX() + 0.5D - x;
-		double d1 = (double) this.pos.getY() + 0.5D - y;
-		double d2 = (double) this.pos.getZ() + 0.5D - z;
+		double d0 = this.pos.getX() + 0.5D - x;
+		double d1 = this.pos.getY() + 0.5D - y;
+		double d2 = this.pos.getZ() + 0.5D - z;
 		return d0 * d0 + d1 * d1 + d2 * d2;
 	}
 
@@ -255,6 +255,7 @@ public abstract class TileEntity
 	{
 		reportCategory.setDetail("Name", new ICrashReportDetail<String>()
 		{
+			@Override
 			public String call() throws Exception
 			{
 				return TileEntity.field_190562_f.getNameForObject(TileEntity.this.getClass()) + " // " + TileEntity.this.getClass().getCanonicalName();
@@ -266,6 +267,7 @@ public abstract class TileEntity
 			CrashReportCategory.addBlockInfo(reportCategory, this.pos, this.getBlockType(), this.getBlockMetadata());
 			reportCategory.setDetail("Actual block type", new ICrashReportDetail<String>()
 			{
+				@Override
 				public String call() throws Exception
 				{
 					int i = Block.getIdFromBlock(TileEntity.this.world.getBlockState(TileEntity.this.pos).getBlock());
@@ -282,6 +284,7 @@ public abstract class TileEntity
 			});
 			reportCategory.setDetail("Actual block data value", new ICrashReportDetail<String>()
 			{
+				@Override
 				public String call() throws Exception
 				{
 					IBlockState iblockstate = TileEntity.this.world.getBlockState(TileEntity.this.pos);

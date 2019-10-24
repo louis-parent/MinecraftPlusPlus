@@ -23,6 +23,7 @@ public class WorldGenFlowers extends WorldGenerator
 		this.state = flowerIn.getDefaultState().withProperty(flowerIn.getTypeProperty(), typeIn);
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		for (int i = 0; i < 64; ++i)

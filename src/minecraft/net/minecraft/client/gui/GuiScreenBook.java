@@ -99,6 +99,7 @@ public class GuiScreenBook extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		super.updateScreen();
@@ -110,6 +111,7 @@ public class GuiScreenBook extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.buttonList.clear();
@@ -129,8 +131,8 @@ public class GuiScreenBook extends GuiScreen
 
 		int i = (this.width - 192) / 2;
 		int j = 2;
-		this.buttonNextPage = (GuiScreenBook.NextPageButton) this.addButton(new GuiScreenBook.NextPageButton(1, i + 120, 156, true));
-		this.buttonPreviousPage = (GuiScreenBook.NextPageButton) this.addButton(new GuiScreenBook.NextPageButton(2, i + 38, 156, false));
+		this.buttonNextPage = this.addButton(new GuiScreenBook.NextPageButton(1, i + 120, 156, true));
+		this.buttonPreviousPage = this.addButton(new GuiScreenBook.NextPageButton(2, i + 38, 156, false));
 		this.updateButtons();
 	}
 
@@ -138,6 +140,7 @@ public class GuiScreenBook extends GuiScreen
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		Keyboard.enableRepeatEvents(false);
@@ -206,6 +209,7 @@ public class GuiScreenBook extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.enabled)
@@ -271,6 +275,7 @@ public class GuiScreenBook extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		super.keyTyped(typedChar, keyCode);
@@ -400,6 +405,7 @@ public class GuiScreenBook extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -515,6 +521,7 @@ public class GuiScreenBook extends GuiScreen
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		if (mouseButton == 0)
@@ -533,6 +540,7 @@ public class GuiScreenBook extends GuiScreen
 	/**
 	 * Executes the click event specified by the given chat component
 	 */
+	@Override
 	public boolean handleComponentClick(ITextComponent component)
 	{
 		ClickEvent clickevent = component.getStyle().getClickEvent();
@@ -639,6 +647,7 @@ public class GuiScreenBook extends GuiScreen
 			this.isForward = p_i46316_4_;
 		}
 
+		@Override
 		public void func_191745_a(Minecraft p_191745_1_, int p_191745_2_, int p_191745_3_, float p_191745_4_)
 		{
 			if (this.visible)

@@ -23,6 +23,7 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return this.closeDoor && this.closeDoorTemporisation > 0 && super.continueExecuting();
@@ -31,6 +32,7 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.closeDoorTemporisation = 20;
@@ -40,6 +42,7 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		if (this.closeDoor)
@@ -51,6 +54,7 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		--this.closeDoorTemporisation;

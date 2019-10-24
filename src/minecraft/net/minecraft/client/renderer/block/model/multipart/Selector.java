@@ -53,6 +53,7 @@ public class Selector
 		return this.condition.getPredicate(state);
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -75,6 +76,7 @@ public class Selector
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return 31 * this.condition.hashCode() + this.variantList.hashCode();
@@ -84,6 +86,7 @@ public class Selector
 	{
 		private static final Function<JsonElement, ICondition> FUNCTION_OR_AND = new Function<JsonElement, ICondition>()
 		{
+			@Override
 			@Nullable
 			public ICondition apply(@Nullable JsonElement p_apply_1_)
 			{
@@ -92,6 +95,7 @@ public class Selector
 		};
 		private static final Function<Entry<String, JsonElement>, ICondition> FUNCTION_PROPERTY_VALUE = new Function<Entry<String, JsonElement>, ICondition>()
 		{
+			@Override
 			@Nullable
 			public ICondition apply(@Nullable Entry<String, JsonElement> p_apply_1_)
 			{
@@ -99,6 +103,7 @@ public class Selector
 			}
 		};
 
+		@Override
 		public Selector deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();
@@ -127,7 +132,7 @@ public class Selector
 				}
 				else
 				{
-					return (ICondition) (json.has("AND") ? new ConditionAnd(Iterables.transform(JsonUtils.getJsonArray(json, "AND"), FUNCTION_OR_AND)) : makePropertyValue(set.iterator().next()));
+					return json.has("AND") ? new ConditionAnd(Iterables.transform(JsonUtils.getJsonArray(json, "AND"), FUNCTION_OR_AND)) : makePropertyValue(set.iterator().next());
 				}
 			}
 			else
@@ -138,7 +143,7 @@ public class Selector
 
 		private static ConditionPropertyValue makePropertyValue(Entry<String, JsonElement> entry)
 		{
-			return new ConditionPropertyValue(entry.getKey(), ((JsonElement) entry.getValue()).getAsString());
+			return new ConditionPropertyValue(entry.getKey(), entry.getValue().getAsString());
 		}
 	}
 }

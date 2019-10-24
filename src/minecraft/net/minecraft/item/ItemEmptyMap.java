@@ -15,6 +15,7 @@ public class ItemEmptyMap extends ItemMapBase
 		this.setCreativeTab(CreativeTabs.MISC);
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = ItemMap.func_190906_a(itemStackIn, worldIn.posX, worldIn.posZ, (byte) 0, true, false);

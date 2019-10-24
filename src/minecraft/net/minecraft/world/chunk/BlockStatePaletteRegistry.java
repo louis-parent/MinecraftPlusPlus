@@ -7,6 +7,7 @@ import net.minecraft.network.PacketBuffer;
 
 public class BlockStatePaletteRegistry implements IBlockStatePalette
 {
+	@Override
 	public int idFor(IBlockState state)
 	{
 		int i = Block.BLOCK_STATE_IDS.get(state);
@@ -16,22 +17,26 @@ public class BlockStatePaletteRegistry implements IBlockStatePalette
 	/**
 	 * Gets the block state by the palette id.
 	 */
+	@Override
 	public IBlockState getBlockState(int indexKey)
 	{
 		IBlockState iblockstate = Block.BLOCK_STATE_IDS.getByValue(indexKey);
 		return iblockstate == null ? Blocks.AIR.getDefaultState() : iblockstate;
 	}
 
+	@Override
 	public void read(PacketBuffer buf)
 	{
 		buf.readVarIntFromBuffer();
 	}
 
+	@Override
 	public void write(PacketBuffer buf)
 	{
 		buf.writeVarIntToBuffer(0);
 	}
 
+	@Override
 	public int getSerializedState()
 	{
 		return PacketBuffer.getVarIntSize(0);

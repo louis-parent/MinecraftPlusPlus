@@ -58,11 +58,13 @@ public class SuffixArray<T>
 		int[] aint3 = new int[i];
 		IntComparator intcomparator = new IntComparator()
 		{
+			@Override
 			public int compare(int p_compare_1_, int p_compare_2_)
 			{
 				return aint1[p_compare_1_] == aint1[p_compare_2_] ? Integer.compare(aint2[p_compare_1_], aint2[p_compare_2_]) : Integer.compare(aint1[p_compare_1_], aint1[p_compare_2_]);
 			}
 
+			@Override
 			public int compare(Integer p_compare_1_, Integer p_compare_2_)
 			{
 				return this.compare(p_compare_1_.intValue(), p_compare_2_.intValue());
@@ -155,7 +157,7 @@ public class SuffixArray<T>
 				stringbuilder.append('^');
 			}
 
-			int l2 = ((Integer) this.field_194065_e.get(j2 + k2)).intValue();
+			int l2 = this.field_194065_e.get(j2 + k2).intValue();
 
 			if (l2 == -1)
 			{

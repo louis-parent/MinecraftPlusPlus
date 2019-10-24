@@ -31,9 +31,10 @@ public class ParticleFootStep extends Particle
 	/**
 	 * Renders the particle
 	 */
+	@Override
 	public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
-		float f = ((float) this.footstepAge + partialTicks) / (float) this.footstepMaxAge;
+		float f = (this.footstepAge + partialTicks) / this.footstepMaxAge;
 		f = f * f;
 		float f1 = 2.0F - f * 2.0F;
 
@@ -53,15 +54,16 @@ public class ParticleFootStep extends Particle
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 		worldRendererIn.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-		worldRendererIn.pos((double) (f3 - 0.125F), (double) f4, (double) (f5 + 0.125F)).tex(0.0D, 1.0D).color(f6, f6, f6, f1).endVertex();
-		worldRendererIn.pos((double) (f3 + 0.125F), (double) f4, (double) (f5 + 0.125F)).tex(1.0D, 1.0D).color(f6, f6, f6, f1).endVertex();
-		worldRendererIn.pos((double) (f3 + 0.125F), (double) f4, (double) (f5 - 0.125F)).tex(1.0D, 0.0D).color(f6, f6, f6, f1).endVertex();
-		worldRendererIn.pos((double) (f3 - 0.125F), (double) f4, (double) (f5 - 0.125F)).tex(0.0D, 0.0D).color(f6, f6, f6, f1).endVertex();
+		worldRendererIn.pos(f3 - 0.125F, f4, f5 + 0.125F).tex(0.0D, 1.0D).color(f6, f6, f6, f1).endVertex();
+		worldRendererIn.pos(f3 + 0.125F, f4, f5 + 0.125F).tex(1.0D, 1.0D).color(f6, f6, f6, f1).endVertex();
+		worldRendererIn.pos(f3 + 0.125F, f4, f5 - 0.125F).tex(1.0D, 0.0D).color(f6, f6, f6, f1).endVertex();
+		worldRendererIn.pos(f3 - 0.125F, f4, f5 - 0.125F).tex(0.0D, 0.0D).color(f6, f6, f6, f1).endVertex();
 		Tessellator.getInstance().draw();
 		GlStateManager.disableBlend();
 		GlStateManager.enableLighting();
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		++this.footstepAge;
@@ -77,6 +79,7 @@ public class ParticleFootStep extends Particle
 	 * with. 0 for the particle sprite sheet, 1 for the main Texture atlas, and
 	 * 3 for a custom texture
 	 */
+	@Override
 	public int getFXLayer()
 	{
 		return 3;
@@ -84,6 +87,7 @@ public class ParticleFootStep extends Particle
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleFootStep(Minecraft.getMinecraft().getTextureManager(), worldIn, xCoordIn, yCoordIn, zCoordIn);

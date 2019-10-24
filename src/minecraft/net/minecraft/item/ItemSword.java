@@ -34,6 +34,7 @@ public class ItemSword extends ItemTool
 		return this.damageVsEntity;
 	}
 
+	@Override
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
 	{
 		Block block = state.getBlock();
@@ -53,6 +54,7 @@ public class ItemSword extends ItemTool
 	 * Current implementations of this method in child classes do not use the
 	 * entry argument beside ev. They just raise the damage on the stack.
 	 */
+	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
 	{
 		stack.damageItem(1, attacker);
@@ -63,9 +65,10 @@ public class ItemSword extends ItemTool
 	 * Called when a Block is destroyed using this Item. Return true to trigger
 	 * the "Use Item" statistic.
 	 */
+	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
 	{
-		if ((double) state.getBlockHardness(worldIn, pos) != 0.0D)
+		if (state.getBlockHardness(worldIn, pos) != 0.0D)
 		{
 			stack.damageItem(2, entityLiving);
 		}
@@ -76,6 +79,7 @@ public class ItemSword extends ItemTool
 	/**
 	 * Returns True is the item is renderer in full 3D when hold.
 	 */
+	@Override
 	public boolean isFull3D()
 	{
 		return true;
@@ -84,6 +88,7 @@ public class ItemSword extends ItemTool
 	/**
 	 * Check whether this Item can harvest the given Block
 	 */
+	@Override
 	public boolean canHarvestBlock(IBlockState blockIn)
 	{
 		return blockIn.getBlock() == Blocks.WEB;
@@ -93,6 +98,7 @@ public class ItemSword extends ItemTool
 	 * Return the enchantability factor of the item, most of the time is based
 	 * on material.
 	 */
+	@Override
 	public int getItemEnchantability()
 	{
 		return this.toolMaterial.getEnchantability();
@@ -101,6 +107,7 @@ public class ItemSword extends ItemTool
 	/**
 	 * Return the name for this tool's material.
 	 */
+	@Override
 	public String getToolMaterialName()
 	{
 		return this.toolMaterial.toString();
@@ -109,18 +116,20 @@ public class ItemSword extends ItemTool
 	/**
 	 * Return whether this item is repairable in an anvil.
 	 */
+	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
 	{
 		return this.toolMaterial.getRepairItem() == repair.getItem() ? true : super.getIsRepairable(toRepair, repair);
 	}
 
+	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
 	{
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
 		if (equipmentSlot == EntityHandSlot.MAINHAND)
 		{
-			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double) this.damageVsEntity, 0));
+			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.damageVsEntity, 0));
 			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.4000000953674316D, 0));
 		}
 

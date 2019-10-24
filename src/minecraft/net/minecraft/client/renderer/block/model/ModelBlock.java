@@ -49,7 +49,7 @@ public class ModelBlock
 
 	public static ModelBlock deserialize(Reader readerIn)
 	{
-		return (ModelBlock) JsonUtils.gsonDeserialize(SERIALIZER, readerIn, ModelBlock.class, false);
+		return JsonUtils.gsonDeserialize(SERIALIZER, readerIn, ModelBlock.class, false);
 	}
 
 	public static ModelBlock deserialize(String jsonString)
@@ -241,6 +241,7 @@ public class ModelBlock
 
 	public static class Deserializer implements JsonDeserializer<ModelBlock>
 	{
+		@Override
 		public ModelBlock deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();
@@ -286,7 +287,7 @@ public class ModelBlock
 
 				for (Entry<String, JsonElement> entry : jsonobject.entrySet())
 				{
-					map.put(entry.getKey(), ((JsonElement) entry.getValue()).getAsString());
+					map.put(entry.getKey(), entry.getValue().getAsString());
 				}
 			}
 

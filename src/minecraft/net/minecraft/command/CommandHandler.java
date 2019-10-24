@@ -33,6 +33,7 @@ public abstract class CommandHandler implements ICommandManager
 	 * the player does not have permission, 0 will be returned. A number greater
 	 * than 1 can be returned if a player selector is used.
 	 */
+	@Override
 	public int executeCommand(ICommandSender sender, String rawCommand)
 	{
 		rawCommand = rawCommand.trim();
@@ -176,6 +177,7 @@ public abstract class CommandHandler implements ICommandManager
 		return astring;
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(ICommandSender sender, String input, @Nullable BlockPos pos)
 	{
 		String[] astring = input.split(" ", -1);
@@ -187,7 +189,7 @@ public abstract class CommandHandler implements ICommandManager
 
 			for (Entry<String, ICommand> entry : this.commandMap.entrySet())
 			{
-				if (CommandBase.doesStringStartWith(s, entry.getKey()) && ((ICommand) entry.getValue()).checkPermission(this.getServer(), sender))
+				if (CommandBase.doesStringStartWith(s, entry.getKey()) && entry.getValue().checkPermission(this.getServer(), sender))
 				{
 					list.add(entry.getKey());
 				}
@@ -211,6 +213,7 @@ public abstract class CommandHandler implements ICommandManager
 		}
 	}
 
+	@Override
 	public List<ICommand> getPossibleCommands(ICommandSender sender)
 	{
 		List<ICommand> list = Lists.<ICommand>newArrayList();
@@ -226,6 +229,7 @@ public abstract class CommandHandler implements ICommandManager
 		return list;
 	}
 
+	@Override
 	public Map<String, ICommand> getCommands()
 	{
 		return this.commandMap;

@@ -15,6 +15,7 @@ public class EnchantmentWaterWalker extends Enchantment
 	 * Returns the minimal value of enchantability needed on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMinEnchantability(int enchantmentLevel)
 	{
 		return enchantmentLevel * 10;
@@ -24,6 +25,7 @@ public class EnchantmentWaterWalker extends Enchantment
 	 * Returns the maximum value of enchantability nedded on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMaxEnchantability(int enchantmentLevel)
 	{
 		return this.getMinEnchantability(enchantmentLevel) + 15;
@@ -32,6 +34,7 @@ public class EnchantmentWaterWalker extends Enchantment
 	/**
 	 * Returns the maximum level that the enchantment can have.
 	 */
+	@Override
 	public int getMaxLevel()
 	{
 		return 3;
@@ -41,6 +44,7 @@ public class EnchantmentWaterWalker extends Enchantment
 	 * Determines if the enchantment passed can be applyied together with this
 	 * enchantment.
 	 */
+	@Override
 	public boolean canApplyTogether(Enchantment ench)
 	{
 		return super.canApplyTogether(ench) && ench != Enchantments.FROST_WALKER;

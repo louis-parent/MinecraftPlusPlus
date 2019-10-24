@@ -21,11 +21,13 @@ public class ItemDurabilityTrigger implements ICriterionTrigger<ItemDurabilityTr
 	private static final ResourceLocation field_193159_a = new ResourceLocation("item_durability_changed");
 	private final Map<PlayerAdvancements, ItemDurabilityTrigger.Listeners> field_193160_b = Maps.<PlayerAdvancements, ItemDurabilityTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_193159_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<ItemDurabilityTrigger.Instance> p_192165_2_)
 	{
 		ItemDurabilityTrigger.Listeners itemdurabilitytrigger$listeners = this.field_193160_b.get(p_192165_1_);
@@ -39,6 +41,7 @@ public class ItemDurabilityTrigger implements ICriterionTrigger<ItemDurabilityTr
 		itemdurabilitytrigger$listeners.func_193440_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<ItemDurabilityTrigger.Instance> p_192164_2_)
 	{
 		ItemDurabilityTrigger.Listeners itemdurabilitytrigger$listeners = this.field_193160_b.get(p_192164_1_);
@@ -54,11 +57,13 @@ public class ItemDurabilityTrigger implements ICriterionTrigger<ItemDurabilityTr
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_193160_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public ItemDurabilityTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		ItemPredicate itempredicate = ItemPredicate.func_192492_a(p_192166_1_.get("item"));
@@ -97,13 +102,13 @@ public class ItemDurabilityTrigger implements ICriterionTrigger<ItemDurabilityTr
 			{
 				return false;
 			}
-			else if (!this.field_193199_b.func_192514_a((float) (p_193197_1_.getMaxDamage() - p_193197_2_)))
+			else if (!this.field_193199_b.func_192514_a(p_193197_1_.getMaxDamage() - p_193197_2_))
 			{
 				return false;
 			}
 			else
 			{
-				return this.field_193200_c.func_192514_a((float) (p_193197_1_.getItemDamage() - p_193197_2_));
+				return this.field_193200_c.func_192514_a(p_193197_1_.getItemDamage() - p_193197_2_);
 			}
 		}
 	}
@@ -139,7 +144,7 @@ public class ItemDurabilityTrigger implements ICriterionTrigger<ItemDurabilityTr
 
 			for (ICriterionTrigger.Listener<ItemDurabilityTrigger.Instance> listener : this.field_193443_b)
 			{
-				if (((ItemDurabilityTrigger.Instance) listener.func_192158_a()).func_193197_a(p_193441_1_, p_193441_2_))
+				if (listener.func_192158_a().func_193197_a(p_193441_1_, p_193441_2_))
 				{
 					if (list == null)
 					{

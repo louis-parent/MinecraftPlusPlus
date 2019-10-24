@@ -28,6 +28,7 @@ public class EntityAIPanic extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		if (this.theEntityCreature.getAITarget() == null && !this.theEntityCreature.isBurning())
@@ -42,9 +43,9 @@ public class EntityAIPanic extends EntityAIBase
 
 				if (blockpos != null)
 				{
-					this.randPosX = (double) blockpos.getX();
-					this.randPosY = (double) blockpos.getY();
-					this.randPosZ = (double) blockpos.getZ();
+					this.randPosX = blockpos.getX();
+					this.randPosY = blockpos.getY();
+					this.randPosZ = blockpos.getZ();
 					return true;
 				}
 			}
@@ -73,6 +74,7 @@ public class EntityAIPanic extends EntityAIBase
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		this.theEntityCreature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
@@ -81,6 +83,7 @@ public class EntityAIPanic extends EntityAIBase
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
+	@Override
 	public boolean continueExecuting()
 	{
 		return !this.theEntityCreature.getNavigator().noPath();
@@ -93,7 +96,7 @@ public class EntityAIPanic extends EntityAIBase
 		int i = blockpos.getX();
 		int j = blockpos.getY();
 		int k = blockpos.getZ();
-		float f = (float) (horizontalRange * horizontalRange * verticalRange * 2);
+		float f = horizontalRange * horizontalRange * verticalRange * 2;
 		BlockPos blockpos1 = null;
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
@@ -108,7 +111,7 @@ public class EntityAIPanic extends EntityAIBase
 
 					if (iblockstate.getMaterial() == Material.WATER)
 					{
-						float f1 = (float) ((l - i) * (l - i) + (i1 - j) * (i1 - j) + (j1 - k) * (j1 - k));
+						float f1 = (l - i) * (l - i) + (i1 - j) * (i1 - j) + (j1 - k) * (j1 - k);
 
 						if (f1 < f)
 						{

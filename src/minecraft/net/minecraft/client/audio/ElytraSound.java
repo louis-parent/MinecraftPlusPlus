@@ -22,6 +22,7 @@ public class ElytraSound extends MovingSound
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		++this.time;
@@ -34,7 +35,7 @@ public class ElytraSound extends MovingSound
 			float f = MathHelper.sqrt(this.player.motionX * this.player.motionX + this.player.motionZ * this.player.motionZ + this.player.motionY * this.player.motionY);
 			float f1 = f / 2.0F;
 
-			if ((double) f >= 0.01D)
+			if (f >= 0.01D)
 			{
 				this.volume = MathHelper.clamp(f1 * f1, 0.0F, 1.0F);
 			}
@@ -49,7 +50,7 @@ public class ElytraSound extends MovingSound
 			}
 			else if (this.time < 40)
 			{
-				this.volume = (float) ((double) this.volume * ((double) (this.time - 20) / 20.0D));
+				this.volume = (float) (this.volume * ((this.time - 20) / 20.0D));
 			}
 
 			float f2 = 0.8F;

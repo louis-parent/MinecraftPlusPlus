@@ -24,12 +24,13 @@ public class ParticleRain extends Particle
 		this.particleMaxAge = (int) (8.0D / (Math.random() * 0.8D + 0.2D));
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
-		this.motionY -= (double) this.particleGravity;
+		this.motionY -= this.particleGravity;
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
 		this.motionX *= 0.9800000190734863D;
 		this.motionY *= 0.9800000190734863D;
@@ -61,14 +62,14 @@ public class ParticleRain extends Particle
 
 			if (iblockstate.getBlock() instanceof BlockLiquid)
 			{
-				d0 = (double) (1.0F - BlockLiquid.getLiquidHeightPercent(((Integer) iblockstate.getValue(BlockLiquid.LEVEL)).intValue()));
+				d0 = 1.0F - BlockLiquid.getLiquidHeightPercent(iblockstate.getValue(BlockLiquid.LEVEL).intValue());
 			}
 			else
 			{
 				d0 = iblockstate.getBoundingBox(this.worldObj, blockpos).maxY;
 			}
 
-			double d1 = (double) MathHelper.floor(this.posY) + d0;
+			double d1 = MathHelper.floor(this.posY) + d0;
 
 			if (this.posY < d1)
 			{
@@ -79,6 +80,7 @@ public class ParticleRain extends Particle
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleRain(worldIn, xCoordIn, yCoordIn, zCoordIn);

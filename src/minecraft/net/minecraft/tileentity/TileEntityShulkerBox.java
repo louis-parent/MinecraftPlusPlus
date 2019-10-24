@@ -57,6 +57,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		this.func_190583_o();
@@ -112,18 +113,18 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 
 	public AxisAlignedBB func_190584_a(IBlockState p_190584_1_)
 	{
-		return this.func_190587_b((EnumFacing) p_190584_1_.getValue(BlockShulkerBox.field_190957_a));
+		return this.func_190587_b(p_190584_1_.getValue(BlockShulkerBox.field_190957_a));
 	}
 
 	public AxisAlignedBB func_190587_b(EnumFacing p_190587_1_)
 	{
-		return Block.FULL_BLOCK_AABB.addCoord((double) (0.5F * this.func_190585_a(1.0F) * (float) p_190587_1_.getFrontOffsetX()), (double) (0.5F * this.func_190585_a(1.0F) * (float) p_190587_1_.getFrontOffsetY()), (double) (0.5F * this.func_190585_a(1.0F) * (float) p_190587_1_.getFrontOffsetZ()));
+		return Block.FULL_BLOCK_AABB.addCoord(0.5F * this.func_190585_a(1.0F) * p_190587_1_.getFrontOffsetX(), 0.5F * this.func_190585_a(1.0F) * p_190587_1_.getFrontOffsetY(), 0.5F * this.func_190585_a(1.0F) * p_190587_1_.getFrontOffsetZ());
 	}
 
 	private AxisAlignedBB func_190588_c(EnumFacing p_190588_1_)
 	{
 		EnumFacing enumfacing = p_190588_1_.getOpposite();
-		return this.func_190587_b(p_190588_1_).func_191195_a((double) enumfacing.getFrontOffsetX(), (double) enumfacing.getFrontOffsetY(), (double) enumfacing.getFrontOffsetZ());
+		return this.func_190587_b(p_190588_1_).func_191195_a(enumfacing.getFrontOffsetX(), enumfacing.getFrontOffsetY(), enumfacing.getFrontOffsetZ());
 	}
 
 	private void func_190589_G()
@@ -132,7 +133,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 
 		if (iblockstate.getBlock() instanceof BlockShulkerBox)
 		{
-			EnumFacing enumfacing = (EnumFacing) iblockstate.getValue(BlockShulkerBox.field_190957_a);
+			EnumFacing enumfacing = iblockstate.getValue(BlockShulkerBox.field_190957_a);
 			AxisAlignedBB axisalignedbb = this.func_190588_c(enumfacing).offset(this.pos);
 			List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity((Entity) null, axisalignedbb);
 
@@ -190,7 +191,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 								d2 = d2 + 0.01D;
 						}
 
-						entity.moveEntity(MoverType.SHULKER_BOX, d0 * (double) enumfacing.getFrontOffsetX(), d1 * (double) enumfacing.getFrontOffsetY(), d2 * (double) enumfacing.getFrontOffsetZ());
+						entity.moveEntity(MoverType.SHULKER_BOX, d0 * enumfacing.getFrontOffsetX(), d1 * enumfacing.getFrontOffsetY(), d2 * enumfacing.getFrontOffsetZ());
 					}
 				}
 			}
@@ -200,6 +201,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 	/**
 	 * Returns the number of slots in the inventory.
 	 */
+	@Override
 	public int getSizeInventory()
 	{
 		return this.field_190596_f.size();
@@ -209,11 +211,13 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 	 * Returns the maximum stack size for a inventory slot. Seems to always be
 	 * 64, possibly will be extended.
 	 */
+	@Override
 	public int getInventoryStackLimit()
 	{
 		return 64;
 	}
 
+	@Override
 	public boolean receiveClientEvent(int id, int type)
 	{
 		if (id == 1)
@@ -238,6 +242,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 		}
 	}
 
+	@Override
 	public void openInventory(EntityPlayer player)
 	{
 		if (!player.isSpectator())
@@ -257,6 +262,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 		}
 	}
 
+	@Override
 	public void closeInventory(EntityPlayer player)
 	{
 		if (!player.isSpectator())
@@ -271,11 +277,13 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 		}
 	}
 
+	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
 		return new ContainerShulkerBox(playerInventory, this, playerIn);
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return "minecraft:shulker_box";
@@ -284,6 +292,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.hasCustomName() ? this.field_190577_o : "container.shulkerBox";
@@ -294,12 +303,14 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 		p_190593_0_.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityShulkerBox.class, new String[] { "Items" }));
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
 		this.func_190586_e(compound);
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -341,11 +352,13 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 		return p_190580_1_;
 	}
 
+	@Override
 	protected NonNullList<ItemStack> func_190576_q()
 	{
 		return this.field_190596_f;
 	}
 
+	@Override
 	public boolean isStackNotValid()
 	{
 		for (ItemStack itemstack : this.field_190596_f)
@@ -359,6 +372,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 		return true;
 	}
 
+	@Override
 	public int[] getSlotsForFace(EnumFacing side)
 	{
 		return field_190595_a;
@@ -368,6 +382,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 	 * Returns true if automation can insert the given item in the given slot
 	 * from the given side.
 	 */
+	@Override
 	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
 	{
 		return !(Block.getBlockFromItem(itemStackIn.getItem()) instanceof BlockShulkerBox);
@@ -377,11 +392,13 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 	 * Returns true if automation can extract the given item in the given slot
 	 * from the given side.
 	 */
+	@Override
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
 	{
 		return true;
 	}
 
+	@Override
 	public void clear()
 	{
 		this.field_190597_g = true;
@@ -408,6 +425,7 @@ public class TileEntityShulkerBox extends TileEntityLockableLoot implements ITic
 		return this.field_190602_l;
 	}
 
+	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{

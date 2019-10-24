@@ -36,6 +36,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.buttonList.clear();
@@ -55,6 +56,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
 	/**
 	 * Handles mouse input.
 	 */
+	@Override
 	public void handleMouseInput() throws IOException
 	{
 		super.handleMouseInput();
@@ -65,6 +67,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		Keyboard.enableRepeatEvents(false);
@@ -73,6 +76,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		this.export.mouseClicked(mouseX, mouseY, mouseButton);
@@ -84,6 +88,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (!this.export.textboxKeyTyped(typedChar, keyCode))
@@ -96,6 +101,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		switch (button.id)
@@ -113,6 +119,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
@@ -127,6 +134,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		this.export.updateCursorCounter();
@@ -191,11 +199,13 @@ public class GuiScreenCustomizePresets extends GuiScreen
 			super(GuiScreenCustomizePresets.this.mc, GuiScreenCustomizePresets.this.width, GuiScreenCustomizePresets.this.height, 80, GuiScreenCustomizePresets.this.height - 32, 38);
 		}
 
+		@Override
 		protected int getSize()
 		{
 			return GuiScreenCustomizePresets.PRESETS.size();
 		}
 
+		@Override
 		protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 		{
 			this.selected = slotIndex;
@@ -203,11 +213,13 @@ public class GuiScreenCustomizePresets extends GuiScreen
 			GuiScreenCustomizePresets.this.export.setText((GuiScreenCustomizePresets.PRESETS.get(GuiScreenCustomizePresets.this.list.selected)).settings.toString());
 		}
 
+		@Override
 		protected boolean isSelected(int slotIndex)
 		{
 			return slotIndex == this.selected;
 		}
 
+		@Override
 		protected void drawBackground()
 		{
 		}
@@ -226,13 +238,14 @@ public class GuiScreenCustomizePresets extends GuiScreen
 			Tessellator tessellator = Tessellator.getInstance();
 			BufferBuilder bufferbuilder = tessellator.getBuffer();
 			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-			bufferbuilder.pos((double) (i + 0), (double) (p_178051_2_ + 32), 0.0D).tex(0.0D, 1.0D).endVertex();
-			bufferbuilder.pos((double) (i + 32), (double) (p_178051_2_ + 32), 0.0D).tex(1.0D, 1.0D).endVertex();
-			bufferbuilder.pos((double) (i + 32), (double) (p_178051_2_ + 0), 0.0D).tex(1.0D, 0.0D).endVertex();
-			bufferbuilder.pos((double) (i + 0), (double) (p_178051_2_ + 0), 0.0D).tex(0.0D, 0.0D).endVertex();
+			bufferbuilder.pos(i + 0, p_178051_2_ + 32, 0.0D).tex(0.0D, 1.0D).endVertex();
+			bufferbuilder.pos(i + 32, p_178051_2_ + 32, 0.0D).tex(1.0D, 1.0D).endVertex();
+			bufferbuilder.pos(i + 32, p_178051_2_ + 0, 0.0D).tex(1.0D, 0.0D).endVertex();
+			bufferbuilder.pos(i + 0, p_178051_2_ + 0, 0.0D).tex(0.0D, 0.0D).endVertex();
 			tessellator.draw();
 		}
 
+		@Override
 		protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 		{
 			GuiScreenCustomizePresets.Info guiscreencustomizepresets$info = GuiScreenCustomizePresets.PRESETS.get(p_192637_1_);

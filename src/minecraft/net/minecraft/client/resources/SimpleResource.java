@@ -40,27 +40,31 @@ public class SimpleResource implements IResource
 		this.srMetadataSerializer = srMetadataSerializerIn;
 	}
 
+	@Override
 	public ResourceLocation getResourceLocation()
 	{
 		return this.srResourceLocation;
 	}
 
+	@Override
 	public InputStream getInputStream()
 	{
 		return this.resourceInputStream;
 	}
 
+	@Override
 	public boolean hasMetadata()
 	{
 		return this.mcmetaInputStream != null;
 	}
 
+	@Override
 	@Nullable
 	public <T extends IMetadataSection> T getMetadata(String sectionName)
 	{
 		if (!this.hasMetadata())
 		{
-			return (T) null;
+			return null;
 		}
 		else
 		{
@@ -76,7 +80,7 @@ public class SimpleResource implements IResource
 				}
 				finally
 				{
-					IOUtils.closeQuietly((Reader) bufferedreader);
+					IOUtils.closeQuietly(bufferedreader);
 				}
 			}
 
@@ -91,11 +95,13 @@ public class SimpleResource implements IResource
 		}
 	}
 
+	@Override
 	public String getResourcePackName()
 	{
 		return this.resourcePackName;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -138,6 +144,7 @@ public class SimpleResource implements IResource
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		int i = this.resourcePackName != null ? this.resourcePackName.hashCode() : 0;
@@ -145,6 +152,7 @@ public class SimpleResource implements IResource
 		return i;
 	}
 
+	@Override
 	public void close() throws IOException
 	{
 		this.resourceInputStream.close();

@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.BlockButton;
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockEndPortalFrame;
 import net.minecraft.block.BlockLadder;
@@ -34,12 +35,14 @@ public class StructureStrongholdPieces
 {
 	private static final StructureStrongholdPieces.PieceWeight[] PIECE_WEIGHTS = new StructureStrongholdPieces.PieceWeight[] { new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.Straight.class, 40, 0), new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.Prison.class, 5, 5), new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.LeftTurn.class, 20, 0), new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.RightTurn.class, 20, 0), new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.RoomCrossing.class, 10, 6), new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.StairsStraight.class, 5, 5), new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.Stairs.class, 5, 5), new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.Crossing.class, 5, 4), new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.ChestCorridor.class, 5, 4), new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.Library.class, 10, 2)
 	{
+		@Override
 		public boolean canSpawnMoreStructuresOfType(int p_75189_1_)
 		{
 			return super.canSpawnMoreStructuresOfType(p_75189_1_) && p_75189_1_ > 4;
 		}
 	}, new StructureStrongholdPieces.PieceWeight(StructureStrongholdPieces.PortalRoom.class, 20, 1)
 	{
+		@Override
 		public boolean canSpawnMoreStructuresOfType(int p_75189_1_)
 		{
 			return super.canSpawnMoreStructuresOfType(p_75189_1_) && p_75189_1_ > 5;
@@ -119,7 +122,7 @@ public class StructureStrongholdPieces
 		}
 		else if (clazz == StructureStrongholdPieces.RightTurn.class)
 		{
-			structurestrongholdpieces$stronghold = StructureStrongholdPieces.RightTurn.createPiece(p_175954_1_, p_175954_2_, p_175954_3_, p_175954_4_, p_175954_5_, p_175954_6_, p_175954_7_);
+			structurestrongholdpieces$stronghold = LeftTurn.createPiece(p_175954_1_, p_175954_2_, p_175954_3_, p_175954_4_, p_175954_5_, p_175954_6_, p_175954_7_);
 		}
 		else if (clazz == StructureStrongholdPieces.RoomCrossing.class)
 		{
@@ -261,18 +264,21 @@ public class StructureStrongholdPieces
 			this.boundingBox = p_i45582_3_;
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setBoolean("Chest", this.hasMadeChest);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.hasMadeChest = tagCompound.getBoolean("Chest");
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureStrongholdPieces.Stairs2) componentIn, listIn, rand, 1, 1);
@@ -284,6 +290,7 @@ public class StructureStrongholdPieces
 			return canStrongholdGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175868_0_, structureboundingbox) == null ? new StructureStrongholdPieces.ChestCorridor(p_175868_6_, p_175868_1_, structureboundingbox, p_175868_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -333,12 +340,14 @@ public class StructureStrongholdPieces
 			this.steps = p_i45581_4_ != EnumFacing.NORTH && p_i45581_4_ != EnumFacing.SOUTH ? p_i45581_3_.getXSize() : p_i45581_3_.getZSize();
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setInteger("Steps", this.steps);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -374,6 +383,7 @@ public class StructureStrongholdPieces
 			}
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -434,6 +444,7 @@ public class StructureStrongholdPieces
 			this.rightHigh = p_i45580_2_.nextInt(3) > 0;
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -443,6 +454,7 @@ public class StructureStrongholdPieces
 			tagCompound.setBoolean("rightHigh", this.rightHigh);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -452,6 +464,7 @@ public class StructureStrongholdPieces
 			this.rightHigh = tagCompound.getBoolean("rightHigh");
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			int i = 3;
@@ -493,6 +506,7 @@ public class StructureStrongholdPieces
 			return canStrongholdGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175866_0_, structureboundingbox) == null ? new StructureStrongholdPieces.Crossing(p_175866_6_, p_175866_1_, structureboundingbox, p_175866_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -558,6 +572,7 @@ public class StructureStrongholdPieces
 			this.boundingBox = p_i45579_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			EnumFacing enumfacing = this.getCoordBaseMode();
@@ -578,6 +593,7 @@ public class StructureStrongholdPieces
 			return canStrongholdGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175867_0_, structureboundingbox) == null ? new StructureStrongholdPieces.LeftTurn(p_175867_6_, p_175867_1_, structureboundingbox, p_175867_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -621,12 +637,14 @@ public class StructureStrongholdPieces
 			this.isLargeRoom = p_i45578_3_.getYSize() > 6;
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setBoolean("Tall", this.isLargeRoom);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -650,6 +668,7 @@ public class StructureStrongholdPieces
 			return new StructureStrongholdPieces.Library(p_175864_6_, p_175864_1_, structureboundingbox, p_175864_5_);
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -806,18 +825,21 @@ public class StructureStrongholdPieces
 			this.boundingBox = p_i45577_3_;
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setBoolean("Mob", this.hasSpawner);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.hasSpawner = tagCompound.getBoolean("Mob");
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			if (componentIn != null)
@@ -832,6 +854,7 @@ public class StructureStrongholdPieces
 			return canStrongholdGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175865_0_, structureboundingbox) == null ? new StructureStrongholdPieces.PortalRoom(p_175865_6_, p_175865_1_, structureboundingbox, p_175865_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 10, 7, 15, false, randomIn, StructureStrongholdPieces.STRONGHOLD_STONES);
@@ -947,6 +970,7 @@ public class StructureStrongholdPieces
 			this.boundingBox = p_i45576_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureStrongholdPieces.Stairs2) componentIn, listIn, rand, 1, 1);
@@ -958,6 +982,7 @@ public class StructureStrongholdPieces
 			return canStrongholdGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175860_0_, structureboundingbox) == null ? new StructureStrongholdPieces.Prison(p_175860_6_, p_175860_1_, structureboundingbox, p_175860_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -990,6 +1015,7 @@ public class StructureStrongholdPieces
 
 	public static class RightTurn extends StructureStrongholdPieces.LeftTurn
 	{
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			EnumFacing enumfacing = this.getCoordBaseMode();
@@ -1004,6 +1030,7 @@ public class StructureStrongholdPieces
 			}
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -1047,18 +1074,21 @@ public class StructureStrongholdPieces
 			this.roomType = p_i45575_2_.nextInt(5);
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setInteger("Type", this.roomType);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.roomType = tagCompound.getInteger("Type");
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureStrongholdPieces.Stairs2) componentIn, listIn, rand, 4, 1);
@@ -1072,6 +1102,7 @@ public class StructureStrongholdPieces
 			return canStrongholdGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175859_0_, structureboundingbox) == null ? new StructureStrongholdPieces.RoomCrossing(p_175859_6_, p_175859_1_, structureboundingbox, p_175859_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -1215,18 +1246,21 @@ public class StructureStrongholdPieces
 			this.boundingBox = p_i45574_3_;
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
 			tagCompound.setBoolean("Source", this.source);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
 			this.source = tagCompound.getBoolean("Source");
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			if (this.source)
@@ -1243,6 +1277,7 @@ public class StructureStrongholdPieces
 			return canStrongholdGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175863_0_, structureboundingbox) == null ? new StructureStrongholdPieces.Stairs(p_175863_6_, p_175863_1_, structureboundingbox, p_175863_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -1306,6 +1341,7 @@ public class StructureStrongholdPieces
 			this.boundingBox = p_i45572_3_;
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureStrongholdPieces.Stairs2) componentIn, listIn, rand, 1, 1);
@@ -1317,6 +1353,7 @@ public class StructureStrongholdPieces
 			return canStrongholdGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175861_0_, structureboundingbox) == null ? new StructureStrongholdPieces.StairsStraight(p_175861_6_, p_175861_1_, structureboundingbox, p_175861_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -1355,6 +1392,7 @@ public class StructureStrongholdPieces
 		{
 		}
 
+		@Override
 		public void selectBlocks(Random rand, int x, int y, int z, boolean p_75062_5_)
 		{
 			if (p_75062_5_)
@@ -1404,6 +1442,7 @@ public class StructureStrongholdPieces
 			this.expandsZ = p_i45573_2_.nextInt(2) == 0;
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -1411,6 +1450,7 @@ public class StructureStrongholdPieces
 			tagCompound.setBoolean("Right", this.expandsZ);
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -1418,6 +1458,7 @@ public class StructureStrongholdPieces
 			this.expandsZ = tagCompound.getBoolean("Right");
 		}
 
+		@Override
 		public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
 		{
 			this.getNextComponentNormal((StructureStrongholdPieces.Stairs2) componentIn, listIn, rand, 1, 1);
@@ -1439,6 +1480,7 @@ public class StructureStrongholdPieces
 			return canStrongholdGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175862_0_, structureboundingbox) == null ? new StructureStrongholdPieces.Straight(p_175862_6_, p_175862_1_, structureboundingbox, p_175862_5_) : null;
 		}
 
+		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
 			if (this.isLiquidInStructureBoundingBox(worldIn, structureBoundingBoxIn))
@@ -1485,11 +1527,13 @@ public class StructureStrongholdPieces
 			super(p_i2087_1_);
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			tagCompound.setString("EntryDoor", this.entryDoor.name());
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			this.entryDoor = StructureStrongholdPieces.Stronghold.Door.valueOf(tagCompound.getString("EntryDoor"));
@@ -1537,8 +1581,8 @@ public class StructureStrongholdPieces
 					this.setBlockState(worldIn, Blocks.STONEBRICK.getDefaultState(), p_74990_5_ + 2, p_74990_6_, p_74990_7_, p_74990_3_);
 					this.setBlockState(worldIn, Blocks.IRON_DOOR.getDefaultState(), p_74990_5_ + 1, p_74990_6_, p_74990_7_, p_74990_3_);
 					this.setBlockState(worldIn, Blocks.IRON_DOOR.getDefaultState().withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), p_74990_5_ + 1, p_74990_6_ + 1, p_74990_7_, p_74990_3_);
-					this.setBlockState(worldIn, Blocks.STONE_BUTTON.getDefaultState().withProperty(BlockButton.FACING, EnumFacing.NORTH), p_74990_5_ + 2, p_74990_6_ + 1, p_74990_7_ + 1, p_74990_3_);
-					this.setBlockState(worldIn, Blocks.STONE_BUTTON.getDefaultState().withProperty(BlockButton.FACING, EnumFacing.SOUTH), p_74990_5_ + 2, p_74990_6_ + 1, p_74990_7_ - 1, p_74990_3_);
+					this.setBlockState(worldIn, Blocks.STONE_BUTTON.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.NORTH), p_74990_5_ + 2, p_74990_6_ + 1, p_74990_7_ + 1, p_74990_3_);
+					this.setBlockState(worldIn, Blocks.STONE_BUTTON.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.SOUTH), p_74990_5_ + 2, p_74990_6_ + 1, p_74990_7_ - 1, p_74990_3_);
 			}
 		}
 

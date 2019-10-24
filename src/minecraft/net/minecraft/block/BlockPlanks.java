@@ -29,15 +29,17 @@ public class BlockPlanks extends Block
 	 * when the block gets destroyed. It returns the metadata of the dropped
 	 * item based on the old metadata of the block.
 	 */
+	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood
 	 * returns 4 blocks)
 	 */
+	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
 	{
 		for (BlockPlanks.EnumType blockplanks$enumtype : BlockPlanks.EnumType.values())
@@ -49,6 +51,7 @@ public class BlockPlanks extends Block
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(VARIANT, BlockPlanks.EnumType.byMetadata(meta));
@@ -57,19 +60,22 @@ public class BlockPlanks extends Block
 	/**
 	 * Get the MapColor for this Block and the given BlockState
 	 */
+	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
-		return ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMapColor();
+		return state.getValue(VARIANT).getMapColor();
 	}
 
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMetadata();
+		return state.getValue(VARIANT).getMetadata();
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { VARIANT });
@@ -108,6 +114,7 @@ public class BlockPlanks extends Block
 			return this.mapColor;
 		}
 
+		@Override
 		public String toString()
 		{
 			return this.name;
@@ -123,6 +130,7 @@ public class BlockPlanks extends Block
 			return META_LOOKUP[meta];
 		}
 
+		@Override
 		public String getName()
 		{
 			return this.name;

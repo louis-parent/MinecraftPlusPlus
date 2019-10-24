@@ -49,9 +49,10 @@ public class SPacketPlayerListItem implements Packet<INetHandlerPlayClient>
 	/**
 	 * Reads the raw packet data from the data stream.
 	 */
+	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException
 	{
-		this.action = (SPacketPlayerListItem.Action) buf.readEnumValue(SPacketPlayerListItem.Action.class);
+		this.action = buf.readEnumValue(SPacketPlayerListItem.Action.class);
 		int i = buf.readVarIntFromBuffer();
 
 		for (int j = 0; j < i; ++j)
@@ -124,6 +125,7 @@ public class SPacketPlayerListItem implements Packet<INetHandlerPlayClient>
 	/**
 	 * Writes the raw packet data to the data stream.
 	 */
+	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException
 	{
 		buf.writeEnumValue(this.action);
@@ -203,6 +205,7 @@ public class SPacketPlayerListItem implements Packet<INetHandlerPlayClient>
 	/**
 	 * Passes this Packet on to the NetHandler for processing.
 	 */
+	@Override
 	public void processPacket(INetHandlerPlayClient handler)
 	{
 		handler.handlePlayerListItem(this);
@@ -218,6 +221,7 @@ public class SPacketPlayerListItem implements Packet<INetHandlerPlayClient>
 		return this.action;
 	}
 
+	@Override
 	public String toString()
 	{
 		return MoreObjects.toStringHelper(this).add("action", this.action).add("entries", this.players).toString();
@@ -264,6 +268,7 @@ public class SPacketPlayerListItem implements Packet<INetHandlerPlayClient>
 			return this.displayName;
 		}
 
+		@Override
 		public String toString()
 		{
 			return MoreObjects.toStringHelper(this).add("latency", this.ping).add("gameMode", this.gamemode).add("profile", this.profile).add("displayName", this.displayName == null ? null : ITextComponent.Serializer.componentToJson(this.displayName)).toString();

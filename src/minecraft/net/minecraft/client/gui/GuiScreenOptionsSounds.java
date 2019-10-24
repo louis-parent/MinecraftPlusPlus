@@ -32,6 +32,7 @@ public class GuiScreenOptionsSounds extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.title = I18n.format("options.sounds.title");
@@ -61,6 +62,7 @@ public class GuiScreenOptionsSounds extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (keyCode == 1)
@@ -75,6 +77,7 @@ public class GuiScreenOptionsSounds extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.enabled)
@@ -96,6 +99,7 @@ public class GuiScreenOptionsSounds extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
@@ -125,11 +129,13 @@ public class GuiScreenOptionsSounds extends GuiScreen
 			this.volume = GuiScreenOptionsSounds.this.game_settings_4.getSoundLevel(categoryIn);
 		}
 
+		@Override
 		protected int getHoverState(boolean mouseOver)
 		{
 			return 0;
 		}
 
+		@Override
 		protected void mouseDragged(Minecraft mc, int mouseX, int mouseY)
 		{
 			if (this.visible)
@@ -144,11 +150,12 @@ public class GuiScreenOptionsSounds extends GuiScreen
 				}
 
 				GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-				this.drawTexturedModalRect(this.xPosition + (int) (this.volume * (float) (this.width - 8)), this.yPosition, 0, 66, 4, 20);
-				this.drawTexturedModalRect(this.xPosition + (int) (this.volume * (float) (this.width - 8)) + 4, this.yPosition, 196, 66, 4, 20);
+				this.drawTexturedModalRect(this.xPosition + (int) (this.volume * (this.width - 8)), this.yPosition, 0, 66, 4, 20);
+				this.drawTexturedModalRect(this.xPosition + (int) (this.volume * (this.width - 8)) + 4, this.yPosition, 196, 66, 4, 20);
 			}
 		}
 
+		@Override
 		public boolean mousePressed(Minecraft mc, int mouseX, int mouseY)
 		{
 			if (super.mousePressed(mc, mouseX, mouseY))
@@ -167,10 +174,12 @@ public class GuiScreenOptionsSounds extends GuiScreen
 			}
 		}
 
+		@Override
 		public void playPressSound(SoundHandler soundHandlerIn)
 		{
 		}
 
+		@Override
 		public void mouseReleased(int mouseX, int mouseY)
 		{
 			if (this.pressed)

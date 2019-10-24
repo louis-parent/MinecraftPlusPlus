@@ -56,6 +56,7 @@ public class EntityVex extends EntityMob
 	/**
 	 * Tries to move the entity towards the specified location.
 	 */
+	@Override
 	public void moveEntity(MoverType x, double p_70091_2_, double p_70091_4_, double p_70091_6_)
 	{
 		super.moveEntity(x, p_70091_2_, p_70091_4_, p_70091_6_);
@@ -65,6 +66,7 @@ public class EntityVex extends EntityMob
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		this.noClip = true;
@@ -79,6 +81,7 @@ public class EntityVex extends EntityMob
 		}
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		super.initEntityAI();
@@ -92,6 +95,7 @@ public class EntityVex extends EntityMob
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -99,6 +103,7 @@ public class EntityVex extends EntityMob
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -113,6 +118,7 @@ public class EntityVex extends EntityMob
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -131,6 +137,7 @@ public class EntityVex extends EntityMob
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -166,13 +173,13 @@ public class EntityVex extends EntityMob
 
 	private boolean func_190656_b(int p_190656_1_)
 	{
-		int i = ((Byte) this.dataManager.get(field_190664_a)).byteValue();
+		int i = this.dataManager.get(field_190664_a).byteValue();
 		return (i & p_190656_1_) != 0;
 	}
 
 	private void func_190660_a(int p_190660_1_, boolean p_190660_2_)
 	{
-		int i = ((Byte) this.dataManager.get(field_190664_a)).byteValue();
+		int i = this.dataManager.get(field_190664_a).byteValue();
 
 		if (p_190660_2_)
 		{
@@ -207,27 +214,32 @@ public class EntityVex extends EntityMob
 		this.field_190668_bx = p_190653_1_;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.field_191264_hc;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.field_191266_he;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.field_191267_hf;
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
 		return LootTableList.field_191188_ax;
 	}
 
+	@Override
 	public int getBrightnessForRender()
 	{
 		return 15728880;
@@ -236,11 +248,13 @@ public class EntityVex extends EntityMob
 	/**
 	 * Gets how bright this entity is.
 	 */
+	@Override
 	public float getBrightness()
 	{
 		return 1.0F;
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -258,6 +272,7 @@ public class EntityVex extends EntityMob
 	/**
 	 * Gives armor or weapon for entity based on given DifficultyInstance
 	 */
+	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
 		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
@@ -271,6 +286,7 @@ public class EntityVex extends EntityMob
 			this.setMutexBits(1);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			if (EntityVex.this.getAttackTarget() != null && !EntityVex.this.getMoveHelper().isUpdating() && EntityVex.this.rand.nextInt(7) == 0)
@@ -283,11 +299,13 @@ public class EntityVex extends EntityMob
 			}
 		}
 
+		@Override
 		public boolean continueExecuting()
 		{
 			return EntityVex.this.getMoveHelper().isUpdating() && EntityVex.this.func_190647_dj() && EntityVex.this.getAttackTarget() != null && EntityVex.this.getAttackTarget().isEntityAlive();
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			EntityLivingBase entitylivingbase = EntityVex.this.getAttackTarget();
@@ -297,11 +315,13 @@ public class EntityVex extends EntityMob
 			EntityVex.this.playSound(SoundEvents.field_191265_hd, 1.0F, 1.0F);
 		}
 
+		@Override
 		public void resetTask()
 		{
 			EntityVex.this.func_190648_a(false);
 		}
 
+		@Override
 		public void updateTask()
 		{
 			EntityLivingBase entitylivingbase = EntityVex.this.getAttackTarget();
@@ -331,11 +351,13 @@ public class EntityVex extends EntityMob
 			super(p_i47231_2_, false);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			return EntityVex.this.field_190665_b != null && EntityVex.this.field_190665_b.getAttackTarget() != null && this.isSuitableTarget(EntityVex.this.field_190665_b.getAttackTarget(), false);
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			EntityVex.this.setAttackTarget(EntityVex.this.field_190665_b.getAttackTarget());
@@ -350,6 +372,7 @@ public class EntityVex extends EntityMob
 			super(p_i47230_2_);
 		}
 
+		@Override
 		public void onUpdateMoveHelper()
 		{
 			if (this.action == EntityMoveHelper.Action.MOVE_TO)
@@ -358,7 +381,7 @@ public class EntityVex extends EntityMob
 				double d1 = this.posY - EntityVex.this.posY;
 				double d2 = this.posZ - EntityVex.this.posZ;
 				double d3 = d0 * d0 + d1 * d1 + d2 * d2;
-				d3 = (double) MathHelper.sqrt(d3);
+				d3 = MathHelper.sqrt(d3);
 
 				if (d3 < EntityVex.this.getEntityBoundingBox().getAverageEdgeLength())
 				{
@@ -397,16 +420,19 @@ public class EntityVex extends EntityMob
 			this.setMutexBits(1);
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			return !EntityVex.this.getMoveHelper().isUpdating() && EntityVex.this.rand.nextInt(7) == 0;
 		}
 
+		@Override
 		public boolean continueExecuting()
 		{
 			return false;
 		}
 
+		@Override
 		public void updateTask()
 		{
 			BlockPos blockpos = EntityVex.this.func_190646_di();
@@ -422,11 +448,11 @@ public class EntityVex extends EntityMob
 
 				if (EntityVex.this.world.isAirBlock(blockpos1))
 				{
-					EntityVex.this.moveHelper.setMoveTo((double) blockpos1.getX() + 0.5D, (double) blockpos1.getY() + 0.5D, (double) blockpos1.getZ() + 0.5D, 0.25D);
+					EntityVex.this.moveHelper.setMoveTo(blockpos1.getX() + 0.5D, blockpos1.getY() + 0.5D, blockpos1.getZ() + 0.5D, 0.25D);
 
 					if (EntityVex.this.getAttackTarget() == null)
 					{
-						EntityVex.this.getLookHelper().setLookPosition((double) blockpos1.getX() + 0.5D, (double) blockpos1.getY() + 0.5D, (double) blockpos1.getZ() + 0.5D, 180.0F, 20.0F);
+						EntityVex.this.getLookHelper().setLookPosition(blockpos1.getX() + 0.5D, blockpos1.getY() + 0.5D, blockpos1.getZ() + 0.5D, 180.0F, 20.0F);
 					}
 
 					break;

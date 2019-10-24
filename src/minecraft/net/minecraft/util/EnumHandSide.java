@@ -19,6 +19,7 @@ public enum EnumHandSide
 		return this == LEFT ? RIGHT : LEFT;
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.handName.getUnformattedText();

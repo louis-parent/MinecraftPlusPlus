@@ -11,6 +11,7 @@ public class PotionHealth extends Potion
 	 * Returns true if the potion has an instant effect instead of a continuous
 	 * one (eg Harming)
 	 */
+	@Override
 	public boolean isInstant()
 	{
 		return true;
@@ -19,6 +20,7 @@ public class PotionHealth extends Potion
 	/**
 	 * checks if Potion effect is ready to be applied this tick.
 	 */
+	@Override
 	public boolean isReady(int duration, int amplifier)
 	{
 		return duration >= 1;

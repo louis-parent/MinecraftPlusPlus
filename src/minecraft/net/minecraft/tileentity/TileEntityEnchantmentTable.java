@@ -29,6 +29,7 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
 	private static final Random rand = new Random();
 	private String customName;
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -41,6 +42,7 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
 		return compound;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -54,16 +56,17 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		this.bookSpreadPrev = this.bookSpread;
 		this.bookRotationPrev = this.bookRotation;
-		EntityPlayer entityplayer = this.world.getClosestPlayer((double) ((float) this.pos.getX() + 0.5F), (double) ((float) this.pos.getY() + 0.5F), (double) ((float) this.pos.getZ() + 0.5F), 3.0D, false);
+		EntityPlayer entityplayer = this.world.getClosestPlayer(this.pos.getX() + 0.5F, this.pos.getY() + 0.5F, this.pos.getZ() + 0.5F, 3.0D, false);
 
 		if (entityplayer != null)
 		{
-			double d0 = entityplayer.posX - (double) ((float) this.pos.getX() + 0.5F);
-			double d1 = entityplayer.posZ - (double) ((float) this.pos.getZ() + 0.5F);
+			double d0 = entityplayer.posX - (this.pos.getX() + 0.5F);
+			double d1 = entityplayer.posZ - (this.pos.getZ() + 0.5F);
 			this.tRot = (float) MathHelper.atan2(d1, d0);
 			this.bookSpread += 0.1F;
 
@@ -73,7 +76,7 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
 
 				while (true)
 				{
-					this.flipT += (float) (rand.nextInt(4) - rand.nextInt(4));
+					this.flipT += rand.nextInt(4) - rand.nextInt(4);
 
 					if (f1 != this.flipT)
 					{
@@ -134,6 +137,7 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.hasCustomName() ? this.customName : "container.enchant";
@@ -142,6 +146,7 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
 	/**
 	 * Returns true if this thing is named
 	 */
+	@Override
 	public boolean hasCustomName()
 	{
 		return this.customName != null && !this.customName.isEmpty();
@@ -156,16 +161,19 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
 	 * Get the formatted ChatComponent that will be used for the sender's
 	 * username in chat
 	 */
+	@Override
 	public ITextComponent getDisplayName()
 	{
-		return (ITextComponent) (this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]));
+		return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]);
 	}
 
+	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
 		return new ContainerEnchantment(playerInventory, this.world, this.pos);
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return "minecraft:enchanting_table";

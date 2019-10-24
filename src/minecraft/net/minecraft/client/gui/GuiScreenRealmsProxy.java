@@ -30,6 +30,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.proxy.init();
@@ -56,6 +57,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	/**
 	 * Draws a textured rectangle at the current z-value.
 	 */
+	@Override
 	public void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height)
 	{
 		this.proxy.blit(x, y, textureX, textureY, width, height);
@@ -66,6 +68,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	 * Draws a rectangle with a vertical gradient between the specified colors
 	 * (ARGB format). Args : x1, y1, x2, y2, topColor, bottomColor
 	 */
+	@Override
 	public void drawGradientRect(int left, int top, int right, int bottom, int startColor, int endColor)
 	{
 		super.drawGradientRect(left, top, right, bottom, startColor, endColor);
@@ -75,6 +78,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	 * Draws either a gradient over the background screen (when it exists) or a
 	 * flat gradient over background.png
 	 */
+	@Override
 	public void drawDefaultBackground()
 	{
 		super.drawDefaultBackground();
@@ -84,11 +88,13 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	 * Returns true if this GUI should pause the game when it is displayed in
 	 * single-player
 	 */
+	@Override
 	public boolean doesGuiPauseGame()
 	{
 		return super.doesGuiPauseGame();
 	}
 
+	@Override
 	public void drawWorldBackground(int tint)
 	{
 		super.drawWorldBackground(tint);
@@ -97,11 +103,13 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.proxy.render(mouseX, mouseY, partialTicks);
 	}
 
+	@Override
 	public void renderToolTip(ItemStack stack, int x, int y)
 	{
 		super.renderToolTip(stack, x, y);
@@ -112,6 +120,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	 * creative tab to be checked, current mouse x position, current mouse y
 	 * position.
 	 */
+	@Override
 	public void drawCreativeTabHoveringText(String tabName, int mouseX, int mouseY)
 	{
 		super.drawCreativeTabHoveringText(tabName, mouseX, mouseY);
@@ -121,6 +130,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	 * Draws a List of strings as a tooltip. Every entry is drawn on a seperate
 	 * line.
 	 */
+	@Override
 	public void drawHoveringText(List<String> textLines, int x, int y)
 	{
 		super.drawHoveringText(textLines, x, y);
@@ -129,6 +139,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		this.proxy.tick();
@@ -147,7 +158,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 
 	public void fontDrawShadow(String p_154319_1_, int p_154319_2_, int p_154319_3_, int p_154319_4_)
 	{
-		this.fontRendererObj.drawStringWithShadow(p_154319_1_, (float) p_154319_2_, (float) p_154319_3_, p_154319_4_);
+		this.fontRendererObj.drawStringWithShadow(p_154319_1_, p_154319_2_, p_154319_3_, p_154319_4_);
 	}
 
 	public List<String> fontSplit(String p_154323_1_, int p_154323_2_)
@@ -159,6 +170,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	public final void actionPerformed(GuiButton button) throws IOException
 	{
 		this.proxy.buttonClicked(((GuiButtonRealmsProxy) button).getRealmsButton());
@@ -194,6 +206,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	public void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		this.proxy.mouseClicked(mouseX, mouseY, mouseButton);
@@ -203,6 +216,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	/**
 	 * Handles mouse input.
 	 */
+	@Override
 	public void handleMouseInput() throws IOException
 	{
 		this.proxy.mouseEvent();
@@ -212,6 +226,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	/**
 	 * Handles keyboard input.
 	 */
+	@Override
 	public void handleKeyboardInput() throws IOException
 	{
 		this.proxy.keyboardEvent();
@@ -221,6 +236,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	/**
 	 * Called when a mouse button is released.
 	 */
+	@Override
 	public void mouseReleased(int mouseX, int mouseY, int state)
 	{
 		this.proxy.mouseReleased(mouseX, mouseY, state);
@@ -230,6 +246,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	 * Called when a mouse button is pressed and the mouse is moved around.
 	 * Parameters are : mouseX, mouseY, lastButtonClicked & timeSinceMouseClick.
 	 */
+	@Override
 	public void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick)
 	{
 		this.proxy.mouseDragged(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
@@ -240,11 +257,13 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	public void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		this.proxy.keyPressed(typedChar, keyCode);
 	}
 
+	@Override
 	public void confirmClicked(boolean result, int id)
 	{
 		this.proxy.confirmResult(result, id);
@@ -254,6 +273,7 @@ public class GuiScreenRealmsProxy extends GuiScreen
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		this.proxy.removed();

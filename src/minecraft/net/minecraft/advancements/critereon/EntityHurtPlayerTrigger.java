@@ -21,11 +21,13 @@ public class EntityHurtPlayerTrigger implements ICriterionTrigger<EntityHurtPlay
 	private static final ResourceLocation field_192201_a = new ResourceLocation("entity_hurt_player");
 	private final Map<PlayerAdvancements, EntityHurtPlayerTrigger.Listeners> field_192202_b = Maps.<PlayerAdvancements, EntityHurtPlayerTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192201_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<EntityHurtPlayerTrigger.Instance> p_192165_2_)
 	{
 		EntityHurtPlayerTrigger.Listeners entityhurtplayertrigger$listeners = this.field_192202_b.get(p_192165_1_);
@@ -39,6 +41,7 @@ public class EntityHurtPlayerTrigger implements ICriterionTrigger<EntityHurtPlay
 		entityhurtplayertrigger$listeners.func_192477_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<EntityHurtPlayerTrigger.Instance> p_192164_2_)
 	{
 		EntityHurtPlayerTrigger.Listeners entityhurtplayertrigger$listeners = this.field_192202_b.get(p_192164_1_);
@@ -54,11 +57,13 @@ public class EntityHurtPlayerTrigger implements ICriterionTrigger<EntityHurtPlay
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192202_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public EntityHurtPlayerTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		DamagePredicate damagepredicate = DamagePredicate.func_192364_a(p_192166_1_.get("damage"));
@@ -122,7 +127,7 @@ public class EntityHurtPlayerTrigger implements ICriterionTrigger<EntityHurtPlay
 
 			for (ICriterionTrigger.Listener<EntityHurtPlayerTrigger.Instance> listener : this.field_192480_b)
 			{
-				if (((EntityHurtPlayerTrigger.Instance) listener.func_192158_a()).func_192263_a(p_192478_1_, p_192478_2_, p_192478_3_, p_192478_4_, p_192478_5_))
+				if (listener.func_192158_a().func_192263_a(p_192478_1_, p_192478_2_, p_192478_3_, p_192478_4_, p_192478_5_))
 				{
 					if (list == null)
 					{

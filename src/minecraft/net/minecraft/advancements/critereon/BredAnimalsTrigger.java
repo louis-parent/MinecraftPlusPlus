@@ -22,11 +22,13 @@ public class BredAnimalsTrigger implements ICriterionTrigger<BredAnimalsTrigger.
 	private static final ResourceLocation field_192171_a = new ResourceLocation("bred_animals");
 	private final Map<PlayerAdvancements, BredAnimalsTrigger.Listeners> field_192172_b = Maps.<PlayerAdvancements, BredAnimalsTrigger.Listeners>newHashMap();
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return field_192171_a;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<BredAnimalsTrigger.Instance> p_192165_2_)
 	{
 		BredAnimalsTrigger.Listeners bredanimalstrigger$listeners = this.field_192172_b.get(p_192165_1_);
@@ -40,6 +42,7 @@ public class BredAnimalsTrigger implements ICriterionTrigger<BredAnimalsTrigger.
 		bredanimalstrigger$listeners.func_192343_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<BredAnimalsTrigger.Instance> p_192164_2_)
 	{
 		BredAnimalsTrigger.Listeners bredanimalstrigger$listeners = this.field_192172_b.get(p_192164_1_);
@@ -55,11 +58,13 @@ public class BredAnimalsTrigger implements ICriterionTrigger<BredAnimalsTrigger.
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192172_b.remove(p_192167_1_);
 	}
 
+	@Override
 	public BredAnimalsTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		EntityPredicate entitypredicate = EntityPredicate.func_192481_a(p_192166_1_.get("parent"));
@@ -136,7 +141,7 @@ public class BredAnimalsTrigger implements ICriterionTrigger<BredAnimalsTrigger.
 
 			for (ICriterionTrigger.Listener<BredAnimalsTrigger.Instance> listener : this.field_192345_b)
 			{
-				if (((BredAnimalsTrigger.Instance) listener.func_192158_a()).func_192246_a(p_192342_1_, p_192342_2_, p_192342_3_, p_192342_4_))
+				if (listener.func_192158_a().func_192246_a(p_192342_1_, p_192342_2_, p_192342_3_, p_192342_4_))
 				{
 					if (list == null)
 					{

@@ -42,6 +42,7 @@ public class BlockPane extends Block
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 
+	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 		if (!p_185477_7_)
@@ -51,22 +52,22 @@ public class BlockPane extends Block
 
 		addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BY_INDEX[0]);
 
-		if (((Boolean) state.getValue(NORTH)).booleanValue())
+		if (state.getValue(NORTH).booleanValue())
 		{
 			addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BY_INDEX[getBoundingBoxIndex(EnumFacing.NORTH)]);
 		}
 
-		if (((Boolean) state.getValue(SOUTH)).booleanValue())
+		if (state.getValue(SOUTH).booleanValue())
 		{
 			addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BY_INDEX[getBoundingBoxIndex(EnumFacing.SOUTH)]);
 		}
 
-		if (((Boolean) state.getValue(EAST)).booleanValue())
+		if (state.getValue(EAST).booleanValue())
 		{
 			addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BY_INDEX[getBoundingBoxIndex(EnumFacing.EAST)]);
 		}
 
-		if (((Boolean) state.getValue(WEST)).booleanValue())
+		if (state.getValue(WEST).booleanValue())
 		{
 			addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BY_INDEX[getBoundingBoxIndex(EnumFacing.WEST)]);
 		}
@@ -77,6 +78,7 @@ public class BlockPane extends Block
 		return 1 << p_185729_0_.getHorizontalIndex();
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		state = this.getActualState(state, source, pos);
@@ -87,22 +89,22 @@ public class BlockPane extends Block
 	{
 		int i = 0;
 
-		if (((Boolean) state.getValue(NORTH)).booleanValue())
+		if (state.getValue(NORTH).booleanValue())
 		{
 			i |= getBoundingBoxIndex(EnumFacing.NORTH);
 		}
 
-		if (((Boolean) state.getValue(EAST)).booleanValue())
+		if (state.getValue(EAST).booleanValue())
 		{
 			i |= getBoundingBoxIndex(EnumFacing.EAST);
 		}
 
-		if (((Boolean) state.getValue(SOUTH)).booleanValue())
+		if (state.getValue(SOUTH).booleanValue())
 		{
 			i |= getBoundingBoxIndex(EnumFacing.SOUTH);
 		}
 
-		if (((Boolean) state.getValue(WEST)).booleanValue())
+		if (state.getValue(WEST).booleanValue())
 		{
 			i |= getBoundingBoxIndex(EnumFacing.WEST);
 		}
@@ -115,6 +117,7 @@ public class BlockPane extends Block
 	 * applies properties not visible in the metadata, such as fence
 	 * connections.
 	 */
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		return state.withProperty(NORTH, Boolean.valueOf(this.func_193393_b(worldIn, worldIn.getBlockState(pos.north()), pos.north(), EnumFacing.SOUTH))).withProperty(SOUTH, Boolean.valueOf(this.func_193393_b(worldIn, worldIn.getBlockState(pos.south()), pos.south(), EnumFacing.NORTH))).withProperty(WEST, Boolean.valueOf(this.func_193393_b(worldIn, worldIn.getBlockState(pos.west()), pos.west(), EnumFacing.EAST))).withProperty(EAST, Boolean.valueOf(this.func_193393_b(worldIn, worldIn.getBlockState(pos.east()), pos.east(), EnumFacing.WEST)));
@@ -123,6 +126,7 @@ public class BlockPane extends Block
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return !this.canDrop ? Items.EMPTY_ITEM : super.getItemDropped(state, rand, fortune);
@@ -132,16 +136,19 @@ public class BlockPane extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
@@ -159,11 +166,13 @@ public class BlockPane extends Block
 		return p_193394_0_ instanceof BlockShulkerBox || p_193394_0_ instanceof BlockLeaves || p_193394_0_ == Blocks.BEACON || p_193394_0_ == Blocks.CAULDRON || p_193394_0_ == Blocks.GLOWSTONE || p_193394_0_ == Blocks.ICE || p_193394_0_ == Blocks.SEA_LANTERN || p_193394_0_ == Blocks.PISTON || p_193394_0_ == Blocks.STICKY_PISTON || p_193394_0_ == Blocks.PISTON_HEAD || p_193394_0_ == Blocks.MELON_BLOCK || p_193394_0_ == Blocks.PUMPKIN || p_193394_0_ == Blocks.LIT_PUMPKIN || p_193394_0_ == Blocks.BARRIER;
 	}
 
+	@Override
 	protected boolean canSilkHarvest()
 	{
 		return true;
 	}
 
+	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT_MIPPED;
@@ -172,6 +181,7 @@ public class BlockPane extends Block
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
+	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		return 0;
@@ -181,6 +191,7 @@ public class BlockPane extends Block
 	 * Returns the blockstate with the given rotation from the passed
 	 * blockstate. If inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
 		switch (rot)
@@ -203,6 +214,7 @@ public class BlockPane extends Block
 	 * Returns the blockstate with the given mirror of the passed blockstate. If
 	 * inapplicable, returns the passed blockstate.
 	 */
+	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
 		switch (mirrorIn)
@@ -218,11 +230,13 @@ public class BlockPane extends Block
 		}
 	}
 
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { NORTH, EAST, WEST, SOUTH });
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return p_193383_4_ != EnumFacing.UP && p_193383_4_ != EnumFacing.DOWN ? BlockFaceShape.MIDDLE_POLE_THIN : BlockFaceShape.CENTER_SMALL;

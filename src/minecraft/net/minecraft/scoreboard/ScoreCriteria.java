@@ -10,16 +10,19 @@ public class ScoreCriteria implements IScoreCriteria
 		IScoreCriteria.INSTANCES.put(name, this);
 	}
 
+	@Override
 	public String getName()
 	{
 		return this.dummyName;
 	}
 
+	@Override
 	public boolean isReadOnly()
 	{
 		return false;
 	}
 
+	@Override
 	public IScoreCriteria.EnumRenderType getRenderType()
 	{
 		return IScoreCriteria.EnumRenderType.INTEGER;

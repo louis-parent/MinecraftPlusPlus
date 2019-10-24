@@ -27,6 +27,7 @@ public class ItemShield extends Item
 		this.setMaxDamage(336);
 		this.addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter()
 		{
+			@Override
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
 			{
 				return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F : 0.0F;
@@ -35,6 +36,7 @@ public class ItemShield extends Item
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, ItemArmor.DISPENSER_BEHAVIOR);
 	}
 
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		if (stack.getSubCompound("BlockEntityTag") != null)
@@ -52,6 +54,7 @@ public class ItemShield extends Item
 	 * allows items to add custom lines of information to the mouseover
 	 * description
 	 */
+	@Override
 	public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced)
 	{
 		ItemBanner.appendHoverTextFromTileEntityTag(stack, tooltip);
@@ -61,6 +64,7 @@ public class ItemShield extends Item
 	 * returns the action that specifies what animation to play when the items
 	 * is being used
 	 */
+	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
 		return EnumAction.BLOCK;
@@ -69,11 +73,13 @@ public class ItemShield extends Item
 	/**
 	 * How long it takes to use or consume an item
 	 */
+	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{
 		return 72000;
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);
@@ -84,6 +90,7 @@ public class ItemShield extends Item
 	/**
 	 * Return whether this item is repairable in an anvil.
 	 */
+	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
 	{
 		return repair.getItem() == Item.getItemFromBlock(Blocks.PLANKS) ? true : super.getIsRepairable(toRepair, repair);

@@ -18,6 +18,7 @@ public class LayerHeldBlock implements LayerRenderer<EntityEnderman>
 		this.endermanRenderer = endermanRendererIn;
 	}
 
+	@Override
 	public void doRenderLayer(EntityEnderman entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		IBlockState iblockstate = entitylivingbaseIn.getHeldBlockState();
@@ -36,7 +37,7 @@ public class LayerHeldBlock implements LayerRenderer<EntityEnderman>
 			int i = entitylivingbaseIn.getBrightnessForRender();
 			int j = i % 65536;
 			int k = i / 65536;
-			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
+			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j, k);
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			this.endermanRenderer.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			blockrendererdispatcher.renderBlockBrightness(iblockstate, 1.0F);
@@ -45,6 +46,7 @@ public class LayerHeldBlock implements LayerRenderer<EntityEnderman>
 		}
 	}
 
+	@Override
 	public boolean shouldCombineTextures()
 	{
 		return false;

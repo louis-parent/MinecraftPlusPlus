@@ -18,6 +18,7 @@ public class BiomeSavannaMutated extends BiomeSavanna
 		this.theBiomeDecorator.grassPerChunk = 5;
 	}
 
+	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
 	{
 		this.topBlock = Blocks.GRASS.getDefaultState();
@@ -36,6 +37,7 @@ public class BiomeSavannaMutated extends BiomeSavanna
 		this.generateBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
 	}
 
+	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
 		this.theBiomeDecorator.decorate(worldIn, rand, this, pos);

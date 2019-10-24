@@ -69,6 +69,7 @@ public class WorldSummary implements Comparable<WorldSummary>
 		return this.lastTimePlayed;
 	}
 
+	@Override
 	public int compareTo(WorldSummary p_compareTo_1_)
 	{
 		if (this.lastTimePlayed < p_compareTo_1_.lastTimePlayed)

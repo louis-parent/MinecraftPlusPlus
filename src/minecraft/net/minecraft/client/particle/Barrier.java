@@ -28,6 +28,7 @@ public class Barrier extends Particle
 	 * with. 0 for the particle sprite sheet, 1 for the main Texture atlas, and
 	 * 3 for a custom texture
 	 */
+	@Override
 	public int getFXLayer()
 	{
 		return 1;
@@ -36,6 +37,7 @@ public class Barrier extends Particle
 	/**
 	 * Renders the particle
 	 */
+	@Override
 	public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
 		float f = this.particleTexture.getMinU();
@@ -43,20 +45,21 @@ public class Barrier extends Particle
 		float f2 = this.particleTexture.getMinV();
 		float f3 = this.particleTexture.getMaxV();
 		float f4 = 0.5F;
-		float f5 = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) partialTicks - interpPosX);
-		float f6 = (float) (this.prevPosY + (this.posY - this.prevPosY) * (double) partialTicks - interpPosY);
-		float f7 = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * (double) partialTicks - interpPosZ);
+		float f5 = (float) (this.prevPosX + (this.posX - this.prevPosX) * partialTicks - interpPosX);
+		float f6 = (float) (this.prevPosY + (this.posY - this.prevPosY) * partialTicks - interpPosY);
+		float f7 = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * partialTicks - interpPosZ);
 		int i = this.getBrightnessForRender(partialTicks);
 		int j = i >> 16 & 65535;
 		int k = i & 65535;
-		worldRendererIn.pos((double) (f5 - rotationX * 0.5F - rotationXY * 0.5F), (double) (f6 - rotationZ * 0.5F), (double) (f7 - rotationYZ * 0.5F - rotationXZ * 0.5F)).tex((double) f1, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(j, k).endVertex();
-		worldRendererIn.pos((double) (f5 - rotationX * 0.5F + rotationXY * 0.5F), (double) (f6 + rotationZ * 0.5F), (double) (f7 - rotationYZ * 0.5F + rotationXZ * 0.5F)).tex((double) f1, (double) f2).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(j, k).endVertex();
-		worldRendererIn.pos((double) (f5 + rotationX * 0.5F + rotationXY * 0.5F), (double) (f6 + rotationZ * 0.5F), (double) (f7 + rotationYZ * 0.5F + rotationXZ * 0.5F)).tex((double) f, (double) f2).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(j, k).endVertex();
-		worldRendererIn.pos((double) (f5 + rotationX * 0.5F - rotationXY * 0.5F), (double) (f6 - rotationZ * 0.5F), (double) (f7 + rotationYZ * 0.5F - rotationXZ * 0.5F)).tex((double) f, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(j, k).endVertex();
+		worldRendererIn.pos(f5 - rotationX * 0.5F - rotationXY * 0.5F, f6 - rotationZ * 0.5F, f7 - rotationYZ * 0.5F - rotationXZ * 0.5F).tex(f1, f3).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(j, k).endVertex();
+		worldRendererIn.pos(f5 - rotationX * 0.5F + rotationXY * 0.5F, f6 + rotationZ * 0.5F, f7 - rotationYZ * 0.5F + rotationXZ * 0.5F).tex(f1, f2).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(j, k).endVertex();
+		worldRendererIn.pos(f5 + rotationX * 0.5F + rotationXY * 0.5F, f6 + rotationZ * 0.5F, f7 + rotationYZ * 0.5F + rotationXZ * 0.5F).tex(f, f2).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(j, k).endVertex();
+		worldRendererIn.pos(f5 + rotationX * 0.5F - rotationXY * 0.5F, f6 - rotationZ * 0.5F, f7 + rotationYZ * 0.5F - rotationXZ * 0.5F).tex(f, f3).color(this.particleRed, this.particleGreen, this.particleBlue, 1.0F).lightmap(j, k).endVertex();
 	}
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new Barrier(worldIn, xCoordIn, yCoordIn, zCoordIn, Item.getItemFromBlock(Blocks.BARRIER));

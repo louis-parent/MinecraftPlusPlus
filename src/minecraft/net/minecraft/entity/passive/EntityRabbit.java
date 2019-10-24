@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCarrot;
+import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -70,6 +71,7 @@ public class EntityRabbit extends EntityAnimal
 		this.setMovementSpeed(0.0D);
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(1, new EntityAISwimming(this));
@@ -86,6 +88,7 @@ public class EntityRabbit extends EntityAnimal
 		this.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
 	}
 
+	@Override
 	protected float getJumpUpwardsMotion()
 	{
 		if (!this.isCollidedHorizontally && (!this.moveHelper.isUpdating() || this.moveHelper.getY() <= this.posY + 0.5D))
@@ -113,6 +116,7 @@ public class EntityRabbit extends EntityAnimal
 	/**
 	 * Causes this entity to do an upwards motion (jumping).
 	 */
+	@Override
 	protected void jump()
 	{
 		super.jump();
@@ -136,7 +140,7 @@ public class EntityRabbit extends EntityAnimal
 
 	public float setJumpCompletion(float p_175521_1_)
 	{
-		return this.jumpDuration == 0 ? 0.0F : ((float) this.jumpTicks + p_175521_1_) / (float) this.jumpDuration;
+		return this.jumpDuration == 0 ? 0.0F : (this.jumpTicks + p_175521_1_) / this.jumpDuration;
 	}
 
 	public void setMovementSpeed(double newSpeed)
@@ -145,6 +149,7 @@ public class EntityRabbit extends EntityAnimal
 		this.moveHelper.setMoveTo(this.moveHelper.getX(), this.moveHelper.getY(), this.moveHelper.getZ(), newSpeed);
 	}
 
+	@Override
 	public void setJumping(boolean jumping)
 	{
 		super.setJumping(jumping);
@@ -162,12 +167,14 @@ public class EntityRabbit extends EntityAnimal
 		this.jumpTicks = 0;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataManager.register(RABBIT_TYPE, Integer.valueOf(0));
 	}
 
+	@Override
 	public void updateAITasks()
 	{
 		if (this.currentMoveTypeDuration > 0)
@@ -237,6 +244,7 @@ public class EntityRabbit extends EntityAnimal
 	 * Attempts to create sprinting particles if the entity is sprinting and not
 	 * in water.
 	 */
+	@Override
 	public void spawnRunningParticles()
 	{
 	}
@@ -279,6 +287,7 @@ public class EntityRabbit extends EntityAnimal
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -295,6 +304,7 @@ public class EntityRabbit extends EntityAnimal
 		}
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -310,6 +320,7 @@ public class EntityRabbit extends EntityAnimal
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound compound)
 	{
 		super.writeEntityToNBT(compound);
@@ -320,6 +331,7 @@ public class EntityRabbit extends EntityAnimal
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
@@ -332,21 +344,25 @@ public class EntityRabbit extends EntityAnimal
 		return SoundEvents.ENTITY_RABBIT_JUMP;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return SoundEvents.ENTITY_RABBIT_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_184601_1_)
 	{
 		return SoundEvents.ENTITY_RABBIT_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound()
 	{
 		return SoundEvents.ENTITY_RABBIT_DEATH;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity entityIn)
 	{
 		if (this.getRabbitType() == 99)
@@ -360,6 +376,7 @@ public class EntityRabbit extends EntityAnimal
 		}
 	}
 
+	@Override
 	public SoundCategory getSoundCategory()
 	{
 		return this.getRabbitType() == 99 ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
@@ -368,11 +385,13 @@ public class EntityRabbit extends EntityAnimal
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		return this.isEntityInvulnerable(source) ? false : super.attackEntityFrom(source, amount);
 	}
 
+	@Override
 	@Nullable
 	protected ResourceLocation getLootTable()
 	{
@@ -384,6 +403,7 @@ public class EntityRabbit extends EntityAnimal
 		return itemIn == Items.CARROT || itemIn == Items.GOLDEN_CARROT || itemIn == Item.getItemFromBlock(Blocks.YELLOW_FLOWER);
 	}
 
+	@Override
 	public EntityRabbit createChild(EntityAgeable ageable)
 	{
 		EntityRabbit entityrabbit = new EntityRabbit(this.world);
@@ -409,6 +429,7 @@ public class EntityRabbit extends EntityAnimal
 	 * Checks if the parameter is an item which this animal can be fed to breed
 	 * it (wheat, carrots or seeds depending on the animal type)
 	 */
+	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
 		return this.isRabbitBreedingItem(stack.getItem());
@@ -416,7 +437,7 @@ public class EntityRabbit extends EntityAnimal
 
 	public int getRabbitType()
 	{
-		return ((Integer) this.dataManager.get(RABBIT_TYPE)).intValue();
+		return this.dataManager.get(RABBIT_TYPE).intValue();
 	}
 
 	public void setRabbitType(int rabbitTypeId)
@@ -438,6 +459,7 @@ public class EntityRabbit extends EntityAnimal
 		this.dataManager.set(RABBIT_TYPE, Integer.valueOf(rabbitTypeId));
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -504,10 +526,11 @@ public class EntityRabbit extends EntityAnimal
 	{
 		BlockCarrot blockcarrot = (BlockCarrot) Blocks.CARROTS;
 		IBlockState iblockstate = blockcarrot.withAge(blockcarrot.getMaxAge());
-		this.world.spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, 0.0D, 0.0D, 0.0D, Block.getStateId(iblockstate));
+		this.world.spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.0D, 0.0D, 0.0D, Block.getStateId(iblockstate));
 		this.carrotTicks = 40;
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 1)
@@ -532,6 +555,7 @@ public class EntityRabbit extends EntityAnimal
 			this.entityInstance = rabbit;
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			return this.entityInstance.getRabbitType() != 99 && super.shouldExecute();
@@ -545,9 +569,10 @@ public class EntityRabbit extends EntityAnimal
 			super(rabbit, 1.4D, true);
 		}
 
+		@Override
 		protected double getAttackReachSqr(EntityLivingBase attackTarget)
 		{
-			return (double) (4.0F + attackTarget.width);
+			return 4.0F + attackTarget.width;
 		}
 	}
 
@@ -561,6 +586,7 @@ public class EntityRabbit extends EntityAnimal
 			this.theEntity = rabbit;
 		}
 
+		@Override
 		public void updateTask()
 		{
 			super.updateTask();
@@ -580,6 +606,7 @@ public class EntityRabbit extends EntityAnimal
 			this.rabbit = rabbitIn;
 		}
 
+		@Override
 		public boolean shouldExecute()
 		{
 			if (this.runDelay <= 0)
@@ -597,15 +624,17 @@ public class EntityRabbit extends EntityAnimal
 			return super.shouldExecute();
 		}
 
+		@Override
 		public boolean continueExecuting()
 		{
 			return this.canRaid && super.continueExecuting();
 		}
 
+		@Override
 		public void updateTask()
 		{
 			super.updateTask();
-			this.rabbit.getLookHelper().setLookPosition((double) this.destinationBlock.getX() + 0.5D, (double) (this.destinationBlock.getY() + 1), (double) this.destinationBlock.getZ() + 0.5D, 10.0F, (float) this.rabbit.getVerticalFaceSpeed());
+			this.rabbit.getLookHelper().setLookPosition(this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 1, this.destinationBlock.getZ() + 0.5D, 10.0F, this.rabbit.getVerticalFaceSpeed());
 
 			if (this.getIsAboveDestination())
 			{
@@ -616,7 +645,7 @@ public class EntityRabbit extends EntityAnimal
 
 				if (this.canRaid && block instanceof BlockCarrot)
 				{
-					Integer integer = (Integer) iblockstate.getValue(BlockCarrot.AGE);
+					Integer integer = iblockstate.getValue(BlockCrops.AGE);
 
 					if (integer.intValue() == 0)
 					{
@@ -625,7 +654,7 @@ public class EntityRabbit extends EntityAnimal
 					}
 					else
 					{
-						world.setBlockState(blockpos, iblockstate.withProperty(BlockCarrot.AGE, Integer.valueOf(integer.intValue() - 1)), 2);
+						world.setBlockState(blockpos, iblockstate.withProperty(BlockCrops.AGE, Integer.valueOf(integer.intValue() - 1)), 2);
 						world.playEvent(2001, blockpos, Block.getStateId(iblockstate));
 					}
 
@@ -637,6 +666,7 @@ public class EntityRabbit extends EntityAnimal
 			}
 		}
 
+		@Override
 		protected boolean shouldMoveTo(World worldIn, BlockPos pos)
 		{
 			Block block = worldIn.getBlockState(pos).getBlock();
@@ -684,6 +714,7 @@ public class EntityRabbit extends EntityAnimal
 			this.canJump = canJumpIn;
 		}
 
+		@Override
 		public void doJump()
 		{
 			if (this.isJumping)
@@ -705,6 +736,7 @@ public class EntityRabbit extends EntityAnimal
 			this.theEntity = rabbit;
 		}
 
+		@Override
 		public void onUpdateMoveHelper()
 		{
 			if (this.theEntity.onGround && !this.theEntity.isJumping && !((EntityRabbit.RabbitJumpHelper) this.theEntity.jumpHelper).getIsJumping())
@@ -719,6 +751,7 @@ public class EntityRabbit extends EntityAnimal
 			super.onUpdateMoveHelper();
 		}
 
+		@Override
 		public void setMoveTo(double x, double y, double z, double speedIn)
 		{
 			if (this.theEntity.isInWater())

@@ -34,7 +34,7 @@ public class ModelBlockDefinition
 
 	public static ModelBlockDefinition parseFromReader(Reader reader)
 	{
-		return (ModelBlockDefinition) JsonUtils.func_193839_a(GSON, reader, ModelBlockDefinition.class);
+		return JsonUtils.func_193839_a(GSON, reader, ModelBlockDefinition.class);
 	}
 
 	public ModelBlockDefinition(Map<String, VariantList> variants, Multipart multipartIn)
@@ -83,6 +83,7 @@ public class ModelBlockDefinition
 		}
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -105,6 +106,7 @@ public class ModelBlockDefinition
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return 31 * this.mapVariants.hashCode() + (this.hasMultipartData() ? this.multipart.hashCode() : 0);
@@ -134,6 +136,7 @@ public class ModelBlockDefinition
 
 	public static class Deserializer implements JsonDeserializer<ModelBlockDefinition>
 	{
+		@Override
 		public ModelBlockDefinition deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();

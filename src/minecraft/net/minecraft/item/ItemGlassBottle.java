@@ -31,10 +31,12 @@ public class ItemGlassBottle extends Item
 		this.setCreativeTab(CreativeTabs.BREWING);
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		List<EntityAreaEffectCloud> list = itemStackIn.<EntityAreaEffectCloud>getEntitiesWithinAABB(EntityAreaEffectCloud.class, worldIn.getEntityBoundingBox().expandXyz(2.0D), new Predicate<EntityAreaEffectCloud>()
 		{
+			@Override
 			public boolean apply(@Nullable EntityAreaEffectCloud p_apply_1_)
 			{
 				return p_apply_1_ != null && p_apply_1_.isEntityAlive() && p_apply_1_.getOwner() instanceof EntityDragon;

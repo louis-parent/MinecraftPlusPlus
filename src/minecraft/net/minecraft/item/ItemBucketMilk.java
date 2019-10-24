@@ -25,6 +25,7 @@ public class ItemBucketMilk extends Item
 	 * Not called when the player stops using the Item before the action is
 	 * complete.
 	 */
+	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
 	{
 		if (entityLiving instanceof EntityPlayerMP)
@@ -50,6 +51,7 @@ public class ItemBucketMilk extends Item
 	/**
 	 * How long it takes to use or consume an item
 	 */
+	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{
 		return 32;
@@ -59,11 +61,13 @@ public class ItemBucketMilk extends Item
 	 * returns the action that specifies what animation to play when the items
 	 * is being used
 	 */
+	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
 		return EnumAction.DRINK;
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		worldIn.setActiveHand(playerIn);

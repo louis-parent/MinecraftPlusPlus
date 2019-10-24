@@ -24,6 +24,7 @@ public class SoundEventAccessor implements ISoundEventAccessor<Sound>
 		this.subtitle = subtitleIn == null ? null : new TextComponentTranslation(subtitleIn, new Object[0]);
 	}
 
+	@Override
 	public int getWeight()
 	{
 		int i = 0;
@@ -36,6 +37,7 @@ public class SoundEventAccessor implements ISoundEventAccessor<Sound>
 		return i;
 	}
 
+	@Override
 	public Sound cloneEntry()
 	{
 		int i = this.getWeight();

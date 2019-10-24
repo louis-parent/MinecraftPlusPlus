@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 
 public class BiomeVoidDecorator extends BiomeDecorator
 {
+	@Override
 	public void decorate(World worldIn, Random random, Biome biome, BlockPos pos)
 	{
 		BlockPos blockpos = worldIn.getSpawnPoint();

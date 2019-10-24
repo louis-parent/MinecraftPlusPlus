@@ -14,7 +14,7 @@ public class RealmsSliderButton extends RealmsButton
 
 	public RealmsSliderButton(int buttonId, int x, int y, int width, int maxValueIn, int p_i1056_6_)
 	{
-		this(buttonId, x, y, width, p_i1056_6_, 0, 1.0F, (float) maxValueIn);
+		this(buttonId, x, y, width, p_i1056_6_, 0, 1.0F, maxValueIn);
 	}
 
 	public RealmsSliderButton(int buttonId, int x, int y, int width, int p_i1057_5_, int valueIn, float minValueIn, float maxValueIn)
@@ -23,7 +23,7 @@ public class RealmsSliderButton extends RealmsButton
 		this.value = 1.0F;
 		this.minValue = minValueIn;
 		this.maxValue = maxValueIn;
-		this.value = this.toPct((float) valueIn);
+		this.value = this.toPct(valueIn);
 		this.getProxy().displayString = this.getMessage();
 	}
 
@@ -52,17 +52,19 @@ public class RealmsSliderButton extends RealmsButton
 	{
 		if (this.steps > 0)
 		{
-			p_clampSteps_1_ = (float) (this.steps * Math.round(p_clampSteps_1_ / (float) this.steps));
+			p_clampSteps_1_ = this.steps * Math.round(p_clampSteps_1_ / this.steps);
 		}
 
 		return p_clampSteps_1_;
 	}
 
+	@Override
 	public int getYImage(boolean p_getYImage_1_)
 	{
 		return 0;
 	}
 
+	@Override
 	public void renderBg(int p_renderBg_1_, int p_renderBg_2_)
 	{
 		if (this.getProxy().visible)
@@ -79,11 +81,12 @@ public class RealmsSliderButton extends RealmsButton
 
 			Minecraft.getMinecraft().getTextureManager().bindTexture(WIDGETS_LOCATION);
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-			this.blit(this.getProxy().xPosition + (int) (this.value * (float) (this.getProxy().getButtonWidth() - 8)), this.getProxy().yPosition, 0, 66, 4, 20);
-			this.blit(this.getProxy().xPosition + (int) (this.value * (float) (this.getProxy().getButtonWidth() - 8)) + 4, this.getProxy().yPosition, 196, 66, 4, 20);
+			this.blit(this.getProxy().xPosition + (int) (this.value * (this.getProxy().getButtonWidth() - 8)), this.getProxy().yPosition, 0, 66, 4, 20);
+			this.blit(this.getProxy().xPosition + (int) (this.value * (this.getProxy().getButtonWidth() - 8)) + 4, this.getProxy().yPosition, 196, 66, 4, 20);
 		}
 	}
 
+	@Override
 	public void clicked(int p_clicked_1_, int p_clicked_2_)
 	{
 		this.value = (float) (p_clicked_1_ - (this.getProxy().xPosition + 4)) / (float) (this.getProxy().getButtonWidth() - 8);
@@ -97,6 +100,7 @@ public class RealmsSliderButton extends RealmsButton
 	{
 	}
 
+	@Override
 	public void released(int p_released_1_, int p_released_2_)
 	{
 		this.sliding = false;

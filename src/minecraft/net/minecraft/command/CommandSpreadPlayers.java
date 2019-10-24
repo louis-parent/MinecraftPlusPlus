@@ -27,6 +27,7 @@ public class CommandSpreadPlayers extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "spreadplayers";
@@ -35,6 +36,7 @@ public class CommandSpreadPlayers extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
@@ -43,6 +45,7 @@ public class CommandSpreadPlayers extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.spreadplayers.usage";
@@ -51,6 +54,7 @@ public class CommandSpreadPlayers extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length < 6)
@@ -61,8 +65,8 @@ public class CommandSpreadPlayers extends CommandBase
 		{
 			int i = 0;
 			BlockPos blockpos = sender.getPosition();
-			double d0 = parseDouble((double) blockpos.getX(), args[i++], true);
-			double d1 = parseDouble((double) blockpos.getZ(), args[i++], true);
+			double d0 = parseDouble(blockpos.getX(), args[i++], true);
+			double d1 = parseDouble(blockpos.getZ(), args[i++], true);
 			double d2 = parseDouble(args[i++], 0.0D);
 			double d3 = parseDouble(args[i++], d2 + 1.0D);
 			boolean flag = parseBoolean(args[i++]);
@@ -183,9 +187,9 @@ public class CommandSpreadPlayers extends CommandBase
 
 				if (k > 0)
 				{
-					commandspreadplayers$position1.x /= (double) k;
-					commandspreadplayers$position1.z /= (double) k;
-					double d2 = (double) commandspreadplayers$position1.getLength();
+					commandspreadplayers$position1.x /= k;
+					commandspreadplayers$position1.z /= k;
+					double d2 = commandspreadplayers$position1.getLength();
 
 					if (d2 > 0.0D)
 					{
@@ -256,7 +260,7 @@ public class CommandSpreadPlayers extends CommandBase
 				commandspreadplayers$position = p_110671_3_[i++];
 			}
 
-			entity.setPositionAndUpdate((double) ((float) MathHelper.floor(commandspreadplayers$position.x) + 0.5F), (double) commandspreadplayers$position.getSpawnY(worldIn), (double) MathHelper.floor(commandspreadplayers$position.z) + 0.5D);
+			entity.setPositionAndUpdate(MathHelper.floor(commandspreadplayers$position.x) + 0.5F, commandspreadplayers$position.getSpawnY(worldIn), MathHelper.floor(commandspreadplayers$position.z) + 0.5D);
 			double d2 = Double.MAX_VALUE;
 
 			for (CommandSpreadPlayers.Position commandspreadplayers$position1 : p_110671_3_)
@@ -271,7 +275,7 @@ public class CommandSpreadPlayers extends CommandBase
 			d0 += d2;
 		}
 
-		d0 = d0 / (double) p_110671_1_.size();
+		d0 = d0 / p_110671_1_.size();
 		return d0;
 	}
 
@@ -289,6 +293,7 @@ public class CommandSpreadPlayers extends CommandBase
 		return acommandspreadplayers$position;
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		return args.length >= 1 && args.length <= 2 ? getTabCompletionCoordinateXZ(args, 0, pos) : Collections.emptyList();
@@ -318,7 +323,7 @@ public class CommandSpreadPlayers extends CommandBase
 
 		void normalize()
 		{
-			double d0 = (double) this.getLength();
+			double d0 = this.getLength();
 			this.x /= d0;
 			this.z /= d0;
 		}

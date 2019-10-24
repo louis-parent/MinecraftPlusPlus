@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 
 public class WorldGenWaterlily extends WorldGenerator
 {
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		for (int i = 0; i < 10; ++i)

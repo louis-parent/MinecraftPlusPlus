@@ -10,6 +10,7 @@ public class FoliageColorReloadListener implements IResourceManagerReloadListene
 {
 	private static final ResourceLocation LOC_FOLIAGE_PNG = new ResourceLocation("textures/colormap/foliage.png");
 
+	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager)
 	{
 		try

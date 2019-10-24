@@ -11,6 +11,7 @@ public class MovementInputFromOptions extends MovementInput
 		this.gameSettings = gameSettingsIn;
 	}
 
+	@Override
 	public void updatePlayerMoveState()
 	{
 		this.moveStrafe = 0.0F;
@@ -61,8 +62,8 @@ public class MovementInputFromOptions extends MovementInput
 
 		if (this.sneak)
 		{
-			this.moveStrafe = (float) ((double) this.moveStrafe * 0.3D);
-			this.field_192832_b = (float) ((double) this.field_192832_b * 0.3D);
+			this.moveStrafe = (float) (this.moveStrafe * 0.3D);
+			this.field_192832_b = (float) (this.field_192832_b * 0.3D);
 		}
 	}
 }

@@ -167,14 +167,14 @@ public class RenderItem implements IResourceManagerReloadListener
 		GlStateManager.matrixMode(5890);
 		GlStateManager.pushMatrix();
 		GlStateManager.scale(8.0F, 8.0F, 8.0F);
-		float f = (float) (Minecraft.getSystemTime() % 3000L) / 3000.0F / 8.0F;
+		float f = Minecraft.getSystemTime() % 3000L / 3000.0F / 8.0F;
 		GlStateManager.translate(f, 0.0F, 0.0F);
 		GlStateManager.rotate(-50.0F, 0.0F, 0.0F, 1.0F);
 		this.func_191965_a(p_191966_1_, -8372020);
 		GlStateManager.popMatrix();
 		GlStateManager.pushMatrix();
 		GlStateManager.scale(8.0F, 8.0F, 8.0F);
-		float f1 = (float) (Minecraft.getSystemTime() % 4873L) / 4873.0F / 8.0F;
+		float f1 = Minecraft.getSystemTime() % 4873L / 4873.0F / 8.0F;
 		GlStateManager.translate(-f1, 0.0F, 0.0F);
 		GlStateManager.rotate(10.0F, 0.0F, 0.0F, 1.0F);
 		this.func_191965_a(p_191966_1_, -8372020);
@@ -190,7 +190,7 @@ public class RenderItem implements IResourceManagerReloadListener
 	private void putQuadNormal(BufferBuilder renderer, BakedQuad quad)
 	{
 		Vec3i vec3i = quad.getFace().getDirectionVec();
-		renderer.putNormal((float) vec3i.getX(), (float) vec3i.getY(), (float) vec3i.getZ());
+		renderer.putNormal(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 	}
 
 	private void func_191969_a(BufferBuilder p_191969_1_, BakedQuad p_191969_2_, int p_191969_3_)
@@ -333,7 +333,7 @@ public class RenderItem implements IResourceManagerReloadListener
 
 	private void setupGuiTransform(int xPosition, int yPosition, boolean isGui3d)
 	{
-		GlStateManager.translate((float) xPosition, (float) yPosition, 100.0F + this.zLevel);
+		GlStateManager.translate(xPosition, yPosition, 100.0F + this.zLevel);
 		GlStateManager.translate(8.0F, 8.0F, 0.0F);
 		GlStateManager.scale(1.0F, -1.0F, 1.0F);
 		GlStateManager.scale(16.0F, 16.0F, 16.0F);
@@ -369,13 +369,15 @@ public class RenderItem implements IResourceManagerReloadListener
 				CrashReportCategory crashreportcategory = crashreport.makeCategory("Item being rendered");
 				crashreportcategory.setDetail("Item Type", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
-						return String.valueOf((Object) stack.getItem());
+						return String.valueOf(stack.getItem());
 					}
 				});
 				crashreportcategory.setDetail("Item Aux", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
 						return String.valueOf(stack.getMetadata());
@@ -383,13 +385,15 @@ public class RenderItem implements IResourceManagerReloadListener
 				});
 				crashreportcategory.setDetail("Item NBT", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
-						return String.valueOf((Object) stack.getTagCompound());
+						return String.valueOf(stack.getTagCompound());
 					}
 				});
 				crashreportcategory.setDetail("Item Foil", new ICrashReportDetail<String>()
 				{
+					@Override
 					public String call() throws Exception
 					{
 						return String.valueOf(stack.hasEffect());
@@ -420,7 +424,7 @@ public class RenderItem implements IResourceManagerReloadListener
 				GlStateManager.disableLighting();
 				GlStateManager.disableDepth();
 				GlStateManager.disableBlend();
-				fr.drawStringWithShadow(s, (float) (xPosition + 19 - 2 - fr.getStringWidth(s)), (float) (yPosition + 6 + 3), 16777215);
+				fr.drawStringWithShadow(s, xPosition + 19 - 2 - fr.getStringWidth(s), yPosition + 6 + 3, 16777215);
 				GlStateManager.enableLighting();
 				GlStateManager.enableDepth();
 			}
@@ -434,8 +438,8 @@ public class RenderItem implements IResourceManagerReloadListener
 				GlStateManager.disableBlend();
 				Tessellator tessellator = Tessellator.getInstance();
 				BufferBuilder bufferbuilder = tessellator.getBuffer();
-				float f = (float) stack.getItemDamage();
-				float f1 = (float) stack.getMaxDamage();
+				float f = stack.getItemDamage();
+				float f1 = stack.getMaxDamage();
 				float f2 = Math.max(0.0F, (f1 - f) / f1);
 				int i = Math.round(13.0F - f * 13.0F / f1);
 				int j = MathHelper.hsvToRGB(f2 / 3.0F, 1.0F, 1.0F);
@@ -472,10 +476,10 @@ public class RenderItem implements IResourceManagerReloadListener
 	private void draw(BufferBuilder renderer, int x, int y, int width, int height, int red, int green, int blue, int alpha)
 	{
 		renderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-		renderer.pos((double) (x + 0), (double) (y + 0), 0.0D).color(red, green, blue, alpha).endVertex();
-		renderer.pos((double) (x + 0), (double) (y + height), 0.0D).color(red, green, blue, alpha).endVertex();
-		renderer.pos((double) (x + width), (double) (y + height), 0.0D).color(red, green, blue, alpha).endVertex();
-		renderer.pos((double) (x + width), (double) (y + 0), 0.0D).color(red, green, blue, alpha).endVertex();
+		renderer.pos(x + 0, y + 0, 0.0D).color(red, green, blue, alpha).endVertex();
+		renderer.pos(x + 0, y + height, 0.0D).color(red, green, blue, alpha).endVertex();
+		renderer.pos(x + width, y + height, 0.0D).color(red, green, blue, alpha).endVertex();
+		renderer.pos(x + width, y + 0, 0.0D).color(red, green, blue, alpha).endVertex();
 		Tessellator.getInstance().draw();
 	}
 
@@ -1008,6 +1012,7 @@ public class RenderItem implements IResourceManagerReloadListener
 		this.registerItem(Items.SPECKLED_MELON, "speckled_melon");
 		this.itemModelMesher.register(Items.SPAWN_EGG, new ItemMeshDefinition()
 		{
+			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack)
 			{
 				return new ModelResourceLocation("spawn_egg", "inventory");
@@ -1049,6 +1054,7 @@ public class RenderItem implements IResourceManagerReloadListener
 		this.registerItem(Items.NAME_TAG, "name_tag");
 		this.itemModelMesher.register(Items.BANNER, new ItemMeshDefinition()
 		{
+			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack)
 			{
 				return new ModelResourceLocation("banner", "inventory");
@@ -1056,6 +1062,7 @@ public class RenderItem implements IResourceManagerReloadListener
 		});
 		this.itemModelMesher.register(Items.BED, new ItemMeshDefinition()
 		{
+			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack)
 			{
 				return new ModelResourceLocation("bed", "inventory");
@@ -1063,6 +1070,7 @@ public class RenderItem implements IResourceManagerReloadListener
 		});
 		this.itemModelMesher.register(Items.SHIELD, new ItemMeshDefinition()
 		{
+			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack)
 			{
 				return new ModelResourceLocation("shield", "inventory");
@@ -1090,6 +1098,7 @@ public class RenderItem implements IResourceManagerReloadListener
 		this.registerItem(Items.field_192397_db, "knowledge_book");
 		this.itemModelMesher.register(Items.ENCHANTED_BOOK, new ItemMeshDefinition()
 		{
+			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack)
 			{
 				return new ModelResourceLocation("enchanted_book", "inventory");
@@ -1097,6 +1106,7 @@ public class RenderItem implements IResourceManagerReloadListener
 		});
 		this.itemModelMesher.register(Items.FILLED_MAP, new ItemMeshDefinition()
 		{
+			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack)
 			{
 				return new ModelResourceLocation("filled_map", "inventory");
@@ -1124,6 +1134,7 @@ public class RenderItem implements IResourceManagerReloadListener
 		ModRenderItem.registerItemRender(this);
 	}
 
+	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager)
 	{
 		this.itemModelMesher.rebuildCache();

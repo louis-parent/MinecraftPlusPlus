@@ -34,6 +34,7 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 	private BlockPos exitPortal;
 	private boolean exactTeleport;
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -52,6 +53,7 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 		return compound;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -65,6 +67,7 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 		this.exactTeleport = compound.getBoolean("ExactTeleport");
 	}
 
+	@Override
 	public double getMaxRenderDistanceSquared()
 	{
 		return 65536.0D;
@@ -73,6 +76,7 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		boolean flag = this.isSpawning();
@@ -116,20 +120,22 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 
 	public float getSpawnPercent(float p_184302_1_)
 	{
-		return MathHelper.clamp(((float) this.age + p_184302_1_) / 200.0F, 0.0F, 1.0F);
+		return MathHelper.clamp((this.age + p_184302_1_) / 200.0F, 0.0F, 1.0F);
 	}
 
 	public float getCooldownPercent(float p_184305_1_)
 	{
-		return 1.0F - MathHelper.clamp(((float) this.teleportCooldown - p_184305_1_) / 40.0F, 0.0F, 1.0F);
+		return 1.0F - MathHelper.clamp((this.teleportCooldown - p_184305_1_) / 40.0F, 0.0F, 1.0F);
 	}
 
+	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		return new SPacketUpdateTileEntity(this.pos, 8, this.getUpdateTag());
 	}
 
+	@Override
 	public NBTTagCompound getUpdateTag()
 	{
 		return this.writeToNBT(new NBTTagCompound());
@@ -145,6 +151,7 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 		}
 	}
 
+	@Override
 	public boolean receiveClientEvent(int id, int type)
 	{
 		if (id == 1)
@@ -172,7 +179,7 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 			if (this.exitPortal != null)
 			{
 				BlockPos blockpos = this.exactTeleport ? this.exitPortal : this.findExitPosition();
-				entityIn.setPositionAndUpdate((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 0.5D, (double) blockpos.getZ() + 0.5D);
+				entityIn.setPositionAndUpdate(blockpos.getX() + 0.5D, blockpos.getY() + 0.5D, blockpos.getZ() + 0.5D);
 			}
 
 			this.triggerCooldown();
@@ -188,36 +195,36 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 
 	private void findExitPortal()
 	{
-		Vec3d vec3d = (new Vec3d((double) this.getPos().getX(), 0.0D, (double) this.getPos().getZ())).normalize();
+		Vec3d vec3d = (new Vec3d(this.getPos().getX(), 0.0D, this.getPos().getZ())).normalize();
 		Vec3d vec3d1 = vec3d.scale(1024.0D);
 
 		for (int i = 16; getChunk(this.world, vec3d1).getTopFilledSegment() > 0 && i-- > 0; vec3d1 = vec3d1.add(vec3d.scale(-16.0D)))
 		{
-			LOG.debug("Skipping backwards past nonempty chunk at {}", (Object) vec3d1);
+			LOG.debug("Skipping backwards past nonempty chunk at {}", vec3d1);
 		}
 
 		for (int j = 16; getChunk(this.world, vec3d1).getTopFilledSegment() == 0 && j-- > 0; vec3d1 = vec3d1.add(vec3d.scale(16.0D)))
 		{
-			LOG.debug("Skipping forward past empty chunk at {}", (Object) vec3d1);
+			LOG.debug("Skipping forward past empty chunk at {}", vec3d1);
 		}
 
-		LOG.debug("Found chunk at {}", (Object) vec3d1);
+		LOG.debug("Found chunk at {}", vec3d1);
 		Chunk chunk = getChunk(this.world, vec3d1);
 		this.exitPortal = findSpawnpointInChunk(chunk);
 
 		if (this.exitPortal == null)
 		{
 			this.exitPortal = new BlockPos(vec3d1.xCoord + 0.5D, 75.0D, vec3d1.zCoord + 0.5D);
-			LOG.debug("Failed to find suitable block, settling on {}", (Object) this.exitPortal);
+			LOG.debug("Failed to find suitable block, settling on {}", this.exitPortal);
 			(new WorldGenEndIsland()).generate(this.world, new Random(this.exitPortal.toLong()), this.exitPortal);
 		}
 		else
 		{
-			LOG.debug("Found block at {}", (Object) this.exitPortal);
+			LOG.debug("Found block at {}", this.exitPortal);
 		}
 
 		this.exitPortal = findHighestBlock(this.world, this.exitPortal, 16, true);
-		LOG.debug("Creating portal at {}", (Object) this.exitPortal);
+		LOG.debug("Creating portal at {}", this.exitPortal);
 		this.exitPortal = this.exitPortal.up(10);
 		this.createExitPortal(this.exitPortal);
 		this.markDirty();
@@ -297,10 +304,11 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 		}
 		else
 		{
-			LOG.warn("Couldn't save exit portal at {}", (Object) posIn);
+			LOG.warn("Couldn't save exit portal at {}", posIn);
 		}
 	}
 
+	@Override
 	public boolean shouldRenderFace(EnumFacing p_184313_1_)
 	{
 		return this.getBlockType().getDefaultState().shouldSideBeRendered(this.world, this.getPos(), p_184313_1_);

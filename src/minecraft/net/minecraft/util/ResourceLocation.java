@@ -68,11 +68,13 @@ public class ResourceLocation implements Comparable<ResourceLocation>
 		return this.resourceDomain;
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.resourceDomain + ':' + this.resourcePath;
 	}
 
+	@Override
 	public boolean equals(Object p_equals_1_)
 	{
 		if (this == p_equals_1_)
@@ -90,11 +92,13 @@ public class ResourceLocation implements Comparable<ResourceLocation>
 		}
 	}
 
+	@Override
 	public int hashCode()
 	{
 		return 31 * this.resourceDomain.hashCode() + this.resourcePath.hashCode();
 	}
 
+	@Override
 	public int compareTo(ResourceLocation p_compareTo_1_)
 	{
 		int i = this.resourceDomain.compareTo(p_compareTo_1_.resourceDomain);
@@ -109,11 +113,13 @@ public class ResourceLocation implements Comparable<ResourceLocation>
 
 	public static class Serializer implements JsonDeserializer<ResourceLocation>, JsonSerializer<ResourceLocation>
 	{
+		@Override
 		public ResourceLocation deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			return new ResourceLocation(JsonUtils.getString(p_deserialize_1_, "location"));
 		}
 
+		@Override
 		public JsonElement serialize(ResourceLocation p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
 		{
 			return new JsonPrimitive(p_serialize_1_.toString());

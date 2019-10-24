@@ -20,6 +20,7 @@ public class GuardianSound extends MovingSound
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		if (!this.guardian.isDead && this.guardian.hasTargetedEntity())

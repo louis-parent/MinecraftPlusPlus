@@ -13,6 +13,7 @@ public class GenLayerRemoveTooMuchOcean extends GenLayer
 	 * interpreted as temperatures, rainfall amounts, or biomeList[] indices
 	 * based on the particular GenLayer subclass.
 	 */
+	@Override
 	public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
 	{
 		int i = areaX - 1;
@@ -32,7 +33,7 @@ public class GenLayerRemoveTooMuchOcean extends GenLayer
 				int j2 = aint[j1 + 1 + (i1 + 1 + 1) * (areaWidth + 2)];
 				int k2 = aint[j1 + 1 + (i1 + 1) * k];
 				aint1[j1 + i1 * areaWidth] = k2;
-				this.initChunkSeed((long) (j1 + areaX), (long) (i1 + areaY));
+				this.initChunkSeed(j1 + areaX, i1 + areaY);
 
 				if (k2 == 0 && k1 == 0 && l1 == 0 && i2 == 0 && j2 == 0 && this.nextInt(2) == 0)
 				{

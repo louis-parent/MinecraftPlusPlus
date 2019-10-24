@@ -52,6 +52,7 @@ public class ContainerBrewingStand extends Container
 		}
 	}
 
+	@Override
 	public void addListener(IContainerListener listener)
 	{
 		super.addListener(listener);
@@ -61,6 +62,7 @@ public class ContainerBrewingStand extends Container
 	/**
 	 * Looks for changes made in the container, sends them to every listener.
 	 */
+	@Override
 	public void detectAndSendChanges()
 	{
 		super.detectAndSendChanges();
@@ -84,6 +86,7 @@ public class ContainerBrewingStand extends Container
 		this.prevFuel = this.tileBrewingStand.getField(1);
 	}
 
+	@Override
 	public void updateProgressBar(int id, int data)
 	{
 		this.tileBrewingStand.setField(id, data);
@@ -92,6 +95,7 @@ public class ContainerBrewingStand extends Container
 	/**
 	 * Determines whether supplied player can use this container
 	 */
+	@Override
 	public boolean canInteractWith(EntityPlayer playerIn)
 	{
 		return this.tileBrewingStand.isUsableByPlayer(playerIn);
@@ -100,6 +104,7 @@ public class ContainerBrewingStand extends Container
 	/**
 	 * Take a stack from the specified inventory slot.
 	 */
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
 		ItemStack itemstack = ItemStack.EMPTY_ITEM_STACK;
@@ -189,6 +194,7 @@ public class ContainerBrewingStand extends Container
 			super(iInventoryIn, index, xPosition, yPosition);
 		}
 
+		@Override
 		public boolean isItemValid(ItemStack stack)
 		{
 			return isValidBrewingFuel(stack);
@@ -199,6 +205,7 @@ public class ContainerBrewingStand extends Container
 			return itemStackIn.getItem() == Items.BLAZE_POWDER;
 		}
 
+		@Override
 		public int getSlotStackLimit()
 		{
 			return 64;
@@ -212,11 +219,13 @@ public class ContainerBrewingStand extends Container
 			super(iInventoryIn, index, xPosition, yPosition);
 		}
 
+		@Override
 		public boolean isItemValid(ItemStack stack)
 		{
 			return PotionHelper.isReagent(stack);
 		}
 
+		@Override
 		public int getSlotStackLimit()
 		{
 			return 64;
@@ -230,16 +239,19 @@ public class ContainerBrewingStand extends Container
 			super(p_i47598_1_, p_i47598_2_, p_i47598_3_, p_i47598_4_);
 		}
 
+		@Override
 		public boolean isItemValid(ItemStack stack)
 		{
 			return canHoldPotion(stack);
 		}
 
+		@Override
 		public int getSlotStackLimit()
 		{
 			return 1;
 		}
 
+		@Override
 		public ItemStack func_190901_a(EntityPlayer p_190901_1_, ItemStack p_190901_2_)
 		{
 			PotionType potiontype = PotionUtils.getPotionFromItem(p_190901_2_);

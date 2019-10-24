@@ -31,6 +31,7 @@ public class ItemSpade extends ItemTool
 	/**
 	 * Check whether this Item can harvest the given Block
 	 */
+	@Override
 	public boolean canHarvestBlock(IBlockState blockIn)
 	{
 		Block block = blockIn.getBlock();
@@ -48,6 +49,7 @@ public class ItemSpade extends ItemTool
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World playerIn, BlockPos worldIn, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
 		ItemStack itemstack = stack.getHeldItem(pos);

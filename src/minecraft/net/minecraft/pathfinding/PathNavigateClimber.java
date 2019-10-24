@@ -19,6 +19,7 @@ public class PathNavigateClimber extends PathNavigateGround
 	/**
 	 * Returns path to given BlockPos
 	 */
+	@Override
 	public Path getPathToPos(BlockPos pos)
 	{
 		this.targetPosition = pos;
@@ -28,6 +29,7 @@ public class PathNavigateClimber extends PathNavigateGround
 	/**
 	 * Returns the path to the given EntityLiving. Args : entity
 	 */
+	@Override
 	public Path getPathToEntityLiving(Entity entityIn)
 	{
 		this.targetPosition = new BlockPos(entityIn);
@@ -38,6 +40,7 @@ public class PathNavigateClimber extends PathNavigateGround
 	 * Try to find and set a path to EntityLiving. Returns true if successful.
 	 * Args : entity, speed
 	 */
+	@Override
 	public boolean tryMoveToEntityLiving(Entity entityIn, double speedIn)
 	{
 		Path path = this.getPathToEntityLiving(entityIn);
@@ -54,6 +57,7 @@ public class PathNavigateClimber extends PathNavigateGround
 		}
 	}
 
+	@Override
 	public void onUpdateNavigation()
 	{
 		if (!this.noPath())
@@ -64,11 +68,11 @@ public class PathNavigateClimber extends PathNavigateGround
 		{
 			if (this.targetPosition != null)
 			{
-				double d0 = (double) (this.theEntity.width * this.theEntity.width);
+				double d0 = this.theEntity.width * this.theEntity.width;
 
-				if (this.theEntity.getDistanceSqToCenter(this.targetPosition) >= d0 && (this.theEntity.posY <= (double) this.targetPosition.getY() || this.theEntity.getDistanceSqToCenter(new BlockPos(this.targetPosition.getX(), MathHelper.floor(this.theEntity.posY), this.targetPosition.getZ())) >= d0))
+				if (this.theEntity.getDistanceSqToCenter(this.targetPosition) >= d0 && (this.theEntity.posY <= this.targetPosition.getY() || this.theEntity.getDistanceSqToCenter(new BlockPos(this.targetPosition.getX(), MathHelper.floor(this.theEntity.posY), this.targetPosition.getZ())) >= d0))
 				{
-					this.theEntity.getMoveHelper().setMoveTo((double) this.targetPosition.getX(), (double) this.targetPosition.getY(), (double) this.targetPosition.getZ(), this.speed);
+					this.theEntity.getMoveHelper().setMoveTo(this.targetPosition.getX(), this.targetPosition.getY(), this.targetPosition.getZ(), this.speed);
 				}
 				else
 				{

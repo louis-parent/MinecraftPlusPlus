@@ -32,6 +32,7 @@ public class EntityEgg extends EntityThrowable
 		EntityThrowable.registerFixesThrowable(fixer, "ThrownEgg");
 	}
 
+	@Override
 	public void handleStatusUpdate(byte id)
 	{
 		if (id == 3)
@@ -40,7 +41,7 @@ public class EntityEgg extends EntityThrowable
 
 			for (int i = 0; i < 8; ++i)
 			{
-				this.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, this.posX, this.posY, this.posZ, ((double) this.rand.nextFloat() - 0.5D) * 0.08D, ((double) this.rand.nextFloat() - 0.5D) * 0.08D, ((double) this.rand.nextFloat() - 0.5D) * 0.08D, Item.getIdFromItem(Items.EGG));
+				this.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, this.posX, this.posY, this.posZ, (this.rand.nextFloat() - 0.5D) * 0.08D, (this.rand.nextFloat() - 0.5D) * 0.08D, (this.rand.nextFloat() - 0.5D) * 0.08D, Item.getIdFromItem(Items.EGG));
 			}
 		}
 	}
@@ -48,6 +49,7 @@ public class EntityEgg extends EntityThrowable
 	/**
 	 * Called when this EntityThrowable hits a block or entity.
 	 */
+	@Override
 	protected void onImpact(RayTraceResult result)
 	{
 		if (result.entityHit != null)

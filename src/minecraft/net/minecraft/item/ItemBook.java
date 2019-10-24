@@ -5,6 +5,7 @@ public class ItemBook extends Item
 	/**
 	 * Checks isDamagable and if it cannot be stacked
 	 */
+	@Override
 	public boolean isItemTool(ItemStack stack)
 	{
 		return stack.getStackSize() == 1;
@@ -14,6 +15,7 @@ public class ItemBook extends Item
 	 * Return the enchantability factor of the item, most of the time is based
 	 * on material.
 	 */
+	@Override
 	public int getItemEnchantability()
 	{
 		return 1;

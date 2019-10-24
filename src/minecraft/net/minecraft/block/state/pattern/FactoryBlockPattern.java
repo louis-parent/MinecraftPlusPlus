@@ -35,7 +35,7 @@ public class FactoryBlockPattern
 	 */
 	public FactoryBlockPattern aisle(String... aisle)
 	{
-		if (!ArrayUtils.isEmpty((Object[]) aisle) && !StringUtils.isEmpty(aisle[0]))
+		if (!ArrayUtils.isEmpty(aisle) && !StringUtils.isEmpty(aisle[0]))
 		{
 			if (this.depth.isEmpty())
 			{
@@ -94,7 +94,7 @@ public class FactoryBlockPattern
 	private Predicate<BlockWorldState>[][][] makePredicateArray()
 	{
 		this.checkMissingPredicates();
-		Predicate<BlockWorldState>[][][] predicate = (Predicate[][][]) ((Predicate[][][]) Array.newInstance(Predicate.class, this.depth.size(), this.aisleHeight, this.rowWidth));
+		Predicate<BlockWorldState>[][][] predicate = ((Predicate[][][]) Array.newInstance(Predicate.class, this.depth.size(), this.aisleHeight, this.rowWidth));
 
 		for (int i = 0; i < this.depth.size(); ++i)
 		{
@@ -102,7 +102,7 @@ public class FactoryBlockPattern
 			{
 				for (int k = 0; k < this.rowWidth; ++k)
 				{
-					predicate[i][j][k] = this.symbolMap.get(Character.valueOf(((String[]) this.depth.get(i))[j].charAt(k)));
+					predicate[i][j][k] = this.symbolMap.get(Character.valueOf(this.depth.get(i)[j].charAt(k)));
 				}
 			}
 		}

@@ -52,11 +52,13 @@ public class SimpleReloadableResourceManager implements IReloadableResourceManag
 		}
 	}
 
+	@Override
 	public Set<String> getResourceDomains()
 	{
 		return this.setResourceDomains;
 	}
 
+	@Override
 	public IResource getResource(ResourceLocation location) throws IOException
 	{
 		IResourceManager iresourcemanager = this.domainResourceManagers.get(location.getResourceDomain());
@@ -71,6 +73,7 @@ public class SimpleReloadableResourceManager implements IReloadableResourceManag
 		}
 	}
 
+	@Override
 	public List<IResource> getAllResources(ResourceLocation location) throws IOException
 	{
 		IResourceManager iresourcemanager = this.domainResourceManagers.get(location.getResourceDomain());
@@ -91,11 +94,13 @@ public class SimpleReloadableResourceManager implements IReloadableResourceManag
 		this.setResourceDomains.clear();
 	}
 
+	@Override
 	public void reloadResources(List<IResourcePack> resourcesPacksList)
 	{
 		this.clearResources();
-		LOGGER.info("Reloading ResourceManager: {}", (Object) JOINER_RESOURCE_PACKS.join(Iterables.transform(resourcesPacksList, new Function<IResourcePack, String>()
+		LOGGER.info("Reloading ResourceManager: {}", JOINER_RESOURCE_PACKS.join(Iterables.transform(resourcesPacksList, new Function<IResourcePack, String>()
 		{
+			@Override
 			public String apply(@Nullable IResourcePack p_apply_1_)
 			{
 				return p_apply_1_ == null ? "<NULL>" : p_apply_1_.getPackName();
@@ -110,6 +115,7 @@ public class SimpleReloadableResourceManager implements IReloadableResourceManag
 		this.notifyReloadListeners();
 	}
 
+	@Override
 	public void registerReloadListener(IResourceManagerReloadListener reloadListener)
 	{
 		this.reloadListeners.add(reloadListener);

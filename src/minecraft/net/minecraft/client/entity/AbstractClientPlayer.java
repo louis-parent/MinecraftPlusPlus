@@ -37,12 +37,14 @@ public abstract class AbstractClientPlayer extends EntityPlayer
 	/**
 	 * Returns true if the player is in spectator mode.
 	 */
+	@Override
 	public boolean isSpectator()
 	{
 		NetworkPlayerInfo networkplayerinfo = Minecraft.getMinecraft().getConnection().getPlayerInfo(this.getGameProfile().getId());
 		return networkplayerinfo != null && networkplayerinfo.getGameType() == GameType.SPECTATOR;
 	}
 
+	@Override
 	public boolean isCreative()
 	{
 		NetworkPlayerInfo networkplayerinfo = Minecraft.getMinecraft().getConnection().getPlayerInfo(this.getGameProfile().getId());
@@ -148,7 +150,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer
 		}
 
 		IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
-		f = (float) ((double) f * ((iattributeinstance.getAttributeValue() / (double) this.capabilities.getWalkSpeed() + 1.0D) / 2.0D));
+		f = (float) (f * ((iattributeinstance.getAttributeValue() / this.capabilities.getWalkSpeed() + 1.0D) / 2.0D));
 
 		if (this.capabilities.getWalkSpeed() == 0.0F || Float.isNaN(f) || Float.isInfinite(f))
 		{
@@ -158,7 +160,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer
 		if (this.isHandActive() && this.getActiveItemStack().getItem() == Items.BOW)
 		{
 			int i = this.getItemInUseMaxCount();
-			float f1 = (float) i / 20.0F;
+			float f1 = i / 20.0F;
 
 			if (f1 > 1.0F)
 			{

@@ -51,12 +51,14 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 	private final EntityAIAttackRangedBow<AbstractSkeleton> aiArrowAttack = new EntityAIAttackRangedBow<AbstractSkeleton>(this, 1.0D, 20, 15.0F);
 	private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false)
 	{
+		@Override
 		public void resetTask()
 		{
 			super.resetTask();
 			AbstractSkeleton.this.setSwingingArms(false);
 		}
 
+		@Override
 		public void startExecuting()
 		{
 			super.startExecuting();
@@ -71,6 +73,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 		this.setCombatTask();
 	}
 
+	@Override
 	protected void initEntityAI()
 	{
 		this.tasks.addTask(1, new EntityAISwimming(this));
@@ -85,18 +88,21 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityIronGolem.class, true));
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(false));
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, Block blockIn)
 	{
 		this.playSound(this.func_190727_o(), 0.15F, 1.0F);
@@ -107,6 +113,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 	/**
 	 * Get this Entity's EnumCreatureAttribute
 	 */
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
@@ -117,12 +124,13 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 	 * required. For example, zombies and skeletons use this to react to
 	 * sunlight and start to burn.
 	 */
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.world.isDaytime() && !this.world.isRemote)
 		{
 			float f = this.getBrightness();
-			BlockPos blockpos = this.getRidingEntity() instanceof EntityBoat ? (new BlockPos(this.posX, (double) Math.round(this.posY), this.posZ)).up() : new BlockPos(this.posX, (double) Math.round(this.posY), this.posZ);
+			BlockPos blockpos = this.getRidingEntity() instanceof EntityBoat ? (new BlockPos(this.posX, Math.round(this.posY), this.posZ)).up() : new BlockPos(this.posX, Math.round(this.posY), this.posZ);
 
 			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canSeeSky(blockpos))
 			{
@@ -158,6 +166,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 	/**
 	 * Handles updating while being ridden by an entity
 	 */
+	@Override
 	public void updateRidden()
 	{
 		super.updateRidden();
@@ -172,12 +181,14 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 	/**
 	 * Gives armor or weapon for entity based on given DifficultyInstance
 	 */
+	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
 		super.setEquipmentBasedOnDifficulty(difficulty);
 		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.BOW));
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -244,14 +255,15 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 	 *            How far the target is, normalized and clamped between 0.1 and
 	 *            1.0
 	 */
+	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor)
 	{
 		EntityArrow entityarrow = this.func_190726_a(distanceFactor);
 		double d0 = target.posX - this.posX;
-		double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - entityarrow.posY;
+		double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - entityarrow.posY;
 		double d2 = target.posZ - this.posZ;
-		double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
-		entityarrow.setThrowableHeading(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - this.world.getDifficulty().getDifficultyId() * 4));
+		double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
+		entityarrow.setThrowableHeading(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, 14 - this.world.getDifficulty().getDifficultyId() * 4);
 		this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
 		this.world.spawnEntityInWorld(entityarrow);
 	}
@@ -266,12 +278,14 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound compound)
 	{
 		super.readEntityFromNBT(compound);
 		this.setCombatTask();
 	}
 
+	@Override
 	public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack)
 	{
 		super.setItemStackToSlot(slotIn, stack);
@@ -282,6 +296,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 		}
 	}
 
+	@Override
 	public float getEyeHeight()
 	{
 		return 1.74F;
@@ -290,6 +305,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 	/**
 	 * Returns the Y Offset of this entity.
 	 */
+	@Override
 	public double getYOffset()
 	{
 		return -0.6D;
@@ -297,9 +313,10 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 
 	public boolean isSwingingArms()
 	{
-		return ((Boolean) this.dataManager.get(SWINGING_ARMS)).booleanValue();
+		return this.dataManager.get(SWINGING_ARMS).booleanValue();
 	}
 
+	@Override
 	public void setSwingingArms(boolean swingingArms)
 	{
 		this.dataManager.set(SWINGING_ARMS, Boolean.valueOf(swingingArms));

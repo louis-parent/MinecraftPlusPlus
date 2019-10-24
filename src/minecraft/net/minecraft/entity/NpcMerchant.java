@@ -31,27 +31,32 @@ public class NpcMerchant implements IMerchant
 		this.theMerchantInventory = new InventoryMerchant(customerIn, this);
 	}
 
+	@Override
 	@Nullable
 	public EntityPlayer getCustomer()
 	{
 		return this.customer;
 	}
 
+	@Override
 	public void setCustomer(@Nullable EntityPlayer player)
 	{
 	}
 
+	@Override
 	@Nullable
 	public MerchantRecipeList getRecipes(EntityPlayer player)
 	{
 		return this.recipeList;
 	}
 
+	@Override
 	public void setRecipes(@Nullable MerchantRecipeList recipeList)
 	{
 		this.recipeList = recipeList;
 	}
 
+	@Override
 	public void useRecipe(MerchantRecipe recipe)
 	{
 		recipe.incrementToolUses();
@@ -62,6 +67,7 @@ public class NpcMerchant implements IMerchant
 	 * not. Usually, this is just a sound byte being played depending if the
 	 * suggested itemstack is not null.
 	 */
+	@Override
 	public void verifySellingItem(ItemStack stack)
 	{
 	}
@@ -70,16 +76,19 @@ public class NpcMerchant implements IMerchant
 	 * Get the formatted ChatComponent that will be used for the sender's
 	 * username in chat
 	 */
+	@Override
 	public ITextComponent getDisplayName()
 	{
-		return (ITextComponent) (this.name != null ? this.name : new TextComponentTranslation("entity.Villager.name", new Object[0]));
+		return this.name != null ? this.name : new TextComponentTranslation("entity.Villager.name", new Object[0]);
 	}
 
+	@Override
 	public World func_190670_t_()
 	{
 		return this.customer.world;
 	}
 
+	@Override
 	public BlockPos func_190671_u_()
 	{
 		return new BlockPos(this.customer);

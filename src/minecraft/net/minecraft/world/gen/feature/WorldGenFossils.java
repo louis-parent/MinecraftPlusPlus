@@ -35,6 +35,7 @@ public class WorldGenFossils extends WorldGenerator
 	private static final ResourceLocation[] FOSSILS = new ResourceLocation[] { STRUCTURE_SPINE_01, STRUCTURE_SPINE_02, STRUCTURE_SPINE_03, STRUCTURE_SPINE_04, STRUCTURE_SKULL_01, STRUCTURE_SKULL_02, STRUCTURE_SKULL_03, STRUCTURE_SKULL_04 };
 	private static final ResourceLocation[] FOSSILS_COAL = new ResourceLocation[] { STRUCTURE_SPINE_01_COAL, STRUCTURE_SPINE_02_COAL, STRUCTURE_SPINE_03_COAL, STRUCTURE_SPINE_04_COAL, STRUCTURE_SKULL_01_COAL, STRUCTURE_SKULL_02_COAL, STRUCTURE_SKULL_03_COAL, STRUCTURE_SKULL_04_COAL };
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
 		Random random = worldIn.getChunkFromBlockCoords(position).getRandomWithSeed(987234911L);

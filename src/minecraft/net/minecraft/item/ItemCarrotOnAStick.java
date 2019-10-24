@@ -22,6 +22,7 @@ public class ItemCarrotOnAStick extends Item
 	/**
 	 * Returns True is the item is renderer in full 3D when hold.
 	 */
+	@Override
 	public boolean isFull3D()
 	{
 		return true;
@@ -31,11 +32,13 @@ public class ItemCarrotOnAStick extends Item
 	 * Returns true if this item should be rotated by 180 degrees around the Y
 	 * axis when being held in an entities hands.
 	 */
+	@Override
 	public boolean shouldRotateAroundWhenRendering()
 	{
 		return true;
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World itemStackIn, EntityPlayer worldIn, EnumHand playerIn)
 	{
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);

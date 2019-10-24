@@ -18,6 +18,7 @@ public class CommandSetDefaultSpawnpoint extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "setworldspawn";
@@ -26,6 +27,7 @@ public class CommandSetDefaultSpawnpoint extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
@@ -34,6 +36,7 @@ public class CommandSetDefaultSpawnpoint extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.setworldspawn.usage";
@@ -42,6 +45,7 @@ public class CommandSetDefaultSpawnpoint extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		BlockPos blockpos;
@@ -65,6 +69,7 @@ public class CommandSetDefaultSpawnpoint extends CommandBase
 		notifyCommandListener(sender, this, "commands.setworldspawn.success", new Object[] { blockpos.getX(), blockpos.getY(), blockpos.getZ() });
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		return args.length > 0 && args.length <= 3 ? getTabCompletionCoordinate(args, 0, pos) : Collections.emptyList();

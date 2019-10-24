@@ -34,6 +34,7 @@ public class EntityExpBottle extends EntityThrowable
 	/**
 	 * Gets the amount of gravity to apply to the thrown entity with each tick.
 	 */
+	@Override
 	protected float getGravityVelocity()
 	{
 		return 0.07F;
@@ -42,6 +43,7 @@ public class EntityExpBottle extends EntityThrowable
 	/**
 	 * Called when this EntityThrowable hits a block or entity.
 	 */
+	@Override
 	protected void onImpact(RayTraceResult result)
 	{
 		if (!this.world.isRemote)

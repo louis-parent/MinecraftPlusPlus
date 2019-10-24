@@ -33,7 +33,7 @@ public class BlockRedstoneTorch extends BlockTorch
 			toggles.put(worldIn, Lists.newArrayList());
 		}
 
-		List<BlockRedstoneTorch.Toggle> list = (List) toggles.get(worldIn);
+		List<BlockRedstoneTorch.Toggle> list = toggles.get(worldIn);
 
 		if (turnOff)
 		{
@@ -70,6 +70,7 @@ public class BlockRedstoneTorch extends BlockTorch
 	/**
 	 * How many world ticks before ticking
 	 */
+	@Override
 	public int tickRate(World worldIn)
 	{
 		return 2;
@@ -79,6 +80,7 @@ public class BlockRedstoneTorch extends BlockTorch
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (this.isOn)
@@ -94,6 +96,7 @@ public class BlockRedstoneTorch extends BlockTorch
 	 * Called serverside after this block is replaced with another in Chunk, but
 	 * before the Tile Entity is updated
 	 */
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
 		if (this.isOn)
@@ -105,6 +108,7 @@ public class BlockRedstoneTorch extends BlockTorch
 		}
 	}
 
+	@Override
 	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return this.isOn && blockState.getValue(FACING) != side ? 15 : 0;
@@ -112,7 +116,7 @@ public class BlockRedstoneTorch extends BlockTorch
 
 	private boolean shouldBeOff(World worldIn, BlockPos pos, IBlockState state)
 	{
-		EnumFacing enumfacing = ((EnumFacing) state.getValue(FACING)).getOpposite();
+		EnumFacing enumfacing = state.getValue(FACING).getOpposite();
 		return worldIn.isSidePowered(pos.offset(enumfacing), enumfacing);
 	}
 
@@ -120,14 +124,16 @@ public class BlockRedstoneTorch extends BlockTorch
 	 * Called randomly when setTickRandomly is set to true (used by e.g. crops
 	 * to grow, etc.)
 	 */
+	@Override
 	public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
 	{
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		boolean flag = this.shouldBeOff(worldIn, pos, state);
-		List<BlockRedstoneTorch.Toggle> list = (List) toggles.get(worldIn);
+		List<BlockRedstoneTorch.Toggle> list = toggles.get(worldIn);
 
 		while (list != null && !list.isEmpty() && worldIn.getTotalWorldTime() - (list.get(0)).time > 60L)
 		{
@@ -146,9 +152,9 @@ public class BlockRedstoneTorch extends BlockTorch
 
 					for (int i = 0; i < 5; ++i)
 					{
-						double d0 = (double) pos.getX() + rand.nextDouble() * 0.6D + 0.2D;
-						double d1 = (double) pos.getY() + rand.nextDouble() * 0.6D + 0.2D;
-						double d2 = (double) pos.getZ() + rand.nextDouble() * 0.6D + 0.2D;
+						double d0 = pos.getX() + rand.nextDouble() * 0.6D + 0.2D;
+						double d1 = pos.getY() + rand.nextDouble() * 0.6D + 0.2D;
+						double d2 = pos.getZ() + rand.nextDouble() * 0.6D + 0.2D;
 						worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 					}
 
@@ -168,6 +174,7 @@ public class BlockRedstoneTorch extends BlockTorch
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		if (!this.onNeighborChangeInternal(worldIn, pos, state))
@@ -179,6 +186,7 @@ public class BlockRedstoneTorch extends BlockTorch
 		}
 	}
 
+	@Override
 	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return side == EnumFacing.DOWN ? blockState.getWeakPower(blockAccess, pos, side) : 0;
@@ -187,6 +195,7 @@ public class BlockRedstoneTorch extends BlockTorch
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Item.getItemFromBlock(Blocks.REDSTONE_TORCH);
@@ -196,38 +205,42 @@ public class BlockRedstoneTorch extends BlockTorch
 	 * Can this block provide power. Only wire currently seems to have this
 	 * change based on its state.
 	 */
+	@Override
 	public boolean canProvidePower(IBlockState state)
 	{
 		return true;
 	}
 
+	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
 		if (this.isOn)
 		{
-			double d0 = (double) pos.getX() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
-			double d1 = (double) pos.getY() + 0.7D + (rand.nextDouble() - 0.5D) * 0.2D;
-			double d2 = (double) pos.getZ() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
-			EnumFacing enumfacing = (EnumFacing) stateIn.getValue(FACING);
+			double d0 = pos.getX() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
+			double d1 = pos.getY() + 0.7D + (rand.nextDouble() - 0.5D) * 0.2D;
+			double d2 = pos.getZ() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
+			EnumFacing enumfacing = stateIn.getValue(FACING);
 
 			if (enumfacing.getAxis().isHorizontal())
 			{
 				EnumFacing enumfacing1 = enumfacing.getOpposite();
 				double d3 = 0.27D;
-				d0 += 0.27D * (double) enumfacing1.getFrontOffsetX();
+				d0 += 0.27D * enumfacing1.getFrontOffsetX();
 				d1 += 0.22D;
-				d2 += 0.27D * (double) enumfacing1.getFrontOffsetZ();
+				d2 += 0.27D * enumfacing1.getFrontOffsetZ();
 			}
 
 			worldIn.spawnParticle(EnumParticleTypes.REDSTONE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 		}
 	}
 
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		return new ItemStack(Blocks.REDSTONE_TORCH);
 	}
 
+	@Override
 	public boolean isAssociatedBlock(Block other)
 	{
 		return other == Blocks.UNLIT_REDSTONE_TORCH || other == Blocks.REDSTONE_TORCH;

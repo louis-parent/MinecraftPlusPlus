@@ -48,36 +48,43 @@ public class WoodlandMansionPieces
 		{
 		}
 
+		@Override
 		public String func_191104_a(Random p_191104_1_)
 		{
 			return "1x1_a" + (p_191104_1_.nextInt(5) + 1);
 		}
 
+		@Override
 		public String func_191099_b(Random p_191099_1_)
 		{
 			return "1x1_as" + (p_191099_1_.nextInt(4) + 1);
 		}
 
+		@Override
 		public String func_191100_a(Random p_191100_1_, boolean p_191100_2_)
 		{
 			return "1x2_a" + (p_191100_1_.nextInt(9) + 1);
 		}
 
+		@Override
 		public String func_191098_b(Random p_191098_1_, boolean p_191098_2_)
 		{
 			return "1x2_b" + (p_191098_1_.nextInt(5) + 1);
 		}
 
+		@Override
 		public String func_191102_c(Random p_191102_1_)
 		{
 			return "1x2_s" + (p_191102_1_.nextInt(2) + 1);
 		}
 
+		@Override
 		public String func_191101_d(Random p_191101_1_)
 		{
 			return "2x2_a" + (p_191101_1_.nextInt(4) + 1);
 		}
 
+		@Override
 		public String func_191103_e(Random p_191103_1_)
 		{
 			return "2x2_s1";
@@ -260,12 +267,12 @@ public class WoodlandMansionPieces
 			}
 			else
 			{
-				Tuple<Integer, Integer> tuple = (Tuple) list.get(this.field_191117_a.nextInt(list.size()));
-				int l1 = woodlandmansionpieces$simplegrid.func_191145_a(((Integer) tuple.getFirst()).intValue(), ((Integer) tuple.getSecond()).intValue());
-				woodlandmansionpieces$simplegrid.func_191144_a(((Integer) tuple.getFirst()).intValue(), ((Integer) tuple.getSecond()).intValue(), l1 | 4194304);
-				EnumFacing enumfacing1 = this.func_191113_b(this.field_191118_b, ((Integer) tuple.getFirst()).intValue(), ((Integer) tuple.getSecond()).intValue(), 1, l1 & 65535);
-				int i2 = ((Integer) tuple.getFirst()).intValue() + enumfacing1.getFrontOffsetX();
-				int i1 = ((Integer) tuple.getSecond()).intValue() + enumfacing1.getFrontOffsetZ();
+				Tuple<Integer, Integer> tuple = list.get(this.field_191117_a.nextInt(list.size()));
+				int l1 = woodlandmansionpieces$simplegrid.func_191145_a(tuple.getFirst().intValue(), tuple.getSecond().intValue());
+				woodlandmansionpieces$simplegrid.func_191144_a(tuple.getFirst().intValue(), tuple.getSecond().intValue(), l1 | 4194304);
+				EnumFacing enumfacing1 = this.func_191113_b(this.field_191118_b, tuple.getFirst().intValue(), tuple.getSecond().intValue(), 1, l1 & 65535);
+				int i2 = tuple.getFirst().intValue() + enumfacing1.getFrontOffsetX();
+				int i1 = tuple.getSecond().intValue() + enumfacing1.getFrontOffsetZ();
 
 				for (int j1 = 0; j1 < this.field_191119_c.field_191150_c; ++j1)
 				{
@@ -275,7 +282,7 @@ public class WoodlandMansionPieces
 						{
 							this.field_191119_c.func_191144_a(k1, j1, 5);
 						}
-						else if (k1 == ((Integer) tuple.getFirst()).intValue() && j1 == ((Integer) tuple.getSecond()).intValue())
+						else if (k1 == tuple.getFirst().intValue() && j1 == tuple.getSecond().intValue())
 						{
 							this.field_191119_c.func_191144_a(k1, j1, 3);
 						}
@@ -300,7 +307,7 @@ public class WoodlandMansionPieces
 				if (list1.isEmpty())
 				{
 					this.field_191119_c.func_191142_a(0, 0, this.field_191119_c.field_191149_b, this.field_191119_c.field_191150_c, 5);
-					woodlandmansionpieces$simplegrid.func_191144_a(((Integer) tuple.getFirst()).intValue(), ((Integer) tuple.getSecond()).intValue(), l1);
+					woodlandmansionpieces$simplegrid.func_191144_a(tuple.getFirst().intValue(), tuple.getSecond().intValue(), l1);
 				}
 				else
 				{
@@ -335,8 +342,8 @@ public class WoodlandMansionPieces
 
 			for (Tuple<Integer, Integer> tuple : list)
 			{
-				int k = ((Integer) tuple.getFirst()).intValue();
-				int l = ((Integer) tuple.getSecond()).intValue();
+				int k = tuple.getFirst().intValue();
+				int l = tuple.getSecond().intValue();
 
 				if (p_191116_2_.func_191145_a(k, l) == 0)
 				{
@@ -466,6 +473,7 @@ public class WoodlandMansionPieces
 			this.setup(template, this.templatePosition, placementsettings);
 		}
 
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound)
 		{
 			super.writeStructureToNBT(tagCompound);
@@ -474,6 +482,7 @@ public class WoodlandMansionPieces
 			tagCompound.setString("Mi", this.placeSettings.getMirror().name());
 		}
 
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 		{
 			super.readStructureFromNBT(tagCompound, p_143011_2_);
@@ -483,6 +492,7 @@ public class WoodlandMansionPieces
 			this.func_191081_a(p_143011_2_);
 		}
 
+		@Override
 		protected void handleDataMarker(String p_186175_1_, BlockPos p_186175_2_, World p_186175_3_, Random p_186175_4_, StructureBoundingBox p_186175_5_)
 		{
 			if (p_186175_1_.startsWith("Chest"))
@@ -1221,36 +1231,43 @@ public class WoodlandMansionPieces
 		{
 		}
 
+		@Override
 		public String func_191104_a(Random p_191104_1_)
 		{
 			return "1x1_b" + (p_191104_1_.nextInt(4) + 1);
 		}
 
+		@Override
 		public String func_191099_b(Random p_191099_1_)
 		{
 			return "1x1_as" + (p_191099_1_.nextInt(4) + 1);
 		}
 
+		@Override
 		public String func_191100_a(Random p_191100_1_, boolean p_191100_2_)
 		{
 			return p_191100_2_ ? "1x2_c_stairs" : "1x2_c" + (p_191100_1_.nextInt(4) + 1);
 		}
 
+		@Override
 		public String func_191098_b(Random p_191098_1_, boolean p_191098_2_)
 		{
 			return p_191098_2_ ? "1x2_d_stairs" : "1x2_d" + (p_191098_1_.nextInt(5) + 1);
 		}
 
+		@Override
 		public String func_191102_c(Random p_191102_1_)
 		{
 			return "1x2_se" + (p_191102_1_.nextInt(1) + 1);
 		}
 
+		@Override
 		public String func_191101_d(Random p_191101_1_)
 		{
 			return "2x2_b" + (p_191101_1_.nextInt(5) + 1);
 		}
 
+		@Override
 		public String func_191103_e(Random p_191103_1_)
 		{
 			return "2x2_s1";

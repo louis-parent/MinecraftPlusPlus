@@ -22,6 +22,7 @@ public class SlotFurnaceOutput extends Slot
 	 * Check if the stack is allowed to be placed in this slot, used for armor
 	 * slots as well as furnace fuel.
 	 */
+	@Override
 	public boolean isItemValid(ItemStack stack)
 	{
 		return false;
@@ -31,6 +32,7 @@ public class SlotFurnaceOutput extends Slot
 	 * Decrease the size of the stack in slot (first int arg) by the amount of
 	 * the second int arg. Returns the new stack.
 	 */
+	@Override
 	public ItemStack decrStackSize(int amount)
 	{
 		if (this.getHasStack())
@@ -41,6 +43,7 @@ public class SlotFurnaceOutput extends Slot
 		return super.decrStackSize(amount);
 	}
 
+	@Override
 	public ItemStack func_190901_a(EntityPlayer p_190901_1_, ItemStack p_190901_2_)
 	{
 		this.onCrafting(p_190901_2_);
@@ -53,6 +56,7 @@ public class SlotFurnaceOutput extends Slot
 	 * not ore and wood. Typically increases an internal count then calls
 	 * onCrafting(item).
 	 */
+	@Override
 	protected void onCrafting(ItemStack stack, int amount)
 	{
 		this.removeCount += amount;
@@ -63,6 +67,7 @@ public class SlotFurnaceOutput extends Slot
 	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes,
 	 * not ore and wood.
 	 */
+	@Override
 	protected void onCrafting(ItemStack stack)
 	{
 		stack.onCrafting(this.thePlayer.world, this.thePlayer, this.removeCount);
@@ -78,9 +83,9 @@ public class SlotFurnaceOutput extends Slot
 			}
 			else if (f < 1.0F)
 			{
-				int j = MathHelper.floor((float) i * f);
+				int j = MathHelper.floor(i * f);
 
-				if (j < MathHelper.ceil((float) i * f) && Math.random() < (double) ((float) i * f - (float) j))
+				if (j < MathHelper.ceil(i * f) && Math.random() < i * f - j)
 				{
 					++j;
 				}

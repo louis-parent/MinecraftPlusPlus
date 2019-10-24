@@ -17,6 +17,7 @@ public class StatBasic extends StatBase
 	/**
 	 * Register the stat into StatList.
 	 */
+	@Override
 	public StatBase registerStat()
 	{
 		super.registerStat();

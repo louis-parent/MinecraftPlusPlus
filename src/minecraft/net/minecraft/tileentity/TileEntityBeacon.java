@@ -73,6 +73,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	/**
 	 * Like the old updateEntity(), except more generic.
 	 */
+	@Override
 	public void update()
 	{
 		if (this.world.getTotalWorldTime() % 80L == 0L)
@@ -94,7 +95,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	{
 		if (this.isComplete && this.levels > 0 && !this.world.isRemote && this.primaryEffect != null)
 		{
-			double d0 = (double) (this.levels * 10 + 10);
+			double d0 = this.levels * 10 + 10;
 			int i = 0;
 
 			if (this.levels >= 4 && this.primaryEffect == this.secondaryEffect)
@@ -106,7 +107,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 			int k = this.pos.getX();
 			int l = this.pos.getY();
 			int i1 = this.pos.getZ();
-			AxisAlignedBB axisalignedbb = (new AxisAlignedBB((double) k, (double) l, (double) i1, (double) (k + 1), (double) (l + 1), (double) (i1 + 1))).expandXyz(d0).addCoord(0.0D, (double) this.world.getHeight(), 0.0D);
+			AxisAlignedBB axisalignedbb = (new AxisAlignedBB(k, l, i1, k + 1, l + 1, i1 + 1)).expandXyz(d0).addCoord(0.0D, this.world.getHeight(), 0.0D);
 			List<EntityPlayer> list = this.world.<EntityPlayer>getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
 			for (EntityPlayer entityplayer : list)
@@ -145,7 +146,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
 			if (iblockstate.getBlock() == Blocks.STAINED_GLASS)
 			{
-				afloat = ((EnumDyeColor) iblockstate.getValue(BlockStainedGlass.COLOR)).func_193349_f();
+				afloat = iblockstate.getValue(BlockStainedGlass.COLOR).func_193349_f();
 			}
 			else
 			{
@@ -162,7 +163,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 					continue;
 				}
 
-				afloat = ((EnumDyeColor) iblockstate.getValue(BlockStainedGlassPane.COLOR)).func_193349_f();
+				afloat = iblockstate.getValue(BlockStainedGlassPane.COLOR).func_193349_f();
 			}
 
 			if (!flag)
@@ -224,7 +225,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
 		if (!this.world.isRemote && l < this.levels)
 		{
-			for (EntityPlayerMP entityplayermp : this.world.getEntitiesWithinAABB(EntityPlayerMP.class, (new AxisAlignedBB((double) i, (double) j, (double) k, (double) i, (double) (j - 4), (double) k)).expand(10.0D, 5.0D, 10.0D)))
+			for (EntityPlayerMP entityplayermp : this.world.getEntitiesWithinAABB(EntityPlayerMP.class, (new AxisAlignedBB(i, j, k, i, j - 4, k)).expand(10.0D, 5.0D, 10.0D)))
 			{
 				CriteriaTriggers.field_192131_k.func_192180_a(entityplayermp, this);
 			}
@@ -249,7 +250,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
 			if (i > 1)
 			{
-				this.beamRenderScale -= (float) i / 40.0F;
+				this.beamRenderScale -= i / 40.0F;
 
 				if (this.beamRenderScale < 0.0F)
 				{
@@ -273,17 +274,20 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		return this.levels;
 	}
 
+	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		return new SPacketUpdateTileEntity(this.pos, 3, this.getUpdateTag());
 	}
 
+	@Override
 	public NBTTagCompound getUpdateTag()
 	{
 		return this.writeToNBT(new NBTTagCompound());
 	}
 
+	@Override
 	public double getMaxRenderDistanceSquared()
 	{
 		return 65536.0D;
@@ -296,6 +300,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		return VALID_EFFECTS.contains(potion) ? potion : null;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
@@ -304,6 +309,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		this.levels = compound.getInteger("Levels");
 	}
 
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
@@ -316,11 +322,13 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	/**
 	 * Returns the number of slots in the inventory.
 	 */
+	@Override
 	public int getSizeInventory()
 	{
 		return 1;
 	}
 
+	@Override
 	public boolean isStackNotValid()
 	{
 		return this.payment.isNotValid();
@@ -329,6 +337,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	/**
 	 * Returns the stack in the given slot.
 	 */
+	@Override
 	public ItemStack getStackInSlot(int index)
 	{
 		return index == 0 ? this.payment : ItemStack.EMPTY_ITEM_STACK;
@@ -338,6 +347,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	 * Removes up to a specified number of items from an inventory slot and
 	 * returns them in a new stack.
 	 */
+	@Override
 	public ItemStack decrStackSize(int index, int count)
 	{
 		if (index == 0 && !this.payment.isNotValid())
@@ -362,6 +372,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	/**
 	 * Removes a stack from the given slot and returns it.
 	 */
+	@Override
 	public ItemStack removeStackFromSlot(int index)
 	{
 		if (index == 0)
@@ -380,6 +391,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	 * Sets the given item stack to the specified slot in the inventory (can be
 	 * crafting or armor sections).
 	 */
+	@Override
 	public void setInventorySlotContents(int index, ItemStack stack)
 	{
 		if (index == 0)
@@ -391,6 +403,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	/**
 	 * Get the name of this object. For players this returns their username
 	 */
+	@Override
 	public String getName()
 	{
 		return this.hasCustomName() ? this.customName : "container.beacon";
@@ -399,6 +412,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	/**
 	 * Returns true if this thing is named
 	 */
+	@Override
 	public boolean hasCustomName()
 	{
 		return this.customName != null && !this.customName.isEmpty();
@@ -413,6 +427,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	 * Returns the maximum stack size for a inventory slot. Seems to always be
 	 * 64, possibly will be extended.
 	 */
+	@Override
 	public int getInventoryStackLimit()
 	{
 		return 1;
@@ -422,6 +437,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	 * Don't rename this method to canInteractWith due to conflicts with
 	 * Container
 	 */
+	@Override
 	public boolean isUsableByPlayer(EntityPlayer player)
 	{
 		if (this.world.getTileEntity(this.pos) != this)
@@ -430,14 +446,16 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		}
 		else
 		{
-			return player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+			return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
 		}
 	}
 
+	@Override
 	public void openInventory(EntityPlayer player)
 	{
 	}
 
+	@Override
 	public void closeInventory(EntityPlayer player)
 	{
 	}
@@ -446,21 +464,25 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	 * Returns true if automation is allowed to insert the given stack (ignoring
 	 * stack size) into the given slot. For guis use Slot.isItemValid
 	 */
+	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack)
 	{
 		return paymentItems.contains(stack.getItem());
 	}
 
+	@Override
 	public String getGuiID()
 	{
 		return "minecraft:beacon";
 	}
 
+	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
 		return new ContainerBeacon(playerInventory, this);
 	}
 
+	@Override
 	public int getField(int id)
 	{
 		switch (id)
@@ -479,6 +501,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		}
 	}
 
+	@Override
 	public void setField(int id, int value)
 	{
 		switch (id)
@@ -496,16 +519,19 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		}
 	}
 
+	@Override
 	public int getFieldCount()
 	{
 		return 3;
 	}
 
+	@Override
 	public void clear()
 	{
 		this.payment = ItemStack.EMPTY_ITEM_STACK;
 	}
 
+	@Override
 	public boolean receiveClientEvent(int id, int type)
 	{
 		if (id == 1)
@@ -519,6 +545,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		}
 	}
 
+	@Override
 	public int[] getSlotsForFace(EnumFacing side)
 	{
 		return new int[0];
@@ -528,6 +555,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	 * Returns true if automation can insert the given item in the given slot
 	 * from the given side.
 	 */
+	@Override
 	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
 	{
 		return false;
@@ -537,6 +565,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	 * Returns true if automation can extract the given item in the given slot
 	 * from the given side.
 	 */
+	@Override
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
 	{
 		return false;

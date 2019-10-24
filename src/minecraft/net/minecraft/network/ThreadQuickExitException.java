@@ -9,6 +9,7 @@ public final class ThreadQuickExitException extends RuntimeException
 		this.setStackTrace(new StackTraceElement[0]);
 	}
 
+	@Override
 	public synchronized Throwable fillInStackTrace()
 	{
 		this.setStackTrace(new StackTraceElement[0]);

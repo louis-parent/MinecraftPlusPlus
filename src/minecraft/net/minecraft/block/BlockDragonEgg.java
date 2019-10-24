@@ -25,6 +25,7 @@ public class BlockDragonEgg extends Block
 		super(Material.DRAGON_EGG, MapColor.BLACK);
 	}
 
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return DRAGON_EGG_AABB;
@@ -34,6 +35,7 @@ public class BlockDragonEgg extends Block
 	 * Called after the block is set in the Chunk data, but before the Tile
 	 * Entity is set
 	 */
+	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
 		worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
@@ -45,11 +47,13 @@ public class BlockDragonEgg extends Block
 	 * when redstone power is updated, cactus blocks popping off due to a
 	 * neighboring solid block, etc.
 	 */
+	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos p_189540_5_)
 	{
 		worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
 	}
 
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
 		this.checkFall(worldIn, pos);
@@ -63,7 +67,7 @@ public class BlockDragonEgg extends Block
 
 			if (!BlockFalling.fallInstantly && worldIn.isAreaLoaded(pos.add(-32, -32, -32), pos.add(32, 32, 32)))
 			{
-				worldIn.spawnEntityInWorld(new EntityFallingBlock(worldIn, (double) ((float) pos.getX() + 0.5F), (double) pos.getY(), (double) ((float) pos.getZ() + 0.5F), this.getDefaultState()));
+				worldIn.spawnEntityInWorld(new EntityFallingBlock(worldIn, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, this.getDefaultState()));
 			}
 			else
 			{
@@ -83,12 +87,14 @@ public class BlockDragonEgg extends Block
 		}
 	}
 
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		this.teleport(worldIn, pos);
 		return true;
 	}
 
+	@Override
 	public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
 	{
 		this.teleport(worldIn, pos);
@@ -114,10 +120,10 @@ public class BlockDragonEgg extends Block
 							float f = (worldIn.rand.nextFloat() - 0.5F) * 0.2F;
 							float f1 = (worldIn.rand.nextFloat() - 0.5F) * 0.2F;
 							float f2 = (worldIn.rand.nextFloat() - 0.5F) * 0.2F;
-							double d1 = (double) blockpos.getX() + (double) (pos.getX() - blockpos.getX()) * d0 + (worldIn.rand.nextDouble() - 0.5D) + 0.5D;
-							double d2 = (double) blockpos.getY() + (double) (pos.getY() - blockpos.getY()) * d0 + worldIn.rand.nextDouble() - 0.5D;
-							double d3 = (double) blockpos.getZ() + (double) (pos.getZ() - blockpos.getZ()) * d0 + (worldIn.rand.nextDouble() - 0.5D) + 0.5D;
-							worldIn.spawnParticle(EnumParticleTypes.PORTAL, d1, d2, d3, (double) f, (double) f1, (double) f2);
+							double d1 = blockpos.getX() + (pos.getX() - blockpos.getX()) * d0 + (worldIn.rand.nextDouble() - 0.5D) + 0.5D;
+							double d2 = blockpos.getY() + (pos.getY() - blockpos.getY()) * d0 + worldIn.rand.nextDouble() - 0.5D;
+							double d3 = blockpos.getZ() + (pos.getZ() - blockpos.getZ()) * d0 + (worldIn.rand.nextDouble() - 0.5D) + 0.5D;
+							worldIn.spawnParticle(EnumParticleTypes.PORTAL, d1, d2, d3, f, f1, f2);
 						}
 					}
 					else
@@ -135,6 +141,7 @@ public class BlockDragonEgg extends Block
 	/**
 	 * How many world ticks before ticking
 	 */
+	@Override
 	public int tickRate(World worldIn)
 	{
 		return 5;
@@ -144,21 +151,25 @@ public class BlockDragonEgg extends Block
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for render
 	 */
+	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
+	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		return true;
 	}
 
+	@Override
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;

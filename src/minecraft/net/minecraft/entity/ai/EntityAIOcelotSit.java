@@ -23,6 +23,7 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		return this.ocelot.isTamed() && !this.ocelot.isSitting() && super.shouldExecute();
@@ -31,6 +32,7 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
+	@Override
 	public void startExecuting()
 	{
 		super.startExecuting();
@@ -40,6 +42,7 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
 	/**
 	 * Resets the task
 	 */
+	@Override
 	public void resetTask()
 	{
 		super.resetTask();
@@ -49,6 +52,7 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		super.updateTask();
@@ -67,6 +71,7 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
 	/**
 	 * Return true to set given position as destination
 	 */
+	@Override
 	protected boolean shouldMoveTo(World worldIn, BlockPos pos)
 	{
 		if (!worldIn.isAirBlock(pos.up()))

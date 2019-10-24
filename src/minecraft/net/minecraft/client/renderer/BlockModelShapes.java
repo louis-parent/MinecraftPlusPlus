@@ -286,7 +286,7 @@ public class BlockModelShapes
 		this.registerBlockWithStateMapper(Blocks.MONSTER_EGG, (new StateMap.Builder()).withName(BlockSilverfish.VARIANT).withSuffix("_monster_egg").build());
 		this.registerBlockWithStateMapper(Blocks.STONEBRICK, (new StateMap.Builder()).withName(BlockStoneBrick.VARIANT).build());
 		this.registerBlockWithStateMapper(Blocks.DISPENSER, (new StateMap.Builder()).ignore(BlockDispenser.TRIGGERED).build());
-		this.registerBlockWithStateMapper(Blocks.DROPPER, (new StateMap.Builder()).ignore(BlockDropper.TRIGGERED).build());
+		this.registerBlockWithStateMapper(Blocks.DROPPER, (new StateMap.Builder()).ignore(BlockDispenser.TRIGGERED).build());
 		this.registerBlockWithStateMapper(Blocks.LOG, (new StateMap.Builder()).withName(BlockOldLog.VARIANT).withSuffix("_log").build());
 		this.registerBlockWithStateMapper(Blocks.LOG2, (new StateMap.Builder()).withName(BlockNewLog.VARIANT).withSuffix("_log").build());
 		this.registerBlockWithStateMapper(Blocks.PLANKS, (new StateMap.Builder()).withName(BlockPlanks.VARIANT).withSuffix("_planks").build());
@@ -298,9 +298,10 @@ public class BlockModelShapes
 		this.registerBlockWithStateMapper(Blocks.field_192444_dS, (new StateMap.Builder()).withName(BlockColored.COLOR).withSuffix("_concrete_powder").build());
 		this.registerBlockWithStateMapper(Blocks.QUARTZ_BLOCK, new StateMapperBase()
 		{
+			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state)
 			{
-				BlockQuartz.EnumType blockquartz$enumtype = (BlockQuartz.EnumType) state.getValue(BlockQuartz.VARIANT);
+				BlockQuartz.EnumType blockquartz$enumtype = state.getValue(BlockQuartz.VARIANT);
 
 				switch (blockquartz$enumtype)
 				{
@@ -324,6 +325,7 @@ public class BlockModelShapes
 		});
 		this.registerBlockWithStateMapper(Blocks.DEADBUSH, new StateMapperBase()
 		{
+			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state)
 			{
 				return new ModelResourceLocation("dead_bush", "normal");
@@ -331,6 +333,7 @@ public class BlockModelShapes
 		});
 		this.registerBlockWithStateMapper(Blocks.PUMPKIN_STEM, new StateMapperBase()
 		{
+			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state)
 			{
 				Map<IProperty<?>, Comparable<?>> map = Maps.<IProperty<?>, Comparable<?>>newLinkedHashMap(state.getProperties());
@@ -345,6 +348,7 @@ public class BlockModelShapes
 		});
 		this.registerBlockWithStateMapper(Blocks.MELON_STEM, new StateMapperBase()
 		{
+			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state)
 			{
 				Map<IProperty<?>, Comparable<?>> map = Maps.<IProperty<?>, Comparable<?>>newLinkedHashMap(state.getProperties());
@@ -359,6 +363,7 @@ public class BlockModelShapes
 		});
 		this.registerBlockWithStateMapper(Blocks.DIRT, new StateMapperBase()
 		{
+			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state)
 			{
 				Map<IProperty<?>, Comparable<?>> map = Maps.<IProperty<?>, Comparable<?>>newLinkedHashMap(state.getProperties());
@@ -374,23 +379,25 @@ public class BlockModelShapes
 		});
 		this.registerBlockWithStateMapper(Blocks.DOUBLE_STONE_SLAB, new StateMapperBase()
 		{
+			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state)
 			{
 				Map<IProperty<?>, Comparable<?>> map = Maps.<IProperty<?>, Comparable<?>>newLinkedHashMap(state.getProperties());
 				String s = BlockStoneSlab.VARIANT.getName((BlockStoneSlab.EnumType) map.remove(BlockStoneSlab.VARIANT));
 				map.remove(BlockStoneSlab.SEAMLESS);
-				String s1 = ((Boolean) state.getValue(BlockStoneSlab.SEAMLESS)).booleanValue() ? "all" : "normal";
+				String s1 = state.getValue(BlockStoneSlab.SEAMLESS).booleanValue() ? "all" : "normal";
 				return new ModelResourceLocation(s + "_double_slab", s1);
 			}
 		});
 		this.registerBlockWithStateMapper(Blocks.DOUBLE_STONE_SLAB2, new StateMapperBase()
 		{
+			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state)
 			{
 				Map<IProperty<?>, Comparable<?>> map = Maps.<IProperty<?>, Comparable<?>>newLinkedHashMap(state.getProperties());
 				String s = BlockStoneSlabNew.VARIANT.getName((BlockStoneSlabNew.EnumType) map.remove(BlockStoneSlabNew.VARIANT));
 				map.remove(BlockStoneSlab.SEAMLESS);
-				String s1 = ((Boolean) state.getValue(BlockStoneSlabNew.SEAMLESS)).booleanValue() ? "all" : "normal";
+				String s1 = state.getValue(BlockStoneSlabNew.SEAMLESS).booleanValue() ? "all" : "normal";
 				return new ModelResourceLocation(s + "_double_slab", s1);
 			}
 		});

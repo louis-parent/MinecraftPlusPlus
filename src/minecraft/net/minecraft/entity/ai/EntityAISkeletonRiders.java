@@ -25,6 +25,7 @@ public class EntityAISkeletonRiders extends EntityAIBase
 	/**
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
+	@Override
 	public boolean shouldExecute()
 	{
 		return this.horse.world.isAnyPlayerWithinRangeAt(this.horse.posX, this.horse.posY, this.horse.posZ, 10.0D);
@@ -33,6 +34,7 @@ public class EntityAISkeletonRiders extends EntityAIBase
 	/**
 	 * Updates the task
 	 */
+	@Override
 	public void updateTask()
 	{
 		DifficultyInstance difficultyinstance = this.horse.world.getDifficultyForLocation(new BlockPos(this.horse));
@@ -78,8 +80,8 @@ public class EntityAISkeletonRiders extends EntityAIBase
 			entityskeleton.setItemStackToSlot(EntityArmorSlot.HEAD, new ItemStack(Items.IRON_HELMET));
 		}
 
-		entityskeleton.setItemStackToSlot(EntityHandSlot.MAINHAND, EnchantmentHelper.addRandomEnchantment(entityskeleton.getRNG(), entityskeleton.getHeldItemMainhand(), (int) (5.0F + p_188514_1_.getClampedAdditionalDifficulty() * (float) entityskeleton.getRNG().nextInt(18)), false));
-		entityskeleton.setItemStackToSlot(EntityArmorSlot.HEAD, EnchantmentHelper.addRandomEnchantment(entityskeleton.getRNG(), entityskeleton.getItemStackFromSlot(EntityArmorSlot.HEAD), (int) (5.0F + p_188514_1_.getClampedAdditionalDifficulty() * (float) entityskeleton.getRNG().nextInt(18)), false));
+		entityskeleton.setItemStackToSlot(EntityHandSlot.MAINHAND, EnchantmentHelper.addRandomEnchantment(entityskeleton.getRNG(), entityskeleton.getHeldItemMainhand(), (int) (5.0F + p_188514_1_.getClampedAdditionalDifficulty() * entityskeleton.getRNG().nextInt(18)), false));
+		entityskeleton.setItemStackToSlot(EntityArmorSlot.HEAD, EnchantmentHelper.addRandomEnchantment(entityskeleton.getRNG(), entityskeleton.getItemStackFromSlot(EntityArmorSlot.HEAD), (int) (5.0F + p_188514_1_.getClampedAdditionalDifficulty() * entityskeleton.getRNG().nextInt(18)), false));
 		entityskeleton.world.spawnEntityInWorld(entityskeleton);
 		return entityskeleton;
 	}

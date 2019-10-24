@@ -27,11 +27,13 @@ public class KilledTrigger implements ICriterionTrigger<KilledTrigger.Instance>
 		this.field_192214_b = p_i47433_1_;
 	}
 
+	@Override
 	public ResourceLocation func_192163_a()
 	{
 		return this.field_192214_b;
 	}
 
+	@Override
 	public void func_192165_a(PlayerAdvancements p_192165_1_, ICriterionTrigger.Listener<KilledTrigger.Instance> p_192165_2_)
 	{
 		KilledTrigger.Listeners killedtrigger$listeners = this.field_192213_a.get(p_192165_1_);
@@ -45,6 +47,7 @@ public class KilledTrigger implements ICriterionTrigger<KilledTrigger.Instance>
 		killedtrigger$listeners.func_192504_a(p_192165_2_);
 	}
 
+	@Override
 	public void func_192164_b(PlayerAdvancements p_192164_1_, ICriterionTrigger.Listener<KilledTrigger.Instance> p_192164_2_)
 	{
 		KilledTrigger.Listeners killedtrigger$listeners = this.field_192213_a.get(p_192164_1_);
@@ -60,11 +63,13 @@ public class KilledTrigger implements ICriterionTrigger<KilledTrigger.Instance>
 		}
 	}
 
+	@Override
 	public void func_192167_a(PlayerAdvancements p_192167_1_)
 	{
 		this.field_192213_a.remove(p_192167_1_);
 	}
 
+	@Override
 	public KilledTrigger.Instance func_192166_a(JsonObject p_192166_1_, JsonDeserializationContext p_192166_2_)
 	{
 		return new KilledTrigger.Instance(this.field_192214_b, EntityPredicate.func_192481_a(p_192166_1_.get("entity")), DamageSourcePredicate.func_192447_a(p_192166_1_.get("killing_blow")));
@@ -129,7 +134,7 @@ public class KilledTrigger implements ICriterionTrigger<KilledTrigger.Instance>
 
 			for (ICriterionTrigger.Listener<KilledTrigger.Instance> listener : this.field_192506_b)
 			{
-				if (((KilledTrigger.Instance) listener.func_192158_a()).func_192270_a(p_192503_1_, p_192503_2_, p_192503_3_))
+				if (listener.func_192158_a().func_192270_a(p_192503_1_, p_192503_2_, p_192503_3_))
 				{
 					if (list == null)
 					{

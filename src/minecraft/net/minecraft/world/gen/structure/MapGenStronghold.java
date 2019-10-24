@@ -49,26 +49,28 @@ public class MapGenStronghold extends MapGenStructure
 
 		for (Entry<String, String> entry : p_i2068_1_.entrySet())
 		{
-			if (((String) entry.getKey()).equals("distance"))
+			if (entry.getKey().equals("distance"))
 			{
 				this.distance = MathHelper.getDouble(entry.getValue(), this.distance, 1.0D);
 			}
-			else if (((String) entry.getKey()).equals("count"))
+			else if (entry.getKey().equals("count"))
 			{
 				this.structureCoords = new ChunkPos[MathHelper.getInt(entry.getValue(), this.structureCoords.length, 1)];
 			}
-			else if (((String) entry.getKey()).equals("spread"))
+			else if (entry.getKey().equals("spread"))
 			{
 				this.spread = MathHelper.getInt(entry.getValue(), this.spread, 1);
 			}
 		}
 	}
 
+	@Override
 	public String getStructureName()
 	{
 		return "Stronghold";
 	}
 
+	@Override
 	public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_)
 	{
 		if (!this.ranBiomeCheck)
@@ -101,6 +103,7 @@ public class MapGenStronghold extends MapGenStructure
 		return blockpos;
 	}
 
+	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
 		if (!this.ranBiomeCheck)
@@ -147,7 +150,7 @@ public class MapGenStronghold extends MapGenStructure
 		{
 			for (int i1 = 0; i1 < this.structureCoords.length; ++i1)
 			{
-				double d0 = 4.0D * this.distance + this.distance * (double) j * 6.0D + (random.nextDouble() - 0.5D) * this.distance * 2.5D;
+				double d0 = 4.0D * this.distance + this.distance * j * 6.0D + (random.nextDouble() - 0.5D) * this.distance * 2.5D;
 				int j1 = (int) Math.round(Math.cos(d1) * d0);
 				int k1 = (int) Math.round(Math.sin(d1) * d0);
 				BlockPos blockpos = this.worldObj.getBiomeProvider().findBiomePosition((j1 << 4) + 8, (k1 << 4) + 8, 112, this.allowedBiomes, random);
@@ -163,7 +166,7 @@ public class MapGenStronghold extends MapGenStructure
 					this.structureCoords[i1] = new ChunkPos(j1, k1);
 				}
 
-				d1 += (Math.PI * 2D) / (double) this.spread;
+				d1 += (Math.PI * 2D) / this.spread;
 				++k;
 
 				if (k == this.spread)
@@ -178,6 +181,7 @@ public class MapGenStronghold extends MapGenStructure
 		}
 	}
 
+	@Override
 	protected StructureStart getStructureStart(int chunkX, int chunkZ)
 	{
 		MapGenStronghold.Start mapgenstronghold$start;

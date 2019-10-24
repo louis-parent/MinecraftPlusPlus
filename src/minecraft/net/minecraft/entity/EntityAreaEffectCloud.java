@@ -68,6 +68,7 @@ public class EntityAreaEffectCloud extends Entity
 		this.setPosition(x, y, z);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		this.getDataManager().register(COLOR, Integer.valueOf(0));
@@ -94,7 +95,7 @@ public class EntityAreaEffectCloud extends Entity
 
 	public float getRadius()
 	{
-		return ((Float) this.getDataManager().get(RADIUS)).floatValue();
+		return this.getDataManager().get(RADIUS).floatValue();
 	}
 
 	public void setPotion(PotionType potionIn)
@@ -131,7 +132,7 @@ public class EntityAreaEffectCloud extends Entity
 
 	public int getColor()
 	{
-		return ((Integer) this.getDataManager().get(COLOR)).intValue();
+		return this.getDataManager().get(COLOR).intValue();
 	}
 
 	public void setColor(int colorIn)
@@ -142,7 +143,7 @@ public class EntityAreaEffectCloud extends Entity
 
 	public EnumParticleTypes getParticle()
 	{
-		return EnumParticleTypes.getParticleFromId(((Integer) this.getDataManager().get(PARTICLE)).intValue());
+		return EnumParticleTypes.getParticleFromId(this.getDataManager().get(PARTICLE).intValue());
 	}
 
 	public void setParticle(EnumParticleTypes particleIn)
@@ -152,7 +153,7 @@ public class EntityAreaEffectCloud extends Entity
 
 	public int getParticleParam1()
 	{
-		return ((Integer) this.getDataManager().get(PARTICLE_PARAM_1)).intValue();
+		return this.getDataManager().get(PARTICLE_PARAM_1).intValue();
 	}
 
 	public void setParticleParam1(int particleParam)
@@ -162,7 +163,7 @@ public class EntityAreaEffectCloud extends Entity
 
 	public int getParticleParam2()
 	{
-		return ((Integer) this.getDataManager().get(PARTICLE_PARAM_2)).intValue();
+		return this.getDataManager().get(PARTICLE_PARAM_2).intValue();
 	}
 
 	public void setParticleParam2(int particleParam)
@@ -185,7 +186,7 @@ public class EntityAreaEffectCloud extends Entity
 	 */
 	public boolean shouldIgnoreRadius()
 	{
-		return ((Boolean) this.getDataManager().get(IGNORE_RADIUS)).booleanValue();
+		return this.getDataManager().get(IGNORE_RADIUS).booleanValue();
 	}
 
 	public int getDuration()
@@ -201,6 +202,7 @@ public class EntityAreaEffectCloud extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -239,11 +241,11 @@ public class EntityAreaEffectCloud extends Entity
 							int k = j >> 16 & 255;
 							int l = j >> 8 & 255;
 							int i1 = j & 255;
-							this.world.func_190523_a(EnumParticleTypes.SPELL_MOB.getParticleID(), this.posX + (double) f3, this.posY, this.posZ + (double) f4, (double) ((float) k / 255.0F), (double) ((float) l / 255.0F), (double) ((float) i1 / 255.0F));
+							this.world.func_190523_a(EnumParticleTypes.SPELL_MOB.getParticleID(), this.posX + f3, this.posY, this.posZ + f4, k / 255.0F, l / 255.0F, i1 / 255.0F);
 						}
 						else
 						{
-							this.world.func_190523_a(enumparticletypes.getParticleID(), this.posX + (double) f3, this.posY, this.posZ + (double) f4, 0.0D, 0.0D, 0.0D, aint);
+							this.world.func_190523_a(enumparticletypes.getParticleID(), this.posX + f3, this.posY, this.posZ + f4, 0.0D, 0.0D, 0.0D, aint);
 						}
 					}
 				}
@@ -252,7 +254,7 @@ public class EntityAreaEffectCloud extends Entity
 			{
 				float f5 = (float) Math.PI * f * f;
 
-				for (int k1 = 0; (float) k1 < f5; ++k1)
+				for (int k1 = 0; k1 < f5; ++k1)
 				{
 					float f6 = this.rand.nextFloat() * ((float) Math.PI * 2F);
 					float f7 = MathHelper.sqrt(this.rand.nextFloat()) * f;
@@ -265,11 +267,11 @@ public class EntityAreaEffectCloud extends Entity
 						int i2 = l1 >> 16 & 255;
 						int j2 = l1 >> 8 & 255;
 						int j1 = l1 & 255;
-						this.world.func_190523_a(EnumParticleTypes.SPELL_MOB.getParticleID(), this.posX + (double) f8, this.posY, this.posZ + (double) f9, (double) ((float) i2 / 255.0F), (double) ((float) j2 / 255.0F), (double) ((float) j1 / 255.0F));
+						this.world.func_190523_a(EnumParticleTypes.SPELL_MOB.getParticleID(), this.posX + f8, this.posY, this.posZ + f9, i2 / 255.0F, j2 / 255.0F, j1 / 255.0F);
 					}
 					else
 					{
-						this.world.func_190523_a(enumparticletypes.getParticleID(), this.posX + (double) f8, this.posY, this.posZ + (double) f9, (0.5D - this.rand.nextDouble()) * 0.15D, 0.009999999776482582D, (0.5D - this.rand.nextDouble()) * 0.15D, aint);
+						this.world.func_190523_a(enumparticletypes.getParticleID(), this.posX + f8, this.posY, this.posZ + f9, (0.5D - this.rand.nextDouble()) * 0.15D, 0.009999999776482582D, (0.5D - this.rand.nextDouble()) * 0.15D, aint);
 					}
 				}
 			}
@@ -313,9 +315,9 @@ public class EntityAreaEffectCloud extends Entity
 
 				while (iterator.hasNext())
 				{
-					Entry<Entity, Integer> entry = (Entry) iterator.next();
+					Entry<Entity, Integer> entry = iterator.next();
 
-					if (this.ticksExisted >= ((Integer) entry.getValue()).intValue())
+					if (this.ticksExisted >= entry.getValue().intValue())
 					{
 						iterator.remove();
 					}
@@ -348,7 +350,7 @@ public class EntityAreaEffectCloud extends Entity
 								double d1 = entitylivingbase.posZ - this.posZ;
 								double d2 = d0 * d0 + d1 * d1;
 
-								if (d2 <= (double) (f * f))
+								if (d2 <= f * f)
 								{
 									this.reapplicationDelayMap.put(entitylivingbase, Integer.valueOf(this.ticksExisted + this.reapplicationDelay));
 
@@ -436,6 +438,7 @@ public class EntityAreaEffectCloud extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.ticksExisted = compound.getInteger("Age");
@@ -490,6 +493,7 @@ public class EntityAreaEffectCloud extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
 		compound.setInteger("Age", this.ticksExisted);
@@ -516,7 +520,7 @@ public class EntityAreaEffectCloud extends Entity
 
 		if (this.potion != PotionTypes.EMPTY && this.potion != null)
 		{
-			compound.setString("Potion", ((ResourceLocation) PotionType.REGISTRY.getNameForObject(this.potion)).toString());
+			compound.setString("Potion", PotionType.REGISTRY.getNameForObject(this.potion).toString());
 		}
 
 		if (!this.effects.isEmpty())
@@ -532,6 +536,7 @@ public class EntityAreaEffectCloud extends Entity
 		}
 	}
 
+	@Override
 	public void notifyDataManagerChange(DataParameter<?> key)
 	{
 		if (RADIUS.equals(key))
@@ -542,6 +547,7 @@ public class EntityAreaEffectCloud extends Entity
 		super.notifyDataManagerChange(key);
 	}
 
+	@Override
 	public EnumPushReaction getPushReaction()
 	{
 		return EnumPushReaction.IGNORE;

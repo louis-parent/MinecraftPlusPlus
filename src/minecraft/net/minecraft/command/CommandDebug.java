@@ -33,6 +33,7 @@ public class CommandDebug extends CommandBase
 	/**
 	 * Gets the name of the command
 	 */
+	@Override
 	public String getCommandName()
 	{
 		return "debug";
@@ -41,6 +42,7 @@ public class CommandDebug extends CommandBase
 	/**
 	 * Return the required permission level for this command.
 	 */
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 3;
@@ -49,6 +51,7 @@ public class CommandDebug extends CommandBase
 	/**
 	 * Gets the usage string for the command.
 	 */
+	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{
 		return "commands.debug.usage";
@@ -57,6 +60,7 @@ public class CommandDebug extends CommandBase
 	/**
 	 * Callback for when the command is executed
 	 */
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
 		if (args.length < 1)
@@ -100,7 +104,7 @@ public class CommandDebug extends CommandBase
 				int l = j - this.profileStartTick;
 				this.saveProfilerResults(k, l, server);
 				server.theProfiler.profilingEnabled = false;
-				notifyCommandListener(sender, this, "commands.debug.stop", new Object[] { String.format("%.2f", (float) k / 1000.0F), l });
+				notifyCommandListener(sender, this, "commands.debug.stop", new Object[] { String.format("%.2f", k / 1000.0F), l });
 			}
 		}
 	}
@@ -135,7 +139,7 @@ public class CommandDebug extends CommandBase
 		stringbuilder.append("\n\n");
 		stringbuilder.append("Time span: ").append(timeSpan).append(" ms\n");
 		stringbuilder.append("Tick span: ").append(tickSpan).append(" ticks\n");
-		stringbuilder.append("// This is approximately ").append(String.format("%.2f", (float) tickSpan / ((float) timeSpan / 1000.0F))).append(" ticks per second. It should be ").append((int) 20).append(" ticks per second\n\n");
+		stringbuilder.append("// This is approximately ").append(String.format("%.2f", tickSpan / (timeSpan / 1000.0F))).append(" ticks per second. It should be ").append(20).append(" ticks per second\n\n");
 		stringbuilder.append("--- BEGIN PROFILE DUMP ---\n\n");
 		this.appendProfilerResults(0, "root", stringbuilder, server);
 		stringbuilder.append("--- END PROFILE DUMP ---\n\n");
@@ -168,7 +172,7 @@ public class CommandDebug extends CommandBase
 					}
 					catch (Exception exception)
 					{
-						builder.append("[[ EXCEPTION ").append((Object) exception).append(" ]]");
+						builder.append("[[ EXCEPTION ").append(exception).append(" ]]");
 					}
 				}
 			}
@@ -184,7 +188,7 @@ public class CommandDebug extends CommandBase
 
 		try
 		{
-			return astring[(int) (System.nanoTime() % (long) astring.length)];
+			return astring[(int) (System.nanoTime() % astring.length)];
 		}
 		catch (Throwable var2)
 		{
@@ -192,6 +196,7 @@ public class CommandDebug extends CommandBase
 		}
 	}
 
+	@Override
 	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos)
 	{
 		return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[] { "start", "stop" }) : Collections.emptyList();

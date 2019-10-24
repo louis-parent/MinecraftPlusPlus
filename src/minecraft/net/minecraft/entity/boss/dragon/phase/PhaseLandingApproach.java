@@ -20,6 +20,7 @@ public class PhaseLandingApproach extends PhaseBase
 		super(dragonIn);
 	}
 
+	@Override
 	public PhaseList<PhaseLandingApproach> getPhaseList()
 	{
 		return PhaseList.LANDING_APPROACH;
@@ -28,6 +29,7 @@ public class PhaseLandingApproach extends PhaseBase
 	/**
 	 * Called when this phase is set to active
 	 */
+	@Override
 	public void initPhase()
 	{
 		this.currentPath = null;
@@ -38,6 +40,7 @@ public class PhaseLandingApproach extends PhaseBase
 	 * Gives the phase a chance to update its status. Called by dragon's
 	 * onLivingUpdate. Only used when !worldObj.isRemote.
 	 */
+	@Override
 	public void doLocalUpdate()
 	{
 		double d0 = this.targetLocation == null ? 0.0D : this.targetLocation.squareDistanceTo(this.dragon.posX, this.dragon.posY, this.dragon.posZ);
@@ -48,6 +51,7 @@ public class PhaseLandingApproach extends PhaseBase
 		}
 	}
 
+	@Override
 	@Nullable
 
 	/**
@@ -74,7 +78,7 @@ public class PhaseLandingApproach extends PhaseBase
 			}
 			else
 			{
-				j = this.dragon.getNearestPpIdx(40.0D, (double) blockpos.getY(), 0.0D);
+				j = this.dragon.getNearestPpIdx(40.0D, blockpos.getY(), 0.0D);
 			}
 
 			PathPoint pathpoint = new PathPoint(blockpos.getX(), blockpos.getY(), blockpos.getZ());
@@ -106,7 +110,7 @@ public class PhaseLandingApproach extends PhaseBase
 
 			while (true)
 			{
-				d2 = vec3d.yCoord + (double) (this.dragon.getRNG().nextFloat() * 20.0F);
+				d2 = vec3d.yCoord + this.dragon.getRNG().nextFloat() * 20.0F;
 
 				if (d2 >= vec3d.yCoord)
 				{

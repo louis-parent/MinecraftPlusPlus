@@ -48,6 +48,7 @@ public class AdvancementManager
 	private static final Logger field_192782_a = LogManager.getLogger();
 	private static final Gson field_192783_b = (new GsonBuilder()).registerTypeHierarchyAdapter(Advancement.Builder.class, new JsonDeserializer<Advancement.Builder>()
 	{
+		@Override
 		public Advancement.Builder deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
 		{
 			JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "advancement");
@@ -108,7 +109,7 @@ public class AdvancementManager
 
 					try
 					{
-						Advancement.Builder advancement$builder = (Advancement.Builder) JsonUtils.gsonDeserialize(field_192783_b, FileUtils.readFileToString(file1, StandardCharsets.UTF_8), Advancement.Builder.class);
+						Advancement.Builder advancement$builder = JsonUtils.gsonDeserialize(field_192783_b, FileUtils.readFileToString(file1, StandardCharsets.UTF_8), Advancement.Builder.class);
 
 						if (advancement$builder == null)
 						{
@@ -121,12 +122,12 @@ public class AdvancementManager
 					}
 					catch (IllegalArgumentException | JsonParseException jsonparseexception)
 					{
-						field_192782_a.error("Parsing error loading custom advancement " + resourcelocation, (Throwable) jsonparseexception);
+						field_192782_a.error("Parsing error loading custom advancement " + resourcelocation, jsonparseexception);
 						this.field_193768_e = true;
 					}
 					catch (IOException ioexception)
 					{
-						field_192782_a.error("Couldn't read custom advancement " + resourcelocation + " from " + file1, (Throwable) ioexception);
+						field_192782_a.error("Couldn't read custom advancement " + resourcelocation + " from " + file1, ioexception);
 						this.field_193768_e = true;
 					}
 				}
@@ -184,22 +185,22 @@ public class AdvancementManager
 							try
 							{
 								bufferedreader = Files.newBufferedReader(path1);
-								Advancement.Builder advancement$builder = (Advancement.Builder) JsonUtils.func_193839_a(field_192783_b, bufferedreader, Advancement.Builder.class);
+								Advancement.Builder advancement$builder = JsonUtils.func_193839_a(field_192783_b, bufferedreader, Advancement.Builder.class);
 								p_192777_1_.put(resourcelocation, advancement$builder);
 							}
 							catch (JsonParseException jsonparseexception)
 							{
-								field_192782_a.error("Parsing error loading built-in advancement " + resourcelocation, (Throwable) jsonparseexception);
+								field_192782_a.error("Parsing error loading built-in advancement " + resourcelocation, jsonparseexception);
 								this.field_193768_e = true;
 							}
 							catch (IOException ioexception)
 							{
-								field_192782_a.error("Couldn't read advancement " + resourcelocation + " from " + path1, (Throwable) ioexception);
+								field_192782_a.error("Couldn't read advancement " + resourcelocation + " from " + path1, ioexception);
 								this.field_193768_e = true;
 							}
 							finally
 							{
-								IOUtils.closeQuietly((Reader) bufferedreader);
+								IOUtils.closeQuietly(bufferedreader);
 							}
 						}
 					}
@@ -213,13 +214,13 @@ public class AdvancementManager
 		}
 		catch (IOException | URISyntaxException urisyntaxexception)
 		{
-			field_192782_a.error("Couldn't get a list of all built-in advancement files", (Throwable) urisyntaxexception);
+			field_192782_a.error("Couldn't get a list of all built-in advancement files", urisyntaxexception);
 			this.field_193768_e = true;
 			return;
 		}
 		finally
 		{
-			IOUtils.closeQuietly((Closeable) filesystem);
+			IOUtils.closeQuietly(filesystem);
 		}
 	}
 

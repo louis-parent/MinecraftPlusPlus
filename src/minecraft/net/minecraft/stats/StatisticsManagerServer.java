@@ -67,13 +67,14 @@ public class StatisticsManagerServer extends StatisticsManager
 		}
 		catch (IOException ioexception)
 		{
-			LOGGER.error("Couldn't save stats", (Throwable) ioexception);
+			LOGGER.error("Couldn't save stats", ioexception);
 		}
 	}
 
 	/**
 	 * Triggers the logging of an achievement and attempts to announce to server
 	 */
+	@Override
 	public void unlockAchievement(EntityPlayer playerIn, StatBase statIn, int p_150873_3_)
 	{
 		super.unlockAchievement(playerIn, statIn, p_150873_3_);
@@ -108,13 +109,13 @@ public class StatisticsManagerServer extends StatisticsManager
 				{
 					TupleIntJsonSerializable tupleintjsonserializable = new TupleIntJsonSerializable();
 
-					if (((JsonElement) entry.getValue()).isJsonPrimitive() && ((JsonElement) entry.getValue()).getAsJsonPrimitive().isNumber())
+					if (entry.getValue().isJsonPrimitive() && entry.getValue().getAsJsonPrimitive().isNumber())
 					{
-						tupleintjsonserializable.setIntegerValue(((JsonElement) entry.getValue()).getAsInt());
+						tupleintjsonserializable.setIntegerValue(entry.getValue().getAsInt());
 					}
-					else if (((JsonElement) entry.getValue()).isJsonObject())
+					else if (entry.getValue().isJsonObject())
 					{
-						JsonObject jsonobject1 = ((JsonElement) entry.getValue()).getAsJsonObject();
+						JsonObject jsonobject1 = entry.getValue().getAsJsonObject();
 
 						if (jsonobject1.has("value") && jsonobject1.get("value").isJsonPrimitive() && jsonobject1.get("value").getAsJsonPrimitive().isNumber())
 						{
@@ -155,25 +156,25 @@ public class StatisticsManagerServer extends StatisticsManager
 
 		for (Entry<StatBase, TupleIntJsonSerializable> entry : p_150880_0_.entrySet())
 		{
-			if (((TupleIntJsonSerializable) entry.getValue()).getJsonSerializableValue() != null)
+			if (entry.getValue().getJsonSerializableValue() != null)
 			{
 				JsonObject jsonobject1 = new JsonObject();
-				jsonobject1.addProperty("value", Integer.valueOf(((TupleIntJsonSerializable) entry.getValue()).getIntegerValue()));
+				jsonobject1.addProperty("value", Integer.valueOf(entry.getValue().getIntegerValue()));
 
 				try
 				{
-					jsonobject1.add("progress", ((TupleIntJsonSerializable) entry.getValue()).getJsonSerializableValue().getSerializableElement());
+					jsonobject1.add("progress", entry.getValue().getJsonSerializableValue().getSerializableElement());
 				}
 				catch (Throwable throwable)
 				{
-					LOGGER.warn("Couldn't save statistic {}: error serializing progress", ((StatBase) entry.getKey()).getStatName(), throwable);
+					LOGGER.warn("Couldn't save statistic {}: error serializing progress", entry.getKey().getStatName(), throwable);
 				}
 
 				jsonobject.add((entry.getKey()).statId, jsonobject1);
 			}
 			else
 			{
-				jsonobject.addProperty((entry.getKey()).statId, Integer.valueOf(((TupleIntJsonSerializable) entry.getValue()).getIntegerValue()));
+				jsonobject.addProperty((entry.getKey()).statId, Integer.valueOf(entry.getValue().getIntegerValue()));
 			}
 		}
 

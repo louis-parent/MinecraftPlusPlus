@@ -70,6 +70,7 @@ public class GuiCreateFlatWorld extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		this.buttonList.clear();
@@ -92,6 +93,7 @@ public class GuiCreateFlatWorld extends GuiScreen
 	/**
 	 * Handles mouse input.
 	 */
+	@Override
 	public void handleMouseInput() throws IOException
 	{
 		super.handleMouseInput();
@@ -102,6 +104,7 @@ public class GuiCreateFlatWorld extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		int i = this.theFlatGeneratorInfo.getFlatLayers().size() - this.createFlatWorldListSlotGui.selectedLayer - 1;
@@ -154,6 +157,7 @@ public class GuiCreateFlatWorld extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
@@ -205,36 +209,41 @@ public class GuiCreateFlatWorld extends GuiScreen
 			Tessellator tessellator = Tessellator.getInstance();
 			BufferBuilder bufferbuilder = tessellator.getBuffer();
 			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-			bufferbuilder.pos((double) (x + 0), (double) (z + 18), (double) GuiCreateFlatWorld.this.zLevel).tex((double) ((float) (textureX + 0) * 0.0078125F), (double) ((float) (textureY + 18) * 0.0078125F)).endVertex();
-			bufferbuilder.pos((double) (x + 18), (double) (z + 18), (double) GuiCreateFlatWorld.this.zLevel).tex((double) ((float) (textureX + 18) * 0.0078125F), (double) ((float) (textureY + 18) * 0.0078125F)).endVertex();
-			bufferbuilder.pos((double) (x + 18), (double) (z + 0), (double) GuiCreateFlatWorld.this.zLevel).tex((double) ((float) (textureX + 18) * 0.0078125F), (double) ((float) (textureY + 0) * 0.0078125F)).endVertex();
-			bufferbuilder.pos((double) (x + 0), (double) (z + 0), (double) GuiCreateFlatWorld.this.zLevel).tex((double) ((float) (textureX + 0) * 0.0078125F), (double) ((float) (textureY + 0) * 0.0078125F)).endVertex();
+			bufferbuilder.pos(x + 0, z + 18, GuiCreateFlatWorld.this.zLevel).tex((textureX + 0) * 0.0078125F, (textureY + 18) * 0.0078125F).endVertex();
+			bufferbuilder.pos(x + 18, z + 18, GuiCreateFlatWorld.this.zLevel).tex((textureX + 18) * 0.0078125F, (textureY + 18) * 0.0078125F).endVertex();
+			bufferbuilder.pos(x + 18, z + 0, GuiCreateFlatWorld.this.zLevel).tex((textureX + 18) * 0.0078125F, (textureY + 0) * 0.0078125F).endVertex();
+			bufferbuilder.pos(x + 0, z + 0, GuiCreateFlatWorld.this.zLevel).tex((textureX + 0) * 0.0078125F, (textureY + 0) * 0.0078125F).endVertex();
 			tessellator.draw();
 		}
 
+		@Override
 		protected int getSize()
 		{
 			return GuiCreateFlatWorld.this.theFlatGeneratorInfo.getFlatLayers().size();
 		}
 
+		@Override
 		protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
 		{
 			this.selectedLayer = slotIndex;
 			GuiCreateFlatWorld.this.onLayersChanged();
 		}
 
+		@Override
 		protected boolean isSelected(int slotIndex)
 		{
 			return slotIndex == this.selectedLayer;
 		}
 
+		@Override
 		protected void drawBackground()
 		{
 		}
 
+		@Override
 		protected void func_192637_a(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
 		{
-			FlatLayerInfo flatlayerinfo = (FlatLayerInfo) GuiCreateFlatWorld.this.theFlatGeneratorInfo.getFlatLayers().get(GuiCreateFlatWorld.this.theFlatGeneratorInfo.getFlatLayers().size() - p_192637_1_ - 1);
+			FlatLayerInfo flatlayerinfo = GuiCreateFlatWorld.this.theFlatGeneratorInfo.getFlatLayers().get(GuiCreateFlatWorld.this.theFlatGeneratorInfo.getFlatLayers().size() - p_192637_1_ - 1);
 			IBlockState iblockstate = flatlayerinfo.getLayerMaterial();
 			Block block = iblockstate.getBlock();
 			Item item = Item.getItemFromBlock(block);
@@ -276,6 +285,7 @@ public class GuiCreateFlatWorld extends GuiScreen
 			GuiCreateFlatWorld.this.fontRendererObj.drawString(s1, p_192637_2_ + 2 + 213 - GuiCreateFlatWorld.this.fontRendererObj.getStringWidth(s1), p_192637_3_ + 3, 16777215);
 		}
 
+		@Override
 		protected int getScrollBarX()
 		{
 			return this.width - 70;

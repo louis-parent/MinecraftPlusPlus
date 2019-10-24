@@ -31,20 +31,22 @@ public class ParticleSnowShovel extends Particle
 		this.particleScale *= p_i1228_14_;
 		this.snowDigParticleScale = this.particleScale;
 		this.particleMaxAge = (int) (8.0D / (Math.random() * 0.8D + 0.2D));
-		this.particleMaxAge = (int) ((float) this.particleMaxAge * p_i1228_14_);
+		this.particleMaxAge = (int) (this.particleMaxAge * p_i1228_14_);
 	}
 
 	/**
 	 * Renders the particle
 	 */
+	@Override
 	public void renderParticle(BufferBuilder worldRendererIn, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ)
 	{
-		float f = ((float) this.particleAge + partialTicks) / (float) this.particleMaxAge * 32.0F;
+		float f = (this.particleAge + partialTicks) / this.particleMaxAge * 32.0F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
 		this.particleScale = this.snowDigParticleScale * f;
 		super.renderParticle(worldRendererIn, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -72,6 +74,7 @@ public class ParticleSnowShovel extends Particle
 
 	public static class Factory implements IParticleFactory
 	{
+		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
 			return new ParticleSnowShovel(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);

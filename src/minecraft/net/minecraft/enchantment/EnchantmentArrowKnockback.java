@@ -14,6 +14,7 @@ public class EnchantmentArrowKnockback extends Enchantment
 	 * Returns the minimal value of enchantability needed on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMinEnchantability(int enchantmentLevel)
 	{
 		return 12 + (enchantmentLevel - 1) * 20;
@@ -23,6 +24,7 @@ public class EnchantmentArrowKnockback extends Enchantment
 	 * Returns the maximum value of enchantability nedded on the enchantment
 	 * level passed.
 	 */
+	@Override
 	public int getMaxEnchantability(int enchantmentLevel)
 	{
 		return this.getMinEnchantability(enchantmentLevel) + 25;
@@ -31,6 +33,7 @@ public class EnchantmentArrowKnockback extends Enchantment
 	/**
 	 * Returns the maximum level that the enchantment can have.
 	 */
+	@Override
 	public int getMaxLevel()
 	{
 		return 2;

@@ -44,11 +44,12 @@ public class GuiWinGame extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		this.mc.getMusicTicker().update();
 		this.mc.getSoundHandler().update();
-		float f = (float) (this.totalScrollLength + this.height + this.height + 24) / 0.5F;
+		float f = (this.totalScrollLength + this.height + this.height + 24) / 0.5F;
 
 		if (this.time > f)
 		{
@@ -61,6 +62,7 @@ public class GuiWinGame extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		if (keyCode == 1)
@@ -79,6 +81,7 @@ public class GuiWinGame extends GuiScreen
 	 * Returns true if this GUI should pause the game when it is displayed in
 	 * single-player
 	 */
+	@Override
 	public boolean doesGuiPauseGame()
 	{
 		return true;
@@ -89,6 +92,7 @@ public class GuiWinGame extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		if (this.lines == null)
@@ -150,11 +154,11 @@ public class GuiWinGame extends GuiScreen
 			}
 			catch (Exception exception)
 			{
-				LOGGER.error("Couldn't load credits", (Throwable) exception);
+				LOGGER.error("Couldn't load credits", exception);
 			}
 			finally
 			{
-				IOUtils.closeQuietly((Closeable) iresource);
+				IOUtils.closeQuietly(iresource);
 			}
 		}
 	}
@@ -167,10 +171,10 @@ public class GuiWinGame extends GuiScreen
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
 		int i = this.width;
 		float f = -this.time * 0.5F * 0.5F;
-		float f1 = (float) this.height - this.time * 0.5F * 0.5F;
+		float f1 = this.height - this.time * 0.5F * 0.5F;
 		float f2 = 0.015625F;
 		float f3 = this.time * 0.02F;
-		float f4 = (float) (this.totalScrollLength + this.height + this.height + 24) / 0.5F;
+		float f4 = (this.totalScrollLength + this.height + this.height + 24) / 0.5F;
 		float f5 = (f4 - 20.0F - this.time) * 0.005F;
 
 		if (f5 < f3)
@@ -185,16 +189,17 @@ public class GuiWinGame extends GuiScreen
 
 		f3 = f3 * f3;
 		f3 = f3 * 96.0F / 255.0F;
-		bufferbuilder.pos(0.0D, (double) this.height, (double) this.zLevel).tex(0.0D, (double) (f * 0.015625F)).color(f3, f3, f3, 1.0F).endVertex();
-		bufferbuilder.pos((double) i, (double) this.height, (double) this.zLevel).tex((double) ((float) i * 0.015625F), (double) (f * 0.015625F)).color(f3, f3, f3, 1.0F).endVertex();
-		bufferbuilder.pos((double) i, 0.0D, (double) this.zLevel).tex((double) ((float) i * 0.015625F), (double) (f1 * 0.015625F)).color(f3, f3, f3, 1.0F).endVertex();
-		bufferbuilder.pos(0.0D, 0.0D, (double) this.zLevel).tex(0.0D, (double) (f1 * 0.015625F)).color(f3, f3, f3, 1.0F).endVertex();
+		bufferbuilder.pos(0.0D, this.height, this.zLevel).tex(0.0D, f * 0.015625F).color(f3, f3, f3, 1.0F).endVertex();
+		bufferbuilder.pos(i, this.height, this.zLevel).tex(i * 0.015625F, f * 0.015625F).color(f3, f3, f3, 1.0F).endVertex();
+		bufferbuilder.pos(i, 0.0D, this.zLevel).tex(i * 0.015625F, f1 * 0.015625F).color(f3, f3, f3, 1.0F).endVertex();
+		bufferbuilder.pos(0.0D, 0.0D, this.zLevel).tex(0.0D, f1 * 0.015625F).color(f3, f3, f3, 1.0F).endVertex();
 		tessellator.draw();
 	}
 
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawWinGameScreen(mouseX, mouseY, partialTicks);
@@ -219,7 +224,7 @@ public class GuiWinGame extends GuiScreen
 		{
 			if (i1 == this.lines.size() - 1)
 			{
-				float f1 = (float) l + f - (float) (this.height / 2 - 6);
+				float f1 = l + f - (this.height / 2 - 6);
 
 				if (f1 < 0.0F)
 				{
@@ -227,18 +232,18 @@ public class GuiWinGame extends GuiScreen
 				}
 			}
 
-			if ((float) l + f + 12.0F + 8.0F > 0.0F && (float) l + f < (float) this.height)
+			if (l + f + 12.0F + 8.0F > 0.0F && l + f < this.height)
 			{
 				String s = this.lines.get(i1);
 
 				if (s.startsWith("[C]"))
 				{
-					this.fontRendererObj.drawStringWithShadow(s.substring(3), (float) (j + (274 - this.fontRendererObj.getStringWidth(s.substring(3))) / 2), (float) l, 16777215);
+					this.fontRendererObj.drawStringWithShadow(s.substring(3), j + (274 - this.fontRendererObj.getStringWidth(s.substring(3))) / 2, l, 16777215);
 				}
 				else
 				{
-					this.fontRendererObj.fontRandom.setSeed((long) ((float) ((long) i1 * 4238972211L) + this.time / 4.0F));
-					this.fontRendererObj.drawStringWithShadow(s, (float) j, (float) l, 16777215);
+					this.fontRendererObj.fontRandom.setSeed((long) (i1 * 4238972211L + this.time / 4.0F));
+					this.fontRendererObj.drawStringWithShadow(s, j, l, 16777215);
 				}
 			}
 
@@ -252,10 +257,10 @@ public class GuiWinGame extends GuiScreen
 		int j1 = this.width;
 		int k1 = this.height;
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-		bufferbuilder.pos(0.0D, (double) k1, (double) this.zLevel).tex(0.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-		bufferbuilder.pos((double) j1, (double) k1, (double) this.zLevel).tex(1.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-		bufferbuilder.pos((double) j1, 0.0D, (double) this.zLevel).tex(1.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-		bufferbuilder.pos(0.0D, 0.0D, (double) this.zLevel).tex(0.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+		bufferbuilder.pos(0.0D, k1, this.zLevel).tex(0.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+		bufferbuilder.pos(j1, k1, this.zLevel).tex(1.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+		bufferbuilder.pos(j1, 0.0D, this.zLevel).tex(1.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+		bufferbuilder.pos(0.0D, 0.0D, this.zLevel).tex(0.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
 		tessellator.draw();
 		GlStateManager.disableBlend();
 		super.drawScreen(mouseX, mouseY, partialTicks);

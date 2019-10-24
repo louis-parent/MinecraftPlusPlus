@@ -33,6 +33,7 @@ public abstract class EntityCreature extends EntityLiving
 	 * Checks if the entity's current position is a valid location to spawn this
 	 * entity.
 	 */
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		return super.getCanSpawnHere() && this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
@@ -59,7 +60,7 @@ public abstract class EntityCreature extends EntityLiving
 		}
 		else
 		{
-			return this.homePosition.distanceSq(pos) < (double) (this.maximumHomeDistance * this.maximumHomeDistance);
+			return this.homePosition.distanceSq(pos) < this.maximumHomeDistance * this.maximumHomeDistance;
 		}
 	}
 
@@ -69,7 +70,7 @@ public abstract class EntityCreature extends EntityLiving
 	public void setHomePosAndDistance(BlockPos pos, int distance)
 	{
 		this.homePosition = pos;
-		this.maximumHomeDistance = (float) distance;
+		this.maximumHomeDistance = distance;
 	}
 
 	public BlockPos getHomePosition()
@@ -99,6 +100,7 @@ public abstract class EntityCreature extends EntityLiving
 	 * Applies logic related to leashes, for example dragging the entity or
 	 * breaking the leash.
 	 */
+	@Override
 	protected void updateLeashedState()
 	{
 		super.updateLeashedState();
@@ -128,9 +130,9 @@ public abstract class EntityCreature extends EntityLiving
 			}
 			else if (f > 6.0F)
 			{
-				double d0 = (entity.posX - this.posX) / (double) f;
-				double d1 = (entity.posY - this.posY) / (double) f;
-				double d2 = (entity.posZ - this.posZ) / (double) f;
+				double d0 = (entity.posX - this.posX) / f;
+				double d1 = (entity.posY - this.posY) / f;
+				double d2 = (entity.posZ - this.posZ) / f;
 				this.motionX += d0 * Math.abs(d0) * 0.4D;
 				this.motionY += d1 * Math.abs(d1) * 0.4D;
 				this.motionZ += d2 * Math.abs(d2) * 0.4D;
@@ -139,7 +141,7 @@ public abstract class EntityCreature extends EntityLiving
 			{
 				this.tasks.enableControlFlag(1);
 				float f1 = 2.0F;
-				Vec3d vec3d = (new Vec3d(entity.posX - this.posX, entity.posY - this.posY, entity.posZ - this.posZ)).normalize().scale((double) Math.max(f - 2.0F, 0.0F));
+				Vec3d vec3d = (new Vec3d(entity.posX - this.posX, entity.posY - this.posY, entity.posZ - this.posZ)).normalize().scale(Math.max(f - 2.0F, 0.0F));
 				this.getNavigator().tryMoveToXYZ(this.posX + vec3d.xCoord, this.posY + vec3d.yCoord, this.posZ + vec3d.zCoord, this.func_190634_dg());
 			}
 		}

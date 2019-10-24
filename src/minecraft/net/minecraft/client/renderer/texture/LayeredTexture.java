@@ -26,6 +26,7 @@ public class LayeredTexture extends AbstractTexture
 		this.layeredTextureNames = Lists.newArrayList(textureNames);
 	}
 
+	@Override
 	public void loadTexture(IResourceManager resourceManager) throws IOException
 	{
 		this.deleteGlTexture();
@@ -54,11 +55,11 @@ public class LayeredTexture extends AbstractTexture
 			}
 			catch (IOException ioexception)
 			{
-				LOGGER.error("Couldn't load layered image", (Throwable) ioexception);
+				LOGGER.error("Couldn't load layered image", ioexception);
 			}
 			finally
 			{
-				IOUtils.closeQuietly((Closeable) iresource);
+				IOUtils.closeQuietly(iresource);
 			}
 
 			return;

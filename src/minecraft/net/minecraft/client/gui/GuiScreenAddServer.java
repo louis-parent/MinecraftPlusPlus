@@ -22,6 +22,7 @@ public class GuiScreenAddServer extends GuiScreen
 	private GuiButton serverResourcePacks;
 	private final Predicate<String> addressFilter = new Predicate<String>()
 	{
+		@Override
 		public boolean apply(@Nullable String p_apply_1_)
 		{
 			if (StringUtils.isNullOrEmpty(p_apply_1_))
@@ -61,6 +62,7 @@ public class GuiScreenAddServer extends GuiScreen
 	/**
 	 * Called from the main game loop to update the screen.
 	 */
+	@Override
 	public void updateScreen()
 	{
 		this.serverNameField.updateCursorCounter();
@@ -72,6 +74,7 @@ public class GuiScreenAddServer extends GuiScreen
 	 * when the GUI is displayed and when the window resizes, the buttonList is
 	 * cleared beforehand.
 	 */
+	@Override
 	public void initGui()
 	{
 		Keyboard.enableRepeatEvents(true);
@@ -93,6 +96,7 @@ public class GuiScreenAddServer extends GuiScreen
 	 * Called when the screen is unloaded. Used to disable keyboard repeat
 	 * events
 	 */
+	@Override
 	public void onGuiClosed()
 	{
 		Keyboard.enableRepeatEvents(false);
@@ -102,6 +106,7 @@ public class GuiScreenAddServer extends GuiScreen
 	 * Called by the controls from the buttonList when activated. (Mouse pressed
 	 * for buttons)
 	 */
+	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
 		if (button.enabled)
@@ -129,6 +134,7 @@ public class GuiScreenAddServer extends GuiScreen
 	 * the equivalent of KeyListener.keyTyped(KeyEvent e). Args : character
 	 * (character on the key), keyCode (lwjgl Keyboard key code)
 	 */
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		this.serverNameField.textboxKeyTyped(typedChar, keyCode);
@@ -151,6 +157,7 @@ public class GuiScreenAddServer extends GuiScreen
 	/**
 	 * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
 	 */
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
 	{
 		super.mouseClicked(mouseX, mouseY, mouseButton);
@@ -161,6 +168,7 @@ public class GuiScreenAddServer extends GuiScreen
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
