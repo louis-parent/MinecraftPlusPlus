@@ -97,7 +97,10 @@
   },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
-      "beaches": "2019-10-04 15:11:15 +0200"
+      "deep_ocean": "2019-10-25 14:13:23 +0200",
+      "beaches": "2019-10-04 15:11:15 +0200",
+      "plains": "2019-10-25 14:13:37 +0200",
+      "ocean": "2019-10-25 14:12:52 +0200"
     },
     "done": false
   },
@@ -137,6 +140,18 @@
     },
     "done": true
   },
+  "minecraft:recipes/transportation/birch_boat": {
+    "criteria": {
+      "entered_water": "2019-10-25 14:22:23 +0200"
+    },
+    "done": true
+  },
+  "minecraft:story/shiny_gear": {
+    "criteria": {
+      "diamond_boots": "2019-10-25 14:21:30 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/building_blocks/brown_concrete_powder": {
     "criteria": {
       "has_sand": "2019-10-04 15:11:32 +0200"
@@ -161,6 +176,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/transportation/acacia_boat": {
+    "criteria": {
+      "entered_water": "2019-10-25 14:22:23 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/tools/stone_pickaxe": {
     "criteria": {
       "has_cobblestone": "2019-10-04 15:11:59 +0200"
@@ -179,9 +200,27 @@
     },
     "done": true
   },
+  "minecraft:recipes/transportation/boat": {
+    "criteria": {
+      "entered_water": "2019-10-25 14:22:23 +0200"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/sign": {
     "criteria": {
       "has_planks": "2019-10-04 15:11:57 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/jungle_boat": {
+    "criteria": {
+      "entered_water": "2019-10-25 14:22:23 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/spruce_boat": {
+    "criteria": {
+      "entered_water": "2019-10-25 14:22:23 +0200"
     },
     "done": true
   },
@@ -236,6 +275,12 @@
   "minecraft:recipes/transportation/carrot_on_a_stick": {
     "criteria": {
       "has_carrot": "2019-10-04 15:15:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/dark_oak_boat": {
+    "criteria": {
+      "entered_water": "2019-10-25 14:22:23 +0200"
     },
     "done": true
   },

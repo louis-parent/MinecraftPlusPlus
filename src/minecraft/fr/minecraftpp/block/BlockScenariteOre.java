@@ -54,26 +54,26 @@ public class BlockScenariteOre extends BlockOre
 	}
 
 	@Override
-	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+	public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
-		if (!worldIn.isRemote)
+		if (!world.isRemote)
 		{
-			int i = this.quantityDroppedWithBonus(fortune, worldIn.rand);
+			int i = this.quantityDroppedWithBonus(fortune, world.rand);
 
 			for (int j = 0; j < i; ++j)
 			{
-				if (worldIn.rand.nextFloat() <= chance)
+				if (world.rand.nextFloat() <= chance)
 				{
-					Item item = this.getItemDropped(state, worldIn.rand, fortune);
+					Item item = this.getItemDropped(state, world.rand, fortune);
 
 					if (item != Items.EMPTY_ITEM)
 					{
-						spawnAsEntity(worldIn, pos, new ItemStack(item, 1, this.damageDropped(state)));
+						spawnAsEntity(world, pos, new ItemStack(item, 1, this.damageDropped(state)));
 					}
 
 					if (item != Item.getItemFromBlock(this))
 					{
-						this.dropXpOnBlockBreak(worldIn, pos, MathHelper.getInt(worldIn.rand, 4, 8));
+						this.dropXpOnBlockBreak(world, pos, MathHelper.getInt(world.rand, 4, 8));
 					}
 				}
 			}

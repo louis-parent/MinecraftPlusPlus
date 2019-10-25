@@ -31,6 +31,9 @@ public class BlockOre extends Block
 		super(Material.ROCK, color);
 		
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+		this.setHardness(3.0F);
+		this.setResistance(5.0F);
+		
 		OreRegistry.register(this);
 	}
 
@@ -98,36 +101,36 @@ public class BlockOre extends Block
 	 * Spawns this Block's drops into the World as EntityItems.
 	 */
 	@Override
-	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+	public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
-		super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
+		super.dropBlockAsItemWithChance(world, pos, state, chance, fortune);
 
-		if (this.getItemDropped(state, worldIn.rand, fortune) != Item.getItemFromBlock(this))
+		if (this.getItemDropped(state, world.rand, fortune) != Item.getItemFromBlock(this))
 		{
 			int i = 0;
 
 			if (this == Blocks.COAL_ORE)
 			{
-				i = MathHelper.getInt(worldIn.rand, 0, 2);
+				i = MathHelper.getInt(world.rand, 0, 2);
 			}
 			else if (this == Blocks.DIAMOND_ORE)
 			{
-				i = MathHelper.getInt(worldIn.rand, 3, 7);
+				i = MathHelper.getInt(world.rand, 3, 7);
 			}
 			else if (this == Blocks.EMERALD_ORE)
 			{
-				i = MathHelper.getInt(worldIn.rand, 3, 7);
+				i = MathHelper.getInt(world.rand, 3, 7);
 			}
 			else if (this == Blocks.LAPIS_ORE)
 			{
-				i = MathHelper.getInt(worldIn.rand, 2, 5);
+				i = MathHelper.getInt(world.rand, 2, 5);
 			}
 			else if (this == Blocks.QUARTZ_ORE)
 			{
-				i = MathHelper.getInt(worldIn.rand, 2, 5);
+				i = MathHelper.getInt(world.rand, 2, 5);
 			}
 
-			this.dropXpOnBlockBreak(worldIn, pos, i);
+			this.dropXpOnBlockBreak(world, pos, i);
 		}
 	}
 

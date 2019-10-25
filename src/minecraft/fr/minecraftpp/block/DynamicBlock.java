@@ -30,8 +30,8 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 		super(Material.IRON, MapColor.EMERALD);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		
-		this.setUnlocalizedName(typeName + "Block");
 		this.ID = typeName + "Block";
+		this.setUnlocalizedName(this.ID);
 		
 		this.TEXTURE_ID = textureId;
 		
