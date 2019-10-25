@@ -1,7 +1,9 @@
 package fr.minecraftpp.renderer;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.block.ModBlock;
 import fr.minecraftpp.block.ModBlocks;
+import fr.minecraftpp.generator.IDynamicBlock;
 import fr.minecraftpp.generator.IDynamicItem;
 import fr.minecraftpp.item.ModItem;
 import fr.minecraftpp.item.ModItems;
@@ -22,6 +24,11 @@ public class ModRenderItem extends RenderItem
 	{
 		renderer.registerBlock(ModBlocks.SCENARITE_ORE, "scenarite_ore");
 		renderer.registerBlock(ModBlocks.SCENARIUM_BLOCK, "scenarium_block");
+		
+		for (IDynamicBlock block : ModBlock.REGISTRY)
+		{
+			renderer.registerBlock(block.getBlock(), block.getID());
+		}
 	}
 
 	public static void registerItemRender(RenderItem renderer)

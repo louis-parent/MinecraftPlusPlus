@@ -2,6 +2,7 @@ package net.minecraft.block;
 
 import java.util.Random;
 
+import fr.minecraftpp.block.IFalling;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -61,7 +62,7 @@ public class BlockDragonEgg extends Block
 
 	private void checkFall(World worldIn, BlockPos pos)
 	{
-		if (BlockFalling.canFallThrough(worldIn.getBlockState(pos.down())) && pos.getY() >= 0)
+		if (IFalling.canFallThrough(worldIn.getBlockState(pos.down())) && pos.getY() >= 0)
 		{
 			int i = 32;
 
@@ -74,7 +75,7 @@ public class BlockDragonEgg extends Block
 				worldIn.setBlockToAir(pos);
 				BlockPos blockpos;
 
-				for (blockpos = pos; BlockFalling.canFallThrough(worldIn.getBlockState(blockpos)) && blockpos.getY() > 0; blockpos = blockpos.down())
+				for (blockpos = pos; IFalling.canFallThrough(worldIn.getBlockState(blockpos)) && blockpos.getY() > 0; blockpos = blockpos.down())
 				{
 					;
 				}

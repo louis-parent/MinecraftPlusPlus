@@ -75,20 +75,20 @@ public class ResourceLocation implements Comparable<ResourceLocation>
 	}
 
 	@Override
-	public boolean equals(Object p_equals_1_)
+	public boolean equals(Object object)
 	{
-		if (this == p_equals_1_)
+		if (this == object)
 		{
 			return true;
 		}
-		else if (!(p_equals_1_ instanceof ResourceLocation))
+		else if (object instanceof ResourceLocation)
 		{
-			return false;
+			ResourceLocation resourcelocation = (ResourceLocation) object;
+			return this.resourceDomain.equals(resourcelocation.resourceDomain) && this.resourcePath.equals(resourcelocation.resourcePath);
 		}
 		else
 		{
-			ResourceLocation resourcelocation = (ResourceLocation) p_equals_1_;
-			return this.resourceDomain.equals(resourcelocation.resourceDomain) && this.resourcePath.equals(resourcelocation.resourcePath);
+			return false;
 		}
 	}
 
@@ -99,13 +99,13 @@ public class ResourceLocation implements Comparable<ResourceLocation>
 	}
 
 	@Override
-	public int compareTo(ResourceLocation p_compareTo_1_)
+	public int compareTo(ResourceLocation ressourceLocation)
 	{
-		int i = this.resourceDomain.compareTo(p_compareTo_1_.resourceDomain);
+		int i = this.resourceDomain.compareTo(ressourceLocation.resourceDomain);
 
 		if (i == 0)
 		{
-			i = this.resourcePath.compareTo(p_compareTo_1_.resourcePath);
+			i = this.resourcePath.compareTo(ressourceLocation.resourcePath);
 		}
 
 		return i;

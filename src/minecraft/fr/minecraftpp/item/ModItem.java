@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.block.ModBlock;
 import fr.minecraftpp.block.ModBlocks;
+import fr.minecraftpp.generator.IDynamicBlock;
 import fr.minecraftpp.generator.IDynamicItem;
 import fr.minecraftpp.item.armor.ItemBoots;
 import fr.minecraftpp.item.armor.ItemChestplate;
@@ -29,6 +31,11 @@ public class ModItem extends Item
 	{
 		registerItemBlock(ModBlocks.SCENARITE_ORE);
 		registerItemBlock(ModBlocks.SCENARIUM_BLOCK);
+		
+		for(IDynamicBlock block : ModBlock.REGISTRY)
+		{
+			registerItemBlock(block.getBlock());
+		}
 	}
 
 	public static void registerItems()

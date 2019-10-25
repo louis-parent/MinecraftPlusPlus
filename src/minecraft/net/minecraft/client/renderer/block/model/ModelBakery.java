@@ -85,6 +85,7 @@ public class ModelBakery
 
 	public IRegistry<ModelResourceLocation, IBakedModel> setupModelRegistry()
 	{
+		ModModelManager.loadBlockModels(this.models, this.blockDefinitions);
 		this.loadBlocks();
 		
 		ModModelManager.loadItemModels(this.models);
@@ -111,16 +112,17 @@ public class ModelBakery
 					ModelBlockDefinition modelblockdefinition = this.getModelBlockDefinition(resourcelocation);
 					Map<IBlockState, ModelResourceLocation> map = blockstatemapper.getVariants(block);
 
-					if (modelblockdefinition.hasMultipartData())
+					ModelBlockDefinition modelblockdefinition2 = modelblockdefinition;
+					if (modelblockdefinition2.hasMultipartData())
 					{
 						Collection<ModelResourceLocation> collection = Sets.newHashSet(map.values());
-						modelblockdefinition.getMultipartData().setStateContainer(block.getBlockState());
-						Collection<ModelResourceLocation> collection1 = this.multipartVariantMap.get(modelblockdefinition);
+						modelblockdefinition2.getMultipartData().setStateContainer(block.getBlockState());
+						Collection<ModelResourceLocation> collection1 = this.multipartVariantMap.get(modelblockdefinition2);
 
 						if (collection1 == null)
 						{
 							collection1 = Lists.<ModelResourceLocation>newArrayList();
-							this.multipartVariantMap.put(modelblockdefinition, collection1);
+							this.multipartVariantMap.put(modelblockdefinition2, collection1);
 						}
 
 						collection1.addAll(Lists.newArrayList(Iterables.filter(collection, new Predicate<ModelResourceLocation>()
@@ -137,17 +139,18 @@ public class ModelBakery
 					{
 						ModelResourceLocation modelresourcelocation = entry.getValue();
 
-						if (resourcelocation.equals(modelresourcelocation))
+						ModelResourceLocation modelresourcelocation2 = modelresourcelocation;
+						if (resourcelocation.equals(modelresourcelocation2))
 						{
 							try
 							{
-								this.variants.put(modelresourcelocation, modelblockdefinition.getVariant(modelresourcelocation.getVariant()));
+								this.variants.put(modelresourcelocation2, modelblockdefinition2.getVariant(modelresourcelocation2.getVariant()));
 							}
 							catch (RuntimeException var12)
 							{
-								if (!modelblockdefinition.hasMultipartData())
+								if (!modelblockdefinition2.hasMultipartData())
 								{
-									LOGGER.warn("Unable to load variant: {} from {}", modelresourcelocation.getVariant(), modelresourcelocation);
+									LOGGER.warn("Unable to load variant: {} from {}", modelresourcelocation2.getVariant(), modelresourcelocation2);
 								}
 							}
 						}

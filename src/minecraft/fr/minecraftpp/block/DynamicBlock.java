@@ -4,10 +4,12 @@ import java.util.Random;
 
 import fr.minecraftpp.damageSource.ModDamageSource;
 import fr.minecraftpp.generator.IDynamicBlock;
+import fr.minecraftpp.language.ModLanguage;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,6 +28,7 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	public DynamicBlock(String typeName, int textureId, boolean hasGravity, int lightPercentage, boolean isAbsorbing, int opacityPercentage, float walkDamage, FlammabilityOf flammability, double accelaration, float slipperiness, float hardness, float resistance)
 	{
 		super(Material.IRON, MapColor.EMERALD);
+		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		
 		this.setUnlocalizedName(typeName + "Block");
 		this.ID = typeName + "Block";
@@ -41,7 +44,11 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 		this.accelaration = accelaration;
 		this.slipperiness = slipperiness;
 		this.setHardness(hardness);
-		this.setResistance(resistance);
+		this.setResistance(resistance); 
+		
+		// TODO Extract
+		ModBlock.setBlockToRegister(this);
+		ModLanguage.addTranslation(this);
 	}
 
 	@Override

@@ -140,7 +140,7 @@ public class BlockAnvil extends BlockFalling
 	}
 
 	@Override
-	protected void onStartFalling(EntityFallingBlock fallingEntity)
+	public void onStartFalling(EntityFallingBlock fallingEntity)
 	{
 		fallingEntity.setHurtEntities(true);
 	}

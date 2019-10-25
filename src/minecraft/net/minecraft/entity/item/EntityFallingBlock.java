@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
+import fr.minecraftpp.block.IFalling;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockFalling;
@@ -185,7 +186,7 @@ public class EntityFallingBlock extends Entity
 				{
 					IBlockState iblockstate = this.world.getBlockState(blockpos1);
 
-					if (!flag1 && BlockFalling.canFallThrough(this.world.getBlockState(new BlockPos(this.posX, this.posY - 0.009999999776482582D, this.posZ))))
+					if (!flag1 && IFalling.canFallThrough(this.world.getBlockState(new BlockPos(this.posX, this.posY - 0.009999999776482582D, this.posZ))))
 					{
 						this.onGround = false;
 						return;
@@ -201,7 +202,7 @@ public class EntityFallingBlock extends Entity
 
 						if (!this.canSetAsBlock)
 						{
-							if (this.world.func_190527_a(block, blockpos1, true, EnumFacing.UP, (Entity) null) && (flag1 || !BlockFalling.canFallThrough(this.world.getBlockState(blockpos1.down()))) && this.world.setBlockState(blockpos1, this.fallTile, 3))
+							if (this.world.func_190527_a(block, blockpos1, true, EnumFacing.UP, (Entity) null) && (flag1 || !IFalling.canFallThrough(this.world.getBlockState(blockpos1.down()))) && this.world.setBlockState(blockpos1, this.fallTile, 3))
 							{
 								if (block instanceof BlockFalling)
 								{
