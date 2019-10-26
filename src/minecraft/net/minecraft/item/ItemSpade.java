@@ -21,8 +21,19 @@ import net.minecraft.world.World;
 
 public class ItemSpade extends ItemTool
 {
-	private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.CLAY, Blocks.DIRT, Blocks.FARMLAND, Blocks.GRASS, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SOUL_SAND, Blocks.GRASS_PATH, Blocks.field_192444_dS);
-
+	private static Set<Block> EFFECTIVE_ON;
+	
+	private static Set<Block> getEffectiveOn()
+	{
+		if(EFFECTIVE_ON == null)
+		{
+			EFFECTIVE_ON = Sets.newHashSet(Blocks.CLAY, Blocks.DIRT, Blocks.FARMLAND, Blocks.GRASS, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SOUL_SAND, Blocks.GRASS_PATH, Blocks.field_192444_dS);
+		}
+		
+		return EFFECTIVE_ON;
+			
+	}
+	
 	public ItemSpade(IToolMaterial material)
 	{
 		super(1.5F, -3.0F, material);
@@ -86,7 +97,7 @@ public class ItemSpade extends ItemTool
 	@Override
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
 	{
-		return EFFECTIVE_ON.contains(state.getBlock()) ? this.efficiencyOnProperMaterial : 1.0F;
+		return getEffectiveOn().contains(state.getBlock()) ? this.efficiencyOnProperMaterial : 1.0F;
 	}
 
 	@Override

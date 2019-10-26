@@ -7,14 +7,19 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 @Mod("Minecraftpp")
-public class RecipeBlock extends ShapedRecipe
+public class RecipeCompact extends ShapedRecipe
 {
 
 	private Item material;
-
-	public RecipeBlock(Item material, Block result)
+	
+	public RecipeCompact(Item material, Block result)
 	{
-		super(Item.getItemFromBlock(result));
+		this(material, Item.getItemFromBlock(result));
+	}
+
+	public RecipeCompact(Item material, Item result)
+	{
+		super(result);
 
 		this.material = material;
 		this.changeBlueprint(this.getBlueprint());

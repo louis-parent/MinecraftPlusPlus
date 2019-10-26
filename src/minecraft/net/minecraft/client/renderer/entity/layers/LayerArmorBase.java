@@ -89,6 +89,9 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 				}
 				else
 				{
+					/*
+					 * TODO COLORED ARMOR {@links renderColoredArmor}
+					 */
 					renderSimpleArmor(entityLivingBase, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, t);
 				}
 			}
@@ -97,11 +100,11 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 
 	private void renderColoredArmor(EntityLivingBase entityLivingBase, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, ItemStack itemstack, ItemArmor itemarmor, T t, boolean flag)
 	{
-		int i = itemarmor.getColor(itemstack);
-		float f = (i >> 16 & 255) / 255.0F;
-		float f1 = (i >> 8 & 255) / 255.0F;
-		float f2 = (i & 255) / 255.0F;
-		GlStateManager.color(this.colorR * f, this.colorG * f1, this.colorB * f2, this.alpha);
+		int rgbIntensity = itemarmor.getColor(itemstack);
+		float redIntensity = (rgbIntensity >> 16 & 255) / 255.0F;
+		float greenIntensity = (rgbIntensity >> 8 & 255) / 255.0F;
+		float blueIntensity = (rgbIntensity & 255) / 255.0F;
+		GlStateManager.color(this.colorR * redIntensity, this.colorG * greenIntensity, this.colorB * blueIntensity, this.alpha);
 		t.render(entityLivingBase, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 		this.renderer.bindTexture(this.getArmorResource(itemarmor, flag, "overlay"));
 	}

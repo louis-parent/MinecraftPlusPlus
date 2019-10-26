@@ -6,11 +6,16 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 @Mod("Minecraftpp")
-public class RecipeItemFromBlock extends ShapelessRecipe
+public class RecipeDecompact extends ShapelessRecipe
 {
-	public RecipeItemFromBlock(Block material, Item result)
+	public RecipeDecompact(Block material, Item result)
 	{
-		super(result, Item.getItemFromBlock(material));
+		this(Item.getItemFromBlock(material), result);
+	}
+	
+	public RecipeDecompact(Item material, Item result)
+	{
+		super(result, material);
 	}
 
 	@Override

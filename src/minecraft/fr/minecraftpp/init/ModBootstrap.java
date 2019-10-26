@@ -13,6 +13,7 @@ public class ModBootstrap
 	public static void preBootstrap()
 	{
 		ModGenerator.generateOre();
+		ModGenerator.register();
 	}
 	
 	public static void postBootstrap()

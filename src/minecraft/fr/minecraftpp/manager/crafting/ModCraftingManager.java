@@ -8,8 +8,8 @@ import fr.minecraftpp.crafting.armor.RecipeBoots;
 import fr.minecraftpp.crafting.armor.RecipeChestplate;
 import fr.minecraftpp.crafting.armor.RecipeHelmet;
 import fr.minecraftpp.crafting.armor.RecipeLeggings;
-import fr.minecraftpp.crafting.item.RecipeBlock;
-import fr.minecraftpp.crafting.item.RecipeItemFromBlock;
+import fr.minecraftpp.crafting.item.RecipeCompact;
+import fr.minecraftpp.crafting.item.RecipeDecompact;
 import fr.minecraftpp.crafting.tools.RecipeAxe;
 import fr.minecraftpp.crafting.tools.RecipeHoe;
 import fr.minecraftpp.crafting.tools.RecipePickaxe;
@@ -34,8 +34,8 @@ public class ModCraftingManager
 	{
 		try
 		{
-			new RecipeBlock(ModItems.SCENARIUM, ModBlocks.SCENARIUM_BLOCK);
-			new RecipeItemFromBlock(ModBlocks.SCENARIUM_BLOCK, ModItems.SCENARIUM);
+			new RecipeCompact(ModItems.SCENARIUM, ModBlocks.SCENARIUM_BLOCK);
+			new RecipeDecompact(ModBlocks.SCENARIUM_BLOCK, ModItems.SCENARIUM);
 
 			new RecipeSword(ModItems.SCENARIUM, ModItems.SCENARIUM_SWORD);
 			new RecipePickaxe(ModItems.SCENARIUM, ModItems.SCENARIUM_PICKAXE);

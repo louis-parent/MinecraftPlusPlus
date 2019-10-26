@@ -17,29 +17,49 @@ import net.minecraft.init.Blocks;
 
 public class ItemPickaxe extends ItemTool
 {
-	private static final Set<Block> EFFECTIVE_ON_BLOCK = Sets.newHashSet(Blocks.ACTIVATOR_RAIL, Blocks.COAL_ORE, Blocks.COBBLESTONE, Blocks.DETECTOR_RAIL, Blocks.DIAMOND_BLOCK, Blocks.DIAMOND_ORE, Blocks.DOUBLE_STONE_SLAB, Blocks.GOLDEN_RAIL, Blocks.GOLD_BLOCK, Blocks.GOLD_ORE, Blocks.ICE, Blocks.IRON_BLOCK, Blocks.IRON_ORE, Blocks.LAPIS_BLOCK, Blocks.LAPIS_ORE, Blocks.LIT_REDSTONE_ORE, Blocks.MOSSY_COBBLESTONE, Blocks.NETHERRACK, Blocks.PACKED_ICE, Blocks.RAIL, Blocks.REDSTONE_ORE, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, Blocks.STONE, Blocks.STONE_SLAB, Blocks.STONE_BUTTON, Blocks.STONE_PRESSURE_PLATE);
-
 	@Mod("Minecraftpp")
-	private static final Set<Material> EFFECTIVE_ON = Sets.newHashSet(Material.ROCK, Material.IRON, Material.ANVIL, Material.ICE, Material.PACKED_ICE, Material.RAIL);
+	private static Set<Material> EFFECTIVE_ON;
+	
 	@Mod("Minecraftpp")
-	private static final Map<Block, Integer> HARVEST_LEVEL = new HashMap<Block, Integer>()
+	private static Map<Block, Integer> HARVEST_LEVEL;
+	
+	private static Set<Material> getEffectiveOn()
 	{
+		if(EFFECTIVE_ON == null)
 		{
-			put(Blocks.OBSIDIAN, 3);
-			put(Blocks.DIAMOND_BLOCK, 2);
-			put(Blocks.DIAMOND_ORE, 2);
-			put(Blocks.EMERALD_ORE, 2);
-			put(Blocks.EMERALD_BLOCK, 2);
-			put(Blocks.GOLD_BLOCK, 2);
-			put(Blocks.GOLD_ORE, 2);
-			put(Blocks.IRON_BLOCK, 1);
-			put(Blocks.IRON_ORE, 1);
-			put(Blocks.LAPIS_BLOCK, 1);
-			put(Blocks.LAPIS_ORE, 1);
-			put(Blocks.REDSTONE_ORE, 2);
-			put(Blocks.LIT_REDSTONE_ORE, 2);
+			EFFECTIVE_ON = Sets.newHashSet(Material.ROCK, Material.IRON, Material.ANVIL, Material.ICE, Material.PACKED_ICE, Material.RAIL);
 		}
-	};
+		
+		return EFFECTIVE_ON;
+			
+	}
+	
+	private static Map<Block, Integer> getHarvestLevel()
+	{
+		if(HARVEST_LEVEL == null)
+		{
+			HARVEST_LEVEL = new HashMap<Block, Integer>()
+			{
+				{
+					put(Blocks.OBSIDIAN, 3);
+					put(Blocks.DIAMOND_BLOCK, 2);
+					put(Blocks.DIAMOND_ORE, 2);
+					put(Blocks.EMERALD_ORE, 2);
+					put(Blocks.EMERALD_BLOCK, 2);
+					put(Blocks.GOLD_BLOCK, 2);
+					put(Blocks.GOLD_ORE, 2);
+					put(Blocks.IRON_BLOCK, 1);
+					put(Blocks.IRON_ORE, 1);
+					put(Blocks.LAPIS_BLOCK, 1);
+					put(Blocks.LAPIS_ORE, 1);
+					put(Blocks.REDSTONE_ORE, 2);
+					put(Blocks.LIT_REDSTONE_ORE, 2);
+				}
+			};
+		}
+		
+		return HARVEST_LEVEL;
+	}
 
 	public ItemPickaxe(IToolMaterial material)
 	{
@@ -52,38 +72,13 @@ public class ItemPickaxe extends ItemTool
 	@Override
 	public boolean canHarvestBlock(IBlockState state)
 	{
-		return EFFECTIVE_ON.contains(state.getMaterial()) && this.toolMaterial.getHarvestLevel() >= (HARVEST_LEVEL.containsKey(state.getBlock()) ? HARVEST_LEVEL.get(state.getBlock()) : state.getBlock().getRequiredHarvestLevel());
-	}
-
-	@Mod("Minecraftpp")
-	public void testHarvest()
-	{
-		for (Field field : Blocks.class.getFields())
-		{
-			try
-			{
-				if (field.get(null) instanceof Block)
-				{
-					Block block = (Block) field.get(null);
-					Material material = block.getDefaultState().getMaterial();
-
-					if ((EFFECTIVE_ON_BLOCK.contains(block) || material == Material.IRON || material == Material.ANVIL || material == Material.ROCK) != this.canHarvestBlock(block.getDefaultState()))
-					{
-						System.err.println("---------- " + block.getUnlocalizedName());
-					}
-				}
-			}
-			catch (IllegalArgumentException | IllegalAccessException e)
-			{
-				e.printStackTrace();
-			}
-		}
+		return getEffectiveOn().contains(state.getMaterial()) && this.toolMaterial.getHarvestLevel() >= (getHarvestLevel().containsKey(state.getBlock()) ? getHarvestLevel().get(state.getBlock()) : state.getBlock().getRequiredHarvestLevel());
 	}
 
 	@Override
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
 	{
-		return EFFECTIVE_ON.contains(state.getMaterial()) ? this.efficiencyOnProperMaterial : 1.0F;
+		return getEffectiveOn().contains(state.getMaterial()) ? this.efficiencyOnProperMaterial : 1.0F;
 	}
 
 	@Override

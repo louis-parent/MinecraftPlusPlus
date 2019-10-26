@@ -1,4 +1,4 @@
-package fr.minecraftpp.generator;
+package fr.minecraftpp.generator.set;
 
 import java.util.Random;
 
@@ -6,13 +6,14 @@ import fr.minecraftpp.block.DynamicBlock;
 import fr.minecraftpp.block.ore.DynamicOre;
 import fr.minecraftpp.block.ore.DynamicOreGem;
 import fr.minecraftpp.crafting.furnace.FurnaceRecipe;
-import fr.minecraftpp.crafting.item.RecipeBlock;
-import fr.minecraftpp.crafting.item.RecipeItemFromBlock;
+import fr.minecraftpp.crafting.item.RecipeCompact;
+import fr.minecraftpp.crafting.item.RecipeDecompact;
 import fr.minecraftpp.enumeration.FlammabilityOf;
 import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.food.Food;
 import fr.minecraftpp.language.ModLanguage;
+import fr.minecraftpp.manager.ModManager;
 import fr.minecraftpp.manager.block.ModBlock;
 import fr.minecraftpp.manager.item.ModItem;
 import fr.minecraftpp.util.NameGenerator;
@@ -38,8 +39,6 @@ public class SimpleSet implements ISet
 		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng));
 		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng));
 		this.ore = new DynamicOreGem(name, DynamicOre.getRandomTextureId(this.rng), item, this.rng.nextInt(QUANTITY_DROPPED_MAX) + 1, HarvestLevel.getRandomHarvestLevel(this.rng), this.rng.nextInt(2), this.rng.nextInt(3) + 2);
-	
-		this.register();
 	}
 	
 	public void setupEffects()
@@ -62,10 +61,18 @@ public class SimpleSet implements ISet
 		this.setupBeacon();
 	}
 	
+	public void register()
+	{
+		ModManager.registerDynamic(this.item);
+		
+		ModManager.registerDynamic(this.block);
+		ModManager.registerDynamic(this.ore);
+	}
+	
 	public void addRecipes()
 	{
-		new RecipeBlock(this.item, this.block);
-		new RecipeItemFromBlock(this.block, this.item);
+		new RecipeCompact(this.item, this.block);
+		new RecipeDecompact(this.block, this.item);
 		new FurnaceRecipe(this.ore, this.item.getAsStack(), (this.rng.nextInt(12) + 1) / 10);
 	}
 
@@ -187,17 +194,5 @@ public class SimpleSet implements ISet
 			this.item.setBeaconCurrency(true);
 			this.block.setBeaconBase(true);
 		}
-	}
-	
-	private void register()
-	{
-		ModItem.setItemToRegister(this.item);
-		ModLanguage.addTranslation(this.item);
-		
-		ModBlock.setBlockToRegister(this.block);
-		ModLanguage.addTranslation(this.block);
-		
-		ModBlock.setBlockToRegister(this.ore);
-		ModLanguage.addTranslation(this.ore);
 	}
 }

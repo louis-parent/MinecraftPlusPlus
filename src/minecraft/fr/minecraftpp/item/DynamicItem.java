@@ -22,7 +22,7 @@ public class DynamicItem extends Item implements IDynamicItem
 {
 	private static final int NUMBER_OF_TEXTURES = 6;
 	private final String ID;
-	private final int TEXTURE_ID;
+	private int textureId;
 	
 	private boolean hasEffect;
 	private int fuelAmount;
@@ -47,8 +47,7 @@ public class DynamicItem extends Item implements IDynamicItem
 		
 		this.setUnlocalizedName(typeName);
 		this.ID = typeName;
-		
-		this.TEXTURE_ID = textureId;
+		this.textureId = textureId;
 		
 		this.isBeaconCurrency = false;
 	}
@@ -153,7 +152,7 @@ public class DynamicItem extends Item implements IDynamicItem
 	@Override
 	public String getTextureName()
 	{
-		return this.getTexturePrefix() + this.TEXTURE_ID;
+		return this.getTexturePrefix() + this.textureId;
 	}
 
 	private String getTexturePrefix()
@@ -189,6 +188,11 @@ public class DynamicItem extends Item implements IDynamicItem
 
 	public static int getRandomTextureId(Random rng)
 	{
-		return rng.nextInt(NUMBER_OF_TEXTURES) + 1;
+		return rng.nextInt(NUMBER_OF_TEXTURES - 1) + 1;
+	}
+
+	public void setTextureAsMetal()
+	{
+		this.textureId = NUMBER_OF_TEXTURES;
 	}
 }
