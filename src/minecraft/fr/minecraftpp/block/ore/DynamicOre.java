@@ -2,14 +2,11 @@ package fr.minecraftpp.block.ore;
 
 import java.util.Random;
 
-import fr.minecraftpp.block.HarvestLevel;
-import fr.minecraftpp.block.ModBlock;
-import fr.minecraftpp.generator.IDynamicBlock;
-import fr.minecraftpp.language.ModLanguage;
+import fr.minecraftpp.block.IDynamicBlock;
+import fr.minecraftpp.enumeration.HarvestLevel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.enchantment.Enchantment.EnchantmentRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
 

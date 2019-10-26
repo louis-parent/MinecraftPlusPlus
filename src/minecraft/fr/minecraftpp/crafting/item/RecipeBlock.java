@@ -1,6 +1,7 @@
-package fr.minecraftpp.crafting;
+package fr.minecraftpp.crafting.item;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.crafting.ShapedRecipe;
 import fr.minecraftpp.crafting.blueprint.Blueprint;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

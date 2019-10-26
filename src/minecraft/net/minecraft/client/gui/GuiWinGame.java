@@ -1,7 +1,6 @@
 package net.minecraft.client.gui;
 
 import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;

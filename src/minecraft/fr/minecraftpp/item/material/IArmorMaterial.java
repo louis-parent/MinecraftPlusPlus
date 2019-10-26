@@ -1,4 +1,4 @@
-package fr.minecraftpp.item.armor;
+package fr.minecraftpp.item.material;
 
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.inventory.EntityArmorSlot;

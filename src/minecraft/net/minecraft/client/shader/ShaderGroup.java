@@ -1,6 +1,5 @@
 package net.minecraft.client.shader;
 
-import java.io.Closeable;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

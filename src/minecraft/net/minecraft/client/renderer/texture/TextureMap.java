@@ -1,6 +1,5 @@
 package net.minecraft.client.renderer.texture;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;

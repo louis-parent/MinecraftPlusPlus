@@ -1,4 +1,4 @@
-package fr.minecraftpp.block.ore;
+package fr.minecraftpp.manager.block;
 
 import java.util.ArrayList;
 import java.util.List;

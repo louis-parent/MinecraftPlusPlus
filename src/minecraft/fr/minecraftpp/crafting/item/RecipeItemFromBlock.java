@@ -1,6 +1,7 @@
-package fr.minecraftpp.crafting;
+package fr.minecraftpp.crafting.item;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.crafting.ShapelessRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 

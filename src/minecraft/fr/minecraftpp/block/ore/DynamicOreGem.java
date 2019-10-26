@@ -2,7 +2,7 @@ package fr.minecraftpp.block.ore;
 
 import java.util.Random;
 
-import fr.minecraftpp.block.HarvestLevel;
+import fr.minecraftpp.enumeration.HarvestLevel;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

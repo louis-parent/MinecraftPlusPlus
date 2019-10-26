@@ -1,4 +1,4 @@
-package fr.minecraftpp.generator.item.food;
+package fr.minecraftpp.item.food;
 
 import fr.minecraftpp.item.DynamicItem;
 import net.minecraft.advancements.CriteriaTriggers;

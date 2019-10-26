@@ -1,4 +1,4 @@
-package fr.minecraftpp.generator.item;
+package fr.minecraftpp.item;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;

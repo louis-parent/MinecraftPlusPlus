@@ -3,8 +3,7 @@ package fr.minecraftpp.block;
 import java.util.Random;
 
 import fr.minecraftpp.damageSource.ModDamageSource;
-import fr.minecraftpp.generator.IDynamicBlock;
-import fr.minecraftpp.language.ModLanguage;
+import fr.minecraftpp.enumeration.FlammabilityOf;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;

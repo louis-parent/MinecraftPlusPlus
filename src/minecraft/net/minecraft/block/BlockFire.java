@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Maps;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.block.ModBlocks;
+import fr.minecraftpp.manager.block.ModBlocks;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;

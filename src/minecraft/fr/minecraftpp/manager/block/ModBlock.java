@@ -1,16 +1,15 @@
-package fr.minecraftpp.block;
+package fr.minecraftpp.manager.block;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.block.BlockScenarium;
+import fr.minecraftpp.block.IDynamicBlock;
 import fr.minecraftpp.block.ore.BlockScenariteOre;
-import fr.minecraftpp.generator.IDynamicBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.Rarity;
 
 @Mod("minecraftpp")
 public class ModBlock extends Block

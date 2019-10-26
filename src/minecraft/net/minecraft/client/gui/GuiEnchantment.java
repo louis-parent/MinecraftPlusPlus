@@ -9,7 +9,7 @@ import org.lwjgl.util.glu.Project;
 import com.google.common.collect.Lists;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.item.ModItems;
+import fr.minecraftpp.manager.item.ModItems;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.GlStateManager;

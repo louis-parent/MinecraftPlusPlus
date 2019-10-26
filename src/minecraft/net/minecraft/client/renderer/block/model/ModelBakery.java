@@ -1,6 +1,5 @@
 package net.minecraft.client.renderer.block.model;
 
-import java.io.Closeable;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +30,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Queues;
 import com.google.common.collect.Sets;
 
-import fr.minecraftpp.renderer.ModModelManager;
+import fr.minecraftpp.manager.renderer.ModModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BlockModelShapes;

@@ -8,8 +8,8 @@ import java.util.Set;
 import com.google.common.collect.Sets;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.item.tool.IToolMaterial;
-import fr.minecraftpp.item.tool.ToolType;
+import fr.minecraftpp.enumeration.ToolType;
+import fr.minecraftpp.item.material.IToolMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

@@ -1,8 +1,8 @@
 package fr.minecraftpp.init;
 
-import fr.minecraftpp.block.ModBlocks;
 import fr.minecraftpp.generator.ModGenerator;
-import fr.minecraftpp.item.ModItems;
+import fr.minecraftpp.manager.block.ModBlocks;
+import fr.minecraftpp.manager.item.ModItems;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;

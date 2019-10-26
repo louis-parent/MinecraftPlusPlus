@@ -2,7 +2,7 @@ package fr.minecraftpp.block.ore;
 
 import java.util.Random;
 
-import fr.minecraftpp.item.ModItems;
+import fr.minecraftpp.manager.item.ModItems;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;

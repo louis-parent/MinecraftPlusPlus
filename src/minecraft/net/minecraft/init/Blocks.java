@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Sets;
 
-import fr.minecraftpp.block.ModBlocks;
+import fr.minecraftpp.manager.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBush;

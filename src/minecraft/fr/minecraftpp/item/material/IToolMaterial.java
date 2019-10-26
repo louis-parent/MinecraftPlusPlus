@@ -1,6 +1,7 @@
-package fr.minecraftpp.item.tool;
+package fr.minecraftpp.item.material;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.enumeration.ToolType;
 import net.minecraft.item.Item;
 
 @Mod("Minecraftpp")

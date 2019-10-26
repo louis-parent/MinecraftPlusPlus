@@ -12,7 +12,6 @@ import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockDoublePlant;
-import net.minecraft.block.BlockDropper;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockFlowerPot;

@@ -1,7 +1,6 @@
 package net.minecraft.client.shader;
 
 import java.io.BufferedInputStream;
-import java.io.Closeable;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Map;

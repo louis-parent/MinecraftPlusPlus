@@ -1,12 +1,12 @@
-package fr.minecraftpp.renderer;
+package fr.minecraftpp.manager.renderer;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.block.ModBlock;
-import fr.minecraftpp.block.ModBlocks;
-import fr.minecraftpp.generator.IDynamicBlock;
-import fr.minecraftpp.generator.IDynamicItem;
-import fr.minecraftpp.item.ModItem;
-import fr.minecraftpp.item.ModItems;
+import fr.minecraftpp.block.IDynamicBlock;
+import fr.minecraftpp.item.IDynamicItem;
+import fr.minecraftpp.manager.block.ModBlock;
+import fr.minecraftpp.manager.block.ModBlocks;
+import fr.minecraftpp.manager.item.ModItem;
+import fr.minecraftpp.manager.item.ModItems;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelManager;
 import net.minecraft.client.renderer.color.ItemColors;

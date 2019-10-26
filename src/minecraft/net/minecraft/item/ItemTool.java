@@ -3,10 +3,10 @@ package net.minecraft.item;
 import com.google.common.collect.Multimap;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.enumeration.ToolType;
 import fr.minecraftpp.inventory.EntityEquipmentSlot;
 import fr.minecraftpp.inventory.EntityHandSlot;
-import fr.minecraftpp.item.tool.IToolMaterial;
-import fr.minecraftpp.item.tool.ToolType;
+import fr.minecraftpp.item.material.IToolMaterial;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;

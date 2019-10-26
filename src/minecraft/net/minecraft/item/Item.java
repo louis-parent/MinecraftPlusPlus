@@ -13,11 +13,11 @@ import com.google.common.collect.Multimap;
 
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.inventory.EntityEquipmentSlot;
-import fr.minecraftpp.item.ModItem;
 import fr.minecraftpp.item.armor.ItemBoots;
 import fr.minecraftpp.item.armor.ItemChestplate;
 import fr.minecraftpp.item.armor.ItemHelmet;
 import fr.minecraftpp.item.armor.ItemLeggings;
+import fr.minecraftpp.manager.item.ModItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;

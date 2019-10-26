@@ -2,11 +2,8 @@ package fr.minecraftpp.item;
 
 import java.util.Random;
 
-import fr.minecraftpp.generator.IDynamicItem;
-import fr.minecraftpp.generator.item.LighterUse;
-import fr.minecraftpp.generator.item.food.IFood;
-import fr.minecraftpp.generator.item.food.NotFood;
-import fr.minecraftpp.language.ModLanguage;
+import fr.minecraftpp.item.food.IFood;
+import fr.minecraftpp.item.food.NotFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

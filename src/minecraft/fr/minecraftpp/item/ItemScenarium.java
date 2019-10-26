@@ -1,11 +1,10 @@
 package fr.minecraftpp.item;
 
-import fr.minecraftpp.generator.item.LighterUse;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Rarity;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;

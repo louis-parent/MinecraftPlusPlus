@@ -1,4 +1,4 @@
-package fr.minecraftpp.block;
+package fr.minecraftpp.enumeration;
 
 import java.util.Random;
 

@@ -1,5 +1,6 @@
 package fr.minecraftpp.crafting.furnace;
 
+import fr.minecraftpp.manager.crafting.ModFurnaceRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

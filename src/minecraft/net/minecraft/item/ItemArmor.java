@@ -6,7 +6,7 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Multimap;
 
 import fr.minecraftpp.inventory.EntityArmorSlot;
-import fr.minecraftpp.item.armor.IArmorMaterial;
+import fr.minecraftpp.item.material.IArmorMaterial;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
@@ -21,7 +21,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;

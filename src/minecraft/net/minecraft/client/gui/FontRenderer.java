@@ -1,7 +1,6 @@
 package net.minecraft.client.gui;
 
 import java.awt.image.BufferedImage;
-import java.io.Closeable;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;

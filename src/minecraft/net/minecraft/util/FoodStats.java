@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-import fr.minecraftpp.generator.item.food.IFood;
+import fr.minecraftpp.item.food.IFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

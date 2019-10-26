@@ -1,4 +1,4 @@
-package fr.minecraftpp.item;
+package fr.minecraftpp.manager.item;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

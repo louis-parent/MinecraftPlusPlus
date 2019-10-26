@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 
-import fr.minecraftpp.generator.item.food.IFood;
+import fr.minecraftpp.item.food.IFood;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;

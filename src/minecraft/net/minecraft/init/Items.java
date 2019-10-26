@@ -1,6 +1,6 @@
 package net.minecraft.init;
 
-import fr.minecraftpp.item.ModItems;
+import fr.minecraftpp.manager.item.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmorStand;

@@ -1,7 +1,7 @@
 package net.minecraft.item;
 
 import fr.minecraftpp.inventory.EntityArmorSlot;
-import fr.minecraftpp.item.armor.IArmorMaterial;
+import fr.minecraftpp.item.material.IArmorMaterial;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;

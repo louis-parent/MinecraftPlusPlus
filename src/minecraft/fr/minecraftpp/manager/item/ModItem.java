@@ -1,17 +1,19 @@
-package fr.minecraftpp.item;
+package fr.minecraftpp.manager.item;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.block.ModBlock;
-import fr.minecraftpp.block.ModBlocks;
-import fr.minecraftpp.generator.IDynamicBlock;
-import fr.minecraftpp.generator.IDynamicItem;
+import fr.minecraftpp.block.IDynamicBlock;
+import fr.minecraftpp.item.IDynamicItem;
+import fr.minecraftpp.item.ItemScenarium;
 import fr.minecraftpp.item.armor.ItemBoots;
 import fr.minecraftpp.item.armor.ItemChestplate;
 import fr.minecraftpp.item.armor.ItemHelmet;
 import fr.minecraftpp.item.armor.ItemLeggings;
+import fr.minecraftpp.item.material.MaterialScenarium;
+import fr.minecraftpp.manager.block.ModBlock;
+import fr.minecraftpp.manager.block.ModBlocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemHoe;

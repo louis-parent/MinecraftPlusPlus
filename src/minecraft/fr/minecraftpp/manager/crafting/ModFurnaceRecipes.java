@@ -1,10 +1,11 @@
-package fr.minecraftpp.crafting.furnace;
+package fr.minecraftpp.manager.crafting;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.minecraftpp.block.ModBlocks;
-import fr.minecraftpp.item.ModItems;
+import fr.minecraftpp.crafting.furnace.FurnaceRecipe;
+import fr.minecraftpp.manager.block.ModBlocks;
+import fr.minecraftpp.manager.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

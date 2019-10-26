@@ -1,7 +1,7 @@
 package net.minecraft.item;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.generator.item.LighterUse;
+import fr.minecraftpp.item.LighterUse;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumActionResult;

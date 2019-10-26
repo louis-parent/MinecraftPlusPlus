@@ -1,6 +1,6 @@
 package net.minecraft.item;
 
-import fr.minecraftpp.generator.item.food.IFood;
+import fr.minecraftpp.item.food.IFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

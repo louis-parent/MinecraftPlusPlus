@@ -1,4 +1,4 @@
-package fr.minecraftpp.generator.item.food;
+package fr.minecraftpp.item.food;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

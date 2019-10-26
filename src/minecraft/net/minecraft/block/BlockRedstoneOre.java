@@ -2,7 +2,7 @@ package net.minecraft.block;
 
 import java.util.Random;
 
-import fr.minecraftpp.block.ore.OreRegistry;
+import fr.minecraftpp.manager.block.OreRegistry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

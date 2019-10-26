@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import com.google.common.collect.Maps;
 
-import fr.minecraftpp.crafting.furnace.ModFurnaceRecipes;
+import fr.minecraftpp.manager.crafting.ModFurnaceRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.init.Blocks;

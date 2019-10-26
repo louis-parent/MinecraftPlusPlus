@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import fr.minecraftpp.renderer.ModRenderItem;
+import fr.minecraftpp.manager.renderer.ModRenderItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;

@@ -1,13 +1,13 @@
-package fr.minecraftpp.renderer;
+package fr.minecraftpp.manager.renderer;
 
 import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Map;
 
-import fr.minecraftpp.block.ModBlock;
-import fr.minecraftpp.generator.IDynamicBlock;
-import fr.minecraftpp.generator.IDynamicItem;
-import fr.minecraftpp.item.ModItem;
+import fr.minecraftpp.block.IDynamicBlock;
+import fr.minecraftpp.item.IDynamicItem;
+import fr.minecraftpp.manager.block.ModBlock;
+import fr.minecraftpp.manager.item.ModItem;
 import net.minecraft.client.renderer.block.model.ModelBlock;
 import net.minecraft.client.renderer.block.model.ModelBlockDefinition;
 import net.minecraft.util.ResourceLocation;

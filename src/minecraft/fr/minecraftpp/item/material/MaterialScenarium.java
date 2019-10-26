@@ -1,9 +1,8 @@
-package fr.minecraftpp.item;
+package fr.minecraftpp.item.material;
 
+import fr.minecraftpp.enumeration.ToolType;
 import fr.minecraftpp.inventory.EntityArmorSlot;
-import fr.minecraftpp.item.armor.IArmorMaterial;
-import fr.minecraftpp.item.tool.IToolMaterial;
-import fr.minecraftpp.item.tool.ToolType;
+import fr.minecraftpp.manager.item.ModItems;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;

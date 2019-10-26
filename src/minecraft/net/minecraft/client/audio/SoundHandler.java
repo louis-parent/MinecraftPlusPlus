@@ -1,6 +1,5 @@
 package net.minecraft.client.audio;
 
-import java.io.Closeable;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;

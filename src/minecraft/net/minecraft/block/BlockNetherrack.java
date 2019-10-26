@@ -1,7 +1,7 @@
 package net.minecraft.block;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.block.FlammabilityOf;
+import fr.minecraftpp.enumeration.FlammabilityOf;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

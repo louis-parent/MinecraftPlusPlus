@@ -1,9 +1,7 @@
 package net.minecraft.item.crafting;
 
 import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.IOException;
-import java.io.Reader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -28,7 +26,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
-import fr.minecraftpp.crafting.ModCraftingManager;
+import fr.minecraftpp.manager.crafting.ModCraftingManager;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;

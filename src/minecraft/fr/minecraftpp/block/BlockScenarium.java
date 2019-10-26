@@ -2,6 +2,7 @@ package fr.minecraftpp.block;
 
 import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.damageSource.ModDamageSource;
+import fr.minecraftpp.enumeration.FlammabilityOf;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;

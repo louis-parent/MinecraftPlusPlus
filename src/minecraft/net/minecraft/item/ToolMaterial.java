@@ -1,7 +1,7 @@
 package net.minecraft.item;
 
-import fr.minecraftpp.item.tool.IToolMaterial;
-import fr.minecraftpp.item.tool.ToolType;
+import fr.minecraftpp.enumeration.ToolType;
+import fr.minecraftpp.item.material.IToolMaterial;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 

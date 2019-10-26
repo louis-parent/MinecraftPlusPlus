@@ -2,7 +2,7 @@ package net.minecraft.world.biome;
 
 import java.util.Random;
 
-import fr.minecraftpp.block.ore.OreRegistry;
+import fr.minecraftpp.manager.block.OreRegistry;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;

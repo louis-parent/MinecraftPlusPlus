@@ -1,7 +1,6 @@
 package net.minecraft.client.renderer.texture;
 
 import java.awt.image.BufferedImage;
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.IntBuffer;

@@ -1,4 +1,4 @@
-package fr.minecraftpp.item.tool;
+package fr.minecraftpp.enumeration;
 
 import fr.minecraftpp.anotation.Mod;
 

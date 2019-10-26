@@ -3,18 +3,18 @@ package fr.minecraftpp.generator;
 import java.util.Random;
 
 import fr.minecraftpp.block.DynamicBlock;
-import fr.minecraftpp.block.FlammabilityOf;
-import fr.minecraftpp.block.HarvestLevel;
-import fr.minecraftpp.block.ModBlock;
 import fr.minecraftpp.block.ore.DynamicOre;
 import fr.minecraftpp.block.ore.DynamicOreGem;
-import fr.minecraftpp.crafting.RecipeBlock;
-import fr.minecraftpp.crafting.RecipeItemFromBlock;
 import fr.minecraftpp.crafting.furnace.FurnaceRecipe;
-import fr.minecraftpp.generator.item.food.Food;
+import fr.minecraftpp.crafting.item.RecipeBlock;
+import fr.minecraftpp.crafting.item.RecipeItemFromBlock;
+import fr.minecraftpp.enumeration.FlammabilityOf;
+import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.item.DynamicItem;
-import fr.minecraftpp.item.ModItem;
+import fr.minecraftpp.item.food.Food;
 import fr.minecraftpp.language.ModLanguage;
+import fr.minecraftpp.manager.block.ModBlock;
+import fr.minecraftpp.manager.item.ModItem;
 import fr.minecraftpp.util.NameGenerator;
 import net.minecraft.block.Block;
 
