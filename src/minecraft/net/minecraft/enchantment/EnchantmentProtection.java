@@ -14,7 +14,7 @@ public class EnchantmentProtection extends Enchantment
 	 */
 	public final EnchantmentProtection.Type protectionType;
 
-	public EnchantmentProtection(Enchantment.Rarity rarityIn, EnchantmentProtection.Type protectionTypeIn, EntityEquipmentSlot... slots)
+	public EnchantmentProtection(Enchantment.EnchantmentRarity rarityIn, EnchantmentProtection.Type protectionTypeIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.ARMOR, slots);
 		this.protectionType = protectionTypeIn;

@@ -4,7 +4,7 @@ import fr.minecraftpp.inventory.EntityEquipmentSlot;
 
 public class EnchantmentArrowDamage extends Enchantment
 {
-	public EnchantmentArrowDamage(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	public EnchantmentArrowDamage(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.BOW, slots);
 		this.setName("arrowDamage");

@@ -988,7 +988,7 @@ public final class ItemStack
 		return this.getItem().hasEffect(this);
 	}
 
-	public EnumRarity getRarity()
+	public Rarity getRarity()
 	{
 		return this.getItem().getRarity(this);
 	}

@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityBeacon;
@@ -172,5 +173,11 @@ public class BlockBeacon extends BlockContainer
 				}
 			}
 		});
+	}
+	
+	@Override
+	public Rarity getRarity()
+	{
+		return Rarity.RARE;
 	}
 }

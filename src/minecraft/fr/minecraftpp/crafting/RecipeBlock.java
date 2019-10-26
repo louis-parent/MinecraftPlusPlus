@@ -17,8 +17,6 @@ public class RecipeBlock extends ShapedRecipe
 
 		this.material = material;
 		this.changeBlueprint(this.getBlueprint());
-
-		new RecipeItemFromBlock(result, material);
 	}
 
 	private Blueprint getBlueprint()

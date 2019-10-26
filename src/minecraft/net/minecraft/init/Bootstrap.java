@@ -554,6 +554,8 @@ public class Bootstrap
 			Biome.registerBiomes();
 			registerDispenserBehaviors();
 
+			ModBootstrap.postBootstrap();
+
 			if (!CraftingManager.buildAllRecipes())
 			{
 				field_194219_b = true;
@@ -577,7 +579,6 @@ public class Bootstrap
 				}
 			}
 
-			ModBootstrap.postBootstrap();
 		}
 	}
 

@@ -27,6 +27,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
@@ -362,5 +363,11 @@ public class BlockSkull extends BlockContainer
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;
+	}
+	
+	@Override
+	public Rarity getRarity()
+	{
+		return Rarity.UNCOMMON;
 	}
 }

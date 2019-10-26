@@ -9,6 +9,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Rarity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
@@ -174,5 +175,11 @@ public class BlockDragonEgg extends Block
 	public BlockFaceShape func_193383_a(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return BlockFaceShape.UNDEFINED;
+	}
+	
+	@Override
+	public Rarity getRarity()
+	{
+		return Rarity.EPIC;
 	}
 }

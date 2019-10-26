@@ -4,7 +4,7 @@ import fr.minecraftpp.inventory.EntityEquipmentSlot;
 
 public class EnchantmentFireAspect extends Enchantment
 {
-	protected EnchantmentFireAspect(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	protected EnchantmentFireAspect(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.WEAPON, slots);
 		this.setName("fire");

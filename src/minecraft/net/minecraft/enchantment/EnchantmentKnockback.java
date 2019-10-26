@@ -4,7 +4,7 @@ import fr.minecraftpp.inventory.EntityEquipmentSlot;
 
 public class EnchantmentKnockback extends Enchantment
 {
-	protected EnchantmentKnockback(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	protected EnchantmentKnockback(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.WEAPON, slots);
 		this.setName("knockback");

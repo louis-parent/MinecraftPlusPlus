@@ -1,5 +1,7 @@
 package fr.minecraftpp.item;
 
+import java.util.Random;
+
 import fr.minecraftpp.generator.IDynamicItem;
 import fr.minecraftpp.generator.item.LighterUse;
 import fr.minecraftpp.generator.item.food.IFood;
@@ -11,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -20,6 +23,7 @@ import net.minecraft.world.World;
 
 public class DynamicItem extends Item implements IDynamicItem
 {
+	private static final int NUMBER_OF_TEXTURES = 6;
 	private final String ID;
 	private final int TEXTURE_ID;
 	
@@ -30,20 +34,17 @@ public class DynamicItem extends Item implements IDynamicItem
 	private boolean putsFire;
 	private IFood food;
 	
-	public DynamicItem(String typeName, int textureId, boolean hasEffect, int fuelAmount, boolean isEnchantCurrency, boolean putsFire)
-	{
-		this(typeName, textureId, hasEffect, fuelAmount, isEnchantCurrency, putsFire, new NotFood());
-	}
+	private boolean isBeaconCurrency;
 
-	public DynamicItem(String typeName, int textureId, boolean hasEffect, int fuelAmount, boolean isEnchantCurrency, boolean putsFire, IFood food)
+	public DynamicItem(String typeName, int textureId)
 	{
 		super();
 				
-		this.hasEffect = hasEffect;
-		this.fuelAmount = fuelAmount;
-		this.isEnchantCurrency = isEnchantCurrency;
-		this.putsFire = putsFire;
-		this.food = food;
+		this.hasEffect = false;
+		this.fuelAmount = 0;
+		this.isEnchantCurrency = false;
+		this.putsFire = false;
+		this.food = new NotFood();
 		
 		this.setCreativeTab(CreativeTabs.MATERIALS);
 		
@@ -52,9 +53,32 @@ public class DynamicItem extends Item implements IDynamicItem
 		
 		this.TEXTURE_ID = textureId;
 		
-		// TODO extract
-		ModItem.setItemToRegister(this);
-		ModLanguage.addTranslation(this);
+		this.isBeaconCurrency = false;
+	}
+
+	public void setHasEffect(boolean hasEffect)
+	{
+		this.hasEffect = hasEffect;
+	}
+
+	public void setFuelAmount(int fuelAmount)
+	{
+		this.fuelAmount = fuelAmount;
+	}
+
+	public void setEnchantCurrency(boolean isEnchantCurrency)
+	{
+		this.isEnchantCurrency = isEnchantCurrency;
+	}
+
+	public void setPutsFire(boolean putsFire)
+	{
+		this.putsFire = putsFire;
+	}
+
+	public void setFood(IFood food)
+	{
+		this.food = food;
 	}
 
 	@Override
@@ -150,5 +174,24 @@ public class DynamicItem extends Item implements IDynamicItem
 	public Item getItem()
 	{
 		return this;
+	}
+	
+	public void setBeaconCurrency(boolean isBeaconCurrency)
+	{
+		this.isBeaconCurrency = isBeaconCurrency;
+		
+		if(isBeaconCurrency)
+		{
+			TileEntityBeacon.paymentItems.add(this);
+		}
+		else
+		{
+			TileEntityBeacon.paymentItems.remove(this);
+		}
+	}
+
+	public static int getRandomTextureId(Random rng)
+	{
+		return rng.nextInt(NUMBER_OF_TEXTURES) + 1;
 	}
 }

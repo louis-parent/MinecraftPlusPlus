@@ -34,6 +34,7 @@ public class ItemRecord extends Item
 		this.sound = soundIn;
 		this.maxStackSize = 1;
 		this.setCreativeTab(CreativeTabs.MISC);
+		this.setRarity(Rarity.RARE);
 		RECORDS.put(this.sound, this);
 	}
 
@@ -77,15 +78,6 @@ public class ItemRecord extends Item
 	public String getRecordNameLocal()
 	{
 		return I18n.translateToLocal(this.displayName);
-	}
-
-	/**
-	 * Return an item rarity from EnumRarity
-	 */
-	@Override
-	public EnumRarity getRarity(ItemStack stack)
-	{
-		return EnumRarity.RARE;
 	}
 
 	@Nullable

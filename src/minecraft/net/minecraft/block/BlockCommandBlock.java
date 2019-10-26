@@ -16,6 +16,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.CommandBlockBaseLogic;
 import net.minecraft.tileentity.TileEntity;
@@ -357,5 +358,10 @@ public class BlockCommandBlock extends BlockContainer
 			int j = Math.max(gamerules.getInt("maxCommandChainLength"), 0);
 			field_193388_c.warn("Commandblock chain tried to execure more than " + j + " steps!");
 		}
+	}
+	
+	public Rarity getRarity()
+	{
+		return Rarity.EPIC;
 	}
 }

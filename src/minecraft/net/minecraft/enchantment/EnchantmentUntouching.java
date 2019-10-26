@@ -5,7 +5,7 @@ import net.minecraft.init.Enchantments;
 
 public class EnchantmentUntouching extends Enchantment
 {
-	protected EnchantmentUntouching(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	protected EnchantmentUntouching(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.DIGGER, slots);
 		this.setName("untouching");

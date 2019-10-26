@@ -359,6 +359,9 @@ public class BlockPistonBase extends BlockDirectional
 
 						case PUSH_ONLY:
 							return facing == p_185646_5_;
+							
+						default:
+							break;
 					}
 				}
 				else if (blockStateIn.getValue(EXTENDED).booleanValue())

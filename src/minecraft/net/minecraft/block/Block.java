@@ -33,6 +33,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.Rarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
@@ -341,7 +342,7 @@ public class Block
 	 * Sets how much light is blocked going through this block. Returns the
 	 * object for convenience in constructing.
 	 */
-	protected Block setLightOpacity(int opacity)
+	public Block setLightOpacity(int opacity)
 	{
 		this.lightOpacity = opacity;
 		return this;
@@ -351,7 +352,7 @@ public class Block
 	 * Sets the light value that the block emits. Returns resulting block
 	 * instance for constructing convenience.
 	 */
-	protected Block setLightLevel(float value)
+	public Block setLightLevel(float value)
 	{
 		this.lightValue = (int) (15.0F * value);
 		return this;
@@ -1251,6 +1252,12 @@ public class Block
 	public int getRequiredHarvestLevel()
 	{
 		return 0;
+	}
+	
+	@Mod("Minecraftpp")
+	public Rarity getRarity()
+	{
+		return Rarity.COMMON;
 	}
 
 	@Override

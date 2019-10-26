@@ -38,7 +38,7 @@ public class EnchantmentDamage extends Enchantment
 	 */
 	public final int damageType;
 
-	public EnchantmentDamage(Enchantment.Rarity rarityIn, int damageTypeIn, EntityEquipmentSlot... slots)
+	public EnchantmentDamage(Enchantment.EnchantmentRarity rarityIn, int damageTypeIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.WEAPON, slots);
 		this.damageType = damageTypeIn;

@@ -4,7 +4,7 @@ import fr.minecraftpp.inventory.EntityEquipmentSlot;
 
 public class EnchantmentSweepingEdge extends Enchantment
 {
-	public EnchantmentSweepingEdge(Enchantment.Rarity p_i47366_1_, EntityEquipmentSlot... p_i47366_2_)
+	public EnchantmentSweepingEdge(Enchantment.EnchantmentRarity p_i47366_1_, EntityEquipmentSlot... p_i47366_2_)
 	{
 		super(p_i47366_1_, EnumEnchantmentType.WEAPON, p_i47366_2_);
 	}

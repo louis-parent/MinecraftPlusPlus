@@ -8,24 +8,28 @@ public class NameGenerator
 
 	public static String generateName()
 	{
-
+		return generateName(NameGenerator.rand);
+	}
+	
+	public static String generateName(Random rand)
+	{
 		int nbChars = 3 + rand.nextInt(4);
 
-		return startRecursiveGeneration(nbChars);
+		return startRecursiveGeneration(rand, nbChars);
 	}
 
-	private static String startRecursiveGeneration(int nbChars)
+	private static String startRecursiveGeneration(Random rand, int nbChars)
 	{
 		int type = rand.nextInt(2);
-		return generateRecursively(nbChars, type);
+		return generateRecursively(rand, nbChars, type);
 	}
 
-	private static String generateRecursively(int nbChars, int typeOfLastChar)
+	private static String generateRecursively(Random rand, int nbChars, int typeOfLastChar)
 	{
 		if (nbChars > 0)
 		{
 			int newType = (typeOfLastChar + 1) % 2;
-			return selectChar(newType) + generateRecursively(nbChars - 1, newType);
+			return selectChar(rand, newType) + generateRecursively(rand, nbChars - 1, newType);
 		}
 		else
 		{
@@ -33,24 +37,24 @@ public class NameGenerator
 		}
 	}
 
-	private static String selectChar(int typeOfChar)
+	private static String selectChar(Random rand, int typeOfChar)
 	{
 		if (typeOfChar == 0)
 		{
-			String letters = getConsonant();
+			String letters = getConsonant(rand);
 			if (rand.nextInt(2) == 0)
 			{
-				letters += getConsonant();
+				letters += getConsonant(rand);
 			}
 			return letters;
 		}
 		else
 		{
-			return getVowel();
+			return getVowel(rand);
 		}
 	}
 
-	private static String getConsonant()
+	private static String getConsonant(Random rand)
 	{
 		int choix = rand.nextInt(20);
 		switch (choix)
@@ -100,7 +104,7 @@ public class NameGenerator
 		}
 	}
 
-	private static String getVowel()
+	private static String getVowel(Random rand)
 	{
 		int choix = rand.nextInt(14);
 		switch (choix)

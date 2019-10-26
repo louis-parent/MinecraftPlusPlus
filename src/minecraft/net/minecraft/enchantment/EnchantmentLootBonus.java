@@ -5,7 +5,7 @@ import net.minecraft.init.Enchantments;
 
 public class EnchantmentLootBonus extends Enchantment
 {
-	protected EnchantmentLootBonus(Enchantment.Rarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot... slots)
+	protected EnchantmentLootBonus(Enchantment.EnchantmentRarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, typeIn, slots);
 

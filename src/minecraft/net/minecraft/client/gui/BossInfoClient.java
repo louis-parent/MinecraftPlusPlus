@@ -57,6 +57,9 @@ public class BossInfoClient extends BossInfo
 			case UPDATE_PROPERTIES:
 				this.setDarkenSky(packetIn.shouldDarkenSky());
 				this.setPlayEndBossMusic(packetIn.shouldPlayEndBossMusic());
+				
+			default:
+				break;
 		}
 	}
 }

@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class EnchantmentFrostWalker extends Enchantment
 {
-	public EnchantmentFrostWalker(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	public EnchantmentFrostWalker(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.ARMOR_FEET, slots);
 		this.setName("frostWalker");

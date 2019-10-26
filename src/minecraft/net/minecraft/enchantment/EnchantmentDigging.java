@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 public class EnchantmentDigging extends Enchantment
 {
-	protected EnchantmentDigging(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	protected EnchantmentDigging(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.DIGGER, slots);
 		this.setName("digging");

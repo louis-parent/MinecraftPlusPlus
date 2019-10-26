@@ -12,7 +12,7 @@ import net.minecraft.util.DamageSource;
 
 public class EnchantmentThorns extends Enchantment
 {
-	public EnchantmentThorns(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	public EnchantmentThorns(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.ARMOR_CHEST, slots);
 		this.setName("thorns");

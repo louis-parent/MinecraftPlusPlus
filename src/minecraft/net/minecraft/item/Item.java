@@ -127,6 +127,9 @@ public class Item
 
 	/** The unlocalized name of this item. */
 	private String unlocalizedName;
+	
+	@Mod("Minecraftpp")
+	private Rarity rarity;
 
 	public static int getIdFromItem(Item itemIn)
 	{
@@ -202,6 +205,7 @@ public class Item
 	{
 		this.addPropertyOverride(new ResourceLocation("lefthanded"), LEFTHANDED_GETTER);
 		this.addPropertyOverride(new ResourceLocation("cooldown"), COOLDOWN_GETTER);
+		this.rarity = Rarity.COMMON;
 	}
 
 	public Item setMaxStackSize(int maxStackSize)
@@ -494,9 +498,15 @@ public class Item
 	/**
 	 * Return an item rarity from EnumRarity
 	 */
-	public EnumRarity getRarity(ItemStack stack)
+	public Rarity getRarity(ItemStack stack)
 	{
-		return stack.isItemEnchanted() ? EnumRarity.RARE : EnumRarity.COMMON;
+		return stack.isItemEnchanted() ? this.rarity.next() : this.rarity;
+	}
+	
+	@Mod("Minecraftpp")
+	public void setRarity(Rarity rarity)
+	{
+		this.rarity = rarity;
 	}
 
 	/**

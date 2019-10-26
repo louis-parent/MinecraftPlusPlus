@@ -4,7 +4,7 @@ import fr.minecraftpp.inventory.EntityEquipmentSlot;
 
 public class EnchantmentArrowFire extends Enchantment
 {
-	public EnchantmentArrowFire(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	public EnchantmentArrowFire(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.BOW, slots);
 		this.setName("arrowFire");

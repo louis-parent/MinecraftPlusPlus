@@ -4,7 +4,7 @@ import fr.minecraftpp.inventory.EntityEquipmentSlot;
 
 public class EnchantmentOxygen extends Enchantment
 {
-	public EnchantmentOxygen(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	public EnchantmentOxygen(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.ARMOR_HEAD, slots);
 		this.setName("oxygen");

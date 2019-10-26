@@ -4,7 +4,7 @@ import fr.minecraftpp.inventory.EntityEquipmentSlot;
 
 public class EnchantmentMending extends Enchantment
 {
-	public EnchantmentMending(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	public EnchantmentMending(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.BREAKABLE, slots);
 		this.setName("mending");

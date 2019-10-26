@@ -9,54 +9,34 @@ import fr.minecraftpp.language.ModLanguage;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.Enchantment.EnchantmentRarity;
 import net.minecraft.item.Item;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
+import net.minecraft.item.Rarity;
 
 public class DynamicOre extends BlockOre implements IDynamicBlock
 {
-	
+	private static final int NUMBER_OF_TEXTURES = 4;
+
 	private final String ID;
 	private final int TEXTURE_ID;
 	
-	private Item itemDropped;
-	private int minDropped;
-	private int maxDropped;
-	
 	private int harvestLevel;
-	private int minXpDrop;
-	private int maxXpDrop;
-	
-	public DynamicOre(String typeName, int textureId, Item itemDropped, int quantityDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop) 
-	{
-		this(typeName, textureId, itemDropped, quantityDropped, quantityDropped, harvestLevel, minXpDrop, maxXpDrop);
-	}
+	private Rarity rarity;
 
-
-	public DynamicOre(String typeName, int textureId, Item itemDropped, int minDropped, int maxDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop)
+	public DynamicOre(String typeName, int textureId, HarvestLevel harvestLevel)
 	{
-		super(); 
+		super();
 		
 		this.ID = typeName + "Ore";
 		this.setUnlocalizedName(this.ID);
 		
 		this.TEXTURE_ID = textureId;
 		
-		this.itemDropped = itemDropped;
-		this.minDropped = minDropped;
-		this.maxDropped = maxDropped;
-		
 		this.harvestLevel = harvestLevel.getHarvestLevel();
 		
-		this.minXpDrop = minXpDrop;
-		this.maxXpDrop = maxXpDrop;
-		
-		// TODO Extract
-		ModBlock.setBlockToRegister(this);
-		ModLanguage.addTranslation(this);
+		this.rarity = Rarity.COMMON;
 	}
-
+	
 	@Override
 	public String getID()
 	{
@@ -83,13 +63,13 @@ public class DynamicOre extends BlockOre implements IDynamicBlock
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return this.itemDropped;
+		return Item.getItemFromBlock(this);
 	}
-
+	
 	@Override
 	public int quantityDropped(Random random)
 	{
-		return minDropped + random.nextInt((maxDropped + 1) - minDropped);
+		return 1;
 	}
 	
 	@Override
@@ -97,12 +77,20 @@ public class DynamicOre extends BlockOre implements IDynamicBlock
 	{
 		return this.harvestLevel;
 	}
-
-	@Override
-	public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune)
+	
+	public void setRarity(Rarity rarity)
 	{
-		super.dropBlockAsItemWithChance(world, pos, state, chance, fortune);
-		
-		this.dropXpOnBlockBreak(world, pos,  MathHelper.getInt(world.rand, this.minXpDrop, this.maxXpDrop));
+		this.rarity = rarity;
+	}
+	
+	@Override
+	public Rarity getRarity()
+	{
+		return this.rarity;
+	}
+	
+	public static int getRandomTextureId(Random rng)
+	{
+		return rng.nextInt(NUMBER_OF_TEXTURES) + 1;
 	}
 }

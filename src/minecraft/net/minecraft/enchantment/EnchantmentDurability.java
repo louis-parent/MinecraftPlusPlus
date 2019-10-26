@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 public class EnchantmentDurability extends Enchantment
 {
-	protected EnchantmentDurability(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	protected EnchantmentDurability(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.BREAKABLE, slots);
 		this.setName("durability");

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.block.ore.BlockScenariteOre;
 import fr.minecraftpp.generator.IDynamicBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+import net.minecraft.item.Rarity;
 
 @Mod("minecraftpp")
 public class ModBlock extends Block
@@ -26,7 +29,9 @@ public class ModBlock extends Block
 	public static void registerBlocks()
 	{
 		registerBlock(1000, "scenarite_ore", new BlockScenariteOre());
-		registerBlock(1001, "scenarium_block", new BlockScenarium());
+		
+		BlockScenarium block_ = new BlockScenarium();
+		registerBlock(1001, "scenarium_block", block_);
 		
 		for (int i = 0; i < REGISTRY.size(); i++)
 		{

@@ -4,7 +4,7 @@ import fr.minecraftpp.inventory.EntityEquipmentSlot;
 
 public class EnchantmentWaterWorker extends Enchantment
 {
-	public EnchantmentWaterWorker(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	public EnchantmentWaterWorker(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.ARMOR_HEAD, slots);
 		this.setName("waterWorker");

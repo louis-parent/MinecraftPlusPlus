@@ -1,5 +1,7 @@
 package fr.minecraftpp.block;
 
+import java.util.Random;
+
 import fr.minecraftpp.anotation.Mod;
 
 @Mod("Minecraftpp")
@@ -36,5 +38,10 @@ public enum FlammabilityOf
 	public boolean isFlammable()
 	{
 		return this.flammability != 0 && this.encouragement != 0;
+	}
+	
+	public static FlammabilityOf getRandomFlammability(Random rand)
+	{
+		return FlammabilityOf.values()[rand.nextInt(FlammabilityOf.values().length)];
 	}
 }

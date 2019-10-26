@@ -3,7 +3,7 @@ package fr.minecraftpp.item;
 import fr.minecraftpp.generator.item.LighterUse;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Rarity;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityBeacon;
@@ -22,6 +22,7 @@ public class ItemScenarium extends ItemFood
 
 		this.setUnlocalizedName("scenarium");
 		this.setCreativeTab(CreativeTabs.MATERIALS);
+		this.setRarity(Rarity.EPIC);
 
 		TileEntityBeacon.paymentItems.add(this);
 	}
@@ -54,11 +55,5 @@ public class ItemScenarium extends ItemFood
 	public boolean allowEnchanting()
 	{
 		return true;
-	}
-
-	@Override
-	public EnumRarity getRarity(ItemStack stack)
-	{
-		return EnumRarity.EPIC;
 	}
 }

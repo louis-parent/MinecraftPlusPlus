@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import com.google.common.collect.Maps;
 
-import fr.minecraftpp.crafting.ModFurnaceRecipes;
+import fr.minecraftpp.crafting.furnace.ModFurnaceRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.init.Blocks;
@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 
 public class FurnaceRecipes
 {
-	private static final FurnaceRecipes SMELTING_BASE = new FurnaceRecipes();
+	private static FurnaceRecipes SMELTING_BASE = null;
 	private final Map<ItemStack, ItemStack> smeltingList = Maps.<ItemStack, ItemStack>newHashMap();
 	private final Map<ItemStack, Float> experienceList = Maps.<ItemStack, Float>newHashMap();
 
@@ -26,6 +26,11 @@ public class FurnaceRecipes
 	 */
 	public static FurnaceRecipes instance()
 	{
+		if(SMELTING_BASE == null)
+		{
+			SMELTING_BASE = new FurnaceRecipes();
+		}
+		
 		return SMELTING_BASE;
 	}
 

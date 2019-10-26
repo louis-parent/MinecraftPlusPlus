@@ -25,7 +25,7 @@ public abstract class Enchantment
 
 	/** Where this enchantment has an effect, e.g. offhand, pants */
 	private final EntityEquipmentSlot[] applicableEquipmentTypes;
-	private final Enchantment.Rarity rarity;
+	private final Enchantment.EnchantmentRarity rarity;
 	@Nullable
 
 	/** The EnumEnchantmentType given to this Enchantment. */
@@ -62,7 +62,7 @@ public abstract class Enchantment
 		return REGISTRY.getObject(new ResourceLocation(location));
 	}
 
-	protected Enchantment(Enchantment.Rarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot[] slots)
+	protected Enchantment(Enchantment.EnchantmentRarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot[] slots)
 	{
 		this.rarity = rarityIn;
 		this.type = typeIn;
@@ -90,7 +90,7 @@ public abstract class Enchantment
 	 * Retrieves the weight value of an Enchantment. This weight value is used
 	 * within vanilla to determine how rare an enchantment is.
 	 */
-	public Enchantment.Rarity getRarity()
+	public Enchantment.EnchantmentRarity getRarity()
 	{
 		return this.rarity;
 	}
@@ -235,45 +235,45 @@ public abstract class Enchantment
 	public static void registerEnchantments()
 	{
 		EntityEquipmentSlot[] aentityequipmentslot = new EntityEquipmentSlot[] { EntityArmorSlot.HEAD, EntityArmorSlot.CHEST, EntityArmorSlot.LEGS, EntityArmorSlot.FEET };
-		REGISTRY.register(0, new ResourceLocation("protection"), new EnchantmentProtection(Enchantment.Rarity.COMMON, EnchantmentProtection.Type.ALL, aentityequipmentslot));
-		REGISTRY.register(1, new ResourceLocation("fire_protection"), new EnchantmentProtection(Enchantment.Rarity.UNCOMMON, EnchantmentProtection.Type.FIRE, aentityequipmentslot));
-		REGISTRY.register(2, new ResourceLocation("feather_falling"), new EnchantmentProtection(Enchantment.Rarity.UNCOMMON, EnchantmentProtection.Type.FALL, aentityequipmentslot));
-		REGISTRY.register(3, new ResourceLocation("blast_protection"), new EnchantmentProtection(Enchantment.Rarity.RARE, EnchantmentProtection.Type.EXPLOSION, aentityequipmentslot));
-		REGISTRY.register(4, new ResourceLocation("projectile_protection"), new EnchantmentProtection(Enchantment.Rarity.UNCOMMON, EnchantmentProtection.Type.PROJECTILE, aentityequipmentslot));
-		REGISTRY.register(5, new ResourceLocation("respiration"), new EnchantmentOxygen(Enchantment.Rarity.RARE, aentityequipmentslot));
-		REGISTRY.register(6, new ResourceLocation("aqua_affinity"), new EnchantmentWaterWorker(Enchantment.Rarity.RARE, aentityequipmentslot));
-		REGISTRY.register(7, new ResourceLocation("thorns"), new EnchantmentThorns(Enchantment.Rarity.VERY_RARE, aentityequipmentslot));
-		REGISTRY.register(8, new ResourceLocation("depth_strider"), new EnchantmentWaterWalker(Enchantment.Rarity.RARE, aentityequipmentslot));
-		REGISTRY.register(9, new ResourceLocation("frost_walker"), new EnchantmentFrostWalker(Enchantment.Rarity.RARE, new EntityEquipmentSlot[] { EntityArmorSlot.FEET }));
-		REGISTRY.register(10, new ResourceLocation("binding_curse"), new EnchantmentBindingCurse(Enchantment.Rarity.VERY_RARE, aentityequipmentslot));
-		REGISTRY.register(16, new ResourceLocation("sharpness"), new EnchantmentDamage(Enchantment.Rarity.COMMON, 0, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(17, new ResourceLocation("smite"), new EnchantmentDamage(Enchantment.Rarity.UNCOMMON, 1, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(18, new ResourceLocation("bane_of_arthropods"), new EnchantmentDamage(Enchantment.Rarity.UNCOMMON, 2, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(19, new ResourceLocation("knockback"), new EnchantmentKnockback(Enchantment.Rarity.UNCOMMON, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(20, new ResourceLocation("fire_aspect"), new EnchantmentFireAspect(Enchantment.Rarity.RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(21, new ResourceLocation("looting"), new EnchantmentLootBonus(Enchantment.Rarity.RARE, EnumEnchantmentType.WEAPON, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(22, new ResourceLocation("sweeping"), new EnchantmentSweepingEdge(Enchantment.Rarity.RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(32, new ResourceLocation("efficiency"), new EnchantmentDigging(Enchantment.Rarity.COMMON, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(33, new ResourceLocation("silk_touch"), new EnchantmentUntouching(Enchantment.Rarity.VERY_RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(34, new ResourceLocation("unbreaking"), new EnchantmentDurability(Enchantment.Rarity.UNCOMMON, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(35, new ResourceLocation("fortune"), new EnchantmentLootBonus(Enchantment.Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(48, new ResourceLocation("power"), new EnchantmentArrowDamage(Enchantment.Rarity.COMMON, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(49, new ResourceLocation("punch"), new EnchantmentArrowKnockback(Enchantment.Rarity.RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(50, new ResourceLocation("flame"), new EnchantmentArrowFire(Enchantment.Rarity.RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(51, new ResourceLocation("infinity"), new EnchantmentArrowInfinite(Enchantment.Rarity.VERY_RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(61, new ResourceLocation("luck_of_the_sea"), new EnchantmentLootBonus(Enchantment.Rarity.RARE, EnumEnchantmentType.FISHING_ROD, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(62, new ResourceLocation("lure"), new EnchantmentFishingSpeed(Enchantment.Rarity.RARE, EnumEnchantmentType.FISHING_ROD, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
-		REGISTRY.register(70, new ResourceLocation("mending"), new EnchantmentMending(Enchantment.Rarity.RARE, EntityEquipmentSlot.values()));
-		REGISTRY.register(71, new ResourceLocation("vanishing_curse"), new EnchantmentVanishingCurse(Enchantment.Rarity.VERY_RARE, EntityEquipmentSlot.values()));
+		REGISTRY.register(0, new ResourceLocation("protection"), new EnchantmentProtection(Enchantment.EnchantmentRarity.COMMON, EnchantmentProtection.Type.ALL, aentityequipmentslot));
+		REGISTRY.register(1, new ResourceLocation("fire_protection"), new EnchantmentProtection(Enchantment.EnchantmentRarity.UNCOMMON, EnchantmentProtection.Type.FIRE, aentityequipmentslot));
+		REGISTRY.register(2, new ResourceLocation("feather_falling"), new EnchantmentProtection(Enchantment.EnchantmentRarity.UNCOMMON, EnchantmentProtection.Type.FALL, aentityequipmentslot));
+		REGISTRY.register(3, new ResourceLocation("blast_protection"), new EnchantmentProtection(Enchantment.EnchantmentRarity.RARE, EnchantmentProtection.Type.EXPLOSION, aentityequipmentslot));
+		REGISTRY.register(4, new ResourceLocation("projectile_protection"), new EnchantmentProtection(Enchantment.EnchantmentRarity.UNCOMMON, EnchantmentProtection.Type.PROJECTILE, aentityequipmentslot));
+		REGISTRY.register(5, new ResourceLocation("respiration"), new EnchantmentOxygen(Enchantment.EnchantmentRarity.RARE, aentityequipmentslot));
+		REGISTRY.register(6, new ResourceLocation("aqua_affinity"), new EnchantmentWaterWorker(Enchantment.EnchantmentRarity.RARE, aentityequipmentslot));
+		REGISTRY.register(7, new ResourceLocation("thorns"), new EnchantmentThorns(Enchantment.EnchantmentRarity.VERY_RARE, aentityequipmentslot));
+		REGISTRY.register(8, new ResourceLocation("depth_strider"), new EnchantmentWaterWalker(Enchantment.EnchantmentRarity.RARE, aentityequipmentslot));
+		REGISTRY.register(9, new ResourceLocation("frost_walker"), new EnchantmentFrostWalker(Enchantment.EnchantmentRarity.RARE, new EntityEquipmentSlot[] { EntityArmorSlot.FEET }));
+		REGISTRY.register(10, new ResourceLocation("binding_curse"), new EnchantmentBindingCurse(Enchantment.EnchantmentRarity.VERY_RARE, aentityequipmentslot));
+		REGISTRY.register(16, new ResourceLocation("sharpness"), new EnchantmentDamage(Enchantment.EnchantmentRarity.COMMON, 0, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(17, new ResourceLocation("smite"), new EnchantmentDamage(Enchantment.EnchantmentRarity.UNCOMMON, 1, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(18, new ResourceLocation("bane_of_arthropods"), new EnchantmentDamage(Enchantment.EnchantmentRarity.UNCOMMON, 2, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(19, new ResourceLocation("knockback"), new EnchantmentKnockback(Enchantment.EnchantmentRarity.UNCOMMON, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(20, new ResourceLocation("fire_aspect"), new EnchantmentFireAspect(Enchantment.EnchantmentRarity.RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(21, new ResourceLocation("looting"), new EnchantmentLootBonus(Enchantment.EnchantmentRarity.RARE, EnumEnchantmentType.WEAPON, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(22, new ResourceLocation("sweeping"), new EnchantmentSweepingEdge(Enchantment.EnchantmentRarity.RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(32, new ResourceLocation("efficiency"), new EnchantmentDigging(Enchantment.EnchantmentRarity.COMMON, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(33, new ResourceLocation("silk_touch"), new EnchantmentUntouching(Enchantment.EnchantmentRarity.VERY_RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(34, new ResourceLocation("unbreaking"), new EnchantmentDurability(Enchantment.EnchantmentRarity.UNCOMMON, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(35, new ResourceLocation("fortune"), new EnchantmentLootBonus(Enchantment.EnchantmentRarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(48, new ResourceLocation("power"), new EnchantmentArrowDamage(Enchantment.EnchantmentRarity.COMMON, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(49, new ResourceLocation("punch"), new EnchantmentArrowKnockback(Enchantment.EnchantmentRarity.RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(50, new ResourceLocation("flame"), new EnchantmentArrowFire(Enchantment.EnchantmentRarity.RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(51, new ResourceLocation("infinity"), new EnchantmentArrowInfinite(Enchantment.EnchantmentRarity.VERY_RARE, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(61, new ResourceLocation("luck_of_the_sea"), new EnchantmentLootBonus(Enchantment.EnchantmentRarity.RARE, EnumEnchantmentType.FISHING_ROD, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(62, new ResourceLocation("lure"), new EnchantmentFishingSpeed(Enchantment.EnchantmentRarity.RARE, EnumEnchantmentType.FISHING_ROD, new EntityEquipmentSlot[] { EntityHandSlot.MAINHAND }));
+		REGISTRY.register(70, new ResourceLocation("mending"), new EnchantmentMending(Enchantment.EnchantmentRarity.RARE, EntityEquipmentSlot.values()));
+		REGISTRY.register(71, new ResourceLocation("vanishing_curse"), new EnchantmentVanishingCurse(Enchantment.EnchantmentRarity.VERY_RARE, EntityEquipmentSlot.values()));
 	}
 
-	public static enum Rarity
+	public static enum EnchantmentRarity
 	{
 		COMMON(10), UNCOMMON(5), RARE(2), VERY_RARE(1);
 
 		private final int weight;
 
-		private Rarity(int rarityWeight)
+		private EnchantmentRarity(int rarityWeight)
 		{
 			this.weight = rarityWeight;
 		}

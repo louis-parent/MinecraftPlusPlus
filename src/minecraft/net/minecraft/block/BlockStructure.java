@@ -11,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityStructure;
 import net.minecraft.util.EnumBlockRenderType;
@@ -168,5 +169,11 @@ public class BlockStructure extends BlockContainer
 
 			case DATA:
 		}
+	}
+	
+	@Override
+	public Rarity getRarity()
+	{
+		return Rarity.EPIC;
 	}
 }

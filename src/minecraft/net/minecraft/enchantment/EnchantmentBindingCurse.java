@@ -4,7 +4,7 @@ import fr.minecraftpp.inventory.EntityEquipmentSlot;
 
 public class EnchantmentBindingCurse extends Enchantment
 {
-	public EnchantmentBindingCurse(Enchantment.Rarity p_i47254_1_, EntityEquipmentSlot... p_i47254_2_)
+	public EnchantmentBindingCurse(Enchantment.EnchantmentRarity p_i47254_1_, EntityEquipmentSlot... p_i47254_2_)
 	{
 		super(p_i47254_1_, EnumEnchantmentType.WEARABLE, p_i47254_2_);
 		this.setName("binding_curse");

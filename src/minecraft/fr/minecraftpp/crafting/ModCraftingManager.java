@@ -33,6 +33,7 @@ public class ModCraftingManager
 		try
 		{
 			new RecipeBlock(ModItems.SCENARIUM, ModBlocks.SCENARIUM_BLOCK);
+			new RecipeItemFromBlock(ModBlocks.SCENARIUM_BLOCK, ModItems.SCENARIUM);
 
 			new RecipeSword(ModItems.SCENARIUM, ModItems.SCENARIUM_SWORD);
 			new RecipePickaxe(ModItems.SCENARIUM, ModItems.SCENARIUM_PICKAXE);

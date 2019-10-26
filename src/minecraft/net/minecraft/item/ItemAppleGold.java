@@ -13,6 +13,7 @@ public class ItemAppleGold extends ItemFood
 	{
 		super(amount, saturation, isWolfFood);
 		this.setHasSubtypes(true);
+		this.setRarity(Rarity.RARE);
 	}
 
 	@Override
@@ -25,9 +26,9 @@ public class ItemAppleGold extends ItemFood
 	 * Return an item rarity from EnumRarity
 	 */
 	@Override
-	public EnumRarity getRarity(ItemStack stack)
+	public Rarity getRarity(ItemStack stack)
 	{
-		return stack.getMetadata() == 0 ? EnumRarity.RARE : EnumRarity.EPIC;
+		return stack.getMetadata() == 0 ? super.getRarity(stack) : super.getRarity(stack).next();
 	}
 
 	@Override

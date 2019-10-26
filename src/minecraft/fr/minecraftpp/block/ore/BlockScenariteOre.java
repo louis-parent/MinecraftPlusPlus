@@ -1,4 +1,4 @@
-package fr.minecraftpp.block;
+package fr.minecraftpp.block.ore;
 
 import java.util.Random;
 

@@ -297,7 +297,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 		}
 		else
 		{
-			TextureAtlasSprite textureatlassprite = this.mapRegisteredSprites.get(location);
+			TextureAtlasSprite textureatlassprite = this.mapRegisteredSprites.get(location.toString());
 
 			if (textureatlassprite == null)
 			{

@@ -5,7 +5,7 @@ import net.minecraft.init.Enchantments;
 
 public class EnchantmentWaterWalker extends Enchantment
 {
-	public EnchantmentWaterWalker(Enchantment.Rarity rarityIn, EntityEquipmentSlot... slots)
+	public EnchantmentWaterWalker(Enchantment.EnchantmentRarity rarityIn, EntityEquipmentSlot... slots)
 	{
 		super(rarityIn, EnumEnchantmentType.ARMOR_FEET, slots);
 		this.setName("waterWalker");
