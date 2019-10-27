@@ -46,6 +46,7 @@ public class SimpleSet implements ISet
 	private boolean isCurrency;
 	
 	private DynamicColor blockColor;
+	private DynamicColor oreColor;
 	
 	public SimpleSet(Random rand)
 	{
@@ -61,6 +62,7 @@ public class SimpleSet implements ISet
 		this.isCurrency = false;
 		
 		this.blockColor = new DynamicColor(this.block);
+		this.oreColor = new DynamicColor(this.ore);
 	}
 	
 	public void setupEffects()
@@ -143,12 +145,14 @@ public class SimpleSet implements ISet
 	{
 		itemColors.registerItemColorHandler(new DynamicColor(this.item), this.item);
 		itemColors.registerItemColorHandler(this.blockColor, this.block);
+		itemColors.registerItemColorHandler(this.oreColor, this.ore);
 	}
 	
 	@Override
 	public void registerBlockColors(BlockColors blockColors)
 	{
 		blockColors.registerBlockColorHandler(this.blockColor, this.block);
+		blockColors.registerBlockColorHandler(this.oreColor, this.ore);
 	}
 
 	private void setupFuel()

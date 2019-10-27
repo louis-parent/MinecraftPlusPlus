@@ -41,17 +41,17 @@
     },
     "done": true
   },
-  "minecraft:recipes/decorations/painting": {
-    "criteria": {
-      "has_wool": "2019-10-26 22:19:55 +0200"
-    },
-    "done": true
-  },
   "minecraft:adventure/kill_all_mobs": {
     "criteria": {
       "witch": "2019-10-26 22:17:18 +0200"
     },
     "done": false
+  },
+  "minecraft:recipes/decorations/painting": {
+    "criteria": {
+      "has_wool": "2019-10-26 22:19:55 +0200"
+    },
+    "done": true
   },
   "minecraft:recipes/decorations/pink_bed": {
     "criteria": {

@@ -5,6 +5,7 @@ import java.util.Random;
 import fr.minecraftpp.color.Color;
 import fr.minecraftpp.damageSource.ModDamageSource;
 import fr.minecraftpp.enumeration.FlammabilityOf;
+import fr.minecraftpp.enumeration.ModelType;
 import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.material.IColored;
 import net.minecraft.block.Block;
@@ -265,5 +266,11 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	public Color getColor()
 	{
 		return this.item.getColor();
+	}
+	
+	@Override
+	public ModelType getModelType()
+	{
+		return ModelType.COLORED;
 	}
 }

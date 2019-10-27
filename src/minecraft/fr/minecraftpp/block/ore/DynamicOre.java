@@ -3,24 +3,30 @@ package fr.minecraftpp.block.ore;
 import java.util.Random;
 
 import fr.minecraftpp.block.IDynamicBlock;
+import fr.minecraftpp.color.Color;
 import fr.minecraftpp.enumeration.HarvestLevel;
+import fr.minecraftpp.enumeration.ModelType;
+import fr.minecraftpp.item.DynamicItem;
+import fr.minecraftpp.item.material.IColored;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
+import net.minecraft.util.BlockRenderLayer;
 
-public class DynamicOre extends BlockOre implements IDynamicBlock
+public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 {
 	private static final int NUMBER_OF_TEXTURES = 4;
 
 	private final String ID;
 	private final int TEXTURE_ID;
+	protected DynamicItem item;
 	
 	private int harvestLevel;
 	private Rarity rarity;
 
-	public DynamicOre(String typeName, int textureId, HarvestLevel harvestLevel)
+	public DynamicOre(String typeName, int textureId, HarvestLevel harvestLevel, DynamicItem item)
 	{
 		super();
 		
@@ -28,6 +34,8 @@ public class DynamicOre extends BlockOre implements IDynamicBlock
 		this.setUnlocalizedName(this.ID);
 		
 		this.TEXTURE_ID = textureId;
+		
+		this.item = item;
 		
 		this.harvestLevel = harvestLevel.getHarvestLevel();
 		
@@ -94,5 +102,29 @@ public class DynamicOre extends BlockOre implements IDynamicBlock
 	public int getAverageQuantityDropped()
 	{
 		return 1;
+	}
+	
+	@Override
+	public ModelType getModelType()
+	{
+		return ModelType.OVERLAY;
+	}
+	
+	@Override
+	public boolean hasColor()
+	{
+		return this.item.hasColor();
+	}
+	
+	@Override
+	public Color getColor()
+	{
+		return this.item.getColor();
+	}
+	
+	@Override
+	public BlockRenderLayer getBlockLayer()
+	{
+		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 }

@@ -3,6 +3,7 @@ package fr.minecraftpp.block.ore;
 import java.util.Random;
 
 import fr.minecraftpp.enumeration.HarvestLevel;
+import fr.minecraftpp.item.DynamicItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +17,6 @@ import net.minecraft.world.World;
 
 public class DynamicOreGem extends DynamicOre
 {
-	private Item itemDropped;
 	private int minDropped;
 	private int maxDropped;
 	
@@ -25,17 +25,16 @@ public class DynamicOreGem extends DynamicOre
 	
 	private boolean isPoweredOre;
 	
-	public DynamicOreGem(String typeName, int textureId, Item itemDropped, int quantityDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop) 
+	public DynamicOreGem(String typeName, int textureId, DynamicItem itemDropped, int quantityDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop) 
 	{
 		this(typeName, textureId, itemDropped, quantityDropped, quantityDropped, harvestLevel, minXpDrop, maxXpDrop);
 	}
 
 
-	public DynamicOreGem(String typeName, int textureId, Item itemDropped, int minDropped, int maxDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop)
+	public DynamicOreGem(String typeName, int textureId, DynamicItem itemDropped, int minDropped, int maxDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop)
 	{
-		super(typeName, textureId, harvestLevel); 
+		super(typeName, textureId, harvestLevel, itemDropped); 
 		
-		this.itemDropped = itemDropped;
 		this.minDropped = minDropped;
 		this.maxDropped = maxDropped;
 		
@@ -49,7 +48,7 @@ public class DynamicOreGem extends DynamicOre
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return this.itemDropped;
+		return this.item;
 	}
 
 	@Override

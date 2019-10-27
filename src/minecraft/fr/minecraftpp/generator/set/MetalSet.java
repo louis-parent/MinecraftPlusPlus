@@ -21,8 +21,9 @@ public class MetalSet extends MaterialSet
 	{
 		super(rand);
 		
-		this.ore = new DynamicOre(this.name, DynamicOre.getRandomTextureId(this.rng), HarvestLevel.getRandomHarvestLevel(this.rng));
+		this.ore = new DynamicOre(this.name, DynamicOre.getRandomTextureId(this.rng), HarvestLevel.getRandomHarvestLevel(this.rng), this.item);
 		this.nugget = new DynamicNugget(this.name, this.item);
+		this.item.setUnlocalizedName(this.name + "Ingot");
 	}
 	
 	@Override
