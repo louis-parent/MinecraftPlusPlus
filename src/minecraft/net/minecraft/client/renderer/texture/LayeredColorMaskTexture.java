@@ -69,7 +69,7 @@ public class LayeredColorMaskTexture extends AbstractTexture
 					try
 					{
 						String s = this.listTextures.get(j);
-						int k = this.listDyeColors.get(j).func_193350_e();
+						int k = this.listDyeColors.get(j).asInt();
 
 						if (s != null)
 						{

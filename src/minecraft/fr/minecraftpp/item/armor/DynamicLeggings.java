@@ -3,6 +3,7 @@ package fr.minecraftpp.item.armor;
 import fr.minecraftpp.item.IDynamicItem;
 import fr.minecraftpp.item.material.IArmorMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class DynamicLeggings extends ItemLeggings implements IDynamicItem
 {
@@ -34,4 +35,9 @@ public class DynamicLeggings extends ItemLeggings implements IDynamicItem
 		return this;
 	}
 
+	@Override
+	public int getColor(ItemStack stack)
+	{
+		return this.getArmorMaterial().getRgbCondensed();
+	}
 }

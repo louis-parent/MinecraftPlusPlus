@@ -4,6 +4,8 @@ import java.util.Random;
 
 import fr.minecraftpp.item.food.IFood;
 import fr.minecraftpp.item.food.NotFood;
+import fr.minecraftpp.item.material.IColoredMaterial;
+import fr.minecraftpp.util.Color;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,11 +20,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class DynamicItem extends Item implements IDynamicItem
+public class DynamicItem extends Item implements IDynamicItem, IColoredMaterial
 {
 	private static final int NUMBER_OF_TEXTURES = 6;
 	private final String ID;
 	private int textureId;
+	private final Color color;
 	
 	private boolean hasEffect;
 	private int fuelAmount;
@@ -33,7 +36,7 @@ public class DynamicItem extends Item implements IDynamicItem
 	
 	private boolean isBeaconCurrency;
 
-	public DynamicItem(String typeName, int textureId)
+	public DynamicItem(String typeName, int textureId, Color color)
 	{
 		super();
 				
@@ -48,6 +51,8 @@ public class DynamicItem extends Item implements IDynamicItem
 		this.setUnlocalizedName(typeName);
 		this.ID = typeName;
 		this.textureId = textureId;
+		
+		this.color = color;
 		
 		this.isBeaconCurrency = false;
 	}
@@ -194,5 +199,17 @@ public class DynamicItem extends Item implements IDynamicItem
 	public void setTextureAsMetal()
 	{
 		this.textureId = NUMBER_OF_TEXTURES;
+	}
+
+	@Override
+	public boolean hasColor()
+	{
+		return true;
+	}
+	
+	@Override
+	public Color getColor()
+	{
+		return this.color;
 	}
 }

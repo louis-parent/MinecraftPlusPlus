@@ -2,6 +2,7 @@ package net.minecraft.item;
 
 import fr.minecraftpp.enumeration.ToolType;
 import fr.minecraftpp.item.material.IToolMaterial;
+import fr.minecraftpp.util.Color;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 

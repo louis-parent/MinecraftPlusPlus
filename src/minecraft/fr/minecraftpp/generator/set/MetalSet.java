@@ -7,8 +7,10 @@ import fr.minecraftpp.crafting.furnace.FurnaceRecipe;
 import fr.minecraftpp.crafting.item.RecipeCompact;
 import fr.minecraftpp.crafting.item.RecipeDecompact;
 import fr.minecraftpp.enumeration.HarvestLevel;
+import fr.minecraftpp.item.DynamicColor;
 import fr.minecraftpp.item.DynamicNugget;
 import fr.minecraftpp.manager.ModManager;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Rarity;
 
 public class MetalSet extends MaterialSet
@@ -20,7 +22,7 @@ public class MetalSet extends MaterialSet
 		super(rand);
 		
 		this.ore = new DynamicOre(this.name, DynamicOre.getRandomTextureId(this.rng), HarvestLevel.getRandomHarvestLevel(this.rng));
-		this.nugget = new DynamicNugget(this.name);
+		this.nugget = new DynamicNugget(this.name, this.item);
 	}
 	
 	@Override
@@ -65,6 +67,14 @@ public class MetalSet extends MaterialSet
 		super.setRarity(rarity);
 		
 		this.nugget.setRarity(rarity);
+	}
+	
+	@Override
+	public void registerColors(ItemColors itemColors)
+	{
+		super.registerColors(itemColors);
+		
+		itemColors.registerItemColorHandler(new DynamicColor(this.nugget), this.nugget);
 	}
 	
 	/*

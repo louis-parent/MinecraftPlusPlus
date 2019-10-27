@@ -3,6 +3,7 @@ package fr.minecraftpp.item.material;
 import fr.minecraftpp.enumeration.ToolType;
 import fr.minecraftpp.inventory.EntityArmorSlot;
 import fr.minecraftpp.manager.item.ModItems;
+import fr.minecraftpp.util.Color;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;

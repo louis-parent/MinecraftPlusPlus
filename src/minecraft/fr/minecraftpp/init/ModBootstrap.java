@@ -1,6 +1,6 @@
 package fr.minecraftpp.init;
 
-import fr.minecraftpp.generator.ModGenerator;
+import fr.minecraftpp.manager.SetManager;
 import fr.minecraftpp.manager.block.ModBlocks;
 import fr.minecraftpp.manager.item.ModItems;
 import net.minecraft.entity.passive.EntityVillager;
@@ -12,8 +12,8 @@ public class ModBootstrap
 
 	public static void preBootstrap()
 	{
-		ModGenerator.generateOre();
-		ModGenerator.register();
+		SetManager.generateOre();
+		SetManager.register();
 	}
 	
 	public static void postBootstrap()
@@ -21,8 +21,8 @@ public class ModBootstrap
 		EntityVillager.setMoney(ModItems.SCENARIUM);
 		Item.getItemFromBlock(ModBlocks.SCENARIUM_BLOCK).setRarity(Rarity.EPIC);
 
-		ModGenerator.setupEffects();
-		ModGenerator.generateRecipes();		
+		SetManager.setupEffects();
+		SetManager.generateRecipes();		
 	}
 
 }

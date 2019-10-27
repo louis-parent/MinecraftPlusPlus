@@ -13,22 +13,22 @@ public enum EnumDyeColor implements IStringSerializable
 	private final int dyeDamage;
 	private final String name;
 	private final String unlocalizedName;
-	private final int field_193351_w;
-	private final float[] field_193352_x;
+	private final int rgbCondensed;
+	private final float[] rgbIntensity;
 	private final TextFormatting chatColor;
 
-	private EnumDyeColor(int p_i47505_3_, int p_i47505_4_, String p_i47505_5_, String p_i47505_6_, int p_i47505_7_, TextFormatting p_i47505_8_)
+	private EnumDyeColor(int meta, int damage, String name, String unlocalizedName, int rgbCondensed, TextFormatting chatColor)
 	{
-		this.meta = p_i47505_3_;
-		this.dyeDamage = p_i47505_4_;
-		this.name = p_i47505_5_;
-		this.unlocalizedName = p_i47505_6_;
-		this.field_193351_w = p_i47505_7_;
-		this.chatColor = p_i47505_8_;
-		int i = (p_i47505_7_ & 16711680) >> 16;
-		int j = (p_i47505_7_ & 65280) >> 8;
-		int k = (p_i47505_7_ & 255) >> 0;
-		this.field_193352_x = new float[] { i / 255.0F, j / 255.0F, k / 255.0F };
+		this.meta = meta;
+		this.dyeDamage = damage;
+		this.name = name;
+		this.unlocalizedName = unlocalizedName;
+		this.rgbCondensed = rgbCondensed;
+		this.chatColor = chatColor;
+		int i = (rgbCondensed & 16711680) >> 16;
+		int j = (rgbCondensed & 65280) >> 8;
+		int k = (rgbCondensed & 255) >> 0;
+		this.rgbIntensity = new float[] { i / 255.0F, j / 255.0F, k / 255.0F };
 	}
 
 	public int getMetadata()
@@ -41,24 +41,19 @@ public enum EnumDyeColor implements IStringSerializable
 		return this.dyeDamage;
 	}
 
-	public String func_192396_c()
-	{
-		return this.name;
-	}
-
 	public String getUnlocalizedName()
 	{
 		return this.unlocalizedName;
 	}
 
-	public int func_193350_e()
+	public int asInt()
 	{
-		return this.field_193351_w;
+		return this.rgbCondensed;
 	}
 
-	public float[] func_193349_f()
+	public float[] getRGB()
 	{
-		return this.field_193352_x;
+		return this.rgbIntensity;
 	}
 
 	public static EnumDyeColor byDyeDamage(int damage)

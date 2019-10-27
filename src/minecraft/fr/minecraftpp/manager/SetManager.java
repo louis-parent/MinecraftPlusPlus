@@ -1,4 +1,4 @@
-package fr.minecraftpp.generator;
+package fr.minecraftpp.manager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,9 @@ import fr.minecraftpp.generator.set.ISet;
 import fr.minecraftpp.generator.set.MaterialSet;
 import fr.minecraftpp.generator.set.MetalSet;
 import fr.minecraftpp.generator.set.SimpleSet;
+import net.minecraft.client.renderer.color.ItemColors;
 
-public class ModGenerator
+public class SetManager
 {
 	private static List<ISet> sets = new ArrayList<ISet>();
 	
@@ -43,6 +44,14 @@ public class ModGenerator
 		for (ISet set : sets)
 		{
 			set.addRecipes();
+		}
+	}
+	
+	public static void registerColors(ItemColors itemcolors)
+	{
+		for (ISet set : sets)
+		{
+			set.registerColors(itemcolors);
 		}
 	}
 }

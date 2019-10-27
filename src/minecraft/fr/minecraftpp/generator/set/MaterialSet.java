@@ -12,6 +12,7 @@ import fr.minecraftpp.crafting.tools.RecipePickaxe;
 import fr.minecraftpp.crafting.tools.RecipeShovel;
 import fr.minecraftpp.crafting.tools.RecipeSword;
 import fr.minecraftpp.enumeration.HarvestLevel;
+import fr.minecraftpp.item.DynamicColor;
 import fr.minecraftpp.item.armor.DynamicBoots;
 import fr.minecraftpp.item.armor.DynamicChestplate;
 import fr.minecraftpp.item.armor.DynamicHelmet;
@@ -25,6 +26,8 @@ import fr.minecraftpp.item.tool.DynamicSword;
 import fr.minecraftpp.language.ModLanguage;
 import fr.minecraftpp.manager.ModManager;
 import fr.minecraftpp.manager.item.ModItem;
+import fr.minecraftpp.util.Color;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Rarity;
 
 public class MaterialSet extends SimpleSet 
@@ -118,6 +121,23 @@ public class MaterialSet extends SimpleSet
 		this.chestplate.setRarity(rarity);
 		this.leggings.setRarity(rarity);
 		this.boots.setRarity(rarity);
+	}
+	
+	@Override
+	public void registerColors(ItemColors itemColors)
+	{
+		super.registerColors(itemColors);
+		
+		itemColors.registerItemColorHandler(new DynamicColor(this.sword), this.sword);
+		itemColors.registerItemColorHandler(new DynamicColor(this.pickaxe), this.pickaxe);
+		itemColors.registerItemColorHandler(new DynamicColor(this.axe), this.axe);
+		itemColors.registerItemColorHandler(new DynamicColor(this.shovel), this.shovel);
+		itemColors.registerItemColorHandler(new DynamicColor(this.hoe), this.hoe);
+
+		itemColors.registerItemColorHandler(new DynamicColor(this.helmet), this.helmet);
+		itemColors.registerItemColorHandler(new DynamicColor(this.chestplate), this.chestplate);
+		itemColors.registerItemColorHandler(new DynamicColor(this.leggings), this.leggings);
+		itemColors.registerItemColorHandler(new DynamicColor(this.boots), this.boots);
 	}
 	
 	/*

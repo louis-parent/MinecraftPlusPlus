@@ -74,7 +74,7 @@ public class EntitySheep extends EntityAnimal
 
 	private static float[] func_192020_c(EnumDyeColor p_192020_0_)
 	{
-		float[] afloat = p_192020_0_.func_193349_f();
+		float[] afloat = p_192020_0_.getRGB();
 		float f = 0.75F;
 		return new float[] { afloat[0] * 0.75F, afloat[1] * 0.75F, afloat[2] * 0.75F };
 	}

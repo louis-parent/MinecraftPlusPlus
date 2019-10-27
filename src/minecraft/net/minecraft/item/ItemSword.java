@@ -101,7 +101,7 @@ public class ItemSword extends ItemTool
 	@Override
 	public int getItemEnchantability()
 	{
-		return this.toolMaterial.getEnchantability();
+		return this.getToolMaterial().getEnchantability();
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class ItemSword extends ItemTool
 	@Override
 	public String getToolMaterialName()
 	{
-		return this.toolMaterial.toString();
+		return this.getToolMaterial().toString();
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class ItemSword extends ItemTool
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
 	{
-		return this.toolMaterial.getRepairItem() == repair.getItem() ? true : super.getIsRepairable(toRepair, repair);
+		return this.getToolMaterial().getRepairItem() == repair.getItem() ? true : super.getIsRepairable(toRepair, repair);
 	}
 
 	@Override

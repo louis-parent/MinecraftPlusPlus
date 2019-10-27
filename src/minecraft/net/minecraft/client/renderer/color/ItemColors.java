@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer.color;
 
+import fr.minecraftpp.manager.SetManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.state.IBlockState;
@@ -25,9 +26,11 @@ public class ItemColors
 {
 	private final ObjectIntIdentityMap<IItemColor> mapItemColors = new ObjectIntIdentityMap<IItemColor>(32);
 
-	public static ItemColors init(final BlockColors p_186729_0_)
+	public static ItemColors init(final BlockColors colors)
 	{
 		ItemColors itemcolors = new ItemColors();
+		SetManager.registerColors(itemcolors);
+		
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
 			@Override
@@ -123,7 +126,7 @@ public class ItemColors
 			public int getColorFromItemstack(ItemStack stack, int tintIndex)
 			{
 				IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
-				return p_186729_0_.colorMultiplier(iblockstate, (IBlockAccess) null, (BlockPos) null, tintIndex);
+				return colors.colorMultiplier(iblockstate, (IBlockAccess) null, (BlockPos) null, tintIndex);
 			}
 		}, Blocks.GRASS, Blocks.TALLGRASS, Blocks.VINE, Blocks.LEAVES, Blocks.LEAVES2, Blocks.WATERLILY);
 		itemcolors.registerItemColorHandler(new IItemColor()

@@ -118,7 +118,7 @@ public class TileEntityBedRenderer extends TileEntitySpecialRenderer<TileEntityB
 
 		for (EnumDyeColor enumdyecolor : aenumdyecolor)
 		{
-			field_193848_a[enumdyecolor.getMetadata()] = new ResourceLocation("textures/entity/bed/" + enumdyecolor.func_192396_c() + ".png");
+			field_193848_a[enumdyecolor.getMetadata()] = new ResourceLocation("textures/entity/bed/" + enumdyecolor.getName() + ".png");
 		}
 	}
 }

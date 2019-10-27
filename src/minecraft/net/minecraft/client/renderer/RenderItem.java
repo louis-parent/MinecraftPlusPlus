@@ -831,8 +831,8 @@ public class RenderItem implements IResourceManagerReloadListener
 
 		for (EnumDyeColor enumdyecolor : EnumDyeColor.values())
 		{
-			this.registerBlock(Blocks.field_192443_dR, enumdyecolor.getMetadata(), enumdyecolor.func_192396_c() + "_concrete");
-			this.registerBlock(Blocks.field_192444_dS, enumdyecolor.getMetadata(), enumdyecolor.func_192396_c() + "_concrete_powder");
+			this.registerBlock(Blocks.field_192443_dR, enumdyecolor.getMetadata(), enumdyecolor.getName() + "_concrete");
+			this.registerBlock(Blocks.field_192444_dS, enumdyecolor.getMetadata(), enumdyecolor.getName() + "_concrete_powder");
 		}
 
 		this.registerBlock(Blocks.CHEST, "chest");

@@ -11,11 +11,14 @@ import fr.minecraftpp.crafting.item.RecipeCompact;
 import fr.minecraftpp.crafting.item.RecipeDecompact;
 import fr.minecraftpp.enumeration.FlammabilityOf;
 import fr.minecraftpp.enumeration.HarvestLevel;
+import fr.minecraftpp.item.DynamicColor;
 import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.food.Food;
 import fr.minecraftpp.manager.ModManager;
+import fr.minecraftpp.util.Color;
 import fr.minecraftpp.util.NameGenerator;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
@@ -46,7 +49,7 @@ public class SimpleSet implements ISet
 		this.rng = rand;
 		this.name = NameGenerator.generateName(this.rng);
 		
-		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng));
+		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng), Color.getRandomColor(this.rng));
 		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng));
 		this.ore = new DynamicOreGem(name, DynamicOre.getRandomTextureId(this.rng), item, this.rng.nextInt(QUANTITY_DROPPED_MAX) + 1, HarvestLevel.getRandomHarvestLevel(this.rng), this.rng.nextInt(2), this.rng.nextInt(3) + 2);
 
@@ -128,6 +131,12 @@ public class SimpleSet implements ISet
 		this.item.setRarity(rarity);
 		this.block.setRarity(rarity);
 		this.ore.setRarity(rarity);
+	}
+	
+	@Override
+	public void registerColors(ItemColors itemColors)
+	{
+		itemColors.registerItemColorHandler(new DynamicColor(this.item), this.item);
 	}
 
 	private void setupFuel()

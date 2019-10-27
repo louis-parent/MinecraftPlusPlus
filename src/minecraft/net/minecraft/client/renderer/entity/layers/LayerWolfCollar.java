@@ -21,7 +21,7 @@ public class LayerWolfCollar implements LayerRenderer<EntityWolf>
 		if (entitylivingbaseIn.isTamed() && !entitylivingbaseIn.isInvisible())
 		{
 			this.wolfRenderer.bindTexture(WOLF_COLLAR);
-			float[] afloat = entitylivingbaseIn.getCollarColor().func_193349_f();
+			float[] afloat = entitylivingbaseIn.getCollarColor().getRGB();
 			GlStateManager.color(afloat[0], afloat[1], afloat[2]);
 			this.wolfRenderer.getMainModel().render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 		}

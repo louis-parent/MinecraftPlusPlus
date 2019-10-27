@@ -92,7 +92,7 @@ public abstract class ItemTool extends Item
 	@Override
 	public int getItemEnchantability()
 	{
-		return this.toolMaterial.getEnchantability();
+		return this.getToolMaterial().getEnchantability();
 	}
 
 	/**
@@ -100,7 +100,7 @@ public abstract class ItemTool extends Item
 	 */
 	public String getToolMaterialName()
 	{
-		return this.toolMaterial.toString();
+		return this.getToolMaterial().toString();
 	}
 
 	/**
@@ -109,7 +109,7 @@ public abstract class ItemTool extends Item
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
 	{
-		return this.toolMaterial.getRepairItem() == repair.getItem() ? true : super.getIsRepairable(toRepair, repair);
+		return this.getToolMaterial().getRepairItem() == repair.getItem() ? true : super.getIsRepairable(toRepair, repair);
 	}
 
 	@Override
@@ -124,5 +124,10 @@ public abstract class ItemTool extends Item
 		}
 
 		return multimap;
+	}
+
+	public IToolMaterial getToolMaterial()
+	{
+		return toolMaterial;
 	}
 }

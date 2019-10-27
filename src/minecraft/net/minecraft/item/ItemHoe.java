@@ -113,7 +113,7 @@ public class ItemHoe extends ItemTool
 	 */
 	public String getMaterialName()
 	{
-		return this.toolMaterial.toString();
+		return this.getToolMaterial().toString();
 	}
 
 	@Override

@@ -134,7 +134,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		this.levels = 0;
 		this.beamSegments.clear();
 		this.isComplete = true;
-		TileEntityBeacon.BeamSegment tileentitybeacon$beamsegment = new TileEntityBeacon.BeamSegment(EnumDyeColor.WHITE.func_193349_f());
+		TileEntityBeacon.BeamSegment tileentitybeacon$beamsegment = new TileEntityBeacon.BeamSegment(EnumDyeColor.WHITE.getRGB());
 		this.beamSegments.add(tileentitybeacon$beamsegment);
 		boolean flag = true;
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
@@ -146,7 +146,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
 			if (iblockstate.getBlock() == Blocks.STAINED_GLASS)
 			{
-				afloat = iblockstate.getValue(BlockStainedGlass.COLOR).func_193349_f();
+				afloat = iblockstate.getValue(BlockStainedGlass.COLOR).getRGB();
 			}
 			else
 			{
@@ -163,7 +163,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 					continue;
 				}
 
-				afloat = iblockstate.getValue(BlockStainedGlassPane.COLOR).func_193349_f();
+				afloat = iblockstate.getValue(BlockStainedGlassPane.COLOR).getRGB();
 			}
 
 			if (!flag)

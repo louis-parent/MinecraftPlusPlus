@@ -106,7 +106,7 @@ public class RecipesArmorDyes implements IRecipe
 						return ItemStack.EMPTY_ITEM_STACK;
 					}
 
-					float[] afloat = EnumDyeColor.byDyeDamage(itemstack1.getMetadata()).func_193349_f();
+					float[] afloat = EnumDyeColor.byDyeDamage(itemstack1.getMetadata()).getRGB();
 					int l1 = (int) (afloat[0] * 255.0F);
 					int i2 = (int) (afloat[1] * 255.0F);
 					int j2 = (int) (afloat[2] * 255.0F);

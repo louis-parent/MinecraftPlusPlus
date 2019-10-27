@@ -5,6 +5,8 @@ import java.util.Random;
 import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.enumeration.ToolType;
 import fr.minecraftpp.inventory.EntityArmorSlot;
+import fr.minecraftpp.item.DynamicItem;
+import fr.minecraftpp.util.Color;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
@@ -14,7 +16,7 @@ public class DynamicMaterial implements IToolMaterial, IArmorMaterial
 	private static final int NUMBER_OF_TEXTURES = 2;
 	
 	private int textureId;
-	private Item repairItem;
+	private DynamicItem repairItem;
 	
 	private int armorDurabilityFactor;
 	private int[] armorDamageReduction;
@@ -26,7 +28,7 @@ public class DynamicMaterial implements IToolMaterial, IArmorMaterial
 	private int harvestLevel;
 	private int enchantability;
 
-	public DynamicMaterial(int textureId, Item repairItem)
+	public DynamicMaterial(int textureId, DynamicItem repairItem)
 	{
 		this.textureId = textureId;
 		this.repairItem = repairItem;
@@ -167,5 +169,17 @@ public class DynamicMaterial implements IToolMaterial, IArmorMaterial
 	public static int getRandomTextureID(Random rng)
 	{
 		return rng.nextInt(NUMBER_OF_TEXTURES) + 1;
+	}
+
+	@Override
+	public boolean hasColor()
+	{
+		return this.repairItem.hasColor();
+	}
+
+	@Override
+	public Color getColor()
+	{
+		return this.repairItem.getColor();
 	}
 }

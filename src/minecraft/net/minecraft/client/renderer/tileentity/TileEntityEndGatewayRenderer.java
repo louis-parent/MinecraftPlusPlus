@@ -25,7 +25,7 @@ public class TileEntityEndGatewayRenderer extends TileEntityEndPortalRenderer
 			double d0 = tileentityendgateway.isSpawning() ? 256.0D - p_192841_4_ : 50.0D;
 			f = MathHelper.sin(f * (float) Math.PI);
 			int i = MathHelper.floor(f * d0);
-			float[] afloat = tileentityendgateway.isSpawning() ? EnumDyeColor.MAGENTA.func_193349_f() : EnumDyeColor.PURPLE.func_193349_f();
+			float[] afloat = tileentityendgateway.isSpawning() ? EnumDyeColor.MAGENTA.getRGB() : EnumDyeColor.PURPLE.getRGB();
 			TileEntityBeaconRenderer.renderBeamSegment(p_192841_2_, p_192841_4_, p_192841_6_, p_192841_8_, f, tileentityendgateway.getWorld().getTotalWorldTime(), 0, i, afloat, 0.15D, 0.175D);
 			TileEntityBeaconRenderer.renderBeamSegment(p_192841_2_, p_192841_4_, p_192841_6_, p_192841_8_, f, tileentityendgateway.getWorld().getTotalWorldTime(), 0, -i, afloat, 0.15D, 0.175D);
 		}
