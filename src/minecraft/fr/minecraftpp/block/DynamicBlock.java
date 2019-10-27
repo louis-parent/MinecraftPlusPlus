@@ -273,4 +273,10 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	{
 		return ModelType.COLORED;
 	}
+	
+	@Override
+	public int getDustColor(IBlockState state)
+	{
+		return this.item.getColor().asInt();
+	}
 }
