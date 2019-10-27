@@ -18,11 +18,11 @@ public class ModBootstrap
 	
 	public static void postBootstrap()
 	{
-		ModGenerator.setupEffects();
-		ModGenerator.generateRecipes();
-		
 		EntityVillager.setMoney(ModItems.SCENARIUM);
 		Item.getItemFromBlock(ModBlocks.SCENARIUM_BLOCK).setRarity(Rarity.EPIC);
+
+		ModGenerator.setupEffects();
+		ModGenerator.generateRecipes();		
 	}
 
 }

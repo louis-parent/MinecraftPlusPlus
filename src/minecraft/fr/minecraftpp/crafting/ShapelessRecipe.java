@@ -9,6 +9,7 @@ import fr.minecraftpp.anotation.Mod;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
@@ -17,13 +18,23 @@ import net.minecraft.world.World;
 public class ShapelessRecipe extends ModAbstractRecipe
 {
 	private List<Item> recipeRequirements;
-
-	public ShapelessRecipe(Item result, List<Item> recipeRequirements)
+	
+	public ShapelessRecipe(ItemStack result, List<Item> recipeRequirements)
 	{
 		super(result);
 		this.recipeRequirements = recipeRequirements;
 	}
-
+	
+	public ShapelessRecipe(ItemStack result, Item... recipeRequirements)
+	{
+		this(result, Arrays.asList(recipeRequirements));
+	}
+	
+	public ShapelessRecipe(Item result, List<Item> recipeRequirements)
+	{
+		this(result.getAsStack(), recipeRequirements);
+	}
+	
 	public ShapelessRecipe(Item result, Item... recipeRequirements)
 	{
 		this(result, Arrays.asList(recipeRequirements));

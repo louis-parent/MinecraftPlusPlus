@@ -90,4 +90,9 @@ public class DynamicOre extends BlockOre implements IDynamicBlock
 	{
 		return rng.nextInt(NUMBER_OF_TEXTURES) + 1;
 	}
+	
+	public int getAverageQuantityDropped()
+	{
+		return 1;
+	}
 }

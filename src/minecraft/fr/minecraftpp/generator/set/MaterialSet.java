@@ -25,6 +25,7 @@ import fr.minecraftpp.item.tool.DynamicSword;
 import fr.minecraftpp.language.ModLanguage;
 import fr.minecraftpp.manager.ModManager;
 import fr.minecraftpp.manager.item.ModItem;
+import net.minecraft.item.Rarity;
 
 public class MaterialSet extends SimpleSet 
 {
@@ -101,6 +102,30 @@ public class MaterialSet extends SimpleSet
 		new RecipeLeggings(this.item, this.leggings);
 		new RecipeBoots(this.item, this.boots);
 	}
+	
+	@Override
+	public void setRarity(Rarity rarity)
+	{
+		super.setRarity(rarity);
+		
+		this.sword.setRarity(rarity);
+		this.pickaxe.setRarity(rarity);
+		this.axe.setRarity(rarity);
+		this.shovel.setRarity(rarity);
+		this.hoe.setRarity(rarity);
+
+		this.helmet.setRarity(rarity);
+		this.chestplate.setRarity(rarity);
+		this.leggings.setRarity(rarity);
+		this.boots.setRarity(rarity);
+	}
+	
+	/*
+	 * Material sets cannot be currencies
+	 * Being able to craft armor and tools with the currency is not desired
+	 */
+	@Override
+	public void setCurrency() {}
 	
 	private void setupMaterial()
 	{

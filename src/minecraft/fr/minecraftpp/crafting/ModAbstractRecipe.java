@@ -10,12 +10,17 @@ import net.minecraft.item.crafting.IRecipe;
 @Mod("Minecraftpp")
 public abstract class ModAbstractRecipe implements IRecipe
 {
-	protected Item recipeResult;
+	protected ItemStack recipeResult;
 
 	public ModAbstractRecipe(Item result)
 	{
+		this(result.getAsStack());
+	}
+	
+	public ModAbstractRecipe(ItemStack stack)
+	{
 		ModCraftingManager.register(this);
-		this.recipeResult = result;
+		this.recipeResult = stack;
 	}
 
 	@Override
@@ -27,11 +32,14 @@ public abstract class ModAbstractRecipe implements IRecipe
 	@Override
 	public ItemStack getRecipeOutput()
 	{
-		return new ItemStack(recipeResult, this.getRecipeOutputQuantity());
+		ItemStack result = this.recipeResult.copy();
+		result.setStackSize(this.getRecipeOutputQuantity());
+		
+		return result;
 	}
 
 	public int getRecipeOutputQuantity()
 	{
-		return 1;
+		return this.recipeResult.getStackSize();
 	}
 }

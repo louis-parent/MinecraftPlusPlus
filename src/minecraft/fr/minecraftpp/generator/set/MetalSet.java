@@ -9,6 +9,7 @@ import fr.minecraftpp.crafting.item.RecipeDecompact;
 import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.item.DynamicNugget;
 import fr.minecraftpp.manager.ModManager;
+import net.minecraft.item.Rarity;
 
 public class MetalSet extends MaterialSet
 {
@@ -57,4 +58,26 @@ public class MetalSet extends MaterialSet
 		new FurnaceRecipe(this.leggings, this.nugget.getAsStack(), 0);
 		new FurnaceRecipe(this.boots, this.nugget.getAsStack(), 0);
 	}
+	
+	@Override
+	public void setRarity(Rarity rarity)
+	{
+		super.setRarity(rarity);
+		
+		this.nugget.setRarity(rarity);
+	}
+	
+	/*
+	 * Metal sets cannot be blue dyes
+	 * Crafting blue dye and nuggets is incompatible
+	 */
+	@Override
+	public void setBlueDye() {}
+	
+	/*
+	 * Metal sets cannot be redstone
+	 * Crafting redstone and nuggets is incompatible
+	 */
+	@Override
+	public void setRedstoneSet() {}
 }

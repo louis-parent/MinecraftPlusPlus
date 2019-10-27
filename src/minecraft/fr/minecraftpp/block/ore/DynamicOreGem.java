@@ -150,4 +150,10 @@ public class DynamicOreGem extends DynamicOre
 			}
 		}
 	}	
+	
+	@Override
+	public int getAverageQuantityDropped()
+	{
+		return (this.maxDropped + this.minDropped) / 2;
+	}
 }

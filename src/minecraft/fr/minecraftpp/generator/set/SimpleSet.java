@@ -5,6 +5,7 @@ import java.util.Random;
 import fr.minecraftpp.block.DynamicBlock;
 import fr.minecraftpp.block.ore.DynamicOre;
 import fr.minecraftpp.block.ore.DynamicOreGem;
+import fr.minecraftpp.crafting.ShapelessRecipe;
 import fr.minecraftpp.crafting.furnace.FurnaceRecipe;
 import fr.minecraftpp.crafting.item.RecipeCompact;
 import fr.minecraftpp.crafting.item.RecipeDecompact;
@@ -12,15 +13,20 @@ import fr.minecraftpp.enumeration.FlammabilityOf;
 import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.food.Food;
-import fr.minecraftpp.language.ModLanguage;
 import fr.minecraftpp.manager.ModManager;
-import fr.minecraftpp.manager.block.ModBlock;
-import fr.minecraftpp.manager.item.ModItem;
 import fr.minecraftpp.util.NameGenerator;
 import net.minecraft.block.Block;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
 
 public class SimpleSet implements ISet
 {
+	private static final int REDSTONE_BLOCK_POWER = 15;
+	private static final int BASE_AMOUNT_OF_BLUE_DYE = 6;
+	private static final int BASE_AMOUNT_OF_REDSTONE = 4;
 	private static final int QUANTITY_DROPPED_MAX = 5;
 
 	protected Random rng;
@@ -30,6 +36,10 @@ public class SimpleSet implements ISet
 	protected DynamicOre ore;
 	protected DynamicBlock block;
 	protected DynamicItem item;
+
+	private boolean isBlueDye;
+	private boolean isRedstone;
+	private boolean isCurrency;
 	
 	public SimpleSet(Random rand)
 	{
@@ -39,6 +49,10 @@ public class SimpleSet implements ISet
 		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng));
 		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng));
 		this.ore = new DynamicOreGem(name, DynamicOre.getRandomTextureId(this.rng), item, this.rng.nextInt(QUANTITY_DROPPED_MAX) + 1, HarvestLevel.getRandomHarvestLevel(this.rng), this.rng.nextInt(2), this.rng.nextInt(3) + 2);
+
+		this.isBlueDye = false;
+		this.isRedstone = false;
+		this.isCurrency = false;
 	}
 	
 	public void setupEffects()
@@ -59,6 +73,7 @@ public class SimpleSet implements ISet
 		this.setupFireable();
 		
 		this.setupBeacon();
+		this.setupCurrency();
 	}
 	
 	public void register()
@@ -74,6 +89,45 @@ public class SimpleSet implements ISet
 		new RecipeCompact(this.item, this.block);
 		new RecipeDecompact(this.block, this.item);
 		new FurnaceRecipe(this.ore, this.item.getAsStack(), (this.rng.nextInt(12) + 1) / 10);
+		
+		if(this.isBlueDye)
+		{			
+			int blueDyeQuantity = BASE_AMOUNT_OF_BLUE_DYE / this.ore.getAverageQuantityDropped();
+			new ShapelessRecipe(new ItemStack(Items.DYE, blueDyeQuantity, EnumDyeColor.BLUE.getDyeDamage()), this.item);
+		}
+		
+		if(this.isRedstone)
+		{
+			int redstoneQuantity = BASE_AMOUNT_OF_REDSTONE / this.ore.getAverageQuantityDropped();
+			new ShapelessRecipe(new ItemStack(Items.REDSTONE, redstoneQuantity), this.item);
+		}
+	}
+	
+	public void setBlueDye()
+	{
+		this.isBlueDye = true;
+	}
+	
+	public void setRedstoneSet()
+	{
+		this.isRedstone = true;
+		if(this.ore instanceof DynamicOreGem)
+		{
+			((DynamicOreGem) this.ore).setPoweredOre(true);
+		}
+		this.block.setRedstonePower(REDSTONE_BLOCK_POWER);
+	}
+	
+	public void setCurrency()
+	{
+		this.isCurrency = true;
+	}
+	
+	public void setRarity(Rarity rarity)
+	{
+		this.item.setRarity(rarity);
+		this.block.setRarity(rarity);
+		this.ore.setRarity(rarity);
 	}
 
 	private void setupFuel()
@@ -193,6 +247,14 @@ public class SimpleSet implements ISet
 		{
 			this.item.setBeaconCurrency(true);
 			this.block.setBeaconBase(true);
+		}
+	}
+	
+	private void setupCurrency()
+	{
+		if(this.isCurrency)
+		{
+			EntityVillager.setMoney(this.item);
 		}
 	}
 }
