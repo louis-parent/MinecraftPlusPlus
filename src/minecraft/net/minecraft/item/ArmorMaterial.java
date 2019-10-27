@@ -1,8 +1,8 @@
 package net.minecraft.item;
 
+import fr.minecraftpp.color.Color;
 import fr.minecraftpp.inventory.EntityArmorSlot;
 import fr.minecraftpp.item.material.IArmorMaterial;
-import fr.minecraftpp.util.Color;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;

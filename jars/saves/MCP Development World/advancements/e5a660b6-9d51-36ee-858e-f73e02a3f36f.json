@@ -127,7 +127,8 @@
   },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
-      "beaches": "2019-10-03 19:08:35 +0200"
+      "beaches": "2019-10-03 19:08:35 +0200",
+      "desert": "2019-10-27 13:24:20 +0100"
     },
     "done": false
   },

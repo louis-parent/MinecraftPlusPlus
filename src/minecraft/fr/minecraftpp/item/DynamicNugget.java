@@ -1,11 +1,11 @@
 package fr.minecraftpp.item;
 
-import fr.minecraftpp.item.material.IColoredMaterial;
-import fr.minecraftpp.util.Color;
+import fr.minecraftpp.color.Color;
+import fr.minecraftpp.item.material.IColored;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class DynamicNugget extends Item implements IDynamicItem, IColoredMaterial
+public class DynamicNugget extends Item implements IDynamicItem, IColored
 {
 	private final String ID;
 	private final DynamicItem item;

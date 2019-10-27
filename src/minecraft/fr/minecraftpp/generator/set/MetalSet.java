@@ -3,11 +3,11 @@ package fr.minecraftpp.generator.set;
 import java.util.Random;
 
 import fr.minecraftpp.block.ore.DynamicOre;
+import fr.minecraftpp.color.DynamicColor;
 import fr.minecraftpp.crafting.furnace.FurnaceRecipe;
 import fr.minecraftpp.crafting.item.RecipeCompact;
 import fr.minecraftpp.crafting.item.RecipeDecompact;
 import fr.minecraftpp.enumeration.HarvestLevel;
-import fr.minecraftpp.item.DynamicColor;
 import fr.minecraftpp.item.DynamicNugget;
 import fr.minecraftpp.manager.ModManager;
 import net.minecraft.client.renderer.color.ItemColors;
@@ -70,9 +70,9 @@ public class MetalSet extends MaterialSet
 	}
 	
 	@Override
-	public void registerColors(ItemColors itemColors)
+	public void registerItemColors(ItemColors itemColors)
 	{
-		super.registerColors(itemColors);
+		super.registerItemColors(itemColors);
 		
 		itemColors.registerItemColorHandler(new DynamicColor(this.nugget), this.nugget);
 	}

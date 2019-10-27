@@ -20,7 +20,7 @@ public class ModModelManager
 		{
 			ModelBlockDefinition value = new ModelBlockDefinition(Arrays.asList(ModelBlockDefinition.parseFromReader(new StringReader(ModModelManager.makeBlockStateString(dynamicBlock)))));
 			definitions.put(new ResourceLocation("minecraft", "blockstates/" + dynamicBlock.getID().toLowerCase() + ".json") , value);
-			models.put(new ResourceLocation("minecraft", "block/" + dynamicBlock.getID().toLowerCase()), ModelBlock.deserialize(ModModelManager.makeBlockModelString(dynamicBlock)));
+			models.put(new ResourceLocation("minecraft", "block/" + dynamicBlock.getID().toLowerCase()), ModelBlock.deserialize(ModModelManager.makeBlockColoredModelString(dynamicBlock)));
 		}
 	}
 	
@@ -65,6 +65,32 @@ public class ModModelManager
 			str+= "\t\"textures\": {\n";
 				str += "\t\t\"all\": \"blocks/" + block.getTextureName() + "\"\n";
 			str += "\t}\n";
+		str += "}";
+		
+		return str;
+	}
+	
+	private static String makeBlockColoredModelString(IDynamicBlock block)
+	{
+		String str = "{\n";
+			str += "\t\"parent\": \"block/cube_all\",\n";
+			str+= "\t\"textures\": {\n";
+				str += "\t\t\"all\": \"blocks/" + block.getTextureName() + "\",\n";
+				str += "\t\t\"particle\": \"#all\"\n";
+			str += "\t},\n";
+			str += "\"elements\": [\r\n" + 
+					"        {   \"from\": [ 0, 0, 0 ],\r\n" + 
+					"            \"to\": [ 16, 16, 16 ],\r\n" + 
+					"            \"faces\": {\r\n" + 
+					"                \"down\":  { \"uv\": [ 0, 0, 16, 16 ], \"texture\": \"#all\", \"tintindex\": 0, \"cullface\": \"down\" },\r\n" + 
+					"                \"up\":    { \"uv\": [ 0, 0, 16, 16 ], \"texture\": \"#all\", \"tintindex\": 0, \"cullface\": \"up\" },\r\n" + 
+					"                \"north\": { \"uv\": [ 0, 0, 16, 16 ], \"texture\": \"#all\", \"tintindex\": 0, \"cullface\": \"north\" },\r\n" + 
+					"                \"south\": { \"uv\": [ 0, 0, 16, 16 ], \"texture\": \"#all\", \"tintindex\": 0, \"cullface\": \"south\" },\r\n" + 
+					"                \"west\":  { \"uv\": [ 0, 0, 16, 16 ], \"texture\": \"#all\", \"tintindex\": 0, \"cullface\": \"west\" },\r\n" + 
+					"                \"east\":  { \"uv\": [ 0, 0, 16, 16 ], \"texture\": \"#all\", \"tintindex\": 0, \"cullface\": \"east\" }\r\n" + 
+					"            }\r\n" + 
+					"        }\r\n" + 
+					"    ]";
 		str += "}";
 		
 		return str;

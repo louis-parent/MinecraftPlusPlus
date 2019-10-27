@@ -5,19 +5,20 @@ import java.util.Random;
 import fr.minecraftpp.block.DynamicBlock;
 import fr.minecraftpp.block.ore.DynamicOre;
 import fr.minecraftpp.block.ore.DynamicOreGem;
+import fr.minecraftpp.color.Color;
+import fr.minecraftpp.color.DynamicColor;
 import fr.minecraftpp.crafting.ShapelessRecipe;
 import fr.minecraftpp.crafting.furnace.FurnaceRecipe;
 import fr.minecraftpp.crafting.item.RecipeCompact;
 import fr.minecraftpp.crafting.item.RecipeDecompact;
 import fr.minecraftpp.enumeration.FlammabilityOf;
 import fr.minecraftpp.enumeration.HarvestLevel;
-import fr.minecraftpp.item.DynamicColor;
 import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.food.Food;
 import fr.minecraftpp.manager.ModManager;
-import fr.minecraftpp.util.Color;
 import fr.minecraftpp.util.NameGenerator;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
@@ -44,18 +45,22 @@ public class SimpleSet implements ISet
 	private boolean isRedstone;
 	private boolean isCurrency;
 	
+	private DynamicColor blockColor;
+	
 	public SimpleSet(Random rand)
 	{
 		this.rng = rand;
 		this.name = NameGenerator.generateName(this.rng);
 		
 		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng), Color.getRandomColor(this.rng));
-		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng));
-		this.ore = new DynamicOreGem(name, DynamicOre.getRandomTextureId(this.rng), item, this.rng.nextInt(QUANTITY_DROPPED_MAX) + 1, HarvestLevel.getRandomHarvestLevel(this.rng), this.rng.nextInt(2), this.rng.nextInt(3) + 2);
+		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng), this.item);
+		this.ore = new DynamicOreGem(this.name, DynamicOre.getRandomTextureId(this.rng), this.item, this.rng.nextInt(QUANTITY_DROPPED_MAX) + 1, HarvestLevel.getRandomHarvestLevel(this.rng), this.rng.nextInt(2), this.rng.nextInt(3) + 2);
 
 		this.isBlueDye = false;
 		this.isRedstone = false;
 		this.isCurrency = false;
+		
+		this.blockColor = new DynamicColor(this.block);
 	}
 	
 	public void setupEffects()
@@ -134,9 +139,16 @@ public class SimpleSet implements ISet
 	}
 	
 	@Override
-	public void registerColors(ItemColors itemColors)
+	public void registerItemColors(ItemColors itemColors)
 	{
 		itemColors.registerItemColorHandler(new DynamicColor(this.item), this.item);
+		itemColors.registerItemColorHandler(this.blockColor, this.block);
+	}
+	
+	@Override
+	public void registerBlockColors(BlockColors blockColors)
+	{
+		blockColors.registerBlockColorHandler(this.blockColor, this.block);
 	}
 
 	private void setupFuel()

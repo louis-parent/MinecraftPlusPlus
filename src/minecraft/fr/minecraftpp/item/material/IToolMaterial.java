@@ -1,12 +1,12 @@
 package fr.minecraftpp.item.material;
 
 import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.color.Color;
 import fr.minecraftpp.enumeration.ToolType;
-import fr.minecraftpp.util.Color;
 import net.minecraft.item.Item;
 
 @Mod("Minecraftpp")
-public interface IToolMaterial extends IColoredMaterial
+public interface IToolMaterial extends IColored
 {
 	public abstract int getMaxUses();
 

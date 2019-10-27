@@ -2,6 +2,8 @@ package fr.minecraftpp.generator.set;
 
 import java.util.Random;
 
+import fr.minecraftpp.color.Color;
+import fr.minecraftpp.color.DynamicColor;
 import fr.minecraftpp.crafting.armor.RecipeBoots;
 import fr.minecraftpp.crafting.armor.RecipeChestplate;
 import fr.minecraftpp.crafting.armor.RecipeHelmet;
@@ -12,7 +14,6 @@ import fr.minecraftpp.crafting.tools.RecipePickaxe;
 import fr.minecraftpp.crafting.tools.RecipeShovel;
 import fr.minecraftpp.crafting.tools.RecipeSword;
 import fr.minecraftpp.enumeration.HarvestLevel;
-import fr.minecraftpp.item.DynamicColor;
 import fr.minecraftpp.item.armor.DynamicBoots;
 import fr.minecraftpp.item.armor.DynamicChestplate;
 import fr.minecraftpp.item.armor.DynamicHelmet;
@@ -26,7 +27,6 @@ import fr.minecraftpp.item.tool.DynamicSword;
 import fr.minecraftpp.language.ModLanguage;
 import fr.minecraftpp.manager.ModManager;
 import fr.minecraftpp.manager.item.ModItem;
-import fr.minecraftpp.util.Color;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Rarity;
 
@@ -124,9 +124,9 @@ public class MaterialSet extends SimpleSet
 	}
 	
 	@Override
-	public void registerColors(ItemColors itemColors)
+	public void registerItemColors(ItemColors itemColors)
 	{
-		super.registerColors(itemColors);
+		super.registerItemColors(itemColors);
 		
 		itemColors.registerItemColorHandler(new DynamicColor(this.sword), this.sword);
 		itemColors.registerItemColorHandler(new DynamicColor(this.pickaxe), this.pickaxe);

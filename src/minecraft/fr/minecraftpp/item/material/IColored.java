@@ -1,8 +1,8 @@
 package fr.minecraftpp.item.material;
 
-import fr.minecraftpp.util.Color;
+import fr.minecraftpp.color.Color;
 
-public interface IColoredMaterial
+public interface IColored
 {
 	public default boolean hasColor()
 	{

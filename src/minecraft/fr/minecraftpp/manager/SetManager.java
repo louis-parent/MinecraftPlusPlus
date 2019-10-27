@@ -8,6 +8,7 @@ import fr.minecraftpp.generator.set.ISet;
 import fr.minecraftpp.generator.set.MaterialSet;
 import fr.minecraftpp.generator.set.MetalSet;
 import fr.minecraftpp.generator.set.SimpleSet;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 
 public class SetManager
@@ -47,11 +48,19 @@ public class SetManager
 		}
 	}
 	
-	public static void registerColors(ItemColors itemcolors)
+	public static void registerBlockColors(BlockColors blockColors)
 	{
 		for (ISet set : sets)
 		{
-			set.registerColors(itemcolors);
+			set.registerBlockColors(blockColors);
+		}
+	}
+	
+	public static void registerItemColors(ItemColors itemColors)
+	{
+		for (ISet set : sets)
+		{
+			set.registerItemColors(itemColors);
 		}
 	}
 }

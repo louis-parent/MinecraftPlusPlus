@@ -2,8 +2,11 @@ package fr.minecraftpp.block;
 
 import java.util.Random;
 
+import fr.minecraftpp.color.Color;
 import fr.minecraftpp.damageSource.ModDamageSource;
 import fr.minecraftpp.enumeration.FlammabilityOf;
+import fr.minecraftpp.item.DynamicItem;
+import fr.minecraftpp.item.material.IColored;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -11,16 +14,18 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Rarity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbsorbing
+public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbsorbing, IColored
 {
 	private static final int NUMBER_OF_TEXTURES = 4;
 	private final String ID;
 	private final int TEXTURE_ID;
+	private final DynamicItem item;
 	
 	private boolean hasGravity;
 	private boolean isAbsorbing;
@@ -35,7 +40,7 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	private int fuelAmount;
 	private Rarity rarity;
 
-	public DynamicBlock(String typeName, int textureId)
+	public DynamicBlock(String typeName, int textureId, DynamicItem item)
 	{
 		super(Material.IRON, MapColor.EMERALD);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
@@ -44,6 +49,8 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 		this.setUnlocalizedName(this.ID);
 		
 		this.TEXTURE_ID = textureId;
+		
+		this.item = item;
 		
 		this.hasGravity = false;
 		this.setLightLevel(0);
@@ -246,5 +253,17 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	public int getBurnTime()
 	{
 		return this.fuelAmount;
+	}
+	
+	@Override
+	public boolean hasColor()
+	{
+		return this.item.hasColor();
+	}
+	
+	@Override
+	public Color getColor()
+	{
+		return this.item.getColor();
 	}
 }

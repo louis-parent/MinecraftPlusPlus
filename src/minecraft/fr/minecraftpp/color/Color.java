@@ -1,4 +1,4 @@
-package fr.minecraftpp.util;
+package fr.minecraftpp.color;
 
 import java.util.Random;
 

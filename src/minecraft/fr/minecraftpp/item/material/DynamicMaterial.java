@@ -2,11 +2,11 @@ package fr.minecraftpp.item.material;
 
 import java.util.Random;
 
+import fr.minecraftpp.color.Color;
 import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.enumeration.ToolType;
 import fr.minecraftpp.inventory.EntityArmorSlot;
 import fr.minecraftpp.item.DynamicItem;
-import fr.minecraftpp.util.Color;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;

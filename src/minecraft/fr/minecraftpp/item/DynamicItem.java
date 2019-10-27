@@ -2,10 +2,10 @@ package fr.minecraftpp.item;
 
 import java.util.Random;
 
+import fr.minecraftpp.color.Color;
 import fr.minecraftpp.item.food.IFood;
 import fr.minecraftpp.item.food.NotFood;
-import fr.minecraftpp.item.material.IColoredMaterial;
-import fr.minecraftpp.util.Color;
+import fr.minecraftpp.item.material.IColored;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +20,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class DynamicItem extends Item implements IDynamicItem, IColoredMaterial
+public class DynamicItem extends Item implements IDynamicItem, IColored
 {
 	private static final int NUMBER_OF_TEXTURES = 6;
 	private final String ID;

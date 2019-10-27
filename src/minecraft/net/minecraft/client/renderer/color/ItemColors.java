@@ -29,7 +29,7 @@ public class ItemColors
 	public static ItemColors init(final BlockColors colors)
 	{
 		ItemColors itemcolors = new ItemColors();
-		SetManager.registerColors(itemcolors);
+		SetManager.registerItemColors(itemcolors);
 		
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
