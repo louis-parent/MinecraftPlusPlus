@@ -2,31 +2,8 @@ package fr.minecraftpp.generator.set;
 
 import java.util.Random;
 
-import fr.minecraftpp.color.Color;
-import fr.minecraftpp.color.DynamicColor;
-import fr.minecraftpp.crafting.armor.RecipeBoots;
-import fr.minecraftpp.crafting.armor.RecipeChestplate;
-import fr.minecraftpp.crafting.armor.RecipeHelmet;
-import fr.minecraftpp.crafting.armor.RecipeLeggings;
-import fr.minecraftpp.crafting.tools.RecipeAxe;
-import fr.minecraftpp.crafting.tools.RecipeHoe;
-import fr.minecraftpp.crafting.tools.RecipePickaxe;
-import fr.minecraftpp.crafting.tools.RecipeShovel;
-import fr.minecraftpp.crafting.tools.RecipeSword;
 import fr.minecraftpp.enumeration.HarvestLevel;
-import fr.minecraftpp.item.armor.DynamicBoots;
-import fr.minecraftpp.item.armor.DynamicChestplate;
-import fr.minecraftpp.item.armor.DynamicHelmet;
-import fr.minecraftpp.item.armor.DynamicLeggings;
 import fr.minecraftpp.item.material.DynamicMaterial;
-import fr.minecraftpp.item.tool.DynamicAxe;
-import fr.minecraftpp.item.tool.DynamicHoe;
-import fr.minecraftpp.item.tool.DynamicPickaxe;
-import fr.minecraftpp.item.tool.DynamicShovel;
-import fr.minecraftpp.item.tool.DynamicSword;
-import fr.minecraftpp.language.ModLanguage;
-import fr.minecraftpp.manager.ModManager;
-import fr.minecraftpp.manager.item.ModItem;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Rarity;
 
@@ -36,33 +13,16 @@ public class MaterialSet extends SimpleSet
 
 	protected DynamicMaterial material;
 	
-	protected DynamicSword sword;
-	protected DynamicPickaxe pickaxe;
-	protected DynamicAxe axe;
-	protected DynamicShovel shovel;
-	protected DynamicHoe hoe;
-	
-	protected DynamicHelmet helmet;
-	protected DynamicChestplate chestplate;
-	protected DynamicLeggings leggings;
-	protected DynamicBoots boots;
+	protected ToolSet tools;
+	protected ArmorSet armors;
 	
 	public MaterialSet(Random rand)
 	{
 		super(rand);
 		
 		this.material = new DynamicMaterial(DynamicMaterial.getRandomTextureID(this.rng), this.item);
-		
-		this.sword = new DynamicSword(this.name, this.material);
-		this.pickaxe = new DynamicPickaxe(this.name, this.material);
-		this.axe = new DynamicAxe(this.name, this.material);
-		this.shovel = new DynamicShovel(this.name, this.material);
-		this.hoe = new DynamicHoe(this.name, this.material);
-
-		this.helmet = new DynamicHelmet(this.name, this.material);
-		this.chestplate = new DynamicChestplate(this.name, this.material);
-		this.leggings = new DynamicLeggings(this.name, this.material);
-		this.boots = new DynamicBoots(this.name, this.material);
+		this.tools = new ToolSet(this.rng, this.name, this.material);
+		this.armors = new ArmorSet(this.rng, this.name, this.material);
 	}
 	
 	@Override
@@ -70,74 +30,41 @@ public class MaterialSet extends SimpleSet
 	{
 		super.setupEffects();
 		this.setupMaterial();
+		
+		this.tools.setupEffects();
+		this.armors.setupEffects();
 	}
 	
 	@Override
 	public void register()
 	{
 		super.register();
-		
-		ModManager.registerDynamic(this.sword);
-		ModManager.registerDynamic(this.pickaxe);
-		ModManager.registerDynamic(this.axe);
-		ModManager.registerDynamic(this.shovel);
-		ModManager.registerDynamic(this.hoe);
-		
-		ModManager.registerDynamic(this.helmet);
-		ModManager.registerDynamic(this.chestplate);
-		ModManager.registerDynamic(this.leggings);
-		ModManager.registerDynamic(this.boots);
+		this.tools.register();
+		this.armors.register();
 	}
 	
 	@Override
 	public void addRecipes()
 	{
 		super.addRecipes();
-		
-		new RecipeSword(this.item, this.sword);
-		new RecipePickaxe(this.item, this.pickaxe);
-		new RecipeAxe(this.item, this.axe);
-		new RecipeShovel(this.item, this.shovel);
-		new RecipeHoe(this.item, this.hoe);
-
-		new RecipeHelmet(this.item, this.helmet);
-		new RecipeChestplate(this.item, this.chestplate);
-		new RecipeLeggings(this.item, this.leggings);
-		new RecipeBoots(this.item, this.boots);
+		this.tools.addRecipes();
+		this.armors.addRecipes();
 	}
 	
 	@Override
 	public void setRarity(Rarity rarity)
 	{
 		super.setRarity(rarity);
-		
-		this.sword.setRarity(rarity);
-		this.pickaxe.setRarity(rarity);
-		this.axe.setRarity(rarity);
-		this.shovel.setRarity(rarity);
-		this.hoe.setRarity(rarity);
-
-		this.helmet.setRarity(rarity);
-		this.chestplate.setRarity(rarity);
-		this.leggings.setRarity(rarity);
-		this.boots.setRarity(rarity);
+		this.tools.setRarity(rarity);
+		this.armors.setRarity(rarity);
 	}
 	
 	@Override
 	public void registerItemColors(ItemColors itemColors)
 	{
 		super.registerItemColors(itemColors);
-		
-		itemColors.registerItemColorHandler(new DynamicColor(this.sword), this.sword);
-		itemColors.registerItemColorHandler(new DynamicColor(this.pickaxe), this.pickaxe);
-		itemColors.registerItemColorHandler(new DynamicColor(this.axe), this.axe);
-		itemColors.registerItemColorHandler(new DynamicColor(this.shovel), this.shovel);
-		itemColors.registerItemColorHandler(new DynamicColor(this.hoe), this.hoe);
-
-		itemColors.registerItemColorHandler(new DynamicColor(this.helmet), this.helmet);
-		itemColors.registerItemColorHandler(new DynamicColor(this.chestplate), this.chestplate);
-		itemColors.registerItemColorHandler(new DynamicColor(this.leggings), this.leggings);
-		itemColors.registerItemColorHandler(new DynamicColor(this.boots), this.boots);
+		this.tools.registerItemColors(itemColors);
+		this.armors.registerItemColors(itemColors);
 	}
 	
 	/*

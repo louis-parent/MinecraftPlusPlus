@@ -22,15 +22,18 @@ public class MetalSet extends MaterialSet
 		super(rand);
 		
 		this.ore = new DynamicOre(this.name, DynamicOre.getRandomTextureId(this.rng), HarvestLevel.getRandomHarvestLevel(this.rng), this.item);
-		this.nugget = new DynamicNugget(this.name, this.item);
 		this.item.setUnlocalizedName(this.name + "Ingot");
+		
+		this.nugget = new DynamicNugget(this.name, this.item);
+		
+		this.tools = new MetalToolSet(this.tools, this.nugget);
+		this.armors = new MetalArmorSet(this.armors, this.nugget);
 	}
 	
 	@Override
 	public void setupEffects()
 	{
 		super.setupEffects();
-		
 		this.item.setTextureAsMetal();
 	}
 	
@@ -38,7 +41,6 @@ public class MetalSet extends MaterialSet
 	public void register()
 	{
 		super.register();
-		
 		ModManager.registerDynamic(this.nugget);
 	}
 
@@ -49,24 +51,12 @@ public class MetalSet extends MaterialSet
 		
 		new RecipeCompact(this.nugget, this.item);
 		new RecipeDecompact(this.item, this.nugget);
-		
-		new FurnaceRecipe(this.sword, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.pickaxe, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.axe, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.shovel, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.hoe, this.nugget.getAsStack(), 0);
-		
-		new FurnaceRecipe(this.helmet, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.chestplate, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.leggings, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.boots, this.nugget.getAsStack(), 0);
 	}
 	
 	@Override
 	public void setRarity(Rarity rarity)
 	{
 		super.setRarity(rarity);
-		
 		this.nugget.setRarity(rarity);
 	}
 	
@@ -74,7 +64,6 @@ public class MetalSet extends MaterialSet
 	public void registerItemColors(ItemColors itemColors)
 	{
 		super.registerItemColors(itemColors);
-		
 		itemColors.registerItemColorHandler(new DynamicColor(this.nugget), this.nugget);
 	}
 	

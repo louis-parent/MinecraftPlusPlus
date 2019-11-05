@@ -133,6 +133,7 @@ public class SimpleSet implements ISet
 		this.isCurrency = true;
 	}
 	
+	@Override
 	public void setRarity(Rarity rarity)
 	{
 		this.item.setRarity(rarity);
