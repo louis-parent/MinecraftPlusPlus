@@ -1,7 +1,6 @@
 package fr.minecraftpp.item.material;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.color.Color;
 import fr.minecraftpp.enumeration.ToolType;
 import net.minecraft.item.Item;
 

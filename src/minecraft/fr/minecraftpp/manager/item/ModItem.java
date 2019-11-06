@@ -26,15 +26,15 @@ public class ModItem extends Item
 {
 	public static List<IDynamicItem> REGISTRY = new ArrayList<IDynamicItem>();
 	private static final int ID_START = 1266;
-	
+
 	public static MaterialScenarium MATERIAL_SCENARIUM = new MaterialScenarium();
 
 	public static void registerBlockItems()
 	{
 		registerItemBlock(ModBlocks.SCENARITE_ORE);
 		registerItemBlock(ModBlocks.SCENARIUM_BLOCK);
-		
-		for(IDynamicBlock block : ModBlock.REGISTRY)
+
+		for (IDynamicBlock block : ModBlock.REGISTRY)
 		{
 			registerItemBlock(block.getBlock());
 		}
@@ -54,14 +54,14 @@ public class ModItem extends Item
 		registerItem(1263, "scenarium_chestplate", (new ItemChestplate(MATERIAL_SCENARIUM)).setUnlocalizedName("scenariumChestplate"));
 		registerItem(1264, "scenarium_leggings", (new ItemLeggings(MATERIAL_SCENARIUM)).setUnlocalizedName("scenariumLeggings"));
 		registerItem(1265, "scenarium_boots", (new ItemBoots(MATERIAL_SCENARIUM)).setUnlocalizedName("scenariumBoots"));
-				
+
 		for (int i = 0; i < REGISTRY.size(); i++)
 		{
 			IDynamicItem item = REGISTRY.get(i);
 			registerItem(ID_START + i, item.getID(), item.getItem());
 		}
 	}
-	
+
 	public static void setItemToRegister(IDynamicItem item)
 	{
 		REGISTRY.add(item);

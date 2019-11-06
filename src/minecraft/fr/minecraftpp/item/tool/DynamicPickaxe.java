@@ -12,7 +12,7 @@ public class DynamicPickaxe extends ItemPickaxe implements IDynamicItem
 	public DynamicPickaxe(String name, IToolMaterial material)
 	{
 		super(material);
-		
+
 		this.ID = name + "Pickaxe";
 		this.setUnlocalizedName(this.ID);
 	}

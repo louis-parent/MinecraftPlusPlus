@@ -11,7 +11,7 @@ public class RecipeCompact extends ShapedRecipe
 {
 
 	private Item material;
-	
+
 	public RecipeCompact(Item material, Block result)
 	{
 		this(material, Item.getItemFromBlock(result));

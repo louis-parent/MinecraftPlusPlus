@@ -127,7 +127,7 @@ public class Item
 
 	/** The unlocalized name of this item. */
 	private String unlocalizedName;
-	
+
 	@Mod("Minecraftpp")
 	private Rarity rarity;
 
@@ -298,7 +298,7 @@ public class Item
 
 	public boolean isDamageable()
 	{
-		return this.maxDamage > 0 && (!this.hasSubtypes || this.maxStackSize == 1);
+		return this.getMaxDamage() > 0 && (!this.hasSubtypes || this.maxStackSize == 1);
 	}
 
 	/**
@@ -502,7 +502,7 @@ public class Item
 	{
 		return stack.isItemEnchanted() ? this.rarity.next() : this.rarity;
 	}
-	
+
 	@Mod("Minecraftpp")
 	public void setRarity(Rarity rarity)
 	{
@@ -510,9 +510,9 @@ public class Item
 	}
 
 	/**
-	 * Checks isDamagable and if it cannot be stacked
+	 * Checks isDamageable and if it cannot be stacked
 	 */
-	public boolean isItemTool(ItemStack stack)
+	public boolean isUniqueItemDamageable(ItemStack stack)
 	{
 		return this.getItemStackLimit() == 1 && this.isDamageable();
 	}
@@ -620,7 +620,7 @@ public class Item
 	{
 		return false;
 	}
-	
+
 	@Mod("Minecraftpp")
 	public boolean isFood()
 	{

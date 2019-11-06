@@ -130,4 +130,10 @@ public abstract class ItemTool extends Item
 	{
 		return toolMaterial;
 	}
+
+	@Override
+	public int getMaxDamage()
+	{
+		return this.toolMaterial.getMaxUses();
+	}
 }

@@ -20,16 +20,16 @@ public enum Rarity
 		this.rarityColor = color;
 		this.rarityName = name;
 	}
-	
+
 	public Rarity next()
 	{
-		if(this == LEGENDARY)
+		if (this == LEGENDARY)
 		{
 			return LEGENDARY;
 		}
 		else
 		{
-			return Rarity.values()[this.ordinal() + 1];			
+			return Rarity.values()[this.ordinal() + 1];
 		}
 	}
 }

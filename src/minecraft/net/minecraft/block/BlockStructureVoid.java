@@ -88,7 +88,7 @@ public class BlockStructureVoid extends Block
 	{
 		return BlockFaceShape.UNDEFINED;
 	}
-	
+
 	@Override
 	public Rarity getRarity()
 	{

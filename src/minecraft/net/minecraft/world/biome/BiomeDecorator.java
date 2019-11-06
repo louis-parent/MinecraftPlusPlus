@@ -42,12 +42,12 @@ public class BiomeDecorator
 
 	/** The dirt generator. */
 	protected WorldGenerator dirtGen;
-	
+
 	protected WorldGenerator gravelGen;
 	protected WorldGenerator graniteGen;
 	protected WorldGenerator dioriteGen;
 	protected WorldGenerator andesiteGen;
-	
+
 	protected WorldGenFlowers yellowFlowerGen = new WorldGenFlowers(Blocks.YELLOW_FLOWER, BlockFlower.EnumFlowerType.DANDELION);
 
 	/** Field that holds mushroomBrown WorldGenFlowers */
@@ -148,13 +148,13 @@ public class BiomeDecorator
 		{
 			this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
 			this.chunkPos = pos;
-			
+
 			this.dirtGen = new WorldGenMinable(Blocks.DIRT.getDefaultState(), this.chunkProviderSettings.dirtSize);
 			this.gravelGen = new WorldGenMinable(Blocks.GRAVEL.getDefaultState(), this.chunkProviderSettings.gravelSize);
 			this.graniteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE), this.chunkProviderSettings.graniteSize);
 			this.dioriteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE), this.chunkProviderSettings.dioriteSize);
 			this.andesiteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE), this.chunkProviderSettings.andesiteSize);
-			
+
 			this.genDecorations(biome, world, random);
 			this.decorating = false;
 		}
@@ -426,7 +426,7 @@ public class BiomeDecorator
 		this.uniformOreGeneration(world, random, this.chunkProviderSettings.dioriteCount, this.dioriteGen, this.chunkProviderSettings.dioriteMinHeight, this.chunkProviderSettings.dioriteMaxHeight);
 		this.uniformOreGeneration(world, random, this.chunkProviderSettings.graniteCount, this.graniteGen, this.chunkProviderSettings.graniteMinHeight, this.chunkProviderSettings.graniteMaxHeight);
 		this.uniformOreGeneration(world, random, this.chunkProviderSettings.andesiteCount, this.andesiteGen, this.chunkProviderSettings.andesiteMinHeight, this.chunkProviderSettings.andesiteMaxHeight);
-	
+
 		OreRegistry.decorate(this, world, random);
 	}
 
@@ -465,9 +465,9 @@ public class BiomeDecorator
 
 	/**
 	 * Standard ore generation helper. Vanilla uses this to generate Lapis
-	 * Lazuli. The main difference between this and {@link #uniformOreGeneration} is
-	 * that this takes takes center and spread, while genStandardOre1 takes min
-	 * and max heights.
+	 * Lazuli. The main difference between this and
+	 * {@link #uniformOreGeneration} is that this takes takes center and spread,
+	 * while genStandardOre1 takes min and max heights.
 	 */
 	public void spreadOreGeneration(World world, Random random, int veinCount, WorldGenerator generator, int centerHeight, int spread)
 	{

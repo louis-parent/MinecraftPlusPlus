@@ -12,7 +12,7 @@ public class DynamicAxe extends ItemAxe implements IDynamicItem
 	public DynamicAxe(String name, IToolMaterial material)
 	{
 		super(material);
-		
+
 		this.ID = name + "Axe";
 		this.setUnlocalizedName(this.ID);
 	}

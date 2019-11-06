@@ -12,7 +12,7 @@ public class DynamicChestplate extends ItemChestplate implements IDynamicItem
 	public DynamicChestplate(String name, IArmorMaterial material)
 	{
 		super(material);
-		
+
 		this.ID = name + "Chestplate";
 		this.setUnlocalizedName(this.ID);
 	}

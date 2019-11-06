@@ -8,6 +8,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemElytra;
 import net.minecraft.item.ItemFishingRod;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
@@ -83,7 +84,7 @@ public enum EnumEnchantmentType
 		@Override
 		public boolean canEnchantItem(Item itemIn)
 		{
-			return itemIn instanceof ItemTool;
+			return itemIn instanceof ItemTool && !(itemIn instanceof ItemSword) && !(itemIn instanceof ItemHoe);
 		}
 	},
 	FISHING_ROD

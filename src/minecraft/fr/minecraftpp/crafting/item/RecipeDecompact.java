@@ -12,7 +12,7 @@ public class RecipeDecompact extends ShapelessRecipe
 	{
 		this(Item.getItemFromBlock(material), result);
 	}
-	
+
 	public RecipeDecompact(Item material, Item result)
 	{
 		super(result, material);

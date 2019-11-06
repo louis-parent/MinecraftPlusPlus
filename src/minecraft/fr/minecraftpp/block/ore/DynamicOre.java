@@ -22,26 +22,26 @@ public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 	private final String ID;
 	private final int TEXTURE_ID;
 	protected DynamicItem item;
-	
+
 	private int harvestLevel;
 	private Rarity rarity;
 
 	public DynamicOre(String typeName, int textureId, HarvestLevel harvestLevel, DynamicItem item)
 	{
 		super();
-		
+
 		this.ID = typeName + "Ore";
 		this.setUnlocalizedName(this.ID);
-		
+
 		this.TEXTURE_ID = textureId;
-		
+
 		this.item = item;
-		
+
 		this.harvestLevel = harvestLevel.getHarvestLevel();
-		
+
 		this.rarity = Rarity.COMMON;
 	}
-	
+
 	@Override
 	public String getID()
 	{
@@ -64,64 +64,64 @@ public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 	{
 		return this;
 	}
-	
+
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
 		return Item.getItemFromBlock(this);
 	}
-	
+
 	@Override
 	public int quantityDropped(Random random)
 	{
 		return 1;
 	}
-	
+
 	@Override
 	public int getRequiredHarvestLevel()
 	{
 		return this.harvestLevel;
 	}
-	
+
 	public void setRarity(Rarity rarity)
 	{
 		this.rarity = rarity;
 	}
-	
+
 	@Override
 	public Rarity getRarity()
 	{
 		return this.rarity;
 	}
-	
+
 	public static int getRandomTextureId(Random rng)
 	{
 		return rng.nextInt(NUMBER_OF_TEXTURES) + 1;
 	}
-	
+
 	public int getAverageQuantityDropped()
 	{
 		return 1;
 	}
-	
+
 	@Override
 	public ModelType getModelType()
 	{
 		return ModelType.OVERLAY;
 	}
-	
+
 	@Override
 	public boolean hasColor()
 	{
 		return this.item.hasColor();
 	}
-	
+
 	@Override
 	public Color getColor()
 	{
 		return this.item.getColor();
 	}
-	
+
 	@Override
 	public BlockRenderLayer getBlockLayer()
 	{

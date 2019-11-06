@@ -18,7 +18,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public interface IFood
-{	
+{
 	public default ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)
 	{
 		if (entityLiving instanceof EntityPlayer)
@@ -38,7 +38,7 @@ public interface IFood
 		stack.decreaseStackSize(1);
 		return stack;
 	}
-	
+
 	public default void onFoodEaten(ItemStack stack, World world, EntityPlayer player)
 	{
 		if (!world.isRemote && this.getPotionEffect() != null && world.rand.nextFloat() < this.getPotionProbability())
@@ -46,12 +46,12 @@ public interface IFood
 			player.addPotionEffect(new PotionEffect(this.getPotionEffect()));
 		}
 	}
-	
+
 	public default EnumAction getItemUseAction(ItemStack stack)
 	{
 		return EnumAction.EAT;
 	}
-	
+
 	public default ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
@@ -66,20 +66,26 @@ public interface IFood
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 		}
 	}
-	
+
 	public default boolean isFood()
 	{
 		return true;
 	}
-	
+
 	public abstract int getHealAmount(ItemStack stack);
+
 	public abstract float getSaturationModifier(ItemStack stack);
-	public abstract boolean isWolfsFavoriteMeat(); 
+
+	public abstract boolean isWolfsFavoriteMeat();
+
 	public abstract int getMaxItemUseDuration(ItemStack stack);
+
 	public abstract boolean isAlawaysEdible();
+
 	public abstract PotionEffect getPotionEffect();
+
 	public abstract float getPotionProbability();
-	
+
 	public abstract void foodUseStatEffect(EntityPlayer entityplayer);
 
 	public static IFood getFoodFromItem(Item item)
@@ -88,7 +94,7 @@ public interface IFood
 		{
 			return ((DynamicItem) item).getFood();
 		}
-		else if(item instanceof ItemFood)
+		else if (item instanceof ItemFood)
 		{
 			return (ItemFood) item;
 		}

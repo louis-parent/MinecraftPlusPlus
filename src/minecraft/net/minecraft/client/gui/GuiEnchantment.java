@@ -246,12 +246,13 @@ public class GuiEnchantment extends GuiContainer
 	{
 		final int SWITCH_TIME = 60;
 
-		if (this.container.getLapisAmount() == 0) {
+		if (this.container.getLapisAmount() == 0)
+		{
 			int index = counter / SWITCH_TIME;
-			
+
 			this.itemRender.renderItemAndEffectIntoGUI(ModItems.enchantable.get(index), x + 35, y + 47);
 			counter++;
-	
+
 			if (counter == ModItems.enchantable.size() * SWITCH_TIME)
 			{
 				counter = 0;

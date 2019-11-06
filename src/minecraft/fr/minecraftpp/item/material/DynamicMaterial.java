@@ -14,10 +14,10 @@ import net.minecraft.util.SoundEvent;
 public class DynamicMaterial implements IToolMaterial, IArmorMaterial
 {
 	private static final int NUMBER_OF_TEXTURES = 2;
-	
+
 	private int textureId;
 	private DynamicItem repairItem;
-	
+
 	private int armorDurabilityFactor;
 	private int[] armorDamageReduction;
 	private float toughness;
@@ -32,14 +32,14 @@ public class DynamicMaterial implements IToolMaterial, IArmorMaterial
 	{
 		this.textureId = textureId;
 		this.repairItem = repairItem;
-		
+
 		this.armorDurabilityFactor = 0;
-		this.armorDamageReduction = new int[]{0, 0, 0, 0};
+		this.armorDamageReduction = new int[] { 0, 0, 0, 0 };
 		this.toughness = 0;
 		this.toolMaxUse = 0;
 		this.efficiencyOnProperMaterial = 0;
-		this.toolAttackDamage = new float[] {0, 0, 0, 0, 0};
-		this.toolAttackSpeed = new float[] {0, 0, 0, 0, 0};
+		this.toolAttackDamage = new float[] { 0, 0, 0, 0, 0 };
+		this.toolAttackSpeed = new float[] { 0, 0, 0, 0, 0 };
 		this.harvestLevel = 0;
 		this.enchantability = 0;
 	}
@@ -155,7 +155,7 @@ public class DynamicMaterial implements IToolMaterial, IArmorMaterial
 	{
 		this.harvestLevel = harvestLevel;
 	}
-	
+
 	public void setHarvestLevel(HarvestLevel harvestLevel)
 	{
 		this.harvestLevel = harvestLevel.getHarvestLevel();
@@ -165,7 +165,7 @@ public class DynamicMaterial implements IToolMaterial, IArmorMaterial
 	{
 		this.enchantability = enchantability;
 	}
-	
+
 	public static int getRandomTextureID(Random rng)
 	{
 		return rng.nextInt(NUMBER_OF_TEXTURES) + 1;

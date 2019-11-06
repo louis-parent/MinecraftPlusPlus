@@ -13,12 +13,12 @@ public class DynamicNugget extends Item implements IDynamicItem, IColored
 	public DynamicNugget(String name, DynamicItem item)
 	{
 		super();
-		
+
 		this.ID = name + "Nugget";
 		this.setUnlocalizedName(this.ID);
-		
+
 		this.item = item;
-		
+
 		this.setCreativeTab(CreativeTabs.MATERIALS);
 	}
 
@@ -39,7 +39,7 @@ public class DynamicNugget extends Item implements IDynamicItem, IColored
 	{
 		return this;
 	}
-	
+
 	@Override
 	public boolean hasColor()
 	{

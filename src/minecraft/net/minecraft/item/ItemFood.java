@@ -50,25 +50,25 @@ public class ItemFood extends Item implements IFood
 	{
 		this(amount, 0.6F, isWolfFood);
 	}
-	
+
 	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)
 	{
 		return IFood.super.onItemUseFinish(stack, world, entityLiving);
 	}
-	
+
 	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
 		return IFood.super.getItemUseAction(stack);
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
 		return IFood.super.onItemRightClick(world, player, hand);
 	}
-	
+
 	@Override
 	public boolean isFood()
 	{
@@ -80,7 +80,7 @@ public class ItemFood extends Item implements IFood
 	{
 		return 32;
 	}
-	
+
 	@Override
 	public int getHealAmount(ItemStack stack)
 	{
@@ -137,6 +137,6 @@ public class ItemFood extends Item implements IFood
 	@Override
 	public void foodUseStatEffect(EntityPlayer entityplayer)
 	{
-		entityplayer.addStat(StatList.getObjectUseStats(this));		
+		entityplayer.addStat(StatList.getObjectUseStats(this));
 	}
 }

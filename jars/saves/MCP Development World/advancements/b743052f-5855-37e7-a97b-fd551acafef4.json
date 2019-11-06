@@ -5,9 +5,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/redstone/dropper": {
+  "minecraft:recipes/redstone/redstone": {
     "criteria": {
-      "has_redstone": "2019-10-04 14:14:15 +0200"
+      "has_the_recipe": "2019-11-06 17:13:29 +0100"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/gray_banner": {
+    "criteria": {
+      "has_gray_wool": "2019-11-06 17:13:36 +0100"
     },
     "done": true
   },
@@ -18,12 +24,6 @@
     "done": true
   },
   "minecraft:recipes/redstone/redstone_torch": {
-    "criteria": {
-      "has_redstone": "2019-10-04 14:14:15 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/piston": {
     "criteria": {
       "has_redstone": "2019-10-04 14:14:15 +0200"
     },
@@ -41,10 +41,46 @@
     },
     "done": true
   },
+  "minecraft:recipes/decorations/painting": {
+    "criteria": {
+      "has_wool": "2019-11-06 17:13:36 +0100"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/dropper": {
+    "criteria": {
+      "has_redstone": "2019-10-04 14:14:15 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone_block": {
+    "criteria": {
+      "has_at_least_9_redstone": "2019-11-06 17:13:29 +0100"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/piston": {
+    "criteria": {
+      "has_redstone": "2019-10-04 14:14:15 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/gray_carpet": {
+    "criteria": {
+      "has_gray_wool": "2019-11-06 17:13:36 +0100"
+    },
+    "done": true
+  },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
       "beaches": "2019-10-02 18:34:48 +0200"
     },
     "done": false
+  },
+  "minecraft:recipes/decorations/gray_bed": {
+    "criteria": {
+      "has_gray_wool": "2019-11-06 17:13:36 +0100"
+    },
+    "done": true
   }
 }

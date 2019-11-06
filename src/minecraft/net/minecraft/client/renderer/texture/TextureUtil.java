@@ -158,7 +158,7 @@ public class TextureUtil
 		float f1 = getColorGamma(p_147944_1_ >> p_147944_4_);
 		float f2 = getColorGamma(p_147944_2_ >> p_147944_4_);
 		float f3 = getColorGamma(p_147944_3_ >> p_147944_4_);
-		float f4 = (float) (((float) Math.pow((f + f1 + f2 + f3) * 0.25D, 0.45454545454545453D)));
+		float f4 = (((float) Math.pow((f + f1 + f2 + f3) * 0.25D, 0.45454545454545453D)));
 		return (int) (f4 * 255.0D);
 	}
 

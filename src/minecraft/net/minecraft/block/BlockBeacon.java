@@ -174,7 +174,7 @@ public class BlockBeacon extends BlockContainer
 			}
 		});
 	}
-	
+
 	@Override
 	public Rarity getRarity()
 	{

@@ -1253,7 +1253,7 @@ public class Block
 	{
 		return 0;
 	}
-	
+
 	@Mod("Minecraftpp")
 	public Rarity getRarity()
 	{

@@ -176,7 +176,7 @@ public class BlockDragonEgg extends Block
 	{
 		return BlockFaceShape.UNDEFINED;
 	}
-	
+
 	@Override
 	public Rarity getRarity()
 	{

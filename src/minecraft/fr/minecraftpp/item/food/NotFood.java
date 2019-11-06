@@ -17,28 +17,30 @@ public class NotFood implements IFood
 	{
 		return stack;
 	}
-	
+
 	@Override
-	public void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {}
+	public void onFoodEaten(ItemStack stack, World world, EntityPlayer player)
+	{
+	}
 
 	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
 		return EnumAction.NONE;
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 	}
-	
+
 	@Override
 	public boolean isFood()
 	{
 		return false;
 	}
-	
+
 	@Override
 	public int getHealAmount(ItemStack stack)
 	{
@@ -82,5 +84,7 @@ public class NotFood implements IFood
 	}
 
 	@Override
-	public void foodUseStatEffect(EntityPlayer entityplayer) {}
+	public void foodUseStatEffect(EntityPlayer entityplayer)
+	{
+	}
 }

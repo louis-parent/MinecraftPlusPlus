@@ -89,7 +89,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 				}
 				else
 				{
-					if(itemarmor.getArmorMaterial().hasColor())
+					if (itemarmor.getArmorMaterial().hasColor())
 					{
 						renderColoredArmor(entityLivingBase, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, itemstack, itemarmor, t, flag);
 					}

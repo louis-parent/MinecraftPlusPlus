@@ -176,7 +176,8 @@ public class ContainerEnchantment extends Container
 
 			if (!itemstack.isNotValid() && itemstack.isItemEnchantable())
 			{
-				if (!this.worldPointer.isRemote)
+				boolean b = !this.worldPointer.isRemote;
+				if (b)
 				{
 					int l = 0;
 
@@ -469,6 +470,6 @@ public class ContainerEnchantment extends Container
 
 	private boolean isItemStackEnchantable(ItemStack itemstack)
 	{
-		return itemstack.getItem() == Items.DYE && EnumDyeColor.byDyeDamage(itemstack.getMetadata()) == EnumDyeColor.BLUE || itemstack.getItem().allowEnchanting();
+		return (itemstack.getItem() == Items.DYE && EnumDyeColor.byDyeDamage(itemstack.getMetadata()) == EnumDyeColor.BLUE) || itemstack.getItem().allowEnchanting();
 	}
 }

@@ -47,7 +47,7 @@ public class WorldVertexBufferUploader
 					case NORMAL:
 						GlStateManager.glNormalPointer(k, i, bytebuffer);
 						GlStateManager.glEnableClientState(32885);
-						
+
 					default:
 						break;
 				}
@@ -81,7 +81,7 @@ public class WorldVertexBufferUploader
 
 					case NORMAL:
 						GlStateManager.glDisableClientState(32885);
-						
+
 					default:
 						break;
 				}

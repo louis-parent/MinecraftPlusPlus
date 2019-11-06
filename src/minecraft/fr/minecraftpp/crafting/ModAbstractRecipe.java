@@ -16,7 +16,7 @@ public abstract class ModAbstractRecipe implements IRecipe
 	{
 		this(result.getAsStack());
 	}
-	
+
 	public ModAbstractRecipe(ItemStack stack)
 	{
 		ModCraftingManager.register(this);
@@ -34,7 +34,7 @@ public abstract class ModAbstractRecipe implements IRecipe
 	{
 		ItemStack result = this.recipeResult.copy();
 		result.setStackSize(this.getRecipeOutputQuantity());
-		
+
 		return result;
 	}
 

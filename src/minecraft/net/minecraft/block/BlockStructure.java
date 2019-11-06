@@ -170,7 +170,7 @@ public class BlockStructure extends BlockContainer
 			case DATA:
 		}
 	}
-	
+
 	@Override
 	public Rarity getRarity()
 	{

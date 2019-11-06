@@ -26,7 +26,7 @@ public class ItemEnchantedBook extends Item
 	 * Checks isDamagable and if it cannot be stacked
 	 */
 	@Override
-	public boolean isItemTool(ItemStack stack)
+	public boolean isUniqueItemDamageable(ItemStack stack)
 	{
 		return false;
 	}

@@ -199,7 +199,7 @@ public class BlockRedstoneOre extends BlockOre
 	{
 		return new ItemStack(Item.getItemFromBlock(Blocks.REDSTONE_ORE), 1, this.damageDropped(state));
 	}
-	
+
 	@Override
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
 	{

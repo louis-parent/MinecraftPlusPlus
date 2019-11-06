@@ -17,7 +17,7 @@ public interface IFalling
 	{
 		world.scheduleUpdate(pos, this.getBlock(), this.tickRate(world));
 	}
-	
+
 	public default void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos)
 	{
 		world.scheduleUpdate(pos, this.getBlock(), this.tickRate(world));
@@ -67,7 +67,7 @@ public interface IFalling
 	public default void onStartFalling(EntityFallingBlock fallingEntity)
 	{
 	}
-	
+
 	public default int tickRate(World world)
 	{
 		return 2;
@@ -86,7 +86,7 @@ public interface IFalling
 
 	public default void func_190974_b(World world, BlockPos pos)
 	{
-		
+
 	}
 
 	public default void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
@@ -109,6 +109,6 @@ public interface IFalling
 	{
 		return -16777216;
 	}
-	
+
 	public abstract Block getBlock();
 }

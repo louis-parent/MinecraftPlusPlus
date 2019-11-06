@@ -15,14 +15,16 @@ public class ModBootstrap
 		SetManager.generateOre();
 		SetManager.register();
 	}
-	
+
 	public static void postBootstrap()
 	{
 		EntityVillager.setMoney(ModItems.SCENARIUM);
 		Item.getItemFromBlock(ModBlocks.SCENARIUM_BLOCK).setRarity(Rarity.EPIC);
 
 		SetManager.setupEffects();
-		SetManager.generateRecipes();		
+		SetManager.generateRecipes();
+
+		ModItems.addEnchantable();
 	}
 
 }

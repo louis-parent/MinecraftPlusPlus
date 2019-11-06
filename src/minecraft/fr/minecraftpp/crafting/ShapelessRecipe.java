@@ -18,23 +18,23 @@ import net.minecraft.world.World;
 public class ShapelessRecipe extends ModAbstractRecipe
 {
 	private List<Item> recipeRequirements;
-	
+
 	public ShapelessRecipe(ItemStack result, List<Item> recipeRequirements)
 	{
 		super(result);
 		this.recipeRequirements = recipeRequirements;
 	}
-	
+
 	public ShapelessRecipe(ItemStack result, Item... recipeRequirements)
 	{
 		this(result, Arrays.asList(recipeRequirements));
 	}
-	
+
 	public ShapelessRecipe(Item result, List<Item> recipeRequirements)
 	{
 		this(result.getAsStack(), recipeRequirements);
 	}
-	
+
 	public ShapelessRecipe(Item result, Item... recipeRequirements)
 	{
 		this(result, Arrays.asList(recipeRequirements));

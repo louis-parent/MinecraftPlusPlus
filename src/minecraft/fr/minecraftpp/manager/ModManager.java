@@ -13,7 +13,7 @@ public class ModManager
 		ModItem.setItemToRegister(item);
 		ModLanguage.addTranslation(item.getItem());
 	}
-	
+
 	public static void registerDynamic(IDynamicBlock block)
 	{
 		ModBlock.setBlockToRegister(block);

@@ -12,7 +12,7 @@ public class DynamicShovel extends ItemSpade implements IDynamicItem
 	public DynamicShovel(String name, IToolMaterial material)
 	{
 		super(material);
-		
+
 		this.ID = name + "Shovel";
 		this.setUnlocalizedName(this.ID);
 	}

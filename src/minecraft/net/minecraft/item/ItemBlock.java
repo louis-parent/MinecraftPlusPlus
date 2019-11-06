@@ -205,7 +205,7 @@ public class ItemBlock extends Item
 	{
 		return this.block;
 	}
-	
+
 	@Override
 	public Rarity getRarity(ItemStack stack)
 	{

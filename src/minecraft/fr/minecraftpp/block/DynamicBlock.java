@@ -15,7 +15,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Rarity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -27,17 +26,17 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	private final String ID;
 	private final int TEXTURE_ID;
 	private final DynamicItem item;
-	
+
 	private boolean hasGravity;
 	private boolean isAbsorbing;
 	private float walkDamage;
 
 	private FlammabilityOf flammability;
 	private double accelaration;
-	
+
 	private boolean isBeaconBase;
 	private int redstonePower;
-	
+
 	private int fuelAmount;
 	private Rarity rarity;
 
@@ -45,52 +44,52 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	{
 		super(Material.IRON, MapColor.EMERALD);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-		
+
 		this.ID = typeName + "Block";
 		this.setUnlocalizedName(this.ID);
-		
+
 		this.TEXTURE_ID = textureId;
-		
+
 		this.item = item;
-		
+
 		this.hasGravity = false;
 		this.setLightLevel(0);
 		this.isAbsorbing = false;
 		this.setLightOpacity(255);
 		this.walkDamage = 0;
 		this.flammability = FlammabilityOf.STONE;
-		this.accelaration = 0;
+		this.accelaration = 1;
 		this.slipperiness = Block.BLOCK_SLIPERNESS;
 		this.setHardness(5.0F);
-		this.setResistance(10.0F); 
-		
+		this.setResistance(10.0F);
+
 		this.isBeaconBase = false;
 		this.redstonePower = 0;
-		
+
 		this.fuelAmount = 0;
 		this.rarity = Rarity.COMMON;
 	}
-	
+
 	public void setHasGravity(boolean hasGravity)
 	{
 		this.hasGravity = hasGravity;
 	}
-	
+
 	public void setAbsorbing(boolean isAbsorbing)
 	{
 		this.isAbsorbing = isAbsorbing;
 	}
-	
+
 	public void setWalkDamage(float walkDamage)
 	{
 		this.walkDamage = walkDamage;
 	}
-	
+
 	public void setFlammability(FlammabilityOf flammability)
 	{
 		this.flammability = flammability;
 	}
-	
+
 	public void setAccelaration(double accelaration)
 	{
 		this.accelaration = accelaration;
@@ -118,16 +117,16 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	{
 		return this;
 	}
-	
+
 	@Override
 	public void onBlockAdded(World world, BlockPos pos, IBlockState state)
 	{
-		if(this.hasGravity)
+		if (this.hasGravity)
 		{
 			IFalling.super.onBlockAdded(world, pos, state);
 		}
-		
-		if(this.isAbsorbing)
+
+		if (this.isAbsorbing)
 		{
 			this.tryAbsorb(world, pos, state);
 		}
@@ -136,12 +135,12 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos neighborPos)
 	{
-		if(this.hasGravity)
+		if (this.hasGravity)
 		{
-			IFalling.super.neighborChanged(state, world, pos, block, neighborPos);			
+			IFalling.super.neighborChanged(state, world, pos, block, neighborPos);
 		}
-		
-		if(this.isAbsorbing)
+
+		if (this.isAbsorbing)
 		{
 			this.tryAbsorb(world, pos, state);
 		}
@@ -150,16 +149,16 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{
-		if(this.hasGravity)
+		if (this.hasGravity)
 		{
-			IFalling.super.updateTick(world, pos, state, rand);			
+			IFalling.super.updateTick(world, pos, state, rand);
 		}
 	}
 
 	@Override
 	public int tickRate(World world)
 	{
-		if(this.hasGravity)
+		if (this.hasGravity)
 		{
 			return IFalling.super.tickRate(world);
 		}
@@ -172,7 +171,7 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	@Override
 	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
 	{
-		if(this.hasGravity)
+		if (this.hasGravity)
 		{
 			IFalling.super.randomDisplayTick(state, world, pos, rand);
 		}
@@ -182,25 +181,25 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	public void onEntityWalk(World world, BlockPos pos, Entity entity)
 	{
 		super.onEntityWalk(world, pos, entity);
-		
-		if(this.walkDamage > 0)
+
+		if (this.walkDamage > 0)
 		{
 			entity.attackEntityFrom(new ModDamageSource(this.ID), this.walkDamage);
 		}
 	}
-	
+
 	@Override
 	public FlammabilityOf getFlammability()
 	{
 		return this.flammability;
 	}
-	
+
 	@Override
 	public double getAcceleration()
 	{
 		return this.accelaration;
 	}
-	
+
 	@Override
 	public boolean isBaseForBeacon()
 	{
@@ -211,13 +210,13 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	{
 		this.isBeaconBase = isBeaconBase;
 	}
-	
+
 	@Override
 	public boolean canProvidePower(IBlockState state)
 	{
 		return this.redstonePower > 0;
 	}
-	
+
 	@Override
 	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
@@ -238,7 +237,7 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	{
 		this.rarity = rarity;
 	}
-	
+
 	@Override
 	public Rarity getRarity()
 	{
@@ -249,31 +248,31 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	{
 		this.fuelAmount = fuelAmount;
 	}
-	
+
 	@Override
 	public int getBurnTime()
 	{
 		return this.fuelAmount;
 	}
-	
+
 	@Override
 	public boolean hasColor()
 	{
 		return this.item.hasColor();
 	}
-	
+
 	@Override
 	public Color getColor()
 	{
 		return this.item.getColor();
 	}
-	
+
 	@Override
 	public ModelType getModelType()
 	{
 		return ModelType.COLORED;
 	}
-	
+
 	@Override
 	public int getDustColor(IBlockState state)
 	{

@@ -25,12 +25,12 @@ public class ModItems extends Items
 	public static Item SCENARIUM_CHESTPLATE;
 	public static Item SCENARIUM_LEGGINGS;
 	public static Item SCENARIUM_BOOTS;
-	
+
 	public static ArrayList<ItemStack> enchantable;
 
 	public static void staticSetter()
 	{
-		
+
 		SCENARIUM = getRegisteredItem("scenarium");
 
 		SCENARIUM_SWORD = getRegisteredItem("scenarium_sword");
@@ -43,22 +43,22 @@ public class ModItems extends Items
 		SCENARIUM_CHESTPLATE = getRegisteredItem("scenarium_chestplate");
 		SCENARIUM_LEGGINGS = getRegisteredItem("scenarium_leggings");
 		SCENARIUM_BOOTS = getRegisteredItem("scenarium_boots");
-		
-		addEnchantable();
-		
+
 		doNames();
 	}
-	
-	private static void addEnchantable()
+
+	public static void addEnchantable()
 	{
 		enchantable = new ArrayList<ItemStack>();
-		
-		for (Item item : Item.REGISTRY) {
-			if (item.allowEnchanting()) {
+
+		for (Item item : Item.REGISTRY)
+		{
+			if (item.allowEnchanting())
+			{
 				enchantable.add(new ItemStack(item));
 			}
 		}
-		
+
 		enchantable.add(new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getDyeDamage()));
 	}
 

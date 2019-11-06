@@ -8,12 +8,12 @@ public interface IColored
 	{
 		return false;
 	}
-	
+
 	public default Color getColor()
 	{
 		return Color.WHITE;
 	}
-	
+
 	public default int getRgbCondensed()
 	{
 		return this.getColor().asInt();

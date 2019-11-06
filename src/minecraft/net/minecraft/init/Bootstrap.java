@@ -538,11 +538,11 @@ public class Bootstrap
 		{
 			alreadyRegistered = true;
 			redirectOutputToLog();
-						
+
 			SoundEvent.registerSounds();
-			
+
 			ModBootstrap.preBootstrap();
-			
+
 			Block.registerBlocks();
 			BlockFire.init();
 			Potion.registerPotions();

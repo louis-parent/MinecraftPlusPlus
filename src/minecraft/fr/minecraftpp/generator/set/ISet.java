@@ -7,9 +7,14 @@ import net.minecraft.item.Rarity;
 public interface ISet
 {
 	public abstract void register();
+
 	public abstract void setupEffects();
+
 	public abstract void addRecipes();
+
 	public abstract void setRarity(Rarity rarity);
+
 	public abstract void registerItemColors(ItemColors itemColors);
+
 	public abstract void registerBlockColors(BlockColors blockColors);
 }

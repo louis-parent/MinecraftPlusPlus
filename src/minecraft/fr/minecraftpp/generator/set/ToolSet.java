@@ -24,21 +24,23 @@ public class ToolSet implements ISet
 	private Random rng;
 	private String name;
 	private IToolMaterial material;
-	
+
 	protected DynamicSword sword;
 	protected DynamicPickaxe pickaxe;
 	protected DynamicAxe axe;
 	protected DynamicShovel shovel;
 	protected DynamicHoe hoe;
-	
-	public ToolSet() {}
-	
+
+	public ToolSet()
+	{
+	}
+
 	public ToolSet(Random rand, String name, IToolMaterial material)
 	{
 		this.rng = rand;
 		this.name = name;
 		this.material = material;
-		
+
 		this.sword = new DynamicSword(this.name, this.material);
 		this.pickaxe = new DynamicPickaxe(this.name, this.material);
 		this.axe = new DynamicAxe(this.name, this.material);
@@ -65,7 +67,7 @@ public class ToolSet implements ISet
 		new RecipeShovel(this.material.getRepairItem(), this.shovel);
 		new RecipeHoe(this.material.getRepairItem(), this.hoe);
 	}
-	
+
 	@Override
 	public void setRarity(Rarity rarity)
 	{
@@ -73,7 +75,7 @@ public class ToolSet implements ISet
 		this.pickaxe.setRarity(rarity);
 		this.axe.setRarity(rarity);
 		this.shovel.setRarity(rarity);
-		this.hoe.setRarity(rarity);		
+		this.hoe.setRarity(rarity);
 	}
 
 	@Override
@@ -87,9 +89,13 @@ public class ToolSet implements ISet
 	}
 
 	@Override
-	public void setupEffects() {}
-	
+	public void setupEffects()
+	{
+	}
+
 	@Override
-	public void registerBlockColors(BlockColors blockColors) {}
+	public void registerBlockColors(BlockColors blockColors)
+	{
+	}
 
 }

@@ -9,28 +9,28 @@ public class Food implements IFood
 	private int amount;
 	private float saturation;
 	private boolean isWolfFood;
-	
+
 	private int useDuration;
 	private boolean isAlwaysEdible;
-	
+
 	private PotionEffect potionEffect;
 	private float potionProbability;
-	
+
 	public Food(int amount, float saturation)
 	{
 		this(amount, saturation, false);
 	}
-	
+
 	public Food(int amount, float saturation, boolean isWolfFood)
 	{
 		this(amount, saturation, isWolfFood, false);
 	}
-	
+
 	public Food(int amount, float saturation, boolean isWolfFood, boolean isAlwaysEdible)
 	{
 		this(amount, saturation, isWolfFood, isAlwaysEdible, 32);
 	}
-	
+
 	public Food(int amount, float saturation, boolean isWolfFood, boolean isAlwaysEdible, int useDuration)
 	{
 		this.amount = amount;
@@ -38,7 +38,7 @@ public class Food implements IFood
 		this.isWolfFood = isWolfFood;
 		this.useDuration = useDuration;
 		this.isAlwaysEdible = isAlwaysEdible;
-		
+
 		this.potionEffect = null;
 		this.potionProbability = 0;
 	}
@@ -89,7 +89,7 @@ public class Food implements IFood
 	public void foodUseStatEffect(EntityPlayer entityplayer)
 	{
 	}
-	
+
 	public void setPotionEffectAndProbability(PotionEffect effect, float probability)
 	{
 		this.potionEffect = effect;

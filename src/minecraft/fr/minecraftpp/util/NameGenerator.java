@@ -10,7 +10,7 @@ public class NameGenerator
 	{
 		return generateName(NameGenerator.rand);
 	}
-	
+
 	public static String generateName(Random rand)
 	{
 		int nbChars = 3 + rand.nextInt(4);

@@ -12,7 +12,7 @@ public class DynamicLeggings extends ItemLeggings implements IDynamicItem
 	public DynamicLeggings(String name, IArmorMaterial material)
 	{
 		super(material);
-		
+
 		this.ID = name + "Leggings";
 		this.setUnlocalizedName(this.ID);
 	}

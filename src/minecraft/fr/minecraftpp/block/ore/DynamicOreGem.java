@@ -19,32 +19,30 @@ public class DynamicOreGem extends DynamicOre
 {
 	private int minDropped;
 	private int maxDropped;
-	
+
 	private int minXpDrop;
 	private int maxXpDrop;
-	
+
 	private boolean isPoweredOre;
-	
-	public DynamicOreGem(String typeName, int textureId, DynamicItem itemDropped, int quantityDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop) 
+
+	public DynamicOreGem(String typeName, int textureId, DynamicItem itemDropped, int quantityDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop)
 	{
 		this(typeName, textureId, itemDropped, quantityDropped, quantityDropped, harvestLevel, minXpDrop, maxXpDrop);
 	}
 
-
 	public DynamicOreGem(String typeName, int textureId, DynamicItem itemDropped, int minDropped, int maxDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop)
 	{
-		super(typeName, textureId, harvestLevel, itemDropped); 
-		
+		super(typeName, textureId, harvestLevel, itemDropped);
+
 		this.minDropped = minDropped;
 		this.maxDropped = maxDropped;
-		
-		
+
 		this.minXpDrop = minXpDrop;
 		this.maxXpDrop = maxXpDrop;
-		
+
 		this.isPoweredOre = false;
 	}
-	
+
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
@@ -61,16 +59,15 @@ public class DynamicOreGem extends DynamicOre
 	public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 		super.dropBlockAsItemWithChance(world, pos, state, chance, fortune);
-		
-		this.dropXpOnBlockBreak(world, pos,  MathHelper.getInt(world.rand, this.minXpDrop, this.maxXpDrop));
-	}
 
+		this.dropXpOnBlockBreak(world, pos, MathHelper.getInt(world.rand, this.minXpDrop, this.maxXpDrop));
+	}
 
 	public void setPoweredOre(boolean isPoweredOre)
 	{
 		this.isPoweredOre = isPoweredOre;
 	}
-	
+
 	@Override
 	public void onEntityWalk(World world, BlockPos pos, Entity entity)
 	{
@@ -101,55 +98,55 @@ public class DynamicOreGem extends DynamicOre
 
 	private void spawnParticlesIfNeeded(World world, BlockPos pos)
 	{
-		if(this.isPoweredOre)
+		if (this.isPoweredOre)
 		{
 			Random random = world.rand;
 			double d0 = 0.0625D;
-	
+
 			for (int i = 0; i < 6; ++i)
 			{
 				double d1 = pos.getX() + random.nextFloat();
 				double d2 = pos.getY() + random.nextFloat();
 				double d3 = pos.getZ() + random.nextFloat();
-	
+
 				if (i == 0 && !world.getBlockState(pos.up()).isOpaqueCube())
 				{
 					d2 = pos.getY() + 0.0625D + 1.0D;
 				}
-	
+
 				if (i == 1 && !world.getBlockState(pos.down()).isOpaqueCube())
 				{
 					d2 = pos.getY() - 0.0625D;
 				}
-	
+
 				if (i == 2 && !world.getBlockState(pos.south()).isOpaqueCube())
 				{
 					d3 = pos.getZ() + 0.0625D + 1.0D;
 				}
-	
+
 				if (i == 3 && !world.getBlockState(pos.north()).isOpaqueCube())
 				{
 					d3 = pos.getZ() - 0.0625D;
 				}
-	
+
 				if (i == 4 && !world.getBlockState(pos.east()).isOpaqueCube())
 				{
 					d1 = pos.getX() + 0.0625D + 1.0D;
 				}
-	
+
 				if (i == 5 && !world.getBlockState(pos.west()).isOpaqueCube())
 				{
 					d1 = pos.getX() - 0.0625D;
 				}
-	
+
 				if (d1 < pos.getX() || d1 > pos.getX() + 1 || d2 < 0.0D || d2 > pos.getY() + 1 || d3 < pos.getZ() || d3 > pos.getZ() + 1)
 				{
 					world.spawnParticle(EnumParticleTypes.REDSTONE, d1, d2, d3, 0.0D, 0.0D, 0.0D);
 				}
 			}
 		}
-	}	
-	
+	}
+
 	@Override
 	public int getAverageQuantityDropped()
 	{

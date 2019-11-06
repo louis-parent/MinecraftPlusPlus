@@ -998,7 +998,7 @@ public final class ItemStack
 	 */
 	public boolean isItemEnchantable()
 	{
-		if (!this.getItem().isItemTool(this))
+		if (!this.getItem().isUniqueItemDamageable(this))
 		{
 			return false;
 		}

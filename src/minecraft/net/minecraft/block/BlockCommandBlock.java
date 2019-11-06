@@ -359,7 +359,8 @@ public class BlockCommandBlock extends BlockContainer
 			field_193388_c.warn("Commandblock chain tried to execure more than " + j + " steps!");
 		}
 	}
-	
+
+	@Override
 	public Rarity getRarity()
 	{
 		return Rarity.EPIC;

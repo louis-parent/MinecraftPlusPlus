@@ -17,14 +17,14 @@ public class ItemAxe extends ItemTool
 
 	private static Set<Block> getEffectiveOn()
 	{
-		if(EFFECTIVE_ON == null)
+		if (EFFECTIVE_ON == null)
 		{
 			EFFECTIVE_ON = Sets.newHashSet(Blocks.PLANKS, Blocks.BOOKSHELF, Blocks.LOG, Blocks.LOG2, Blocks.CHEST, Blocks.PUMPKIN, Blocks.LIT_PUMPKIN, Blocks.MELON_BLOCK, Blocks.LADDER, Blocks.WOODEN_BUTTON, Blocks.WOODEN_PRESSURE_PLATE);
 		}
-		
+
 		return EFFECTIVE_ON;
 	}
-	
+
 	public ItemAxe(IToolMaterial material)
 	{
 		super(material);

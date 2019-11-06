@@ -364,7 +364,7 @@ public class BlockSkull extends BlockContainer
 	{
 		return BlockFaceShape.UNDEFINED;
 	}
-	
+
 	@Override
 	public Rarity getRarity()
 	{

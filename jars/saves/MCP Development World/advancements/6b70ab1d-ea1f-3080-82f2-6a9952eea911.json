@@ -5,6 +5,12 @@
     },
     "done": true
   },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "beaches": "2019-11-06 17:53:06 +0100"
+    },
+    "done": false
+  },
   "minecraft:recipes/building_blocks/bookshelf": {
     "criteria": {
       "has_book": "2019-10-11 14:10:40 +0200"

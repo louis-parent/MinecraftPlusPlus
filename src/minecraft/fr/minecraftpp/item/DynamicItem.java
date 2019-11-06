@@ -26,34 +26,34 @@ public class DynamicItem extends Item implements IDynamicItem, IColored
 	private final String ID;
 	private int textureId;
 	private final Color color;
-	
+
 	private boolean hasEffect;
 	private int fuelAmount;
 	private boolean isEnchantCurrency;
-	
+
 	private boolean putsFire;
 	private IFood food;
-	
+
 	private boolean isBeaconCurrency;
 
 	public DynamicItem(String typeName, int textureId, Color color)
 	{
 		super();
-				
+
 		this.hasEffect = false;
 		this.fuelAmount = 0;
 		this.isEnchantCurrency = false;
 		this.putsFire = false;
 		this.food = new NotFood();
-		
+
 		this.setCreativeTab(CreativeTabs.MATERIALS);
-		
+
 		this.setUnlocalizedName(typeName);
 		this.ID = typeName;
 		this.textureId = textureId;
-		
+
 		this.color = color;
-		
+
 		this.isBeaconCurrency = false;
 	}
 
@@ -93,11 +93,11 @@ public class DynamicItem extends Item implements IDynamicItem, IColored
 	{
 		return this.putsFire;
 	}
-	
+
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer stack, World player, BlockPos world, EnumHand pos, EnumFacing hand, float facing, float hitX, float hitY)
 	{
-		if(this.putsFire)
+		if (this.putsFire)
 		{
 			return LighterUse.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY);
 		}
@@ -106,7 +106,7 @@ public class DynamicItem extends Item implements IDynamicItem, IColored
 			return EnumActionResult.PASS;
 		}
 	}
-	
+
 	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)
 	{
@@ -118,13 +118,13 @@ public class DynamicItem extends Item implements IDynamicItem, IColored
 	{
 		return this.food.getMaxItemUseDuration(stack);
 	}
-	
+
 	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
 		return this.food.getItemUseAction(stack);
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
@@ -136,24 +136,24 @@ public class DynamicItem extends Item implements IDynamicItem, IColored
 	{
 		return this.food.isFood();
 	}
-	
+
 	public IFood getFood()
 	{
 		return this.food;
 	}
-	
+
 	@Override
 	public int getBurnTime()
 	{
 		return this.fuelAmount;
 	}
-	
+
 	@Override
 	public boolean allowEnchanting()
 	{
 		return this.isEnchantCurrency;
 	}
-	
+
 	@Override
 	public String getTextureName()
 	{
@@ -176,12 +176,12 @@ public class DynamicItem extends Item implements IDynamicItem, IColored
 	{
 		return this;
 	}
-	
+
 	public void setBeaconCurrency(boolean isBeaconCurrency)
 	{
 		this.isBeaconCurrency = isBeaconCurrency;
-		
-		if(isBeaconCurrency)
+
+		if (isBeaconCurrency)
 		{
 			TileEntityBeacon.paymentItems.add(this);
 		}
@@ -206,7 +206,7 @@ public class DynamicItem extends Item implements IDynamicItem, IColored
 	{
 		return true;
 	}
-	
+
 	@Override
 	public Color getColor()
 	{

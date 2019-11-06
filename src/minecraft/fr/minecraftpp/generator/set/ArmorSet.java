@@ -22,26 +22,28 @@ public class ArmorSet implements ISet
 	private Random rng;
 	private String name;
 	private IArmorMaterial material;
-	
+
 	protected DynamicHelmet helmet;
 	protected DynamicChestplate chestplate;
 	protected DynamicLeggings leggings;
 	protected DynamicBoots boots;
-	
-	public ArmorSet() {}
-	
+
+	public ArmorSet()
+	{
+	}
+
 	public ArmorSet(Random rng, String name, IArmorMaterial material)
 	{
 		this.rng = rng;
 		this.name = name;
 		this.material = material;
-		
+
 		this.helmet = new DynamicHelmet(this.name, this.material);
 		this.chestplate = new DynamicChestplate(this.name, this.material);
 		this.leggings = new DynamicLeggings(this.name, this.material);
 		this.boots = new DynamicBoots(this.name, this.material);
 	}
-	
+
 	@Override
 	public void register()
 	{
@@ -59,7 +61,7 @@ public class ArmorSet implements ISet
 		new RecipeLeggings(this.material.getRepairItem(), this.leggings);
 		new RecipeBoots(this.material.getRepairItem(), this.boots);
 	}
-	
+
 	@Override
 	public void setRarity(Rarity rarity)
 	{
@@ -79,8 +81,12 @@ public class ArmorSet implements ISet
 	}
 
 	@Override
-	public void setupEffects() {}
-	
+	public void setupEffects()
+	{
+	}
+
 	@Override
-	public void registerBlockColors(BlockColors blockColors) {}
+	public void registerBlockColors(BlockColors blockColors)
+	{
+	}
 }

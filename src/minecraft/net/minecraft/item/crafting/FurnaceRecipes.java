@@ -26,11 +26,11 @@ public class FurnaceRecipes
 	 */
 	public static FurnaceRecipes instance()
 	{
-		if(SMELTING_BASE == null)
+		if (SMELTING_BASE == null)
 		{
 			SMELTING_BASE = new FurnaceRecipes();
 		}
-		
+
 		return SMELTING_BASE;
 	}
 

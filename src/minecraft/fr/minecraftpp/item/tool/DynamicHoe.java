@@ -12,7 +12,7 @@ public class DynamicHoe extends ItemHoe implements IDynamicItem
 	public DynamicHoe(String name, IToolMaterial material)
 	{
 		super(material);
-		
+
 		this.ID = name + "Hoe";
 		this.setUnlocalizedName(this.ID);
 	}

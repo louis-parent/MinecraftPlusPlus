@@ -32,7 +32,7 @@ public class BlockColors
 	{
 		final BlockColors blockcolors = new BlockColors();
 		SetManager.registerBlockColors(blockcolors);
-		
+
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override

@@ -21,18 +21,18 @@ public class ModFurnaceRecipes
 		RECIPES_INSTANCE = instance;
 
 		addBlockSmelting(ModBlocks.SCENARITE_ORE, new ItemStack(ModItems.SCENARIUM, 1), 1.2F);
-		
+
 		for (FurnaceRecipe furnaceRecipe : toAdd)
 		{
 			addSmeltingRecipe(furnaceRecipe.getInput(), furnaceRecipe.getOutput(), furnaceRecipe.getExperience());
 		}
 	}
-	
+
 	public static void addSmelting(FurnaceRecipe smelting)
 	{
 		toAdd.add(smelting);
 	}
-	
+
 	public static void addBlockSmelting(Block input, ItemStack stack, float experience)
 	{
 		addItemSmelting(Item.getItemFromBlock(input), stack, experience);

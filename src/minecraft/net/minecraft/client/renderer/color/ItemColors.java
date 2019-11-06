@@ -30,7 +30,7 @@ public class ItemColors
 	{
 		ItemColors itemcolors = new ItemColors();
 		SetManager.registerItemColors(itemcolors);
-		
+
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
 			@Override

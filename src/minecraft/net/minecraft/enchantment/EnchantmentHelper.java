@@ -180,7 +180,7 @@ public class EnchantmentHelper
 
 	public static float func_191527_a(EntityLivingBase p_191527_0_)
 	{
-		int i = getMaxEnchantmentLevel(Enchantments.field_191530_r, p_191527_0_);
+		int i = getMaxEnchantmentLevel(Enchantments.SWEEPING, p_191527_0_);
 		return i > 0 ? EnchantmentSweepingEdge.func_191526_e(i) : 0.0F;
 	}
 
@@ -310,12 +310,12 @@ public class EnchantmentHelper
 
 	public static boolean func_190938_b(ItemStack p_190938_0_)
 	{
-		return getEnchantmentLevel(Enchantments.field_190941_k, p_190938_0_) > 0;
+		return getEnchantmentLevel(Enchantments.BINDING, p_190938_0_) > 0;
 	}
 
 	public static boolean func_190939_c(ItemStack p_190939_0_)
 	{
-		return getEnchantmentLevel(Enchantments.field_190940_C, p_190939_0_) > 0;
+		return getEnchantmentLevel(Enchantments.VANISHING, p_190939_0_) > 0;
 	}
 
 	public static ItemStack getEnchantedItem(Enchantment p_92099_0_, EntityLivingBase p_92099_1_)
@@ -404,10 +404,10 @@ public class EnchantmentHelper
 		return p_77504_1_;
 	}
 
-	public static List<EnchantmentData> buildEnchantmentList(Random randomIn, ItemStack itemStackIn, int p_77513_2_, boolean allowTreasure)
+	public static List<EnchantmentData> buildEnchantmentList(Random random, ItemStack itemStack, int p_77513_2_, boolean allowTreasure)
 	{
 		List<EnchantmentData> list = Lists.<EnchantmentData>newArrayList();
-		Item item = itemStackIn.getItem();
+		Item item = itemStack.getItem();
 		int i = item.getItemEnchantability();
 
 		if (i <= 0)
@@ -416,16 +416,16 @@ public class EnchantmentHelper
 		}
 		else
 		{
-			p_77513_2_ = p_77513_2_ + 1 + randomIn.nextInt(i / 4 + 1) + randomIn.nextInt(i / 4 + 1);
-			float f = (randomIn.nextFloat() + randomIn.nextFloat() - 1.0F) * 0.15F;
+			p_77513_2_ = p_77513_2_ + 1 + random.nextInt(i / 4 + 1) + random.nextInt(i / 4 + 1);
+			float f = (random.nextFloat() + random.nextFloat() - 1.0F) * 0.15F;
 			p_77513_2_ = MathHelper.clamp(Math.round(p_77513_2_ + p_77513_2_ * f), 1, Integer.MAX_VALUE);
-			List<EnchantmentData> list1 = getEnchantmentDatas(p_77513_2_, itemStackIn, allowTreasure);
+			List<EnchantmentData> list1 = getEnchantmentDatas(p_77513_2_, itemStack, allowTreasure);
 
 			if (!list1.isEmpty())
 			{
-				list.add(WeightedRandom.getRandomItem(randomIn, list1));
+				list.add(WeightedRandom.getRandomItem(random, list1));
 
-				while (randomIn.nextInt(50) <= p_77513_2_)
+				while (random.nextInt(50) <= p_77513_2_)
 				{
 					removeIncompatible(list1, Util.getLastElement(list));
 
@@ -434,7 +434,7 @@ public class EnchantmentHelper
 						break;
 					}
 
-					list.add(WeightedRandom.getRandomItem(randomIn, list1));
+					list.add(WeightedRandom.getRandomItem(random, list1));
 					p_77513_2_ /= 2;
 				}
 			}

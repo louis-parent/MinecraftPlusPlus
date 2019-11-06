@@ -1,6 +1,5 @@
 package net.minecraft.item;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -19,24 +18,24 @@ public class ItemPickaxe extends ItemTool
 {
 	@Mod("Minecraftpp")
 	private static Set<Material> EFFECTIVE_ON;
-	
+
 	@Mod("Minecraftpp")
 	private static Map<Block, Integer> HARVEST_LEVEL;
-	
+
 	private static Set<Material> getEffectiveOn()
 	{
-		if(EFFECTIVE_ON == null)
+		if (EFFECTIVE_ON == null)
 		{
 			EFFECTIVE_ON = Sets.newHashSet(Material.ROCK, Material.IRON, Material.ANVIL, Material.ICE, Material.PACKED_ICE, Material.RAIL);
 		}
-		
+
 		return EFFECTIVE_ON;
-			
+
 	}
-	
+
 	private static Map<Block, Integer> getHarvestLevel()
 	{
-		if(HARVEST_LEVEL == null)
+		if (HARVEST_LEVEL == null)
 		{
 			HARVEST_LEVEL = new HashMap<Block, Integer>()
 			{
@@ -57,7 +56,7 @@ public class ItemPickaxe extends ItemTool
 				}
 			};
 		}
-		
+
 		return HARVEST_LEVEL;
 	}
 

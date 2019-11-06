@@ -4,11 +4,8 @@ import java.util.Random;
 
 public enum HarvestLevel
 {
-	WOOD,
-	STONE,
-	IRON,
-	DIAMOND;
-	
+	WOOD, STONE, IRON, DIAMOND;
+
 	public int getHarvestLevel()
 	{
 		return this.ordinal();

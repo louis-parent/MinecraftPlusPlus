@@ -21,11 +21,11 @@ import net.minecraft.world.World;
 public class BlockScenarium extends BlockFalling implements IAbsorbing
 {
 	public static final PropertyBool EXPLODE = PropertyBool.create("explode");
-	
+
 	public BlockScenarium()
 	{
 		super(Material.IRON);
-				
+
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);
 

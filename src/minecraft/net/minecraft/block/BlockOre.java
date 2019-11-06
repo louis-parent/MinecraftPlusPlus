@@ -29,11 +29,11 @@ public class BlockOre extends Block
 	public BlockOre(MapColor color)
 	{
 		super(Material.ROCK, color);
-		
+
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		this.setHardness(3.0F);
 		this.setResistance(5.0F);
-		
+
 		OreRegistry.register(this);
 	}
 
@@ -150,12 +150,12 @@ public class BlockOre extends Block
 	{
 		return this == Blocks.LAPIS_ORE ? EnumDyeColor.BLUE.getDyeDamage() : 0;
 	}
-	
+
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
 	{
 		ChunkGeneratorSettings settings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
-		
-		if(this == Blocks.LAPIS_ORE)
+
+		if (this == Blocks.LAPIS_ORE)
 		{
 			decorator.spreadOreGeneration(world, rand, settings.lapisCount, new WorldGenMinable(this.getDefaultState(), settings.lapisSize), settings.lapisCenterHeight, settings.lapisSpread);
 		}

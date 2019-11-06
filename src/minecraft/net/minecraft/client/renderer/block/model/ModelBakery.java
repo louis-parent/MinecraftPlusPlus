@@ -86,9 +86,9 @@ public class ModelBakery
 	{
 		ModModelManager.loadBlockModels(this.models, this.blockDefinitions);
 		this.loadBlocks();
-		
+
 		ModModelManager.loadItemModels(this.models);
-		
+
 		this.loadVariantItemModels();
 		this.loadModelsCheck();
 		this.loadSprites();

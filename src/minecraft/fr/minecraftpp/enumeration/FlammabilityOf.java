@@ -39,7 +39,7 @@ public enum FlammabilityOf
 	{
 		return this.flammability != 0 && this.encouragement != 0;
 	}
-	
+
 	public static FlammabilityOf getRandomFlammability(Random rand)
 	{
 		return FlammabilityOf.values()[rand.nextInt(FlammabilityOf.values().length)];

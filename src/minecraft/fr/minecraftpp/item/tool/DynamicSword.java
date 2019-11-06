@@ -12,7 +12,7 @@ public class DynamicSword extends ItemSword implements IDynamicItem
 	public DynamicSword(String name, IToolMaterial material)
 	{
 		super(material);
-		
+
 		this.ID = name + "Sword";
 		this.setUnlocalizedName(this.ID);
 	}

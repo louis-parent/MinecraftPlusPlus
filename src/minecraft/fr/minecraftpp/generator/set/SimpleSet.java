@@ -34,9 +34,9 @@ public class SimpleSet implements ISet
 	private static final int QUANTITY_DROPPED_MAX = 5;
 
 	protected Random rng;
-	
+
 	protected String name;
-	
+
 	protected DynamicOre ore;
 	protected DynamicBlock block;
 	protected DynamicItem item;
@@ -44,15 +44,18 @@ public class SimpleSet implements ISet
 	private boolean isBlueDye;
 	private boolean isRedstone;
 	private boolean isCurrency;
-	
+	private boolean isFuel;
+	private boolean isBeacon;
+	private boolean isEnchantCurrency;
+
 	private DynamicColor blockColor;
 	private DynamicColor oreColor;
-	
+
 	public SimpleSet(Random rand)
 	{
 		this.rng = rand;
 		this.name = NameGenerator.generateName(this.rng);
-		
+
 		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng), Color.getRandomColor(this.rng));
 		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng), this.item);
 		this.ore = new DynamicOreGem(this.name, DynamicOre.getRandomTextureId(this.rng), this.item, this.rng.nextInt(QUANTITY_DROPPED_MAX) + 1, HarvestLevel.getRandomHarvestLevel(this.rng), this.rng.nextInt(2), this.rng.nextInt(3) + 2);
@@ -60,19 +63,21 @@ public class SimpleSet implements ISet
 		this.isBlueDye = false;
 		this.isRedstone = false;
 		this.isCurrency = false;
-		
+		this.isFuel = false;
+		this.isBeacon = false;
+		this.isEnchantCurrency = false;
+
 		this.blockColor = new DynamicColor(this.block);
 		this.oreColor = new DynamicColor(this.ore);
 	}
-	
+
+	@Override
 	public void setupEffects()
 	{
-		this.setupFuel();
 		this.setupEffect();
 		this.setupLighter();
-		this.setupEnchantCurrency();
 		this.setupFood();
-		
+
 		this.setupGravity();
 		this.setupLightLevel();
 		this.setupAbsorbing();
@@ -81,58 +86,73 @@ public class SimpleSet implements ISet
 		this.setupAcceleration();
 		this.setupWalkDamage();
 		this.setupFireable();
-		
-		this.setupBeacon();
+
+		this.setupRedstone();
 		this.setupCurrency();
+		this.setupFuel();
+		this.setupBeacon();
+		this.setupEnchantCurrency();
 	}
-	
+
+	@Override
 	public void register()
 	{
 		ModManager.registerDynamic(this.item);
-		
+
 		ModManager.registerDynamic(this.block);
 		ModManager.registerDynamic(this.ore);
 	}
-	
+
+	@Override
 	public void addRecipes()
 	{
 		new RecipeCompact(this.item, this.block);
 		new RecipeDecompact(this.block, this.item);
 		new FurnaceRecipe(this.ore, this.item.getAsStack(), (this.rng.nextInt(12) + 1) / 10);
-		
-		if(this.isBlueDye)
-		{			
+
+		if (this.isBlueDye)
+		{
 			int blueDyeQuantity = BASE_AMOUNT_OF_BLUE_DYE / this.ore.getAverageQuantityDropped();
 			new ShapelessRecipe(new ItemStack(Items.DYE, blueDyeQuantity, EnumDyeColor.BLUE.getDyeDamage()), this.item);
 		}
-		
-		if(this.isRedstone)
+
+		if (this.isRedstone)
 		{
 			int redstoneQuantity = BASE_AMOUNT_OF_REDSTONE / this.ore.getAverageQuantityDropped();
 			new ShapelessRecipe(new ItemStack(Items.REDSTONE, redstoneQuantity), this.item);
 		}
 	}
-	
+
 	public void setBlueDye()
 	{
 		this.isBlueDye = true;
 	}
-	
-	public void setRedstoneSet()
+
+	public void setRedstone()
 	{
 		this.isRedstone = true;
-		if(this.ore instanceof DynamicOreGem)
-		{
-			((DynamicOreGem) this.ore).setPoweredOre(true);
-		}
-		this.block.setRedstonePower(REDSTONE_BLOCK_POWER);
 	}
-	
+
 	public void setCurrency()
 	{
 		this.isCurrency = true;
 	}
-	
+
+	public void setFuel()
+	{
+		this.isFuel = true;
+	}
+
+	public void setBeacon()
+	{
+		this.isBeacon = true;
+	}
+
+	public void setEnchantCurrency()
+	{
+		this.isEnchantCurrency = true;
+	}
+
 	@Override
 	public void setRarity(Rarity rarity)
 	{
@@ -140,7 +160,7 @@ public class SimpleSet implements ISet
 		this.block.setRarity(rarity);
 		this.ore.setRarity(rarity);
 	}
-	
+
 	@Override
 	public void registerItemColors(ItemColors itemColors)
 	{
@@ -148,7 +168,7 @@ public class SimpleSet implements ISet
 		itemColors.registerItemColorHandler(this.blockColor, this.block);
 		itemColors.registerItemColorHandler(this.oreColor, this.ore);
 	}
-	
+
 	@Override
 	public void registerBlockColors(BlockColors blockColors)
 	{
@@ -158,129 +178,142 @@ public class SimpleSet implements ISet
 
 	private void setupFuel()
 	{
-		if(this.rng.nextInt(7) == 0)
+		if (this.isFuel)
 		{
 			int fuelAmount = 200 * (this.rng.nextInt(10) + 1);
 			this.item.setFuelAmount(fuelAmount);
 			this.block.setFuelAmount(fuelAmount * 10);
 		}
 	}
-	
+
 	private void setupEffect()
 	{
-		if(this.rng.nextInt(20) == 0)
+		if (this.rng.nextInt(20) == 0)
 		{
 			this.item.setHasEffect(true);
 		}
 	}
-	
+
 	private void setupLighter()
 	{
-		if(this.rng.nextInt(10) == 0)
+		if (this.rng.nextInt(10) == 0)
 		{
 			this.item.setPutsFire(true);
 		}
 	}
-	
+
 	private void setupEnchantCurrency()
 	{
-		if(this.rng.nextInt(8) == 0)
+		if (this.isEnchantCurrency)
 		{
+
 			this.item.setEnchantCurrency(true);
 		}
 	}
-	
+
 	private void setupFood()
 	{
-		if(this.rng.nextInt(7) == 0)
+		if (this.rng.nextInt(7) == 0)
 		{
 			int n = this.rng.nextInt(20) + 1;
-			
+
 			float amountFrac = 0.5F + (1 / (this.rng.nextInt(10) + 1));
 			float saturationFrac = 0.5F + (1 / (this.rng.nextInt(10) + 1));
 
 			this.item.setFood(new Food((int) (n * amountFrac), n * saturationFrac, this.rng.nextInt(5) == 0));
 		}
 	}
-	
+
 	private void setupGravity()
 	{
-		if(this.rng.nextInt(15) == 0)
+		if (this.rng.nextInt(15) == 0)
 		{
 			this.block.setHasGravity(true);
 		}
 	}
-	
+
 	private void setupLightLevel()
 	{
-		if(this.rng.nextInt(7) == 0)
+		if (this.rng.nextInt(7) == 0)
 		{
 			this.block.setLightLevel(1 / (this.rng.nextInt(2) + 1));
 		}
 	}
-	
+
 	private void setupAbsorbing()
 	{
-		if(this.rng.nextInt(50) == 0)
+		if (this.rng.nextInt(50) == 0)
 		{
 			this.block.setAbsorbing(true);
 		}
 	}
-	
+
 	private void setupOpacity()
 	{
-		if(this.rng.nextInt(15) == 0)
+		if (this.rng.nextInt(15) == 0)
 		{
 			this.block.setLightOpacity(this.rng.nextInt(255));
 		}
 	}
-	
+
 	private void setupSlipperiness()
 	{
-		if(this.rng.nextInt(15) == 0)
+		if (this.rng.nextInt(15) == 0)
 		{
 			this.block.slipperiness = Block.BLOCK_SLIPERNESS + (this.rng.nextInt(5) / 10) - 0.2F;
 		}
 	}
-	
+
 	private void setupAcceleration()
 	{
-		if(this.rng.nextInt(17) == 0)
+		if (this.rng.nextInt(17) == 0)
 		{
 			this.block.setAccelaration(1 + (this.rng.nextInt(11) / 10) - 0.5F);
 		}
 	}
-	
+
 	private void setupWalkDamage()
 	{
-		if(this.rng.nextInt(33) == 0)
+		if (this.rng.nextInt(33) == 0)
 		{
 			this.block.setWalkDamage(this.rng.nextInt(3) + 1);
 		}
 	}
-	
+
 	private void setupFireable()
 	{
-		if(this.rng.nextInt(33) == 0)
+		if (this.rng.nextInt(33) == 0)
 		{
 			this.block.setFlammability(FlammabilityOf.getRandomFlammability(this.rng));
 		}
 	}
-	
+
 	private void setupBeacon()
 	{
-		if(this.rng.nextInt(2) == 0)
+		if (this.isBeacon)
 		{
 			this.item.setBeaconCurrency(true);
 			this.block.setBeaconBase(true);
 		}
 	}
-	
+
 	private void setupCurrency()
 	{
-		if(this.isCurrency)
+		if (this.isCurrency)
 		{
 			EntityVillager.setMoney(this.item);
+		}
+	}
+
+	private void setupRedstone()
+	{
+		if (this.isRedstone)
+		{
+			if (this.ore instanceof DynamicOreGem)
+			{
+				((DynamicOreGem) this.ore).setPoweredOre(true);
+			}
+			this.block.setRedstonePower(REDSTONE_BLOCK_POWER);
 		}
 	}
 }

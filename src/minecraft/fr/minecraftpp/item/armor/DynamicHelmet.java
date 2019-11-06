@@ -12,7 +12,7 @@ public class DynamicHelmet extends ItemHelmet implements IDynamicItem
 	public DynamicHelmet(String name, IArmorMaterial material)
 	{
 		super(material);
-		
+
 		this.ID = name + "Helmet";
 		this.setUnlocalizedName(this.ID);
 	}

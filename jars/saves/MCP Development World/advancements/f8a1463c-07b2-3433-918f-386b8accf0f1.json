@@ -210,6 +210,12 @@
     },
     "done": true
   },
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_something": "2019-11-06 17:45:25 +0100"
+    },
+    "done": true
+  },
   "minecraft:recipes/transportation/boat": {
     "criteria": {
       "entered_water": "2019-10-09 13:44:01 +0200"

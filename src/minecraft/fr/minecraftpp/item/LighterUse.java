@@ -31,7 +31,7 @@ public class LighterUse
 
 				if (!player.isCreative())
 				{
-					if(itemstack.getItem().isDamageable())
+					if (itemstack.getItem().isDamageable())
 					{
 						itemstack.damageItem(1, player);
 					}

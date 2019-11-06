@@ -155,7 +155,7 @@ public class BlockScenariteOre extends BlockOre
 			}
 		}
 	}
-	
+
 	@Override
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
 	{

@@ -12,7 +12,7 @@ public class DynamicBoots extends ItemBoots implements IDynamicItem
 	public DynamicBoots(String name, IArmorMaterial material)
 	{
 		super(material);
-		
+
 		this.ID = name + "Boots";
 		this.setUnlocalizedName(this.ID);
 	}
@@ -34,7 +34,7 @@ public class DynamicBoots extends ItemBoots implements IDynamicItem
 	{
 		return this;
 	}
-	
+
 	@Override
 	public int getColor(ItemStack stack)
 	{

@@ -6,7 +6,7 @@ public class ItemBook extends Item
 	 * Checks isDamagable and if it cannot be stacked
 	 */
 	@Override
-	public boolean isItemTool(ItemStack stack)
+	public boolean isUniqueItemDamageable(ItemStack stack)
 	{
 		return stack.getStackSize() == 1;
 	}

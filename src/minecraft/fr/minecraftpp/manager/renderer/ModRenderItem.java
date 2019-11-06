@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.texture.TextureManager;
 
 @Mod("minecraftpp")
 public class ModRenderItem extends RenderItem
-{	
+{
 	public ModRenderItem(TextureManager textureManager, ModelManager modelManager, ItemColors colors)
 	{
 		super(textureManager, modelManager, colors);
@@ -24,7 +24,7 @@ public class ModRenderItem extends RenderItem
 	{
 		renderer.registerBlock(ModBlocks.SCENARITE_ORE, "scenarite_ore");
 		renderer.registerBlock(ModBlocks.SCENARIUM_BLOCK, "scenarium_block");
-		
+
 		for (IDynamicBlock block : ModBlock.REGISTRY)
 		{
 			renderer.registerBlock(block.getBlock(), block.getID());
@@ -46,7 +46,7 @@ public class ModRenderItem extends RenderItem
 		renderer.registerItem(ModItems.SCENARIUM_LEGGINGS, "scenarium_leggings");
 		renderer.registerItem(ModItems.SCENARIUM_BOOTS, "scenarium_boots");
 
-		for(IDynamicItem item : ModItem.REGISTRY)
+		for (IDynamicItem item : ModItem.REGISTRY)
 		{
 			renderer.registerItem(item.getItem(), item.getID());
 		}

@@ -39,7 +39,7 @@ public class ModLanguage
 		String unlocalizedName = block.getUnlocalizedName() + ".name";
 		toAdd.put(unlocalizedName, unlocalizedNameToProperName(block.getUnlocalizedName()));
 	}
-	
+
 	public static void addTranslation(DamageSource damageSource)
 	{
 		String unlocalizedName = "death.attack." + damageSource.damageType;
