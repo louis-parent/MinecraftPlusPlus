@@ -56,7 +56,7 @@ public class SimpleSet implements ISet
 		this.rng = rand;
 		this.name = NameGenerator.generateName(this.rng);
 
-		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng), Color.getRandomColor(this.rng));
+		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng), Color.getRandomColorImproved(this.rng));
 		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng), this.item);
 		this.ore = new DynamicOreGem(this.name, DynamicOre.getRandomTextureId(this.rng), this.item, this.rng.nextInt(QUANTITY_DROPPED_MAX) + 1, HarvestLevel.getRandomHarvestLevel(this.rng), this.rng.nextInt(2), this.rng.nextInt(3) + 2);
 
@@ -174,6 +174,12 @@ public class SimpleSet implements ISet
 	{
 		blockColors.registerBlockColorHandler(this.blockColor, this.block);
 		blockColors.registerBlockColorHandler(this.oreColor, this.ore);
+	}
+	
+	@Override
+	public String getSetName()
+	{
+		return this.name;
 	}
 
 	private void setupFuel()

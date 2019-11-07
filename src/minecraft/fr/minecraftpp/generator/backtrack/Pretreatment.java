@@ -116,7 +116,10 @@ public class Pretreatment
 		String allDiff = toStringContraintesAllDiff();
 		taille += StringUtils.countMatches(allDiff, "diff");
 
-		return taille + "\n" + allDiff;
+		String inten = toStringContraintesInten();
+		taille += StringUtils.countMatches(inten, "inten");
+
+		return taille + "\n" + allDiff + inten;
 	}
 
 	private String toStringContraintesAllDiff()
@@ -163,6 +166,78 @@ public class Pretreatment
 			}
 		}
 
+		return str;
+	}
+
+	private String toStringContraintesInten()
+	{
+		String str = "inten\n";
+
+		str += toStringAllVariables();
+
+		str += toStringIntension();
+
+		return str;
+	}
+
+	private String toStringAllVariables()
+	{
+		String str = "";
+		
+		for (int i = 0; i < variables.size(); i++)
+		{
+			String var = variables.get(i);
+			str += var;
+
+			if (i < variables.size() - 1)
+			{
+				str += ";";
+			}
+			else
+			{
+				str += "\n";
+			}
+		}
+		return str;
+	}
+
+	private String toStringIntension()
+	{
+		String str = "";
+		
+		for (int i = 1; i < NUMBER_OF_ORES + 1; i++)
+		{
+			str += toStringAllVariablesEqualTo(i);
+			
+			if (i < NUMBER_OF_ORES)
+			{
+				str += " && ";
+			}
+			else
+			{
+				str += "\n";
+			}
+		}
+		
+		return str;
+	}
+
+	private String toStringAllVariablesEqualTo(int value)
+	{
+		String str = "(";
+
+		for (int j = 0; j < variables.size(); j++)
+		{
+			String var = variables.get(j);
+			str += "($" + var + " == " + value + ")"; 
+
+			if (j < variables.size() - 1)
+			{
+				str += " || ";
+			}
+		}
+		
+		str += ")";
 		return str;
 	}
 }

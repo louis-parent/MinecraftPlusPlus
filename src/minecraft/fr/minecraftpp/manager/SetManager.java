@@ -21,15 +21,17 @@ public class SetManager
 
 	public static void generateOre()
 	{
-		Random r = new Random(5);
+		Random r = new Random(7);
 
 		Map<Integer, List<OreProperties>> sortedSolution = getSortedSolution(Backtrack.generateSolution(r, NUMBER_OF_ORES));
-
-		System.out.println(sortedSolution);
 
 		for (List<OreProperties> properties : sortedSolution.values())
 		{
 			sets.add(SetFactory.generateSet(properties, r));
+		}
+
+		for (int i = 0; i < sets.size(); i++) {
+			System.out.println(sets.get(i).getSetName() + ": " + sortedSolution.values().toArray()[i]);
 		}
 	}
 

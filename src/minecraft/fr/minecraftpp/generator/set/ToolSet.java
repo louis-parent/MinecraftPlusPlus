@@ -89,6 +89,12 @@ public class ToolSet implements ISet
 	}
 
 	@Override
+	public String getSetName()
+	{
+		return this.name;
+	}
+	
+	@Override
 	public void setupEffects()
 	{
 	}

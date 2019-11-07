@@ -17,4 +17,6 @@ public interface ISet
 	public abstract void registerItemColors(ItemColors itemColors);
 
 	public abstract void registerBlockColors(BlockColors blockColors);
+	
+	public abstract String getSetName();
 }
