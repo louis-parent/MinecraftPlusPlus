@@ -38,9 +38,10 @@ public class Color
 
 		return new Color(R, G, B);
 	}
-	
+
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "{R: " + this.red + ", G: " + this.green + ", B: " + this.blue + "}";
 	}
 
@@ -71,10 +72,5 @@ public class Color
 		}
 
 		return 0;
-	}
-
-	public static void main(String[] args)
-	{
-		System.out.println(getRandomColorImproved(new Random()));
 	}
 }

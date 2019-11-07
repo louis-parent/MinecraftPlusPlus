@@ -16,7 +16,7 @@ import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.food.Food;
 import fr.minecraftpp.manager.ModManager;
-import fr.minecraftpp.util.NameGenerator;
+import fr.minecraftpp.util.nameGenerator.Word;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
@@ -54,7 +54,7 @@ public class SimpleSet implements ISet
 	public SimpleSet(Random rand)
 	{
 		this.rng = rand;
-		this.name = NameGenerator.generateName(this.rng);
+		this.name = Word.getWord(rand);
 
 		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng), Color.getRandomColorImproved(this.rng));
 		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng), this.item);
