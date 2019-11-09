@@ -3,10 +3,8 @@ package fr.minecraftpp.randomizer.backtrack.engine;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@SuppressWarnings("serial")
 public class Assignment extends HashMap<String, Integer>
 {
-
 	public Assignment()
 	{
 		super();

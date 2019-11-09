@@ -51,6 +51,8 @@ public class SimpleSet implements ISet
 
 	private DynamicColor blockColor;
 	private DynamicColor oreColor;
+	
+	private Rarity rarity;
 
 	public SimpleSet(Random rand, OreRarity oreRarity)
 	{
@@ -71,6 +73,8 @@ public class SimpleSet implements ISet
 
 		this.blockColor = new DynamicColor(this.block);
 		this.oreColor = new DynamicColor(this.ore);
+		
+		this.rarity = Rarity.COMMON;
 	}
 
 	@Override
@@ -94,6 +98,8 @@ public class SimpleSet implements ISet
 		this.setupFuel();
 		this.setupBeacon();
 		this.setupEnchantCurrency();
+		
+		this.setRarity(this.rarity);
 	}
 
 	@Override
@@ -133,11 +139,13 @@ public class SimpleSet implements ISet
 	public void setRedstone()
 	{
 		this.isRedstone = true;
+		this.rarity = this.rarity.next();
 	}
 
 	public void setCurrency()
 	{
 		this.isCurrency = true;
+		this.rarity = this.rarity.next();
 	}
 
 	public void setFuel()
@@ -153,6 +161,7 @@ public class SimpleSet implements ISet
 	public void setEnchantCurrency()
 	{
 		this.isEnchantCurrency = true;
+		this.rarity = this.rarity.next();
 	}
 	
 	public void setCoal() 
@@ -163,11 +172,13 @@ public class SimpleSet implements ISet
 	public void setIron() 
 	{
 		this.setHarvestLevel(HarvestLevel.STONE);
+		this.rarity = this.rarity.next();
 	}
 	
 	public void setDiamond() 
 	{
 		this.setHarvestLevel(HarvestLevel.IRON);
+		this.rarity = this.rarity.next().next();
 	}
 
 	private void setHarvestLevel(HarvestLevel harvestLevel)

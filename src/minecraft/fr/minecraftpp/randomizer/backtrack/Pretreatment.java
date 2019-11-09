@@ -156,8 +156,13 @@ public class Pretreatment
 		vanillaGroup.add(OreProperties.DIAMOND.toString());
 		str += allDiffFrom(vanillaGroup);
 
-		List<String> allProperties = Arrays.asList(new String[] { OreProperties.REDSTONE + "", OreProperties.BEACON + "1", OreProperties.CURRENCY + "", OreProperties.BLUEDYE + "", OreProperties.FUEL + "1", OreProperties.ENCHANT_CURRENCY + "1", OreProperties.MATERIAL + "1" });
-		str += allDiffFrom(allProperties);
+		List<String> allCertainProperties = Arrays.asList(new String[] { OreProperties.REDSTONE + "", OreProperties.BEACON + "1", OreProperties.CURRENCY + "", OreProperties.BLUEDYE + "", OreProperties.FUEL + "1", OreProperties.ENCHANT_CURRENCY + "1", OreProperties.MATERIAL + "1" });
+		str += allDiffFrom(allCertainProperties);
+		
+		List<String> materialAndCurency = getAllVariablesFrom(OreProperties.MATERIAL);
+		materialAndCurency.addAll(getAllVariablesFrom(OreProperties.METAL));
+		materialAndCurency.add(OreProperties.CURRENCY.toString());
+		str += allDiffFrom(materialAndCurency);
 
 		return str;
 	}
