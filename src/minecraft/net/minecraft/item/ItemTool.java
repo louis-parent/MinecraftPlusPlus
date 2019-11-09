@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 
 public abstract class ItemTool extends Item
 {
-	protected float efficiencyOnProperMaterial;
 
 	/** Damage versus entities. */
 	protected float damageVsEntity;
@@ -28,11 +27,9 @@ public abstract class ItemTool extends Item
 
 	protected ItemTool(float attackDamage, float attackSpeed, IToolMaterial material)
 	{
-		this.efficiencyOnProperMaterial = 4.0F;
 		this.toolMaterial = material;
 		this.maxStackSize = 1;
 		this.setMaxDamage(material.getMaxUses());
-		this.efficiencyOnProperMaterial = material.getEfficiencyOnProperMaterial();
 		this.damageVsEntity = attackDamage + material.getDamageVsEntity(this.getToolType());
 		this.attackSpeed = attackSpeed + material.getAttackSpeed(this.getToolType());
 		this.setCreativeTab(CreativeTabs.TOOLS);

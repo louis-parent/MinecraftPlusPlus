@@ -5,6 +5,7 @@ import java.util.Random;
 import fr.minecraftpp.color.Color;
 import fr.minecraftpp.damageSource.ModDamageSource;
 import fr.minecraftpp.enumeration.FlammabilityOf;
+import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.enumeration.ModelType;
 import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.material.IColored;
@@ -15,6 +16,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Rarity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -26,6 +28,8 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	private final String ID;
 	private final int TEXTURE_ID;
 	private final DynamicItem item;
+
+	private int harvestLevel;
 
 	private boolean hasGravity;
 	private boolean isAbsorbing;
@@ -39,8 +43,10 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 
 	private int fuelAmount;
 	private Rarity rarity;
+	
+	private DamageSource damageSource;
 
-	public DynamicBlock(String typeName, int textureId, DynamicItem item)
+	public DynamicBlock(String typeName, int textureId, DynamicItem item, HarvestLevel harvestLevel)
 	{
 		super(Material.IRON, MapColor.EMERALD);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
@@ -51,6 +57,8 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 		this.TEXTURE_ID = textureId;
 
 		this.item = item;
+		
+		this.harvestLevel = harvestLevel.getHarvestLevel();
 
 		this.hasGravity = false;
 		this.setLightLevel(0);
@@ -83,6 +91,7 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	public void setWalkDamage(float walkDamage)
 	{
 		this.walkDamage = walkDamage;
+		this.damageSource = new ModDamageSource(this.ID);
 	}
 
 	public void setFlammability(FlammabilityOf flammability)
@@ -184,7 +193,7 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 
 		if (this.walkDamage > 0)
 		{
-			entity.attackEntityFrom(new ModDamageSource(this.ID), this.walkDamage);
+			entity.attackEntityFrom(this.damageSource, this.walkDamage);
 		}
 	}
 
@@ -277,5 +286,16 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	public int getDustColor(IBlockState state)
 	{
 		return this.item.getColor().asInt();
+	}
+
+	@Override
+	public int getRequiredHarvestLevel()
+	{
+		return this.harvestLevel;
+	}
+
+	public void setHarvestLevel(HarvestLevel harvestLevel)
+	{
+		this.harvestLevel = harvestLevel.getHarvestLevel();
 	}
 }

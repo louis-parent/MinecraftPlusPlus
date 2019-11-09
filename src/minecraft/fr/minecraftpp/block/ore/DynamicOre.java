@@ -6,14 +6,20 @@ import fr.minecraftpp.block.IDynamicBlock;
 import fr.minecraftpp.color.Color;
 import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.enumeration.ModelType;
+import fr.minecraftpp.generation.OreRarity;
 import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.material.IColored;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockMatcher;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 
 public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 {
@@ -22,11 +28,13 @@ public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 	private final String ID;
 	private final int TEXTURE_ID;
 	protected DynamicItem item;
-
+ 
+	private OreRarity oreRarity;
+	
 	private int harvestLevel;
 	private Rarity rarity;
 
-	public DynamicOre(String typeName, int textureId, HarvestLevel harvestLevel, DynamicItem item)
+	public DynamicOre(String typeName, int textureId, OreRarity rarity, HarvestLevel harvestLevel, DynamicItem item)
 	{
 		super();
 
@@ -37,6 +45,8 @@ public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 
 		this.item = item;
 
+		this.oreRarity = rarity;
+		
 		this.harvestLevel = harvestLevel.getHarvestLevel();
 
 		this.rarity = Rarity.COMMON;
@@ -126,5 +136,16 @@ public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT_MIPPED;
+	}
+	
+	public void setHarvestLevel(HarvestLevel harvestLevel)
+	{
+		this.harvestLevel = harvestLevel.getHarvestLevel();
+	}
+	
+	@Override
+	public void decorate(BiomeDecorator decorator, World world, Random rand)
+	{
+		decorator.uniformOreGeneration(world, rand, this.oreRarity.getVeinAmount(), new WorldGenMinable(this.getDefaultState(), this.oreRarity.getVeinDensity(), BlockMatcher.forBlock(Blocks.STONE)), 0, this.oreRarity.getMaxHeight());
 	}
 }

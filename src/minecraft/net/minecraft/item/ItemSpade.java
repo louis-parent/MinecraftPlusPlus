@@ -97,7 +97,7 @@ public class ItemSpade extends ItemTool
 	@Override
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
 	{
-		return getEffectiveOn().contains(state.getBlock()) ? this.efficiencyOnProperMaterial : 1.0F;
+		return getEffectiveOn().contains(state.getBlock()) ? this.toolMaterial.getEfficiencyOnProperMaterial() : 1.0F;
 	}
 
 	@Override

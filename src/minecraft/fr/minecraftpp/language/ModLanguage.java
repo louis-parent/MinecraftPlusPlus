@@ -43,7 +43,7 @@ public class ModLanguage
 	public static void addTranslation(DamageSource damageSource)
 	{
 		String unlocalizedName = "death.attack." + damageSource.damageType;
-		toAdd.put(unlocalizedName, "%1$s was killed on " + unlocalizedNameToProperName(damageSource.damageType));
+		toAdd.put(unlocalizedName, "%1$s was killed on " + unlocalizedNameToProperName("damage." + damageSource.damageType));
 	}
 
 	private static String unlocalizedNameToProperName(String unlocalizedName)

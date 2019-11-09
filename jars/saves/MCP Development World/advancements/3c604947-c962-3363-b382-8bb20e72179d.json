@@ -1,17 +1,5 @@
 {
-  "minecraft:recipes/decorations/crafting_table": {
-    "criteria": {
-      "has_planks": "2019-10-25 20:49:32 +0200"
-    },
-    "done": true
-  },
   "minecraft:recipes/redstone/wooden_button": {
-    "criteria": {
-      "has_planks": "2019-10-25 20:49:32 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/trapdoor": {
     "criteria": {
       "has_planks": "2019-10-25 20:49:32 +0200"
     },
@@ -29,21 +17,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/decorations/chest": {
-    "criteria": {
-      "has_lots_of_items": "2019-10-25 20:48:46 +0200"
-    },
-    "done": true
-  },
   "minecraft:recipes/misc/cyan_dye": {
     "criteria": {
       "has_lapis": "2019-10-25 20:52:03 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/spruce_wooden_slab": {
-    "criteria": {
-      "has_planks": "2019-10-25 20:49:32 +0200"
     },
     "done": true
   },
@@ -71,21 +47,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/redstone/wooden_pressure_plate": {
-    "criteria": {
-      "has_planks": "2019-10-25 20:49:32 +0200"
-    },
-    "done": true
-  },
   "minecraft:recipes/misc/light_blue_dye_from_lapis_bonemeal": {
     "criteria": {
       "has_lapis": "2019-10-25 20:52:03 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/misc/stick": {
-    "criteria": {
-      "has_planks": "2019-10-25 20:49:32 +0200"
     },
     "done": true
   },
@@ -95,25 +59,7 @@
     },
     "done": true
   },
-  "minecraft:recipes/redstone/redstone_lamp": {
-    "criteria": {
-      "has_glowstone": "2019-10-25 20:50:09 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/misc/purple_dye": {
-    "criteria": {
-      "has_lapis": "2019-10-25 20:52:03 +0200"
-    },
-    "done": true
-  },
   "minecraft:recipes/redstone/spruce_fence_gate": {
-    "criteria": {
-      "has_planks": "2019-10-25 20:49:32 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/decorations/sign": {
     "criteria": {
       "has_planks": "2019-10-25 20:49:32 +0200"
     },
@@ -136,5 +82,77 @@
       "beaches": "2019-10-11 14:13:46 +0200"
     },
     "done": false
+  },
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "has_planks": "2019-10-25 20:49:32 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/trapdoor": {
+    "criteria": {
+      "has_planks": "2019-10-25 20:49:32 +0200"
+    },
+    "done": true
+  },
+  "minecraft:story/iron_tools": {
+    "criteria": {
+      "iron_pickaxe": "2019-11-09 16:39:00 +0100"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2019-10-25 20:48:46 +0200"
+    },
+    "done": true
+  },
+  "minecraft:story/upgrade_tools": {
+    "criteria": {
+      "stone_pickaxe": "2019-11-09 16:39:00 +0100"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/spruce_wooden_slab": {
+    "criteria": {
+      "has_planks": "2019-10-25 20:49:32 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/torch": {
+    "criteria": {
+      "has_stone_pickaxe": "2019-11-09 16:39:00 +0100"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/wooden_pressure_plate": {
+    "criteria": {
+      "has_planks": "2019-10-25 20:49:32 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/stick": {
+    "criteria": {
+      "has_planks": "2019-10-25 20:49:32 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/redstone_lamp": {
+    "criteria": {
+      "has_glowstone": "2019-10-25 20:50:09 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/purple_dye": {
+    "criteria": {
+      "has_lapis": "2019-10-25 20:52:03 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/sign": {
+    "criteria": {
+      "has_planks": "2019-10-25 20:49:32 +0200"
+    },
+    "done": true
   }
 }

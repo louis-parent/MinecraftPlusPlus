@@ -1,13 +1,13 @@
 {
-  "minecraft:recipes/misc/bone_meal_from_bone": {
+  "minecraft:recipes/tools/flint_and_steel": {
     "criteria": {
-      "has_bone": "2019-10-23 16:47:22 +0200"
+      "has_obsidian": "2019-11-09 16:32:05 +0100"
     },
     "done": true
   },
-  "minecraft:recipes/decorations/pink_banner": {
+  "minecraft:recipes/misc/bone_meal_from_bone": {
     "criteria": {
-      "has_pink_wool": "2019-10-26 22:32:06 +0200"
+      "has_bone": "2019-10-23 16:47:22 +0200"
     },
     "done": true
   },
@@ -17,9 +17,15 @@
     },
     "done": true
   },
-  "minecraft:adventure/root": {
+  "minecraft:husbandry/root": {
     "criteria": {
-      "killed_something": "2019-10-23 16:47:45 +0200"
+      "consumed_item": "2019-11-09 16:34:45 +0100"
+    },
+    "done": true
+  },
+  "minecraft:story/iron_tools": {
+    "criteria": {
+      "iron_pickaxe": "2019-11-09 16:32:05 +0100"
     },
     "done": true
   },
@@ -35,17 +41,23 @@
     },
     "done": true
   },
+  "minecraft:story/upgrade_tools": {
+    "criteria": {
+      "stone_pickaxe": "2019-11-09 16:32:05 +0100"
+    },
+    "done": true
+  },
   "minecraft:recipes/decorations/pink_carpet": {
     "criteria": {
       "has_pink_wool": "2019-10-26 22:32:06 +0200"
     },
     "done": true
   },
-  "minecraft:adventure/adventuring_time": {
+  "minecraft:recipes/decorations/enchanting_table": {
     "criteria": {
-      "beaches": "2019-10-02 16:43:22 +0200"
+      "has_obsidian": "2019-11-09 16:32:05 +0100"
     },
-    "done": false
+    "done": true
   },
   "minecraft:recipes/building_blocks/bookshelf": {
     "criteria": {
@@ -58,6 +70,42 @@
       "has_book": "2019-10-11 14:18:54 +0200"
     },
     "done": true
+  },
+  "minecraft:recipes/decorations/torch": {
+    "criteria": {
+      "has_stone_pickaxe": "2019-11-09 16:32:05 +0100"
+    },
+    "done": true
+  },
+  "minecraft:husbandry/balanced_diet": {
+    "criteria": {
+      "cooked_porkchop": "2019-11-09 16:34:45 +0100"
+    },
+    "done": false
+  },
+  "minecraft:recipes/decorations/pink_banner": {
+    "criteria": {
+      "has_pink_wool": "2019-10-26 22:32:06 +0200"
+    },
+    "done": true
+  },
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_something": "2019-10-23 16:47:45 +0200"
+    },
+    "done": true
+  },
+  "minecraft:story/form_obsidian": {
+    "criteria": {
+      "obsidian": "2019-11-09 16:32:05 +0100"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "beaches": "2019-10-02 16:43:22 +0200"
+    },
+    "done": false
   },
   "minecraft:husbandry/tame_an_animal": {
     "criteria": {

@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.Random;
 
 import fr.minecraftpp.enumeration.OreProperties;
-import fr.minecraftpp.generator.backtrack.Backtrack;
-import fr.minecraftpp.generator.set.ISet;
-import fr.minecraftpp.generator.set.SetFactory;
+import fr.minecraftpp.randomizer.backtrack.Backtrack;
+import fr.minecraftpp.randomizer.set.ISet;
+import fr.minecraftpp.randomizer.set.SetFactory;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 

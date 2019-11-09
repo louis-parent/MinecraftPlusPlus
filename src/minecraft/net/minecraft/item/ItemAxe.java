@@ -35,7 +35,7 @@ public class ItemAxe extends ItemTool
 	{
 		Material material = state.getMaterial();
 		if (material == Material.WOOD || material == Material.PLANTS || material == Material.VINE || getEffectiveOn().contains(state.getBlock()))
-			return this.efficiencyOnProperMaterial;
+			return this.toolMaterial.getEfficiencyOnProperMaterial();
 		else
 			return 1.0F;
 	}

@@ -3,6 +3,7 @@ package fr.minecraftpp.block.ore;
 import java.util.Random;
 
 import fr.minecraftpp.enumeration.HarvestLevel;
+import fr.minecraftpp.generation.OreRarity;
 import fr.minecraftpp.item.DynamicItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -25,17 +26,12 @@ public class DynamicOreGem extends DynamicOre
 
 	private boolean isPoweredOre;
 
-	public DynamicOreGem(String typeName, int textureId, DynamicItem itemDropped, int quantityDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop)
+	public DynamicOreGem(String typeName, int textureId, OreRarity oreRarity, DynamicItem itemDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop)
 	{
-		this(typeName, textureId, itemDropped, quantityDropped, quantityDropped, harvestLevel, minXpDrop, maxXpDrop);
-	}
+		super(typeName, textureId, oreRarity, harvestLevel, itemDropped);
 
-	public DynamicOreGem(String typeName, int textureId, DynamicItem itemDropped, int minDropped, int maxDropped, HarvestLevel harvestLevel, int minXpDrop, int maxXpDrop)
-	{
-		super(typeName, textureId, harvestLevel, itemDropped);
-
-		this.minDropped = minDropped;
-		this.maxDropped = maxDropped;
+		this.minDropped = 1;
+		this.maxDropped = 1;
 
 		this.minXpDrop = minXpDrop;
 		this.maxXpDrop = maxXpDrop;
@@ -151,5 +147,11 @@ public class DynamicOreGem extends DynamicOre
 	public int getAverageQuantityDropped()
 	{
 		return (this.maxDropped + this.minDropped) / 2;
+	}
+	
+	public void increaseDrop()
+	{
+		this.minDropped *= 2;
+		this.maxDropped *= 2.5;
 	}
 }
