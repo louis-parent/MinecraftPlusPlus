@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.minecraftpp.crafting.furnace.FurnaceRecipe;
-import fr.minecraftpp.manager.block.ModBlocks;
-import fr.minecraftpp.manager.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,8 +17,6 @@ public class ModFurnaceRecipes
 	public static void furnaceRecipes(FurnaceRecipes instance)
 	{
 		RECIPES_INSTANCE = instance;
-
-		addBlockSmelting(ModBlocks.SCENARITE_ORE, new ItemStack(ModItems.SCENARIUM, 1), 1.2F);
 
 		for (FurnaceRecipe furnaceRecipe : toAdd)
 		{

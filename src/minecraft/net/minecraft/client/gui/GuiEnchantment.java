@@ -9,7 +9,7 @@ import org.lwjgl.util.glu.Project;
 import com.google.common.collect.Lists;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.manager.item.ModItems;
+import fr.minecraftpp.manager.item.ModItem;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.GlStateManager;
@@ -250,10 +250,10 @@ public class GuiEnchantment extends GuiContainer
 		{
 			int index = counter / SWITCH_TIME;
 
-			this.itemRender.renderItemAndEffectIntoGUI(ModItems.enchantable.get(index), x + 35, y + 47);
+			this.itemRender.renderItemAndEffectIntoGUI(ModItem.enchantable.get(index), x + 35, y + 47);
 			counter++;
 
-			if (counter == ModItems.enchantable.size() * SWITCH_TIME)
+			if (counter == ModItem.enchantable.size() * SWITCH_TIME)
 			{
 				counter = 0;
 			}

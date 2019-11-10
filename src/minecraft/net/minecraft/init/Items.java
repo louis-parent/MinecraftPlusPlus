@@ -1,6 +1,5 @@
 package net.minecraft.init;
 
-import fr.minecraftpp.manager.item.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmorStand;
@@ -457,11 +456,6 @@ public class Items
 			SHULKER_SHELL = getRegisteredItem("shulker_shell");
 			IRON_NUGGET = getRegisteredItem("iron_nugget");
 			KNOWLEDGE_BOOK = getRegisteredItem("knowledge_book");
-
-			/**
-			 * MOD ITEM
-			 */
-			ModItems.staticSetter();
 		}
 	}
 }

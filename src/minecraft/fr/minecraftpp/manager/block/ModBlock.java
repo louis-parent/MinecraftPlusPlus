@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.block.BlockScenarium;
 import fr.minecraftpp.block.IDynamicBlock;
-import fr.minecraftpp.block.ore.BlockScenariteOre;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -15,11 +13,11 @@ import net.minecraft.block.material.Material;
 public class ModBlock extends Block
 {
 	public static List<IDynamicBlock> REGISTRY = new ArrayList<IDynamicBlock>();
-	private static final int ID_START = 1002;
+	private static final int ID_START = 1000;
 
-	public ModBlock(Material blockMaterialIn, MapColor blockMapColorIn)
+	public ModBlock(Material blockMaterial, MapColor blockMapColor)
 	{
-		super(blockMaterialIn, blockMapColorIn);
+		super(blockMaterial, blockMapColor);
 	}
 
 	/**
@@ -27,11 +25,6 @@ public class ModBlock extends Block
 	 */
 	public static void registerBlocks()
 	{
-		registerBlock(1000, "scenarite_ore", new BlockScenariteOre());
-
-		BlockScenarium block_ = new BlockScenarium();
-		registerBlock(1001, "scenarium_block", block_);
-
 		for (int i = 0; i < REGISTRY.size(); i++)
 		{
 			IDynamicBlock block = REGISTRY.get(i);

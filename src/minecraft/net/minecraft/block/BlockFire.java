@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Maps;
 
 import fr.minecraftpp.anotation.Mod;
-import fr.minecraftpp.manager.block.ModBlocks;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -61,7 +60,6 @@ public class BlockFire extends Block
 	public static void init()
 	{
 		initFlammableStaticBlocksFrom(Blocks.class);
-		initFlammableStaticBlocksFrom(ModBlocks.class);
 
 		Blocks.FIRE.setFireInfo(Blocks.PLANKS, 5, 20);
 		Blocks.FIRE.setFireInfo(Blocks.DOUBLE_WOODEN_SLAB, 5, 20);

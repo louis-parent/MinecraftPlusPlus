@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Sets;
 
-import fr.minecraftpp.manager.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.BlockBush;
@@ -582,11 +581,6 @@ public class Blocks
 			field_192443_dR = getRegisteredBlock("concrete");
 			field_192444_dS = getRegisteredBlock("concrete_powder");
 			STRUCTURE_BLOCK = getRegisteredBlock("structure_block");
-
-			/**
-			 * MOD BLOCK
-			 */
-			ModBlocks.staticSetter();
 
 			CACHE.clear();
 		}
