@@ -67,6 +67,9 @@ public class SetFactory
 				case IRON:
 					newSet.setIron();
 					break;
+				case GOLD:
+					newSet.setGold();
+					break;
 				case DIAMOND:
 					newSet.setDiamond();
 					break;

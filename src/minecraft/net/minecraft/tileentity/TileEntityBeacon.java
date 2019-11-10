@@ -11,6 +11,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
+import fr.minecraftpp.manager.ModManager;
 import fr.minecraftpp.util.UniqueArrayList;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
@@ -67,7 +68,10 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
 	public TileEntityBeacon()
 	{
-		paymentItems.addAll(Arrays.asList(Items.IRON_INGOT, Items.GOLD_INGOT, Items.EMERALD, Items.DIAMOND));
+		if(ModManager.IS_VANILLA_ENABLED)
+		{
+			paymentItems.addAll(Arrays.asList(Items.OLD_IRON_INGOT, Items.OLD_GOLD_INGOT, Items.EMERALD, Items.OLD_DIAMOND));
+		}
 	}
 
 	/**

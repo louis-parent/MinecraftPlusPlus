@@ -2,6 +2,7 @@ package net.minecraft.block;
 
 import java.util.Random;
 
+import fr.minecraftpp.manager.ModManager;
 import fr.minecraftpp.manager.block.OreRegistry;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -45,11 +46,11 @@ public class BlockOre extends Block
 	{
 		if (this == Blocks.COAL_ORE)
 		{
-			return Items.COAL;
+			return Items.OLD_COAL;
 		}
 		else if (this == Blocks.DIAMOND_ORE)
 		{
-			return Items.DIAMOND;
+			return Items.OLD_DIAMOND;
 		}
 		else if (this == Blocks.LAPIS_ORE)
 		{
@@ -153,27 +154,30 @@ public class BlockOre extends Block
 
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
 	{
-		ChunkGeneratorSettings settings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
-
-		if (this == Blocks.LAPIS_ORE)
+		if(ModManager.IS_VANILLA_ENABLED)
 		{
-			decorator.spreadOreGeneration(world, rand, settings.lapisCount, new WorldGenMinable(this.getDefaultState(), settings.lapisSize), settings.lapisCenterHeight, settings.lapisSpread);
-		}
-		else if (this == Blocks.COAL_ORE)
-		{
-			decorator.uniformOreGeneration(world, rand, settings.coalCount, new WorldGenMinable(this.getDefaultState(), settings.coalSize), settings.coalMinHeight, settings.coalMaxHeight);
-		}
-		else if (this == Blocks.DIAMOND_ORE)
-		{
-			decorator.uniformOreGeneration(world, rand, settings.diamondCount, new WorldGenMinable(this.getDefaultState(), settings.diamondSize), settings.diamondMinHeight, settings.diamondMaxHeight);
-		}
-		else if (this == Blocks.IRON_ORE)
-		{
-			decorator.uniformOreGeneration(world, rand, settings.ironCount, new WorldGenMinable(this.getDefaultState(), settings.ironSize), settings.ironMinHeight, settings.ironMaxHeight);
-		}
-		else if (this == Blocks.GOLD_ORE)
-		{
-			decorator.uniformOreGeneration(world, rand, settings.goldCount, new WorldGenMinable(this.getDefaultState(), settings.goldSize), settings.goldMinHeight, settings.goldMaxHeight);
+			ChunkGeneratorSettings settings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
+	
+			if (this == Blocks.LAPIS_ORE)
+			{
+				decorator.spreadOreGeneration(world, rand, settings.lapisCount, new WorldGenMinable(this.getDefaultState(), settings.lapisSize), settings.lapisCenterHeight, settings.lapisSpread);
+			}
+			else if (this == Blocks.COAL_ORE)
+			{
+				decorator.uniformOreGeneration(world, rand, settings.coalCount, new WorldGenMinable(this.getDefaultState(), settings.coalSize), settings.coalMinHeight, settings.coalMaxHeight);
+			}
+			else if (this == Blocks.DIAMOND_ORE)
+			{
+				decorator.uniformOreGeneration(world, rand, settings.diamondCount, new WorldGenMinable(this.getDefaultState(), settings.diamondSize), settings.diamondMinHeight, settings.diamondMaxHeight);
+			}
+			else if (this == Blocks.IRON_ORE)
+			{
+				decorator.uniformOreGeneration(world, rand, settings.ironCount, new WorldGenMinable(this.getDefaultState(), settings.ironSize), settings.ironMinHeight, settings.ironMaxHeight);
+			}
+			else if (this == Blocks.GOLD_ORE)
+			{
+				decorator.uniformOreGeneration(world, rand, settings.goldCount, new WorldGenMinable(this.getDefaultState(), settings.goldSize), settings.goldMinHeight, settings.goldMaxHeight);
+			}
 		}
 	}
 }

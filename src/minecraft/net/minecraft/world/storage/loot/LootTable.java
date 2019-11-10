@@ -18,7 +18,9 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+import fr.minecraftpp.variant.Variant;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.math.MathHelper;
@@ -52,7 +54,19 @@ public class LootTable
 			LOGGER.warn("Detected infinite loop in loot tables");
 		}
 
-		return list;
+		/*
+		 * Mod minecraftpp
+		 */
+		
+		List<ItemStack> finalList = Lists.<ItemStack>newArrayList();
+		Variant instance = Variant.getInstance();
+		
+		for (ItemStack stack : list) {
+			Item item = instance.getRandomVariantOf(stack.getItem());
+			finalList.add(item.getAsStack());
+		}
+		
+		return finalList;
 	}
 
 	public void fillInventory(IInventory inventory, Random rand, LootContext context)

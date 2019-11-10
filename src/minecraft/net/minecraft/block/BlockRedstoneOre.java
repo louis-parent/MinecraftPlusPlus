@@ -2,6 +2,7 @@ package net.minecraft.block;
 
 import java.util.Random;
 
+import fr.minecraftpp.manager.ModManager;
 import fr.minecraftpp.manager.block.OreRegistry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -203,7 +204,10 @@ public class BlockRedstoneOre extends BlockOre
 	@Override
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
 	{
-		ChunkGeneratorSettings settings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
-		decorator.uniformOreGeneration(world, rand, settings.redstoneCount, new WorldGenMinable(this.getDefaultState(), settings.redstoneSize), settings.redstoneMinHeight, settings.redstoneMaxHeight);
+		if(ModManager.IS_VANILLA_ENABLED)
+		{			
+			ChunkGeneratorSettings settings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
+			decorator.uniformOreGeneration(world, rand, settings.redstoneCount, new WorldGenMinable(this.getDefaultState(), settings.redstoneSize), settings.redstoneMinHeight, settings.redstoneMaxHeight);
+		}
 	}
 }

@@ -75,15 +75,15 @@ public enum ToolMaterial implements IToolMaterial
 		}
 		else if (this == GOLD)
 		{
-			return Items.GOLD_INGOT;
+			return Items.OLD_GOLD_INGOT;
 		}
 		else if (this == IRON)
 		{
-			return Items.IRON_INGOT;
+			return Items.OLD_IRON_INGOT;
 		}
 		else
 		{
-			return this == DIAMOND ? Items.DIAMOND : null;
+			return this == DIAMOND ? Items.OLD_DIAMOND : null;
 		}
 	}
 }

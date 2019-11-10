@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import com.google.common.collect.Maps;
 
 import fr.minecraftpp.manager.crafting.ModFurnaceRecipes;
+import fr.minecraftpp.variant.Variant;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.init.Blocks;
@@ -36,9 +37,9 @@ public class FurnaceRecipes
 
 	private FurnaceRecipes()
 	{
-		this.addSmeltingRecipeForBlock(Blocks.IRON_ORE, new ItemStack(Items.IRON_INGOT), 0.7F);
-		this.addSmeltingRecipeForBlock(Blocks.GOLD_ORE, new ItemStack(Items.GOLD_INGOT), 1.0F);
-		this.addSmeltingRecipeForBlock(Blocks.DIAMOND_ORE, new ItemStack(Items.DIAMOND), 1.0F);
+		this.addSmeltingRecipeForBlock(Blocks.IRON_ORE, new ItemStack(Items.OLD_IRON_INGOT), 0.7F);
+		this.addSmeltingRecipeForBlock(Blocks.GOLD_ORE, new ItemStack(Items.OLD_GOLD_INGOT), 1.0F);
+		this.addSmeltingRecipeForBlock(Blocks.DIAMOND_ORE, new ItemStack(Items.OLD_DIAMOND), 1.0F);
 		this.addSmeltingRecipeForBlock(Blocks.SAND, new ItemStack(Blocks.GLASS), 0.1F);
 		this.addSmelting(Items.PORKCHOP, new ItemStack(Items.COOKED_PORKCHOP), 0.35F);
 		this.addSmelting(Items.BEEF, new ItemStack(Items.COOKED_BEEF), 0.35F);
@@ -50,8 +51,8 @@ public class FurnaceRecipes
 		this.addSmelting(Items.CLAY_BALL, new ItemStack(Items.BRICK), 0.3F);
 		this.addSmeltingRecipeForBlock(Blocks.CLAY, new ItemStack(Blocks.HARDENED_CLAY), 0.35F);
 		this.addSmeltingRecipeForBlock(Blocks.CACTUS, new ItemStack(Items.DYE, 1, EnumDyeColor.GREEN.getDyeDamage()), 0.2F);
-		this.addSmeltingRecipeForBlock(Blocks.LOG, new ItemStack(Items.COAL, 1, 1), 0.15F);
-		this.addSmeltingRecipeForBlock(Blocks.LOG2, new ItemStack(Items.COAL, 1, 1), 0.15F);
+		this.addSmeltingRecipeForBlock(Blocks.LOG, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL), 1, 1), 0.15F);
+		this.addSmeltingRecipeForBlock(Blocks.LOG2, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL), 1, 1), 0.15F);
 		this.addSmeltingRecipeForBlock(Blocks.EMERALD_ORE, new ItemStack(Items.EMERALD), 1.0F);
 		this.addSmelting(Items.POTATO, new ItemStack(Items.BAKED_POTATO), 0.35F);
 		this.addSmeltingRecipeForBlock(Blocks.NETHERRACK, new ItemStack(Items.NETHERBRICK), 0.1F);
@@ -66,24 +67,24 @@ public class FurnaceRecipes
 			}
 		}
 
-		this.addSmeltingRecipeForBlock(Blocks.COAL_ORE, new ItemStack(Items.COAL), 0.1F);
+		this.addSmeltingRecipeForBlock(Blocks.COAL_ORE, new ItemStack(Items.OLD_COAL), 0.1F);
 		this.addSmeltingRecipeForBlock(Blocks.REDSTONE_ORE, new ItemStack(Items.REDSTONE), 0.7F);
 		this.addSmeltingRecipeForBlock(Blocks.LAPIS_ORE, new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getDyeDamage()), 0.2F);
 		this.addSmeltingRecipeForBlock(Blocks.QUARTZ_ORE, new ItemStack(Items.QUARTZ), 0.2F);
-		this.addSmelting(Items.CHAINMAIL_HELMET, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.CHAINMAIL_CHESTPLATE, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.CHAINMAIL_LEGGINGS, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.CHAINMAIL_BOOTS, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.IRON_PICKAXE, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.IRON_SHOVEL, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.IRON_AXE, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.IRON_HOE, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.IRON_SWORD, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.IRON_HELMET, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.IRON_CHESTPLATE, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.IRON_LEGGINGS, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.IRON_BOOTS, new ItemStack(Items.field_191525_da), 0.1F);
-		this.addSmelting(Items.IRON_HORSE_ARMOR, new ItemStack(Items.field_191525_da), 0.1F);
+		this.addSmelting(Items.CHAINMAIL_HELMET, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.CHAINMAIL_CHESTPLATE, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.CHAINMAIL_LEGGINGS, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.CHAINMAIL_BOOTS, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.IRON_PICKAXE, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.IRON_SHOVEL, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.IRON_AXE, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.IRON_HOE, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.IRON_SWORD, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.IRON_HELMET, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.IRON_CHESTPLATE, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.IRON_LEGGINGS, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.IRON_BOOTS, new ItemStack(Items.IRON_NUGGET), 0.1F);
+		this.addSmelting(Items.IRON_HORSE_ARMOR, new ItemStack(Items.IRON_NUGGET), 0.1F);
 		this.addSmelting(Items.GOLDEN_PICKAXE, new ItemStack(Items.GOLD_NUGGET), 0.1F);
 		this.addSmelting(Items.GOLDEN_SHOVEL, new ItemStack(Items.GOLD_NUGGET), 0.1F);
 		this.addSmelting(Items.GOLDEN_AXE, new ItemStack(Items.GOLD_NUGGET), 0.1F);

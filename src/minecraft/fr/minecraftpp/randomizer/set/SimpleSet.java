@@ -18,12 +18,15 @@ import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.food.Food;
 import fr.minecraftpp.manager.ModManager;
 import fr.minecraftpp.util.nameGenerator.Word;
+import fr.minecraftpp.variant.Variant;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 
@@ -49,9 +52,14 @@ public class SimpleSet implements ISet
 	private boolean isBeacon;
 	private boolean isEnchantCurrency;
 
+	private boolean isCoal;
+	private boolean isIron;
+	private boolean isGold;
+	private boolean isDiamond;
+
 	private DynamicColor blockColor;
 	private DynamicColor oreColor;
-	
+
 	private Rarity rarity;
 
 	public SimpleSet(Random rand, OreRarity oreRarity)
@@ -71,9 +79,14 @@ public class SimpleSet implements ISet
 		this.isBeacon = false;
 		this.isEnchantCurrency = false;
 
+		this.isCoal = false;
+		this.isIron = false;
+		this.isGold = false;
+		this.isDiamond = false;
+
 		this.blockColor = new DynamicColor(this.block);
 		this.oreColor = new DynamicColor(this.ore);
-		
+
 		this.rarity = Rarity.COMMON;
 	}
 
@@ -93,13 +106,8 @@ public class SimpleSet implements ISet
 		this.setupWalkDamage();
 		this.setupFireable();
 
-		this.setupRedstone();
-		this.setupCurrency();
-		this.setupFuel();
-		this.setupBeacon();
-		this.setupEnchantCurrency();
-		
 		this.setRarity(this.rarity);
+		this.setupProperties();
 	}
 
 	@Override
@@ -139,13 +147,11 @@ public class SimpleSet implements ISet
 	public void setRedstone()
 	{
 		this.isRedstone = true;
-		this.rarity = this.rarity.next();
 	}
 
 	public void setCurrency()
 	{
 		this.isCurrency = true;
-		this.rarity = this.rarity.next();
 	}
 
 	public void setFuel()
@@ -161,31 +167,27 @@ public class SimpleSet implements ISet
 	public void setEnchantCurrency()
 	{
 		this.isEnchantCurrency = true;
-		this.rarity = this.rarity.next();
-	}
-	
-	public void setCoal() 
-	{
-		this.setHarvestLevel(HarvestLevel.WOOD);
-	}
-	
-	public void setIron() 
-	{
-		this.setHarvestLevel(HarvestLevel.STONE);
-		this.rarity = this.rarity.next();
-	}
-	
-	public void setDiamond() 
-	{
-		this.setHarvestLevel(HarvestLevel.IRON);
-		this.rarity = this.rarity.next().next();
 	}
 
-	private void setHarvestLevel(HarvestLevel harvestLevel)
+	public void setCoal()
 	{
-		this.ore.setHarvestLevel(harvestLevel);
-		this.block.setHarvestLevel(harvestLevel);
-	}	
+		this.isCoal = true;
+	}
+
+	public void setIron()
+	{
+		this.isIron = true;
+	}
+
+	public void setGold()
+	{
+		this.isGold = true;
+	}
+
+	public void setDiamond()
+	{
+		this.isDiamond = true;
+	}
 
 	@Override
 	public void setRarity(Rarity rarity)
@@ -209,21 +211,11 @@ public class SimpleSet implements ISet
 		blockColors.registerBlockColorHandler(this.blockColor, this.block);
 		blockColors.registerBlockColorHandler(this.oreColor, this.ore);
 	}
-	
+
 	@Override
 	public String getSetName()
 	{
 		return this.name;
-	}
-
-	private void setupFuel()
-	{
-		if (this.isFuel)
-		{
-			int fuelAmount = 200 * (this.rng.nextInt(10) + 1);
-			this.item.setFuelAmount(fuelAmount);
-			this.block.setFuelAmount(fuelAmount * 10);
-		}
 	}
 
 	private void setupEffect()
@@ -239,19 +231,6 @@ public class SimpleSet implements ISet
 		if (this.rng.nextInt(10) == 0)
 		{
 			this.item.setPutsFire(true);
-		}
-	}
-
-	private void setupEnchantCurrency()
-	{
-		if (this.isEnchantCurrency)
-		{
-			if (this.ore instanceof DynamicOreGem)
-			{
-				((DynamicOreGem) this.ore).increaseDrop();
-			}
-			
-			this.item.setEnchantCurrency(true);
 		}
 	}
 
@@ -332,33 +311,132 @@ public class SimpleSet implements ISet
 		}
 	}
 
-	private void setupBeacon()
-	{
-		if (this.isBeacon)
-		{
-			this.item.setBeaconCurrency(true);
-			this.block.setBeaconBase(true);
-		}
-	}
-
-	private void setupCurrency()
-	{
-		if (this.isCurrency)
-		{			
-			EntityVillager.setMoney(this.item);
-		}
-	}
-
-	private void setupRedstone()
+	private void setupProperties()
 	{
 		if (this.isRedstone)
 		{
-			if (this.ore instanceof DynamicOreGem)
-			{
-				((DynamicOreGem) this.ore).setPoweredOre(true);
-			}
-			
-			this.block.setRedstonePower(REDSTONE_BLOCK_POWER);
+			this.setupRedstone();
 		}
+
+		if (this.isCurrency)
+		{
+			this.setupCurrency();
+		}
+
+		if (this.isFuel)
+		{
+			this.setupFuel();
+		}
+
+		if (this.isBeacon)
+		{
+			this.setupBeacon();
+		}
+
+		if (this.isEnchantCurrency)
+		{
+			this.setupEnchantCurrency();
+		}
+
+		if (this.isCoal)
+		{
+			this.setupCoal();
+		}
+
+		if (this.isIron)
+		{
+			this.setupIron();
+		}
+		
+		if (this.isGold) 
+		{
+			this.setupGold();
+		}
+
+		if (this.isDiamond)
+		{
+			this.setupDiamond();
+		}
+	}
+
+	protected void setupRedstone()
+	{
+		this.rarity = this.rarity.next();
+
+		if (this.ore instanceof DynamicOreGem)
+		{
+			((DynamicOreGem) this.ore).setPoweredOre(true);
+		}
+
+		this.block.setRedstonePower(REDSTONE_BLOCK_POWER);
+	}
+
+	protected void setupCurrency()
+	{
+		this.rarity = this.rarity.next();
+		EntityVillager.setMoney(this.item);
+	}
+
+	protected void setupFuel()
+	{
+		int fuelAmount = 200 * (this.rng.nextInt(10) + 1);
+		this.item.setFuelAmount(fuelAmount);
+		this.block.setFuelAmount(fuelAmount * 10);
+	}
+
+	protected void setupBeacon()
+	{
+		this.item.setBeaconCurrency(true);
+		this.block.setBeaconBase(true);
+	}
+
+	protected void setupEnchantCurrency()
+	{
+		this.rarity = this.rarity.next();
+
+		if (this.ore instanceof DynamicOreGem)
+		{
+			((DynamicOreGem) this.ore).increaseDrop();
+		}
+
+		this.item.setEnchantCurrency(true);
+	}
+
+	protected void setupCoal()
+	{
+		this.setHarvestLevel(HarvestLevel.WOOD);
+		this.setVariant(Items.OLD_COAL, Blocks.COAL_BLOCK);
+	}
+
+	protected void setupIron()
+	{
+		this.setHarvestLevel(HarvestLevel.STONE);
+		this.rarity = this.rarity.next();
+		this.setVariant(Items.OLD_IRON_INGOT, Blocks.IRON_BLOCK);
+	}
+
+	protected void setupGold()
+	{
+		this.setHarvestLevel(HarvestLevel.IRON);
+		this.setVariant(Items.OLD_GOLD_INGOT, Blocks.GOLD_BLOCK);
+	}
+
+	protected void setupDiamond()
+	{
+		this.setHarvestLevel(HarvestLevel.IRON);
+		this.rarity = this.rarity.next().next();
+		this.setVariant(Items.OLD_DIAMOND, Blocks.DIAMOND_BLOCK);
+	}
+
+	private void setHarvestLevel(HarvestLevel harvestLevel)
+	{
+		this.ore.setHarvestLevel(harvestLevel);
+		this.block.setHarvestLevel(harvestLevel);
+	}
+
+	private void setVariant(Item original, Block originalBlock)
+	{
+		Variant.getInstance().addVariant(original, this.item);
+		Variant.getInstance().addVariant(Item.getItemFromBlock(originalBlock), Item.getItemFromBlock(this.block));
 	}
 }

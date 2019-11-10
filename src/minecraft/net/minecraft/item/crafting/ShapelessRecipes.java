@@ -1,13 +1,17 @@
 package net.minecraft.item.crafting;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
+import fr.minecraftpp.variant.Variant;
 import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.NonNullList;
@@ -18,19 +22,19 @@ public class ShapelessRecipes implements IRecipe
 	/** Is the ItemStack that you get when craft the recipe. */
 	private final ItemStack recipeOutput;
 	private final NonNullList<Ingredient> recipeItems;
-	private final String field_194138_c;
+	private final String group;
 
-	public ShapelessRecipes(String p_i47500_1_, ItemStack p_i47500_2_, NonNullList<Ingredient> p_i47500_3_)
+	public ShapelessRecipes(String group, ItemStack output, NonNullList<Ingredient> ingredients)
 	{
-		this.field_194138_c = p_i47500_1_;
-		this.recipeOutput = p_i47500_2_;
-		this.recipeItems = p_i47500_3_;
+		this.group = group;
+		this.recipeOutput = output;
+		this.recipeItems = ingredients;
 	}
 
 	@Override
 	public String getRecipeGroup()
 	{
-		return this.field_194138_c;
+		return this.group;
 	}
 
 	@Override

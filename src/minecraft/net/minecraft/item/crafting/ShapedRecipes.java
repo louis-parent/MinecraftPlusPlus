@@ -97,19 +97,19 @@ public class ShapedRecipes implements IRecipe
 	/**
 	 * Checks if the region of a crafting inventory is match for the recipe.
 	 */
-	private boolean checkMatch(InventoryCrafting p_77573_1_, int p_77573_2_, int p_77573_3_, boolean p_77573_4_)
+	private boolean checkMatch(InventoryCrafting inventory, int width, int height, boolean checkSymetry)
 	{
 		for (int i = 0; i < 3; ++i)
 		{
 			for (int j = 0; j < 3; ++j)
 			{
-				int k = i - p_77573_2_;
-				int l = j - p_77573_3_;
+				int k = i - width;
+				int l = j - height;
 				Ingredient ingredient = Ingredient.INGREDIENT_AIR;
 
 				if (k >= 0 && l >= 0 && k < this.recipeWidth && l < this.recipeHeight)
 				{
-					if (p_77573_4_)
+					if (checkSymetry)
 					{
 						ingredient = this.recipeItems.get(this.recipeWidth - k - 1 + l * this.recipeWidth);
 					}
@@ -119,7 +119,7 @@ public class ShapedRecipes implements IRecipe
 					}
 				}
 
-				if (!ingredient.apply(p_77573_1_.getStackInRowAndColumn(i, j)))
+				if (!ingredient.apply(inventory.getStackInRowAndColumn(i, j)))
 				{
 					return false;
 				}
@@ -148,15 +148,15 @@ public class ShapedRecipes implements IRecipe
 		return this.recipeHeight;
 	}
 
-	public static ShapedRecipes buildRecipe(JsonObject p_193362_0_)
+	public static ShapedRecipes buildRecipe(JsonObject json)
 	{
-		String group = JsonUtils.getString(p_193362_0_, "group", "");
-		Map<String, Ingredient> map = getKeyMap(JsonUtils.getJsonObject(p_193362_0_, "key"));
-		String[] pattern = func_194134_a(func_192407_a(JsonUtils.getJsonArray(p_193362_0_, "pattern")));
+		String group = JsonUtils.getString(json, "group", "");
+		Map<String, Ingredient> map = getKeyMap(JsonUtils.getJsonObject(json, "key"));
+		String[] pattern = func_194134_a(func_192407_a(JsonUtils.getJsonArray(json, "pattern")));
 		int width = pattern[0].length();
 		int height = pattern.length;
 		NonNullList<Ingredient> nonnulllist = buildPatternWithItems(pattern, map, width, height);
-		ItemStack itemstack = getResult(JsonUtils.getJsonObject(p_193362_0_, "result"), true);
+		ItemStack itemstack = getResult(JsonUtils.getJsonObject(json, "result"), true);
 		return new ShapedRecipes(group, width, height, nonnulllist, itemstack);
 	}
 

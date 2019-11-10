@@ -34,6 +34,7 @@ public class Pretreatment
 		this.variables.add(OreProperties.CURRENCY + "");
 		this.variables.add(OreProperties.COAL + "");
 		this.variables.add(OreProperties.IRON + "");
+		this.variables.add(OreProperties.GOLD + "");
 		this.variables.add(OreProperties.DIAMOND + "");
 		this.variables.add(OreProperties.FUEL + "1");
 		this.variables.add(OreProperties.BEACON + "1");
@@ -66,7 +67,7 @@ public class Pretreatment
 	private void addMaterialVariables(Random rand)
 	{
 		int numberOfMaterials = 2 + rand.nextInt(3);
-		int numberOfMetals = rand.nextInt(numberOfMaterials);
+		int numberOfMetals = 1 + rand.nextInt(numberOfMaterials - 1);
 		addSpecificVariables(OreProperties.MATERIAL, numberOfMaterials - numberOfMetals);
 		addSpecificVariables(OreProperties.METAL, numberOfMetals);
 
@@ -143,6 +144,7 @@ public class Pretreatment
 
 		List<String> metalsAndMaterials = getAllVariablesFrom(OreProperties.MATERIAL);
 		metalsAndMaterials.addAll(getAllVariablesFrom(OreProperties.METAL));
+		metalsAndMaterials.add(OreProperties.COAL.toString());
 		str += allDiffFrom(metalsAndMaterials);
 
 		List<String> nonMetalGroup = getAllVariablesFrom(OreProperties.METAL);
@@ -153,6 +155,7 @@ public class Pretreatment
 		List<String> vanillaGroup = new ArrayList<String>();
 		vanillaGroup.add(OreProperties.COAL.toString());
 		vanillaGroup.add(OreProperties.IRON.toString());
+		vanillaGroup.add(OreProperties.GOLD.toString());
 		vanillaGroup.add(OreProperties.DIAMOND.toString());
 		str += allDiffFrom(vanillaGroup);
 
@@ -207,6 +210,8 @@ public class Pretreatment
 			str += variablesIsBetween(OreProperties.IRON, OreProperties.MATERIAL);
 			str += variablesIsBetween(OreProperties.DIAMOND, OreProperties.MATERIAL);
 		}
+		
+		str += variablesIsBetween(OreProperties.GOLD, OreProperties.METAL);
 
 		return str;
 	}

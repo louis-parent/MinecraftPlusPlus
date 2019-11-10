@@ -10,7 +10,9 @@ import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.generation.OreRarity;
 import fr.minecraftpp.item.DynamicNugget;
 import fr.minecraftpp.manager.ModManager;
+import fr.minecraftpp.variant.Variant;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.init.Items;
 import net.minecraft.item.Rarity;
 
 public class MetalSet extends MaterialSet
@@ -65,6 +67,20 @@ public class MetalSet extends MaterialSet
 	{
 		super.registerItemColors(itemColors);
 		itemColors.registerItemColorHandler(new DynamicColor(this.nugget), this.nugget);
+	}
+	
+	@Override
+	protected void setupIron()
+	{
+		super.setupIron();
+		Variant.getInstance().addVariant(Items.IRON_NUGGET, this.nugget);
+	}
+	
+	@Override
+	protected void setupGold()
+	{
+		super.setupGold();
+		Variant.getInstance().addVariant(Items.GOLD_NUGGET, this.nugget);
 	}
 
 	/*

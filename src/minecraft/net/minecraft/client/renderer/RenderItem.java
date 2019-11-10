@@ -847,11 +847,11 @@ public class RenderItem implements IResourceManagerReloadListener
 		this.registerItem(Items.ARROW, "arrow");
 		this.registerItem(Items.SPECTRAL_ARROW, "spectral_arrow");
 		this.registerItem(Items.TIPPED_ARROW, "tipped_arrow");
-		this.registerItem(Items.COAL, 0, "coal");
-		this.registerItem(Items.COAL, 1, "charcoal");
-		this.registerItem(Items.DIAMOND, "diamond");
-		this.registerItem(Items.IRON_INGOT, "iron_ingot");
-		this.registerItem(Items.GOLD_INGOT, "gold_ingot");
+		this.registerItem(Items.OLD_COAL, 0, "coal");
+		this.registerItem(Items.OLD_COAL, 1, "charcoal");
+		this.registerItem(Items.OLD_DIAMOND, "diamond");
+		this.registerItem(Items.OLD_IRON_INGOT, "iron_ingot");
+		this.registerItem(Items.OLD_GOLD_INGOT, "gold_ingot");
 		this.registerItem(Items.IRON_SWORD, "iron_sword");
 		this.registerItem(Items.WOODEN_SWORD, "wooden_sword");
 		this.registerItem(Items.WOODEN_SHOVEL, "wooden_shovel");
@@ -1079,8 +1079,8 @@ public class RenderItem implements IResourceManagerReloadListener
 		this.registerItem(Items.ELYTRA, "elytra");
 		this.registerItem(Items.CHORUS_FRUIT, "chorus_fruit");
 		this.registerItem(Items.CHORUS_FRUIT_POPPED, "chorus_fruit_popped");
-		this.registerItem(Items.field_190930_cZ, "shulker_shell");
-		this.registerItem(Items.field_191525_da, "iron_nugget");
+		this.registerItem(Items.SHULKER_SHELL, "shulker_shell");
+		this.registerItem(Items.IRON_NUGGET, "iron_nugget");
 		this.registerItem(Items.RECORD_13, "record_13");
 		this.registerItem(Items.RECORD_CAT, "record_cat");
 		this.registerItem(Items.RECORD_BLOCKS, "record_blocks");
@@ -1095,7 +1095,7 @@ public class RenderItem implements IResourceManagerReloadListener
 		this.registerItem(Items.RECORD_WAIT, "record_wait");
 		this.registerItem(Items.PRISMARINE_SHARD, "prismarine_shard");
 		this.registerItem(Items.PRISMARINE_CRYSTALS, "prismarine_crystals");
-		this.registerItem(Items.field_192397_db, "knowledge_book");
+		this.registerItem(Items.KNOWLEDGE_BOOK, "knowledge_book");
 		this.itemModelMesher.register(Items.ENCHANTED_BOOK, new ItemMeshDefinition()
 		{
 			@Override

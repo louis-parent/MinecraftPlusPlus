@@ -20,6 +20,7 @@ public class ModLanguage
 
 		translation.put("item.null.name", "Think About Unlocalized Name");
 		translation.put("item.dyePowder.blue.name", "Blue Dye");
+		translation.put("item.carrotGolden.name", "Shiny Carrot");
 
 		translation.put("death.attack.scenarium", "%1$s tried to know the truth but couldn't bear it");
 

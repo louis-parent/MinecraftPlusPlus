@@ -8,6 +8,13 @@ import fr.minecraftpp.manager.item.ModItem;
 
 public class ModManager
 {
+	public static final boolean IS_VANILLA_ENABLED;
+	
+	static
+	{
+		IS_VANILLA_ENABLED = false;
+	}
+	
 	public static void registerDynamic(IDynamicItem item)
 	{
 		ModItem.setItemToRegister(item);

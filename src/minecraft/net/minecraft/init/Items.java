@@ -24,10 +24,10 @@ public class Items
 	public static final Item ARROW;
 	public static final Item SPECTRAL_ARROW;
 	public static final Item TIPPED_ARROW;
-	public static final Item COAL;
-	public static final Item DIAMOND;
-	public static final Item IRON_INGOT;
-	public static final Item GOLD_INGOT;
+	public static final Item OLD_COAL;
+	public static final Item OLD_DIAMOND;
+	public static final Item OLD_IRON_INGOT;
+	public static final Item OLD_GOLD_INGOT;
 	public static final Item IRON_SWORD;
 	public static final Item WOODEN_SWORD;
 	public static final Item WOODEN_SHOVEL;
@@ -221,9 +221,9 @@ public class Items
 	public static final Item BEETROOT;
 	public static final Item BEETROOT_SOUP;
 	public static final Item TOTEM;
-	public static final Item field_190930_cZ;
-	public static final Item field_191525_da;
-	public static final Item field_192397_db;
+	public static final Item SHULKER_SHELL;
+	public static final Item IRON_NUGGET;
+	public static final Item KNOWLEDGE_BOOK;
 
 	protected static Item getRegisteredItem(String name)
 	{
@@ -257,10 +257,10 @@ public class Items
 			ARROW = getRegisteredItem("arrow");
 			SPECTRAL_ARROW = getRegisteredItem("spectral_arrow");
 			TIPPED_ARROW = getRegisteredItem("tipped_arrow");
-			COAL = getRegisteredItem("coal");
-			DIAMOND = getRegisteredItem("diamond");
-			IRON_INGOT = getRegisteredItem("iron_ingot");
-			GOLD_INGOT = getRegisteredItem("gold_ingot");
+			OLD_COAL = getRegisteredItem("coal");
+			OLD_DIAMOND = getRegisteredItem("diamond");
+			OLD_IRON_INGOT = getRegisteredItem("iron_ingot");
+			OLD_GOLD_INGOT = getRegisteredItem("gold_ingot");
 			IRON_SWORD = getRegisteredItem("iron_sword");
 			WOODEN_SWORD = getRegisteredItem("wooden_sword");
 			WOODEN_SHOVEL = getRegisteredItem("wooden_shovel");
@@ -454,9 +454,9 @@ public class Items
 			BEETROOT = getRegisteredItem("beetroot");
 			BEETROOT_SOUP = getRegisteredItem("beetroot_soup");
 			TOTEM = getRegisteredItem("totem_of_undying");
-			field_190930_cZ = getRegisteredItem("shulker_shell");
-			field_191525_da = getRegisteredItem("iron_nugget");
-			field_192397_db = getRegisteredItem("knowledge_book");
+			SHULKER_SHELL = getRegisteredItem("shulker_shell");
+			IRON_NUGGET = getRegisteredItem("iron_nugget");
+			KNOWLEDGE_BOOK = getRegisteredItem("knowledge_book");
 
 			/**
 			 * MOD ITEM

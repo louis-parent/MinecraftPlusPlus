@@ -158,15 +158,16 @@ public class EntityMinecartFurnace extends EntityMinecart
 	public boolean processInitialInteract(EntityPlayer player, EnumHand stack)
 	{
 		ItemStack itemstack = player.getHeldItem(stack);
-
-		if (itemstack.getItem() == Items.COAL && this.fuel + 3600 <= 32000)
+		int burnTime = itemstack.getItem().getBurnTime();
+		
+		if (burnTime > 0 && this.fuel + burnTime <= 32000)
 		{
 			if (!player.capabilities.isCreativeMode)
 			{
 				itemstack.decreaseStackSize(1);
 			}
 
-			this.fuel += 3600;
+			this.fuel += burnTime;
 		}
 
 		this.pushX = this.posX - player.posX;

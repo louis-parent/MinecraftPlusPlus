@@ -2,6 +2,7 @@ package net.minecraft.world.biome;
 
 import java.util.Random;
 
+import fr.minecraftpp.manager.ModManager;
 import net.minecraft.block.BlockSilverfish;
 import net.minecraft.entity.passive.EntityLlama;
 import net.minecraft.init.Blocks;
@@ -51,7 +52,7 @@ public class BiomeHills extends Biome
 			int i1 = rand.nextInt(16);
 			BlockPos blockpos = pos.add(k, l, i1);
 
-			if (worldIn.getBlockState(blockpos).getBlock() == Blocks.STONE)
+			if (worldIn.getBlockState(blockpos).getBlock() == Blocks.STONE && ModManager.IS_VANILLA_ENABLED)
 			{
 				worldIn.setBlockState(blockpos, Blocks.EMERALD_ORE.getDefaultState(), 2);
 			}

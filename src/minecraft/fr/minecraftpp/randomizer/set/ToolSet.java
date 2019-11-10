@@ -15,8 +15,10 @@ import fr.minecraftpp.item.tool.DynamicPickaxe;
 import fr.minecraftpp.item.tool.DynamicShovel;
 import fr.minecraftpp.item.tool.DynamicSword;
 import fr.minecraftpp.manager.ModManager;
+import fr.minecraftpp.variant.Variant;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
 
 public class ToolSet implements ISet
@@ -102,6 +104,17 @@ public class ToolSet implements ISet
 	@Override
 	public void registerBlockColors(BlockColors blockColors)
 	{
+	}
+
+	public void setVariant(Item swordVariant, Item pickaxeVariant, Item axeVariant, Item shovelVariant, Item hoeVariant)
+	{
+		Variant variant = Variant.getInstance();
+		
+		variant.addVariant(swordVariant, this.sword);
+		variant.addVariant(pickaxeVariant, this.pickaxe);
+		variant.addVariant(axeVariant, this.axe);
+		variant.addVariant(shovelVariant, this.shovel);
+		variant.addVariant(hoeVariant, this.hoe);
 	}
 
 }

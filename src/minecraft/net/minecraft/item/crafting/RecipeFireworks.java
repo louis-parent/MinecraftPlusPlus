@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import fr.minecraftpp.variant.Variant;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemDye;
@@ -56,7 +57,7 @@ public class RecipeFireworks implements IRecipe
 				{
 					++i1;
 				}
-				else if (itemstack.getItem() == Items.DIAMOND)
+				else if (Variant.getInstance().isVariantOf(itemstack.getItem(), Items.OLD_DIAMOND))
 				{
 					++i1;
 				}
@@ -138,7 +139,7 @@ public class RecipeFireworks implements IRecipe
 						{
 							nbttagcompound2.setBoolean("Flicker", true);
 						}
-						else if (itemstack2.getItem() == Items.DIAMOND)
+						else if (Variant.getInstance().isVariantOf(itemstack2.getItem(), Items.OLD_DIAMOND))
 						{
 							nbttagcompound2.setBoolean("Trail", true);
 						}

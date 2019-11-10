@@ -159,6 +159,6 @@ public class BlockScenariteOre extends BlockOre
 	@Override
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
 	{
-		decorator.uniformOreGeneration(world, rand, 15, new WorldGenMinable(this.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.STONE)), 0, 256);
+		//decorator.uniformOreGeneration(world, rand, 15, new WorldGenMinable(this.getDefaultState(), 10, BlockMatcher.forBlock(Blocks.STONE)), 0, 256);
 	}
 }

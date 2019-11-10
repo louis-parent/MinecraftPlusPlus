@@ -246,7 +246,7 @@ public class GuiRecipeOverlay extends Gui
 				{
 					if (iterator.hasNext())
 					{
-						ItemStack[] aitemstack = iterator.next().func_193365_a();
+						ItemStack[] aitemstack = iterator.next().getStacks();
 
 						if (aitemstack.length != 0)
 						{

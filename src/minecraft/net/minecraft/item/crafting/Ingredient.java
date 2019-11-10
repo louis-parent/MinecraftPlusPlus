@@ -1,9 +1,13 @@
 package net.minecraft.item.crafting;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 
+import fr.minecraftpp.variant.Variant;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntComparators;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -16,40 +20,46 @@ public class Ingredient implements Predicate<ItemStack>
 	public static final Ingredient INGREDIENT_AIR = new Ingredient(new ItemStack[0])
 	{
 		@Override
-		public boolean apply(@Nullable ItemStack p_apply_1_)
+		public boolean apply(@Nullable ItemStack stack)
 		{
-			return p_apply_1_.isNotValid();
+			return stack.isNotValid();
 		}
 	};
-	private final ItemStack[] field_193371_b;
+	
+	private final List<ItemStack> stacks;
 	private IntList field_194140_c;
 
-	private Ingredient(ItemStack... p_i47503_1_)
+	private Ingredient(ItemStack... stacks)
 	{
-		this.field_193371_b = p_i47503_1_;
+		this.stacks = new ArrayList<ItemStack>();
+		
+		for(ItemStack stack : stacks)
+		{
+			this.stacks.addAll(Variant.getInstance().getAllStackVariantsOf(stack.getItem()));
+		}
 	}
 
-	public ItemStack[] func_193365_a()
+	public ItemStack[] getStacks()
 	{
-		return this.field_193371_b;
+		return this.stacks.toArray(new ItemStack[this.stacks.size()]);
 	}
 
 	@Override
-	public boolean apply(@Nullable ItemStack p_apply_1_)
+	public boolean apply(@Nullable ItemStack stack)
 	{
-		if (p_apply_1_ == null)
+		if (stack == null)
 		{
 			return false;
 		}
 		else
 		{
-			for (ItemStack itemstack : this.field_193371_b)
+			for (ItemStack itemstack : this.stacks)
 			{
-				if (itemstack.getItem() == p_apply_1_.getItem())
+				if (stack.getItem() == itemstack.getItem())
 				{
 					int i = itemstack.getMetadata();
 
-					if (i == 32767 || i == p_apply_1_.getMetadata())
+					if (i == 32767 || i == stack.getMetadata())
 					{
 						return true;
 					}
@@ -64,9 +74,9 @@ public class Ingredient implements Predicate<ItemStack>
 	{
 		if (this.field_194140_c == null)
 		{
-			this.field_194140_c = new IntArrayList(this.field_193371_b.length);
+			this.field_194140_c = new IntArrayList(this.stacks.size());
 
-			for (ItemStack itemstack : this.field_193371_b)
+			for (ItemStack itemstack : this.stacks)
 			{
 				this.field_194140_c.add(RecipeItemHelper.func_194113_b(itemstack));
 			}
@@ -77,32 +87,32 @@ public class Ingredient implements Predicate<ItemStack>
 		return this.field_194140_c;
 	}
 
-	public static Ingredient func_193367_a(Item p_193367_0_)
+	public static Ingredient getIngredientFromFilledMap(Item item)
 	{
-		return getIngredientFromItemStack(new ItemStack(p_193367_0_, 1, 32767));
+		return getIngredientFromItemStack(new ItemStack(item, 1, 32767));
 	}
 
-	public static Ingredient func_193368_a(Item... p_193368_0_)
+	public static Ingredient getIngredientFromItems(Item... items)
 	{
-		ItemStack[] aitemstack = new ItemStack[p_193368_0_.length];
+		ItemStack[] aitemstack = new ItemStack[items.length];
 
-		for (int i = 0; i < p_193368_0_.length; ++i)
+		for (int i = 0; i < items.length; ++i)
 		{
-			aitemstack[i] = new ItemStack(p_193368_0_[i]);
+			aitemstack[i] = new ItemStack(items[i]);
 		}
 
 		return getIngredientFromItemStack(aitemstack);
 	}
 
-	public static Ingredient getIngredientFromItemStack(ItemStack... p_193369_0_)
+	public static Ingredient getIngredientFromItemStack(ItemStack... stacks)
 	{
-		if (p_193369_0_.length > 0)
+		if (stacks.length > 0)
 		{
-			for (ItemStack itemstack : p_193369_0_)
+			for (ItemStack itemstack : stacks)
 			{
 				if (!itemstack.isNotValid())
 				{
-					return new Ingredient(p_193369_0_);
+					return new Ingredient(stacks);
 				}
 			}
 		}

@@ -13,7 +13,7 @@ public class RecipesMapExtending extends ShapedRecipes
 {
 	public RecipesMapExtending()
 	{
-		super("", 3, 3, NonNullList.getInstanceWith(Ingredient.INGREDIENT_AIR, Ingredient.func_193368_a(Items.PAPER), Ingredient.func_193368_a(Items.PAPER), Ingredient.func_193368_a(Items.PAPER), Ingredient.func_193368_a(Items.PAPER), Ingredient.func_193367_a(Items.FILLED_MAP), Ingredient.func_193368_a(Items.PAPER), Ingredient.func_193368_a(Items.PAPER), Ingredient.func_193368_a(Items.PAPER), Ingredient.func_193368_a(Items.PAPER)), new ItemStack(Items.MAP));
+		super("", 3, 3, NonNullList.getInstanceWith(Ingredient.INGREDIENT_AIR, Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromFilledMap(Items.FILLED_MAP), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER)), new ItemStack(Items.MAP));
 	}
 
 	/**

@@ -13,8 +13,10 @@ import fr.minecraftpp.item.armor.DynamicHelmet;
 import fr.minecraftpp.item.armor.DynamicLeggings;
 import fr.minecraftpp.item.material.IArmorMaterial;
 import fr.minecraftpp.manager.ModManager;
+import fr.minecraftpp.variant.Variant;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.Rarity;
 
 public class ArmorSet implements ISet
@@ -94,5 +96,15 @@ public class ArmorSet implements ISet
 	@Override
 	public void registerBlockColors(BlockColors blockColors)
 	{
+	}
+
+	public void setVariant(ItemArmor helmetVariant, ItemArmor chestplateVariant, ItemArmor leggingsVariant, ItemArmor bootsVariant)
+	{
+		Variant variant = Variant.getInstance();
+		
+		variant.addVariant(helmetVariant, this.helmet);
+		variant.addVariant(chestplateVariant, this.chestplate);
+		variant.addVariant(leggingsVariant, this.leggings);
+		variant.addVariant(bootsVariant, this.boots);
 	}
 }

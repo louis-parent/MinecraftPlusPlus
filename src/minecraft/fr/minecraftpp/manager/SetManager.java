@@ -10,6 +10,7 @@ import fr.minecraftpp.enumeration.OreProperties;
 import fr.minecraftpp.randomizer.backtrack.Backtrack;
 import fr.minecraftpp.randomizer.set.ISet;
 import fr.minecraftpp.randomizer.set.SetFactory;
+import fr.minecraftpp.variant.Variant;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 
@@ -21,7 +22,9 @@ public class SetManager
 
 	public static void generateOre()
 	{
-		Random r = new Random(1997);
+		Random r = new Random(1999);
+		
+		Variant.initInstance(r);
 
 		Map<Integer, List<OreProperties>> sortedSolution = getSortedSolution(Backtrack.generateSolution(r, NUMBER_OF_ORES));
 

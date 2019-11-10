@@ -12,6 +12,7 @@ import com.google.common.collect.Maps;
 import fr.minecraftpp.inventory.EntityArmorSlot;
 import fr.minecraftpp.inventory.EntityEquipmentSlot;
 import fr.minecraftpp.inventory.EntityHandSlot;
+import fr.minecraftpp.variant.Variant;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ai.EntityAITasks;
@@ -625,7 +626,8 @@ public abstract class EntityLiving extends EntityLivingBase
 
 			for (ItemStack itemstack : loottable.generateLootForPools(this.deathLootTableSeed == 0L ? this.rand : new Random(this.deathLootTableSeed), lootcontext$builder.build()))
 			{
-				this.entityDropItem(itemstack, 0.0F);
+				ItemStack finalItemStack = itemstack; //Variant.getInstance().getRandomVariantOf(itemstack.getItem()).getAsStack();
+				this.entityDropItem(finalItemStack, 0.0F);
 			}
 
 			this.dropEquipment(wasRecentlyHit, lootingModifier);

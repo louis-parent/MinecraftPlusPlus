@@ -212,17 +212,17 @@ public class PotionHelper
 
 	private static void func_193355_a(ItemPotion p_193355_0_, Item p_193355_1_, ItemPotion p_193355_2_)
 	{
-		POTION_ITEM_CONVERSIONS.add(new PotionHelper.MixPredicate(p_193355_0_, Ingredient.func_193368_a(p_193355_1_), p_193355_2_));
+		POTION_ITEM_CONVERSIONS.add(new PotionHelper.MixPredicate(p_193355_0_, Ingredient.getIngredientFromItems(p_193355_1_), p_193355_2_));
 	}
 
 	private static void func_193354_a(ItemPotion p_193354_0_)
 	{
-		POTION_ITEMS.add(Ingredient.func_193368_a(p_193354_0_));
+		POTION_ITEMS.add(Ingredient.getIngredientFromItems(p_193354_0_));
 	}
 
 	private static void func_193357_a(PotionType p_193357_0_, Item p_193357_1_, PotionType p_193357_2_)
 	{
-		func_193356_a(p_193357_0_, Ingredient.func_193368_a(p_193357_1_), p_193357_2_);
+		func_193356_a(p_193357_0_, Ingredient.getIngredientFromItems(p_193357_1_), p_193357_2_);
 	}
 
 	private static void func_193356_a(PotionType p_193356_0_, Ingredient p_193356_1_, PotionType p_193356_2_)

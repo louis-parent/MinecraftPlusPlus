@@ -125,7 +125,7 @@ public class GhostRecipe
 
 		public ItemStack func_194184_c()
 		{
-			ItemStack[] aitemstack = this.field_194186_b.func_193365_a();
+			ItemStack[] aitemstack = this.field_194186_b.getStacks();
 			return aitemstack[MathHelper.floor(GhostRecipe.this.field_194190_c / 30.0F) % aitemstack.length];
 		}
 	}

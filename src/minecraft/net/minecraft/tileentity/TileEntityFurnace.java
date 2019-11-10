@@ -434,7 +434,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 				{
 					return 200;
 				}
-				else if (item == Items.COAL)
+				else if (item == Items.OLD_COAL)
 				{
 					return 1600;
 				}

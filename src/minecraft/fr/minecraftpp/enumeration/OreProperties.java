@@ -13,6 +13,7 @@ public enum OreProperties
 	METAL("metal", OreProperties.UNDEFINED_TIER, 0), 
 	COAL("coal", 0, 0),
 	IRON("iron", 1, 1), 
+	GOLD("gold", 2, 0), 
 	ENCHANT_CURRENCY("enchant", 2, 3), 
 	REDSTONE("redstone", 3, 5), 
 	DIAMOND("diamond", 3, 3);
