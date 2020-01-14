@@ -33,13 +33,13 @@ public class BlockBeetroot extends BlockCrops
 	@Override
 	protected Item getSeed()
 	{
-		return Items.BEETROOT_SEEDS;
+		return Items.getItem(Items.BEETROOT_SEEDS);
 	}
 
 	@Override
 	protected Item getCrop()
 	{
-		return Items.BEETROOT;
+		return Items.getItem(Items.BEETROOT);
 	}
 
 	@Override

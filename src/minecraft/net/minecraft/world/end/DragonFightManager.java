@@ -118,7 +118,7 @@ public class DragonFightManager
 			Collections.shuffle(this.gateways, new Random(worldIn.getSeed()));
 		}
 
-		this.portalPattern = FactoryBlockPattern.start().aisle("       ", "       ", "       ", "   #   ", "       ", "       ", "       ").aisle("       ", "       ", "       ", "   #   ", "       ", "       ", "       ").aisle("       ", "       ", "       ", "   #   ", "       ", "       ", "       ").aisle("  ###  ", " #   # ", "#     #", "#  #  #", "#     #", " #   # ", "  ###  ").aisle("       ", "  ###  ", " ##### ", " ##### ", " ##### ", "  ###  ", "       ").where('#', BlockWorldState.hasState(BlockMatcher.forBlock(Blocks.BEDROCK))).build();
+		this.portalPattern = FactoryBlockPattern.start().aisle("       ", "       ", "       ", "   #   ", "       ", "       ", "       ").aisle("       ", "       ", "       ", "   #   ", "       ", "       ", "       ").aisle("       ", "       ", "       ", "   #   ", "       ", "       ", "       ").aisle("  ###  ", " #   # ", "#     #", "#  #  #", "#     #", " #   # ", "  ###  ").aisle("       ", "  ###  ", " ##### ", " ##### ", " ##### ", "  ###  ", "       ").where('#', BlockWorldState.hasState(BlockMatcher.forBlock(Blocks.getBlock(Blocks.BEDROCK)))).build();
 	}
 
 	public NBTTagCompound getCompound()
@@ -404,7 +404,7 @@ public class DragonFightManager
 
 			if (!this.previouslyKilled)
 			{
-				this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), Blocks.DRAGON_EGG.getDefaultState());
+				this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), Blocks.getBlock(Blocks.DRAGON_EGG).getDefaultState());
 			}
 
 			this.previouslyKilled = true;
@@ -435,7 +435,7 @@ public class DragonFightManager
 
 		if (this.exitPortalLocation == null)
 		{
-			for (this.exitPortalLocation = this.world.getTopSolidOrLiquidBlock(WorldGenEndPodium.END_PODIUM_LOCATION).down(); this.world.getBlockState(this.exitPortalLocation).getBlock() == Blocks.BEDROCK && this.exitPortalLocation.getY() > this.world.getSeaLevel(); this.exitPortalLocation = this.exitPortalLocation.down())
+			for (this.exitPortalLocation = this.world.getTopSolidOrLiquidBlock(WorldGenEndPodium.END_PODIUM_LOCATION).down(); this.world.getBlockState(this.exitPortalLocation).getBlock() == Blocks.getBlock(Blocks.BEDROCK) && this.exitPortalLocation.getY() > this.world.getSeaLevel(); this.exitPortalLocation = this.exitPortalLocation.down())
 			{
 				;
 			}
@@ -559,9 +559,9 @@ public class DragonFightManager
 						{
 							BlockWorldState blockworldstate = blockpattern$patternhelper.translateOffset(i, j, k);
 
-							if (blockworldstate.getBlockState().getBlock() == Blocks.BEDROCK || blockworldstate.getBlockState().getBlock() == Blocks.END_PORTAL)
+							if (blockworldstate.getBlockState().getBlock() == Blocks.getBlock(Blocks.BEDROCK) || blockworldstate.getBlockState().getBlock() == Blocks.getBlock(Blocks.END_PORTAL))
 							{
-								this.world.setBlockState(blockworldstate.getPos(), Blocks.END_STONE.getDefaultState());
+								this.world.setBlockState(blockworldstate.getPos(), Blocks.getBlock(Blocks.END_STONE).getDefaultState());
 							}
 						}
 					}

@@ -32,42 +32,42 @@ public class WorldGenEndPodium extends WorldGenerator
 				{
 					if (d0 <= 2.5D)
 					{
-						this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.BEDROCK.getDefaultState());
+						this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.getBlock(Blocks.BEDROCK).getDefaultState());
 					}
 					else if (blockpos$mutableblockpos.getY() < position.getY())
 					{
-						this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.END_STONE.getDefaultState());
+						this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.getBlock(Blocks.END_STONE).getDefaultState());
 					}
 				}
 				else if (blockpos$mutableblockpos.getY() > position.getY())
 				{
-					this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.AIR.getDefaultState());
+					this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.getBlock(Blocks.AIR).getDefaultState());
 				}
 				else if (d0 > 2.5D)
 				{
-					this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.BEDROCK.getDefaultState());
+					this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.getBlock(Blocks.BEDROCK).getDefaultState());
 				}
 				else if (this.activePortal)
 				{
-					this.setBlockAndNotifyAdequately(worldIn, new BlockPos(blockpos$mutableblockpos), Blocks.END_PORTAL.getDefaultState());
+					this.setBlockAndNotifyAdequately(worldIn, new BlockPos(blockpos$mutableblockpos), Blocks.getBlock(Blocks.END_PORTAL).getDefaultState());
 				}
 				else
 				{
-					this.setBlockAndNotifyAdequately(worldIn, new BlockPos(blockpos$mutableblockpos), Blocks.AIR.getDefaultState());
+					this.setBlockAndNotifyAdequately(worldIn, new BlockPos(blockpos$mutableblockpos), Blocks.getBlock(Blocks.AIR).getDefaultState());
 				}
 			}
 		}
 
 		for (int i = 0; i < 4; ++i)
 		{
-			this.setBlockAndNotifyAdequately(worldIn, position.up(i), Blocks.BEDROCK.getDefaultState());
+			this.setBlockAndNotifyAdequately(worldIn, position.up(i), Blocks.getBlock(Blocks.BEDROCK).getDefaultState());
 		}
 
 		BlockPos blockpos = position.up(2);
 
 		for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
 		{
-			this.setBlockAndNotifyAdequately(worldIn, blockpos.offset(enumfacing), Blocks.TORCH.getDefaultState().withProperty(BlockTorch.FACING, enumfacing));
+			this.setBlockAndNotifyAdequately(worldIn, blockpos.offset(enumfacing), Blocks.getBlock(Blocks.TORCH).getDefaultState().withProperty(BlockTorch.FACING, enumfacing));
 		}
 
 		return true;

@@ -133,8 +133,8 @@ public class TileEntityStructureRenderer extends TileEntitySpecialRenderer<TileE
 		for (BlockPos blockpos2 : BlockPos.getAllInBox(blockpos1, blockpos1.add(p_190054_1_.getStructureSize()).add(-1, -1, -1)))
 		{
 			IBlockState iblockstate = world.getBlockState(blockpos2);
-			boolean flag = iblockstate == Blocks.AIR.getDefaultState();
-			boolean flag1 = iblockstate == Blocks.STRUCTURE_VOID.getDefaultState();
+			boolean flag = iblockstate == Blocks.getBlock(Blocks.AIR).getDefaultState();
+			boolean flag1 = iblockstate == Blocks.getBlock(Blocks.STRUCTURE_VOID).getDefaultState();
 
 			if (flag || flag1)
 			{

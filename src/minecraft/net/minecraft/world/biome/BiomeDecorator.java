@@ -3,6 +3,7 @@ package net.minecraft.world.biome;
 import java.util.Random;
 
 import fr.minecraftpp.manager.block.OreRegistry;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;
@@ -35,10 +36,10 @@ public class BiomeDecorator
 	protected WorldGenerator clayGen = new WorldGenClay(4);
 
 	/** The sand generator. */
-	protected WorldGenerator sandGen = new WorldGenSand(Blocks.SAND, 7);
+	protected WorldGenerator sandGen;
 
 	/** The gravel generator. */
-	protected WorldGenerator gravelAsSandGen = new WorldGenSand(Blocks.GRAVEL, 6);
+	protected WorldGenerator gravelAsSandGen;
 
 	/** The dirt generator. */
 	protected WorldGenerator dirtGen;
@@ -48,13 +49,13 @@ public class BiomeDecorator
 	protected WorldGenerator dioriteGen;
 	protected WorldGenerator andesiteGen;
 
-	protected WorldGenFlowers yellowFlowerGen = new WorldGenFlowers(Blocks.YELLOW_FLOWER, BlockFlower.EnumFlowerType.DANDELION);
+	protected WorldGenFlowers yellowFlowerGen;
 
 	/** Field that holds mushroomBrown WorldGenFlowers */
-	protected WorldGenerator mushroomBrownGen = new WorldGenBush(Blocks.BROWN_MUSHROOM);
+	protected WorldGenerator mushroomBrownGen;
 
 	/** Field that holds mushroomRed WorldGenFlowers */
-	protected WorldGenerator mushroomRedGen = new WorldGenBush(Blocks.RED_MUSHROOM);
+	protected WorldGenerator mushroomRedGen;
 
 	/** Field that holds big mushroom generator */
 	protected WorldGenerator bigMushroomGen = new WorldGenBigMushroom();
@@ -149,11 +150,11 @@ public class BiomeDecorator
 			this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
 			this.chunkPos = pos;
 
-			this.dirtGen = new WorldGenMinable(Blocks.DIRT.getDefaultState(), this.chunkProviderSettings.dirtSize);
-			this.gravelGen = new WorldGenMinable(Blocks.GRAVEL.getDefaultState(), this.chunkProviderSettings.gravelSize);
-			this.graniteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE), this.chunkProviderSettings.graniteSize);
-			this.dioriteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE), this.chunkProviderSettings.dioriteSize);
-			this.andesiteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE), this.chunkProviderSettings.andesiteSize);
+			this.dirtGen = new WorldGenMinable(Blocks.getBlock(Blocks.DIRT).getDefaultState(), this.chunkProviderSettings.dirtSize);
+			this.gravelGen = new WorldGenMinable(Blocks.getBlock(Blocks.GRAVEL).getDefaultState(), this.chunkProviderSettings.gravelSize);
+			this.graniteGen = new WorldGenMinable(Blocks.getBlock(Blocks.STONE).getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE), this.chunkProviderSettings.graniteSize);
+			this.dioriteGen = new WorldGenMinable(Blocks.getBlock(Blocks.STONE).getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE), this.chunkProviderSettings.dioriteSize);
+			this.andesiteGen = new WorldGenMinable(Blocks.getBlock(Blocks.STONE).getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE), this.chunkProviderSettings.andesiteSize);
 
 			this.genDecorations(biome, world, random);
 			this.decorating = false;
@@ -168,7 +169,7 @@ public class BiomeDecorator
 		{
 			int j = random.nextInt(16) + 8;
 			int k = random.nextInt(16) + 8;
-			this.sandGen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(j, 0, k)));
+			this.getSandGen().generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(j, 0, k)));
 		}
 
 		for (int i1 = 0; i1 < this.clayPerChunk; ++i1)
@@ -182,7 +183,7 @@ public class BiomeDecorator
 		{
 			int i2 = random.nextInt(16) + 8;
 			int j6 = random.nextInt(16) + 8;
-			this.gravelAsSandGen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
+			this.getGravelAsSandGen().generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
 		}
 
 		int k1 = this.treesPerChunk;
@@ -228,8 +229,8 @@ public class BiomeDecorator
 
 				if (blockflower.getDefaultState().getMaterial() != Material.AIR)
 				{
-					this.yellowFlowerGen.setGeneratedBlock(blockflower, blockflower$enumflowertype);
-					this.yellowFlowerGen.generate(worldIn, random, blockpos1);
+					this.getYellowFlowerGen().setGeneratedBlock(blockflower, blockflower$enumflowertype);
+					this.getYellowFlowerGen().generate(worldIn, random, blockpos1);
 				}
 			}
 		}
@@ -293,7 +294,7 @@ public class BiomeDecorator
 				int i8 = random.nextInt(16) + 8;
 				int l11 = random.nextInt(16) + 8;
 				BlockPos blockpos2 = worldIn.getHeight(this.chunkPos.add(i8, 0, l11));
-				this.mushroomBrownGen.generate(worldIn, random, blockpos2);
+				this.getMushroomBrownGen().generate(worldIn, random, blockpos2);
 			}
 
 			if (random.nextInt(8) == 0)
@@ -306,7 +307,7 @@ public class BiomeDecorator
 				{
 					int k18 = random.nextInt(j15);
 					BlockPos blockpos5 = this.chunkPos.add(j8, k18, i12);
-					this.mushroomRedGen.generate(worldIn, random, blockpos5);
+					this.getMushroomRedGen().generate(worldIn, random, blockpos5);
 				}
 			}
 		}
@@ -320,7 +321,7 @@ public class BiomeDecorator
 			if (j12 > 0)
 			{
 				int k15 = random.nextInt(j12);
-				this.mushroomBrownGen.generate(worldIn, random, this.chunkPos.add(i4, k15, k8));
+				this.getMushroomBrownGen().generate(worldIn, random, this.chunkPos.add(i4, k15, k8));
 			}
 		}
 
@@ -333,7 +334,7 @@ public class BiomeDecorator
 			if (k12 > 0)
 			{
 				int l15 = random.nextInt(k12);
-				this.mushroomRedGen.generate(worldIn, random, this.chunkPos.add(j4, l15, l8));
+				this.getMushroomRedGen().generate(worldIn, random, this.chunkPos.add(j4, l15, l8));
 			}
 		}
 
@@ -401,7 +402,7 @@ public class BiomeDecorator
 				{
 					int k19 = random.nextInt(i17);
 					BlockPos blockpos6 = this.chunkPos.add(i10, k19, l13);
-					(new WorldGenLiquids(Blocks.FLOWING_WATER)).generate(worldIn, random, blockpos6);
+					(new WorldGenLiquids(Blocks.getBlock(Blocks.FLOWING_WATER))).generate(worldIn, random, blockpos6);
 				}
 			}
 
@@ -411,7 +412,7 @@ public class BiomeDecorator
 				int i14 = random.nextInt(16) + 8;
 				int j17 = random.nextInt(random.nextInt(random.nextInt(240) + 8) + 8);
 				BlockPos blockpos3 = this.chunkPos.add(j10, j17, i14);
-				(new WorldGenLiquids(Blocks.FLOWING_LAVA)).generate(worldIn, random, blockpos3);
+				(new WorldGenLiquids(Blocks.getBlock(Blocks.FLOWING_LAVA))).generate(worldIn, random, blockpos3);
 			}
 		}
 	}
@@ -476,5 +477,54 @@ public class BiomeDecorator
 			BlockPos blockpos = this.chunkPos.add(random.nextInt(16), random.nextInt(spread) + random.nextInt(spread) + centerHeight - spread, random.nextInt(16));
 			generator.generate(world, random, blockpos);
 		}
+	}
+
+	public WorldGenerator getSandGen()
+	{
+		if(sandGen == null)
+		{
+			 sandGen = new WorldGenSand(Blocks.getBlock(Blocks.SAND), 7);
+		}
+		
+		return sandGen;
+	}
+
+	public WorldGenerator getGravelAsSandGen()
+	{
+		if(gravelAsSandGen == null)
+		{
+			gravelAsSandGen = new WorldGenSand(Blocks.getBlock(Blocks.GRAVEL), 6);
+		}
+		
+		return gravelAsSandGen;
+	}
+
+	public WorldGenFlowers getYellowFlowerGen()
+	{
+		if(yellowFlowerGen == null)
+		{
+			 yellowFlowerGen = new WorldGenFlowers((BlockFlower) Blocks.getBlock(Blocks.YELLOW_FLOWER), BlockFlower.EnumFlowerType.DANDELION);	
+		}
+		
+		return yellowFlowerGen;
+	}
+
+	public WorldGenerator getMushroomBrownGen()
+	{
+		if(mushroomBrownGen == null)
+		{
+			mushroomBrownGen = new WorldGenBush((BlockBush) Blocks.getBlock(Blocks.BROWN_MUSHROOM));
+		}
+		return mushroomBrownGen;
+	}
+
+	public WorldGenerator getMushroomRedGen()
+	{
+		if(mushroomRedGen == null)
+		{
+			mushroomRedGen = new WorldGenBush((BlockBush) Blocks.getBlock(Blocks.RED_MUSHROOM));
+		}
+		
+		return mushroomRedGen;
 	}
 }

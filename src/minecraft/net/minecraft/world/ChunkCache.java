@@ -111,7 +111,7 @@ public class ChunkCache implements IBlockAccess
 			}
 		}
 
-		return Blocks.AIR.getDefaultState();
+		return Blocks.getBlock(Blocks.AIR).getDefaultState();
 	}
 
 	@Override

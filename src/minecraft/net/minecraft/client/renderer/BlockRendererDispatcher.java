@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.SimpleBakedModel;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -17,21 +18,21 @@ import net.minecraft.world.WorldType;
 
 public class BlockRendererDispatcher implements IResourceManagerReloadListener
 {
-	private final BlockModelShapes blockModelShapes;
 	private final BlockModelRenderer blockModelRenderer;
 	private final ChestRenderer chestRenderer = new ChestRenderer();
 	private final BlockFluidRenderer fluidRenderer;
+	private final Minecraft mc;
 
-	public BlockRendererDispatcher(BlockModelShapes p_i46577_1_, BlockColors p_i46577_2_)
+	public BlockRendererDispatcher(Minecraft minecraft)
 	{
-		this.blockModelShapes = p_i46577_1_;
-		this.blockModelRenderer = new BlockModelRenderer(p_i46577_2_);
-		this.fluidRenderer = new BlockFluidRenderer(p_i46577_2_);
+		this.mc = minecraft;
+		this.blockModelRenderer = new BlockModelRenderer(minecraft);
+		this.fluidRenderer = new BlockFluidRenderer(minecraft);
 	}
 
 	public BlockModelShapes getBlockModelShapes()
 	{
-		return this.blockModelShapes;
+		return this.mc.getModelManager().getBlockModelShapes();
 	}
 
 	public void renderBlockDamage(IBlockState state, BlockPos pos, TextureAtlasSprite texture, IBlockAccess blockAccess)
@@ -39,7 +40,7 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
 		if (state.getRenderType() == EnumBlockRenderType.MODEL)
 		{
 			state = state.getActualState(blockAccess, pos);
-			IBakedModel ibakedmodel = this.blockModelShapes.getModelForState(state);
+			IBakedModel ibakedmodel = this.getBlockModelShapes().getModelForState(state);
 			IBakedModel ibakedmodel1 = (new SimpleBakedModel.Builder(state, ibakedmodel, texture, pos)).makeBakedModel();
 			this.blockModelRenderer.renderModel(blockAccess, ibakedmodel1, state, pos, Tessellator.getInstance().getBuffer(), true);
 		}
@@ -78,7 +79,7 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
 						return false;
 
 					case LIQUID:
-						return this.fluidRenderer.renderFluid(blockAccess, state, pos, worldRendererIn);
+						return this.getFluidRenderer().renderFluid(blockAccess, state, pos, worldRendererIn);
 
 					default:
 						return false;
@@ -101,7 +102,7 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
 
 	public IBakedModel getModelForState(IBlockState state)
 	{
-		return this.blockModelShapes.getModelForState(state);
+		return this.getBlockModelShapes().getModelForState(state);
 	}
 
 	@SuppressWarnings("incomplete-switch")
@@ -129,6 +130,11 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager)
 	{
-		this.fluidRenderer.initAtlasSprites();
+		this.getFluidRenderer().initAtlasSprites();
+	}
+
+	public BlockFluidRenderer getFluidRenderer()
+	{
+		return fluidRenderer;
 	}
 }

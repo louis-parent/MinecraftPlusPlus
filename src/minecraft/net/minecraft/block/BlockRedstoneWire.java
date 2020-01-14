@@ -113,7 +113,7 @@ public class BlockRedstoneWire extends Block
 
 			if (!iblockstate1.isNormalCube())
 			{
-				boolean flag = worldIn.getBlockState(blockpos).isFullyOpaque() || worldIn.getBlockState(blockpos).getBlock() == Blocks.GLOWSTONE;
+				boolean flag = worldIn.getBlockState(blockpos).isFullyOpaque() || worldIn.getBlockState(blockpos).getBlock() == Blocks.getBlock(Blocks.GLOWSTONE);
 
 				if (flag && canConnectUpwardsTo(worldIn.getBlockState(blockpos.up())))
 				{
@@ -160,7 +160,7 @@ public class BlockRedstoneWire extends Block
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
-		return worldIn.getBlockState(pos.down()).isFullyOpaque() || worldIn.getBlockState(pos.down()).getBlock() == Blocks.GLOWSTONE;
+		return worldIn.getBlockState(pos.down()).isFullyOpaque() || worldIn.getBlockState(pos.down()).getBlock() == Blocks.getBlock(Blocks.GLOWSTONE);
 	}
 
 	private IBlockState updateSurroundingRedstone(World worldIn, BlockPos pos, IBlockState state)
@@ -390,7 +390,7 @@ public class BlockRedstoneWire extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.REDSTONE;
+		return Items.getItem(Items.REDSTONE);
 	}
 
 	@Override
@@ -461,7 +461,7 @@ public class BlockRedstoneWire extends Block
 		{
 			return true;
 		}
-		else if (iblockstate.getBlock() == Blocks.POWERED_REPEATER && iblockstate.getValue(BlockHorizontal.FACING) == side)
+		else if (iblockstate.getBlock() == Blocks.getBlock(Blocks.POWERED_REPEATER) && iblockstate.getValue(BlockHorizontal.FACING) == side)
 		{
 			return true;
 		}
@@ -485,16 +485,16 @@ public class BlockRedstoneWire extends Block
 	{
 		Block block = blockState.getBlock();
 
-		if (block == Blocks.REDSTONE_WIRE)
+		if (block == Blocks.getBlock(Blocks.REDSTONE_WIRE))
 		{
 			return true;
 		}
-		else if (Blocks.UNPOWERED_REPEATER.isSameDiode(blockState))
+		else if (((BlockRedstoneDiode) Blocks.getBlock(Blocks.UNPOWERED_REPEATER)).isSameDiode(blockState))
 		{
 			EnumFacing enumfacing = blockState.getValue(BlockHorizontal.FACING);
 			return enumfacing == side || enumfacing.getOpposite() == side;
 		}
-		else if (Blocks.field_190976_dk == blockState.getBlock())
+		else if (Blocks.getBlock(Blocks.field_190976_dk) == blockState.getBlock())
 		{
 			return side == blockState.getValue(BlockDirectional.FACING);
 		}
@@ -564,7 +564,7 @@ public class BlockRedstoneWire extends Block
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Items.REDSTONE);
+		return new ItemStack(Items.getItem(Items.REDSTONE));
 	}
 
 	@Override

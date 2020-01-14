@@ -61,7 +61,7 @@ public class EntityAIWanderAvoidWaterFlying extends EntityAIWanderAvoidWater
 			if (!blockpos.equals(blockpos1))
 			{
 				Block block = this.entity.world.getBlockState(blockpos$mutableblockpos1.setPos(blockpos1).move(EnumFacing.DOWN)).getBlock();
-				boolean flag = block instanceof BlockLeaves || block == Blocks.LOG || block == Blocks.LOG2;
+				boolean flag = block instanceof BlockLeaves || block == Blocks.getBlock(Blocks.LOG) || block == Blocks.getBlock(Blocks.LOG2);
 
 				if (flag && this.entity.world.isAirBlock(blockpos1) && this.entity.world.isAirBlock(blockpos$mutableblockpos.setPos(blockpos1).move(EnumFacing.UP)))
 				{

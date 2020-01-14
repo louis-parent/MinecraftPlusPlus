@@ -157,7 +157,7 @@ public class AnvilSaveConverter extends SaveFormatOld
 
 		if (worldinfo != null && worldinfo.getTerrainType() == WorldType.FLAT)
 		{
-			biomeprovider = new BiomeProviderSingle(Biomes.PLAINS);
+			biomeprovider = new BiomeProviderSingle(Biomes.getBiome(Biomes.PLAINS));
 		}
 		else
 		{
@@ -165,8 +165,8 @@ public class AnvilSaveConverter extends SaveFormatOld
 		}
 
 		this.convertFile(new File(file1, "region"), list, biomeprovider, 0, i, progressCallback);
-		this.convertFile(new File(file2, "region"), list1, new BiomeProviderSingle(Biomes.HELL), list.size(), i, progressCallback);
-		this.convertFile(new File(file3, "region"), list2, new BiomeProviderSingle(Biomes.SKY), list.size() + list1.size(), i, progressCallback);
+		this.convertFile(new File(file2, "region"), list1, new BiomeProviderSingle(Biomes.getBiome(Biomes.HELL)), list.size(), i, progressCallback);
+		this.convertFile(new File(file3, "region"), list2, new BiomeProviderSingle(Biomes.getBiome(Biomes.SKY)), list.size() + list1.size(), i, progressCallback);
 		worldinfo.setSaveVersion(19133);
 
 		if (worldinfo.getTerrainType() == WorldType.DEFAULT_1_1)

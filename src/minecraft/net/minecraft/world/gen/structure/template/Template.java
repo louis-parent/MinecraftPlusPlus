@@ -172,7 +172,7 @@ public class Template
 			{
 				IBlockState iblockstate = template$blockinfo.blockState;
 
-				if (iblockstate.getBlock() == Blocks.STRUCTURE_BLOCK && template$blockinfo.tileentityData != null)
+				if (iblockstate.getBlock() == Blocks.getBlock(Blocks.STRUCTURE_BLOCK) && template$blockinfo.tileentityData != null)
 				{
 					TileEntityStructure.Mode tileentitystructure$mode = TileEntityStructure.Mode.valueOf(template$blockinfo.tileentityData.getString("mode"));
 
@@ -217,7 +217,7 @@ public class Template
 	 * This takes the data stored in this instance and puts them into the world.
 	 * 
 	 * @param flags
-	 *            The flags to use when placing blocks.
+	 *            The flags to use when placing Blocks.getBlock(blocks.)
 	 */
 	public void addBlocksToWorld(World worldIn, BlockPos pos, PlacementSettings placementIn, int flags)
 	{
@@ -240,7 +240,7 @@ public class Template
 				{
 					Block block1 = template$blockinfo1.blockState.getBlock();
 
-					if ((block == null || block != block1) && (!p_189960_4_.getIgnoreStructureBlock() || block1 != Blocks.STRUCTURE_BLOCK) && (structureboundingbox == null || structureboundingbox.isVecInside(blockpos)))
+					if ((block == null || block != block1) && (!p_189960_4_.getIgnoreStructureBlock() || block1 != Blocks.getBlock(Blocks.STRUCTURE_BLOCK)) && (structureboundingbox == null || structureboundingbox.isVecInside(blockpos)))
 					{
 						IBlockState iblockstate = template$blockinfo1.blockState.withMirror(p_189960_4_.getMirror());
 						IBlockState iblockstate1 = iblockstate.withRotation(p_189960_4_.getRotation());
@@ -256,7 +256,7 @@ public class Template
 									((IInventory) tileentity).clear();
 								}
 
-								p_189960_1_.setBlockState(blockpos, Blocks.BARRIER.getDefaultState(), 4);
+								p_189960_1_.setBlockState(blockpos, Blocks.getBlock(Blocks.BARRIER).getDefaultState(), 4);
 							}
 						}
 
@@ -642,7 +642,7 @@ public class Template
 
 	static class BasicPalette implements Iterable<IBlockState>
 	{
-		public static final IBlockState DEFAULT_BLOCK_STATE = Blocks.AIR.getDefaultState();
+		public static final IBlockState DEFAULT_BLOCK_STATE = Blocks.getBlock(Blocks.AIR).getDefaultState();
 		final ObjectIntIdentityMap<IBlockState> ids;
 		private int lastId;
 

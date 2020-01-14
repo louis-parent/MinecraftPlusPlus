@@ -150,7 +150,7 @@ public final class ItemStack
 		{
 			return true;
 		}
-		else if (this.item != null && this.item != Item.getItemFromBlock(Blocks.AIR))
+		else if (this.item != null && this.item != Item.getItemFromBlock(Blocks.getBlock(Blocks.AIR)))
 		{
 			if (this.stackSize <= 0)
 			{
@@ -191,7 +191,7 @@ public final class ItemStack
 	 */
 	public Item getItem()
 	{
-		return this.notValid ? Item.getItemFromBlock(Blocks.AIR) : this.item;
+		return this.notValid ? Item.getItemFromBlock(Blocks.getBlock(Blocks.AIR)) : this.item;
 	}
 
 	/**
@@ -783,7 +783,7 @@ public final class ItemStack
 				s = s + String.format("#%04d%s", i, s1);
 			}
 		}
-		else if (!this.hasDisplayName() && this.item == Items.FILLED_MAP)
+		else if (!this.hasDisplayName() && this.item == Items.getItem(Items.FILLED_MAP))
 		{
 			s = s + " #" + this.itemDamage;
 		}

@@ -49,17 +49,17 @@ public class TileEntityItemStackRenderer
 	{
 		Item item = p_192838_1_.getItem();
 
-		if (item == Items.BANNER)
+		if (item == Items.getItem(Items.BANNER))
 		{
 			this.banner.setItemValues(p_192838_1_, false);
 			TileEntityRendererDispatcher.instance.func_192855_a(this.banner, 0.0D, 0.0D, 0.0D, 0.0F, p_192838_2_);
 		}
-		else if (item == Items.BED)
+		else if (item == Items.getItem(Items.BED))
 		{
 			this.field_193843_g.func_193051_a(p_192838_1_);
 			TileEntityRendererDispatcher.instance.renderTileEntityAt(this.field_193843_g, 0.0D, 0.0D, 0.0D, 0.0F);
 		}
-		else if (item == Items.SHIELD)
+		else if (item == Items.getItem(Items.SHIELD))
 		{
 			if (p_192838_1_.getSubCompound("BlockEntityTag") != null)
 			{
@@ -76,7 +76,7 @@ public class TileEntityItemStackRenderer
 			this.modelShield.render();
 			GlStateManager.popMatrix();
 		}
-		else if (item == Items.SKULL)
+		else if (item == Items.getItem(Items.SKULL))
 		{
 			GameProfile gameprofile = null;
 
@@ -106,11 +106,11 @@ public class TileEntityItemStackRenderer
 				GlStateManager.popMatrix();
 			}
 		}
-		else if (item == Item.getItemFromBlock(Blocks.ENDER_CHEST))
+		else if (item == Item.getItemFromBlock(Blocks.getBlock(Blocks.ENDER_CHEST)))
 		{
 			TileEntityRendererDispatcher.instance.func_192855_a(this.enderChest, 0.0D, 0.0D, 0.0D, 0.0F, p_192838_2_);
 		}
-		else if (item == Item.getItemFromBlock(Blocks.TRAPPED_CHEST))
+		else if (item == Item.getItemFromBlock(Blocks.getBlock(Blocks.TRAPPED_CHEST)))
 		{
 			TileEntityRendererDispatcher.instance.func_192855_a(this.chestTrap, 0.0D, 0.0D, 0.0D, 0.0F, p_192838_2_);
 		}

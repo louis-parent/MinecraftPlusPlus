@@ -97,13 +97,13 @@ public class BlockTripWire extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.STRING;
+		return Items.getItem(Items.STRING);
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Items.STRING);
+		return new ItemStack(Items.getItem(Items.STRING));
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class BlockTripWire extends Block
 	{
 		if (!worldIn.isRemote)
 		{
-			if (!player.getHeldItemMainhand().isNotValid() && player.getHeldItemMainhand().getItem() == Items.SHEARS)
+			if (!player.getHeldItemMainhand().isNotValid() && player.getHeldItemMainhand().getItem() == Items.getItem(Items.SHEARS))
 			{
 				worldIn.setBlockState(pos, state.withProperty(DISARMED, Boolean.valueOf(true)), 4);
 			}
@@ -148,17 +148,17 @@ public class BlockTripWire extends Block
 				BlockPos blockpos = pos.offset(enumfacing, i);
 				IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-				if (iblockstate.getBlock() == Blocks.TRIPWIRE_HOOK)
+				if (iblockstate.getBlock() == Blocks.getBlock(Blocks.TRIPWIRE_HOOK))
 				{
 					if (iblockstate.getValue(BlockTripWireHook.FACING) == enumfacing.getOpposite())
 					{
-						Blocks.TRIPWIRE_HOOK.calculateState(worldIn, blockpos, iblockstate, false, true, i, state);
+						((BlockTripWireHook) Blocks.getBlock(Blocks.TRIPWIRE_HOOK)).calculateState(worldIn, blockpos, iblockstate, false, true, i, state);
 					}
 
 					break;
 				}
 
-				if (iblockstate.getBlock() != Blocks.TRIPWIRE)
+				if (iblockstate.getBlock() != Blocks.getBlock(Blocks.TRIPWIRE))
 				{
 					break;
 				}
@@ -240,14 +240,14 @@ public class BlockTripWire extends Block
 		IBlockState iblockstate = worldIn.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 
-		if (block == Blocks.TRIPWIRE_HOOK)
+		if (block == Blocks.getBlock(Blocks.TRIPWIRE_HOOK))
 		{
 			EnumFacing enumfacing = direction.getOpposite();
 			return iblockstate.getValue(BlockTripWireHook.FACING) == enumfacing;
 		}
 		else
 		{
-			return block == Blocks.TRIPWIRE;
+			return block == Blocks.getBlock(Blocks.TRIPWIRE);
 		}
 	}
 

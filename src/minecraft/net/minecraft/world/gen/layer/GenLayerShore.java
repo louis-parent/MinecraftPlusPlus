@@ -32,20 +32,20 @@ public class GenLayerShore extends GenLayer
 				int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
 				Biome biome = Biome.getBiome(k);
 
-				if (k == Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND))
+				if (k == Biome.getIdForBiome(Biomes.getBiome(Biomes.MUSHROOM_ISLAND)))
 				{
 					int j2 = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
 					int i3 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
 					int l3 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
 					int k4 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-					if (j2 != Biome.getIdForBiome(Biomes.OCEAN) && i3 != Biome.getIdForBiome(Biomes.OCEAN) && l3 != Biome.getIdForBiome(Biomes.OCEAN) && k4 != Biome.getIdForBiome(Biomes.OCEAN))
+					if (j2 != Biome.getIdForBiome(Biomes.getBiome(Biomes.OCEAN)) && i3 != Biome.getIdForBiome(Biomes.getBiome(Biomes.OCEAN)) && l3 != Biome.getIdForBiome(Biomes.getBiome(Biomes.OCEAN)) && k4 != Biome.getIdForBiome(Biomes.getBiome(Biomes.OCEAN)))
 					{
 						aint1[j + i * areaWidth] = k;
 					}
 					else
 					{
-						aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND_SHORE);
+						aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.MUSHROOM_ISLAND_SHORE));
 					}
 				}
 				else if (biome != null && biome.getBiomeClass() == BiomeJungle.class)
@@ -63,23 +63,23 @@ public class GenLayerShore extends GenLayer
 						}
 						else
 						{
-							aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.BEACH);
+							aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.BEACH));
 						}
 					}
 					else
 					{
-						aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.JUNGLE_EDGE);
+						aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.JUNGLE_EDGE));
 					}
 				}
-				else if (k != Biome.getIdForBiome(Biomes.EXTREME_HILLS) && k != Biome.getIdForBiome(Biomes.EXTREME_HILLS_WITH_TREES) && k != Biome.getIdForBiome(Biomes.EXTREME_HILLS_EDGE))
+				else if (k != Biome.getIdForBiome(Biomes.getBiome(Biomes.EXTREME_HILLS)) && k != Biome.getIdForBiome(Biomes.getBiome(Biomes.EXTREME_HILLS_WITH_TREES)) && k != Biome.getIdForBiome(Biomes.getBiome(Biomes.EXTREME_HILLS_EDGE)))
 				{
 					if (biome != null && biome.isSnowyBiome())
 					{
-						this.replaceIfNeighborOcean(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.COLD_BEACH));
+						this.replaceIfNeighborOcean(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.getBiome(Biomes.COLD_BEACH)));
 					}
-					else if (k != Biome.getIdForBiome(Biomes.MESA) && k != Biome.getIdForBiome(Biomes.MESA_ROCK))
+					else if (k != Biome.getIdForBiome(Biomes.getBiome(Biomes.MESA)) && k != Biome.getIdForBiome(Biomes.getBiome(Biomes.MESA_ROCK)))
 					{
-						if (k != Biome.getIdForBiome(Biomes.OCEAN) && k != Biome.getIdForBiome(Biomes.DEEP_OCEAN) && k != Biome.getIdForBiome(Biomes.RIVER) && k != Biome.getIdForBiome(Biomes.SWAMPLAND))
+						if (k != Biome.getIdForBiome(Biomes.getBiome(Biomes.OCEAN)) && k != Biome.getIdForBiome(Biomes.getBiome(Biomes.DEEP_OCEAN)) && k != Biome.getIdForBiome(Biomes.getBiome(Biomes.RIVER)) && k != Biome.getIdForBiome(Biomes.getBiome(Biomes.SWAMPLAND)))
 						{
 							int l1 = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
 							int k2 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
@@ -92,7 +92,7 @@ public class GenLayerShore extends GenLayer
 							}
 							else
 							{
-								aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.BEACH);
+								aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.BEACH));
 							}
 						}
 						else
@@ -115,7 +115,7 @@ public class GenLayerShore extends GenLayer
 							}
 							else
 							{
-								aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.DESERT);
+								aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.DESERT));
 							}
 						}
 						else
@@ -126,7 +126,7 @@ public class GenLayerShore extends GenLayer
 				}
 				else
 				{
-					this.replaceIfNeighborOcean(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.STONE_BEACH));
+					this.replaceIfNeighborOcean(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.getBiome(Biomes.STONE_BEACH)));
 				}
 			}
 		}
@@ -166,7 +166,7 @@ public class GenLayerShore extends GenLayer
 		}
 		else
 		{
-			return p_151631_1_ == Biome.getIdForBiome(Biomes.JUNGLE_EDGE) || p_151631_1_ == Biome.getIdForBiome(Biomes.JUNGLE) || p_151631_1_ == Biome.getIdForBiome(Biomes.JUNGLE_HILLS) || p_151631_1_ == Biome.getIdForBiome(Biomes.FOREST) || p_151631_1_ == Biome.getIdForBiome(Biomes.TAIGA) || isBiomeOceanic(p_151631_1_);
+			return p_151631_1_ == Biome.getIdForBiome(Biomes.getBiome(Biomes.JUNGLE_EDGE)) || p_151631_1_ == Biome.getIdForBiome(Biomes.getBiome(Biomes.JUNGLE)) || p_151631_1_ == Biome.getIdForBiome(Biomes.getBiome(Biomes.JUNGLE_HILLS)) || p_151631_1_ == Biome.getIdForBiome(Biomes.getBiome(Biomes.FOREST)) || p_151631_1_ == Biome.getIdForBiome(Biomes.getBiome(Biomes.TAIGA)) || isBiomeOceanic(p_151631_1_);
 		}
 	}
 

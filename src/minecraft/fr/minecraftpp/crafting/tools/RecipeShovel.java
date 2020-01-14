@@ -18,6 +18,6 @@ public class RecipeShovel extends RecipeEquipment
 	@Override
 	protected Blueprint getBlueprint()
 	{
-		return new Blueprint(new Item[][] { { this.material }, { Items.STICK }, { Items.STICK } });
+		return new Blueprint(new Item[][] { { this.material }, { Items.getItem(Items.STICK) }, { Items.getItem(Items.STICK) } });
 	}
 }

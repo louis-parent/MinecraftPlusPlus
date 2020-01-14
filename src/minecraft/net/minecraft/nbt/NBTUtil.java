@@ -267,7 +267,7 @@ public final class NBTUtil
 	{
 		if (!tag.hasKey("Name", 8))
 		{
-			return Blocks.AIR.getDefaultState();
+			return Blocks.getBlock(Blocks.AIR).getDefaultState();
 		}
 		else
 		{

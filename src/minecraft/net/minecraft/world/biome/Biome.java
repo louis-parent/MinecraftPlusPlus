@@ -55,27 +55,19 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public abstract class Biome
 {
 	private static final Logger LOGGER = LogManager.getLogger();
-	protected static final IBlockState STONE = Blocks.STONE.getDefaultState();
-	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
-	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-	protected static final IBlockState GRAVEL = Blocks.GRAVEL.getDefaultState();
-	protected static final IBlockState RED_SANDSTONE = Blocks.RED_SANDSTONE.getDefaultState();
-	protected static final IBlockState SANDSTONE = Blocks.SANDSTONE.getDefaultState();
-	protected static final IBlockState ICE = Blocks.ICE.getDefaultState();
-	protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
-	public static final ObjectIntIdentityMap<Biome> MUTATION_TO_BASE_ID_MAP = new ObjectIntIdentityMap<Biome>();
-	protected static final NoiseGeneratorPerlin TEMPERATURE_NOISE = new NoiseGeneratorPerlin(new Random(1234L), 1);
-	protected static final NoiseGeneratorPerlin GRASS_COLOR_NOISE = new NoiseGeneratorPerlin(new Random(2345L), 1);
-	protected static final WorldGenDoublePlant DOUBLE_PLANT_GENERATOR = new WorldGenDoublePlant();
+	public static ObjectIntIdentityMap<Biome> MUTATION_TO_BASE_ID_MAP = new ObjectIntIdentityMap<Biome>();
+	protected static NoiseGeneratorPerlin TEMPERATURE_NOISE = new NoiseGeneratorPerlin(new Random(1234L), 1);
+	protected static NoiseGeneratorPerlin GRASS_COLOR_NOISE = new NoiseGeneratorPerlin(new Random(2345L), 1);
+	protected static WorldGenDoublePlant DOUBLE_PLANT_GENERATOR = new WorldGenDoublePlant();
 
 	/** The tree generator. */
-	protected static final WorldGenTrees TREE_FEATURE = new WorldGenTrees(false);
+	private static WorldGenTrees TREE_FEATURE;
 
 	/** The big tree generator. */
-	protected static final WorldGenBigTree BIG_TREE_FEATURE = new WorldGenBigTree(false);
+	protected static WorldGenBigTree BIG_TREE_FEATURE;
 
 	/** The swamp tree generator. */
-	protected static final WorldGenSwamp SWAMP_FEATURE = new WorldGenSwamp();
+	protected static WorldGenSwamp SWAMP_FEATURE;
 	public static final RegistryNamespaced<ResourceLocation, Biome> REGISTRY = new RegistryNamespaced<ResourceLocation, Biome>();
 	private final String biomeName;
 
@@ -107,12 +99,6 @@ public abstract class Biome
 	/** The unique identifier of the biome for which this is a mutation of. */
 	private final String baseBiomeRegName;
 
-	/** The block expected to be on the top of this biome */
-	public IBlockState topBlock = Blocks.GRASS.getDefaultState();
-
-	/** The block to fill spots in when not on the top */
-	public IBlockState fillerBlock = Blocks.DIRT.getDefaultState();
-
 	/** The biome decorator. */
 	public BiomeDecorator theBiomeDecorator;
 	protected List<Biome.SpawnListEntry> spawnableMonsterList = Lists.<Biome.SpawnListEntry>newArrayList();
@@ -128,7 +114,8 @@ public abstract class Biome
 	@Nullable
 	public static Biome getBiomeForId(int id)
 	{
-		return REGISTRY.getObjectById(id);
+		Biome objectById = REGISTRY.getObjectById(id);
+		return objectById;
 	}
 
 	@Nullable
@@ -180,7 +167,7 @@ public abstract class Biome
 
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return rand.nextInt(10) == 0 ? BIG_TREE_FEATURE : TREE_FEATURE;
+		return rand.nextInt(10) == 0 ? getBIG_TREE_FEATURE() : getTreeFeature();
 	}
 
 	/**
@@ -316,8 +303,8 @@ public abstract class Biome
 	public final void generateBiomeTerrain(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
 	{
 		int i = worldIn.getSeaLevel();
-		IBlockState iblockstate = this.topBlock;
-		IBlockState iblockstate1 = this.fillerBlock;
+		IBlockState iblockstate = this.getTopBlock();
+		IBlockState iblockstate1 = this.getFillerBlock();
 		int j = -1;
 		int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
 		int l = x & 15;
@@ -328,7 +315,7 @@ public abstract class Biome
 		{
 			if (j1 <= rand.nextInt(5))
 			{
-				chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);
+				chunkPrimerIn.setBlockState(i1, j1, l, getBedrock());
 			}
 			else
 			{
@@ -338,30 +325,30 @@ public abstract class Biome
 				{
 					j = -1;
 				}
-				else if (iblockstate2.getBlock() == Blocks.STONE)
+				else if (iblockstate2.getBlock() == Blocks.getBlock(Blocks.STONE))
 				{
 					if (j == -1)
 					{
 						if (k <= 0)
 						{
-							iblockstate = AIR;
-							iblockstate1 = STONE;
+							iblockstate = getAir();
+							iblockstate1 = getStone();
 						}
 						else if (j1 >= i - 4 && j1 <= i + 1)
 						{
-							iblockstate = this.topBlock;
-							iblockstate1 = this.fillerBlock;
+							iblockstate = this.getTopBlock();
+							iblockstate1 = this.getFillerBlock();
 						}
 
 						if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
 						{
 							if (this.getFloatTemperature(blockpos$mutableblockpos.setPos(x, j1, z)) < 0.15F)
 							{
-								iblockstate = ICE;
+								iblockstate = getIce();
 							}
 							else
 							{
-								iblockstate = WATER;
+								iblockstate = getWater();
 							}
 						}
 
@@ -373,9 +360,9 @@ public abstract class Biome
 						}
 						else if (j1 < i - 7 - k)
 						{
-							iblockstate = AIR;
-							iblockstate1 = STONE;
-							chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL);
+							iblockstate = getAir();
+							iblockstate1 = getStone();
+							chunkPrimerIn.setBlockState(i1, j1, l, getGravel());
 						}
 						else
 						{
@@ -387,10 +374,10 @@ public abstract class Biome
 						--j;
 						chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
 
-						if (j == 0 && iblockstate1.getBlock() == Blocks.SAND && k > 1)
+						if (j == 0 && iblockstate1.getBlock() == Blocks.getBlock(Blocks.SAND) && k > 1)
 						{
 							j = rand.nextInt(4) + Math.max(0, j1 - 63);
-							iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE : SANDSTONE;
+							iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? getRedSandstone() : getSandstone();
 						}
 					}
 				}
@@ -479,6 +466,16 @@ public abstract class Biome
 	 */
 	public static void registerBiomes()
 	{
+		TREE_FEATURE = null;
+		BIG_TREE_FEATURE = null;
+		SWAMP_FEATURE = null;
+		
+		MUTATION_TO_BASE_ID_MAP = new ObjectIntIdentityMap<Biome>();
+		TEMPERATURE_NOISE = new NoiseGeneratorPerlin(new Random(1234L), 1);
+		GRASS_COLOR_NOISE = new NoiseGeneratorPerlin(new Random(2345L), 1);
+		DOUBLE_PLANT_GENERATOR = new WorldGenDoublePlant();
+		REGISTRY.clear();
+		
 		registerBiome(0, "ocean", new BiomeOcean((new Biome.BiomeProperties("Ocean")).setBaseHeight(-1.0F).setHeightVariation(0.1F)));
 		registerBiome(1, "plains", new BiomePlains(false, (new Biome.BiomeProperties("Plains")).setBaseHeight(0.125F).setHeightVariation(0.05F).setTemperature(0.8F).setRainfall(0.4F)));
 		registerBiome(2, "desert", new BiomeDesert((new Biome.BiomeProperties("Desert")).setBaseHeight(0.125F).setHeightVariation(0.05F).setTemperature(2.0F).setRainfall(0.0F).setRainDisabled()));
@@ -554,6 +551,86 @@ public abstract class Biome
 		{
 			MUTATION_TO_BASE_ID_MAP.put(biome, getIdForBiome(REGISTRY.getObject(new ResourceLocation(biome.baseBiomeRegName))));
 		}
+	}
+
+	public static IBlockState getStone()
+	{
+		return Blocks.getBlock(Blocks.STONE).getDefaultState();
+	}
+
+	public static IBlockState getAir()
+	{
+		return Blocks.getBlock(Blocks.AIR).getDefaultState();
+	}
+
+	public static IBlockState getBedrock()
+	{
+		return Blocks.getBlock(Blocks.BEDROCK).getDefaultState();
+	}
+
+	public static IBlockState getGravel()
+	{
+		return Blocks.getBlock(Blocks.GRAVEL).getDefaultState();
+	}
+
+	public static IBlockState getRedSandstone()
+	{
+		return Blocks.getBlock(Blocks.RED_SANDSTONE).getDefaultState();
+	}
+
+	public static IBlockState getSandstone()
+	{
+		return Blocks.getBlock(Blocks.SANDSTONE).getDefaultState();
+	}
+
+	public static IBlockState getIce()
+	{
+		return Blocks.getBlock(Blocks.ICE).getDefaultState();
+	}
+
+	public static IBlockState getWater()
+	{
+		return Blocks.getBlock(Blocks.WATER).getDefaultState();
+	}
+
+	public static WorldGenTrees getTreeFeature()
+	{
+		if(TREE_FEATURE == null)
+		{
+			TREE_FEATURE = new WorldGenTrees(false);
+		}
+		
+		return TREE_FEATURE;
+	}
+
+	public static WorldGenBigTree getBIG_TREE_FEATURE()
+	{
+		if(BIG_TREE_FEATURE == null)
+		{
+			BIG_TREE_FEATURE = new WorldGenBigTree(false);
+		}
+		
+		return BIG_TREE_FEATURE;
+	}
+
+	public static WorldGenSwamp getSWAMP_FEATURE()
+	{
+		if(SWAMP_FEATURE == null)
+		{
+			SWAMP_FEATURE = new WorldGenSwamp();
+		}
+		
+		return SWAMP_FEATURE;
+	}
+
+	public IBlockState getTopBlock()
+	{
+		return Blocks.getBlock(Blocks.GRASS).getDefaultState();
+	}
+
+	public IBlockState getFillerBlock()
+	{
+		return Blocks.getBlock(Blocks.DIRT).getDefaultState();
 	}
 
 	public static class BiomeProperties

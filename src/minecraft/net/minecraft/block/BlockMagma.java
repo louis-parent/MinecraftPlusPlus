@@ -68,7 +68,7 @@ public class BlockMagma extends Block
 		BlockPos blockpos = pos.up();
 		IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-		if (iblockstate.getBlock() == Blocks.WATER || iblockstate.getBlock() == Blocks.FLOWING_WATER)
+		if (iblockstate.getBlock() == Blocks.getBlock(Blocks.WATER) || iblockstate.getBlock() == Blocks.getBlock(Blocks.FLOWING_WATER))
 		{
 			worldIn.setBlockToAir(blockpos);
 			worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);

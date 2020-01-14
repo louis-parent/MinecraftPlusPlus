@@ -275,7 +275,7 @@ public class EntityVex extends EntityMob
 	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
-		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.getItem(Items.IRON_SWORD)));
 		this.setDropChance(EntityHandSlot.MAINHAND, 0.0F);
 	}
 

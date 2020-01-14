@@ -88,8 +88,8 @@ public class EntitySheep extends EntityAnimal
 	{
 		super(worldIn);
 		this.setSize(0.9F, 1.3F);
-		this.inventoryCrafting.setInventorySlotContents(0, new ItemStack(Items.DYE));
-		this.inventoryCrafting.setInventorySlotContents(1, new ItemStack(Items.DYE));
+		this.inventoryCrafting.setInventorySlotContents(0, new ItemStack(Items.getItem(Items.DYE)));
+		this.inventoryCrafting.setInventorySlotContents(1, new ItemStack(Items.getItem(Items.DYE)));
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class EntitySheep extends EntityAnimal
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
 		this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-		this.tasks.addTask(3, new EntityAITempt(this, 1.1D, Items.WHEAT, false));
+		this.tasks.addTask(3, new EntityAITempt(this, 1.1D, Items.getItem(Items.WHEAT), false));
 		this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
 		this.tasks.addTask(5, this.entityAIEatGrass);
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
@@ -256,7 +256,7 @@ public class EntitySheep extends EntityAnimal
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 
-		if (itemstack.getItem() == Items.SHEARS && !this.getSheared() && !this.isChild())
+		if (itemstack.getItem() == Items.getItem(Items.SHEARS) && !this.getSheared() && !this.isChild())
 		{
 			if (!this.world.isRemote)
 			{
@@ -265,7 +265,7 @@ public class EntitySheep extends EntityAnimal
 
 				for (int j = 0; j < i; ++j)
 				{
-					EntityItem entityitem = this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.WOOL), 1, this.getFleeceColor().getMetadata()), 1.0F);
+					EntityItem entityitem = this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.getBlock(Blocks.WOOL)), 1, this.getFleeceColor().getMetadata()), 1.0F);
 					entityitem.motionY += this.rand.nextFloat() * 0.05F;
 					entityitem.motionX += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F;
 					entityitem.motionZ += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F;
@@ -453,7 +453,7 @@ public class EntitySheep extends EntityAnimal
 		ItemStack itemstack = CraftingManager.findItemStackOfMatchingRecipe(this.inventoryCrafting, ((EntitySheep) father).world);
 		int k;
 
-		if (itemstack.getItem() == Items.DYE)
+		if (itemstack.getItem() == Items.getItem(Items.DYE))
 		{
 			k = itemstack.getMetadata();
 		}

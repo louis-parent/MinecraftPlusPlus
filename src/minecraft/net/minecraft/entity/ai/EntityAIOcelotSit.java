@@ -83,7 +83,7 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
 			IBlockState iblockstate = worldIn.getBlockState(pos);
 			Block block = iblockstate.getBlock();
 
-			if (block == Blocks.CHEST)
+			if (block == Blocks.getBlock(Blocks.CHEST))
 			{
 				TileEntity tileentity = worldIn.getTileEntity(pos);
 
@@ -94,12 +94,12 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
 			}
 			else
 			{
-				if (block == Blocks.LIT_FURNACE)
+				if (block == Blocks.getBlock(Blocks.LIT_FURNACE))
 				{
 					return true;
 				}
 
-				if (block == Blocks.BED && iblockstate.getValue(BlockBed.PART) != BlockBed.EnumPartType.HEAD)
+				if (block == Blocks.getBlock(Blocks.BED) && iblockstate.getValue(BlockBed.PART) != BlockBed.EnumPartType.HEAD)
 				{
 					return true;
 				}

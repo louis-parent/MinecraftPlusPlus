@@ -72,9 +72,9 @@ public class EntityEnderCrystal extends Entity
 		{
 			BlockPos blockpos = new BlockPos(this);
 
-			if (this.world.provider instanceof WorldProviderEnd && this.world.getBlockState(blockpos).getBlock() != Blocks.FIRE)
+			if (this.world.provider instanceof WorldProviderEnd && this.world.getBlockState(blockpos).getBlock() != Blocks.getBlock(Blocks.FIRE))
 			{
-				this.world.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
+				this.world.setBlockState(blockpos, Blocks.getBlock(Blocks.FIRE).getDefaultState());
 			}
 		}
 	}

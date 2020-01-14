@@ -1094,7 +1094,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 				{
 					ItemStack itemstack = this.playerEntity.getItemStackFromSlot(EntityArmorSlot.CHEST);
 
-					if (itemstack.getItem() == Items.ELYTRA && ItemElytra.isBroken(itemstack))
+					if (itemstack.getItem() == Items.getItem(Items.ELYTRA) && ItemElytra.isBroken(itemstack))
 					{
 						this.playerEntity.setElytraFlying();
 					}
@@ -1589,7 +1589,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 					return;
 				}
 
-				if (itemstack.getItem() == Items.WRITABLE_BOOK && itemstack.getItem() == itemstack1.getItem())
+				if (itemstack.getItem() == Items.getItem(Items.WRITABLE_BOOK) && itemstack.getItem() == itemstack1.getItem())
 				{
 					itemstack1.setTagInfo("pages", itemstack.getTagCompound().getTagList("pages", 8));
 				}
@@ -1624,9 +1624,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 					return;
 				}
 
-				if (itemstack3.getItem() == Items.WRITABLE_BOOK && itemstack4.getItem() == Items.WRITABLE_BOOK)
+				if (itemstack3.getItem() == Items.getItem(Items.WRITABLE_BOOK) && itemstack4.getItem() == Items.getItem(Items.WRITABLE_BOOK))
 				{
-					ItemStack itemstack2 = new ItemStack(Items.WRITTEN_BOOK);
+					ItemStack itemstack2 = new ItemStack(Items.getItem(Items.WRITTEN_BOOK));
 					itemstack2.setTagInfo("author", new NBTTagString(this.playerEntity.getName()));
 					itemstack2.setTagInfo("title", new NBTTagString(itemstack3.getTagCompound().getString("title")));
 					NBTTagList nbttaglist = itemstack3.getTagCompound().getTagList("pages", 8);
@@ -1769,17 +1769,17 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 					switch (tileentitycommandblock$mode)
 					{
 						case SEQUENCE:
-							IBlockState iblockstate3 = Blocks.CHAIN_COMMAND_BLOCK.getDefaultState();
+							IBlockState iblockstate3 = Blocks.getBlock(Blocks.CHAIN_COMMAND_BLOCK).getDefaultState();
 							this.playerEntity.world.setBlockState(blockpos1, iblockstate3.withProperty(BlockCommandBlock.FACING, enumfacing).withProperty(BlockCommandBlock.CONDITIONAL, Boolean.valueOf(flag)), 2);
 							break;
 
 						case AUTO:
-							IBlockState iblockstate2 = Blocks.REPEATING_COMMAND_BLOCK.getDefaultState();
+							IBlockState iblockstate2 = Blocks.getBlock(Blocks.REPEATING_COMMAND_BLOCK).getDefaultState();
 							this.playerEntity.world.setBlockState(blockpos1, iblockstate2.withProperty(BlockCommandBlock.FACING, enumfacing).withProperty(BlockCommandBlock.CONDITIONAL, Boolean.valueOf(flag)), 2);
 							break;
 
 						case REDSTONE:
-							IBlockState iblockstate = Blocks.COMMAND_BLOCK.getDefaultState();
+							IBlockState iblockstate = Blocks.getBlock(Blocks.COMMAND_BLOCK).getDefaultState();
 							this.playerEntity.world.setBlockState(blockpos1, iblockstate.withProperty(BlockCommandBlock.FACING, enumfacing).withProperty(BlockCommandBlock.CONDITIONAL, Boolean.valueOf(flag)), 2);
 					}
 

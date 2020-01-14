@@ -355,9 +355,9 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 				itemstack2.increaseStackSize(1);
 			}
 
-			if (itemstack.getItem() == Item.getItemFromBlock(Blocks.SPONGE) && itemstack.getMetadata() == 1 && !this.furnaceItemStacks.get(1).isNotValid() && this.furnaceItemStacks.get(1).getItem() == Items.BUCKET)
+			if (itemstack.getItem() == Item.getItemFromBlock(Blocks.getBlock(Blocks.SPONGE)) && itemstack.getMetadata() == 1 && !this.furnaceItemStacks.get(1).isNotValid() && this.furnaceItemStacks.get(1).getItem() == Items.getItem(Items.BUCKET))
 			{
-				this.furnaceItemStacks.set(1, new ItemStack(Items.WATER_BUCKET));
+				this.furnaceItemStacks.set(1, new ItemStack(Items.getItem(Items.WATER_BUCKET)));
 			}
 
 			itemstack.decreaseStackSize(1);
@@ -384,23 +384,23 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 		{
 			Item item = stack.getItem();
 
-			if (item == Item.getItemFromBlock(Blocks.WOODEN_SLAB))
+			if (item == Item.getItemFromBlock(Blocks.getBlock(Blocks.WOODEN_SLAB)))
 			{
 				return 150;
 			}
-			else if (item == Item.getItemFromBlock(Blocks.WOOL))
+			else if (item == Item.getItemFromBlock(Blocks.getBlock(Blocks.WOOL)))
 			{
 				return 100;
 			}
-			else if (item == Item.getItemFromBlock(Blocks.CARPET))
+			else if (item == Item.getItemFromBlock(Blocks.getBlock(Blocks.CARPET)))
 			{
 				return 67;
 			}
-			else if (item == Item.getItemFromBlock(Blocks.LADDER))
+			else if (item == Item.getItemFromBlock(Blocks.getBlock(Blocks.LADDER)))
 			{
 				return 300;
 			}
-			else if (item == Item.getItemFromBlock(Blocks.WOODEN_BUTTON))
+			else if (item == Item.getItemFromBlock(Blocks.getBlock(Blocks.WOODEN_BUTTON)))
 			{
 				return 100;
 			}
@@ -408,7 +408,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 			{
 				return 300;
 			}
-			else if (item == Item.getItemFromBlock(Blocks.COAL_BLOCK))
+			else if (item == Item.getItemFromBlock(Blocks.getBlock(Blocks.COAL_BLOCK)))
 			{
 				return 16000;
 			}
@@ -424,31 +424,31 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 			{
 				return 200;
 			}
-			else if (item == Items.STICK)
+			else if (item == Items.getItem(Items.STICK))
 			{
 				return 100;
 			}
-			else if (item != Items.BOW && item != Items.FISHING_ROD)
+			else if (item != Items.getItem(Items.BOW) && item != Items.getItem(Items.FISHING_ROD))
 			{
-				if (item == Items.SIGN)
+				if (item == Items.getItem(Items.SIGN))
 				{
 					return 200;
 				}
-				else if (item == Items.OLD_COAL)
+				else if (item == Items.getItem(Items.OLD_COAL))
 				{
 					return 1600;
 				}
-				else if (item == Items.LAVA_BUCKET)
+				else if (item == Items.getItem(Items.LAVA_BUCKET))
 				{
 					return 20000;
 				}
-				else if (item != Item.getItemFromBlock(Blocks.SAPLING) && item != Items.BOWL)
+				else if (item != Item.getItemFromBlock(Blocks.getBlock(Blocks.SAPLING)) && item != Items.getItem(Items.BOWL))
 				{
-					if (item == Items.BLAZE_ROD)
+					if (item == Items.getItem(Items.BLAZE_ROD))
 					{
 						return 2400;
 					}
-					else if (item instanceof ItemDoor && item != Items.IRON_DOOR)
+					else if (item instanceof ItemDoor && item != Items.getItem(Items.IRON_DOOR))
 					{
 						return 200;
 					}
@@ -519,7 +519,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 		else
 		{
 			ItemStack itemstack = this.furnaceItemStacks.get(1);
-			return isItemFuel(stack) || SlotFurnaceFuel.isBucket(stack) && itemstack.getItem() != Items.BUCKET;
+			return isItemFuel(stack) || SlotFurnaceFuel.isBucket(stack) && itemstack.getItem() != Items.getItem(Items.BUCKET);
 		}
 	}
 
@@ -557,7 +557,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 		{
 			Item item = stack.getItem();
 
-			if (item != Items.WATER_BUCKET && item != Items.BUCKET)
+			if (item != Items.getItem(Items.WATER_BUCKET) && item != Items.getItem(Items.BUCKET))
 			{
 				return false;
 			}

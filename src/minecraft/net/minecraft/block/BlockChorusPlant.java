@@ -54,7 +54,7 @@ public class BlockChorusPlant extends Block
 		Block block3 = worldIn.getBlockState(pos.east()).getBlock();
 		Block block4 = worldIn.getBlockState(pos.south()).getBlock();
 		Block block5 = worldIn.getBlockState(pos.west()).getBlock();
-		return state.withProperty(DOWN, Boolean.valueOf(block == this || block == Blocks.CHORUS_FLOWER || block == Blocks.END_STONE)).withProperty(UP, Boolean.valueOf(block1 == this || block1 == Blocks.CHORUS_FLOWER)).withProperty(NORTH, Boolean.valueOf(block2 == this || block2 == Blocks.CHORUS_FLOWER)).withProperty(EAST, Boolean.valueOf(block3 == this || block3 == Blocks.CHORUS_FLOWER)).withProperty(SOUTH, Boolean.valueOf(block4 == this || block4 == Blocks.CHORUS_FLOWER)).withProperty(WEST, Boolean.valueOf(block5 == this || block5 == Blocks.CHORUS_FLOWER));
+		return state.withProperty(DOWN, Boolean.valueOf(block == this || block == Blocks.getBlock(Blocks.CHORUS_FLOWER) || block == Blocks.getBlock(Blocks.END_STONE))).withProperty(UP, Boolean.valueOf(block1 == this || block1 == Blocks.getBlock(Blocks.CHORUS_FLOWER))).withProperty(NORTH, Boolean.valueOf(block2 == this || block2 == Blocks.getBlock(Blocks.CHORUS_FLOWER))).withProperty(EAST, Boolean.valueOf(block3 == this || block3 == Blocks.getBlock(Blocks.CHORUS_FLOWER))).withProperty(SOUTH, Boolean.valueOf(block4 == this || block4 == Blocks.getBlock(Blocks.CHORUS_FLOWER))).withProperty(WEST, Boolean.valueOf(block5 == this || block5 == Blocks.getBlock(Blocks.CHORUS_FLOWER)));
 	}
 
 	@Override
@@ -138,7 +138,7 @@ public class BlockChorusPlant extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.CHORUS_FRUIT;
+		return Items.getItem(Items.CHORUS_FRUIT);
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class BlockChorusPlant extends Block
 
 				Block block1 = wordIn.getBlockState(blockpos.down()).getBlock();
 
-				if (block1 == this || block1 == Blocks.END_STONE)
+				if (block1 == this || block1 == Blocks.getBlock(Blocks.END_STONE))
 				{
 					return true;
 				}
@@ -214,7 +214,7 @@ public class BlockChorusPlant extends Block
 		}
 
 		Block block2 = wordIn.getBlockState(pos.down()).getBlock();
-		return block2 == this || block2 == Blocks.END_STONE;
+		return block2 == this || block2 == Blocks.getBlock(Blocks.END_STONE);
 	}
 
 	@Override
@@ -227,7 +227,7 @@ public class BlockChorusPlant extends Block
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
 		Block block = blockAccess.getBlockState(pos.offset(side)).getBlock();
-		return block != this && block != Blocks.CHORUS_FLOWER && (side != EnumFacing.DOWN || block != Blocks.END_STONE);
+		return block != this && block != Blocks.getBlock(Blocks.CHORUS_FLOWER) && (side != EnumFacing.DOWN || block != Blocks.getBlock(Blocks.END_STONE));
 	}
 
 	@Override

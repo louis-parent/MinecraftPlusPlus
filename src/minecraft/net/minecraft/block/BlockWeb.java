@@ -68,7 +68,7 @@ public class BlockWeb extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.STRING;
+		return Items.getItem(Items.STRING);
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class BlockWeb extends Block
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
-		if (!worldIn.isRemote && stack.getItem() == Items.SHEARS)
+		if (!worldIn.isRemote && stack.getItem() == Items.getItem(Items.SHEARS))
 		{
 			player.addStat(StatList.getBlockStats(this));
 			spawnAsEntity(worldIn, pos, new ItemStack(Item.getItemFromBlock(this), 1));

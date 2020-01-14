@@ -96,13 +96,13 @@ public class BlockSign extends BlockContainer
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.SIGN;
+		return Items.getItem(Items.SIGN);
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Items.SIGN);
+		return new ItemStack(Items.getItem(Items.SIGN));
 	}
 
 	@Override

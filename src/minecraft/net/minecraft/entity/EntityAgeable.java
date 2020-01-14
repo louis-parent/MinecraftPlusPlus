@@ -36,7 +36,7 @@ public abstract class EntityAgeable extends EntityCreature
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 
-		if (itemstack.getItem() == Items.SPAWN_EGG)
+		if (itemstack.getItem() == Items.getItem(Items.SPAWN_EGG))
 		{
 			if (!this.world.isRemote)
 			{
@@ -75,7 +75,7 @@ public abstract class EntityAgeable extends EntityCreature
 
 	protected boolean func_190669_a(ItemStack p_190669_1_, Class<? extends Entity> p_190669_2_)
 	{
-		if (p_190669_1_.getItem() != Items.SPAWN_EGG)
+		if (p_190669_1_.getItem() != Items.getItem(Items.SPAWN_EGG))
 		{
 			return false;
 		}

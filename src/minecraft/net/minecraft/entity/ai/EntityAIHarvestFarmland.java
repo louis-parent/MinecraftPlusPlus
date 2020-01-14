@@ -87,24 +87,24 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
 
 					if (!itemstack.isNotValid())
 					{
-						if (itemstack.getItem() == Items.WHEAT_SEEDS)
+						if (itemstack.getItem() == Items.getItem(Items.WHEAT_SEEDS))
 						{
-							world.setBlockState(blockpos, Blocks.WHEAT.getDefaultState(), 3);
+							world.setBlockState(blockpos, Blocks.getBlock(Blocks.WHEAT).getDefaultState(), 3);
 							flag = true;
 						}
-						else if (itemstack.getItem() == Items.POTATO)
+						else if (itemstack.getItem() == Items.getItem(Items.POTATO))
 						{
-							world.setBlockState(blockpos, Blocks.POTATOES.getDefaultState(), 3);
+							world.setBlockState(blockpos, Blocks.getBlock(Blocks.POTATOES).getDefaultState(), 3);
 							flag = true;
 						}
-						else if (itemstack.getItem() == Items.CARROT)
+						else if (itemstack.getItem() == Items.getItem(Items.CARROT))
 						{
-							world.setBlockState(blockpos, Blocks.CARROTS.getDefaultState(), 3);
+							world.setBlockState(blockpos, Blocks.getBlock(Blocks.CARROTS).getDefaultState(), 3);
 							flag = true;
 						}
-						else if (itemstack.getItem() == Items.BEETROOT_SEEDS)
+						else if (itemstack.getItem() == Items.getItem(Items.BEETROOT_SEEDS))
 						{
-							world.setBlockState(blockpos, Blocks.BEETROOTS.getDefaultState(), 3);
+							world.setBlockState(blockpos, Blocks.getBlock(Blocks.BEETROOTS).getDefaultState(), 3);
 							flag = true;
 						}
 					}
@@ -136,7 +136,7 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
 	{
 		Block block = worldIn.getBlockState(pos).getBlock();
 
-		if (block == Blocks.FARMLAND)
+		if (block == Blocks.getBlock(Blocks.FARMLAND))
 		{
 			pos = pos.up();
 			IBlockState iblockstate = worldIn.getBlockState(pos);

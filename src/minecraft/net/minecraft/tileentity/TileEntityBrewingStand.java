@@ -103,7 +103,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	{
 		ItemStack itemstack = this.brewingItemStacks.get(4);
 
-		if (this.fuel <= 0 && itemstack.getItem() == Items.BLAZE_POWDER)
+		if (this.fuel <= 0 && itemstack.getItem() == Items.getItem(Items.BLAZE_POWDER))
 		{
 			this.fuel = 20;
 			itemstack.decreaseStackSize(1);
@@ -376,11 +376,11 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 
 			if (index == 4)
 			{
-				return item == Items.BLAZE_POWDER;
+				return item == Items.getItem(Items.BLAZE_POWDER);
 			}
 			else
 			{
-				return (item == Items.POTIONITEM || item == Items.SPLASH_POTION || item == Items.LINGERING_POTION || item == Items.GLASS_BOTTLE) && this.getStackInSlot(index).isNotValid();
+				return (item == Items.getItem(Items.POTIONITEM) || item == Items.getItem(Items.SPLASH_POTION) || item == Items.getItem(Items.LINGERING_POTION) || item == Items.getItem(Items.GLASS_BOTTLE)) && this.getStackInSlot(index).isNotValid();
 			}
 		}
 	}
@@ -417,7 +417,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	{
 		if (index == 3)
 		{
-			return stack.getItem() == Items.GLASS_BOTTLE;
+			return stack.getItem() == Items.getItem(Items.GLASS_BOTTLE);
 		}
 		else
 		{

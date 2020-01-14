@@ -56,23 +56,23 @@ public enum ArmorMaterial implements IArmorMaterial
 	{
 		if (this == LEATHER)
 		{
-			return Items.LEATHER;
+			return Items.getItem(Items.LEATHER);
 		}
 		else if (this == CHAIN)
 		{
-			return Items.OLD_IRON_INGOT;
+			return Items.getItem(Items.OLD_IRON_INGOT);
 		}
 		else if (this == GOLD)
 		{
-			return Items.OLD_GOLD_INGOT;
+			return Items.getItem(Items.OLD_GOLD_INGOT);
 		}
 		else if (this == IRON)
 		{
-			return Items.OLD_IRON_INGOT;
+			return Items.getItem(Items.OLD_IRON_INGOT);
 		}
 		else
 		{
-			return this == DIAMOND ? Items.OLD_DIAMOND : null;
+			return this == DIAMOND ? Items.getItem(Items.OLD_DIAMOND) : null;
 		}
 	}
 

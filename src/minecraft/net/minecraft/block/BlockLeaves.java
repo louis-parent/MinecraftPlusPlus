@@ -101,7 +101,7 @@ public abstract class BlockLeaves extends Block
 								IBlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2));
 								Block block = iblockstate.getBlock();
 
-								if (block != Blocks.LOG && block != Blocks.LOG2)
+								if (block != Blocks.getBlock(Blocks.LOG) && block != Blocks.getBlock(Blocks.LOG2))
 								{
 									if (iblockstate.getMaterial() == Material.LEAVES)
 									{
@@ -213,7 +213,7 @@ public abstract class BlockLeaves extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(Blocks.SAPLING);
+		return Item.getItemFromBlock(Blocks.getBlock(Blocks.SAPLING));
 	}
 
 	/**

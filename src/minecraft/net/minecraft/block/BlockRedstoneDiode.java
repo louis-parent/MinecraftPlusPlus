@@ -185,7 +185,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 		else
 		{
 			IBlockState iblockstate = worldIn.getBlockState(blockpos);
-			return Math.max(i, iblockstate.getBlock() == Blocks.REDSTONE_WIRE ? iblockstate.getValue(BlockRedstoneWire.POWER).intValue() : 0);
+			return Math.max(i, iblockstate.getBlock() == Blocks.getBlock(Blocks.REDSTONE_WIRE) ? iblockstate.getValue(BlockRedstoneWire.POWER).intValue() : 0);
 		}
 	}
 
@@ -204,13 +204,13 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 
 		if (this.isAlternateInput(iblockstate))
 		{
-			if (block == Blocks.REDSTONE_BLOCK)
+			if (block == Blocks.getBlock(Blocks.REDSTONE_BLOCK))
 			{
 				return 15;
 			}
 			else
 			{
-				return block == Blocks.REDSTONE_WIRE ? iblockstate.getValue(BlockRedstoneWire.POWER).intValue() : worldIn.getStrongPower(pos, side);
+				return block == Blocks.getBlock(Blocks.REDSTONE_WIRE) ? iblockstate.getValue(BlockRedstoneWire.POWER).intValue() : worldIn.getStrongPower(pos, side);
 			}
 		}
 		else
@@ -309,7 +309,7 @@ public abstract class BlockRedstoneDiode extends BlockHorizontal
 
 	public static boolean isDiode(IBlockState state)
 	{
-		return Blocks.UNPOWERED_REPEATER.isSameDiode(state) || Blocks.UNPOWERED_COMPARATOR.isSameDiode(state);
+		return ((BlockRedstoneDiode) Blocks.getBlock(Blocks.UNPOWERED_REPEATER)).isSameDiode(state) || ((BlockRedstoneDiode) Blocks.getBlock(Blocks.UNPOWERED_COMPARATOR)).isSameDiode(state);
 	}
 
 	public boolean isSameDiode(IBlockState state)

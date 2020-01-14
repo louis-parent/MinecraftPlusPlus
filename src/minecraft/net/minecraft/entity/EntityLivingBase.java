@@ -608,7 +608,7 @@ public abstract class EntityLivingBase extends Entity
 			{
 				soundevent = ((ItemArmor) item).getArmorMaterial().getSoundEvent();
 			}
-			else if (item == Items.ELYTRA)
+			else if (item == Items.getItem(Items.ELYTRA))
 			{
 				soundevent = SoundEvents.field_191258_p;
 			}
@@ -1224,7 +1224,7 @@ public abstract class EntityLivingBase extends Entity
 			{
 				ItemStack itemstack1 = this.getHeldItem(enumhand);
 
-				if (itemstack1.getItem() == Items.TOTEM)
+				if (itemstack1.getItem() == Items.getItem(Items.TOTEM))
 				{
 					itemstack = itemstack1.copy();
 					itemstack1.decreaseStackSize(1);
@@ -1237,7 +1237,7 @@ public abstract class EntityLivingBase extends Entity
 				if (this instanceof EntityPlayerMP)
 				{
 					EntityPlayerMP entityplayermp = (EntityPlayerMP) this;
-					entityplayermp.addStat(StatList.getObjectUseStats(Items.TOTEM));
+					entityplayermp.addStat(StatList.getObjectUseStats(Items.getItem(Items.TOTEM)));
 					CriteriaTriggers.field_193130_A.func_193187_a(entityplayermp, itemstack);
 				}
 
@@ -1465,7 +1465,7 @@ public abstract class EntityLivingBase extends Entity
 			IBlockState iblockstate = this.world.getBlockState(blockpos);
 			Block block = iblockstate.getBlock();
 
-			if (block != Blocks.LADDER && block != Blocks.VINE)
+			if (block != Blocks.getBlock(Blocks.LADDER) && block != Blocks.getBlock(Blocks.VINE))
 			{
 				return block instanceof BlockTrapDoor && this.canGoThroughtTrapDoorOnLadder(blockpos, iblockstate);
 			}
@@ -1482,7 +1482,7 @@ public abstract class EntityLivingBase extends Entity
 		{
 			IBlockState iblockstate = this.world.getBlockState(pos.down());
 
-			if (iblockstate.getBlock() == Blocks.LADDER && iblockstate.getValue(BlockLadder.FACING) == state.getValue(BlockTrapDoor.FACING))
+			if (iblockstate.getBlock() == Blocks.getBlock(Blocks.LADDER) && iblockstate.getValue(BlockLadder.FACING) == state.getValue(BlockTrapDoor.FACING))
 			{
 				return true;
 			}
@@ -2676,7 +2676,7 @@ public abstract class EntityLivingBase extends Entity
 		{
 			ItemStack itemstack = this.getItemStackFromSlot(EntityArmorSlot.CHEST);
 
-			if (itemstack.getItem() == Items.ELYTRA && ItemElytra.isBroken(itemstack))
+			if (itemstack.getItem() == Items.getItem(Items.ELYTRA) && ItemElytra.isBroken(itemstack))
 			{
 				flag = true;
 

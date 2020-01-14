@@ -16,9 +16,6 @@ import net.minecraft.world.World;
 
 public class WorldGenSwamp extends WorldGenAbstractTree
 {
-	private static final IBlockState TRUNK = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-	private static final IBlockState LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockOldLeaf.CHECK_DECAY, Boolean.valueOf(false));
-
 	public WorldGenSwamp()
 	{
 		super(false);
@@ -65,7 +62,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 
 							if (iblockstate.getMaterial() != Material.AIR && iblockstate.getMaterial() != Material.LEAVES)
 							{
-								if (block != Blocks.WATER && block != Blocks.FLOWING_WATER)
+								if (block != Blocks.getBlock(Blocks.WATER) && block != Blocks.getBlock(Blocks.FLOWING_WATER))
 								{
 									flag = false;
 								}
@@ -91,7 +88,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 			{
 				Block block1 = worldIn.getBlockState(position.down()).getBlock();
 
-				if ((block1 == Blocks.GRASS || block1 == Blocks.DIRT) && position.getY() < 256 - i - 1)
+				if ((block1 == Blocks.getBlock(Blocks.GRASS) || block1 == Blocks.getBlock(Blocks.DIRT)) && position.getY() < 256 - i - 1)
 				{
 					this.setDirtAt(worldIn, position.down());
 
@@ -114,7 +111,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 
 									if (!worldIn.getBlockState(blockpos).isFullBlock())
 									{
-										this.setBlockAndNotifyAdequately(worldIn, blockpos, LEAF);
+										this.setBlockAndNotifyAdequately(worldIn, blockpos, getLeaf());
 									}
 								}
 							}
@@ -126,9 +123,9 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 						IBlockState iblockstate1 = worldIn.getBlockState(position.up(l1));
 						Block block2 = iblockstate1.getBlock();
 
-						if (iblockstate1.getMaterial() == Material.AIR || iblockstate1.getMaterial() == Material.LEAVES || block2 == Blocks.FLOWING_WATER || block2 == Blocks.WATER)
+						if (iblockstate1.getMaterial() == Material.AIR || iblockstate1.getMaterial() == Material.LEAVES || block2 == Blocks.getBlock(Blocks.FLOWING_WATER) || block2 == Blocks.getBlock(Blocks.WATER))
 						{
-							this.setBlockAndNotifyAdequately(worldIn, position.up(l1), TRUNK);
+							this.setBlockAndNotifyAdequately(worldIn, position.up(l1), getTrunk());
 						}
 					}
 
@@ -191,7 +188,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 
 	private void addVine(World worldIn, BlockPos pos, PropertyBool prop)
 	{
-		IBlockState iblockstate = Blocks.VINE.getDefaultState().withProperty(prop, Boolean.valueOf(true));
+		IBlockState iblockstate = Blocks.getBlock(Blocks.VINE).getDefaultState().withProperty(prop, Boolean.valueOf(true));
 		this.setBlockAndNotifyAdequately(worldIn, pos, iblockstate);
 		int i = 4;
 
@@ -200,5 +197,15 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 			this.setBlockAndNotifyAdequately(worldIn, blockpos, iblockstate);
 			blockpos = blockpos.down();
 		}
+	}
+
+	public static IBlockState getTrunk()
+	{
+		return Blocks.getBlock(Blocks.LOG).getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
+	}
+
+	public static IBlockState getLeaf()
+	{
+		return Blocks.getBlock(Blocks.LEAVES).getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockOldLeaf.CHECK_DECAY, Boolean.valueOf(false));
 	}
 }

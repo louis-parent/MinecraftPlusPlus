@@ -42,7 +42,7 @@ public class BlockEndGateway extends BlockContainer
 	{
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 		Block block = iblockstate.getBlock();
-		return !iblockstate.isOpaqueCube() && block != Blocks.END_GATEWAY;
+		return !iblockstate.isOpaqueCube() && block != Blocks.getBlock(Blocks.END_GATEWAY);
 	}
 
 	@Override

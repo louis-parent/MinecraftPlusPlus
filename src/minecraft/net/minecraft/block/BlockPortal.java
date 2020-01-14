@@ -156,7 +156,7 @@ public class BlockPortal extends BlockBreakable
 
 			if (!blockportal$size.isValid() || blockportal$size.portalBlockCount < blockportal$size.width * blockportal$size.height)
 			{
-				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos, Blocks.getBlock(Blocks.AIR).getDefaultState());
 			}
 		}
 		else if (enumfacing$axis == EnumFacing.Axis.Z)
@@ -165,7 +165,7 @@ public class BlockPortal extends BlockBreakable
 
 			if (!blockportal$size1.isValid() || blockportal$size1.portalBlockCount < blockportal$size1.width * blockportal$size1.height)
 			{
-				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+				worldIn.setBlockState(pos, Blocks.getBlock(Blocks.AIR).getDefaultState());
 			}
 		}
 	}
@@ -459,14 +459,14 @@ public class BlockPortal extends BlockBreakable
 			{
 				BlockPos blockpos = p_180120_1_.offset(p_180120_2_, i);
 
-				if (!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != Blocks.OBSIDIAN)
+				if (!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != Blocks.getBlock(Blocks.OBSIDIAN))
 				{
 					break;
 				}
 			}
 
 			Block block = this.world.getBlockState(p_180120_1_.offset(p_180120_2_, i)).getBlock();
-			return block == Blocks.OBSIDIAN ? i : 0;
+			return block == Blocks.getBlock(Blocks.OBSIDIAN) ? i : 0;
 		}
 
 		public int getHeight()
@@ -495,7 +495,7 @@ public class BlockPortal extends BlockBreakable
 						break label56;
 					}
 
-					if (block == Blocks.PORTAL)
+					if (block == Blocks.getBlock(Blocks.PORTAL))
 					{
 						++this.portalBlockCount;
 					}
@@ -504,7 +504,7 @@ public class BlockPortal extends BlockBreakable
 					{
 						block = this.world.getBlockState(blockpos.offset(this.leftDir)).getBlock();
 
-						if (block != Blocks.OBSIDIAN)
+						if (block != Blocks.getBlock(Blocks.OBSIDIAN))
 						{
 							break label56;
 						}
@@ -513,7 +513,7 @@ public class BlockPortal extends BlockBreakable
 					{
 						block = this.world.getBlockState(blockpos.offset(this.rightDir)).getBlock();
 
-						if (block != Blocks.OBSIDIAN)
+						if (block != Blocks.getBlock(Blocks.OBSIDIAN))
 						{
 							break label56;
 						}
@@ -523,7 +523,7 @@ public class BlockPortal extends BlockBreakable
 
 			for (int j = 0; j < this.width; ++j)
 			{
-				if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != Blocks.OBSIDIAN)
+				if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != Blocks.getBlock(Blocks.OBSIDIAN))
 				{
 					this.height = 0;
 					break;
@@ -545,7 +545,7 @@ public class BlockPortal extends BlockBreakable
 
 		protected boolean isEmptyBlock(Block blockIn)
 		{
-			return blockIn.blockMaterial == Material.AIR || blockIn == Blocks.FIRE || blockIn == Blocks.PORTAL;
+			return blockIn.blockMaterial == Material.AIR || blockIn == Blocks.getBlock(Blocks.FIRE) || blockIn == Blocks.getBlock(Blocks.PORTAL);
 		}
 
 		public boolean isValid()
@@ -561,7 +561,7 @@ public class BlockPortal extends BlockBreakable
 
 				for (int j = 0; j < this.height; ++j)
 				{
-					this.world.setBlockState(blockpos.up(j), Blocks.PORTAL.getDefaultState().withProperty(BlockPortal.AXIS, this.axis), 2);
+					this.world.setBlockState(blockpos.up(j), Blocks.getBlock(Blocks.PORTAL).getDefaultState().withProperty(BlockPortal.AXIS, this.axis), 2);
 				}
 			}
 		}

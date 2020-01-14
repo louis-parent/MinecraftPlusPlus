@@ -23,7 +23,7 @@ public class TileEntityEnderChest extends TileEntity implements ITickable
 	{
 		if (++this.ticksSinceSync % 20 * 4 == 0)
 		{
-			this.world.addBlockEvent(this.pos, Blocks.ENDER_CHEST, 1, this.numPlayersUsing);
+			this.world.addBlockEvent(this.pos, Blocks.getBlock(Blocks.ENDER_CHEST), 1, this.numPlayersUsing);
 		}
 
 		this.prevLidAngle = this.lidAngle;
@@ -100,13 +100,13 @@ public class TileEntityEnderChest extends TileEntity implements ITickable
 	public void openChest()
 	{
 		++this.numPlayersUsing;
-		this.world.addBlockEvent(this.pos, Blocks.ENDER_CHEST, 1, this.numPlayersUsing);
+		this.world.addBlockEvent(this.pos, Blocks.getBlock(Blocks.ENDER_CHEST), 1, this.numPlayersUsing);
 	}
 
 	public void closeChest()
 	{
 		--this.numPlayersUsing;
-		this.world.addBlockEvent(this.pos, Blocks.ENDER_CHEST, 1, this.numPlayersUsing);
+		this.world.addBlockEvent(this.pos, Blocks.getBlock(Blocks.ENDER_CHEST), 1, this.numPlayersUsing);
 	}
 
 	public boolean canBeUsed(EntityPlayer player)

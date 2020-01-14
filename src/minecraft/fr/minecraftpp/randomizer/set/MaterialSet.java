@@ -74,8 +74,8 @@ public class MaterialSet extends SimpleSet
 	{
 		super.setupIron();
 		this.material.setHarvestLevel(HarvestLevel.IRON);
-		this.tools.setVariant(Items.IRON_SWORD, Items.IRON_PICKAXE, Items.IRON_AXE, Items.IRON_SHOVEL, Items.IRON_HOE);
-		this.armors.setVariant(Items.IRON_HELMET, Items.IRON_CHESTPLATE, Items.IRON_LEGGINGS, Items.IRON_BOOTS);
+		this.tools.setVariant(Items.getItem(Items.IRON_SWORD), Items.getItem(Items.IRON_PICKAXE), Items.getItem(Items.IRON_AXE), Items.getItem(Items.IRON_SHOVEL), Items.getItem(Items.IRON_HOE));
+		this.armors.setVariant(Items.getItem(Items.IRON_HELMET), Items.getItem(Items.IRON_CHESTPLATE), Items.getItem(Items.IRON_LEGGINGS), Items.getItem(Items.IRON_BOOTS));
 	}
 	
 	@Override
@@ -83,8 +83,8 @@ public class MaterialSet extends SimpleSet
 	{
 		super.setupGold();
 		this.material.setHarvestLevel(HarvestLevel.IRON);
-		this.tools.setVariant(Items.GOLDEN_SWORD, Items.GOLDEN_PICKAXE, Items.GOLDEN_AXE, Items.GOLDEN_SHOVEL, Items.GOLDEN_HOE);
-		this.armors.setVariant(Items.GOLDEN_HELMET, Items.GOLDEN_CHESTPLATE, Items.GOLDEN_LEGGINGS, Items.GOLDEN_BOOTS);
+		this.tools.setVariant(Items.getItem(Items.GOLDEN_SWORD), Items.getItem(Items.GOLDEN_PICKAXE), Items.getItem(Items.GOLDEN_AXE), Items.getItem(Items.GOLDEN_SHOVEL), Items.getItem(Items.GOLDEN_HOE));
+		this.armors.setVariant(Items.getItem(Items.GOLDEN_HELMET), Items.getItem(Items.GOLDEN_CHESTPLATE), Items.getItem(Items.GOLDEN_LEGGINGS), Items.getItem(Items.GOLDEN_BOOTS));
 	}
 	
 	@Override
@@ -92,8 +92,8 @@ public class MaterialSet extends SimpleSet
 	{
 		super.setupDiamond();
 		this.material.setHarvestLevel(HarvestLevel.DIAMOND);
-		this.tools.setVariant(Items.DIAMOND_SWORD, Items.DIAMOND_PICKAXE, Items.DIAMOND_AXE, Items.DIAMOND_SHOVEL, Items.DIAMOND_HOE);
-		this.armors.setVariant(Items.DIAMOND_HELMET, Items.DIAMOND_CHESTPLATE, Items.DIAMOND_LEGGINGS, Items.DIAMOND_BOOTS);
+		this.tools.setVariant(Items.getItem(Items.DIAMOND_SWORD), Items.getItem(Items.DIAMOND_PICKAXE), Items.getItem(Items.DIAMOND_AXE), Items.getItem(Items.DIAMOND_SHOVEL), Items.getItem(Items.DIAMOND_HOE));
+		this.armors.setVariant(Items.getItem(Items.DIAMOND_HELMET), Items.getItem(Items.DIAMOND_CHESTPLATE), Items.getItem(Items.DIAMOND_LEGGINGS), Items.getItem(Items.DIAMOND_BOOTS));
 	}
 
 	/*

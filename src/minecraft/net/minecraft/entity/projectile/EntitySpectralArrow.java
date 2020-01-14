@@ -46,7 +46,7 @@ public class EntitySpectralArrow extends EntityArrow
 	@Override
 	protected ItemStack getArrowStack()
 	{
-		return new ItemStack(Items.SPECTRAL_ARROW);
+		return new ItemStack(Items.getItem(Items.SPECTRAL_ARROW));
 	}
 
 	@Override

@@ -11,8 +11,8 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public class MapGenRavine extends MapGenBase
 {
-	protected static final IBlockState FLOWING_LAVA = Blocks.FLOWING_LAVA.getDefaultState();
-	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
+	protected static final IBlockState FLOWING_LAVA = Blocks.getBlock(Blocks.FLOWING_LAVA).getDefaultState();
+	protected static final IBlockState AIR = Blocks.getBlock(Blocks.AIR).getDefaultState();
 	private final float[] rs = new float[1024];
 
 	protected void addTunnel(long p_180707_1_, int p_180707_3_, int p_180707_4_, ChunkPrimer p_180707_5_, double p_180707_6_, double p_180707_8_, double p_180707_10_, float p_180707_12_, float p_180707_13_, float p_180707_14_, int p_180707_15_, int p_180707_16_, double p_180707_17_)
@@ -131,7 +131,7 @@ public class MapGenRavine extends MapGenBase
 								{
 									IBlockState iblockstate = p_180707_5_.getBlockState(j1, l1, k1);
 
-									if (iblockstate.getBlock() == Blocks.FLOWING_WATER || iblockstate.getBlock() == Blocks.WATER)
+									if (iblockstate.getBlock() == Blocks.getBlock(Blocks.FLOWING_WATER) || iblockstate.getBlock() == Blocks.getBlock(Blocks.WATER))
 									{
 										flag2 = true;
 									}
@@ -168,12 +168,12 @@ public class MapGenRavine extends MapGenBase
 										{
 											IBlockState iblockstate1 = p_180707_5_.getBlockState(j3, j2, i2);
 
-											if (iblockstate1.getBlock() == Blocks.GRASS)
+											if (iblockstate1.getBlock() == Blocks.getBlock(Blocks.GRASS))
 											{
 												flag = true;
 											}
 
-											if (iblockstate1.getBlock() == Blocks.STONE || iblockstate1.getBlock() == Blocks.DIRT || iblockstate1.getBlock() == Blocks.GRASS)
+											if (iblockstate1.getBlock() == Blocks.getBlock(Blocks.STONE) || iblockstate1.getBlock() == Blocks.getBlock(Blocks.DIRT) || iblockstate1.getBlock() == Blocks.getBlock(Blocks.GRASS))
 											{
 												if (j2 - 1 < 10)
 												{
@@ -183,10 +183,10 @@ public class MapGenRavine extends MapGenBase
 												{
 													p_180707_5_.setBlockState(j3, j2, i2, AIR);
 
-													if (flag && p_180707_5_.getBlockState(j3, j2 - 1, i2).getBlock() == Blocks.DIRT)
+													if (flag && p_180707_5_.getBlockState(j3, j2 - 1, i2).getBlock() == Blocks.getBlock(Blocks.DIRT))
 													{
 														blockpos$mutableblockpos.setPos(j3 + p_180707_3_ * 16, 0, i2 + p_180707_4_ * 16);
-														p_180707_5_.setBlockState(j3, j2 - 1, i2, this.worldObj.getBiome(blockpos$mutableblockpos).topBlock);
+														p_180707_5_.setBlockState(j3, j2 - 1, i2, this.worldObj.getBiome(blockpos$mutableblockpos).getTopBlock());
 													}
 												}
 											}

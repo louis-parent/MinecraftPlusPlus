@@ -14,10 +14,10 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public class MapGenCaves extends MapGenBase
 {
-	protected static final IBlockState BLK_LAVA = Blocks.LAVA.getDefaultState();
-	protected static final IBlockState BLK_AIR = Blocks.AIR.getDefaultState();
-	protected static final IBlockState BLK_SANDSTONE = Blocks.SANDSTONE.getDefaultState();
-	protected static final IBlockState BLK_RED_SANDSTONE = Blocks.RED_SANDSTONE.getDefaultState();
+	protected static final IBlockState BLK_LAVA = Blocks.getBlock(Blocks.LAVA).getDefaultState();
+	protected static final IBlockState BLK_AIR = Blocks.getBlock(Blocks.AIR).getDefaultState();
+	protected static final IBlockState BLK_SANDSTONE = Blocks.getBlock(Blocks.SANDSTONE).getDefaultState();
+	protected static final IBlockState BLK_RED_SANDSTONE = Blocks.getBlock(Blocks.RED_SANDSTONE).getDefaultState();
 
 	protected void addRoom(long p_180703_1_, int p_180703_3_, int p_180703_4_, ChunkPrimer p_180703_5_, double p_180703_6_, double p_180703_8_, double p_180703_10_)
 	{
@@ -144,7 +144,7 @@ public class MapGenCaves extends MapGenBase
 								{
 									IBlockState iblockstate = p_180702_5_.getBlockState(j1, l1, k1);
 
-									if (iblockstate.getBlock() == Blocks.FLOWING_WATER || iblockstate.getBlock() == Blocks.WATER)
+									if (iblockstate.getBlock() == Blocks.getBlock(Blocks.FLOWING_WATER) || iblockstate.getBlock() == Blocks.getBlock(Blocks.WATER))
 									{
 										flag3 = true;
 									}
@@ -182,7 +182,7 @@ public class MapGenCaves extends MapGenBase
 											IBlockState iblockstate1 = p_180702_5_.getBlockState(j3, j2, i2);
 											IBlockState iblockstate2 = MoreObjects.firstNonNull(p_180702_5_.getBlockState(j3, j2 + 1, i2), BLK_AIR);
 
-											if (iblockstate1.getBlock() == Blocks.GRASS || iblockstate1.getBlock() == Blocks.MYCELIUM)
+											if (iblockstate1.getBlock() == Blocks.getBlock(Blocks.GRASS) || iblockstate1.getBlock() == Blocks.getBlock(Blocks.MYCELIUM))
 											{
 												flag1 = true;
 											}
@@ -197,10 +197,10 @@ public class MapGenCaves extends MapGenBase
 												{
 													p_180702_5_.setBlockState(j3, j2, i2, BLK_AIR);
 
-													if (flag1 && p_180702_5_.getBlockState(j3, j2 - 1, i2).getBlock() == Blocks.DIRT)
+													if (flag1 && p_180702_5_.getBlockState(j3, j2 - 1, i2).getBlock() == Blocks.getBlock(Blocks.DIRT))
 													{
 														blockpos$mutableblockpos.setPos(j3 + p_180702_3_ * 16, 0, i2 + p_180702_4_ * 16);
-														p_180702_5_.setBlockState(j3, j2 - 1, i2, this.worldObj.getBiome(blockpos$mutableblockpos).topBlock.getBlock().getDefaultState());
+														p_180702_5_.setBlockState(j3, j2 - 1, i2, this.worldObj.getBiome(blockpos$mutableblockpos).getTopBlock().getBlock().getDefaultState());
 													}
 												}
 											}
@@ -222,45 +222,45 @@ public class MapGenCaves extends MapGenBase
 
 	protected boolean canReplaceBlock(IBlockState p_175793_1_, IBlockState p_175793_2_)
 	{
-		if (p_175793_1_.getBlock() == Blocks.STONE)
+		if (p_175793_1_.getBlock() == Blocks.getBlock(Blocks.STONE))
 		{
 			return true;
 		}
-		else if (p_175793_1_.getBlock() == Blocks.DIRT)
+		else if (p_175793_1_.getBlock() == Blocks.getBlock(Blocks.DIRT))
 		{
 			return true;
 		}
-		else if (p_175793_1_.getBlock() == Blocks.GRASS)
+		else if (p_175793_1_.getBlock() == Blocks.getBlock(Blocks.GRASS))
 		{
 			return true;
 		}
-		else if (p_175793_1_.getBlock() == Blocks.HARDENED_CLAY)
+		else if (p_175793_1_.getBlock() == Blocks.getBlock(Blocks.HARDENED_CLAY))
 		{
 			return true;
 		}
-		else if (p_175793_1_.getBlock() == Blocks.STAINED_HARDENED_CLAY)
+		else if (p_175793_1_.getBlock() == Blocks.getBlock(Blocks.STAINED_HARDENED_CLAY))
 		{
 			return true;
 		}
-		else if (p_175793_1_.getBlock() == Blocks.SANDSTONE)
+		else if (p_175793_1_.getBlock() == Blocks.getBlock(Blocks.SANDSTONE))
 		{
 			return true;
 		}
-		else if (p_175793_1_.getBlock() == Blocks.RED_SANDSTONE)
+		else if (p_175793_1_.getBlock() == Blocks.getBlock(Blocks.RED_SANDSTONE))
 		{
 			return true;
 		}
-		else if (p_175793_1_.getBlock() == Blocks.MYCELIUM)
+		else if (p_175793_1_.getBlock() == Blocks.getBlock(Blocks.MYCELIUM))
 		{
 			return true;
 		}
-		else if (p_175793_1_.getBlock() == Blocks.SNOW_LAYER)
+		else if (p_175793_1_.getBlock() == Blocks.getBlock(Blocks.SNOW_LAYER))
 		{
 			return true;
 		}
 		else
 		{
-			return (p_175793_1_.getBlock() == Blocks.SAND || p_175793_1_.getBlock() == Blocks.GRAVEL) && p_175793_2_.getMaterial() != Material.WATER;
+			return (p_175793_1_.getBlock() == Blocks.getBlock(Blocks.SAND) || p_175793_1_.getBlock() == Blocks.getBlock(Blocks.GRAVEL)) && p_175793_2_.getMaterial() != Material.WATER;
 		}
 	}
 

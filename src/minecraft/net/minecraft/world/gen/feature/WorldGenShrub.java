@@ -31,7 +31,7 @@ public class WorldGenShrub extends WorldGenTrees
 
 		Block block = worldIn.getBlockState(position).getBlock();
 
-		if (block == Blocks.DIRT || block == Blocks.GRASS)
+		if (block == Blocks.getBlock(Blocks.DIRT) || block == Blocks.getBlock(Blocks.GRASS))
 		{
 			position = position.up();
 			this.setBlockAndNotifyAdequately(worldIn, position, this.woodMetadata);

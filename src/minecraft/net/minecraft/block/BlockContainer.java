@@ -80,7 +80,7 @@ public abstract class BlockContainer extends Block implements ITileEntityProvide
 			int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack);
 			Item item = this.getItemDropped(state, worldIn.rand, i);
 
-			if (item == Items.EMPTY_ITEM)
+			if (item == Items.getItem(Items.AIR))
 			{
 				return;
 			}

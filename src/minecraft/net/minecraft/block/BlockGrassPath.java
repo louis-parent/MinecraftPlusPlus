@@ -38,7 +38,7 @@ public class BlockGrassPath extends Block
 			case EAST:
 				IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 				Block block = iblockstate.getBlock();
-				return !iblockstate.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH;
+				return !iblockstate.isOpaqueCube() && block != Blocks.getBlock(Blocks.FARMLAND) && block != Blocks.getBlock(Blocks.GRASS_PATH);
 
 			default:
 				return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
@@ -60,7 +60,7 @@ public class BlockGrassPath extends Block
 	{
 		if (p_190971_1_.getBlockState(p_190971_2_.up()).getMaterial().isSolid())
 		{
-			p_190971_1_.setBlockState(p_190971_2_, Blocks.DIRT.getDefaultState());
+			p_190971_1_.setBlockState(p_190971_2_, Blocks.getBlock(Blocks.DIRT).getDefaultState());
 		}
 	}
 
@@ -92,7 +92,7 @@ public class BlockGrassPath extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Blocks.DIRT.getItemDropped(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
+		return Blocks.getBlock(Blocks.DIRT).getItemDropped(Blocks.getBlock(Blocks.DIRT).getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
 	}
 
 	@Override

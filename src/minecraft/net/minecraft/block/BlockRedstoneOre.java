@@ -75,18 +75,18 @@ public class BlockRedstoneOre extends BlockOre
 	{
 		this.spawnParticles(worldIn, pos);
 
-		if (this == Blocks.REDSTONE_ORE)
+		if (this == Blocks.getBlock(Blocks.REDSTONE_ORE))
 		{
-			worldIn.setBlockState(pos, Blocks.LIT_REDSTONE_ORE.getDefaultState());
+			worldIn.setBlockState(pos, Blocks.getBlock(Blocks.LIT_REDSTONE_ORE).getDefaultState());
 		}
 	}
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
-		if (this == Blocks.LIT_REDSTONE_ORE)
+		if (this == Blocks.getBlock(Blocks.LIT_REDSTONE_ORE))
 		{
-			worldIn.setBlockState(pos, Blocks.REDSTONE_ORE.getDefaultState());
+			worldIn.setBlockState(pos, Blocks.getBlock(Blocks.REDSTONE_ORE).getDefaultState());
 		}
 	}
 
@@ -96,7 +96,7 @@ public class BlockRedstoneOre extends BlockOre
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.REDSTONE;
+		return Items.getItem(Items.REDSTONE);
 	}
 
 	/**
@@ -192,13 +192,13 @@ public class BlockRedstoneOre extends BlockOre
 	@Override
 	protected ItemStack getSilkTouchDrop(IBlockState state)
 	{
-		return new ItemStack(Blocks.REDSTONE_ORE);
+		return new ItemStack(Blocks.getBlock(Blocks.REDSTONE_ORE));
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Item.getItemFromBlock(Blocks.REDSTONE_ORE), 1, this.damageDropped(state));
+		return new ItemStack(Item.getItemFromBlock(Blocks.getBlock(Blocks.REDSTONE_ORE)), 1, this.damageDropped(state));
 	}
 
 	@Override

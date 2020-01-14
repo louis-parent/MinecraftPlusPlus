@@ -66,7 +66,7 @@ public class BlockWorkbench extends Block
 		@Override
 		public ITextComponent getDisplayName()
 		{
-			return new TextComponentTranslation(Blocks.CRAFTING_TABLE.getUnlocalizedName() + ".name", new Object[0]);
+			return new TextComponentTranslation(Blocks.getBlock(Blocks.CRAFTING_TABLE).getUnlocalizedName() + ".name", new Object[0]);
 		}
 
 		@Override

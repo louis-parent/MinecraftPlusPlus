@@ -207,13 +207,13 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 		boolean flag = false;
 		Item item = p_190678_2_.getItem();
 
-		if (item == Items.WHEAT)
+		if (item == Items.getItem(Items.WHEAT))
 		{
 			i = 10;
 			j = 3;
 			f = 2.0F;
 		}
-		else if (item == Item.getItemFromBlock(Blocks.HAY_BLOCK))
+		else if (item == Item.getItemFromBlock(Blocks.getBlock(Blocks.HAY_BLOCK)))
 		{
 			i = 90;
 			j = 6;
@@ -373,7 +373,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
 	@Override
 	public boolean func_190682_f(ItemStack p_190682_1_)
 	{
-		return p_190682_1_.getItem() == Item.getItemFromBlock(Blocks.CARPET);
+		return p_190682_1_.getItem() == Item.getItemFromBlock(Blocks.getBlock(Blocks.CARPET));
 	}
 
 	@Override

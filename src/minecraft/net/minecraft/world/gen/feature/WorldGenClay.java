@@ -10,8 +10,6 @@ import net.minecraft.world.World;
 
 public class WorldGenClay extends WorldGenerator
 {
-	private final Block block = Blocks.CLAY;
-
 	/** The number of blocks to generate. */
 	private final int numberOfBlocks;
 
@@ -46,9 +44,9 @@ public class WorldGenClay extends WorldGenerator
 							BlockPos blockpos = new BlockPos(k, k1, l);
 							Block block = worldIn.getBlockState(blockpos).getBlock();
 
-							if (block == Blocks.DIRT || block == Blocks.CLAY)
+							if (block == Blocks.getBlock(Blocks.DIRT) || block == Blocks.getBlock(Blocks.CLAY))
 							{
-								worldIn.setBlockState(blockpos, this.block.getDefaultState(), 2);
+								worldIn.setBlockState(blockpos, this.getBlock().getDefaultState(), 2);
 							}
 						}
 					}
@@ -57,5 +55,10 @@ public class WorldGenClay extends WorldGenerator
 
 			return true;
 		}
+	}
+
+	public Block getBlock()
+	{
+		return Blocks.getBlock(Blocks.CLAY);
 	}
 }

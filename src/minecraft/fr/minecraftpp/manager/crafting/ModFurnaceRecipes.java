@@ -22,6 +22,8 @@ public class ModFurnaceRecipes
 		{
 			addSmeltingRecipe(furnaceRecipe.getInput(), furnaceRecipe.getOutput(), furnaceRecipe.getExperience());
 		}
+		
+		toAdd.clear();
 	}
 
 	public static void addSmelting(FurnaceRecipe smelting)

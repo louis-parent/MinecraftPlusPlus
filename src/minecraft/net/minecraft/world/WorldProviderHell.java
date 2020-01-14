@@ -15,7 +15,7 @@ public class WorldProviderHell extends WorldProvider
 	@Override
 	public void createBiomeProvider()
 	{
-		this.biomeProvider = new BiomeProviderSingle(Biomes.HELL);
+		this.biomeProvider = new BiomeProviderSingle(Biomes.getBiome(Biomes.HELL));
 		this.isHellWorld = true;
 		this.hasNoSky = true;
 	}

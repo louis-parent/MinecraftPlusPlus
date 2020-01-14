@@ -122,7 +122,7 @@ public abstract class BlockFlower extends BlockBush
 
 		public BlockFlower getBlock()
 		{
-			return this == YELLOW ? Blocks.YELLOW_FLOWER : Blocks.RED_FLOWER;
+			return this == YELLOW ? (BlockFlower) Blocks.getBlock(Blocks.YELLOW_FLOWER) : (BlockFlower) Blocks.getBlock(Blocks.RED_FLOWER);
 		}
 	}
 

@@ -67,7 +67,7 @@ public class BlockPistonStructureHelper
 			{
 				BlockPos blockpos = this.toMove.get(i);
 
-				if (this.world.getBlockState(blockpos).getBlock() == Blocks.SLIME_BLOCK && !this.addBranchingBlocks(blockpos))
+				if (this.world.getBlockState(blockpos).getBlock() == Blocks.getBlock(Blocks.SLIME_BLOCK) && !this.addBranchingBlocks(blockpos))
 				{
 					return false;
 				}
@@ -108,7 +108,7 @@ public class BlockPistonStructureHelper
 			}
 			else
 			{
-				while (block == Blocks.SLIME_BLOCK)
+				while (block == Blocks.getBlock(Blocks.SLIME_BLOCK))
 				{
 					BlockPos blockpos = origin.offset(this.moveDirection.getOpposite(), i);
 					iblockstate = this.world.getBlockState(blockpos);
@@ -150,7 +150,7 @@ public class BlockPistonStructureHelper
 						{
 							BlockPos blockpos2 = this.toMove.get(l);
 
-							if (this.world.getBlockState(blockpos2).getBlock() == Blocks.SLIME_BLOCK && !this.addBranchingBlocks(blockpos2))
+							if (this.world.getBlockState(blockpos2).getBlock() == Blocks.getBlock(Blocks.SLIME_BLOCK) && !this.addBranchingBlocks(blockpos2))
 							{
 								return false;
 							}

@@ -197,7 +197,7 @@ public class EntityEnderEye extends Entity
 
 				if (this.shatterOrDrop)
 				{
-					this.world.spawnEntityInWorld(new EntityItem(this.world, this.posX, this.posY, this.posZ, new ItemStack(Items.ENDER_EYE)));
+					this.world.spawnEntityInWorld(new EntityItem(this.world, this.posX, this.posY, this.posZ, new ItemStack(Items.getItem(Items.ENDER_EYE))));
 				}
 				else
 				{

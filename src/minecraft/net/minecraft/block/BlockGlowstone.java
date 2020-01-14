@@ -44,7 +44,7 @@ public class BlockGlowstone extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.GLOWSTONE_DUST;
+		return Items.getItem(Items.GLOWSTONE_DUST);
 	}
 
 	/**

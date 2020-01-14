@@ -137,7 +137,7 @@ public class CommandClone extends CommandBase
 										BlockPos blockpos5 = blockpos4.add(blockpos3);
 										IBlockState iblockstate = world.getBlockState(blockpos4);
 
-										if ((!flag1 || iblockstate.getBlock() != Blocks.AIR) && (block == null || iblockstate.getBlock() == block && (predicate == null || predicate.apply(iblockstate))))
+										if ((!flag1 || iblockstate.getBlock() != Blocks.getBlock(Blocks.AIR)) && (block == null || iblockstate.getBlock() == block && (predicate == null || predicate.apply(iblockstate))))
 										{
 											TileEntity tileentity = world.getTileEntity(blockpos4);
 
@@ -173,12 +173,12 @@ public class CommandClone extends CommandBase
 										((IInventory) tileentity1).clear();
 									}
 
-									world.setBlockState(blockpos6, Blocks.BARRIER.getDefaultState(), 2);
+									world.setBlockState(blockpos6, Blocks.getBlock(Blocks.BARRIER).getDefaultState(), 2);
 								}
 
 								for (BlockPos blockpos7 : deque)
 								{
-									world.setBlockState(blockpos7, Blocks.AIR.getDefaultState(), 3);
+									world.setBlockState(blockpos7, Blocks.getBlock(Blocks.AIR).getDefaultState(), 3);
 								}
 							}
 
@@ -197,7 +197,7 @@ public class CommandClone extends CommandBase
 									((IInventory) tileentity2).clear();
 								}
 
-								world.setBlockState(commandclone$staticclonedata.pos, Blocks.BARRIER.getDefaultState(), 2);
+								world.setBlockState(commandclone$staticclonedata.pos, Blocks.getBlock(Blocks.BARRIER).getDefaultState(), 2);
 							}
 
 							i = 0;

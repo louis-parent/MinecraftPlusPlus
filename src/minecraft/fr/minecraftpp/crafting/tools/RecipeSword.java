@@ -18,7 +18,7 @@ public class RecipeSword extends RecipeEquipment
 	@Override
 	protected Blueprint getBlueprint()
 	{
-		return new Blueprint(new Item[][] { { this.material }, { this.material }, { Items.STICK } });
+		return new Blueprint(new Item[][] { { this.material }, { this.material }, { Items.getItem(Items.STICK) } });
 	}
 
 }

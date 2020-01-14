@@ -44,7 +44,7 @@ public class BlockSeaLantern extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.PRISMARINE_CRYSTALS;
+		return Items.getItem(Items.PRISMARINE_CRYSTALS);
 	}
 
 	/**

@@ -80,7 +80,7 @@ public class EntityZombieHorse extends AbstractHorse
 		ItemStack itemstack = player.getHeldItem(hand);
 		boolean flag = !itemstack.isNotValid();
 
-		if (flag && itemstack.getItem() == Items.SPAWN_EGG)
+		if (flag && itemstack.getItem() == Items.getItem(Items.SPAWN_EGG))
 		{
 			return super.processInteract(player, hand);
 		}
@@ -105,7 +105,7 @@ public class EntityZombieHorse extends AbstractHorse
 		{
 			if (flag)
 			{
-				if (!this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE)
+				if (!this.isHorseSaddled() && itemstack.getItem() == Items.getItem(Items.SADDLE))
 				{
 					this.openGUI(player);
 					return true;

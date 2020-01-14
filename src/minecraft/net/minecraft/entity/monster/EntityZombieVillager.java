@@ -141,7 +141,7 @@ public class EntityZombieVillager extends EntityZombie
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 
-		if (itemstack.getItem() == Items.GOLDEN_APPLE && itemstack.getMetadata() == 0 && this.isPotionActive(MobEffects.WEAKNESS))
+		if (itemstack.getItem() == Items.getItem(Items.GOLDEN_APPLE) && itemstack.getMetadata() == 0 && this.isPotionActive(MobEffects.WEAKNESS))
 		{
 			if (!player.capabilities.isCreativeMode)
 			{
@@ -259,7 +259,7 @@ public class EntityZombieVillager extends EntityZombie
 					{
 						Block block = this.world.getBlockState(blockpos$mutableblockpos.setPos(k, l, i1)).getBlock();
 
-						if (block == Blocks.IRON_BARS || block == Blocks.BED)
+						if (block == Blocks.getBlock(Blocks.IRON_BARS) || block == Blocks.getBlock(Blocks.BED))
 						{
 							if (this.rand.nextFloat() < 0.3F)
 							{

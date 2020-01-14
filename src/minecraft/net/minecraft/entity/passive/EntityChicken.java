@@ -38,7 +38,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 
 public class EntityChicken extends EntityAnimal
 {
-	private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+	private static Set<Item> temptationItems;
 	public float wingRotation;
 	public float destPos;
 	public float oFlapSpeed;
@@ -63,7 +63,7 @@ public class EntityChicken extends EntityAnimal
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIPanic(this, 1.4D));
 		this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, false, TEMPTATION_ITEMS));
+		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, false, getTemptationItems()));
 		this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
 		this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -115,7 +115,7 @@ public class EntityChicken extends EntityAnimal
 		if (!this.world.isRemote && !this.isChild() && !this.isChickenJockey() && --this.timeUntilNextEgg <= 0)
 		{
 			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-			this.dropItem(Items.EGG, 1);
+			this.dropItem(Items.getItem(Items.EGG), 1);
 			this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
 		}
 	}
@@ -169,7 +169,7 @@ public class EntityChicken extends EntityAnimal
 	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
-		return TEMPTATION_ITEMS.contains(stack.getItem());
+		return getTemptationItems().contains(stack.getItem());
 	}
 
 	/**
@@ -251,5 +251,15 @@ public class EntityChicken extends EntityAnimal
 	public void setChickenJockey(boolean jockey)
 	{
 		this.chickenJockey = jockey;
+	}
+
+	public static Set<Item> getTemptationItems()
+	{
+		if (temptationItems == null)
+		{
+			temptationItems = Sets.newHashSet(Items.getItem(Items.WHEAT_SEEDS), Items.getItem(Items.MELON_SEEDS), Items.getItem(Items.PUMPKIN_SEEDS), Items.getItem(Items.BEETROOT_SEEDS));
+		}
+
+		return temptationItems;
 	}
 }

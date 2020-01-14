@@ -65,7 +65,7 @@ public class EntityOcelot extends EntityTameable
 	protected void initEntityAI()
 	{
 		this.aiSit = new EntityAISit(this);
-		this.aiTempt = new EntityAITempt(this, 0.6D, Items.FISH, true);
+		this.aiTempt = new EntityAITempt(this, 0.6D, Items.getItem(Items.FISH), true);
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.tasks.addTask(2, this.aiSit);
 		this.tasks.addTask(3, this.aiTempt);
@@ -251,7 +251,7 @@ public class EntityOcelot extends EntityTameable
 				this.aiSit.setSitting(!this.isSitting());
 			}
 		}
-		else if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == Items.FISH && player.getDistanceSqToEntity(this) < 9.0D)
+		else if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == Items.getItem(Items.FISH) && player.getDistanceSqToEntity(this) < 9.0D)
 		{
 			if (!player.capabilities.isCreativeMode)
 			{
@@ -303,7 +303,7 @@ public class EntityOcelot extends EntityTameable
 	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
-		return stack.getItem() == Items.FISH;
+		return stack.getItem() == Items.getItem(Items.FISH);
 	}
 
 	/**
@@ -377,7 +377,7 @@ public class EntityOcelot extends EntityTameable
 			IBlockState iblockstate = this.world.getBlockState(blockpos.down());
 			Block block = iblockstate.getBlock();
 
-			if (block == Blocks.GRASS || iblockstate.getMaterial() == Material.LEAVES)
+			if (block == Blocks.getBlock(Blocks.GRASS) || iblockstate.getMaterial() == Material.LEAVES)
 			{
 				return true;
 			}

@@ -169,7 +169,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
 	{
 		for (int i = 0; i < this.leafDistanceLimit; ++i)
 		{
-			this.crosSection(pos.up(i), this.leafSize(i), Blocks.LEAVES.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false)));
+			this.crosSection(pos.up(i), this.leafSize(i), Blocks.getBlock(Blocks.LEAVES).getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false)));
 		}
 	}
 
@@ -259,7 +259,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
 	{
 		BlockPos blockpos = this.basePos;
 		BlockPos blockpos1 = this.basePos.up(this.height);
-		Block block = Blocks.LOG;
+		Block block = Blocks.getBlock(Blocks.LOG);
 		this.limb(blockpos, blockpos1, block);
 
 		if (this.trunkSize == 2)
@@ -283,7 +283,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
 
 			if (!blockpos.equals(worldgenbigtree$foliagecoordinates) && this.leafNodeNeedsBase(i - this.basePos.getY()))
 			{
-				this.limb(blockpos, worldgenbigtree$foliagecoordinates, Blocks.LOG);
+				this.limb(blockpos, worldgenbigtree$foliagecoordinates, Blocks.getBlock(Blocks.LOG));
 			}
 		}
 	}
@@ -361,7 +361,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
 	{
 		Block block = this.world.getBlockState(this.basePos.down()).getBlock();
 
-		if (block != Blocks.DIRT && block != Blocks.GRASS && block != Blocks.FARMLAND)
+		if (block != Blocks.getBlock(Blocks.DIRT) && block != Blocks.getBlock(Blocks.GRASS) && block != Blocks.getBlock(Blocks.FARMLAND))
 		{
 			return false;
 		}

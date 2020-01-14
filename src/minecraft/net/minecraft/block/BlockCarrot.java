@@ -14,13 +14,13 @@ public class BlockCarrot extends BlockCrops
 	@Override
 	protected Item getSeed()
 	{
-		return Items.CARROT;
+		return Items.getItem(Items.CARROT);
 	}
 
 	@Override
 	protected Item getCrop()
 	{
-		return Items.CARROT;
+		return Items.getItem(Items.CARROT);
 	}
 
 	@Override

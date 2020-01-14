@@ -58,7 +58,7 @@ public class WalkNodeProcessor extends NodeProcessor
 			i = (int) this.entity.getEntityBoundingBox().minY;
 			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(MathHelper.floor(this.entity.posX), i, MathHelper.floor(this.entity.posZ));
 
-			for (Block block = this.blockaccess.getBlockState(blockpos$mutableblockpos).getBlock(); block == Blocks.FLOWING_WATER || block == Blocks.WATER; block = this.blockaccess.getBlockState(blockpos$mutableblockpos).getBlock())
+			for (Block block = this.blockaccess.getBlockState(blockpos$mutableblockpos).getBlock(); block == Blocks.getBlock(Blocks.FLOWING_WATER) || block == Blocks.getBlock(Blocks.WATER); block = this.blockaccess.getBlockState(blockpos$mutableblockpos).getBlock())
 			{
 				++i;
 				blockpos$mutableblockpos.setPos(MathHelper.floor(this.entity.posX), i, MathHelper.floor(this.entity.posZ));
@@ -414,7 +414,7 @@ public class WalkNodeProcessor extends NodeProcessor
 			PathNodeType pathnodetype1 = this.getPathNodeTypeRaw(blockaccessIn, x, y - 1, z);
 			pathnodetype = pathnodetype1 != PathNodeType.WALKABLE && pathnodetype1 != PathNodeType.OPEN && pathnodetype1 != PathNodeType.WATER && pathnodetype1 != PathNodeType.LAVA ? PathNodeType.WALKABLE : PathNodeType.OPEN;
 
-			if (pathnodetype1 == PathNodeType.DAMAGE_FIRE || block == Blocks.MAGMA)
+			if (pathnodetype1 == PathNodeType.DAMAGE_FIRE || block == Blocks.getBlock(Blocks.MAGMA))
 			{
 				pathnodetype = PathNodeType.DAMAGE_FIRE;
 			}
@@ -443,11 +443,11 @@ public class WalkNodeProcessor extends NodeProcessor
 					{
 						Block block = p_193578_1_.getBlockState(blockpos$pooledmutableblockpos.setPos(i + p_193578_2_, p_193578_3_, j + p_193578_4_)).getBlock();
 
-						if (block == Blocks.CACTUS)
+						if (block == Blocks.getBlock(Blocks.CACTUS))
 						{
 							p_193578_5_ = PathNodeType.DANGER_CACTUS;
 						}
-						else if (block == Blocks.FIRE)
+						else if (block == Blocks.getBlock(Blocks.FIRE))
 						{
 							p_193578_5_ = PathNodeType.DANGER_FIRE;
 						}
@@ -471,13 +471,13 @@ public class WalkNodeProcessor extends NodeProcessor
 		{
 			return PathNodeType.OPEN;
 		}
-		else if (block != Blocks.TRAPDOOR && block != Blocks.IRON_TRAPDOOR && block != Blocks.WATERLILY)
+		else if (block != Blocks.getBlock(Blocks.TRAPDOOR) && block != Blocks.getBlock(Blocks.IRON_TRAPDOOR) && block != Blocks.getBlock(Blocks.WATERLILY))
 		{
-			if (block == Blocks.FIRE)
+			if (block == Blocks.getBlock(Blocks.FIRE))
 			{
 				return PathNodeType.DAMAGE_FIRE;
 			}
-			else if (block == Blocks.CACTUS)
+			else if (block == Blocks.getBlock(Blocks.CACTUS))
 			{
 				return PathNodeType.DAMAGE_CACTUS;
 			}

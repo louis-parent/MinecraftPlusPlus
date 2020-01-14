@@ -16,6 +16,7 @@ import fr.minecraftpp.manager.ModManager;
 import fr.minecraftpp.variant.Variant;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.Rarity;
 
@@ -29,9 +30,17 @@ public class ArmorSet implements ISet
 	protected DynamicChestplate chestplate;
 	protected DynamicLeggings leggings;
 	protected DynamicBoots boots;
-
-	public ArmorSet()
+	
+	public ArmorSet(ArmorSet set)
 	{
+		this.rng = set.rng;
+		this.name = set.name;
+		this.material = set.material;
+		
+		this.helmet = set.helmet;
+		this.chestplate = set.chestplate;
+		this.leggings = set.leggings;
+		this.boots = set.boots;
 	}
 
 	public ArmorSet(Random rng, String name, IArmorMaterial material)
@@ -98,7 +107,7 @@ public class ArmorSet implements ISet
 	{
 	}
 
-	public void setVariant(ItemArmor helmetVariant, ItemArmor chestplateVariant, ItemArmor leggingsVariant, ItemArmor bootsVariant)
+	public void setVariant(Item helmetVariant, Item chestplateVariant, Item leggingsVariant, Item bootsVariant)
 	{
 		Variant variant = Variant.getInstance();
 		

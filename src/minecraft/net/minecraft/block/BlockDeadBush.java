@@ -49,7 +49,7 @@ public class BlockDeadBush extends BlockBush
 	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
-		return state.getBlock() == Blocks.SAND || state.getBlock() == Blocks.HARDENED_CLAY || state.getBlock() == Blocks.STAINED_HARDENED_CLAY || state.getBlock() == Blocks.DIRT;
+		return state.getBlock() == Blocks.getBlock(Blocks.SAND) || state.getBlock() == Blocks.getBlock(Blocks.HARDENED_CLAY) || state.getBlock() == Blocks.getBlock(Blocks.STAINED_HARDENED_CLAY) || state.getBlock() == Blocks.getBlock(Blocks.DIRT);
 	}
 
 	/**
@@ -77,16 +77,16 @@ public class BlockDeadBush extends BlockBush
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.STICK;
+		return Items.getItem(Items.STICK);
 	}
 
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
-		if (!worldIn.isRemote && stack.getItem() == Items.SHEARS)
+		if (!worldIn.isRemote && stack.getItem() == Items.getItem(Items.SHEARS))
 		{
 			player.addStat(StatList.getBlockStats(this));
-			spawnAsEntity(worldIn, pos, new ItemStack(Blocks.DEADBUSH, 1, 0));
+			spawnAsEntity(worldIn, pos, new ItemStack(Blocks.getBlock(Blocks.DEADBUSH), 1, 0));
 		}
 		else
 		{

@@ -16,18 +16,17 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockFluidRenderer
 {
-	private final BlockColors blockColors;
+	private final Minecraft mc;
 	private final TextureAtlasSprite[] atlasSpritesLava = new TextureAtlasSprite[2];
 	private final TextureAtlasSprite[] atlasSpritesWater = new TextureAtlasSprite[2];
 	private TextureAtlasSprite atlasSpriteWaterOverlay;
 
-	public BlockFluidRenderer(BlockColors blockColorsIn)
+	public BlockFluidRenderer(Minecraft mc)
 	{
-		this.blockColors = blockColorsIn;
-		this.initAtlasSprites();
+		this.mc = mc;
 	}
 
-	protected void initAtlasSprites()
+	public void initAtlasSprites()
 	{
 		TextureMap texturemap = Minecraft.getMinecraft().getTextureMapBlocks();
 		this.atlasSpritesLava[0] = texturemap.getAtlasSprite("minecraft:blocks/lava_still");
@@ -42,7 +41,7 @@ public class BlockFluidRenderer
 		BlockLiquid blockliquid = (BlockLiquid) blockStateIn.getBlock();
 		boolean flag = blockStateIn.getMaterial() == Material.LAVA;
 		TextureAtlasSprite[] atextureatlassprite = flag ? this.atlasSpritesLava : this.atlasSpritesWater;
-		int i = this.blockColors.colorMultiplier(blockStateIn, blockAccess, blockPosIn, 0);
+		int i = this.getBlockColors().colorMultiplier(blockStateIn, blockAccess, blockPosIn, 0);
 		float f = (i >> 16 & 255) / 255.0F;
 		float f1 = (i >> 8 & 255) / 255.0F;
 		float f2 = (i & 255) / 255.0F;
@@ -183,7 +182,7 @@ public class BlockFluidRenderer
 				{
 					Block block = blockAccess.getBlockState(blockpos).getBlock();
 
-					if (block == Blocks.GLASS || block == Blocks.STAINED_GLASS)
+					if (block == Blocks.getBlock(Blocks.GLASS) || block == Blocks.getBlock(Blocks.STAINED_GLASS))
 					{
 						textureatlassprite1 = this.atlasSpriteWaterOverlay;
 					}
@@ -308,5 +307,10 @@ public class BlockFluidRenderer
 		}
 
 		return 1.0F - f / i;
+	}
+
+	public BlockColors getBlockColors()
+	{
+		return mc.getBlockColors();
 	}
 }

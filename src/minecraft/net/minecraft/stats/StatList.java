@@ -25,11 +25,11 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public class StatList
 {
-	protected static final Map<String, StatBase> ID_TO_STAT_MAP = Maps.<String, StatBase>newHashMap();
-	public static final List<StatBase> ALL_STATS = Lists.<StatBase>newArrayList();
-	public static final List<StatBase> BASIC_STATS = Lists.<StatBase>newArrayList();
-	public static final List<StatCrafting> USE_ITEM_STATS = Lists.<StatCrafting>newArrayList();
-	public static final List<StatCrafting> MINE_BLOCK_STATS = Lists.<StatCrafting>newArrayList();
+	protected static Map<String, StatBase> ID_TO_STAT_MAP = Maps.<String, StatBase>newHashMap();
+	public static List<StatBase> ALL_STATS = Lists.<StatBase>newArrayList();
+	public static List<StatBase> BASIC_STATS = Lists.<StatBase>newArrayList();
+	public static List<StatCrafting> USE_ITEM_STATS = Lists.<StatCrafting>newArrayList();
+	public static List<StatCrafting> MINE_BLOCK_STATS = Lists.<StatCrafting>newArrayList();
 
 	/** number of times you've left a game */
 	public static final StatBase LEAVE_GAME = (new StatBasic("stat.leaveGame", new TextComponentTranslation("stat.leaveGame", new Object[0]))).initIndependentStat().registerStat();
@@ -143,6 +143,12 @@ public class StatList
 
 	public static void init()
 	{
+		ID_TO_STAT_MAP = Maps.<String, StatBase>newHashMap();
+		ALL_STATS = Lists.<StatBase>newArrayList();
+		BASIC_STATS = Lists.<StatBase>newArrayList();
+		USE_ITEM_STATS = Lists.<StatCrafting>newArrayList();
+		MINE_BLOCK_STATS = Lists.<StatCrafting>newArrayList();
+		
 		initMiningStats();
 		initStats();
 		initItemDepleteStats();
@@ -196,7 +202,7 @@ public class StatList
 		{
 			Item item = Item.getItemFromBlock(block);
 
-			if (item != Items.EMPTY_ITEM)
+			if (item != Items.getItem(Items.AIR))
 			{
 				int i = Block.getIdFromBlock(block);
 				String s = getItemName(item);
@@ -286,20 +292,20 @@ public class StatList
 	 */
 	private static void replaceAllSimilarBlocks(StatBase[] stat)
 	{
-		mergeStatBases(stat, Blocks.WATER, Blocks.FLOWING_WATER);
-		mergeStatBases(stat, Blocks.LAVA, Blocks.FLOWING_LAVA);
-		mergeStatBases(stat, Blocks.LIT_PUMPKIN, Blocks.PUMPKIN);
-		mergeStatBases(stat, Blocks.LIT_FURNACE, Blocks.FURNACE);
-		mergeStatBases(stat, Blocks.LIT_REDSTONE_ORE, Blocks.REDSTONE_ORE);
-		mergeStatBases(stat, Blocks.POWERED_REPEATER, Blocks.UNPOWERED_REPEATER);
-		mergeStatBases(stat, Blocks.POWERED_COMPARATOR, Blocks.UNPOWERED_COMPARATOR);
-		mergeStatBases(stat, Blocks.REDSTONE_TORCH, Blocks.UNLIT_REDSTONE_TORCH);
-		mergeStatBases(stat, Blocks.LIT_REDSTONE_LAMP, Blocks.REDSTONE_LAMP);
-		mergeStatBases(stat, Blocks.DOUBLE_STONE_SLAB, Blocks.STONE_SLAB);
-		mergeStatBases(stat, Blocks.DOUBLE_WOODEN_SLAB, Blocks.WOODEN_SLAB);
-		mergeStatBases(stat, Blocks.DOUBLE_STONE_SLAB2, Blocks.STONE_SLAB2);
-		mergeStatBases(stat, Blocks.GRASS, Blocks.DIRT);
-		mergeStatBases(stat, Blocks.FARMLAND, Blocks.DIRT);
+		mergeStatBases(stat, Blocks.getBlock(Blocks.WATER), Blocks.getBlock(Blocks.FLOWING_WATER));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.LAVA), Blocks.getBlock(Blocks.FLOWING_LAVA));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.LIT_PUMPKIN), Blocks.getBlock(Blocks.PUMPKIN));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.LIT_FURNACE), Blocks.getBlock(Blocks.FURNACE));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.LIT_REDSTONE_ORE), Blocks.getBlock(Blocks.REDSTONE_ORE));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.POWERED_REPEATER), Blocks.getBlock(Blocks.UNPOWERED_REPEATER));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.POWERED_COMPARATOR), Blocks.getBlock(Blocks.UNPOWERED_COMPARATOR));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.REDSTONE_TORCH), Blocks.getBlock(Blocks.UNLIT_REDSTONE_TORCH));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.LIT_REDSTONE_LAMP), Blocks.getBlock(Blocks.REDSTONE_LAMP));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.DOUBLE_STONE_SLAB), Blocks.getBlock(Blocks.STONE_SLAB));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.DOUBLE_WOODEN_SLAB), Blocks.getBlock(Blocks.WOODEN_SLAB));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.DOUBLE_STONE_SLAB2), Blocks.getBlock(Blocks.STONE_SLAB2));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.GRASS), Blocks.getBlock(Blocks.DIRT));
+		mergeStatBases(stat, Blocks.getBlock(Blocks.FARMLAND), Blocks.getBlock(Blocks.DIRT));
 	}
 
 	/**

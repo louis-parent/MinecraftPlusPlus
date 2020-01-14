@@ -308,7 +308,7 @@ public class StructureMineshaftPieces
 
 			if (structurebb.isVecInside(blockpos) && worldIn.getBlockState(blockpos).getMaterial() == Material.AIR && worldIn.getBlockState(blockpos.down()).getMaterial() != Material.AIR)
 			{
-				IBlockState iblockstate = Blocks.RAIL.getDefaultState().withProperty(BlockRail.SHAPE, randomIn.nextBoolean() ? BlockRailBase.EnumRailDirection.NORTH_SOUTH : BlockRailBase.EnumRailDirection.EAST_WEST);
+				IBlockState iblockstate = Blocks.getBlock(Blocks.RAIL).getDefaultState().withProperty(BlockRail.SHAPE, randomIn.nextBoolean() ? BlockRailBase.EnumRailDirection.NORTH_SOUTH : BlockRailBase.EnumRailDirection.EAST_WEST);
 				this.setBlockState(worldIn, iblockstate, x, y, z, structurebb);
 				EntityMinecartChest entityminecartchest = new EntityMinecartChest(worldIn, blockpos.getX() + 0.5F, blockpos.getY() + 0.5F, blockpos.getZ() + 0.5F);
 				entityminecartchest.setLootTable(loot, randomIn.nextLong());
@@ -336,12 +336,12 @@ public class StructureMineshaftPieces
 				int l = 2;
 				int i1 = this.sectionCount * 5 - 1;
 				IBlockState iblockstate = this.func_189917_F_();
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 2, 1, i1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-				this.func_189914_a(worldIn, structureBoundingBoxIn, randomIn, 0.8F, 0, 2, 0, 2, 2, i1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false, 0);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 2, 1, i1, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
+				this.func_189914_a(worldIn, structureBoundingBoxIn, randomIn, 0.8F, 0, 2, 0, 2, 2, i1, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false, 0);
 
 				if (this.hasSpiders)
 				{
-					this.func_189914_a(worldIn, structureBoundingBoxIn, randomIn, 0.6F, 0, 0, 0, 2, 1, i1, Blocks.WEB.getDefaultState(), Blocks.AIR.getDefaultState(), false, 8);
+					this.func_189914_a(worldIn, structureBoundingBoxIn, randomIn, 0.6F, 0, 0, 0, 2, 1, i1, Blocks.getBlock(Blocks.WEB).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false, 8);
 				}
 
 				for (int j1 = 0; j1 < this.sectionCount; ++j1)
@@ -378,7 +378,7 @@ public class StructureMineshaftPieces
 						if (structureBoundingBoxIn.isVecInside(blockpos) && this.func_189916_b(worldIn, 1, 0, i2, structureBoundingBoxIn) < 8)
 						{
 							this.spawnerPlaced = true;
-							worldIn.setBlockState(blockpos, Blocks.MOB_SPAWNER.getDefaultState(), 2);
+							worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.MOB_SPAWNER).getDefaultState(), 2);
 							TileEntity tileentity = worldIn.getTileEntity(blockpos);
 
 							if (tileentity instanceof TileEntityMobSpawner)
@@ -406,7 +406,7 @@ public class StructureMineshaftPieces
 
 				if (this.hasRails)
 				{
-					IBlockState iblockstate1 = Blocks.RAIL.getDefaultState().withProperty(BlockRail.SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH);
+					IBlockState iblockstate1 = Blocks.getBlock(Blocks.RAIL).getDefaultState().withProperty(BlockRail.SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH);
 
 					for (int j3 = 0; j3 <= i1; ++j3)
 					{
@@ -430,7 +430,7 @@ public class StructureMineshaftPieces
 			{
 				IBlockState iblockstate = this.func_189917_F_();
 				IBlockState iblockstate1 = this.func_189919_b();
-				IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
+				IBlockState iblockstate2 = Blocks.getBlock(Blocks.AIR).getDefaultState();
 				this.fillWithBlocks(p_189921_1_, p_189921_2_, p_189921_3_, p_189921_4_, p_189921_5_, p_189921_3_, p_189921_6_ - 1, p_189921_5_, iblockstate1, iblockstate2, false);
 				this.fillWithBlocks(p_189921_1_, p_189921_2_, p_189921_7_, p_189921_4_, p_189921_5_, p_189921_7_, p_189921_6_ - 1, p_189921_5_, iblockstate1, iblockstate2, false);
 
@@ -442,8 +442,8 @@ public class StructureMineshaftPieces
 				else
 				{
 					this.fillWithBlocks(p_189921_1_, p_189921_2_, p_189921_3_, p_189921_6_, p_189921_5_, p_189921_7_, p_189921_6_, p_189921_5_, iblockstate, iblockstate2, false);
-					this.randomlyPlaceBlock(p_189921_1_, p_189921_2_, p_189921_8_, 0.05F, p_189921_3_ + 1, p_189921_6_, p_189921_5_ - 1, Blocks.TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.NORTH));
-					this.randomlyPlaceBlock(p_189921_1_, p_189921_2_, p_189921_8_, 0.05F, p_189921_3_ + 1, p_189921_6_, p_189921_5_ + 1, Blocks.TORCH.getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.SOUTH));
+					this.randomlyPlaceBlock(p_189921_1_, p_189921_2_, p_189921_8_, 0.05F, p_189921_3_ + 1, p_189921_6_, p_189921_5_ - 1, Blocks.getBlock(Blocks.TORCH).getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.NORTH));
+					this.randomlyPlaceBlock(p_189921_1_, p_189921_2_, p_189921_8_, 0.05F, p_189921_3_ + 1, p_189921_6_, p_189921_5_ + 1, Blocks.getBlock(Blocks.TORCH).getDefaultState().withProperty(BlockTorch.FACING, EnumFacing.SOUTH));
 				}
 			}
 		}
@@ -452,7 +452,7 @@ public class StructureMineshaftPieces
 		{
 			if (this.func_189916_b(p_189922_1_, p_189922_5_, p_189922_6_, p_189922_7_, p_189922_2_) < 8)
 			{
-				this.randomlyPlaceBlock(p_189922_1_, p_189922_2_, p_189922_3_, p_189922_4_, p_189922_5_, p_189922_6_, p_189922_7_, Blocks.WEB.getDefaultState());
+				this.randomlyPlaceBlock(p_189922_1_, p_189922_2_, p_189922_3_, p_189922_4_, p_189922_5_, p_189922_6_, p_189922_7_, Blocks.getBlock(Blocks.WEB).getDefaultState());
 			}
 		}
 	}
@@ -598,16 +598,16 @@ public class StructureMineshaftPieces
 
 				if (this.isMultipleFloors)
 				{
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.minY + 3 - 1, this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.minY + 3 - 1, this.boundingBox.maxZ - 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX + 1, this.boundingBox.maxY - 2, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.maxY - 2, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ - 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX + 1, this.boundingBox.minY + 3, this.boundingBox.minZ + 1, this.boundingBox.maxX - 1, this.boundingBox.minY + 3, this.boundingBox.maxZ - 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.minY + 3 - 1, this.boundingBox.maxZ, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.minY + 3 - 1, this.boundingBox.maxZ - 1, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX + 1, this.boundingBox.maxY - 2, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.maxY - 2, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ - 1, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX + 1, this.boundingBox.minY + 3, this.boundingBox.minZ + 1, this.boundingBox.maxX - 1, this.boundingBox.minY + 3, this.boundingBox.maxZ - 1, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
 				}
 				else
 				{
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ - 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ - 1, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
 				}
 
 				this.func_189923_b(worldIn, structureBoundingBoxIn, this.boundingBox.minX + 1, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxY);
@@ -634,7 +634,7 @@ public class StructureMineshaftPieces
 		{
 			if (this.getBlockStateFromPos(p_189923_1_, p_189923_3_, p_189923_6_ + 1, p_189923_5_, p_189923_2_).getMaterial() != Material.AIR)
 			{
-				this.fillWithBlocks(p_189923_1_, p_189923_2_, p_189923_3_, p_189923_4_, p_189923_5_, p_189923_3_, p_189923_6_, p_189923_5_, this.func_189917_F_(), Blocks.AIR.getDefaultState(), false);
+				this.fillWithBlocks(p_189923_1_, p_189923_2_, p_189923_3_, p_189923_4_, p_189923_5_, p_189923_3_, p_189923_6_, p_189923_5_, this.func_189917_F_(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
 			}
 		}
 	}
@@ -671,10 +671,10 @@ public class StructureMineshaftPieces
 			{
 				case NORMAL:
 				default:
-					return Blocks.PLANKS.getDefaultState();
+					return Blocks.getBlock(Blocks.PLANKS).getDefaultState();
 
 				case MESA:
-					return Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.DARK_OAK);
+					return Blocks.getBlock(Blocks.PLANKS).getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.DARK_OAK);
 			}
 		}
 
@@ -684,10 +684,10 @@ public class StructureMineshaftPieces
 			{
 				case NORMAL:
 				default:
-					return Blocks.OAK_FENCE.getDefaultState();
+					return Blocks.getBlock(Blocks.OAK_FENCE).getDefaultState();
 
 				case MESA:
-					return Blocks.DARK_OAK_FENCE.getDefaultState();
+					return Blocks.getBlock(Blocks.DARK_OAK_FENCE).getDefaultState();
 			}
 		}
 
@@ -815,15 +815,15 @@ public class StructureMineshaftPieces
 			}
 			else
 			{
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.minY, this.boundingBox.maxZ, Blocks.DIRT.getDefaultState(), Blocks.AIR.getDefaultState(), true);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.minY + 1, this.boundingBox.minZ, this.boundingBox.maxX, Math.min(this.boundingBox.minY + 3, this.boundingBox.maxY), this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.minY, this.boundingBox.maxZ, Blocks.getBlock(Blocks.DIRT).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), true);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.minY + 1, this.boundingBox.minZ, this.boundingBox.maxX, Math.min(this.boundingBox.minY + 3, this.boundingBox.maxY), this.boundingBox.maxZ, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
 
 				for (StructureBoundingBox structureboundingbox : this.roomsLinkedToTheRoom)
 				{
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, structureboundingbox.minX, structureboundingbox.maxY - 2, structureboundingbox.minZ, structureboundingbox.maxX, structureboundingbox.maxY, structureboundingbox.maxZ, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, structureboundingbox.minX, structureboundingbox.maxY - 2, structureboundingbox.minZ, structureboundingbox.maxX, structureboundingbox.maxY, structureboundingbox.maxZ, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
 				}
 
-				this.randomlyRareFillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.minY + 4, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.AIR.getDefaultState(), false);
+				this.randomlyRareFillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.minX, this.boundingBox.minY + 4, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ, Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
 				return true;
 			}
 		}
@@ -947,12 +947,12 @@ public class StructureMineshaftPieces
 			}
 			else
 			{
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 2, 7, 1, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 7, 2, 2, 8, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 2, 7, 1, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 7, 2, 2, 8, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
 
 				for (int i = 0; i < 5; ++i)
 				{
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5 - i - (i < 4 ? 1 : 0), 2 + i, 2, 7 - i, 2 + i, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5 - i - (i < 4 ? 1 : 0), 2 + i, 2, 7 - i, 2 + i, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
 				}
 
 				return true;

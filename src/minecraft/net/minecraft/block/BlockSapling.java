@@ -116,8 +116,8 @@ public class BlockSapling extends BlockBush implements IGrowable
 				break;
 
 			case JUNGLE:
-				IBlockState iblockstate = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-				IBlockState iblockstate1 = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+				IBlockState iblockstate = Blocks.getBlock(Blocks.LOG).getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
+				IBlockState iblockstate1 = Blocks.getBlock(Blocks.LEAVES).getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 				label82:
 
 				for (i = 0; i >= -1; --i)
@@ -168,7 +168,7 @@ public class BlockSapling extends BlockBush implements IGrowable
 			case OAK:
 		}
 
-		IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
+		IBlockState iblockstate2 = Blocks.getBlock(Blocks.AIR).getDefaultState();
 
 		if (flag)
 		{

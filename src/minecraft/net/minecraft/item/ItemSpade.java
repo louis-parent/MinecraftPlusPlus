@@ -27,7 +27,7 @@ public class ItemSpade extends ItemTool
 	{
 		if (EFFECTIVE_ON == null)
 		{
-			EFFECTIVE_ON = Sets.newHashSet(Blocks.CLAY, Blocks.DIRT, Blocks.FARMLAND, Blocks.GRASS, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SOUL_SAND, Blocks.GRASS_PATH, Blocks.field_192444_dS);
+			EFFECTIVE_ON = Sets.newHashSet(Blocks.getBlock(Blocks.CLAY), Blocks.getBlock(Blocks.DIRT), Blocks.getBlock(Blocks.FARMLAND), Blocks.getBlock(Blocks.GRASS), Blocks.getBlock(Blocks.GRAVEL), Blocks.getBlock(Blocks.MYCELIUM), Blocks.getBlock(Blocks.SAND), Blocks.getBlock(Blocks.SNOW), Blocks.getBlock(Blocks.SNOW_LAYER), Blocks.getBlock(Blocks.SOUL_SAND), Blocks.getBlock(Blocks.GRASS_PATH), Blocks.getBlock(Blocks.CONCRETE_POWDER));
 		}
 
 		return EFFECTIVE_ON;
@@ -47,13 +47,13 @@ public class ItemSpade extends ItemTool
 	{
 		Block block = blockIn.getBlock();
 
-		if (block == Blocks.SNOW_LAYER)
+		if (block == Blocks.getBlock(Blocks.SNOW_LAYER))
 		{
 			return true;
 		}
 		else
 		{
-			return block == Blocks.SNOW;
+			return block == Blocks.getBlock(Blocks.SNOW);
 		}
 	}
 
@@ -74,9 +74,9 @@ public class ItemSpade extends ItemTool
 			IBlockState iblockstate = playerIn.getBlockState(worldIn);
 			Block block = iblockstate.getBlock();
 
-			if (hand != EnumFacing.DOWN && playerIn.getBlockState(worldIn.up()).getMaterial() == Material.AIR && block == Blocks.GRASS)
+			if (hand != EnumFacing.DOWN && playerIn.getBlockState(worldIn.up()).getMaterial() == Material.AIR && block == Blocks.getBlock(Blocks.GRASS))
 			{
-				IBlockState iblockstate1 = Blocks.GRASS_PATH.getDefaultState();
+				IBlockState iblockstate1 = Blocks.getBlock(Blocks.GRASS_PATH).getDefaultState();
 				playerIn.playSound(stack, worldIn, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
 				if (!playerIn.isRemote)

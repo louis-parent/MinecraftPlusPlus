@@ -26,7 +26,7 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
 		GlStateManager.pushMatrix();
 		float f = 0.6666667F;
 
-		if (block == Blocks.STANDING_SIGN)
+		if (block == Blocks.getBlock(Blocks.STANDING_SIGN))
 		{
 			GlStateManager.translate((float) p_192841_2_ + 0.5F, (float) p_192841_4_ + 0.5F, (float) p_192841_6_ + 0.5F);
 			float f1 = p_192841_1_.getBlockMetadata() * 360 / 16.0F;

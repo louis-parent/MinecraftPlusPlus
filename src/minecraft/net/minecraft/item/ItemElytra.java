@@ -44,7 +44,7 @@ public class ItemElytra extends Item
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
 	{
-		return repair.getItem() == Items.LEATHER;
+		return repair.getItem() == Items.getItem(Items.LEATHER);
 	}
 
 	@Override

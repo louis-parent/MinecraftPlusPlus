@@ -119,33 +119,33 @@ public class BlockDoor extends Block
 	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
-		if (state.getBlock() == Blocks.IRON_DOOR)
+		if (state.getBlock() == Blocks.getBlock(Blocks.IRON_DOOR))
 		{
 			return MapColor.IRON;
 		}
-		else if (state.getBlock() == Blocks.OAK_DOOR)
+		else if (state.getBlock() == Blocks.getBlock(Blocks.OAK_DOOR))
 		{
 			return BlockPlanks.EnumType.OAK.getMapColor();
 		}
-		else if (state.getBlock() == Blocks.SPRUCE_DOOR)
+		else if (state.getBlock() == Blocks.getBlock(Blocks.SPRUCE_DOOR))
 		{
 			return BlockPlanks.EnumType.SPRUCE.getMapColor();
 		}
-		else if (state.getBlock() == Blocks.BIRCH_DOOR)
+		else if (state.getBlock() == Blocks.getBlock(Blocks.BIRCH_DOOR))
 		{
 			return BlockPlanks.EnumType.BIRCH.getMapColor();
 		}
-		else if (state.getBlock() == Blocks.JUNGLE_DOOR)
+		else if (state.getBlock() == Blocks.getBlock(Blocks.JUNGLE_DOOR))
 		{
 			return BlockPlanks.EnumType.JUNGLE.getMapColor();
 		}
-		else if (state.getBlock() == Blocks.ACACIA_DOOR)
+		else if (state.getBlock() == Blocks.getBlock(Blocks.ACACIA_DOOR))
 		{
 			return BlockPlanks.EnumType.ACACIA.getMapColor();
 		}
 		else
 		{
-			return state.getBlock() == Blocks.DARK_OAK_DOOR ? BlockPlanks.EnumType.DARK_OAK.getMapColor() : super.getMapColor(state, p_180659_2_, p_180659_3_);
+			return state.getBlock() == Blocks.getBlock(Blocks.DARK_OAK_DOOR) ? BlockPlanks.EnumType.DARK_OAK.getMapColor() : super.getMapColor(state, p_180659_2_, p_180659_3_);
 		}
 	}
 
@@ -272,7 +272,7 @@ public class BlockDoor extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER ? Items.EMPTY_ITEM : this.getItem();
+		return state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER ? Items.getItem(Items.AIR) : this.getItem();
 	}
 
 	@Override
@@ -318,29 +318,29 @@ public class BlockDoor extends Block
 
 	private Item getItem()
 	{
-		if (this == Blocks.IRON_DOOR)
+		if (this == Blocks.getBlock(Blocks.IRON_DOOR))
 		{
-			return Items.IRON_DOOR;
+			return Items.getItem(Items.IRON_DOOR);
 		}
-		else if (this == Blocks.SPRUCE_DOOR)
+		else if (this == Blocks.getBlock(Blocks.SPRUCE_DOOR))
 		{
-			return Items.SPRUCE_DOOR;
+			return Items.getItem(Items.SPRUCE_DOOR);
 		}
-		else if (this == Blocks.BIRCH_DOOR)
+		else if (this == Blocks.getBlock(Blocks.BIRCH_DOOR))
 		{
-			return Items.BIRCH_DOOR;
+			return Items.getItem(Items.BIRCH_DOOR);
 		}
-		else if (this == Blocks.JUNGLE_DOOR)
+		else if (this == Blocks.getBlock(Blocks.JUNGLE_DOOR))
 		{
-			return Items.JUNGLE_DOOR;
+			return Items.getItem(Items.JUNGLE_DOOR);
 		}
-		else if (this == Blocks.ACACIA_DOOR)
+		else if (this == Blocks.getBlock(Blocks.ACACIA_DOOR))
 		{
-			return Items.ACACIA_DOOR;
+			return Items.getItem(Items.ACACIA_DOOR);
 		}
 		else
 		{
-			return this == Blocks.DARK_OAK_DOOR ? Items.DARK_OAK_DOOR : Items.OAK_DOOR;
+			return this == Blocks.getBlock(Blocks.DARK_OAK_DOOR) ? Items.getItem(Items.DARK_OAK_DOOR) : Items.getItem(Items.OAK_DOOR);
 		}
 	}
 

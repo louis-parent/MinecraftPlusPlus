@@ -37,7 +37,7 @@ public class ItemMap extends ItemMapBase
 
 	public static ItemStack func_190906_a(World p_190906_0_, double p_190906_1_, double p_190906_3_, byte p_190906_5_, boolean p_190906_6_, boolean p_190906_7_)
 	{
-		ItemStack itemstack = new ItemStack(Items.FILLED_MAP, 1, p_190906_0_.getUniqueDataId("map"));
+		ItemStack itemstack = new ItemStack(Items.getItem(Items.FILLED_MAP), 1, p_190906_0_.getUniqueDataId("map"));
 		String s = "map_" + itemstack.getMetadata();
 		MapData mapdata = new MapData(s);
 		p_190906_0_.setItemData(s, mapdata);
@@ -131,11 +131,11 @@ public class ItemMap extends ItemMapBase
 
 									if ((l3 >> 20 & 1) == 0)
 									{
-										multiset.add(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT).getMapColor(worldIn, BlockPos.ORIGIN), 10);
+										multiset.add(Blocks.getBlock(Blocks.DIRT).getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT).getMapColor(worldIn, BlockPos.ORIGIN), 10);
 									}
 									else
 									{
-										multiset.add(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE).getMapColor(worldIn, BlockPos.ORIGIN), 100);
+										multiset.add(Blocks.getBlock(Blocks.STONE).getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE).getMapColor(worldIn, BlockPos.ORIGIN), 100);
 									}
 
 									d1 = 100.0D;
@@ -149,11 +149,11 @@ public class ItemMap extends ItemMapBase
 										for (int j4 = 0; j4 < i; ++j4)
 										{
 											int k4 = chunk.getHeightValue(i4 + i3, j4 + j3) + 1;
-											IBlockState iblockstate = Blocks.AIR.getDefaultState();
+											IBlockState iblockstate = Blocks.getBlock(Blocks.AIR).getDefaultState();
 
 											if (k4 <= 1)
 											{
-												iblockstate = Blocks.BEDROCK.getDefaultState();
+												iblockstate = Blocks.getBlock(Blocks.BEDROCK).getDefaultState();
 											}
 											else
 											{
@@ -251,9 +251,9 @@ public class ItemMap extends ItemMapBase
 
 	public static void func_190905_a(World p_190905_0_, ItemStack p_190905_1_)
 	{
-		if (p_190905_1_.getItem() == Items.FILLED_MAP)
+		if (p_190905_1_.getItem() == Items.getItem(Items.FILLED_MAP))
 		{
-			MapData mapdata = Items.FILLED_MAP.getMapData(p_190905_1_, p_190905_0_);
+			MapData mapdata = ((ItemMap) Items.getItem(Items.FILLED_MAP)).getMapData(p_190905_1_, p_190905_0_);
 
 			if (mapdata != null)
 			{
@@ -434,7 +434,7 @@ public class ItemMap extends ItemMapBase
 
 	protected static void scaleMap(ItemStack p_185063_0_, World p_185063_1_, int p_185063_2_)
 	{
-		MapData mapdata = Items.FILLED_MAP.getMapData(p_185063_0_, p_185063_1_);
+		MapData mapdata = ((ItemMap) Items.getItem(Items.FILLED_MAP)).getMapData(p_185063_0_, p_185063_1_);
 		p_185063_0_.setItemDamage(p_185063_1_.getUniqueDataId("map"));
 		MapData mapdata1 = new MapData("map_" + p_185063_0_.getMetadata());
 
@@ -451,7 +451,7 @@ public class ItemMap extends ItemMapBase
 
 	protected static void enableMapTracking(ItemStack p_185064_0_, World p_185064_1_)
 	{
-		MapData mapdata = Items.FILLED_MAP.getMapData(p_185064_0_, p_185064_1_);
+		MapData mapdata = ((ItemMap) Items.getItem(Items.FILLED_MAP)).getMapData(p_185064_0_, p_185064_1_);
 		p_185064_0_.setItemDamage(p_185064_1_.getUniqueDataId("map"));
 		MapData mapdata1 = new MapData("map_" + p_185064_0_.getMetadata());
 		mapdata1.trackingPosition = true;

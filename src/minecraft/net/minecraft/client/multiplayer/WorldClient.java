@@ -377,7 +377,7 @@ public class WorldClient extends World
 		int i = 32;
 		Random random = new Random();
 		ItemStack itemstack = this.mc.player.getHeldItemMainhand();
-		boolean flag = this.mc.playerController.getCurrentGameType() == GameType.CREATIVE && !itemstack.isNotValid() && itemstack.getItem() == Item.getItemFromBlock(Blocks.BARRIER);
+		boolean flag = this.mc.playerController.getCurrentGameType() == GameType.CREATIVE && !itemstack.isNotValid() && itemstack.getItem() == Item.getItemFromBlock(Blocks.getBlock(Blocks.BARRIER));
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
 		for (int j = 0; j < 667; ++j)
@@ -396,7 +396,7 @@ public class WorldClient extends World
 		IBlockState iblockstate = this.getBlockState(pos);
 		iblockstate.getBlock().randomDisplayTick(iblockstate, this, pos, random);
 
-		if (p_184153_6_ && iblockstate.getBlock() == Blocks.BARRIER)
+		if (p_184153_6_ && iblockstate.getBlock() == Blocks.getBlock(Blocks.BARRIER))
 		{
 			this.spawnParticle(EnumParticleTypes.BARRIER, i + 0.5F, j + 0.5F, k + 0.5F, 0.0D, 0.0D, 0.0D, new int[0]);
 		}

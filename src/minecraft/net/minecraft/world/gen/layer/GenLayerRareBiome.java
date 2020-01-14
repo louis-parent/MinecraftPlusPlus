@@ -31,9 +31,9 @@ public class GenLayerRareBiome extends GenLayer
 
 				if (this.nextInt(57) == 0)
 				{
-					if (k == Biome.getIdForBiome(Biomes.PLAINS))
+					if (k == Biome.getIdForBiome(Biomes.getBiome(Biomes.PLAINS)))
 					{
-						aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.MUTATED_PLAINS);
+						aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.MUTATED_PLAINS));
 					}
 					else
 					{

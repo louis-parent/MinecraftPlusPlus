@@ -139,7 +139,7 @@ public class BlockWall extends Block
 
 	protected static boolean func_194143_e(Block p_194143_0_)
 	{
-		return Block.func_193382_c(p_194143_0_) || p_194143_0_ == Blocks.BARRIER || p_194143_0_ == Blocks.MELON_BLOCK || p_194143_0_ == Blocks.PUMPKIN || p_194143_0_ == Blocks.LIT_PUMPKIN;
+		return Block.func_193382_c(p_194143_0_) || p_194143_0_ == Blocks.getBlock(Blocks.BARRIER) || p_194143_0_ == Blocks.getBlock(Blocks.MELON_BLOCK) || p_194143_0_ == Blocks.getBlock(Blocks.PUMPKIN) || p_194143_0_ == Blocks.getBlock(Blocks.LIT_PUMPKIN);
 	}
 
 	/**

@@ -38,7 +38,7 @@ public class ItemEnderEye extends Item
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
 		ItemStack itemstack = stack.getHeldItem(pos);
 
-		if (stack.canPlayerEdit(worldIn.offset(hand), hand, itemstack) && iblockstate.getBlock() == Blocks.END_PORTAL_FRAME && !iblockstate.getValue(BlockEndPortalFrame.EYE).booleanValue())
+		if (stack.canPlayerEdit(worldIn.offset(hand), hand, itemstack) && iblockstate.getBlock() == Blocks.getBlock(Blocks.END_PORTAL_FRAME) && !iblockstate.getValue(BlockEndPortalFrame.EYE).booleanValue())
 		{
 			if (playerIn.isRemote)
 			{
@@ -47,7 +47,7 @@ public class ItemEnderEye extends Item
 			else
 			{
 				playerIn.setBlockState(worldIn, iblockstate.withProperty(BlockEndPortalFrame.EYE, Boolean.valueOf(true)), 2);
-				playerIn.updateComparatorOutputLevel(worldIn, Blocks.END_PORTAL_FRAME);
+				playerIn.updateComparatorOutputLevel(worldIn, Blocks.getBlock(Blocks.END_PORTAL_FRAME));
 				itemstack.decreaseStackSize(1);
 
 				for (int i = 0; i < 16; ++i)
@@ -72,7 +72,7 @@ public class ItemEnderEye extends Item
 					{
 						for (int k = 0; k < 3; ++k)
 						{
-							playerIn.setBlockState(blockpos.add(j, 0, k), Blocks.END_PORTAL.getDefaultState(), 2);
+							playerIn.setBlockState(blockpos.add(j, 0, k), Blocks.getBlock(Blocks.END_PORTAL).getDefaultState(), 2);
 						}
 					}
 
@@ -94,7 +94,7 @@ public class ItemEnderEye extends Item
 		ItemStack itemstack = worldIn.getHeldItem(playerIn);
 		RayTraceResult raytraceresult = this.rayTrace(itemStackIn, worldIn, false);
 
-		if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && itemStackIn.getBlockState(raytraceresult.getBlockPos()).getBlock() == Blocks.END_PORTAL_FRAME)
+		if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && itemStackIn.getBlockState(raytraceresult.getBlockPos()).getBlock() == Blocks.getBlock(Blocks.END_PORTAL_FRAME))
 		{
 			return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
 		}

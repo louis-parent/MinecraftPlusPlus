@@ -202,17 +202,17 @@ public class TileEntityCommandBlock extends TileEntity
 	{
 		Block block = this.getBlockType();
 
-		if (block == Blocks.COMMAND_BLOCK)
+		if (block == Blocks.getBlock(Blocks.COMMAND_BLOCK))
 		{
 			return TileEntityCommandBlock.Mode.REDSTONE;
 		}
-		else if (block == Blocks.REPEATING_COMMAND_BLOCK)
+		else if (block == Blocks.getBlock(Blocks.REPEATING_COMMAND_BLOCK))
 		{
 			return TileEntityCommandBlock.Mode.AUTO;
 		}
 		else
 		{
-			return block == Blocks.CHAIN_COMMAND_BLOCK ? TileEntityCommandBlock.Mode.SEQUENCE : TileEntityCommandBlock.Mode.REDSTONE;
+			return block == Blocks.getBlock(Blocks.CHAIN_COMMAND_BLOCK) ? TileEntityCommandBlock.Mode.SEQUENCE : TileEntityCommandBlock.Mode.REDSTONE;
 		}
 	}
 

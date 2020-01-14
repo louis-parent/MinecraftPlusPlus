@@ -19,12 +19,6 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 public class BiomeMesa extends Biome
 {
-	protected static final IBlockState COARSE_DIRT = Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT);
-	protected static final IBlockState GRASS = Blocks.GRASS.getDefaultState();
-	protected static final IBlockState HARDENED_CLAY = Blocks.HARDENED_CLAY.getDefaultState();
-	protected static final IBlockState STAINED_HARDENED_CLAY = Blocks.STAINED_HARDENED_CLAY.getDefaultState();
-	protected static final IBlockState ORANGE_STAINED_HARDENED_CLAY = STAINED_HARDENED_CLAY.withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE);
-	protected static final IBlockState RED_SAND = Blocks.SAND.getDefaultState().withProperty(BlockSand.VARIANT, BlockSand.EnumType.RED_SAND);
 	private IBlockState[] clayBands;
 	private long worldSeed;
 	private NoiseGeneratorPerlin pillarNoise;
@@ -39,8 +33,6 @@ public class BiomeMesa extends Biome
 		this.brycePillars = p_i46704_1_;
 		this.hasForest = p_i46704_2_;
 		this.spawnableCreatureList.clear();
-		this.topBlock = RED_SAND;
-		this.fillerBlock = STAINED_HARDENED_CLAY;
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.deadBushPerChunk = 20;
 		this.theBiomeDecorator.reedsPerChunk = 3;
@@ -52,6 +44,18 @@ public class BiomeMesa extends Biome
 		{
 			this.theBiomeDecorator.treesPerChunk = 5;
 		}
+	}
+	
+	@Override
+	public IBlockState getTopBlock()
+	{
+		return BiomeMesa.getRedSand();
+	}
+	
+	@Override
+	public IBlockState getFillerBlock()
+	{
+		return BiomeMesa.getStainedHardenedClay();
 	}
 
 	/**
@@ -66,7 +70,7 @@ public class BiomeMesa extends Biome
 	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return TREE_FEATURE;
+		return getTreeFeature();
 	}
 
 	@Override
@@ -124,8 +128,8 @@ public class BiomeMesa extends Biome
 		int k1 = x & 15;
 		int l1 = z & 15;
 		int i2 = worldIn.getSeaLevel();
-		IBlockState iblockstate = STAINED_HARDENED_CLAY;
-		IBlockState iblockstate3 = this.fillerBlock;
+		IBlockState iblockstate = getStainedHardenedClay();
+		IBlockState iblockstate3 = this.getFillerBlock();
 		int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
 		boolean flag = Math.cos(noiseVal / 3.0D * Math.PI) > 0.0D;
 		int l = -1;
@@ -136,12 +140,12 @@ public class BiomeMesa extends Biome
 		{
 			if (chunkPrimerIn.getBlockState(l1, j1, k1).getMaterial() == Material.AIR && j1 < (int) d4)
 			{
-				chunkPrimerIn.setBlockState(l1, j1, k1, STONE);
+				chunkPrimerIn.setBlockState(l1, j1, k1, getStone());
 			}
 
 			if (j1 <= rand.nextInt(5))
 			{
-				chunkPrimerIn.setBlockState(l1, j1, k1, BEDROCK);
+				chunkPrimerIn.setBlockState(l1, j1, k1, getBedrock());
 			}
 			else if (i1 < 15 || this.brycePillars)
 			{
@@ -151,7 +155,7 @@ public class BiomeMesa extends Biome
 				{
 					l = -1;
 				}
-				else if (iblockstate1.getBlock() == Blocks.STONE)
+				else if (iblockstate1.getBlock() == Blocks.getBlock(Blocks.STONE))
 				{
 					if (l == -1)
 					{
@@ -159,18 +163,18 @@ public class BiomeMesa extends Biome
 
 						if (k <= 0)
 						{
-							iblockstate = AIR;
-							iblockstate3 = STONE;
+							iblockstate = getAir();
+							iblockstate3 = getStone();
 						}
 						else if (j1 >= i2 - 4 && j1 <= i2 + 1)
 						{
-							iblockstate = STAINED_HARDENED_CLAY;
-							iblockstate3 = this.fillerBlock;
+							iblockstate = getStainedHardenedClay();
+							iblockstate3 = this.getFillerBlock();
 						}
 
 						if (j1 < i2 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
 						{
-							iblockstate = WATER;
+							iblockstate = getWater();
 						}
 
 						l = k + Math.max(0, j1 - i2);
@@ -181,11 +185,11 @@ public class BiomeMesa extends Biome
 							{
 								if (flag)
 								{
-									chunkPrimerIn.setBlockState(l1, j1, k1, COARSE_DIRT);
+									chunkPrimerIn.setBlockState(l1, j1, k1, getCoarseDirt());
 								}
 								else
 								{
-									chunkPrimerIn.setBlockState(l1, j1, k1, GRASS);
+									chunkPrimerIn.setBlockState(l1, j1, k1, getGrass());
 								}
 							}
 							else if (j1 > i2 + 3 + k)
@@ -196,7 +200,7 @@ public class BiomeMesa extends Biome
 								{
 									if (flag)
 									{
-										iblockstate2 = HARDENED_CLAY;
+										iblockstate2 = getHardenedClay();
 									}
 									else
 									{
@@ -205,14 +209,14 @@ public class BiomeMesa extends Biome
 								}
 								else
 								{
-									iblockstate2 = ORANGE_STAINED_HARDENED_CLAY;
+									iblockstate2 = getOrangeStainedHardenedClay();
 								}
 
 								chunkPrimerIn.setBlockState(l1, j1, k1, iblockstate2);
 							}
 							else
 							{
-								chunkPrimerIn.setBlockState(l1, j1, k1, this.topBlock);
+								chunkPrimerIn.setBlockState(l1, j1, k1, this.getTopBlock());
 								flag1 = true;
 							}
 						}
@@ -220,9 +224,9 @@ public class BiomeMesa extends Biome
 						{
 							chunkPrimerIn.setBlockState(l1, j1, k1, iblockstate3);
 
-							if (iblockstate3.getBlock() == Blocks.STAINED_HARDENED_CLAY)
+							if (iblockstate3.getBlock() == Blocks.getBlock(Blocks.STAINED_HARDENED_CLAY))
 							{
-								chunkPrimerIn.setBlockState(l1, j1, k1, ORANGE_STAINED_HARDENED_CLAY);
+								chunkPrimerIn.setBlockState(l1, j1, k1, getOrangeStainedHardenedClay());
 							}
 						}
 					}
@@ -232,7 +236,7 @@ public class BiomeMesa extends Biome
 
 						if (flag1)
 						{
-							chunkPrimerIn.setBlockState(l1, j1, k1, ORANGE_STAINED_HARDENED_CLAY);
+							chunkPrimerIn.setBlockState(l1, j1, k1, getOrangeStainedHardenedClay());
 						}
 						else
 						{
@@ -249,7 +253,7 @@ public class BiomeMesa extends Biome
 	private void generateBands(long p_150619_1_)
 	{
 		this.clayBands = new IBlockState[64];
-		Arrays.fill(this.clayBands, HARDENED_CLAY);
+		Arrays.fill(this.clayBands, getHardenedClay());
 		Random random = new Random(p_150619_1_);
 		this.clayBandsOffsetNoise = new NoiseGeneratorPerlin(random, 1);
 
@@ -259,7 +263,7 @@ public class BiomeMesa extends Biome
 
 			if (l1 < 64)
 			{
-				this.clayBands[l1] = ORANGE_STAINED_HARDENED_CLAY;
+				this.clayBands[l1] = getOrangeStainedHardenedClay();
 			}
 		}
 
@@ -272,7 +276,7 @@ public class BiomeMesa extends Biome
 
 			for (int l = 0; k + l < 64 && l < j; ++l)
 			{
-				this.clayBands[k + l] = STAINED_HARDENED_CLAY.withProperty(BlockColored.COLOR, EnumDyeColor.YELLOW);
+				this.clayBands[k + l] = getStainedHardenedClay().withProperty(BlockColored.COLOR, EnumDyeColor.YELLOW);
 			}
 		}
 
@@ -285,7 +289,7 @@ public class BiomeMesa extends Biome
 
 			for (int i1 = 0; l3 + i1 < 64 && i1 < i3; ++i1)
 			{
-				this.clayBands[l3 + i1] = STAINED_HARDENED_CLAY.withProperty(BlockColored.COLOR, EnumDyeColor.BROWN);
+				this.clayBands[l3 + i1] = getStainedHardenedClay().withProperty(BlockColored.COLOR, EnumDyeColor.BROWN);
 			}
 		}
 
@@ -298,7 +302,7 @@ public class BiomeMesa extends Biome
 
 			for (int j1 = 0; k4 + j1 < 64 && j1 < i4; ++j1)
 			{
-				this.clayBands[k4 + j1] = STAINED_HARDENED_CLAY.withProperty(BlockColored.COLOR, EnumDyeColor.RED);
+				this.clayBands[k4 + j1] = getStainedHardenedClay().withProperty(BlockColored.COLOR, EnumDyeColor.RED);
 			}
 		}
 
@@ -312,16 +316,16 @@ public class BiomeMesa extends Biome
 
 			for (int k1 = 0; j4 + k1 < 64 && k1 < 1; ++k1)
 			{
-				this.clayBands[j4 + k1] = STAINED_HARDENED_CLAY.withProperty(BlockColored.COLOR, EnumDyeColor.WHITE);
+				this.clayBands[j4 + k1] = getStainedHardenedClay().withProperty(BlockColored.COLOR, EnumDyeColor.WHITE);
 
 				if (j4 + k1 > 1 && random.nextBoolean())
 				{
-					this.clayBands[j4 + k1 - 1] = STAINED_HARDENED_CLAY.withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);
+					this.clayBands[j4 + k1 - 1] = getStainedHardenedClay().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);
 				}
 
 				if (j4 + k1 < 63 && random.nextBoolean())
 				{
-					this.clayBands[j4 + k1 + 1] = STAINED_HARDENED_CLAY.withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);
+					this.clayBands[j4 + k1 + 1] = getStainedHardenedClay().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);
 				}
 			}
 		}
@@ -331,6 +335,36 @@ public class BiomeMesa extends Biome
 	{
 		int i = (int) Math.round(this.clayBandsOffsetNoise.getValue(p_180629_1_ / 512.0D, p_180629_1_ / 512.0D) * 2.0D);
 		return this.clayBands[(p_180629_2_ + i + 64) % 64];
+	}
+
+	public static IBlockState getCoarseDirt()
+	{
+		return Blocks.getBlock(Blocks.DIRT).getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT);
+	}
+
+	public static IBlockState getGrass()
+	{
+		return Blocks.getBlock(Blocks.GRASS).getDefaultState();
+	}
+
+	public static IBlockState getHardenedClay()
+	{
+		return Blocks.getBlock(Blocks.HARDENED_CLAY).getDefaultState();
+	}
+
+	public static IBlockState getStainedHardenedClay()
+	{
+		return Blocks.getBlock(Blocks.STAINED_HARDENED_CLAY).getDefaultState();
+	}
+
+	public static IBlockState getOrangeStainedHardenedClay()
+	{
+		return getStainedHardenedClay().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE);
+	}
+
+	public static IBlockState getRedSand()
+	{
+		return Blocks.getBlock(Blocks.SAND).getDefaultState().withProperty(BlockSand.VARIANT, BlockSand.EnumType.RED_SAND);
 	}
 
 	class Decorator extends BiomeDecorator
@@ -343,7 +377,7 @@ public class BiomeMesa extends Biome
 		protected void generateOres(World world, Random random)
 		{
 			super.generateOres(world, random);
-			this.uniformOreGeneration(world, random, 20, new WorldGenMinable(Blocks.GOLD_ORE.getDefaultState(), this.chunkProviderSettings.goldSize), 32, 80);
+			this.uniformOreGeneration(world, random, 20, new WorldGenMinable(Blocks.getBlock(Blocks.GOLD_ORE).getDefaultState(), this.chunkProviderSettings.goldSize), 32, 80);
 		}
 	}
 }

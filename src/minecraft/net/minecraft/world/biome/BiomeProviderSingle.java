@@ -59,7 +59,7 @@ public class BiomeProviderSingle extends BiomeProvider
 	}
 
 	/**
-	 * Gets a list of biomes for the specified blocks.
+	 * Gets a list of biomes for the specified Blocks.getBlock(blocks.)
 	 */
 	@Override
 	public Biome[] getBiomes(@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)

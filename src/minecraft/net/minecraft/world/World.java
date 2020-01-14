@@ -19,6 +19,7 @@ import net.minecraft.advancements.FunctionManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockObserver;
+import net.minecraft.block.BlockRedstoneComparator;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.crash.CrashReport;
@@ -162,7 +163,7 @@ public abstract class World implements IBlockAccess
 	 * levels. Holds up to 32x32x32 blocks (the maximum influence of a light
 	 * source.) Every element is a packed bit value:
 	 * 0000000000LLLLzzzzzzyyyyyyxxxxxx. The 4-bit L is a light level used when
-	 * darkening blocks. 6-bit numbers x, y and z represent the block's offset
+	 * darkening Blocks.getBlock(blocks.) 6-bit numbers x, y and z represent the block's offset
 	 * from the original block, plus 32 (i.e. value of 31 would mean a -1 offset
 	 */
 	int[] lightUpdateBlockList;
@@ -216,7 +217,7 @@ public abstract class World implements IBlockAccess
 		}
 		else
 		{
-			return this.provider.getBiomeProvider().getBiome(pos, Biomes.PLAINS);
+			return this.provider.getBiomeProvider().getBiome(pos, Biomes.getBiome(Biomes.PLAINS));
 		}
 	}
 
@@ -436,7 +437,7 @@ public abstract class World implements IBlockAccess
 
 	public boolean setBlockToAir(BlockPos pos)
 	{
-		return this.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+		return this.setBlockState(pos, Blocks.getBlock(Blocks.AIR).getDefaultState(), 3);
 	}
 
 	/**
@@ -461,7 +462,7 @@ public abstract class World implements IBlockAccess
 				block.dropBlockAsItem(this, pos, iblockstate, 0);
 			}
 
-			return this.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+			return this.setBlockState(pos, Blocks.getBlock(Blocks.AIR).getDefaultState(), 3);
 		}
 	}
 
@@ -628,7 +629,7 @@ public abstract class World implements IBlockAccess
 		{
 			IBlockState iblockstate = this.getBlockState(p_190529_1_);
 
-			if (iblockstate.getBlock() == Blocks.field_190976_dk)
+			if (iblockstate.getBlock() == Blocks.getBlock(Blocks.field_190976_dk))
 			{
 				try
 				{
@@ -965,7 +966,7 @@ public abstract class World implements IBlockAccess
 	{
 		if (this.isOutsideBuildHeight(pos))
 		{
-			return Blocks.AIR.getDefaultState();
+			return Blocks.getBlock(Blocks.AIR).getDefaultState();
 		}
 		else
 		{
@@ -1378,7 +1379,7 @@ public abstract class World implements IBlockAccess
 		WorldBorder worldborder = this.getWorldBorder();
 		boolean flag = p_191504_1_ != null && p_191504_1_.isOutsideBorder();
 		boolean flag1 = p_191504_1_ != null && this.func_191503_g(p_191504_1_);
-		IBlockState iblockstate = Blocks.STONE.getDefaultState();
+		IBlockState iblockstate = Blocks.getBlock(Blocks.STONE).getDefaultState();
 		BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain();
 
 		try
@@ -2205,7 +2206,7 @@ public abstract class World implements IBlockAccess
 					{
 						Block block = this.getBlockState(blockpos$pooledmutableblockpos.setPos(k1, l1, i2)).getBlock();
 
-						if (block == Blocks.FIRE || block == Blocks.FLOWING_LAVA || block == Blocks.LAVA)
+						if (block == Blocks.getBlock(Blocks.FIRE) || block == Blocks.getBlock(Blocks.FLOWING_LAVA) || block == Blocks.getBlock(Blocks.LAVA))
 						{
 							blockpos$pooledmutableblockpos.release();
 							return true;
@@ -2386,7 +2387,7 @@ public abstract class World implements IBlockAccess
 	{
 		pos = pos.offset(side);
 
-		if (this.getBlockState(pos).getBlock() == Blocks.FIRE)
+		if (this.getBlockState(pos).getBlock() == Blocks.getBlock(Blocks.FIRE))
 		{
 			this.playEvent(player, 1009, pos, 0);
 			this.setBlockToAir(pos);
@@ -2750,7 +2751,7 @@ public abstract class World implements IBlockAccess
 				IBlockState iblockstate = this.getBlockState(pos);
 				Block block = iblockstate.getBlock();
 
-				if ((block == Blocks.WATER || block == Blocks.FLOWING_WATER) && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0)
+				if ((block == Blocks.getBlock(Blocks.WATER) || block == Blocks.getBlock(Blocks.FLOWING_WATER)) && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0)
 				{
 					if (!noWaterAdj)
 					{
@@ -2797,7 +2798,7 @@ public abstract class World implements IBlockAccess
 			{
 				IBlockState iblockstate = this.getBlockState(pos);
 
-				if (iblockstate.getMaterial() == Material.AIR && Blocks.SNOW_LAYER.canPlaceBlockAt(this, pos))
+				if (iblockstate.getMaterial() == Material.AIR && Blocks.getBlock(Blocks.SNOW_LAYER).canPlaceBlockAt(this, pos))
 				{
 					return true;
 				}
@@ -3220,7 +3221,7 @@ public abstract class World implements IBlockAccess
 		{
 			return false;
 		}
-		else if ((iblockstate.getMaterial() == Material.CIRCUITS || iblockstate.getMaterial() == Material.RAIL) && block == Blocks.ANVIL)
+		else if ((iblockstate.getMaterial() == Material.CIRCUITS || iblockstate.getMaterial() == Material.RAIL) && block == Blocks.getBlock(Blocks.ANVIL))
 		{
 			return true;
 		}
@@ -3954,7 +3955,7 @@ public abstract class World implements IBlockAccess
 			{
 				IBlockState iblockstate = this.getBlockState(blockpos);
 
-				if (Blocks.UNPOWERED_COMPARATOR.isSameDiode(iblockstate))
+				if (((BlockRedstoneComparator) Blocks.getBlock(Blocks.UNPOWERED_COMPARATOR)).isSameDiode(iblockstate))
 				{
 					iblockstate.neighborChanged(this, blockpos, blockIn, pos);
 				}
@@ -3963,7 +3964,7 @@ public abstract class World implements IBlockAccess
 					blockpos = blockpos.offset(enumfacing);
 					iblockstate = this.getBlockState(blockpos);
 
-					if (Blocks.UNPOWERED_COMPARATOR.isSameDiode(iblockstate))
+					if (((BlockRedstoneComparator) Blocks.getBlock(Blocks.UNPOWERED_COMPARATOR)).isSameDiode(iblockstate))
 					{
 						iblockstate.neighborChanged(this, blockpos, blockIn, pos);
 					}

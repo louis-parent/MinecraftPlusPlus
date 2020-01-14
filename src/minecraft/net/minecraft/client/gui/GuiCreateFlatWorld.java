@@ -248,18 +248,18 @@ public class GuiCreateFlatWorld extends GuiScreen
 			Block block = iblockstate.getBlock();
 			Item item = Item.getItemFromBlock(block);
 
-			if (item == Items.EMPTY_ITEM)
+			if (item == Items.getItem(Items.AIR))
 			{
-				if (block != Blocks.WATER && block != Blocks.FLOWING_WATER)
+				if (block != Blocks.getBlock(Blocks.WATER) && block != Blocks.getBlock(Blocks.FLOWING_WATER))
 				{
-					if (block == Blocks.LAVA || block == Blocks.FLOWING_LAVA)
+					if (block == Blocks.getBlock(Blocks.LAVA) || block == Blocks.getBlock(Blocks.FLOWING_LAVA))
 					{
-						item = Items.LAVA_BUCKET;
+						item = Items.getItem(Items.LAVA_BUCKET);
 					}
 				}
 				else
 				{
-					item = Items.WATER_BUCKET;
+					item = Items.getItem(Items.WATER_BUCKET);
 				}
 			}
 

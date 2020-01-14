@@ -42,7 +42,7 @@ public class BlockReed extends Block
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
-		if (worldIn.getBlockState(pos.down()).getBlock() == Blocks.REEDS || this.checkForDrop(worldIn, pos, state))
+		if (worldIn.getBlockState(pos.down()).getBlock() == Blocks.getBlock(Blocks.REEDS) || this.checkForDrop(worldIn, pos, state))
 		{
 			if (worldIn.isAirBlock(pos.up()))
 			{
@@ -80,7 +80,7 @@ public class BlockReed extends Block
 		{
 			return true;
 		}
-		else if (block != Blocks.GRASS && block != Blocks.DIRT && block != Blocks.SAND)
+		else if (block != Blocks.getBlock(Blocks.GRASS) && block != Blocks.getBlock(Blocks.DIRT) && block != Blocks.getBlock(Blocks.SAND))
 		{
 			return false;
 		}
@@ -92,7 +92,7 @@ public class BlockReed extends Block
 			{
 				IBlockState iblockstate = worldIn.getBlockState(blockpos.offset(enumfacing));
 
-				if (iblockstate.getMaterial() == Material.WATER || iblockstate.getBlock() == Blocks.FROSTED_ICE)
+				if (iblockstate.getMaterial() == Material.WATER || iblockstate.getBlock() == Blocks.getBlock(Blocks.FROSTED_ICE))
 				{
 					return true;
 				}
@@ -146,7 +146,7 @@ public class BlockReed extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.REEDS;
+		return Items.getItem(Items.REEDS);
 	}
 
 	/**
@@ -168,7 +168,7 @@ public class BlockReed extends Block
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Items.REEDS);
+		return new ItemStack(Items.getItem(Items.REEDS));
 	}
 
 	@Override

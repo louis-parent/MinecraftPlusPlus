@@ -76,7 +76,7 @@ public class ContainerWorkbench extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn)
 	{
-		if (this.worldObj.getBlockState(this.pos).getBlock() != Blocks.CRAFTING_TABLE)
+		if (this.worldObj.getBlockState(this.pos).getBlock() != Blocks.getBlock(Blocks.CRAFTING_TABLE))
 		{
 			return false;
 		}

@@ -16,9 +16,6 @@ import net.minecraft.world.World;
 
 public class WorldGenCanopyTree extends WorldGenAbstractTree
 {
-	private static final IBlockState DARK_OAK_LOG = Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.DARK_OAK);
-	private static final IBlockState DARK_OAK_LEAVES = Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.DARK_OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-
 	public WorldGenCanopyTree(boolean notify)
 	{
 		super(notify);
@@ -37,7 +34,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
 			BlockPos blockpos = position.down();
 			Block block = worldIn.getBlockState(blockpos).getBlock();
 
-			if (block != Blocks.GRASS && block != Blocks.DIRT)
+			if (block != Blocks.getBlock(Blocks.GRASS) && block != Blocks.getBlock(Blocks.DIRT))
 			{
 				return false;
 			}
@@ -204,7 +201,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
 	{
 		if (this.canGrowInto(worldIn.getBlockState(pos).getBlock()))
 		{
-			this.setBlockAndNotifyAdequately(worldIn, pos, DARK_OAK_LOG);
+			this.setBlockAndNotifyAdequately(worldIn, pos, getDarkOakLog());
 		}
 	}
 
@@ -215,7 +212,17 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
 
 		if (material == Material.AIR)
 		{
-			this.setBlockAndNotifyAdequately(worldIn, blockpos, DARK_OAK_LEAVES);
+			this.setBlockAndNotifyAdequately(worldIn, blockpos, getDarkOakLeaves());
 		}
+	}
+
+	public static IBlockState getDarkOakLog()
+	{
+		return Blocks.getBlock(Blocks.LOG2).getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.DARK_OAK);
+	}
+
+	public static IBlockState getDarkOakLeaves()
+	{
+		return Blocks.getBlock(Blocks.LEAVES2).getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.DARK_OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 	}
 }

@@ -24,13 +24,13 @@ public abstract class StructureComponentTemplate extends StructureComponent
 
 	public StructureComponentTemplate()
 	{
-		this.placeSettings = DEFAULT_PLACE_SETTINGS.setIgnoreEntities(true).setReplacedBlock(Blocks.AIR);
+		this.placeSettings = DEFAULT_PLACE_SETTINGS.setIgnoreEntities(true).setReplacedBlock(Blocks.getBlock(Blocks.AIR));
 	}
 
 	public StructureComponentTemplate(int p_i46662_1_)
 	{
 		super(p_i46662_1_);
-		this.placeSettings = DEFAULT_PLACE_SETTINGS.setIgnoreEntities(true).setReplacedBlock(Blocks.AIR);
+		this.placeSettings = DEFAULT_PLACE_SETTINGS.setIgnoreEntities(true).setReplacedBlock(Blocks.getBlock(Blocks.AIR));
 	}
 
 	protected void setup(Template p_186173_1_, BlockPos p_186173_2_, PlacementSettings p_186173_3_)

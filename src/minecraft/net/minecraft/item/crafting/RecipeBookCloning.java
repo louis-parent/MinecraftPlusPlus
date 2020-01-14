@@ -24,7 +24,7 @@ public class RecipeBookCloning implements IRecipe
 
 			if (!itemstack1.isNotValid())
 			{
-				if (itemstack1.getItem() == Items.WRITTEN_BOOK)
+				if (itemstack1.getItem() == Items.getItem(Items.WRITTEN_BOOK))
 				{
 					if (!itemstack.isNotValid())
 					{
@@ -35,7 +35,7 @@ public class RecipeBookCloning implements IRecipe
 				}
 				else
 				{
-					if (itemstack1.getItem() != Items.WRITABLE_BOOK)
+					if (itemstack1.getItem() != Items.getItem(Items.WRITABLE_BOOK))
 					{
 						return false;
 					}
@@ -63,7 +63,7 @@ public class RecipeBookCloning implements IRecipe
 
 			if (!itemstack1.isNotValid())
 			{
-				if (itemstack1.getItem() == Items.WRITTEN_BOOK)
+				if (itemstack1.getItem() == Items.getItem(Items.WRITTEN_BOOK))
 				{
 					if (!itemstack.isNotValid())
 					{
@@ -74,7 +74,7 @@ public class RecipeBookCloning implements IRecipe
 				}
 				else
 				{
-					if (itemstack1.getItem() != Items.WRITABLE_BOOK)
+					if (itemstack1.getItem() != Items.getItem(Items.WRITABLE_BOOK))
 					{
 						return ItemStack.EMPTY_ITEM_STACK;
 					}
@@ -86,7 +86,7 @@ public class RecipeBookCloning implements IRecipe
 
 		if (!itemstack.isNotValid() && itemstack.hasTagCompound() && i >= 1 && ItemWrittenBook.getGeneration(itemstack) < 2)
 		{
-			ItemStack itemstack2 = new ItemStack(Items.WRITTEN_BOOK, i);
+			ItemStack itemstack2 = new ItemStack(Items.getItem(Items.WRITTEN_BOOK), i);
 			itemstack2.setTagCompound(itemstack.getTagCompound().copy());
 			itemstack2.getTagCompound().setInteger("generation", ItemWrittenBook.getGeneration(itemstack) + 1);
 

@@ -243,7 +243,7 @@ public final class WorldEntitySpawner
 				else
 				{
 					Block block = worldIn.getBlockState(blockpos).getBlock();
-					boolean flag = block != Blocks.BEDROCK && block != Blocks.BARRIER;
+					boolean flag = block != Blocks.getBlock(Blocks.BEDROCK) && block != Blocks.getBlock(Blocks.BARRIER);
 					return flag && isValidEmptySpawnBlock(iblockstate) && isValidEmptySpawnBlock(worldIn.getBlockState(pos.up()));
 				}
 			}

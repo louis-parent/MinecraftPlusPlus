@@ -49,7 +49,7 @@ public class ItemGlassBottle extends Item
 			EntityAreaEffectCloud entityareaeffectcloud = list.get(0);
 			entityareaeffectcloud.setRadius(entityareaeffectcloud.getRadius() - 0.5F);
 			itemStackIn.playSound((EntityPlayer) null, worldIn.posX, worldIn.posY, worldIn.posZ, SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-			return new ActionResult(EnumActionResult.SUCCESS, this.turnBottleIntoItem(itemstack, worldIn, new ItemStack(Items.DRAGON_BREATH)));
+			return new ActionResult(EnumActionResult.SUCCESS, this.turnBottleIntoItem(itemstack, worldIn, new ItemStack(Items.getItem(Items.DRAGON_BREATH))));
 		}
 		else
 		{
@@ -73,7 +73,7 @@ public class ItemGlassBottle extends Item
 					if (itemStackIn.getBlockState(blockpos).getMaterial() == Material.WATER)
 					{
 						itemStackIn.playSound(worldIn, worldIn.posX, worldIn.posY, worldIn.posZ, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-						return new ActionResult(EnumActionResult.SUCCESS, this.turnBottleIntoItem(itemstack, worldIn, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER)));
+						return new ActionResult(EnumActionResult.SUCCESS, this.turnBottleIntoItem(itemstack, worldIn, PotionUtils.addPotionToItemStack(new ItemStack(Items.getItem(Items.POTIONITEM)), PotionTypes.WATER)));
 					}
 				}
 

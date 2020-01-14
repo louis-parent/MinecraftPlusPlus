@@ -60,7 +60,7 @@ public class EmptyChunk extends Chunk
 	@Override
 	public IBlockState getBlockState(BlockPos pos)
 	{
-		return Blocks.AIR.getDefaultState();
+		return Blocks.getBlock(Blocks.AIR).getDefaultState();
 	}
 
 	@Override

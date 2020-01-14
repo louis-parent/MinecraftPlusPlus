@@ -122,20 +122,20 @@ public class SimpleSet implements ISet
 	@Override
 	public void addRecipes()
 	{
-		new RecipeCompact(this.item, this.block);
-		new RecipeDecompact(this.block, this.item);
-		new FurnaceRecipe(this.ore, this.item.getAsStack(), (this.rng.nextInt(12) + 1) / 10);
+		RecipeCompact recipeCompact = new RecipeCompact(this.item, this.block);
+		RecipeDecompact recipeDecompact = new RecipeDecompact(this.block, this.item);
+		FurnaceRecipe furnaceRecipe = new FurnaceRecipe(this.ore, this.item.getAsStack(), (this.rng.nextInt(12) + 1) / 10);
 
 		if (this.isBlueDye)
 		{
 			int blueDyeQuantity = BASE_AMOUNT_OF_BLUE_DYE / this.ore.getAverageQuantityDropped();
-			new ShapelessRecipe(new ItemStack(Items.DYE, blueDyeQuantity, EnumDyeColor.BLUE.getDyeDamage()), this.item);
+			new ShapelessRecipe(new ItemStack(Items.getItem(Items.DYE), blueDyeQuantity, EnumDyeColor.BLUE.getDyeDamage()), this.item);
 		}
 
 		if (this.isRedstone)
 		{
 			int redstoneQuantity = BASE_AMOUNT_OF_REDSTONE / this.ore.getAverageQuantityDropped();
-			new ShapelessRecipe(new ItemStack(Items.REDSTONE, redstoneQuantity), this.item);
+			new ShapelessRecipe(new ItemStack(Items.getItem(Items.REDSTONE), redstoneQuantity), this.item);
 		}
 	}
 
@@ -405,27 +405,27 @@ public class SimpleSet implements ISet
 	protected void setupCoal()
 	{
 		this.setHarvestLevel(HarvestLevel.WOOD);
-		this.setVariant(Items.OLD_COAL, Blocks.COAL_BLOCK);
+		this.setVariant(Items.getItem(Items.OLD_COAL), Blocks.getBlock(Blocks.COAL_BLOCK));
 	}
 
 	protected void setupIron()
 	{
 		this.setHarvestLevel(HarvestLevel.STONE);
 		this.rarity = this.rarity.next();
-		this.setVariant(Items.OLD_IRON_INGOT, Blocks.IRON_BLOCK);
+		this.setVariant(Items.getItem(Items.OLD_IRON_INGOT), Blocks.getBlock(Blocks.IRON_BLOCK));
 	}
 
 	protected void setupGold()
 	{
 		this.setHarvestLevel(HarvestLevel.IRON);
-		this.setVariant(Items.OLD_GOLD_INGOT, Blocks.GOLD_BLOCK);
+		this.setVariant(Items.getItem(Items.OLD_GOLD_INGOT), Blocks.getBlock(Blocks.GOLD_BLOCK));
 	}
 
 	protected void setupDiamond()
 	{
 		this.setHarvestLevel(HarvestLevel.IRON);
 		this.rarity = this.rarity.next().next();
-		this.setVariant(Items.OLD_DIAMOND, Blocks.DIAMOND_BLOCK);
+		this.setVariant(Items.getItem(Items.OLD_DIAMOND), Blocks.getBlock(Blocks.DIAMOND_BLOCK));
 	}
 
 	private void setHarvestLevel(HarvestLevel harvestLevel)

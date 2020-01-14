@@ -72,7 +72,7 @@ public class BlockStaticLiquid extends BlockLiquid
 						{
 							if (this.isSurroundingBlockFlammable(worldIn, blockpos))
 							{
-								worldIn.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
+								worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.FIRE).getDefaultState());
 								return;
 							}
 						}
@@ -95,7 +95,7 @@ public class BlockStaticLiquid extends BlockLiquid
 
 						if (worldIn.isAirBlock(blockpos1.up()) && this.getCanBlockBurn(worldIn, blockpos1))
 						{
-							worldIn.setBlockState(blockpos1.up(), Blocks.FIRE.getDefaultState());
+							worldIn.setBlockState(blockpos1.up(), Blocks.getBlock(Blocks.FIRE).getDefaultState());
 						}
 					}
 				}

@@ -554,7 +554,7 @@ public class Chunk
 
 			if (y == 60)
 			{
-				iblockstate = Blocks.BARRIER.getDefaultState();
+				iblockstate = Blocks.getBlock(Blocks.BARRIER).getDefaultState();
 			}
 
 			if (y == 70)
@@ -562,7 +562,7 @@ public class Chunk
 				iblockstate = ChunkGeneratorDebug.getBlockStateFor(x, z);
 			}
 
-			return iblockstate == null ? Blocks.AIR.getDefaultState() : iblockstate;
+			return iblockstate == null ? Blocks.getBlock(Blocks.AIR).getDefaultState() : iblockstate;
 		}
 		else
 		{
@@ -578,7 +578,7 @@ public class Chunk
 					}
 				}
 
-				return Blocks.AIR.getDefaultState();
+				return Blocks.getBlock(Blocks.AIR).getDefaultState();
 			}
 			catch (Throwable throwable)
 			{
@@ -626,7 +626,7 @@ public class Chunk
 
 			if (extendedblockstorage == NULL_BLOCK_STORAGE)
 			{
-				if (block == Blocks.AIR)
+				if (block == Blocks.getBlock(Blocks.AIR))
 				{
 					return null;
 				}
@@ -1303,13 +1303,13 @@ public class Chunk
 
 		if (k == 255)
 		{
-			Biome biome = provider.getBiome(pos, Biomes.PLAINS);
+			Biome biome = provider.getBiome(pos, Biomes.getBiome(Biomes.PLAINS));
 			k = Biome.getIdForBiome(biome);
 			this.blockBiomeArray[j << 4 | i] = (byte) (k & 255);
 		}
 
 		Biome biome1 = Biome.getBiome(k);
-		return biome1 == null ? Biomes.PLAINS : biome1;
+		return biome1 == null ? Biomes.getBiome(Biomes.PLAINS) : biome1;
 	}
 
 	/**

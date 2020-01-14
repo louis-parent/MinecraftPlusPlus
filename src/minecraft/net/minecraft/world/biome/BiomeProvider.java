@@ -33,7 +33,7 @@ public class BiomeProvider
 	protected BiomeProvider()
 	{
 		this.biomeCache = new BiomeCache(this);
-		this.biomesToSpawnIn = Lists.newArrayList(Biomes.FOREST, Biomes.PLAINS, Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.FOREST_HILLS, Biomes.JUNGLE, Biomes.JUNGLE_HILLS);
+		this.biomesToSpawnIn = Lists.newArrayList(Biomes.getBiome(Biomes.FOREST), Biomes.getBiome(Biomes.PLAINS), Biomes.getBiome(Biomes.TAIGA), Biomes.getBiome(Biomes.TAIGA_HILLS), Biomes.getBiome(Biomes.FOREST_HILLS), Biomes.getBiome(Biomes.JUNGLE), Biomes.getBiome(Biomes.JUNGLE_HILLS));
 	}
 
 	private BiomeProvider(long seed, WorldType worldTypeIn, String options)
@@ -99,7 +99,7 @@ public class BiomeProvider
 		{
 			for (int i = 0; i < width * height; ++i)
 			{
-				biomes[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
+				biomes[i] = Biome.getBiome(aint[i], Biomes.getBiome(Biomes.DEFAULT));
 			}
 
 			return biomes;
@@ -127,7 +127,7 @@ public class BiomeProvider
 	}
 
 	/**
-	 * Gets a list of biomes for the specified blocks.
+	 * Gets a list of biomes for the specified Blocks.getBlock(blocks.)
 	 */
 	public Biome[] getBiomes(@Nullable Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag)
 	{
@@ -150,7 +150,7 @@ public class BiomeProvider
 
 			for (int i = 0; i < width * length; ++i)
 			{
-				listToReuse[i] = Biome.getBiome(aint[i], Biomes.DEFAULT);
+				listToReuse[i] = Biome.getBiome(aint[i], Biomes.getBiome(Biomes.DEFAULT));
 			}
 
 			return listToReuse;

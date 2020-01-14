@@ -16,13 +16,13 @@ public class BlockPotato extends BlockCrops
 	@Override
 	protected Item getSeed()
 	{
-		return Items.POTATO;
+		return Items.getItem(Items.POTATO);
 	}
 
 	@Override
 	protected Item getCrop()
 	{
-		return Items.POTATO;
+		return Items.getItem(Items.POTATO);
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class BlockPotato extends BlockCrops
 		{
 			if (this.isMaxAge(state) && worldIn.rand.nextInt(50) == 0)
 			{
-				spawnAsEntity(worldIn, pos, new ItemStack(Items.POISONOUS_POTATO));
+				spawnAsEntity(worldIn, pos, new ItemStack(Items.getItem(Items.POISONOUS_POTATO)));
 			}
 		}
 	}

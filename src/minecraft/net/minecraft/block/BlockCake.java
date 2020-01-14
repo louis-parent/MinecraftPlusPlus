@@ -135,13 +135,13 @@ public class BlockCake extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.EMPTY_ITEM;
+		return Items.getItem(Items.AIR);
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Items.CAKE);
+		return new ItemStack(Items.getItem(Items.CAKE));
 	}
 
 	@Override

@@ -44,7 +44,7 @@ public class EntityAIAttackRangedBow<T extends EntityMob & IRangedAttackMob> ext
 
 	protected boolean isBowInMainhand()
 	{
-		return !this.entity.getHeldItemMainhand().isNotValid() && this.entity.getHeldItemMainhand().getItem() == Items.BOW;
+		return !this.entity.getHeldItemMainhand().isNotValid() && this.entity.getHeldItemMainhand().getItem() == Items.getItem(Items.BOW);
 	}
 
 	/**

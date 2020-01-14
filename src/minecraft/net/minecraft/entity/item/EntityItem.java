@@ -332,7 +332,7 @@ public class EntityItem extends Entity
 		{
 			return false;
 		}
-		else if (!this.getEntityItem().isNotValid() && this.getEntityItem().getItem() == Items.NETHER_STAR && source.isExplosion())
+		else if (!this.getEntityItem().isNotValid() && this.getEntityItem().getItem() == Items.getItem(Items.NETHER_STAR) && source.isExplosion())
 		{
 			return false;
 		}

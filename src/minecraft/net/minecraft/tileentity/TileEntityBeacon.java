@@ -70,7 +70,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 	{
 		if(ModManager.IS_VANILLA_ENABLED)
 		{
-			paymentItems.addAll(Arrays.asList(Items.OLD_IRON_INGOT, Items.OLD_GOLD_INGOT, Items.EMERALD, Items.OLD_DIAMOND));
+			paymentItems.addAll(Arrays.asList(Items.getItem(Items.OLD_IRON_INGOT), Items.getItem(Items.OLD_GOLD_INGOT), Items.getItem(Items.EMERALD), Items.getItem(Items.OLD_DIAMOND)));
 		}
 	}
 
@@ -148,15 +148,15 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 			IBlockState iblockstate = this.world.getBlockState(blockpos$mutableblockpos.setPos(i, i1, k));
 			float[] afloat;
 
-			if (iblockstate.getBlock() == Blocks.STAINED_GLASS)
+			if (iblockstate.getBlock() == Blocks.getBlock(Blocks.STAINED_GLASS))
 			{
 				afloat = iblockstate.getValue(BlockStainedGlass.COLOR).getRGB();
 			}
 			else
 			{
-				if (iblockstate.getBlock() != Blocks.STAINED_GLASS_PANE)
+				if (iblockstate.getBlock() != Blocks.getBlock(Blocks.STAINED_GLASS_PANE))
 				{
-					if (iblockstate.getLightOpacity() >= 15 && iblockstate.getBlock() != Blocks.BEDROCK)
+					if (iblockstate.getLightOpacity() >= 15 && iblockstate.getBlock() != Blocks.getBlock(Blocks.BEDROCK))
 					{
 						this.isComplete = false;
 						this.beamSegments.clear();
@@ -207,7 +207,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 					{
 						Block block = this.world.getBlockState(new BlockPos(j1, i2, k1)).getBlock();
 
-						if (block != Blocks.EMERALD_BLOCK && block != Blocks.GOLD_BLOCK && block != Blocks.DIAMOND_BLOCK && block != Blocks.IRON_BLOCK && !block.isBaseForBeacon())
+						if (block != Blocks.getBlock(Blocks.EMERALD_BLOCK) && block != Blocks.getBlock(Blocks.GOLD_BLOCK) && block != Blocks.getBlock(Blocks.DIAMOND_BLOCK) && block != Blocks.getBlock(Blocks.IRON_BLOCK) && !block.isBaseForBeacon())
 						{
 							flag1 = false;
 							break;

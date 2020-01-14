@@ -245,7 +245,7 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 						BlockPos blockpos1 = new BlockPos(p_184308_1_.getX() + i, k, p_184308_1_.getZ() + j);
 						IBlockState iblockstate = p_184308_0_.getBlockState(blockpos1);
 
-						if (iblockstate.isBlockNormalCube() && (p_184308_3_ || iblockstate.getBlock() != Blocks.BEDROCK))
+						if (iblockstate.isBlockNormalCube() && (p_184308_3_ || iblockstate.getBlock() != Blocks.getBlock(Blocks.BEDROCK)))
 						{
 							blockpos = blockpos1;
 							break;
@@ -276,7 +276,7 @@ public class TileEntityEndGateway extends TileEntityEndPortal implements ITickab
 		{
 			IBlockState iblockstate = chunkIn.getBlockState(blockpos3);
 
-			if (iblockstate.getBlock() == Blocks.END_STONE && !chunkIn.getBlockState(blockpos3.up(1)).isBlockNormalCube() && !chunkIn.getBlockState(blockpos3.up(2)).isBlockNormalCube())
+			if (iblockstate.getBlock() == Blocks.getBlock(Blocks.END_STONE) && !chunkIn.getBlockState(blockpos3.up(1)).isBlockNormalCube() && !chunkIn.getBlockState(blockpos3.up(2)).isBlockNormalCube())
 			{
 				double d1 = blockpos3.distanceSqToCenter(0.0D, 0.0D, 0.0D);
 

@@ -65,7 +65,7 @@ public class BlockEnchantmentTable extends BlockContainer
 					{
 						BlockPos blockpos = pos.add(i, k, j);
 
-						if (worldIn.getBlockState(blockpos).getBlock() == Blocks.BOOKSHELF)
+						if (worldIn.getBlockState(blockpos).getBlock() == Blocks.getBlock(Blocks.BOOKSHELF))
 						{
 							if (!worldIn.isAirBlock(pos.add(i / 2, 0, j / 2)))
 							{

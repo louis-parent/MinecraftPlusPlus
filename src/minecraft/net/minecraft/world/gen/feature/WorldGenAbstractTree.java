@@ -22,7 +22,7 @@ public abstract class WorldGenAbstractTree extends WorldGenerator
 	protected boolean canGrowInto(Block blockType)
 	{
 		Material material = blockType.getDefaultState().getMaterial();
-		return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.GRASS || blockType == Blocks.DIRT || blockType == Blocks.LOG || blockType == Blocks.LOG2 || blockType == Blocks.SAPLING || blockType == Blocks.VINE;
+		return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.getBlock(Blocks.GRASS) || blockType == Blocks.getBlock(Blocks.DIRT) || blockType == Blocks.getBlock(Blocks.LOG) || blockType == Blocks.getBlock(Blocks.LOG2) || blockType == Blocks.getBlock(Blocks.SAPLING) || blockType == Blocks.getBlock(Blocks.VINE);
 	}
 
 	public void generateSaplings(World worldIn, Random random, BlockPos pos)
@@ -34,9 +34,9 @@ public abstract class WorldGenAbstractTree extends WorldGenerator
 	 */
 	protected void setDirtAt(World worldIn, BlockPos pos)
 	{
-		if (worldIn.getBlockState(pos).getBlock() != Blocks.DIRT)
+		if (worldIn.getBlockState(pos).getBlock() != Blocks.getBlock(Blocks.DIRT))
 		{
-			this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.DIRT.getDefaultState());
+			this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.getBlock(Blocks.DIRT).getDefaultState());
 		}
 	}
 }

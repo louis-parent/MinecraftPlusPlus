@@ -585,9 +585,9 @@ public class EntityDragon extends EntityLiving implements IEntityMultiPart, IMob
 						{
 							flag = true;
 						}
-						else if (block != Blocks.BARRIER && block != Blocks.OBSIDIAN && block != Blocks.END_STONE && block != Blocks.BEDROCK && block != Blocks.END_PORTAL && block != Blocks.END_PORTAL_FRAME)
+						else if (block != Blocks.getBlock(Blocks.BARRIER) && block != Blocks.getBlock(Blocks.OBSIDIAN) && block != Blocks.getBlock(Blocks.END_STONE) && block != Blocks.getBlock(Blocks.BEDROCK) && block != Blocks.getBlock(Blocks.END_PORTAL) && block != Blocks.getBlock(Blocks.END_PORTAL_FRAME))
 						{
-							if (block != Blocks.COMMAND_BLOCK && block != Blocks.REPEATING_COMMAND_BLOCK && block != Blocks.CHAIN_COMMAND_BLOCK && block != Blocks.IRON_BARS && block != Blocks.END_GATEWAY)
+							if (block != Blocks.getBlock(Blocks.COMMAND_BLOCK) && block != Blocks.getBlock(Blocks.REPEATING_COMMAND_BLOCK) && block != Blocks.getBlock(Blocks.CHAIN_COMMAND_BLOCK) && block != Blocks.getBlock(Blocks.IRON_BARS) && block != Blocks.getBlock(Blocks.END_GATEWAY))
 							{
 								flag1 = this.world.setBlockToAir(blockpos) || flag1;
 							}

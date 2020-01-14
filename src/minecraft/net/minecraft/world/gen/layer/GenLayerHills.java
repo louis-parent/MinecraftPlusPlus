@@ -60,80 +60,80 @@ public class GenLayerHills extends GenLayer
 				{
 					Biome biome1 = biome;
 
-					if (biome == Biomes.DESERT)
+					if (biome == Biomes.getBiome(Biomes.DESERT))
 					{
-						biome1 = Biomes.DESERT_HILLS;
+						biome1 = Biomes.getBiome(Biomes.DESERT_HILLS);
 					}
-					else if (biome == Biomes.FOREST)
+					else if (biome == Biomes.getBiome(Biomes.FOREST))
 					{
-						biome1 = Biomes.FOREST_HILLS;
+						biome1 = Biomes.getBiome(Biomes.FOREST_HILLS);
 					}
-					else if (biome == Biomes.BIRCH_FOREST)
+					else if (biome == Biomes.getBiome(Biomes.BIRCH_FOREST))
 					{
-						biome1 = Biomes.BIRCH_FOREST_HILLS;
+						biome1 = Biomes.getBiome(Biomes.BIRCH_FOREST_HILLS);
 					}
-					else if (biome == Biomes.ROOFED_FOREST)
+					else if (biome == Biomes.getBiome(Biomes.ROOFED_FOREST))
 					{
-						biome1 = Biomes.PLAINS;
+						biome1 = Biomes.getBiome(Biomes.PLAINS);
 					}
-					else if (biome == Biomes.TAIGA)
+					else if (biome == Biomes.getBiome(Biomes.TAIGA))
 					{
-						biome1 = Biomes.TAIGA_HILLS;
+						biome1 = Biomes.getBiome(Biomes.TAIGA_HILLS);
 					}
-					else if (biome == Biomes.REDWOOD_TAIGA)
+					else if (biome == Biomes.getBiome(Biomes.REDWOOD_TAIGA))
 					{
-						biome1 = Biomes.REDWOOD_TAIGA_HILLS;
+						biome1 = Biomes.getBiome(Biomes.REDWOOD_TAIGA_HILLS);
 					}
-					else if (biome == Biomes.COLD_TAIGA)
+					else if (biome == Biomes.getBiome(Biomes.COLD_TAIGA))
 					{
-						biome1 = Biomes.COLD_TAIGA_HILLS;
+						biome1 = Biomes.getBiome(Biomes.COLD_TAIGA_HILLS);
 					}
-					else if (biome == Biomes.PLAINS)
+					else if (biome == Biomes.getBiome(Biomes.PLAINS))
 					{
 						if (this.nextInt(3) == 0)
 						{
-							biome1 = Biomes.FOREST_HILLS;
+							biome1 = Biomes.getBiome(Biomes.FOREST_HILLS);
 						}
 						else
 						{
-							biome1 = Biomes.FOREST;
+							biome1 = Biomes.getBiome(Biomes.FOREST);
 						}
 					}
-					else if (biome == Biomes.ICE_PLAINS)
+					else if (biome == Biomes.getBiome(Biomes.ICE_PLAINS))
 					{
-						biome1 = Biomes.ICE_MOUNTAINS;
+						biome1 = Biomes.getBiome(Biomes.ICE_MOUNTAINS);
 					}
-					else if (biome == Biomes.JUNGLE)
+					else if (biome == Biomes.getBiome(Biomes.JUNGLE))
 					{
-						biome1 = Biomes.JUNGLE_HILLS;
+						biome1 = Biomes.getBiome(Biomes.JUNGLE_HILLS);
 					}
-					else if (biome == Biomes.OCEAN)
+					else if (biome == Biomes.getBiome(Biomes.OCEAN))
 					{
-						biome1 = Biomes.DEEP_OCEAN;
+						biome1 = Biomes.getBiome(Biomes.DEEP_OCEAN);
 					}
-					else if (biome == Biomes.EXTREME_HILLS)
+					else if (biome == Biomes.getBiome(Biomes.EXTREME_HILLS))
 					{
-						biome1 = Biomes.EXTREME_HILLS_WITH_TREES;
+						biome1 = Biomes.getBiome(Biomes.EXTREME_HILLS_WITH_TREES);
 					}
-					else if (biome == Biomes.SAVANNA)
+					else if (biome == Biomes.getBiome(Biomes.SAVANNA))
 					{
-						biome1 = Biomes.SAVANNA_PLATEAU;
+						biome1 = Biomes.getBiome(Biomes.SAVANNA_PLATEAU);
 					}
-					else if (biomesEqualOrMesaPlateau(k, Biome.getIdForBiome(Biomes.MESA_ROCK)))
+					else if (biomesEqualOrMesaPlateau(k, Biome.getIdForBiome(Biomes.getBiome(Biomes.MESA_ROCK))))
 					{
-						biome1 = Biomes.MESA;
+						biome1 = Biomes.getBiome(Biomes.MESA);
 					}
-					else if (biome == Biomes.DEEP_OCEAN && this.nextInt(3) == 0)
+					else if (biome == Biomes.getBiome(Biomes.DEEP_OCEAN) && this.nextInt(3) == 0)
 					{
 						int i1 = this.nextInt(2);
 
 						if (i1 == 0)
 						{
-							biome1 = Biomes.PLAINS;
+							biome1 = Biomes.getBiome(Biomes.PLAINS);
 						}
 						else
 						{
-							biome1 = Biomes.FOREST;
+							biome1 = Biomes.getBiome(Biomes.FOREST);
 						}
 					}
 

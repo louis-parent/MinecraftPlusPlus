@@ -121,7 +121,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
 
 	/**
 	 * Returns a boundingBox used to collide the entity with other entities and
-	 * blocks. This enables the entity to be pushable on contact, like boats or
+	 * Blocks.getBlock(blocks.) This enables the entity to be pushable on contact, like boats or
 	 * minecarts.
 	 */
 	public AxisAlignedBB getCollisionBox(Entity entityIn)
@@ -221,7 +221,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
 
 		if (this.world.getGameRules().getBoolean("doEntityDrops"))
 		{
-			ItemStack itemstack = new ItemStack(Items.MINECART, 1);
+			ItemStack itemstack = new ItemStack(Items.getItem(Items.MINECART), 1);
 
 			if (this.hasCustomName())
 			{
@@ -384,7 +384,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
 			{
 				this.moveAlongTrack(blockpos, iblockstate);
 
-				if (iblockstate.getBlock() == Blocks.ACTIVATOR_RAIL)
+				if (iblockstate.getBlock() == Blocks.getBlock(Blocks.ACTIVATOR_RAIL))
 				{
 					this.onActivatorRailPass(k, l, i1, iblockstate.getValue(BlockRailPowered.POWERED).booleanValue());
 				}
@@ -506,7 +506,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
 		boolean flag1 = false;
 		BlockRailBase blockrailbase = (BlockRailBase) state.getBlock();
 
-		if (blockrailbase == Blocks.GOLDEN_RAIL)
+		if (blockrailbase == Blocks.getBlock(Blocks.GOLDEN_RAIL))
 		{
 			flag = state.getValue(BlockRailPowered.POWERED).booleanValue();
 			flag1 = !flag;
@@ -893,7 +893,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
 			}
 
 			int i = compound.getInteger("DisplayData");
-			this.setDisplayTile(block == null ? Blocks.AIR.getDefaultState() : block.getStateFromMeta(i));
+			this.setDisplayTile(block == null ? Blocks.getBlock(Blocks.AIR).getDefaultState() : block.getStateFromMeta(i));
 			this.setDisplayTileOffset(compound.getInteger("DisplayOffset"));
 		}
 	}
@@ -1099,7 +1099,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
 
 	public IBlockState getDefaultDisplayTile()
 	{
-		return Blocks.AIR.getDefaultState();
+		return Blocks.getBlock(Blocks.AIR).getDefaultState();
 	}
 
 	public int getDisplayTileOffset()

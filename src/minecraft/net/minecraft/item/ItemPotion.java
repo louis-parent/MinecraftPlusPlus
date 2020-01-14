@@ -81,12 +81,12 @@ public class ItemPotion extends Item
 		{
 			if (stack.isNotValid())
 			{
-				return new ItemStack(Items.GLASS_BOTTLE);
+				return new ItemStack(Items.getItem(Items.GLASS_BOTTLE));
 			}
 
 			if (entityplayer != null)
 			{
-				entityplayer.inventory.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+				entityplayer.inventory.addItemStackToInventory(new ItemStack(Items.getItem(Items.GLASS_BOTTLE)));
 			}
 		}
 

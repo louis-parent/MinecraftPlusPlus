@@ -17,9 +17,9 @@ public class WorldGenWaterlily extends WorldGenerator
 			int k = position.getY() + rand.nextInt(4) - rand.nextInt(4);
 			int l = position.getZ() + rand.nextInt(8) - rand.nextInt(8);
 
-			if (worldIn.isAirBlock(new BlockPos(j, k, l)) && Blocks.WATERLILY.canPlaceBlockAt(worldIn, new BlockPos(j, k, l)))
+			if (worldIn.isAirBlock(new BlockPos(j, k, l)) && Blocks.getBlock(Blocks.WATERLILY).canPlaceBlockAt(worldIn, new BlockPos(j, k, l)))
 			{
-				worldIn.setBlockState(new BlockPos(j, k, l), Blocks.WATERLILY.getDefaultState(), 2);
+				worldIn.setBlockState(new BlockPos(j, k, l), Blocks.getBlock(Blocks.WATERLILY).getDefaultState(), 2);
 			}
 		}
 

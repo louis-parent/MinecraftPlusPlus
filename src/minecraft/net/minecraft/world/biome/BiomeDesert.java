@@ -3,6 +3,7 @@ package net.minecraft.world.biome;
 import java.util.Iterator;
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityHusk;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.EntityZombieVillager;
@@ -19,8 +20,6 @@ public class BiomeDesert extends Biome
 	{
 		super(properties);
 		this.spawnableCreatureList.clear();
-		this.topBlock = Blocks.SAND.getDefaultState();
-		this.fillerBlock = Blocks.SAND.getDefaultState();
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.deadBushPerChunk = 2;
 		this.theBiomeDecorator.reedsPerChunk = 50;
@@ -42,6 +41,18 @@ public class BiomeDesert extends Biome
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 19, 4, 4));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombieVillager.class, 1, 1, 1));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityHusk.class, 80, 4, 4));
+	}
+	
+	@Override
+	public IBlockState getTopBlock()
+	{
+		return Blocks.getBlock(Blocks.SAND).getDefaultState();
+	}
+
+	@Override
+	public IBlockState getFillerBlock()
+	{
+		return Blocks.getBlock(Blocks.SAND).getDefaultState();
 	}
 
 	@Override

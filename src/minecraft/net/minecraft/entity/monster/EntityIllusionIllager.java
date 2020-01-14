@@ -92,7 +92,7 @@ public class EntityIllusionIllager extends EntitySpellcasterIllager implements I
 	@Override
 	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata)
 	{
-		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.BOW));
+		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.getItem(Items.BOW)));
 		return super.onInitialSpawn(difficulty, livingdata);
 	}
 

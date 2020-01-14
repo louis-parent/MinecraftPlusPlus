@@ -40,7 +40,7 @@ public class BlockNewLeaf extends BlockLeaves
 	{
 		if (state.getValue(VARIANT) == BlockPlanks.EnumType.DARK_OAK && worldIn.rand.nextInt(chance) == 0)
 		{
-			spawnAsEntity(worldIn, pos, new ItemStack(Items.APPLE));
+			spawnAsEntity(worldIn, pos, new ItemStack(Items.getItem(Items.APPLE)));
 		}
 	}
 
@@ -124,7 +124,7 @@ public class BlockNewLeaf extends BlockLeaves
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
-		if (!worldIn.isRemote && stack.getItem() == Items.SHEARS)
+		if (!worldIn.isRemote && stack.getItem() == Items.getItem(Items.SHEARS))
 		{
 			player.addStat(StatList.getBlockStats(this));
 			spawnAsEntity(worldIn, pos, new ItemStack(Item.getItemFromBlock(this), 1, state.getValue(VARIANT).getMetadata() - 4));

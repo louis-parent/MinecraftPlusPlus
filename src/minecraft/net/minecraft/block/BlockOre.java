@@ -44,25 +44,25 @@ public class BlockOre extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		if (this == Blocks.COAL_ORE)
+		if (this == Blocks.getBlock(Blocks.COAL_ORE))
 		{
-			return Items.OLD_COAL;
+			return Items.getItem(Items.OLD_COAL);
 		}
-		else if (this == Blocks.DIAMOND_ORE)
+		else if (this == Blocks.getBlock(Blocks.DIAMOND_ORE))
 		{
-			return Items.OLD_DIAMOND;
+			return Items.getItem(Items.OLD_DIAMOND);
 		}
-		else if (this == Blocks.LAPIS_ORE)
+		else if (this == Blocks.getBlock(Blocks.LAPIS_ORE))
 		{
-			return Items.DYE;
+			return Items.getItem(Items.DYE);
 		}
-		else if (this == Blocks.EMERALD_ORE)
+		else if (this == Blocks.getBlock(Blocks.EMERALD_ORE))
 		{
-			return Items.EMERALD;
+			return Items.getItem(Items.EMERALD);
 		}
 		else
 		{
-			return this == Blocks.QUARTZ_ORE ? Items.QUARTZ : Item.getItemFromBlock(this);
+			return this == Blocks.getBlock(Blocks.QUARTZ_ORE) ? Items.getItem(Items.QUARTZ) : Item.getItemFromBlock(this);
 		}
 	}
 
@@ -72,7 +72,7 @@ public class BlockOre extends Block
 	@Override
 	public int quantityDropped(Random random)
 	{
-		return this == Blocks.LAPIS_ORE ? 4 + random.nextInt(5) : 1;
+		return this == Blocks.getBlock(Blocks.LAPIS_ORE) ? 4 + random.nextInt(5) : 1;
 	}
 
 	/**
@@ -110,23 +110,23 @@ public class BlockOre extends Block
 		{
 			int i = 0;
 
-			if (this == Blocks.COAL_ORE)
+			if (this == Blocks.getBlock(Blocks.COAL_ORE))
 			{
 				i = MathHelper.getInt(world.rand, 0, 2);
 			}
-			else if (this == Blocks.DIAMOND_ORE)
+			else if (this == Blocks.getBlock(Blocks.DIAMOND_ORE))
 			{
 				i = MathHelper.getInt(world.rand, 3, 7);
 			}
-			else if (this == Blocks.EMERALD_ORE)
+			else if (this == Blocks.getBlock(Blocks.EMERALD_ORE))
 			{
 				i = MathHelper.getInt(world.rand, 3, 7);
 			}
-			else if (this == Blocks.LAPIS_ORE)
+			else if (this == Blocks.getBlock(Blocks.LAPIS_ORE))
 			{
 				i = MathHelper.getInt(world.rand, 2, 5);
 			}
-			else if (this == Blocks.QUARTZ_ORE)
+			else if (this == Blocks.getBlock(Blocks.QUARTZ_ORE))
 			{
 				i = MathHelper.getInt(world.rand, 2, 5);
 			}
@@ -149,7 +149,7 @@ public class BlockOre extends Block
 	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return this == Blocks.LAPIS_ORE ? EnumDyeColor.BLUE.getDyeDamage() : 0;
+		return this == Blocks.getBlock(Blocks.LAPIS_ORE) ? EnumDyeColor.BLUE.getDyeDamage() : 0;
 	}
 
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
@@ -158,23 +158,23 @@ public class BlockOre extends Block
 		{
 			ChunkGeneratorSettings settings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
 	
-			if (this == Blocks.LAPIS_ORE)
+			if (this == Blocks.getBlock(Blocks.LAPIS_ORE))
 			{
 				decorator.spreadOreGeneration(world, rand, settings.lapisCount, new WorldGenMinable(this.getDefaultState(), settings.lapisSize), settings.lapisCenterHeight, settings.lapisSpread);
 			}
-			else if (this == Blocks.COAL_ORE)
+			else if (this == Blocks.getBlock(Blocks.COAL_ORE))
 			{
 				decorator.uniformOreGeneration(world, rand, settings.coalCount, new WorldGenMinable(this.getDefaultState(), settings.coalSize), settings.coalMinHeight, settings.coalMaxHeight);
 			}
-			else if (this == Blocks.DIAMOND_ORE)
+			else if (this == Blocks.getBlock(Blocks.DIAMOND_ORE))
 			{
 				decorator.uniformOreGeneration(world, rand, settings.diamondCount, new WorldGenMinable(this.getDefaultState(), settings.diamondSize), settings.diamondMinHeight, settings.diamondMaxHeight);
 			}
-			else if (this == Blocks.IRON_ORE)
+			else if (this == Blocks.getBlock(Blocks.IRON_ORE))
 			{
 				decorator.uniformOreGeneration(world, rand, settings.ironCount, new WorldGenMinable(this.getDefaultState(), settings.ironSize), settings.ironMinHeight, settings.ironMaxHeight);
 			}
-			else if (this == Blocks.GOLD_ORE)
+			else if (this == Blocks.getBlock(Blocks.GOLD_ORE))
 			{
 				decorator.uniformOreGeneration(world, rand, settings.goldCount, new WorldGenMinable(this.getDefaultState(), settings.goldSize), settings.goldMinHeight, settings.goldMaxHeight);
 			}

@@ -55,7 +55,7 @@ public class EntityEnderman extends EntityMob
 {
 	private static final UUID ATTACKING_SPEED_BOOST_ID = UUID.fromString("020E0DFB-87AE-4653-9556-831010E291A0");
 	private static final AttributeModifier ATTACKING_SPEED_BOOST = (new AttributeModifier(ATTACKING_SPEED_BOOST_ID, "Attacking speed boost", 0.15000000596046448D, 0)).setSaved(false);
-	private static final Set<Block> CARRIABLE_BLOCKS = Sets.<Block>newIdentityHashSet();
+	private static Set<Block> CARRIABLE_BLOCKS = Sets.<Block>newIdentityHashSet();
 	private static final DataParameter<Optional<IBlockState>> CARRIED_BLOCK = EntityDataManager.<Optional<IBlockState>>createKey(EntityEnderman.class, DataSerializers.OPTIONAL_BLOCK_STATE);
 	private static final DataParameter<Boolean> SCREAMING = EntityDataManager.<Boolean>createKey(EntityEnderman.class, DataSerializers.BOOLEAN);
 	private int lastCreepySound;
@@ -214,7 +214,7 @@ public class EntityEnderman extends EntityMob
 	{
 		ItemStack itemstack = player.inventory.armorInventory.get(3);
 
-		if (itemstack.getItem() == Item.getItemFromBlock(Blocks.PUMPKIN))
+		if (itemstack.getItem() == Item.getItemFromBlock(Blocks.getBlock(Blocks.PUMPKIN)))
 		{
 			return false;
 		}
@@ -418,23 +418,29 @@ public class EntityEnderman extends EntityMob
 		return this.dataManager.get(SCREAMING).booleanValue();
 	}
 
-	static
+	public static Set<Block> getCarriableBlocks()
 	{
-		CARRIABLE_BLOCKS.add(Blocks.GRASS);
-		CARRIABLE_BLOCKS.add(Blocks.DIRT);
-		CARRIABLE_BLOCKS.add(Blocks.SAND);
-		CARRIABLE_BLOCKS.add(Blocks.GRAVEL);
-		CARRIABLE_BLOCKS.add(Blocks.YELLOW_FLOWER);
-		CARRIABLE_BLOCKS.add(Blocks.RED_FLOWER);
-		CARRIABLE_BLOCKS.add(Blocks.BROWN_MUSHROOM);
-		CARRIABLE_BLOCKS.add(Blocks.RED_MUSHROOM);
-		CARRIABLE_BLOCKS.add(Blocks.TNT);
-		CARRIABLE_BLOCKS.add(Blocks.CACTUS);
-		CARRIABLE_BLOCKS.add(Blocks.CLAY);
-		CARRIABLE_BLOCKS.add(Blocks.PUMPKIN);
-		CARRIABLE_BLOCKS.add(Blocks.MELON_BLOCK);
-		CARRIABLE_BLOCKS.add(Blocks.MYCELIUM);
-		CARRIABLE_BLOCKS.add(Blocks.NETHERRACK);
+		if (CARRIABLE_BLOCKS == null) {
+			CARRIABLE_BLOCKS = Sets.<Block>newIdentityHashSet();
+			
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.GRASS));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.DIRT));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.SAND));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.GRAVEL));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.YELLOW_FLOWER));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.RED_FLOWER));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.BROWN_MUSHROOM));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.RED_MUSHROOM));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.TNT));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.CACTUS));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.CLAY));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.PUMPKIN));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.MELON_BLOCK));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.MYCELIUM));
+			CARRIABLE_BLOCKS.add(Blocks.getBlock(Blocks.NETHERRACK));
+		}
+		
+		return CARRIABLE_BLOCKS;
 	}
 
 	static class AIFindPlayer extends EntityAINearestAttackableTarget<EntityPlayer>
@@ -643,7 +649,7 @@ public class EntityEnderman extends EntityMob
 			RayTraceResult raytraceresult = world.rayTraceBlocks(new Vec3d(MathHelper.floor(this.enderman.posX) + 0.5F, j + 0.5F, MathHelper.floor(this.enderman.posZ) + 0.5F), new Vec3d(i + 0.5F, j + 0.5F, k + 0.5F), false, true, false);
 			boolean flag = raytraceresult != null && raytraceresult.getBlockPos().equals(blockpos);
 
-			if (EntityEnderman.CARRIABLE_BLOCKS.contains(block) && flag)
+			if (EntityEnderman.getCarriableBlocks().contains(block) && flag)
 			{
 				this.enderman.setHeldBlockState(iblockstate);
 				world.setBlockToAir(blockpos);

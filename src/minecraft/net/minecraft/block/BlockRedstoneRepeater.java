@@ -99,7 +99,7 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
 		Integer integer = unpoweredState.getValue(DELAY);
 		Boolean obool = unpoweredState.getValue(LOCKED);
 		EnumFacing enumfacing = unpoweredState.getValue(FACING);
-		return Blocks.POWERED_REPEATER.getDefaultState().withProperty(FACING, enumfacing).withProperty(DELAY, integer).withProperty(LOCKED, obool);
+		return Blocks.getBlock(Blocks.POWERED_REPEATER).getDefaultState().withProperty(FACING, enumfacing).withProperty(DELAY, integer).withProperty(LOCKED, obool);
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
 		Integer integer = poweredState.getValue(DELAY);
 		Boolean obool = poweredState.getValue(LOCKED);
 		EnumFacing enumfacing = poweredState.getValue(FACING);
-		return Blocks.UNPOWERED_REPEATER.getDefaultState().withProperty(FACING, enumfacing).withProperty(DELAY, integer).withProperty(LOCKED, obool);
+		return Blocks.getBlock(Blocks.UNPOWERED_REPEATER).getDefaultState().withProperty(FACING, enumfacing).withProperty(DELAY, integer).withProperty(LOCKED, obool);
 	}
 
 	/**
@@ -117,13 +117,13 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.REPEATER;
+		return Items.getItem(Items.REPEATER);
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Items.REPEATER);
+		return new ItemStack(Items.getItem(Items.REPEATER));
 	}
 
 	@Override

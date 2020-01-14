@@ -20,7 +20,7 @@ public class WoodlandMansion extends MapGenStructure
 {
 	private final int field_191073_b = 80;
 	private final int field_191074_d = 20;
-	public static final List<Biome> field_191072_a = Arrays.<Biome>asList(Biomes.ROOFED_FOREST, Biomes.MUTATED_ROOFED_FOREST);
+	public static final List<Biome> field_191072_a = Arrays.<Biome>asList(Biomes.getBiome(Biomes.ROOFED_FOREST), Biomes.getBiome(Biomes.MUTATED_ROOFED_FOREST));
 	private final ChunkGeneratorOverworld field_191075_h;
 
 	public WoodlandMansion(ChunkGeneratorOverworld p_i47240_1_)
@@ -76,7 +76,7 @@ public class WoodlandMansion extends MapGenStructure
 	{
 		this.worldObj = worldIn;
 		BiomeProvider biomeprovider = worldIn.getBiomeProvider();
-		return biomeprovider.func_190944_c() && biomeprovider.func_190943_d() != Biomes.ROOFED_FOREST ? null : func_191069_a(worldIn, this, pos, 80, 20, 10387319, true, 100, p_180706_3_);
+		return biomeprovider.func_190944_c() && biomeprovider.func_190943_d() != Biomes.getBiome(Biomes.ROOFED_FOREST) ? null : func_191069_a(worldIn, this, pos, 80, 20, 10387319, true, 100, p_180706_3_);
 	}
 
 	@Override
@@ -178,7 +178,7 @@ public class WoodlandMansion extends MapGenStructure
 									break;
 								}
 
-								worldIn.setBlockState(blockpos1, Blocks.COBBLESTONE.getDefaultState(), 2);
+								worldIn.setBlockState(blockpos1, Blocks.getBlock(Blocks.COBBLESTONE).getDefaultState(), 2);
 							}
 						}
 					}

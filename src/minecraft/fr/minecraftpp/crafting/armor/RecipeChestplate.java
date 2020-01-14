@@ -16,7 +16,7 @@ public class RecipeChestplate extends RecipeEquipment
 	@Override
 	protected Blueprint getBlueprint()
 	{
-		return new Blueprint(new Item[][] { { this.material, Items.EMPTY_ITEM, this.material }, { this.material, this.material, this.material }, { this.material, this.material, this.material } });
+		return new Blueprint(new Item[][] { { this.material, Items.getItem(Items.AIR), this.material }, { this.material, this.material, this.material }, { this.material, this.material, this.material } });
 	}
 
 }

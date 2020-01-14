@@ -58,13 +58,13 @@ public abstract class BlockStoneSlabNew extends BlockSlab
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(Blocks.STONE_SLAB2);
+		return Item.getItemFromBlock(Blocks.getBlock(Blocks.STONE_SLAB2));
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Blocks.STONE_SLAB2, 1, state.getValue(VARIANT).getMetadata());
+		return new ItemStack(Blocks.getBlock(Blocks.STONE_SLAB2), 1, state.getValue(VARIANT).getMetadata());
 	}
 
 	/**

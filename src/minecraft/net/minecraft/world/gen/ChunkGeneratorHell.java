@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -29,12 +30,12 @@ import net.minecraft.world.gen.structure.MapGenNetherBridge;
 
 public class ChunkGeneratorHell implements IChunkGenerator
 {
-	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
-	protected static final IBlockState NETHERRACK = Blocks.NETHERRACK.getDefaultState();
-	protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-	protected static final IBlockState LAVA = Blocks.LAVA.getDefaultState();
-	protected static final IBlockState GRAVEL = Blocks.GRAVEL.getDefaultState();
-	protected static final IBlockState SOUL_SAND = Blocks.SOUL_SAND.getDefaultState();
+	protected static final IBlockState AIR = Blocks.getBlock(Blocks.AIR).getDefaultState();
+	protected static final IBlockState NETHERRACK = Blocks.getBlock(Blocks.NETHERRACK).getDefaultState();
+	protected static final IBlockState BEDROCK = Blocks.getBlock(Blocks.BEDROCK).getDefaultState();
+	protected static final IBlockState LAVA = Blocks.getBlock(Blocks.LAVA).getDefaultState();
+	protected static final IBlockState GRAVEL = Blocks.getBlock(Blocks.GRAVEL).getDefaultState();
+	protected static final IBlockState SOUL_SAND = Blocks.getBlock(Blocks.SOUL_SAND).getDefaultState();
 	private final World world;
 	private final boolean generateStructures;
 	private final Random rand;
@@ -64,12 +65,12 @@ public class ChunkGeneratorHell implements IChunkGenerator
 	private final WorldGenFire fireFeature = new WorldGenFire();
 	private final WorldGenGlowStone1 lightGemGen = new WorldGenGlowStone1();
 	private final WorldGenGlowStone2 hellPortalGen = new WorldGenGlowStone2();
-	private final WorldGenerator quartzGen = new WorldGenMinable(Blocks.QUARTZ_ORE.getDefaultState(), 14, BlockMatcher.forBlock(Blocks.NETHERRACK));
-	private final WorldGenerator magmaGen = new WorldGenMinable(Blocks.MAGMA.getDefaultState(), 33, BlockMatcher.forBlock(Blocks.NETHERRACK));
-	private final WorldGenHellLava lavaTrapGen = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);
-	private final WorldGenHellLava hellSpringGen = new WorldGenHellLava(Blocks.FLOWING_LAVA, false);
-	private final WorldGenBush brownMushroomFeature = new WorldGenBush(Blocks.BROWN_MUSHROOM);
-	private final WorldGenBush redMushroomFeature = new WorldGenBush(Blocks.RED_MUSHROOM);
+	private final WorldGenerator quartzGen = new WorldGenMinable(Blocks.getBlock(Blocks.QUARTZ_ORE).getDefaultState(), 14, BlockMatcher.forBlock(Blocks.getBlock(Blocks.NETHERRACK)));
+	private final WorldGenerator magmaGen = new WorldGenMinable(Blocks.getBlock(Blocks.MAGMA).getDefaultState(), 33, BlockMatcher.forBlock(Blocks.getBlock(Blocks.NETHERRACK)));
+	private final WorldGenHellLava lavaTrapGen = new WorldGenHellLava(Blocks.getBlock(Blocks.FLOWING_LAVA), true);
+	private final WorldGenHellLava hellSpringGen = new WorldGenHellLava(Blocks.getBlock(Blocks.FLOWING_LAVA), false);
+	private final WorldGenBush brownMushroomFeature = new WorldGenBush((BlockBush) Blocks.getBlock(Blocks.BROWN_MUSHROOM));
+	private final WorldGenBush redMushroomFeature = new WorldGenBush((BlockBush) Blocks.getBlock(Blocks.RED_MUSHROOM));
 	private final MapGenNetherBridge genNetherBridge = new MapGenNetherBridge();
 	private final MapGenBase genNetherCaves = new MapGenCavesHell();
 	double[] pnr;
@@ -194,7 +195,7 @@ public class ChunkGeneratorHell implements IChunkGenerator
 
 						if (iblockstate2.getBlock() != null && iblockstate2.getMaterial() != Material.AIR)
 						{
-							if (iblockstate2.getBlock() == Blocks.NETHERRACK)
+							if (iblockstate2.getBlock() == Blocks.getBlock(Blocks.NETHERRACK))
 							{
 								if (i1 == -1)
 								{
@@ -448,7 +449,7 @@ public class ChunkGeneratorHell implements IChunkGenerator
 				return this.genNetherBridge.getSpawnList();
 			}
 
-			if (this.genNetherBridge.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
+			if (this.genNetherBridge.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.getBlock(Blocks.NETHER_BRICK))
 			{
 				return this.genNetherBridge.getSpawnList();
 			}

@@ -175,13 +175,13 @@ public class BlockBrewingStand extends BlockContainer
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.BREWING_STAND;
+		return Items.getItem(Items.BREWING_STAND);
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Items.BREWING_STAND);
+		return new ItemStack(Items.getItem(Items.BREWING_STAND));
 	}
 
 	@Override

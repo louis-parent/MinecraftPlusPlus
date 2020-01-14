@@ -23,7 +23,7 @@ public class BlockMelon extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.MELON;
+		return Items.getItem(Items.MELON);
 	}
 
 	/**

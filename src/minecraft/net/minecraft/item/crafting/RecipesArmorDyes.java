@@ -43,7 +43,7 @@ public class RecipesArmorDyes implements IRecipe
 				}
 				else
 				{
-					if (itemstack1.getItem() != Items.DYE)
+					if (itemstack1.getItem() != Items.getItem(Items.DYE))
 					{
 						return false;
 					}
@@ -101,7 +101,7 @@ public class RecipesArmorDyes implements IRecipe
 				}
 				else
 				{
-					if (itemstack1.getItem() != Items.DYE)
+					if (itemstack1.getItem() != Items.getItem(Items.DYE))
 					{
 						return ItemStack.EMPTY_ITEM_STACK;
 					}

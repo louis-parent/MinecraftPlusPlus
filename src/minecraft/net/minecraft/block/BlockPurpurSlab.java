@@ -40,13 +40,13 @@ public abstract class BlockPurpurSlab extends BlockSlab
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(Blocks.PURPUR_SLAB);
+		return Item.getItemFromBlock(Blocks.getBlock(Blocks.PURPUR_SLAB));
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Blocks.PURPUR_SLAB);
+		return new ItemStack(Blocks.getBlock(Blocks.PURPUR_SLAB));
 	}
 
 	/**

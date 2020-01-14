@@ -77,7 +77,7 @@ public class EntityAISkeletonRiders extends EntityAIBase
 
 		if (entityskeleton.getItemStackFromSlot(EntityArmorSlot.HEAD).isNotValid())
 		{
-			entityskeleton.setItemStackToSlot(EntityArmorSlot.HEAD, new ItemStack(Items.IRON_HELMET));
+			entityskeleton.setItemStackToSlot(EntityArmorSlot.HEAD, new ItemStack(Items.getItem(Items.IRON_HELMET)));
 		}
 
 		entityskeleton.setItemStackToSlot(EntityHandSlot.MAINHAND, EnchantmentHelper.addRandomEnchantment(entityskeleton.getRNG(), entityskeleton.getHeldItemMainhand(), (int) (5.0F + p_188514_1_.getClampedAdditionalDifficulty() * entityskeleton.getRNG().nextInt(18)), false));

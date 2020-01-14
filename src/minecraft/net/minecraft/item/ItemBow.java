@@ -36,7 +36,7 @@ public class ItemBow extends Item
 				}
 				else
 				{
-					return entityIn.getActiveItemStack().getItem() != Items.BOW ? 0.0F : (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F;
+					return entityIn.getActiveItemStack().getItem() != Items.getItem(Items.BOW) ? 0.0F : (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F;
 				}
 			}
 		});
@@ -98,7 +98,7 @@ public class ItemBow extends Item
 			{
 				if (itemstack.isNotValid())
 				{
-					itemstack = new ItemStack(Items.ARROW);
+					itemstack = new ItemStack(Items.getItem(Items.ARROW));
 				}
 
 				int i = this.getMaxItemUseDuration(stack) - timeLeft;
@@ -106,11 +106,11 @@ public class ItemBow extends Item
 
 				if (f >= 0.1D)
 				{
-					boolean flag1 = flag && itemstack.getItem() == Items.ARROW;
+					boolean flag1 = flag && itemstack.getItem() == Items.getItem(Items.ARROW);
 
 					if (!worldIn.isRemote)
 					{
-						ItemArrow itemarrow = (ItemArrow) (itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW);
+						ItemArrow itemarrow = (ItemArrow) (itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.getItem(Items.ARROW));
 						EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
 						entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 
@@ -140,7 +140,7 @@ public class ItemBow extends Item
 
 						stack.damageItem(1, entityplayer);
 
-						if (flag1 || entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW))
+						if (flag1 || entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.getItem(Items.SPECTRAL_ARROW) || itemstack.getItem() == Items.getItem(Items.TIPPED_ARROW)))
 						{
 							entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
 						}

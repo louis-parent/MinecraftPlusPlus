@@ -25,7 +25,7 @@ public class BlockObsidian extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(Blocks.OBSIDIAN);
+		return Item.getItemFromBlock(Blocks.getBlock(Blocks.OBSIDIAN));
 	}
 
 	/**

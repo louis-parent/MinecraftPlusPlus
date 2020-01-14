@@ -21,7 +21,7 @@ import net.minecraft.world.GameType;
 
 public class FindTreeStep implements ITutorialStep
 {
-	private static final Set<Block> field_193268_a = Sets.newHashSet(Blocks.LOG, Blocks.LOG2, Blocks.LEAVES, Blocks.LEAVES2);
+	private static final Set<Block> field_193268_a = Sets.newHashSet(Blocks.getBlock(Blocks.LOG), Blocks.getBlock(Blocks.LOG2), Blocks.getBlock(Blocks.LEAVES), Blocks.getBlock(Blocks.LEAVES2));
 	private static final ITextComponent field_193269_b = new TextComponentTranslation("tutorial.find_tree.title", new Object[0]);
 	private static final ITextComponent field_193270_c = new TextComponentTranslation("tutorial.find_tree.description", new Object[0]);
 	private final Tutorial field_193271_d;

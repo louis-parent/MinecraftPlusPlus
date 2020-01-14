@@ -75,7 +75,7 @@ public class EntitySkeleton extends AbstractSkeleton
 			if (entitycreeper.getPowered() && entitycreeper.isAIEnabled())
 			{
 				entitycreeper.incrementDroppedSkulls();
-				this.entityDropItem(new ItemStack(Items.SKULL, 1, 0), 0.0F);
+				this.entityDropItem(new ItemStack(Items.getItem(Items.SKULL), 1, 0), 0.0F);
 			}
 		}
 	}
@@ -85,7 +85,7 @@ public class EntitySkeleton extends AbstractSkeleton
 	{
 		ItemStack itemstack = this.getItemStackFromSlot(EntityHandSlot.OFFHAND);
 
-		if (itemstack.getItem() == Items.SPECTRAL_ARROW)
+		if (itemstack.getItem() == Items.getItem(Items.SPECTRAL_ARROW))
 		{
 			EntitySpectralArrow entityspectralarrow = new EntitySpectralArrow(this.world, this);
 			entityspectralarrow.func_190547_a(this, p_190726_1_);
@@ -95,7 +95,7 @@ public class EntitySkeleton extends AbstractSkeleton
 		{
 			EntityArrow entityarrow = super.func_190726_a(p_190726_1_);
 
-			if (itemstack.getItem() == Items.TIPPED_ARROW && entityarrow instanceof EntityTippedArrow)
+			if (itemstack.getItem() == Items.getItem(Items.TIPPED_ARROW) && entityarrow instanceof EntityTippedArrow)
 			{
 				((EntityTippedArrow) entityarrow).setPotionEffect(itemstack);
 			}

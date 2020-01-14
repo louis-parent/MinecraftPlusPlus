@@ -462,12 +462,12 @@ public class WorldServer extends World implements IThreadListener
 
 					if (this.canBlockFreezeNoWater(blockpos2))
 					{
-						this.setBlockState(blockpos2, Blocks.ICE.getDefaultState());
+						this.setBlockState(blockpos2, Blocks.getBlock(Blocks.ICE).getDefaultState());
 					}
 
 					if (flag && this.canSnowAt(blockpos1, true))
 					{
-						this.setBlockState(blockpos1, Blocks.SNOW_LAYER.getDefaultState());
+						this.setBlockState(blockpos1, Blocks.getBlock(Blocks.SNOW_LAYER).getDefaultState());
 					}
 
 					if (flag && this.getBiome(blockpos2).canRain())

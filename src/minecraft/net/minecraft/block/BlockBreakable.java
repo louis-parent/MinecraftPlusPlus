@@ -39,7 +39,7 @@ public class BlockBreakable extends Block
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 		Block block = iblockstate.getBlock();
 
-		if (this == Blocks.GLASS || this == Blocks.STAINED_GLASS)
+		if (this == Blocks.getBlock(Blocks.GLASS) || this == Blocks.getBlock(Blocks.STAINED_GLASS))
 		{
 			if (blockState != iblockstate)
 			{

@@ -74,32 +74,32 @@ public class TileEntityNote extends TileEntity
 
 			Block block = iblockstate.getBlock();
 
-			if (block == Blocks.CLAY)
+			if (block == Blocks.getBlock(Blocks.CLAY))
 			{
 				i = 5;
 			}
 
-			if (block == Blocks.GOLD_BLOCK)
+			if (block == Blocks.getBlock(Blocks.GOLD_BLOCK))
 			{
 				i = 6;
 			}
 
-			if (block == Blocks.WOOL)
+			if (block == Blocks.getBlock(Blocks.WOOL))
 			{
 				i = 7;
 			}
 
-			if (block == Blocks.PACKED_ICE)
+			if (block == Blocks.getBlock(Blocks.PACKED_ICE))
 			{
 				i = 8;
 			}
 
-			if (block == Blocks.BONE_BLOCK)
+			if (block == Blocks.getBlock(Blocks.BONE_BLOCK))
 			{
 				i = 9;
 			}
 
-			worldIn.addBlockEvent(posIn, Blocks.NOTEBLOCK, i, this.note);
+			worldIn.addBlockEvent(posIn, Blocks.getBlock(Blocks.NOTEBLOCK), i, this.note);
 		}
 	}
 }

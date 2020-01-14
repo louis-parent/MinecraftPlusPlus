@@ -176,7 +176,7 @@ public abstract class BlockSlab extends Block
 	protected static boolean isHalfSlab(IBlockState state)
 	{
 		Block block = state.getBlock();
-		return block == Blocks.STONE_SLAB || block == Blocks.WOODEN_SLAB || block == Blocks.STONE_SLAB2 || block == Blocks.PURPUR_SLAB;
+		return block == Blocks.getBlock(Blocks.STONE_SLAB) || block == Blocks.getBlock(Blocks.WOODEN_SLAB) || block == Blocks.getBlock(Blocks.STONE_SLAB2) || block == Blocks.getBlock(Blocks.PURPUR_SLAB);
 	}
 
 	/**

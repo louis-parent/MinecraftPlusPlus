@@ -73,7 +73,7 @@ public class EnchantmentHelper
 	public static Map<Enchantment, Integer> getEnchantments(ItemStack stack)
 	{
 		Map<Enchantment, Integer> map = Maps.<Enchantment, Integer>newLinkedHashMap();
-		NBTTagList nbttaglist = stack.getItem() == Items.ENCHANTED_BOOK ? ItemEnchantedBook.getEnchantments(stack) : stack.getEnchantmentTagList();
+		NBTTagList nbttaglist = stack.getItem() == Items.getItem(Items.ENCHANTED_BOOK) ? ItemEnchantedBook.getEnchantments(stack) : stack.getEnchantmentTagList();
 
 		for (int i = 0; i < nbttaglist.tagCount(); ++i)
 		{
@@ -105,7 +105,7 @@ public class EnchantmentHelper
 				nbttagcompound.setShort("lvl", (short) i);
 				nbttaglist.appendTag(nbttagcompound);
 
-				if (stack.getItem() == Items.ENCHANTED_BOOK)
+				if (stack.getItem() == Items.getItem(Items.ENCHANTED_BOOK))
 				{
 					ItemEnchantedBook.addEnchantment(stack, new EnchantmentData(enchantment, i));
 				}
@@ -119,7 +119,7 @@ public class EnchantmentHelper
 				stack.getTagCompound().removeTag("ench");
 			}
 		}
-		else if (stack.getItem() != Items.ENCHANTED_BOOK)
+		else if (stack.getItem() != Items.getItem(Items.ENCHANTED_BOOK))
 		{
 			stack.setTagInfo("ench", nbttaglist);
 		}
@@ -382,11 +382,11 @@ public class EnchantmentHelper
 	public static ItemStack addRandomEnchantment(Random random, ItemStack p_77504_1_, int p_77504_2_, boolean allowTreasure)
 	{
 		List<EnchantmentData> list = buildEnchantmentList(random, p_77504_1_, p_77504_2_, allowTreasure);
-		boolean flag = p_77504_1_.getItem() == Items.BOOK;
+		boolean flag = p_77504_1_.getItem() == Items.getItem(Items.BOOK);
 
 		if (flag)
 		{
-			p_77504_1_ = new ItemStack(Items.ENCHANTED_BOOK);
+			p_77504_1_ = new ItemStack(Items.getItem(Items.ENCHANTED_BOOK));
 		}
 
 		for (EnchantmentData enchantmentdata : list)
@@ -460,7 +460,7 @@ public class EnchantmentHelper
 	{
 		List<EnchantmentData> list = Lists.<EnchantmentData>newArrayList();
 		Item item = p_185291_1_.getItem();
-		boolean flag = p_185291_1_.getItem() == Items.BOOK;
+		boolean flag = p_185291_1_.getItem() == Items.getItem(Items.BOOK);
 
 		for (Enchantment enchantment : Enchantment.REGISTRY)
 		{

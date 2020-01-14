@@ -47,7 +47,7 @@ public class BlockFurnace extends BlockContainer
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(Blocks.FURNACE);
+		return Item.getItemFromBlock(Blocks.getBlock(Blocks.FURNACE));
 	}
 
 	/**
@@ -162,13 +162,13 @@ public class BlockFurnace extends BlockContainer
 
 		if (active)
 		{
-			worldIn.setBlockState(pos, Blocks.LIT_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-			worldIn.setBlockState(pos, Blocks.LIT_FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, Blocks.getBlock(Blocks.LIT_FURNACE).getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, Blocks.getBlock(Blocks.LIT_FURNACE).getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
 		}
 		else
 		{
-			worldIn.setBlockState(pos, Blocks.FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-			worldIn.setBlockState(pos, Blocks.FURNACE.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, Blocks.getBlock(Blocks.FURNACE).getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, Blocks.getBlock(Blocks.FURNACE).getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
 		}
 
 		keepInventory = false;
@@ -256,7 +256,7 @@ public class BlockFurnace extends BlockContainer
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Blocks.FURNACE);
+		return new ItemStack(Blocks.getBlock(Blocks.FURNACE));
 	}
 
 	/**

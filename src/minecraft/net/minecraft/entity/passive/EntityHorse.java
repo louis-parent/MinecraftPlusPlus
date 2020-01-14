@@ -274,7 +274,7 @@ public class EntityHorse extends AbstractHorse
 		ItemStack itemstack = player.getHeldItem(hand);
 		boolean flag = !itemstack.isNotValid();
 
-		if (flag && itemstack.getItem() == Items.SPAWN_EGG)
+		if (flag && itemstack.getItem() == Items.getItem(Items.SPAWN_EGG))
 		{
 			return super.processInteract(player, hand);
 		}
@@ -318,7 +318,7 @@ public class EntityHorse extends AbstractHorse
 				}
 
 				boolean flag1 = HorseArmorType.getByItemStack(itemstack) != HorseArmorType.NONE;
-				boolean flag2 = !this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE;
+				boolean flag2 = !this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.getItem(Items.SADDLE);
 
 				if (flag1 || flag2)
 				{

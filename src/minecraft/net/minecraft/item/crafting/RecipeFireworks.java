@@ -37,45 +37,45 @@ public class RecipeFireworks implements IRecipe
 
 			if (!itemstack.isNotValid())
 			{
-				if (itemstack.getItem() == Items.GUNPOWDER)
+				if (itemstack.getItem() == Items.getItem(Items.GUNPOWDER))
 				{
 					++j;
 				}
-				else if (itemstack.getItem() == Items.FIREWORK_CHARGE)
+				else if (itemstack.getItem() == Items.getItem(Items.FIREWORK_CHARGE))
 				{
 					++l;
 				}
-				else if (itemstack.getItem() == Items.DYE)
+				else if (itemstack.getItem() == Items.getItem(Items.DYE))
 				{
 					++k;
 				}
-				else if (itemstack.getItem() == Items.PAPER)
+				else if (itemstack.getItem() == Items.getItem(Items.PAPER))
 				{
 					++i;
 				}
-				else if (itemstack.getItem() == Items.GLOWSTONE_DUST)
+				else if (itemstack.getItem() == Items.getItem(Items.GLOWSTONE_DUST))
 				{
 					++i1;
 				}
-				else if (Variant.getInstance().isVariantOf(itemstack.getItem(), Items.OLD_DIAMOND))
+				else if (Variant.getInstance().isVariantOf(itemstack.getItem(), Items.getItem(Items.OLD_DIAMOND)))
 				{
 					++i1;
 				}
-				else if (itemstack.getItem() == Items.FIRE_CHARGE)
+				else if (itemstack.getItem() == Items.getItem(Items.FIRE_CHARGE))
 				{
 					++j1;
 				}
-				else if (itemstack.getItem() == Items.FEATHER)
+				else if (itemstack.getItem() == Items.getItem(Items.FEATHER))
 				{
 					++j1;
 				}
-				else if (itemstack.getItem() == Items.GOLD_NUGGET)
+				else if (itemstack.getItem() == Items.getItem(Items.GOLD_NUGGET))
 				{
 					++j1;
 				}
 				else
 				{
-					if (itemstack.getItem() != Items.SKULL)
+					if (itemstack.getItem() != Items.getItem(Items.SKULL))
 					{
 						return false;
 					}
@@ -91,7 +91,7 @@ public class RecipeFireworks implements IRecipe
 		{
 			if (j >= 1 && i == 1 && i1 == 0)
 			{
-				this.resultItem = new ItemStack(Items.FIREWORKS, 3);
+				this.resultItem = new ItemStack(Items.getItem(Items.FIREWORKS), 3);
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 
 				if (l > 0)
@@ -102,7 +102,7 @@ public class RecipeFireworks implements IRecipe
 					{
 						ItemStack itemstack3 = inv.getStackInSlot(k2);
 
-						if (itemstack3.getItem() == Items.FIREWORK_CHARGE && itemstack3.hasTagCompound() && itemstack3.getTagCompound().hasKey("Explosion", 10))
+						if (itemstack3.getItem() == Items.getItem(Items.FIREWORK_CHARGE) && itemstack3.hasTagCompound() && itemstack3.getTagCompound().hasKey("Explosion", 10))
 						{
 							nbttaglist.appendTag(itemstack3.getTagCompound().getCompoundTag("Explosion"));
 						}
@@ -119,7 +119,7 @@ public class RecipeFireworks implements IRecipe
 			}
 			else if (j == 1 && i == 0 && l == 0 && k > 0 && j1 <= 1)
 			{
-				this.resultItem = new ItemStack(Items.FIREWORK_CHARGE);
+				this.resultItem = new ItemStack(Items.getItem(Items.FIREWORK_CHARGE));
 				NBTTagCompound nbttagcompound = new NBTTagCompound();
 				NBTTagCompound nbttagcompound2 = new NBTTagCompound();
 				byte b0 = 0;
@@ -131,31 +131,31 @@ public class RecipeFireworks implements IRecipe
 
 					if (!itemstack2.isNotValid())
 					{
-						if (itemstack2.getItem() == Items.DYE)
+						if (itemstack2.getItem() == Items.getItem(Items.DYE))
 						{
 							list.add(Integer.valueOf(ItemDye.DYE_COLORS[itemstack2.getMetadata() & 15]));
 						}
-						else if (itemstack2.getItem() == Items.GLOWSTONE_DUST)
+						else if (itemstack2.getItem() == Items.getItem(Items.GLOWSTONE_DUST))
 						{
 							nbttagcompound2.setBoolean("Flicker", true);
 						}
-						else if (Variant.getInstance().isVariantOf(itemstack2.getItem(), Items.OLD_DIAMOND))
+						else if (Variant.getInstance().isVariantOf(itemstack2.getItem(), Items.getItem(Items.OLD_DIAMOND)))
 						{
 							nbttagcompound2.setBoolean("Trail", true);
 						}
-						else if (itemstack2.getItem() == Items.FIRE_CHARGE)
+						else if (itemstack2.getItem() == Items.getItem(Items.FIRE_CHARGE))
 						{
 							b0 = 1;
 						}
-						else if (itemstack2.getItem() == Items.FEATHER)
+						else if (itemstack2.getItem() == Items.getItem(Items.FEATHER))
 						{
 							b0 = 4;
 						}
-						else if (itemstack2.getItem() == Items.GOLD_NUGGET)
+						else if (itemstack2.getItem() == Items.getItem(Items.GOLD_NUGGET))
 						{
 							b0 = 2;
 						}
-						else if (itemstack2.getItem() == Items.SKULL)
+						else if (itemstack2.getItem() == Items.getItem(Items.SKULL))
 						{
 							b0 = 3;
 						}
@@ -185,11 +185,11 @@ public class RecipeFireworks implements IRecipe
 
 					if (!itemstack1.isNotValid())
 					{
-						if (itemstack1.getItem() == Items.DYE)
+						if (itemstack1.getItem() == Items.getItem(Items.DYE))
 						{
 							list1.add(Integer.valueOf(ItemDye.DYE_COLORS[itemstack1.getMetadata() & 15]));
 						}
-						else if (itemstack1.getItem() == Items.FIREWORK_CHARGE)
+						else if (itemstack1.getItem() == Items.getItem(Items.FIREWORK_CHARGE))
 						{
 							this.resultItem = itemstack1.copy();
 							this.resultItem.setStackSize(1);

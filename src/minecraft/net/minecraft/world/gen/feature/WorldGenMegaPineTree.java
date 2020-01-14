@@ -17,14 +17,11 @@ import net.minecraft.world.World;
 
 public class WorldGenMegaPineTree extends WorldGenHugeTrees
 {
-	private static final IBlockState TRUNK = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
-	private static final IBlockState LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-	private static final IBlockState PODZOL = Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL);
 	private final boolean useBaseHeight;
 
 	public WorldGenMegaPineTree(boolean notify, boolean p_i45457_2_)
 	{
-		super(notify, 13, 15, TRUNK, LEAF);
+		super(notify, 13, 15, getTrunk(), getLeaf());
 		this.useBaseHeight = p_i45457_2_;
 	}
 
@@ -136,9 +133,9 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
 			IBlockState iblockstate = worldIn.getBlockState(blockpos);
 			Block block = iblockstate.getBlock();
 
-			if (block == Blocks.GRASS || block == Blocks.DIRT)
+			if (block == Blocks.getBlock(Blocks.GRASS) || block == Blocks.getBlock(Blocks.DIRT))
 			{
-				this.setBlockAndNotifyAdequately(worldIn, blockpos, PODZOL);
+				this.setBlockAndNotifyAdequately(worldIn, blockpos, getPodzol());
 				break;
 			}
 
@@ -147,5 +144,20 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
 				break;
 			}
 		}
+	}
+
+	public static IBlockState getTrunk()
+	{
+		return Blocks.getBlock(Blocks.LOG).getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
+	}
+
+	public static IBlockState getLeaf()
+	{
+		return Blocks.getBlock(Blocks.LEAVES).getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+	}
+
+	public static IBlockState getPodzol()
+	{
+		return Blocks.getBlock(Blocks.DIRT).getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL);
 	}
 }

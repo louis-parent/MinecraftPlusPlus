@@ -46,7 +46,7 @@ public class EntityCow extends EntityAnimal
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIPanic(this, 2.0D));
 		this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-		this.tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.WHEAT, false));
+		this.tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.getItem(Items.WHEAT), false));
 		this.tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
 		this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -106,18 +106,18 @@ public class EntityCow extends EntityAnimal
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 
-		if (itemstack.getItem() == Items.BUCKET && !player.capabilities.isCreativeMode && !this.isChild())
+		if (itemstack.getItem() == Items.getItem(Items.BUCKET) && !player.capabilities.isCreativeMode && !this.isChild())
 		{
 			player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
 			itemstack.decreaseStackSize(1);
 
 			if (itemstack.isNotValid())
 			{
-				player.setHeldItem(hand, new ItemStack(Items.MILK_BUCKET));
+				player.setHeldItem(hand, new ItemStack(Items.getItem(Items.MILK_BUCKET)));
 			}
-			else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.MILK_BUCKET)))
+			else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.getItem(Items.MILK_BUCKET))))
 			{
-				player.dropItem(new ItemStack(Items.MILK_BUCKET), false);
+				player.dropItem(new ItemStack(Items.getItem(Items.MILK_BUCKET)), false);
 			}
 
 			return true;

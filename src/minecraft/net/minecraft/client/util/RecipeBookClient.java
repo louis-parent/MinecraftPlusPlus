@@ -50,10 +50,14 @@ public class RecipeBookClient extends RecipeBook
 		}
 	}
 
-	static
+	public static void init() 
 	{
 		Table<CreativeTabs, String, RecipeList> table = HashBasedTable.<CreativeTabs, String, RecipeList>create();
 
+		field_194086_e.clear();
+		field_194087_f.clear();
+		
+		
 		for (IRecipe irecipe : CraftingManager.recipeMap)
 		{
 			if (!irecipe.hideInCraftingTabs())

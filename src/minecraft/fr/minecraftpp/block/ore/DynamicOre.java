@@ -146,6 +146,6 @@ public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 	@Override
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
 	{
-		decorator.uniformOreGeneration(world, rand, this.oreRarity.getVeinAmount(), new WorldGenMinable(this.getDefaultState(), this.oreRarity.getVeinDensity(), BlockMatcher.forBlock(Blocks.STONE)), 0, this.oreRarity.getMaxHeight());
+		decorator.uniformOreGeneration(world, rand, this.oreRarity.getVeinAmount(), new WorldGenMinable(this.getDefaultState(), this.oreRarity.getVeinDensity(), BlockMatcher.forBlock(Blocks.getBlock(Blocks.STONE))), 0, this.oreRarity.getMaxHeight());
 	}
 }

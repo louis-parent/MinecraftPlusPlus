@@ -120,7 +120,7 @@ public abstract class BlockButton extends BlockDirectional
 
 		if (direction == EnumFacing.UP)
 		{
-			return block == Blocks.HOPPER || !func_193384_b(block) && flag;
+			return block == Blocks.getBlock(Blocks.HOPPER) || !func_193384_b(block) && flag;
 		}
 		else
 		{

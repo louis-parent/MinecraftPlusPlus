@@ -23,7 +23,7 @@ public class ShieldRecipes
 
 				if (!itemstack2.isNotValid())
 				{
-					if (itemstack2.getItem() == Items.BANNER)
+					if (itemstack2.getItem() == Items.getItem(Items.BANNER))
 					{
 						if (!itemstack1.isNotValid())
 						{
@@ -34,7 +34,7 @@ public class ShieldRecipes
 					}
 					else
 					{
-						if (itemstack2.getItem() != Items.SHIELD)
+						if (itemstack2.getItem() != Items.getItem(Items.SHIELD))
 						{
 							return false;
 						}
@@ -76,11 +76,11 @@ public class ShieldRecipes
 
 				if (!itemstack2.isNotValid())
 				{
-					if (itemstack2.getItem() == Items.BANNER)
+					if (itemstack2.getItem() == Items.getItem(Items.BANNER))
 					{
 						itemstack = itemstack2;
 					}
-					else if (itemstack2.getItem() == Items.SHIELD)
+					else if (itemstack2.getItem() == Items.getItem(Items.SHIELD))
 					{
 						itemstack1 = itemstack2.copy();
 					}

@@ -63,7 +63,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return rand.nextInt(8) == 0 ? Items.WHEAT_SEEDS : Items.EMPTY_ITEM;
+		return rand.nextInt(8) == 0 ? Items.getItem(Items.WHEAT_SEEDS) : Items.getItem(Items.AIR);
 	}
 
 	/**
@@ -78,10 +78,10 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
-		if (!worldIn.isRemote && stack.getItem() == Items.SHEARS)
+		if (!worldIn.isRemote && stack.getItem() == Items.getItem(Items.SHEARS))
 		{
 			player.addStat(StatList.getBlockStats(this));
-			spawnAsEntity(worldIn, pos, new ItemStack(Blocks.TALLGRASS, 1, state.getValue(TYPE).getMeta()));
+			spawnAsEntity(worldIn, pos, new ItemStack(Blocks.getBlock(Blocks.TALLGRASS), 1, state.getValue(TYPE).getMeta()));
 		}
 		else
 		{
@@ -133,9 +133,9 @@ public class BlockTallGrass extends BlockBush implements IGrowable
 			blockdoubleplant$enumplanttype = BlockDoublePlant.EnumPlantType.FERN;
 		}
 
-		if (Blocks.DOUBLE_PLANT.canPlaceBlockAt(worldIn, pos))
+		if (Blocks.getBlock(Blocks.DOUBLE_PLANT).canPlaceBlockAt(worldIn, pos))
 		{
-			Blocks.DOUBLE_PLANT.placeAt(worldIn, pos, blockdoubleplant$enumplanttype, 2);
+			((BlockDoublePlant) Blocks.getBlock(Blocks.DOUBLE_PLANT)).placeAt(worldIn, pos, blockdoubleplant$enumplanttype, 2);
 		}
 	}
 

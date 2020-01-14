@@ -134,7 +134,7 @@ public class BlockPistonExtension extends BlockDirectional
 			BlockPos blockpos = pos.offset(state.getValue(FACING).getOpposite());
 			Block block = worldIn.getBlockState(blockpos).getBlock();
 
-			if (block == Blocks.PISTON || block == Blocks.STICKY_PISTON)
+			if (block == Blocks.getBlock(Blocks.PISTON) || block == Blocks.getBlock(Blocks.STICKY_PISTON))
 			{
 				worldIn.setBlockToAir(blockpos);
 			}
@@ -155,7 +155,7 @@ public class BlockPistonExtension extends BlockDirectional
 		pos = pos.offset(enumfacing);
 		IBlockState iblockstate = worldIn.getBlockState(pos);
 
-		if ((iblockstate.getBlock() == Blocks.PISTON || iblockstate.getBlock() == Blocks.STICKY_PISTON) && iblockstate.getValue(BlockPistonBase.EXTENDED).booleanValue())
+		if ((iblockstate.getBlock() == Blocks.getBlock(Blocks.PISTON) || iblockstate.getBlock() == Blocks.getBlock(Blocks.STICKY_PISTON)) && iblockstate.getValue(BlockPistonBase.EXTENDED).booleanValue())
 		{
 			iblockstate.getBlock().dropBlockAsItem(worldIn, pos, iblockstate, 0);
 			worldIn.setBlockToAir(pos);
@@ -215,7 +215,7 @@ public class BlockPistonExtension extends BlockDirectional
 		BlockPos blockpos = pos.offset(enumfacing.getOpposite());
 		IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-		if (iblockstate.getBlock() != Blocks.PISTON && iblockstate.getBlock() != Blocks.STICKY_PISTON)
+		if (iblockstate.getBlock() != Blocks.getBlock(Blocks.PISTON) && iblockstate.getBlock() != Blocks.getBlock(Blocks.STICKY_PISTON))
 		{
 			worldIn.setBlockToAir(pos);
 		}
@@ -241,7 +241,7 @@ public class BlockPistonExtension extends BlockDirectional
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(state.getValue(TYPE) == BlockPistonExtension.EnumPistonType.STICKY ? Blocks.STICKY_PISTON : Blocks.PISTON);
+		return new ItemStack(state.getValue(TYPE) == BlockPistonExtension.EnumPistonType.STICKY ? Blocks.getBlock(Blocks.STICKY_PISTON) : Blocks.getBlock(Blocks.PISTON));
 	}
 
 	/**

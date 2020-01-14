@@ -30,7 +30,7 @@ public class Variant
 		{
 			this.variants.put(orignal, new ArrayList<Item>());
 		}
-		
+				
 		this.variants.get(orignal).add(variant);
 	}
 	

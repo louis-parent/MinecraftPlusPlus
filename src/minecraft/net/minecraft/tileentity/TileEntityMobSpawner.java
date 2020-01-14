@@ -24,7 +24,7 @@ public class TileEntityMobSpawner extends TileEntity implements ITickable
 		@Override
 		public void broadcastEvent(int id)
 		{
-			TileEntityMobSpawner.this.world.addBlockEvent(TileEntityMobSpawner.this.pos, Blocks.MOB_SPAWNER, id, 0);
+			TileEntityMobSpawner.this.world.addBlockEvent(TileEntityMobSpawner.this.pos, Blocks.getBlock(Blocks.MOB_SPAWNER), id, 0);
 		}
 
 		@Override

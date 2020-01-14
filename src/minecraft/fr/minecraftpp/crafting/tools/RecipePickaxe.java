@@ -17,6 +17,6 @@ public class RecipePickaxe extends RecipeEquipment
 	@Override
 	public Blueprint getBlueprint()
 	{
-		return new Blueprint(new Item[][] { { this.material, this.material, this.material }, { Items.EMPTY_ITEM, Items.STICK, Items.EMPTY_ITEM }, { Items.EMPTY_ITEM, Items.STICK, Items.EMPTY_ITEM } });
+		return new Blueprint(new Item[][] { { this.material, this.material, this.material }, { Items.getItem(Items.AIR), Items.getItem(Items.STICK), Items.getItem(Items.AIR) }, { Items.getItem(Items.AIR), Items.getItem(Items.STICK), Items.getItem(Items.AIR) } });
 	}
 }

@@ -42,11 +42,11 @@ public class WorldGenSpikes extends WorldGenerator
 			{
 				if (blockpos$mutableblockpos.distanceSq(position.getX(), blockpos$mutableblockpos.getY(), position.getZ()) <= i * i + 1 && blockpos$mutableblockpos.getY() < this.spike.getHeight())
 				{
-					this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.OBSIDIAN.getDefaultState());
+					this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.getBlock(Blocks.OBSIDIAN).getDefaultState());
 				}
 				else if (blockpos$mutableblockpos.getY() > 65)
 				{
-					this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.AIR.getDefaultState());
+					this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Blocks.getBlock(Blocks.AIR).getDefaultState());
 				}
 			}
 
@@ -58,12 +58,12 @@ public class WorldGenSpikes extends WorldGenerator
 					{
 						if (MathHelper.abs(j) == 2 || MathHelper.abs(k) == 2)
 						{
-							this.setBlockAndNotifyAdequately(worldIn, new BlockPos(position.getX() + j, this.spike.getHeight(), position.getZ() + k), Blocks.IRON_BARS.getDefaultState());
-							this.setBlockAndNotifyAdequately(worldIn, new BlockPos(position.getX() + j, this.spike.getHeight() + 1, position.getZ() + k), Blocks.IRON_BARS.getDefaultState());
-							this.setBlockAndNotifyAdequately(worldIn, new BlockPos(position.getX() + j, this.spike.getHeight() + 2, position.getZ() + k), Blocks.IRON_BARS.getDefaultState());
+							this.setBlockAndNotifyAdequately(worldIn, new BlockPos(position.getX() + j, this.spike.getHeight(), position.getZ() + k), Blocks.getBlock(Blocks.IRON_BARS).getDefaultState());
+							this.setBlockAndNotifyAdequately(worldIn, new BlockPos(position.getX() + j, this.spike.getHeight() + 1, position.getZ() + k), Blocks.getBlock(Blocks.IRON_BARS).getDefaultState());
+							this.setBlockAndNotifyAdequately(worldIn, new BlockPos(position.getX() + j, this.spike.getHeight() + 2, position.getZ() + k), Blocks.getBlock(Blocks.IRON_BARS).getDefaultState());
 						}
 
-						this.setBlockAndNotifyAdequately(worldIn, new BlockPos(position.getX() + j, this.spike.getHeight() + 3, position.getZ() + k), Blocks.IRON_BARS.getDefaultState());
+						this.setBlockAndNotifyAdequately(worldIn, new BlockPos(position.getX() + j, this.spike.getHeight() + 3, position.getZ() + k), Blocks.getBlock(Blocks.IRON_BARS).getDefaultState());
 					}
 				}
 			}
@@ -73,7 +73,7 @@ public class WorldGenSpikes extends WorldGenerator
 			entityendercrystal.setEntityInvulnerable(this.crystalInvulnerable);
 			entityendercrystal.setLocationAndAngles(position.getX() + 0.5F, this.spike.getHeight() + 1, position.getZ() + 0.5F, rand.nextFloat() * 360.0F, 0.0F);
 			worldIn.spawnEntityInWorld(entityendercrystal);
-			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(position.getX(), this.spike.getHeight(), position.getZ()), Blocks.BEDROCK.getDefaultState());
+			this.setBlockAndNotifyAdequately(worldIn, new BlockPos(position.getX(), this.spike.getHeight(), position.getZ()), Blocks.getBlock(Blocks.BEDROCK).getDefaultState());
 			return true;
 		}
 	}

@@ -22,8 +22,8 @@ public class ChunkGeneratorDebug implements IChunkGenerator
 	private static final List<IBlockState> ALL_VALID_STATES = Lists.<IBlockState>newArrayList();
 	private static final int GRID_WIDTH;
 	private static final int GRID_HEIGHT;
-	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
-	protected static final IBlockState BARRIER = Blocks.BARRIER.getDefaultState();
+	protected static final IBlockState AIR = Blocks.getBlock(Blocks.AIR).getDefaultState();
+	protected static final IBlockState BARRIER = Blocks.getBlock(Blocks.BARRIER).getDefaultState();
 	private final World world;
 
 	public ChunkGeneratorDebug(World worldIn)

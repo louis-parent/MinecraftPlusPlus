@@ -43,7 +43,7 @@ public class BlockNetherWart extends BlockBush
 	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
-		return state.getBlock() == Blocks.SOUL_SAND;
+		return state.getBlock() == Blocks.getBlock(Blocks.SOUL_SAND);
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class BlockNetherWart extends BlockBush
 
 			for (int j = 0; j < i; ++j)
 			{
-				spawnAsEntity(worldIn, pos, new ItemStack(Items.NETHER_WART));
+				spawnAsEntity(worldIn, pos, new ItemStack(Items.getItem(Items.NETHER_WART)));
 			}
 		}
 	}
@@ -99,7 +99,7 @@ public class BlockNetherWart extends BlockBush
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.EMPTY_ITEM;
+		return Items.getItem(Items.AIR);
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class BlockNetherWart extends BlockBush
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Items.NETHER_WART);
+		return new ItemStack(Items.getItem(Items.NETHER_WART));
 	}
 
 	/**

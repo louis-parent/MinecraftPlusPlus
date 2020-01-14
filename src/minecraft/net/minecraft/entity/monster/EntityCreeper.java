@@ -229,15 +229,15 @@ public class EntityCreeper extends EntityMob
 		{
 			if (cause.getEntity() instanceof EntitySkeleton)
 			{
-				int i = Item.getIdFromItem(Items.RECORD_13);
-				int j = Item.getIdFromItem(Items.RECORD_WAIT);
+				int i = Item.getIdFromItem(Items.getItem(Items.RECORD_13));
+				int j = Item.getIdFromItem(Items.getItem(Items.RECORD_WAIT));
 				int k = i + this.rand.nextInt(j - i + 1);
 				this.dropItem(Item.getItemById(k), 1);
 			}
 			else if (cause.getEntity() instanceof EntityCreeper && cause.getEntity() != this && ((EntityCreeper) cause.getEntity()).getPowered() && ((EntityCreeper) cause.getEntity()).isAIEnabled())
 			{
 				((EntityCreeper) cause.getEntity()).incrementDroppedSkulls();
-				this.entityDropItem(new ItemStack(Items.SKULL, 1, 4), 0.0F);
+				this.entityDropItem(new ItemStack(Items.getItem(Items.SKULL), 1, 4), 0.0F);
 			}
 		}
 	}
@@ -303,7 +303,7 @@ public class EntityCreeper extends EntityMob
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 
-		if (itemstack.getItem() == Items.FLINT_AND_STEEL)
+		if (itemstack.getItem() == Items.getItem(Items.FLINT_AND_STEEL))
 		{
 			this.world.playSound(player, this.posX, this.posY, this.posZ, SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
 			player.swingArm(hand);

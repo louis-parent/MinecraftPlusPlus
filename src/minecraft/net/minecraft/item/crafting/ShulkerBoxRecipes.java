@@ -31,7 +31,7 @@ public class ShulkerBoxRecipes
 					}
 					else
 					{
-						if (itemstack.getItem() != Items.DYE)
+						if (itemstack.getItem() != Items.getItem(Items.DYE))
 						{
 							return false;
 						}
@@ -65,7 +65,7 @@ public class ShulkerBoxRecipes
 					{
 						itemstack = itemstack2;
 					}
-					else if (itemstack2.getItem() == Items.DYE)
+					else if (itemstack2.getItem() == Items.getItem(Items.DYE))
 					{
 						itemstack1 = itemstack2;
 					}

@@ -14,8 +14,6 @@ import net.minecraft.world.World;
 
 public class WorldGenBirchTree extends WorldGenAbstractTree
 {
-	private static final IBlockState LOG = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.BIRCH);
-	private static final IBlockState LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.BIRCH).withProperty(BlockOldLeaf.CHECK_DECAY, Boolean.valueOf(false));
 	private final boolean useExtraRandomHeight;
 
 	public WorldGenBirchTree(boolean notify, boolean useExtraRandomHeightIn)
@@ -81,7 +79,7 @@ public class WorldGenBirchTree extends WorldGenAbstractTree
 			{
 				Block block = worldIn.getBlockState(position.down()).getBlock();
 
-				if ((block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND) && position.getY() < 256 - i - 1)
+				if ((block == Blocks.getBlock(Blocks.GRASS) || block == Blocks.getBlock(Blocks.DIRT) || block == Blocks.getBlock(Blocks.FARMLAND)) && position.getY() < 256 - i - 1)
 				{
 					this.setDirtAt(worldIn, position.down());
 
@@ -105,7 +103,7 @@ public class WorldGenBirchTree extends WorldGenAbstractTree
 
 									if (material == Material.AIR || material == Material.LEAVES)
 									{
-										this.setBlockAndNotifyAdequately(worldIn, blockpos, LEAF);
+										this.setBlockAndNotifyAdequately(worldIn, blockpos, getLeaf());
 									}
 								}
 							}
@@ -118,7 +116,7 @@ public class WorldGenBirchTree extends WorldGenAbstractTree
 
 						if (material1 == Material.AIR || material1 == Material.LEAVES)
 						{
-							this.setBlockAndNotifyAdequately(worldIn, position.up(j2), LOG);
+							this.setBlockAndNotifyAdequately(worldIn, position.up(j2), getLog());
 						}
 					}
 
@@ -134,5 +132,15 @@ public class WorldGenBirchTree extends WorldGenAbstractTree
 		{
 			return false;
 		}
+	}
+
+	public static IBlockState getLog()
+	{
+		return Blocks.getBlock(Blocks.LOG).getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.BIRCH);
+	}
+
+	public static IBlockState getLeaf()
+	{
+		return Blocks.getBlock(Blocks.LEAVES).getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.BIRCH).withProperty(BlockOldLeaf.CHECK_DECAY, Boolean.valueOf(false));
 	}
 }

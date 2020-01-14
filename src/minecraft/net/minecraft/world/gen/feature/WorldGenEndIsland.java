@@ -22,7 +22,7 @@ public class WorldGenEndIsland extends WorldGenerator
 				{
 					if (j * j + k * k <= (f + 1.0F) * (f + 1.0F))
 					{
-						this.setBlockAndNotifyAdequately(worldIn, position.add(j, i, k), Blocks.END_STONE.getDefaultState());
+						this.setBlockAndNotifyAdequately(worldIn, position.add(j, i, k), Blocks.getBlock(Blocks.END_STONE).getDefaultState());
 					}
 				}
 			}

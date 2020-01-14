@@ -3,6 +3,7 @@ package net.minecraft.world.biome;
 import java.util.Iterator;
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityStray;
@@ -21,15 +22,10 @@ public class BiomeSnow extends Biome
 	private final WorldGenIceSpike iceSpike = new WorldGenIceSpike();
 	private final WorldGenIcePath icePatch = new WorldGenIcePath(4);
 
-	public BiomeSnow(boolean superIcyIn, Biome.BiomeProperties properties)
+	public BiomeSnow(boolean superIcy, Biome.BiomeProperties properties)
 	{
 		super(properties);
-		this.superIcy = superIcyIn;
-
-		if (superIcyIn)
-		{
-			this.topBlock = Blocks.SNOW.getDefaultState();
-		}
+		this.superIcy = superIcy;
 
 		this.spawnableCreatureList.clear();
 		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityRabbit.class, 10, 2, 3));
@@ -48,6 +44,12 @@ public class BiomeSnow extends Biome
 
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 20, 4, 4));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityStray.class, 80, 4, 4));
+	}
+	
+	@Override
+	public IBlockState getTopBlock()
+	{
+		return this.superIcy ? Blocks.getBlock(Blocks.SNOW).getDefaultState() : super.getTopBlock();
 	}
 
 	/**

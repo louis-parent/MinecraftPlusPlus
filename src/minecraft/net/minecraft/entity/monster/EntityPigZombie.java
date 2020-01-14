@@ -256,7 +256,7 @@ public class EntityPigZombie extends EntityZombie
 	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
-		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.getItem(Items.GOLDEN_SWORD)));
 	}
 
 	@Override

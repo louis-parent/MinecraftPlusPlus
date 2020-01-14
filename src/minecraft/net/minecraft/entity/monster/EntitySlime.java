@@ -336,7 +336,7 @@ public class EntitySlime extends EntityLiving implements IMob
 	@Override
 	protected Item getDropItem()
 	{
-		return this.getSlimeSize() == 1 ? Items.SLIME_BALL : null;
+		return this.getSlimeSize() == 1 ? Items.getItem(Items.SLIME_BALL) : null;
 	}
 
 	@Override
@@ -366,7 +366,7 @@ public class EntitySlime extends EntityLiving implements IMob
 			{
 				Biome biome = this.world.getBiome(blockpos);
 
-				if (biome == Biomes.SWAMPLAND && this.posY > 50.0D && this.posY < 70.0D && this.rand.nextFloat() < 0.5F && this.rand.nextFloat() < this.world.getCurrentMoonPhaseFactor() && this.world.getLightFromNeighbors(new BlockPos(this)) <= this.rand.nextInt(8))
+				if (biome == Biomes.getBiome(Biomes.SWAMPLAND) && this.posY > 50.0D && this.posY < 70.0D && this.rand.nextFloat() < 0.5F && this.rand.nextFloat() < this.world.getCurrentMoonPhaseFactor() && this.world.getLightFromNeighbors(new BlockPos(this)) <= this.rand.nextInt(8))
 				{
 					return super.getCanSpawnHere();
 				}

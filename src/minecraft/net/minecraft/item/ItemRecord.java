@@ -46,12 +46,12 @@ public class ItemRecord extends Item
 	{
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
 
-		if (iblockstate.getBlock() == Blocks.JUKEBOX && !iblockstate.getValue(BlockJukebox.HAS_RECORD).booleanValue())
+		if (iblockstate.getBlock() == Blocks.getBlock(Blocks.JUKEBOX) && !iblockstate.getValue(BlockJukebox.HAS_RECORD).booleanValue())
 		{
 			if (!playerIn.isRemote)
 			{
 				ItemStack itemstack = stack.getHeldItem(pos);
-				((BlockJukebox) Blocks.JUKEBOX).insertRecord(playerIn, worldIn, iblockstate, itemstack);
+				((BlockJukebox) Blocks.getBlock(Blocks.JUKEBOX)).insertRecord(playerIn, worldIn, iblockstate, itemstack);
 				playerIn.playEvent((EntityPlayer) null, 1010, worldIn, Item.getIdFromItem(this));
 				itemstack.decreaseStackSize(1);
 				stack.addStat(StatList.RECORD_PLAYED);

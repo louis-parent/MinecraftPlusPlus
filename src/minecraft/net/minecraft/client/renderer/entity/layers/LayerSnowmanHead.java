@@ -28,7 +28,7 @@ public class LayerSnowmanHead implements LayerRenderer<EntitySnowman>
 			GlStateManager.translate(0.0F, -0.34375F, 0.0F);
 			GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
 			GlStateManager.scale(0.625F, -0.625F, -0.625F);
-			Minecraft.getMinecraft().getItemRenderer().renderItem(entitylivingbaseIn, new ItemStack(Blocks.PUMPKIN, 1), ItemCameraTransforms.TransformType.HEAD);
+			Minecraft.getMinecraft().getItemRenderer().renderItem(entitylivingbaseIn, new ItemStack(Blocks.getBlock(Blocks.PUMPKIN), 1), ItemCameraTransforms.TransformType.HEAD);
 			GlStateManager.popMatrix();
 		}
 	}

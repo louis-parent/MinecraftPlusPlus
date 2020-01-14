@@ -355,53 +355,52 @@ public class BlockShulkerBox extends BlockContainer
 		switch (p_190952_0_)
 		{
 			case WHITE:
-				return Blocks.field_190977_dl;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_WHITE);
 
 			case ORANGE:
-				return Blocks.field_190978_dm;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_ORANGE);
 
 			case MAGENTA:
-				return Blocks.field_190979_dn;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_MAGENTA);
 
 			case LIGHT_BLUE:
-				return Blocks.field_190980_do;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_LIGHT_BLUE);
 
 			case YELLOW:
-				return Blocks.field_190981_dp;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_YELLOW);
 
 			case LIME:
-				return Blocks.field_190982_dq;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_LIME);
 
 			case PINK:
-				return Blocks.field_190983_dr;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_PINK);
 
 			case GRAY:
-				return Blocks.field_190984_ds;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_GRAY);
 
 			case SILVER:
-				return Blocks.field_190985_dt;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_SILVER);
 
 			case CYAN:
-				return Blocks.field_190986_du;
-
-			case PURPLE:
-			default:
-				return Blocks.field_190987_dv;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_CYAN);
 
 			case BLUE:
-				return Blocks.field_190988_dw;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_BLUE);
 
 			case BROWN:
-				return Blocks.field_190989_dx;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_BROWN);
 
 			case GREEN:
-				return Blocks.field_190990_dy;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_GREEN);
 
 			case RED:
-				return Blocks.field_190991_dz;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_RED);
 
 			case BLACK:
-				return Blocks.field_190975_dA;
+				return Blocks.getBlock(Blocks.SHULKER_BOX_BLACK);
+
+			default:
+				return Blocks.getBlock(Blocks.SHULKER_BOX);
 		}
 	}
 

@@ -19,7 +19,7 @@ import net.minecraft.world.GameType;
 
 public class PunchTreeStep implements ITutorialStep
 {
-	private static final Set<Block> field_193274_a = Sets.newHashSet(Blocks.LOG, Blocks.LOG2);
+	private static final Set<Block> field_193274_a = Sets.newHashSet(Blocks.getBlock(Blocks.LOG), Blocks.getBlock(Blocks.LOG2));
 	private static final ITextComponent field_193275_b = new TextComponentTranslation("tutorial.punch_tree.title", new Object[0]);
 	private static final ITextComponent field_193276_c = new TextComponentTranslation("tutorial.punch_tree.description", new Object[] { Tutorial.func_193291_a("attack") });
 	private final Tutorial field_193277_d;

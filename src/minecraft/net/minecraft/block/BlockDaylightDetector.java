@@ -97,13 +97,13 @@ public class BlockDaylightDetector extends BlockContainer
 			{
 				if (this.inverted)
 				{
-					worldIn.setBlockState(pos, Blocks.DAYLIGHT_DETECTOR.getDefaultState().withProperty(POWER, state.getValue(POWER)), 4);
-					Blocks.DAYLIGHT_DETECTOR.updatePower(worldIn, pos);
+					worldIn.setBlockState(pos, Blocks.getBlock(Blocks.DAYLIGHT_DETECTOR).getDefaultState().withProperty(POWER, state.getValue(POWER)), 4);
+					((BlockDaylightDetector) Blocks.getBlock(Blocks.DAYLIGHT_DETECTOR)).updatePower(worldIn, pos);
 				}
 				else
 				{
-					worldIn.setBlockState(pos, Blocks.DAYLIGHT_DETECTOR_INVERTED.getDefaultState().withProperty(POWER, state.getValue(POWER)), 4);
-					Blocks.DAYLIGHT_DETECTOR_INVERTED.updatePower(worldIn, pos);
+					worldIn.setBlockState(pos, Blocks.getBlock(Blocks.DAYLIGHT_DETECTOR_INVERTED).getDefaultState().withProperty(POWER, state.getValue(POWER)), 4);
+					((BlockDaylightDetector) Blocks.getBlock(Blocks.DAYLIGHT_DETECTOR_INVERTED)).updatePower(worldIn, pos);
 				}
 
 				return true;
@@ -121,13 +121,13 @@ public class BlockDaylightDetector extends BlockContainer
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(Blocks.DAYLIGHT_DETECTOR);
+		return Item.getItemFromBlock(Blocks.getBlock(Blocks.DAYLIGHT_DETECTOR));
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Blocks.DAYLIGHT_DETECTOR);
+		return new ItemStack(Blocks.getBlock(Blocks.DAYLIGHT_DETECTOR));
 	}
 
 	@Override

@@ -60,7 +60,7 @@ public class BlockIce extends BlockBreakable
 
 			if (material.blocksMovement() || material.isLiquid())
 			{
-				worldIn.setBlockState(pos, Blocks.FLOWING_WATER.getDefaultState());
+				worldIn.setBlockState(pos, Blocks.getBlock(Blocks.FLOWING_WATER).getDefaultState());
 			}
 		}
 	}
@@ -92,8 +92,8 @@ public class BlockIce extends BlockBreakable
 		else
 		{
 			this.dropBlockAsItem(worldIn, pos, worldIn.getBlockState(pos), 0);
-			worldIn.setBlockState(pos, Blocks.WATER.getDefaultState());
-			worldIn.func_190524_a(pos, Blocks.WATER, pos);
+			worldIn.setBlockState(pos, Blocks.getBlock(Blocks.WATER).getDefaultState());
+			worldIn.func_190524_a(pos, Blocks.getBlock(Blocks.WATER), pos);
 		}
 	}
 

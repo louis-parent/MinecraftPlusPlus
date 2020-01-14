@@ -91,7 +91,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 		{
 			if (!this.world.isRemote)
 			{
-				this.dropItem(Item.getItemFromBlock(Blocks.CHEST), 1);
+				this.dropItem(Item.getItemFromBlock(Blocks.getBlock(Blocks.CHEST)), 1);
 			}
 
 			this.setChested(false);
@@ -175,7 +175,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 				return true;
 			}
 
-			if (!this.func_190695_dh() && itemStackIn.getItem() == Item.getItemFromBlock(Blocks.CHEST))
+			if (!this.func_190695_dh() && itemStackIn.getItem() == Item.getItemFromBlock(Blocks.getBlock(Blocks.CHEST)))
 			{
 				this.setChested(true);
 				this.initHorseChest();
@@ -191,7 +191,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 
-		if (itemstack.getItem() == Items.SPAWN_EGG)
+		if (itemstack.getItem() == Items.getItem(Items.SPAWN_EGG))
 		{
 			return super.processInteract(player, hand);
 		}
@@ -226,7 +226,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 					return true;
 				}
 
-				if (!flag && !this.func_190695_dh() && itemstack.getItem() == Item.getItemFromBlock(Blocks.CHEST))
+				if (!flag && !this.func_190695_dh() && itemstack.getItem() == Item.getItemFromBlock(Blocks.getBlock(Blocks.CHEST)))
 				{
 					this.setChested(true);
 					this.func_190697_dk();
@@ -234,7 +234,7 @@ public abstract class AbstractChestHorse extends AbstractHorse
 					this.initHorseChest();
 				}
 
-				if (!flag && !this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE)
+				if (!flag && !this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.getItem(Items.SADDLE))
 				{
 					this.openGUI(player);
 					return true;

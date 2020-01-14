@@ -94,8 +94,8 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 			return p_apply_1_ != null && EntityParrot.field_192017_bK.containsKey(EntityList.field_191308_b.getIDForObject(p_apply_1_.getClass()));
 		}
 	};
-	private static final Item field_192015_bI = Items.COOKIE;
-	private static final Set<Item> field_192016_bJ = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+	private static final Item field_192015_bI = Items.getItem(Items.COOKIE);
+	private static final Set<Item> field_192016_bJ = Sets.newHashSet(Items.getItem(Items.WHEAT_SEEDS), Items.getItem(Items.MELON_SEEDS), Items.getItem(Items.PUMPKIN_SEEDS), Items.getItem(Items.BEETROOT_SEEDS));
 	private static final Int2ObjectMap<SoundEvent> field_192017_bK = new Int2ObjectOpenHashMap<SoundEvent>(32);
 	public float field_192008_bB;
 	public float field_192009_bC;
@@ -179,7 +179,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 	{
 		func_192006_b(this.world, this);
 
-		if (this.field_192019_bM == null || this.field_192019_bM.distanceSq(this.posX, this.posY, this.posZ) > 12.0D || this.world.getBlockState(this.field_192019_bM).getBlock() != Blocks.JUKEBOX)
+		if (this.field_192019_bM == null || this.field_192019_bM.distanceSq(this.posX, this.posY, this.posZ) > 12.0D || this.world.getBlockState(this.field_192019_bM).getBlock() != Blocks.getBlock(Blocks.JUKEBOX))
 		{
 			this.field_192018_bL = false;
 			this.field_192019_bM = null;
@@ -332,7 +332,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		int k = MathHelper.floor(this.posZ);
 		BlockPos blockpos = new BlockPos(i, j, k);
 		Block block = this.world.getBlockState(blockpos.down()).getBlock();
-		return block instanceof BlockLeaves || block == Blocks.GRASS || block instanceof BlockLog || block == Blocks.AIR && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere();
+		return block instanceof BlockLeaves || block == Blocks.getBlock(Blocks.GRASS) || block instanceof BlockLog || block == Blocks.getBlock(Blocks.AIR) && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere();
 	}
 
 	@Override

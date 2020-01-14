@@ -23,11 +23,11 @@ public class WorldGenHellLava extends WorldGenerator
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
-		if (worldIn.getBlockState(position.up()).getBlock() != Blocks.NETHERRACK)
+		if (worldIn.getBlockState(position.up()).getBlock() != Blocks.getBlock(Blocks.NETHERRACK))
 		{
 			return false;
 		}
-		else if (worldIn.getBlockState(position).getMaterial() != Material.AIR && worldIn.getBlockState(position).getBlock() != Blocks.NETHERRACK)
+		else if (worldIn.getBlockState(position).getMaterial() != Material.AIR && worldIn.getBlockState(position).getBlock() != Blocks.getBlock(Blocks.NETHERRACK))
 		{
 			return false;
 		}
@@ -35,27 +35,27 @@ public class WorldGenHellLava extends WorldGenerator
 		{
 			int i = 0;
 
-			if (worldIn.getBlockState(position.west()).getBlock() == Blocks.NETHERRACK)
+			if (worldIn.getBlockState(position.west()).getBlock() == Blocks.getBlock(Blocks.NETHERRACK))
 			{
 				++i;
 			}
 
-			if (worldIn.getBlockState(position.east()).getBlock() == Blocks.NETHERRACK)
+			if (worldIn.getBlockState(position.east()).getBlock() == Blocks.getBlock(Blocks.NETHERRACK))
 			{
 				++i;
 			}
 
-			if (worldIn.getBlockState(position.north()).getBlock() == Blocks.NETHERRACK)
+			if (worldIn.getBlockState(position.north()).getBlock() == Blocks.getBlock(Blocks.NETHERRACK))
 			{
 				++i;
 			}
 
-			if (worldIn.getBlockState(position.south()).getBlock() == Blocks.NETHERRACK)
+			if (worldIn.getBlockState(position.south()).getBlock() == Blocks.getBlock(Blocks.NETHERRACK))
 			{
 				++i;
 			}
 
-			if (worldIn.getBlockState(position.down()).getBlock() == Blocks.NETHERRACK)
+			if (worldIn.getBlockState(position.down()).getBlock() == Blocks.getBlock(Blocks.NETHERRACK))
 			{
 				++i;
 			}

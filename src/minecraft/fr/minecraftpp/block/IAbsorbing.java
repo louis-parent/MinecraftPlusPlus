@@ -20,7 +20,7 @@ public interface IAbsorbing
 	{
 		if (this.absorb(worldIn, pos))
 		{
-			worldIn.playEvent(2001, pos, Block.getIdFromBlock(Blocks.WATER));
+			worldIn.playEvent(2001, pos, Block.getIdFromBlock(Blocks.getBlock(Blocks.WATER)));
 			return true;
 		}
 		else
@@ -48,7 +48,7 @@ public interface IAbsorbing
 
 				if (worldIn.getBlockState(blockpos1).getMaterial() == Material.WATER)
 				{
-					worldIn.setBlockState(blockpos1, Blocks.AIR.getDefaultState(), 2);
+					worldIn.setBlockState(blockpos1, Blocks.getBlock(Blocks.AIR).getDefaultState(), 2);
 					list.add(blockpos1);
 					++i;
 
@@ -67,7 +67,7 @@ public interface IAbsorbing
 
 		for (BlockPos blockpos2 : list)
 		{
-			worldIn.notifyNeighborsOfStateChange(blockpos2, Blocks.AIR, false);
+			worldIn.notifyNeighborsOfStateChange(blockpos2, Blocks.getBlock(Blocks.AIR), false);
 		}
 
 		return i > 0;

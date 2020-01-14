@@ -89,7 +89,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 				}
 			}
 
-			if (worldIn.provider.canRespawnHere() && worldIn.getBiome(pos) != Biomes.HELL)
+			if (worldIn.provider.canRespawnHere() && worldIn.getBiome(pos) != Biomes.getBiome(Biomes.HELL))
 			{
 				if (state.getValue(OCCUPIED).booleanValue())
 				{
@@ -243,7 +243,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return state.getValue(PART) == BlockBed.EnumPartType.FOOT ? Items.EMPTY_ITEM : Items.BED;
+		return state.getValue(PART) == BlockBed.EnumPartType.FOOT ? Items.getItem(Items.AIR) : Items.getItem(Items.BED);
 	}
 
 	@Override
@@ -314,7 +314,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 		{
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 			EnumDyeColor enumdyecolor = tileentity instanceof TileEntityBed ? ((TileEntityBed) tileentity).func_193048_a() : EnumDyeColor.RED;
-			spawnAsEntity(worldIn, pos, new ItemStack(Items.BED, 1, enumdyecolor.getMetadata()));
+			spawnAsEntity(worldIn, pos, new ItemStack(Items.getItem(Items.BED), 1, enumdyecolor.getMetadata()));
 		}
 	}
 
@@ -353,7 +353,7 @@ public class BlockBed extends BlockHorizontal implements ITileEntityProvider
 
 		TileEntity tileentity = worldIn.getTileEntity(blockpos);
 		EnumDyeColor enumdyecolor = tileentity instanceof TileEntityBed ? ((TileEntityBed) tileentity).func_193048_a() : EnumDyeColor.RED;
-		return new ItemStack(Items.BED, 1, enumdyecolor.getMetadata());
+		return new ItemStack(Items.getItem(Items.BED), 1, enumdyecolor.getMetadata());
 	}
 
 	@Override

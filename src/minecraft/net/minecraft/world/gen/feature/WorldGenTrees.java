@@ -20,9 +20,6 @@ import net.minecraft.world.World;
 
 public class WorldGenTrees extends WorldGenAbstractTree
 {
-	private static final IBlockState DEFAULT_TRUNK = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-	private static final IBlockState DEFAULT_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-
 	/** The minimum height of a generated tree. */
 	private final int minTreeHeight;
 
@@ -37,7 +34,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
 	public WorldGenTrees(boolean p_i2027_1_)
 	{
-		this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, false);
+		this(p_i2027_1_, 4, getDefaultTrunk(), getDefaultLeaf(), false);
 	}
 
 	public WorldGenTrees(boolean p_i46446_1_, int p_i46446_2_, IBlockState p_i46446_3_, IBlockState p_i46446_4_, boolean p_i46446_5_)
@@ -100,7 +97,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 			{
 				Block block = worldIn.getBlockState(position.down()).getBlock();
 
-				if ((block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND) && position.getY() < 256 - i - 1)
+				if ((block == Blocks.getBlock(Blocks.GRASS) || block == Blocks.getBlock(Blocks.DIRT) || block == Blocks.getBlock(Blocks.FARMLAND)) && position.getY() < 256 - i - 1)
 				{
 					this.setDirtAt(worldIn, position.down());
 					int k2 = 3;
@@ -243,12 +240,12 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
 	private void placeCocoa(World worldIn, int p_181652_2_, BlockPos pos, EnumFacing side)
 	{
-		this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.COCOA.getDefaultState().withProperty(BlockCocoa.AGE, Integer.valueOf(p_181652_2_)).withProperty(BlockHorizontal.FACING, side));
+		this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.getBlock(Blocks.COCOA).getDefaultState().withProperty(BlockCocoa.AGE, Integer.valueOf(p_181652_2_)).withProperty(BlockHorizontal.FACING, side));
 	}
 
 	private void addVine(World worldIn, BlockPos pos, PropertyBool prop)
 	{
-		this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.VINE.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
+		this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.getBlock(Blocks.VINE).getDefaultState().withProperty(prop, Boolean.valueOf(true)));
 	}
 
 	private void addHangingVine(World worldIn, BlockPos pos, PropertyBool prop)
@@ -261,5 +258,15 @@ public class WorldGenTrees extends WorldGenAbstractTree
 			this.addVine(worldIn, blockpos, prop);
 			blockpos = blockpos.down();
 		}
+	}
+
+	public static IBlockState getDefaultTrunk()
+	{
+		return Blocks.getBlock(Blocks.LOG).getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
+	}
+
+	public static IBlockState getDefaultLeaf()
+	{
+		return Blocks.getBlock(Blocks.LEAVES).getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 	}
 }

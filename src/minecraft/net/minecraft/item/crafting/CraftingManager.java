@@ -43,6 +43,7 @@ public class CraftingManager
 
 	public static boolean buildAllRecipes()
 	{
+		recipeMap.clear();
 		try
 		{
 			registerRecipe("armordye", new RecipesArmorDyes());

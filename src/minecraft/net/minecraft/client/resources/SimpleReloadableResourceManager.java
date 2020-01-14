@@ -18,6 +18,9 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+import fr.minecraftpp.init.ModBootstrap;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.ModelManager;
 import net.minecraft.client.resources.data.MetadataSerializer;
 import net.minecraft.util.ResourceLocation;
 
@@ -118,8 +121,19 @@ public class SimpleReloadableResourceManager implements IReloadableResourceManag
 	@Override
 	public void registerReloadListener(IResourceManagerReloadListener reloadListener)
 	{
-		this.reloadListeners.add(reloadListener);
-		reloadListener.onResourceManagerReload(this);
+		if (reloadListener != null)
+		{
+			this.reloadListeners.add(reloadListener);
+			
+			if (reloadListener instanceof ModelManager)
+			{
+				ModBootstrap.addRessourceManger(reloadListener);
+			}
+			else
+			{
+				reloadListener.onResourceManagerReload(this);
+			}
+		}
 	}
 
 	private void notifyReloadListeners()

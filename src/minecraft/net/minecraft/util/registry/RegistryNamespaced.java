@@ -82,4 +82,10 @@ public class RegistryNamespaced<K, V> extends RegistrySimple<K, V> implements IO
 	{
 		return this.underlyingIntegerMap.iterator();
 	}
+
+	public void clear()
+	{
+		this.underlyingIntegerMap.clear();
+		this.inverseObjectRegistry.clear();
+	}
 }

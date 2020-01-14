@@ -40,19 +40,19 @@ public class ItemPickaxe extends ItemTool
 			HARVEST_LEVEL = new HashMap<Block, Integer>()
 			{
 				{
-					put(Blocks.OBSIDIAN, 3);
-					put(Blocks.DIAMOND_BLOCK, 2);
-					put(Blocks.DIAMOND_ORE, 2);
-					put(Blocks.EMERALD_ORE, 2);
-					put(Blocks.EMERALD_BLOCK, 2);
-					put(Blocks.GOLD_BLOCK, 2);
-					put(Blocks.GOLD_ORE, 2);
-					put(Blocks.IRON_BLOCK, 1);
-					put(Blocks.IRON_ORE, 1);
-					put(Blocks.LAPIS_BLOCK, 1);
-					put(Blocks.LAPIS_ORE, 1);
-					put(Blocks.REDSTONE_ORE, 2);
-					put(Blocks.LIT_REDSTONE_ORE, 2);
+					put(Blocks.getBlock(Blocks.OBSIDIAN), 3);
+					put(Blocks.getBlock(Blocks.DIAMOND_BLOCK), 2);
+					put(Blocks.getBlock(Blocks.DIAMOND_ORE), 2);
+					put(Blocks.getBlock(Blocks.EMERALD_ORE), 2);
+					put(Blocks.getBlock(Blocks.EMERALD_BLOCK), 2);
+					put(Blocks.getBlock(Blocks.GOLD_BLOCK), 2);
+					put(Blocks.getBlock(Blocks.GOLD_ORE), 2);
+					put(Blocks.getBlock(Blocks.IRON_BLOCK), 1);
+					put(Blocks.getBlock(Blocks.IRON_ORE), 1);
+					put(Blocks.getBlock(Blocks.LAPIS_BLOCK), 1);
+					put(Blocks.getBlock(Blocks.LAPIS_ORE), 1);
+					put(Blocks.getBlock(Blocks.REDSTONE_ORE), 2);
+					put(Blocks.getBlock(Blocks.LIT_REDSTONE_ORE), 2);
 				}
 			};
 		}

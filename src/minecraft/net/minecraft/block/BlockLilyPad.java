@@ -59,7 +59,7 @@ public class BlockLilyPad extends BlockBush
 	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
-		return state.getBlock() == Blocks.WATER || state.getMaterial() == Material.ICE;
+		return state.getBlock() == Blocks.getBlock(Blocks.WATER) || state.getMaterial() == Material.ICE;
 	}
 
 	@Override

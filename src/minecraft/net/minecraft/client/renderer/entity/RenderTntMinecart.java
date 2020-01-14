@@ -34,14 +34,14 @@ public class RenderTntMinecart extends RenderMinecart<EntityMinecartTNT>
 
 		if (i > -1 && i / 5 % 2 == 0)
 		{
-			BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
+			BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRenderDispatcher();
 			GlStateManager.disableTexture2D();
 			GlStateManager.disableLighting();
 			GlStateManager.enableBlend();
 			GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
 			GlStateManager.color(1.0F, 1.0F, 1.0F, (1.0F - (i - partialTicks + 1.0F) / 100.0F) * 0.8F);
 			GlStateManager.pushMatrix();
-			blockrendererdispatcher.renderBlockBrightness(Blocks.TNT.getDefaultState(), 1.0F);
+			blockrendererdispatcher.renderBlockBrightness(Blocks.getBlock(Blocks.TNT).getDefaultState(), 1.0F);
 			GlStateManager.popMatrix();
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.disableBlend();
