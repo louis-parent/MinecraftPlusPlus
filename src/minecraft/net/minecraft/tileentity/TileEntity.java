@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 public abstract class TileEntity
 {
 	private static final Logger LOGGER = LogManager.getLogger();
-	private static final RegistryNamespaced<ResourceLocation, Class<? extends TileEntity>> field_190562_f = new RegistryNamespaced<ResourceLocation, Class<? extends TileEntity>>();
+	private static final RegistryNamespaced<ResourceLocation, Class<? extends TileEntity>> REGISTRY = new RegistryNamespaced<ResourceLocation, Class<? extends TileEntity>>();
 
 	/** the instance of the world the tile entity is in. */
 	protected World world;
@@ -37,13 +37,13 @@ public abstract class TileEntity
 
 	private static void func_190560_a(String p_190560_0_, Class<? extends TileEntity> p_190560_1_)
 	{
-		field_190562_f.putObject(new ResourceLocation(p_190560_0_), p_190560_1_);
+		REGISTRY.putObject(new ResourceLocation(p_190560_0_), p_190560_1_);
 	}
 
 	@Nullable
 	public static ResourceLocation func_190559_a(Class<? extends TileEntity> p_190559_0_)
 	{
-		return field_190562_f.getNameForObject(p_190559_0_);
+		return REGISTRY.getNameForObject(p_190559_0_);
 	}
 
 	/**
@@ -82,7 +82,7 @@ public abstract class TileEntity
 
 	private NBTTagCompound writeInternal(NBTTagCompound compound)
 	{
-		ResourceLocation resourcelocation = field_190562_f.getNameForObject(this.getClass());
+		ResourceLocation resourcelocation = REGISTRY.getNameForObject(this.getClass());
 
 		if (resourcelocation == null)
 		{
@@ -106,7 +106,7 @@ public abstract class TileEntity
 
 		try
 		{
-			Class<? extends TileEntity> oclass = field_190562_f.getObject(new ResourceLocation(s));
+			Class<? extends TileEntity> oclass = REGISTRY.getObject(new ResourceLocation(s));
 
 			if (oclass != null)
 			{
@@ -258,7 +258,7 @@ public abstract class TileEntity
 			@Override
 			public String call() throws Exception
 			{
-				return TileEntity.field_190562_f.getNameForObject(TileEntity.this.getClass()) + " // " + TileEntity.this.getClass().getCanonicalName();
+				return TileEntity.REGISTRY.getNameForObject(TileEntity.this.getClass()) + " // " + TileEntity.this.getClass().getCanonicalName();
 			}
 		});
 

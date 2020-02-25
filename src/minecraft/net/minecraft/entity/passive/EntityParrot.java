@@ -91,7 +91,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 		@Override
 		public boolean apply(@Nullable EntityLiving p_apply_1_)
 		{
-			return p_apply_1_ != null && EntityParrot.field_192017_bK.containsKey(EntityList.field_191308_b.getIDForObject(p_apply_1_.getClass()));
+			return p_apply_1_ != null && EntityParrot.field_192017_bK.containsKey(EntityList.REGISTRY.getIDForObject(p_apply_1_.getClass()));
 		}
 	};
 	private static final Item field_192015_bI = Items.getItem(Items.COOKIE);
@@ -235,7 +235,7 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 
 				if (!entityliving.isSilent())
 				{
-					SoundEvent soundevent = func_191999_g(EntityList.field_191308_b.getIDForObject(entityliving.getClass()));
+					SoundEvent soundevent = func_191999_g(EntityList.REGISTRY.getIDForObject(entityliving.getClass()));
 					p_192006_0_.playSound((EntityPlayer) null, p_192006_1_.posX, p_192006_1_.posY, p_192006_1_.posZ, soundevent, p_192006_1_.getSoundCategory(), 0.7F, func_192000_b(p_192006_0_.rand));
 					return true;
 				}
@@ -542,33 +542,33 @@ public class EntityParrot extends EntityShoulderRiding implements EntityFlying
 
 	static
 	{
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityBlaze.class), SoundEvents.field_193791_eM);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityCaveSpider.class), SoundEvents.field_193813_fc);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityCreeper.class), SoundEvents.field_193792_eN);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityElderGuardian.class), SoundEvents.field_193793_eO);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityDragon.class), SoundEvents.field_193794_eP);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityEnderman.class), SoundEvents.field_193795_eQ);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityEndermite.class), SoundEvents.field_193796_eR);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityEvoker.class), SoundEvents.field_193797_eS);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityGhast.class), SoundEvents.field_193798_eT);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityHusk.class), SoundEvents.field_193799_eU);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityIllusionIllager.class), SoundEvents.field_193800_eV);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityMagmaCube.class), SoundEvents.field_193801_eW);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityPigZombie.class), SoundEvents.field_193822_fl);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityPolarBear.class), SoundEvents.field_193802_eX);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityShulker.class), SoundEvents.field_193803_eY);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntitySilverfish.class), SoundEvents.field_193804_eZ);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntitySkeleton.class), SoundEvents.field_193811_fa);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntitySlime.class), SoundEvents.field_193812_fb);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntitySpider.class), SoundEvents.field_193813_fc);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityStray.class), SoundEvents.field_193814_fd);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityVex.class), SoundEvents.field_193815_fe);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityVindicator.class), SoundEvents.field_193816_ff);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityWitch.class), SoundEvents.field_193817_fg);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityWither.class), SoundEvents.field_193818_fh);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityWitherSkeleton.class), SoundEvents.field_193819_fi);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityWolf.class), SoundEvents.field_193820_fj);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityZombie.class), SoundEvents.field_193821_fk);
-		field_192017_bK.put(EntityList.field_191308_b.getIDForObject(EntityZombieVillager.class), SoundEvents.field_193823_fm);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityBlaze.class), SoundEvents.field_193791_eM);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityCaveSpider.class), SoundEvents.field_193813_fc);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityCreeper.class), SoundEvents.field_193792_eN);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityElderGuardian.class), SoundEvents.field_193793_eO);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityDragon.class), SoundEvents.field_193794_eP);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityEnderman.class), SoundEvents.field_193795_eQ);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityEndermite.class), SoundEvents.field_193796_eR);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityEvoker.class), SoundEvents.field_193797_eS);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityGhast.class), SoundEvents.field_193798_eT);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityHusk.class), SoundEvents.field_193799_eU);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityIllusionIllager.class), SoundEvents.field_193800_eV);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityMagmaCube.class), SoundEvents.field_193801_eW);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityPigZombie.class), SoundEvents.field_193822_fl);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityPolarBear.class), SoundEvents.field_193802_eX);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityShulker.class), SoundEvents.field_193803_eY);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntitySilverfish.class), SoundEvents.field_193804_eZ);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntitySkeleton.class), SoundEvents.field_193811_fa);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntitySlime.class), SoundEvents.field_193812_fb);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntitySpider.class), SoundEvents.field_193813_fc);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityStray.class), SoundEvents.field_193814_fd);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityVex.class), SoundEvents.field_193815_fe);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityVindicator.class), SoundEvents.field_193816_ff);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityWitch.class), SoundEvents.field_193817_fg);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityWither.class), SoundEvents.field_193818_fh);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityWitherSkeleton.class), SoundEvents.field_193819_fi);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityWolf.class), SoundEvents.field_193820_fj);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityZombie.class), SoundEvents.field_193821_fk);
+		field_192017_bK.put(EntityList.REGISTRY.getIDForObject(EntityZombieVillager.class), SoundEvents.field_193823_fm);
 	}
 }

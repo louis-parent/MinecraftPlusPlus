@@ -24,11 +24,13 @@ public class SetFactory
 		if (properties.contains(OreProperties.METAL))
 		{
 			newSet = new MetalSet(rand, OreRarity.getRarityFrom(properties, rand));
+			newSet.setBeacon();
 		}
 		else if (properties.contains(OreProperties.MATERIAL))
 		{
 
 			newSet = new MaterialSet(rand, OreRarity.getRarityFrom(properties, rand));
+			newSet.setBeacon();
 		}
 		else
 		{

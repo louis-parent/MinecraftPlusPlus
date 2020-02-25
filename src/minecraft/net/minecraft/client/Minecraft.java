@@ -2454,23 +2454,25 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 	 */
 	public void launchIntegratedServer(String folderName, String worldName, @Nullable WorldSettings worldSettingsIn)
 	{
-		ModBootstrap.redo(this);
-		
-		this.loadWorld((WorldClient) null);
-		System.gc();
 		ISaveHandler isavehandler = this.saveLoader.getSaveLoader(folderName, false);
 		WorldInfo worldinfo = isavehandler.loadWorldInfo();
-
+		
 		if (worldinfo == null && worldSettingsIn != null)
 		{
 			worldinfo = new WorldInfo(worldSettingsIn, folderName);
 			isavehandler.saveWorldInfo(worldinfo);
 		}
-
+		
 		if (worldSettingsIn == null)
 		{
 			worldSettingsIn = new WorldSettings(worldinfo);
 		}
+		
+		System.out.println(worldSettingsIn.getSeed());
+		ModBootstrap.redo(this, worldSettingsIn.getSeed());
+
+		this.loadWorld((WorldClient) null);
+		System.gc();
 
 		try
 		{

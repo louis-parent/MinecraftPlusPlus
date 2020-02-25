@@ -40,7 +40,7 @@ public abstract class EntityAgeable extends EntityCreature
 		{
 			if (!this.world.isRemote)
 			{
-				Class<? extends Entity> oclass = EntityList.field_191308_b.getObject(ItemMonsterPlacer.func_190908_h(itemstack));
+				Class<? extends Entity> oclass = EntityList.REGISTRY.getObject(ItemMonsterPlacer.func_190908_h(itemstack));
 
 				if (oclass != null && this.getClass() == oclass)
 				{
@@ -81,7 +81,7 @@ public abstract class EntityAgeable extends EntityCreature
 		}
 		else
 		{
-			Class<? extends Entity> oclass = EntityList.field_191308_b.getObject(ItemMonsterPlacer.func_190908_h(p_190669_1_));
+			Class<? extends Entity> oclass = EntityList.REGISTRY.getObject(ItemMonsterPlacer.func_190908_h(p_190669_1_));
 			return oclass != null && p_190669_2_ == oclass;
 		}
 	}

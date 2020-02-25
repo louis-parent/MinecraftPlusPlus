@@ -104,7 +104,8 @@ public class SoundManager
 
 			if (this.sndHandler.getAccessor(resourcelocation) == null)
 			{
-				LOGGER.warn("Missing sound for event: {}", SoundEvent.REGISTRY.getNameForObject(soundevent));
+				//TODO undo commentary
+				//LOGGER.warn("Missing sound for event: {}", SoundEvent.REGISTRY.getNameForObject(soundevent));
 				UNABLE_TO_PLAY.add(resourcelocation);
 			}
 		}
