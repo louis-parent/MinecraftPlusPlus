@@ -20,6 +20,7 @@ public class SoundEvent
 
 	public static void registerSounds()
 	{
+		REGISTRY.clear();
 		registerSound("ambient.cave");
 		registerSound("block.anvil.break");
 		registerSound("block.anvil.destroy");

@@ -14,10 +14,6 @@ public class Pretreatment
 	private final int NUMBER_OF_ORES;
 
 	private List<String> variables;
-	
-	public static void main(String[] args) {
-		System.out.println(new Pretreatment(new Random(), 7));
-	}
 
 	public Pretreatment(Random rand, int numberOfOres)
 	{
@@ -37,8 +33,6 @@ public class Pretreatment
 		this.variables.add(OreProperties.GOLD + "");
 		this.variables.add(OreProperties.DIAMOND + "");
 		this.variables.add(OreProperties.FUEL + "1");
-		this.variables.add(OreProperties.BEACON + "1");
-		this.variables.add(OreProperties.BEACON + "2");
 		this.variables.add(OreProperties.ENCHANT_CURRENCY + "1");
 	}
 
@@ -47,11 +41,8 @@ public class Pretreatment
 		addSpecificVariables(OreProperties.FUEL, rand.nextInt(3));
 		addSpecificVariables(OreProperties.ENCHANT_CURRENCY, rand.nextInt(3));
 		addMaterialVariables(rand);
-
-		int nbOfMaterial = getAllVariablesFrom(OreProperties.MATERIAL).size();
-		nbOfMaterial += getAllVariablesFrom(OreProperties.METAL).size();
 		
-		addSpecificVariables(OreProperties.BEACON, Math.max(0, rand.nextInt(6 - nbOfMaterial)) + nbOfMaterial);
+		addSpecificVariables(OreProperties.BEACON, rand.nextInt(5) / 4);
 	}
 
 	private void addSpecificVariables(OreProperties name, int quantity)
@@ -66,8 +57,8 @@ public class Pretreatment
 
 	private void addMaterialVariables(Random rand)
 	{
-		int numberOfMaterials = 2 + rand.nextInt(3);
-		int numberOfMetals = 1 + rand.nextInt(numberOfMaterials - 1);
+		int numberOfMaterials = 3 + rand.nextInt(2);
+		int numberOfMetals = 1 + rand.nextInt(numberOfMaterials - 2);
 		addSpecificVariables(OreProperties.MATERIAL, numberOfMaterials - numberOfMetals);
 		addSpecificVariables(OreProperties.METAL, numberOfMetals);
 
@@ -159,7 +150,7 @@ public class Pretreatment
 		vanillaGroup.add(OreProperties.DIAMOND.toString());
 		str += allDiffFrom(vanillaGroup);
 
-		List<String> allCertainProperties = Arrays.asList(new String[] { OreProperties.REDSTONE + "", OreProperties.BEACON + "1", OreProperties.CURRENCY + "", OreProperties.BLUEDYE + "", OreProperties.FUEL + "1", OreProperties.ENCHANT_CURRENCY + "1", OreProperties.MATERIAL + "1" });
+		List<String> allCertainProperties = Arrays.asList(new String[] { OreProperties.REDSTONE + "", OreProperties.CURRENCY + "", OreProperties.BLUEDYE + "", OreProperties.FUEL + "1", OreProperties.ENCHANT_CURRENCY + "1", OreProperties.MATERIAL + "1" });
 		str += allDiffFrom(allCertainProperties);
 		
 		List<String> materialAndCurency = getAllVariablesFrom(OreProperties.MATERIAL);

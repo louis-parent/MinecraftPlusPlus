@@ -234,6 +234,7 @@ public abstract class Enchantment
 	 */
 	public static void registerEnchantments()
 	{
+		REGISTRY.clear();
 		EntityEquipmentSlot[] aentityequipmentslot = new EntityEquipmentSlot[] { EntityArmorSlot.HEAD, EntityArmorSlot.CHEST, EntityArmorSlot.LEGS, EntityArmorSlot.FEET };
 		REGISTRY.register(0, new ResourceLocation("protection"), new EnchantmentProtection(Enchantment.EnchantmentRarity.COMMON, EnchantmentProtection.Type.ALL, aentityequipmentslot));
 		REGISTRY.register(1, new ResourceLocation("fire_protection"), new EnchantmentProtection(Enchantment.EnchantmentRarity.UNCOMMON, EnchantmentProtection.Type.FIRE, aentityequipmentslot));

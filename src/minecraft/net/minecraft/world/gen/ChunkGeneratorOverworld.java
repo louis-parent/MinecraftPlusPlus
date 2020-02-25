@@ -183,10 +183,10 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
 	{
 		this.rand.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
-		// TODO
-		//this.setBlocksInChunk(x, z, chunkprimer);
-		//this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-		// this.replaceBiomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
+
+		this.setBlocksInChunk(x, z, chunkprimer);
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+		this.replaceBiomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
 		
 		if (this.settings.useCaves)
 		{
@@ -235,10 +235,10 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
 		byte[] abyte = chunk.getBiomeArray();
 
-		/*for (int i = 0; i < abyte.length; ++i)
+		for (int i = 0; i < abyte.length; ++i)
 		{
 			abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
-		}*/
+		}
 
 		chunk.generateSkylightMap();
 		return chunk;
