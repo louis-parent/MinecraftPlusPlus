@@ -1,7 +1,5 @@
 package fr.minecraftpp.init;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,46 +34,35 @@ public class ModBootstrap
 
 	private static List<IResourceManagerReloadListener> toReload = new ArrayList<IResourceManagerReloadListener>();
 
-	private static boolean loadedOnce = false;
-	private static long lastWorldSeed;
-
 	public static void preBootstrap()
-	{		
-		SetManager.generateOre(lastWorldSeed);
+	{
+		SetManager.generateOre();
 		SetManager.register();
 	}
 
 	public static void postBootstrap()
 	{
+
 		SetManager.setupEffects();
 		SetManager.generateRecipes();
 
 		ModItem.addEnchantable();
 	}
 
-	public static void redo(Minecraft mc, long worldSeed)
-	{
-		if (!loadedOnce || lastWorldSeed != worldSeed)
-		{
-			loadedOnce = true;
-			lastWorldSeed = worldSeed;
-			redo(mc);
-		}
-	}
-
 	public static void redo(Minecraft mc)
 	{
 		LogManager.getLogger().info("Loading Bootstrap");
-
+		
 		IntCache.clear();
-
+		
 		ModItem.resetRegistry();
 		ModBlock.resetRegistry();
 		ModCraftingManager.resetRegistry();
 		OreRegistry.resetRegistry();
 
+		
 		preBootstrap();
-
+		
 		Block.registerBlocks();
 		Item.registerItems();
 

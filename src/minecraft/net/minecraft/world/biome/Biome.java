@@ -466,7 +466,6 @@ public abstract class Biome
 	 */
 	public static void registerBiomes()
 	{
-		REGISTRY.clear();
 		TREE_FEATURE = null;
 		BIG_TREE_FEATURE = null;
 		SWAMP_FEATURE = null;
@@ -475,6 +474,7 @@ public abstract class Biome
 		TEMPERATURE_NOISE = new NoiseGeneratorPerlin(new Random(1234L), 1);
 		GRASS_COLOR_NOISE = new NoiseGeneratorPerlin(new Random(2345L), 1);
 		DOUBLE_PLANT_GENERATOR = new WorldGenDoublePlant();
+		REGISTRY.clear();
 		
 		registerBiome(0, "ocean", new BiomeOcean((new Biome.BiomeProperties("Ocean")).setBaseHeight(-1.0F).setHeightVariation(0.1F)));
 		registerBiome(1, "plains", new BiomePlains(false, (new Biome.BiomeProperties("Plains")).setBaseHeight(0.125F).setHeightVariation(0.05F).setTemperature(0.8F).setRainfall(0.4F)));

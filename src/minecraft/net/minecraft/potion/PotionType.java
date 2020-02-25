@@ -57,7 +57,6 @@ public class PotionType
 
 	public static void registerPotionTypes()
 	{
-		REGISTRY.clear();
 		registerPotionType("empty", new PotionType(new PotionEffect[0]));
 		registerPotionType("water", new PotionType(new PotionEffect[0]));
 		registerPotionType("mundane", new PotionType(new PotionEffect[0]));
