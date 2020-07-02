@@ -20,9 +20,9 @@ public class SetManager
 
 	private static List<ISet> sets = new ArrayList<ISet>();
 
-	public static void generateOre()
+	public static void generateOre(long seed)
 	{
-		Random r = new Random(1999);
+		Random r = new Random(seed);
 		
 		Variant.initInstance(r);
 

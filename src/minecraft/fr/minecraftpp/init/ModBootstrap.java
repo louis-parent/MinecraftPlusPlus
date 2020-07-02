@@ -8,7 +8,8 @@ public class ModBootstrap
 
 	public static void preBootstrap()
 	{
-		SetManager.generateOre();
+		MppConfig config = MppConfig.init();		
+		SetManager.generateOre(config.getSeed());
 		SetManager.register();
 	}
 

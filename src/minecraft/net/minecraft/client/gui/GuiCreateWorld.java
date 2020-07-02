@@ -1,11 +1,16 @@
 package net.minecraft.client.gui;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.input.Keyboard;
 
+import fr.minecraftpp.anotation.Mod;
+import fr.minecraftpp.init.MppConfig;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.world.GameType;
@@ -263,7 +268,19 @@ public class GuiCreateWorld extends GuiScreen
 				{
 					worldsettings.enableCommands();
 				}
+				
+				/*
+				 * Mod: Minecraftpp
+				 */
+				File save = new File(new File(mc.mcDataDir, "saves"), this.saveDirName);
+				save.mkdirs();
+				save = new File(save, "mppSeed.txt");
+				save.createNewFile();
 
+				BufferedWriter writer = new BufferedWriter(new FileWriter(save));
+				writer.write("" + MppConfig.getCurrentConfig().getSeed());
+				writer.close();
+				
 				this.mc.launchIntegratedServer(this.saveDirName, this.worldNameField.getText().trim(), worldsettings);
 			}
 			else if (button.id == 3)
