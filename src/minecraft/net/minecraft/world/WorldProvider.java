@@ -87,11 +87,11 @@ public abstract class WorldProvider
 		if (worldtype == WorldType.FLAT)
 		{
 			FlatGeneratorInfo flatgeneratorinfo = FlatGeneratorInfo.createFlatGeneratorFromString(this.worldObj.getWorldInfo().getGeneratorOptions());
-			this.biomeProvider = new BiomeProviderSingle(Biome.getBiome(flatgeneratorinfo.getBiome(), Biomes.getBiome(Biomes.DEFAULT)));
+			this.biomeProvider = new BiomeProviderSingle(Biome.getBiome(flatgeneratorinfo.getBiome(), Biomes.DEFAULT));
 		}
 		else if (worldtype == WorldType.DEBUG_WORLD)
 		{
-			this.biomeProvider = new BiomeProviderSingle(Biomes.getBiome(Biomes.PLAINS));
+			this.biomeProvider = new BiomeProviderSingle(Biomes.PLAINS);
 		}
 		else
 		{
@@ -129,7 +129,7 @@ public abstract class WorldProvider
 		}
 		else
 		{
-			return this.worldObj.getGroundAboveSeaLevel(blockpos).getBlock() == Blocks.getBlock(Blocks.GRASS);
+			return this.worldObj.getGroundAboveSeaLevel(blockpos).getBlock() == Blocks.GRASS;
 		}
 	}
 

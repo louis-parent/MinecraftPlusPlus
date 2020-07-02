@@ -109,7 +109,7 @@ public class CommandSetBlock extends CommandBase
 					{
 						world.destroyBlock(blockpos, true);
 
-						if (block == Blocks.getBlock(Blocks.AIR))
+						if (block == Blocks.AIR)
 						{
 							notifyCommandListener(sender, this, "commands.setblock.success", new Object[0]);
 							return;

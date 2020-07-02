@@ -18,12 +18,12 @@ import net.minecraft.world.World;
 
 public class BlockConcretePowder extends BlockFalling
 {
-	public static final PropertyEnum<EnumDyeColor> colorEnum = PropertyEnum.<EnumDyeColor>create("color", EnumDyeColor.class);
+	public static final PropertyEnum<EnumDyeColor> field_192426_a = PropertyEnum.<EnumDyeColor>create("color", EnumDyeColor.class);
 
 	public BlockConcretePowder()
 	{
 		super(Material.SAND);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(colorEnum, EnumDyeColor.WHITE));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(field_192426_a, EnumDyeColor.WHITE));
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
@@ -32,7 +32,7 @@ public class BlockConcretePowder extends BlockFalling
 	{
 		if (p_176502_4_.getMaterial().isLiquid())
 		{
-			worldIn.setBlockState(pos, Blocks.getBlock(Blocks.CONCRETE).getDefaultState().withProperty(BlockColored.COLOR, p_176502_3_.getValue(colorEnum)), 3);
+			worldIn.setBlockState(pos, Blocks.field_192443_dR.getDefaultState().withProperty(BlockColored.COLOR, p_176502_3_.getValue(field_192426_a)), 3);
 		}
 	}
 
@@ -56,7 +56,7 @@ public class BlockConcretePowder extends BlockFalling
 
 		if (flag)
 		{
-			p_192425_1_.setBlockState(p_192425_2_, Blocks.getBlock(Blocks.CONCRETE).getDefaultState().withProperty(BlockColored.COLOR, p_192425_3_.getValue(colorEnum)), 3);
+			p_192425_1_.setBlockState(p_192425_2_, Blocks.field_192443_dR.getDefaultState().withProperty(BlockColored.COLOR, p_192425_3_.getValue(field_192426_a)), 3);
 		}
 
 		return flag;
@@ -98,7 +98,7 @@ public class BlockConcretePowder extends BlockFalling
 	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return state.getValue(colorEnum).getMetadata();
+		return state.getValue(field_192426_a).getMetadata();
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class BlockConcretePowder extends BlockFalling
 	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess p_180659_2_, BlockPos p_180659_3_)
 	{
-		return MapColor.func_193558_a(state.getValue(colorEnum));
+		return MapColor.func_193558_a(state.getValue(field_192426_a));
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class BlockConcretePowder extends BlockFalling
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(colorEnum, EnumDyeColor.byMetadata(meta));
+		return this.getDefaultState().withProperty(field_192426_a, EnumDyeColor.byMetadata(meta));
 	}
 
 	/**
@@ -138,12 +138,12 @@ public class BlockConcretePowder extends BlockFalling
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return state.getValue(colorEnum).getMetadata();
+		return state.getValue(field_192426_a).getMetadata();
 	}
 
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] { colorEnum });
+		return new BlockStateContainer(this, new IProperty[] { field_192426_a });
 	}
 }

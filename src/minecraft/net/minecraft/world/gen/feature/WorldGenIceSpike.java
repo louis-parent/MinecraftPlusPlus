@@ -20,7 +20,7 @@ public class WorldGenIceSpike extends WorldGenerator
 			position = position.down();
 		}
 
-		if (worldIn.getBlockState(position).getBlock() != Blocks.getBlock(Blocks.SNOW))
+		if (worldIn.getBlockState(position).getBlock() != Blocks.SNOW)
 		{
 			return false;
 		}
@@ -53,9 +53,9 @@ public class WorldGenIceSpike extends WorldGenerator
 							IBlockState iblockstate = worldIn.getBlockState(position.add(i1, k, j1));
 							Block block = iblockstate.getBlock();
 
-							if (iblockstate.getMaterial() == Material.AIR || block == Blocks.getBlock(Blocks.DIRT) || block == Blocks.getBlock(Blocks.SNOW) || block == Blocks.getBlock(Blocks.ICE))
+							if (iblockstate.getMaterial() == Material.AIR || block == Blocks.DIRT || block == Blocks.SNOW || block == Blocks.ICE)
 							{
-								this.setBlockAndNotifyAdequately(worldIn, position.add(i1, k, j1), Blocks.getBlock(Blocks.PACKED_ICE).getDefaultState());
+								this.setBlockAndNotifyAdequately(worldIn, position.add(i1, k, j1), Blocks.PACKED_ICE.getDefaultState());
 							}
 
 							if (k != 0 && l > 1)
@@ -63,9 +63,9 @@ public class WorldGenIceSpike extends WorldGenerator
 								iblockstate = worldIn.getBlockState(position.add(i1, -k, j1));
 								block = iblockstate.getBlock();
 
-								if (iblockstate.getMaterial() == Material.AIR || block == Blocks.getBlock(Blocks.DIRT) || block == Blocks.getBlock(Blocks.SNOW) || block == Blocks.getBlock(Blocks.ICE))
+								if (iblockstate.getMaterial() == Material.AIR || block == Blocks.DIRT || block == Blocks.SNOW || block == Blocks.ICE)
 								{
-									this.setBlockAndNotifyAdequately(worldIn, position.add(i1, -k, j1), Blocks.getBlock(Blocks.PACKED_ICE).getDefaultState());
+									this.setBlockAndNotifyAdequately(worldIn, position.add(i1, -k, j1), Blocks.PACKED_ICE.getDefaultState());
 								}
 							}
 						}
@@ -101,12 +101,12 @@ public class WorldGenIceSpike extends WorldGenerator
 						IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
 						Block block1 = iblockstate1.getBlock();
 
-						if (iblockstate1.getMaterial() != Material.AIR && block1 != Blocks.getBlock(Blocks.DIRT) && block1 != Blocks.getBlock(Blocks.SNOW) && block1 != Blocks.getBlock(Blocks.ICE) && block1 != Blocks.getBlock(Blocks.PACKED_ICE))
+						if (iblockstate1.getMaterial() != Material.AIR && block1 != Blocks.DIRT && block1 != Blocks.SNOW && block1 != Blocks.ICE && block1 != Blocks.PACKED_ICE)
 						{
 							break;
 						}
 
-						this.setBlockAndNotifyAdequately(worldIn, blockpos, Blocks.getBlock(Blocks.PACKED_ICE).getDefaultState());
+						this.setBlockAndNotifyAdequately(worldIn, blockpos, Blocks.PACKED_ICE.getDefaultState());
 						blockpos = blockpos.down();
 						--j2;
 

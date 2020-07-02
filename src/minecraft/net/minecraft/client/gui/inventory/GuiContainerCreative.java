@@ -484,7 +484,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 		this.dragSplittingSlots.clear();
 		guicontainercreative$containercreative.itemList.clear();
 
-		if (tab == CreativeTabs.HOTBAR)
+		if (tab == CreativeTabs.field_192395_m)
 		{
 			for (int j = 0; j < 9; ++j)
 			{
@@ -496,7 +496,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 					{
 						if (k == j)
 						{
-							ItemStack itemstack = new ItemStack(Items.getItem(Items.PAPER));
+							ItemStack itemstack = new ItemStack(Items.PAPER);
 							itemstack.func_190925_c("CustomCreativeLock");
 							String s = GameSettings.getKeyDisplayString(this.mc.gameSettings.keyBindsHotbar[j].getKeyCode());
 							String s1 = GameSettings.getKeyDisplayString(this.mc.gameSettings.field_193629_ap.getKeyCode());
@@ -694,7 +694,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 			List<String> list = stack.getTooltip(this.mc.player, this.mc.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL);
 			CreativeTabs creativetabs = stack.getItem().getCreativeTab();
 
-			if (creativetabs == null && stack.getItem() == Items.getItem(Items.ENCHANTED_BOOK))
+			if (creativetabs == null && stack.getItem() == Items.ENCHANTED_BOOK)
 			{
 				Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack);
 
@@ -789,7 +789,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 		int j = 28 * i;
 		int k = 0;
 
-		if (tab.isTabInLastColumn())
+		if (tab.func_192394_m())
 		{
 			j = this.xSize - 28 * (6 - i) + 2;
 		}
@@ -821,7 +821,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 		int j = 28 * i;
 		int k = 0;
 
-		if (tab.isTabInLastColumn())
+		if (tab.func_192394_m())
 		{
 			j = this.xSize - 28 * (6 - i) + 2;
 		}
@@ -870,7 +870,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 			k += 32;
 		}
 
-		if (tab.isTabInLastColumn())
+		if (tab.func_192394_m())
 		{
 			l = this.guiLeft + this.xSize - 28 * (6 - i);
 		}

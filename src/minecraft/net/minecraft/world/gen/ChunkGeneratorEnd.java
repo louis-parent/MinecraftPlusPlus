@@ -28,8 +28,8 @@ public class ChunkGeneratorEnd implements IChunkGenerator
 {
 	/** RNG. */
 	private final Random rand;
-	protected static final IBlockState END_STONE = Blocks.getBlock(Blocks.END_STONE).getDefaultState();
-	protected static final IBlockState AIR = Blocks.getBlock(Blocks.AIR).getDefaultState();
+	protected static final IBlockState END_STONE = Blocks.END_STONE.getDefaultState();
+	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
 	private final NoiseGeneratorOctaves lperlinNoise1;
 	private final NoiseGeneratorOctaves lperlinNoise2;
 	private final NoiseGeneratorOctaves perlinNoise1;
@@ -162,7 +162,7 @@ public class ChunkGeneratorEnd implements IChunkGenerator
 					{
 						l = -1;
 					}
-					else if (iblockstate2.getBlock() == Blocks.getBlock(Blocks.STONE))
+					else if (iblockstate2.getBlock() == Blocks.STONE)
 					{
 						if (l == -1)
 						{
@@ -383,7 +383,7 @@ public class ChunkGeneratorEnd implements IChunkGenerator
 					{
 						int k1 = j1 - 1;
 
-						if (this.worldObj.isAirBlock(blockpos.add(l, k1 + 1, i1)) && this.worldObj.getBlockState(blockpos.add(l, k1, i1)).getBlock() == Blocks.getBlock(Blocks.END_STONE))
+						if (this.worldObj.isAirBlock(blockpos.add(l, k1 + 1, i1)) && this.worldObj.getBlockState(blockpos.add(l, k1, i1)).getBlock() == Blocks.END_STONE)
 						{
 							BlockChorusFlower.generatePlant(this.worldObj, blockpos.add(l, k1 + 1, i1), this.rand, 8);
 						}

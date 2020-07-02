@@ -133,8 +133,7 @@
   },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
-      "beaches": "2019-10-02 19:47:04 +0200",
-      "ocean": "2019-12-04 15:16:44 +0100"
+      "beaches": "2019-10-02 19:47:04 +0200"
     },
     "done": false
   },
@@ -186,12 +185,6 @@
     },
     "done": true
   },
-  "minecraft:recipes/transportation/birch_boat": {
-    "criteria": {
-      "entered_water": "2019-12-04 15:16:50 +0100"
-    },
-    "done": true
-  },
   "minecraft:recipes/building_blocks/brown_concrete_powder": {
     "criteria": {
       "has_sand": "2019-10-02 19:47:02 +0200"
@@ -213,12 +206,6 @@
   "minecraft:recipes/tools/iron_shovel": {
     "criteria": {
       "has_iron_ingot": "2019-10-02 19:47:02 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/acacia_boat": {
-    "criteria": {
-      "entered_water": "2019-12-04 15:16:50 +0100"
     },
     "done": true
   },
@@ -246,18 +233,6 @@
     },
     "done": true
   },
-  "minecraft:recipes/transportation/boat": {
-    "criteria": {
-      "entered_water": "2019-12-04 15:16:50 +0100"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/jungle_boat": {
-    "criteria": {
-      "entered_water": "2019-12-04 15:16:50 +0100"
-    },
-    "done": true
-  },
   "minecraft:recipes/decorations/jukebox": {
     "criteria": {
       "has_diamond": "2019-10-02 19:47:02 +0200"
@@ -267,12 +242,6 @@
   "minecraft:recipes/redstone/light_weighted_pressure_plate": {
     "criteria": {
       "has_gold_ingot": "2019-10-02 19:47:02 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/spruce_boat": {
-    "criteria": {
-      "entered_water": "2019-12-04 15:16:50 +0100"
     },
     "done": true
   },
@@ -303,12 +272,6 @@
   "minecraft:recipes/building_blocks/gray_concrete_powder": {
     "criteria": {
       "has_sand": "2019-10-02 19:47:02 +0200"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/dark_oak_boat": {
-    "criteria": {
-      "entered_water": "2019-12-04 15:16:50 +0100"
     },
     "done": true
   },

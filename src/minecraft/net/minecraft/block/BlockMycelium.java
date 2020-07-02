@@ -37,7 +37,7 @@ public class BlockMycelium extends Block
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		Block block = worldIn.getBlockState(pos.up()).getBlock();
-		return state.withProperty(SNOWY, Boolean.valueOf(block == Blocks.getBlock(Blocks.SNOW) || block == Blocks.getBlock(Blocks.SNOW_LAYER)));
+		return state.withProperty(SNOWY, Boolean.valueOf(block == Blocks.SNOW || block == Blocks.SNOW_LAYER));
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class BlockMycelium extends Block
 		{
 			if (worldIn.getLightFromNeighbors(pos.up()) < 4 && worldIn.getBlockState(pos.up()).getLightOpacity() > 2)
 			{
-				worldIn.setBlockState(pos, Blocks.getBlock(Blocks.DIRT).getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+				worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
 			}
 			else
 			{
@@ -59,7 +59,7 @@ public class BlockMycelium extends Block
 						IBlockState iblockstate = worldIn.getBlockState(blockpos);
 						IBlockState iblockstate1 = worldIn.getBlockState(blockpos.up());
 
-						if (iblockstate.getBlock() == Blocks.getBlock(Blocks.DIRT) && iblockstate.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.DIRT && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate1.getLightOpacity() <= 2)
+						if (iblockstate.getBlock() == Blocks.DIRT && iblockstate.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.DIRT && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate1.getLightOpacity() <= 2)
 						{
 							worldIn.setBlockState(blockpos, this.getDefaultState());
 						}
@@ -86,7 +86,7 @@ public class BlockMycelium extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Blocks.getBlock(Blocks.DIRT).getItemDropped(Blocks.getBlock(Blocks.DIRT).getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
+		return Blocks.DIRT.getItemDropped(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
 	}
 
 	/**

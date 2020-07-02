@@ -27,7 +27,7 @@ public class LighterUse
 			if (world.getBlockState(pos).getMaterial() == Material.AIR)
 			{
 				world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
-				world.setBlockState(pos, Blocks.getBlock(Blocks.FIRE).getDefaultState(), 11);
+				world.setBlockState(pos, Blocks.FIRE.getDefaultState(), 11);
 
 				if (!player.isCreative())
 				{

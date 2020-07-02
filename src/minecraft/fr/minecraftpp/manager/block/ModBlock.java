@@ -36,9 +36,4 @@ public class ModBlock extends Block
 	{
 		REGISTRY.add(block);
 	}
-
-	public static void resetRegistry()
-	{
-		REGISTRY.clear();
-	}
 }

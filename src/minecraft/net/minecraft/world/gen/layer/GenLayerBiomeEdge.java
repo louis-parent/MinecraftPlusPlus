@@ -29,45 +29,45 @@ public class GenLayerBiomeEdge extends GenLayer
 				this.initChunkSeed(j + areaX, i + areaY);
 				int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
 
-				if (!this.replaceBiomeEdgeIfNecessary(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.getBiome(Biomes.EXTREME_HILLS)), Biome.getIdForBiome(Biomes.getBiome(Biomes.EXTREME_HILLS_EDGE))) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.getBiome(Biomes.MESA_ROCK)), Biome.getIdForBiome(Biomes.getBiome(Biomes.MESA))) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.getBiome(Biomes.MESA_CLEAR_ROCK)), Biome.getIdForBiome(Biomes.getBiome(Biomes.MESA))) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.getBiome(Biomes.REDWOOD_TAIGA)), Biome.getIdForBiome(Biomes.getBiome(Biomes.TAIGA))))
+				if (!this.replaceBiomeEdgeIfNecessary(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.EXTREME_HILLS), Biome.getIdForBiome(Biomes.EXTREME_HILLS_EDGE)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.MESA_ROCK), Biome.getIdForBiome(Biomes.MESA)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.MESA_CLEAR_ROCK), Biome.getIdForBiome(Biomes.MESA)) && !this.replaceBiomeEdge(aint, aint1, j, i, areaWidth, k, Biome.getIdForBiome(Biomes.REDWOOD_TAIGA), Biome.getIdForBiome(Biomes.TAIGA)))
 				{
-					if (k == Biome.getIdForBiome(Biomes.getBiome(Biomes.DESERT)))
+					if (k == Biome.getIdForBiome(Biomes.DESERT))
 					{
 						int l1 = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
 						int i2 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
 						int j2 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
 						int k2 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-						if (l1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.ICE_PLAINS)) && i2 != Biome.getIdForBiome(Biomes.getBiome(Biomes.ICE_PLAINS)) && j2 != Biome.getIdForBiome(Biomes.getBiome(Biomes.ICE_PLAINS)) && k2 != Biome.getIdForBiome(Biomes.getBiome(Biomes.ICE_PLAINS)))
+						if (l1 != Biome.getIdForBiome(Biomes.ICE_PLAINS) && i2 != Biome.getIdForBiome(Biomes.ICE_PLAINS) && j2 != Biome.getIdForBiome(Biomes.ICE_PLAINS) && k2 != Biome.getIdForBiome(Biomes.ICE_PLAINS))
 						{
 							aint1[j + i * areaWidth] = k;
 						}
 						else
 						{
-							aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.EXTREME_HILLS_WITH_TREES));
+							aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.EXTREME_HILLS_WITH_TREES);
 						}
 					}
-					else if (k == Biome.getIdForBiome(Biomes.getBiome(Biomes.SWAMPLAND)))
+					else if (k == Biome.getIdForBiome(Biomes.SWAMPLAND))
 					{
 						int l = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
 						int i1 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
 						int j1 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
 						int k1 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-						if (l != Biome.getIdForBiome(Biomes.getBiome(Biomes.DESERT)) && i1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.DESERT)) && j1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.DESERT)) && k1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.DESERT)) && l != Biome.getIdForBiome(Biomes.getBiome(Biomes.COLD_TAIGA)) && i1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.COLD_TAIGA)) && j1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.COLD_TAIGA)) && k1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.COLD_TAIGA)) && l != Biome.getIdForBiome(Biomes.getBiome(Biomes.ICE_PLAINS)) && i1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.ICE_PLAINS)) && j1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.ICE_PLAINS)) && k1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.ICE_PLAINS)))
+						if (l != Biome.getIdForBiome(Biomes.DESERT) && i1 != Biome.getIdForBiome(Biomes.DESERT) && j1 != Biome.getIdForBiome(Biomes.DESERT) && k1 != Biome.getIdForBiome(Biomes.DESERT) && l != Biome.getIdForBiome(Biomes.COLD_TAIGA) && i1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && j1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && k1 != Biome.getIdForBiome(Biomes.COLD_TAIGA) && l != Biome.getIdForBiome(Biomes.ICE_PLAINS) && i1 != Biome.getIdForBiome(Biomes.ICE_PLAINS) && j1 != Biome.getIdForBiome(Biomes.ICE_PLAINS) && k1 != Biome.getIdForBiome(Biomes.ICE_PLAINS))
 						{
-							if (l != Biome.getIdForBiome(Biomes.getBiome(Biomes.JUNGLE)) && k1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.JUNGLE)) && i1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.JUNGLE)) && j1 != Biome.getIdForBiome(Biomes.getBiome(Biomes.JUNGLE)))
+							if (l != Biome.getIdForBiome(Biomes.JUNGLE) && k1 != Biome.getIdForBiome(Biomes.JUNGLE) && i1 != Biome.getIdForBiome(Biomes.JUNGLE) && j1 != Biome.getIdForBiome(Biomes.JUNGLE))
 							{
 								aint1[j + i * areaWidth] = k;
 							}
 							else
 							{
-								aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.JUNGLE_EDGE));
+								aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.JUNGLE_EDGE);
 							}
 						}
 						else
 						{
-							aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.PLAINS));
+							aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.PLAINS);
 						}
 					}
 					else

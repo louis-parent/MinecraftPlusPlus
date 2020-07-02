@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 
 public class WorldGenIcePath extends WorldGenerator
 {
+	private final Block block = Blocks.PACKED_ICE;
 	private final int basePathWidth;
 
 	public WorldGenIcePath(int basePathWidthIn)
@@ -24,7 +25,7 @@ public class WorldGenIcePath extends WorldGenerator
 			position = position.down();
 		}
 
-		if (worldIn.getBlockState(position).getBlock() != Blocks.getBlock(Blocks.SNOW))
+		if (worldIn.getBlockState(position).getBlock() != Blocks.SNOW)
 		{
 			return false;
 		}
@@ -47,9 +48,9 @@ public class WorldGenIcePath extends WorldGenerator
 							BlockPos blockpos = new BlockPos(k, k1, l);
 							Block block = worldIn.getBlockState(blockpos).getBlock();
 
-							if (block == Blocks.getBlock(Blocks.DIRT) || block == Blocks.getBlock(Blocks.SNOW) || block == Blocks.getBlock(Blocks.ICE))
+							if (block == Blocks.DIRT || block == Blocks.SNOW || block == Blocks.ICE)
 							{
-								worldIn.setBlockState(blockpos, this.getBlock().getDefaultState(), 2);
+								worldIn.setBlockState(blockpos, this.block.getDefaultState(), 2);
 							}
 						}
 					}
@@ -58,10 +59,5 @@ public class WorldGenIcePath extends WorldGenerator
 
 			return true;
 		}
-	}
-
-	public Block getBlock()
-	{
-		return Blocks.getBlock(Blocks.PACKED_ICE);
 	}
 }

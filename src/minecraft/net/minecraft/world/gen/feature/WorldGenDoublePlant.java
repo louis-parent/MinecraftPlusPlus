@@ -25,9 +25,9 @@ public class WorldGenDoublePlant extends WorldGenerator
 		{
 			BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-			if (worldIn.isAirBlock(blockpos) && (!worldIn.provider.getHasNoSky() || blockpos.getY() < 254) && Blocks.getBlock(Blocks.DOUBLE_PLANT).canPlaceBlockAt(worldIn, blockpos))
+			if (worldIn.isAirBlock(blockpos) && (!worldIn.provider.getHasNoSky() || blockpos.getY() < 254) && Blocks.DOUBLE_PLANT.canPlaceBlockAt(worldIn, blockpos))
 			{
-				((BlockDoublePlant) Blocks.getBlock(Blocks.DOUBLE_PLANT)).placeAt(worldIn, blockpos, this.plantType, 2);
+				Blocks.DOUBLE_PLANT.placeAt(worldIn, blockpos, this.plantType, 2);
 				flag = true;
 			}
 		}

@@ -42,11 +42,11 @@ public class CombatTracker
 		{
 			Block block = this.fighter.world.getBlockState(new BlockPos(this.fighter.posX, this.fighter.getEntityBoundingBox().minY, this.fighter.posZ)).getBlock();
 
-			if (block == Blocks.getBlock(Blocks.LADDER))
+			if (block == Blocks.LADDER)
 			{
 				this.fallSuffix = "ladder";
 			}
-			else if (block == Blocks.getBlock(Blocks.VINE))
+			else if (block == Blocks.VINE)
 			{
 				this.fallSuffix = "vines";
 			}

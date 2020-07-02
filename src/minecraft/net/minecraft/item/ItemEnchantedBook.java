@@ -114,7 +114,7 @@ public class ItemEnchantedBook extends Item
 	 */
 	public static ItemStack getEnchantedItemStack(EnchantmentData p_92111_0_)
 	{
-		ItemStack itemstack = new ItemStack(Items.getItem(Items.ENCHANTED_BOOK));
+		ItemStack itemstack = new ItemStack(Items.ENCHANTED_BOOK);
 		addEnchantment(itemstack, p_92111_0_);
 		return itemstack;
 	}

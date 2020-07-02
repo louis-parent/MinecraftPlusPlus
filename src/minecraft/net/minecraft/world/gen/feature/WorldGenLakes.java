@@ -100,7 +100,7 @@ public class WorldGenLakes extends WorldGenerator
 					{
 						if (aboolean[(l1 * 16 + i3) * 8 + i4])
 						{
-							worldIn.setBlockState(position.add(l1, i4, i3), i4 >= 4 ? Blocks.getBlock(Blocks.AIR).getDefaultState() : this.block.getDefaultState(), 2);
+							worldIn.setBlockState(position.add(l1, i4, i3), i4 >= 4 ? Blocks.AIR.getDefaultState() : this.block.getDefaultState(), 2);
 						}
 					}
 				}
@@ -116,17 +116,17 @@ public class WorldGenLakes extends WorldGenerator
 						{
 							BlockPos blockpos = position.add(i2, j4 - 1, j3);
 
-							if (worldIn.getBlockState(blockpos).getBlock() == Blocks.getBlock(Blocks.DIRT) && worldIn.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0)
+							if (worldIn.getBlockState(blockpos).getBlock() == Blocks.DIRT && worldIn.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0)
 							{
 								Biome biome = worldIn.getBiome(blockpos);
 
-								if (biome.getTopBlock().getBlock() == Blocks.getBlock(Blocks.MYCELIUM))
+								if (biome.topBlock.getBlock() == Blocks.MYCELIUM)
 								{
-									worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.MYCELIUM).getDefaultState(), 2);
+									worldIn.setBlockState(blockpos, Blocks.MYCELIUM.getDefaultState(), 2);
 								}
 								else
 								{
-									worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.GRASS).getDefaultState(), 2);
+									worldIn.setBlockState(blockpos, Blocks.GRASS.getDefaultState(), 2);
 								}
 							}
 						}
@@ -146,7 +146,7 @@ public class WorldGenLakes extends WorldGenerator
 
 							if (flag1 && (k4 < 4 || rand.nextInt(2) != 0) && worldIn.getBlockState(position.add(j2, k4, k3)).getMaterial().isSolid())
 							{
-								worldIn.setBlockState(position.add(j2, k4, k3), Blocks.getBlock(Blocks.STONE).getDefaultState(), 2);
+								worldIn.setBlockState(position.add(j2, k4, k3), Blocks.STONE.getDefaultState(), 2);
 							}
 						}
 					}
@@ -163,7 +163,7 @@ public class WorldGenLakes extends WorldGenerator
 
 						if (worldIn.canBlockFreezeWater(position.add(k2, 4, l3)))
 						{
-							worldIn.setBlockState(position.add(k2, 4, l3), Blocks.getBlock(Blocks.ICE).getDefaultState(), 2);
+							worldIn.setBlockState(position.add(k2, 4, l3), Blocks.ICE.getDefaultState(), 2);
 						}
 					}
 				}

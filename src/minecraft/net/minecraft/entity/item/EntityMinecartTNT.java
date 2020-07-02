@@ -45,7 +45,7 @@ public class EntityMinecartTNT extends EntityMinecart
 	@Override
 	public IBlockState getDefaultDisplayTile()
 	{
-		return Blocks.getBlock(Blocks.TNT).getDefaultState();
+		return Blocks.TNT.getDefaultState();
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class EntityMinecartTNT extends EntityMinecart
 
 			if (!source.isExplosion() && this.world.getGameRules().getBoolean("doEntityDrops"))
 			{
-				this.entityDropItem(new ItemStack(Blocks.getBlock(Blocks.TNT), 1), 0.0F);
+				this.entityDropItem(new ItemStack(Blocks.TNT, 1), 0.0F);
 			}
 		}
 		else

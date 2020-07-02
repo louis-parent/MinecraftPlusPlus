@@ -48,7 +48,7 @@ public class BlockDirt extends Block
 		if (state.getValue(VARIANT) == BlockDirt.DirtType.PODZOL)
 		{
 			Block block = worldIn.getBlockState(pos.up()).getBlock();
-			state = state.withProperty(SNOWY, Boolean.valueOf(block == Blocks.getBlock(Blocks.SNOW) || block == Blocks.getBlock(Blocks.SNOW_LAYER)));
+			state = state.withProperty(SNOWY, Boolean.valueOf(block == Blocks.SNOW || block == Blocks.SNOW_LAYER));
 		}
 
 		return state;

@@ -37,31 +37,38 @@ public class GenLayerRiverMix extends GenLayer
 	{
 		int[] aint = this.biomePatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
 		int[] aint1 = this.riverPatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
-		int[] result = IntCache.getIntCache(areaWidth * areaHeight);
+		int[] aint2 = IntCache.getIntCache(areaWidth * areaHeight);
 
 		for (int i = 0; i < areaWidth * areaHeight; ++i)
 		{
-			if (aint[i] == Biome.getIdForBiome(Biomes.getBiome(Biomes.OCEAN)) || aint[i] == Biome.getIdForBiome(Biomes.getBiome(Biomes.DEEP_OCEAN)) || aint1[i] != Biome.getIdForBiome(Biomes.getBiome(Biomes.RIVER)))
+			if (aint[i] != Biome.getIdForBiome(Biomes.OCEAN) && aint[i] != Biome.getIdForBiome(Biomes.DEEP_OCEAN))
 			{
-				result[i] = aint[i];
-			}
-			else
-			{
-				if (aint[i] == Biome.getIdForBiome(Biomes.getBiome(Biomes.ICE_PLAINS)))
+				if (aint1[i] == Biome.getIdForBiome(Biomes.RIVER))
 				{
-					result[i] = Biome.getIdForBiome(Biomes.getBiome(Biomes.FROZEN_RIVER));
-				}
-				else if (aint[i] != Biome.getIdForBiome(Biomes.getBiome(Biomes.MUSHROOM_ISLAND)) && aint[i] != Biome.getIdForBiome(Biomes.getBiome(Biomes.MUSHROOM_ISLAND_SHORE)))
-				{
-					result[i] = aint1[i] & 255;
+					if (aint[i] == Biome.getIdForBiome(Biomes.ICE_PLAINS))
+					{
+						aint2[i] = Biome.getIdForBiome(Biomes.FROZEN_RIVER);
+					}
+					else if (aint[i] != Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND) && aint[i] != Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND_SHORE))
+					{
+						aint2[i] = aint1[i] & 255;
+					}
+					else
+					{
+						aint2[i] = Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND_SHORE);
+					}
 				}
 				else
 				{
-					result[i] = Biome.getIdForBiome(Biomes.getBiome(Biomes.MUSHROOM_ISLAND_SHORE));
+					aint2[i] = aint[i];
 				}
+			}
+			else
+			{
+				aint2[i] = aint[i];
 			}
 		}
 
-		return result;
+		return aint2;
 	}
 }

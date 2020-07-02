@@ -7,11 +7,9 @@ import com.google.common.collect.Lists;
 
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.client.util.RecipeItemHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.stats.RecipeBook;
-import net.minecraft.util.ResourceLocation;
 
 public class RecipeList
 {

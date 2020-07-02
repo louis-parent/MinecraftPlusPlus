@@ -59,7 +59,7 @@ public class ItemCarrotOnAStick extends Item
 
 					if (itemstack.isNotValid())
 					{
-						ItemStack itemstack1 = new ItemStack(Items.getItem(Items.FISHING_ROD));
+						ItemStack itemstack1 = new ItemStack(Items.FISHING_ROD);
 						itemstack1.setTagCompound(itemstack.getTagCompound());
 						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack1);
 					}

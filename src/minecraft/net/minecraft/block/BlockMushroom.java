@@ -88,11 +88,11 @@ public class BlockMushroom extends BlockBush implements IGrowable
 		{
 			IBlockState iblockstate = worldIn.getBlockState(pos.down());
 
-			if (iblockstate.getBlock() == Blocks.getBlock(Blocks.MYCELIUM))
+			if (iblockstate.getBlock() == Blocks.MYCELIUM)
 			{
 				return true;
 			}
-			else if (iblockstate.getBlock() == Blocks.getBlock(Blocks.DIRT) && iblockstate.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.PODZOL)
+			else if (iblockstate.getBlock() == Blocks.DIRT && iblockstate.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.PODZOL)
 			{
 				return true;
 			}
@@ -112,13 +112,13 @@ public class BlockMushroom extends BlockBush implements IGrowable
 		worldIn.setBlockToAir(pos);
 		WorldGenerator worldgenerator = null;
 
-		if (this == Blocks.getBlock(Blocks.BROWN_MUSHROOM))
+		if (this == Blocks.BROWN_MUSHROOM)
 		{
-			worldgenerator = new WorldGenBigMushroom(Blocks.getBlock(Blocks.BROWN_MUSHROOM_BLOCK));
+			worldgenerator = new WorldGenBigMushroom(Blocks.BROWN_MUSHROOM_BLOCK);
 		}
-		else if (this == Blocks.getBlock(Blocks.RED_MUSHROOM))
+		else if (this == Blocks.RED_MUSHROOM)
 		{
-			worldgenerator = new WorldGenBigMushroom(Blocks.getBlock(Blocks.RED_MUSHROOM_BLOCK));
+			worldgenerator = new WorldGenBigMushroom(Blocks.RED_MUSHROOM_BLOCK);
 		}
 
 		if (worldgenerator != null && worldgenerator.generate(worldIn, rand, pos))

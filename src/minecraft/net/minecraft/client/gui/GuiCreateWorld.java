@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.resources.I18n;
-import net.minecraft.init.Items;
 import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.world.GameType;
 import net.minecraft.world.WorldSettings;

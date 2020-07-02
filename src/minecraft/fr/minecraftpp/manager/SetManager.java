@@ -18,16 +18,14 @@ public class SetManager
 {
 	private static final int NUMBER_OF_ORES = 7;
 
-	private static List<ISet> sets;
+	private static List<ISet> sets = new ArrayList<ISet>();
 
 	public static void generateOre()
 	{
 		Random r = new Random(1999);
 		
 		Variant.initInstance(r);
-		
-		sets = new ArrayList<ISet>();
-		
+
 		Map<Integer, List<OreProperties>> sortedSolution = getSortedSolution(Backtrack.generateSolution(r, NUMBER_OF_ORES));
 
 		for (List<OreProperties> properties : sortedSolution.values())

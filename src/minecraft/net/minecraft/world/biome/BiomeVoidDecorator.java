@@ -31,11 +31,11 @@ public class BiomeVoidDecorator extends BiomeDecorator
 
 						if (blockpos.getX() == k && blockpos.getZ() == j)
 						{
-							worldIn.setBlockState(blockpos$mutableblockpos, Blocks.getBlock(Blocks.COBBLESTONE).getDefaultState(), 2);
+							worldIn.setBlockState(blockpos$mutableblockpos, Blocks.COBBLESTONE.getDefaultState(), 2);
 						}
 						else
 						{
-							worldIn.setBlockState(blockpos$mutableblockpos, Blocks.getBlock(Blocks.STONE).getDefaultState(), 2);
+							worldIn.setBlockState(blockpos$mutableblockpos, Blocks.STONE.getDefaultState(), 2);
 						}
 					}
 				}

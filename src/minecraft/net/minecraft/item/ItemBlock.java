@@ -130,7 +130,7 @@ public class ItemBlock extends Item
 	{
 		Block block = worldIn.getBlockState(pos).getBlock();
 
-		if (block == Blocks.getBlock(Blocks.SNOW_LAYER))
+		if (block == Blocks.SNOW_LAYER)
 		{
 			side = EnumFacing.UP;
 		}

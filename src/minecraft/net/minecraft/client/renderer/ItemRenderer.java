@@ -21,7 +21,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -45,10 +44,14 @@ public class ItemRenderer
 	private float prevEquippedProgressMainHand;
 	private float equippedProgressOffHand;
 	private float prevEquippedProgressOffHand;
+	private final RenderManager renderManager;
+	private final RenderItem itemRenderer;
 
 	public ItemRenderer(Minecraft mcIn)
 	{
 		this.mc = mcIn;
+		this.renderManager = mcIn.getRenderManager();
+		this.itemRenderer = mcIn.getRenderItem();
 	}
 
 	public void renderItem(EntityLivingBase entityIn, ItemStack heldStack, ItemCameraTransforms.TransformType transform)
@@ -63,14 +66,14 @@ public class ItemRenderer
 			Item item = heldStack.getItem();
 			Block block = Block.getBlockFromItem(item);
 			GlStateManager.pushMatrix();
-			boolean flag = this.getItemRenderer().shouldRenderItemIn3D(heldStack) && block.getBlockLayer() == BlockRenderLayer.TRANSLUCENT;
+			boolean flag = this.itemRenderer.shouldRenderItemIn3D(heldStack) && block.getBlockLayer() == BlockRenderLayer.TRANSLUCENT;
 
 			if (flag)
 			{
 				GlStateManager.depthMask(false);
 			}
 
-			this.getItemRenderer().renderItem(heldStack, entitylivingbaseIn, transform, leftHanded);
+			this.itemRenderer.renderItem(heldStack, entitylivingbaseIn, transform, leftHanded);
 
 			if (flag)
 			{
@@ -139,7 +142,7 @@ public class ItemRenderer
 	private void renderArm(EnumHandSide p_187455_1_)
 	{
 		this.mc.getTextureManager().bindTexture(this.mc.player.getLocationSkin());
-		Render<AbstractClientPlayer> render = this.getRenderManager().<AbstractClientPlayer>getEntityRenderObject(this.mc.player);
+		Render<AbstractClientPlayer> render = this.renderManager.<AbstractClientPlayer>getEntityRenderObject(this.mc.player);
 		RenderPlayer renderplayer = (RenderPlayer) render;
 		GlStateManager.pushMatrix();
 		float f = p_187455_1_ == EnumHandSide.RIGHT ? 1.0F : -1.0F;
@@ -220,7 +223,7 @@ public class ItemRenderer
 		bufferbuilder.pos(135.0D, -7.0D, 0.0D).tex(1.0D, 0.0D).endVertex();
 		bufferbuilder.pos(-7.0D, -7.0D, 0.0D).tex(0.0D, 0.0D).endVertex();
 		tessellator.draw();
-		MapData mapdata = ((ItemMap) Items.getItem(Items.FILLED_MAP)).getMapData(stack, this.mc.world);
+		MapData mapdata = Items.FILLED_MAP.getMapData(stack, this.mc.world);
 
 		if (mapdata != null)
 		{
@@ -251,7 +254,7 @@ public class ItemRenderer
 		GlStateManager.rotate(200.0F, 1.0F, 0.0F, 0.0F);
 		GlStateManager.rotate(f * -135.0F, 0.0F, 1.0F, 0.0F);
 		GlStateManager.translate(f * 5.6F, 0.0F, 0.0F);
-		RenderPlayer renderplayer = (RenderPlayer) this.getRenderManager().<AbstractClientPlayer>getEntityRenderObject(abstractclientplayer);
+		RenderPlayer renderplayer = (RenderPlayer) this.renderManager.<AbstractClientPlayer>getEntityRenderObject(abstractclientplayer);
 		GlStateManager.disableCull();
 
 		if (flag)
@@ -319,7 +322,7 @@ public class ItemRenderer
 		{
 			ItemStack itemstack = abstractclientplayer.getActiveItemStack();
 
-			if (itemstack.getItem() == Items.getItem(Items.BOW))
+			if (itemstack.getItem() == Items.BOW)
 			{
 				EnumHand enumhand1 = abstractclientplayer.getActiveHand();
 				flag = enumhand1 == EnumHand.MAIN_HAND;
@@ -363,7 +366,7 @@ public class ItemRenderer
 				this.renderArmFirstPerson(p_187457_7_, p_187457_5_, enumhandside);
 			}
 		}
-		else if (p_187457_6_.getItem() == Items.getItem(Items.FILLED_MAP))
+		else if (p_187457_6_.getItem() == Items.FILLED_MAP)
 		{
 			if (flag && this.itemStackOffHand.isNotValid())
 			{
@@ -471,7 +474,7 @@ public class ItemRenderer
 
 			if (iblockstate.getRenderType() != EnumBlockRenderType.INVISIBLE)
 			{
-				this.renderBlockInHand(this.mc.getBlockRenderDispatcher().getBlockModelShapes().getTexture(iblockstate));
+				this.renderBlockInHand(this.mc.getBlockRendererDispatcher().getBlockModelShapes().getTexture(iblockstate));
 			}
 		}
 
@@ -642,15 +645,5 @@ public class ItemRenderer
 		{
 			this.equippedProgressOffHand = 0.0F;
 		}
-	}
-
-	public RenderManager getRenderManager()
-	{
-		return mc.getRenderManager();
-	}
-
-	public RenderItem getItemRenderer()
-	{
-		return mc.getRenderItem();
 	}
 }

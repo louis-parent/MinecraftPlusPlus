@@ -146,7 +146,7 @@ public class BlockJukebox extends BlockContainer
 
 			if (!itemstack.isNotValid())
 			{
-				return Item.getIdFromItem(itemstack.getItem()) + 1 - Item.getIdFromItem(Items.getItem(Items.RECORD_13));
+				return Item.getIdFromItem(itemstack.getItem()) + 1 - Item.getIdFromItem(Items.RECORD_13);
 			}
 		}
 

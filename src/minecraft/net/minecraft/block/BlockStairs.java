@@ -401,7 +401,7 @@ public class BlockStairs extends Block
 	@Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
 	{
-		this.modelState.neighborChanged(worldIn, pos, Blocks.getBlock(Blocks.AIR), pos);
+		this.modelState.neighborChanged(worldIn, pos, Blocks.AIR, pos);
 		this.modelBlock.onBlockAdded(worldIn, pos, this.modelState);
 	}
 

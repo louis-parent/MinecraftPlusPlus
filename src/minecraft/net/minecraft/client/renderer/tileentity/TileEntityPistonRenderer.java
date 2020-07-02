@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class TileEntityPistonRenderer extends TileEntitySpecialRenderer<TileEntityPiston>
 {
-	private final BlockRendererDispatcher blockRenderer = Minecraft.getMinecraft().getBlockRenderDispatcher();
+	private final BlockRendererDispatcher blockRenderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
 
 	@Override
 	public void func_192841_a(TileEntityPiston p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
@@ -53,15 +53,15 @@ public class TileEntityPistonRenderer extends TileEntitySpecialRenderer<TileEnti
 			bufferbuilder.setTranslation(p_192841_2_ - blockpos.getX() + p_192841_1_.getOffsetX(p_192841_8_), p_192841_4_ - blockpos.getY() + p_192841_1_.getOffsetY(p_192841_8_), p_192841_6_ - blockpos.getZ() + p_192841_1_.getOffsetZ(p_192841_8_));
 			World world = this.getWorld();
 
-			if (block == Blocks.getBlock(Blocks.PISTON_HEAD) && p_192841_1_.getProgress(p_192841_8_) <= 0.25F)
+			if (block == Blocks.PISTON_HEAD && p_192841_1_.getProgress(p_192841_8_) <= 0.25F)
 			{
 				iblockstate = iblockstate.withProperty(BlockPistonExtension.SHORT, Boolean.valueOf(true));
 				this.renderStateModel(blockpos, iblockstate, bufferbuilder, world, true);
 			}
 			else if (p_192841_1_.shouldPistonHeadBeRendered() && !p_192841_1_.isExtending())
 			{
-				BlockPistonExtension.EnumPistonType blockpistonextension$enumpistontype = block == Blocks.getBlock(Blocks.STICKY_PISTON) ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT;
-				IBlockState iblockstate1 = Blocks.getBlock(Blocks.PISTON_HEAD).getDefaultState().withProperty(BlockPistonExtension.TYPE, blockpistonextension$enumpistontype).withProperty(BlockDirectional.FACING, iblockstate.getValue(BlockDirectional.FACING));
+				BlockPistonExtension.EnumPistonType blockpistonextension$enumpistontype = block == Blocks.STICKY_PISTON ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT;
+				IBlockState iblockstate1 = Blocks.PISTON_HEAD.getDefaultState().withProperty(BlockPistonExtension.TYPE, blockpistonextension$enumpistontype).withProperty(BlockDirectional.FACING, iblockstate.getValue(BlockDirectional.FACING));
 				iblockstate1 = iblockstate1.withProperty(BlockPistonExtension.SHORT, Boolean.valueOf(p_192841_1_.getProgress(p_192841_8_) >= 0.5F));
 				this.renderStateModel(blockpos, iblockstate1, bufferbuilder, world, true);
 				bufferbuilder.setTranslation(p_192841_2_ - blockpos.getX(), p_192841_4_ - blockpos.getY(), p_192841_6_ - blockpos.getZ());

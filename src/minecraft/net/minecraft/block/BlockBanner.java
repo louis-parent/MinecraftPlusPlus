@@ -101,7 +101,7 @@ public class BlockBanner extends BlockContainer
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.BANNER);
+		return Items.BANNER;
 	}
 
 	private ItemStack getTileDataItemStack(World worldIn, BlockPos pos)
@@ -114,7 +114,7 @@ public class BlockBanner extends BlockContainer
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
 		ItemStack itemstack = this.getTileDataItemStack(worldIn, pos);
-		return itemstack.isNotValid() ? new ItemStack(Items.getItem(Items.BANNER)) : itemstack;
+		return itemstack.isNotValid() ? new ItemStack(Items.BANNER) : itemstack;
 	}
 
 	/**

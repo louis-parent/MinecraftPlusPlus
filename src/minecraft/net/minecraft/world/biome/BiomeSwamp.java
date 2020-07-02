@@ -15,6 +15,8 @@ import net.minecraft.world.gen.feature.WorldGenFossils;
 
 public class BiomeSwamp extends Biome
 {
+	protected static final IBlockState WATER_LILY = Blocks.WATERLILY.getDefaultState();
+
 	protected BiomeSwamp(Biome.BiomeProperties properties)
 	{
 		super(properties);
@@ -34,7 +36,7 @@ public class BiomeSwamp extends Biome
 	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return getSWAMP_FEATURE();
+		return SWAMP_FEATURE;
 	}
 
 	@Override
@@ -70,13 +72,13 @@ public class BiomeSwamp extends Biome
 			{
 				if (chunkPrimerIn.getBlockState(j, k, i).getMaterial() != Material.AIR)
 				{
-					if (k == 62 && chunkPrimerIn.getBlockState(j, k, i).getBlock() != Blocks.getBlock(Blocks.WATER))
+					if (k == 62 && chunkPrimerIn.getBlockState(j, k, i).getBlock() != Blocks.WATER)
 					{
-						chunkPrimerIn.setBlockState(j, k, i, getWater());
+						chunkPrimerIn.setBlockState(j, k, i, WATER);
 
 						if (d0 < 0.12D)
 						{
-							chunkPrimerIn.setBlockState(j, k + 1, i, getWaterLily());
+							chunkPrimerIn.setBlockState(j, k + 1, i, WATER_LILY);
 						}
 					}
 
@@ -97,10 +99,5 @@ public class BiomeSwamp extends Biome
 		{
 			(new WorldGenFossils()).generate(worldIn, rand, pos);
 		}
-	}
-
-	public static IBlockState getWaterLily()
-	{
-		return Blocks.getBlock(Blocks.WATERLILY).getDefaultState();
 	}
 }

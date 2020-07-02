@@ -1394,7 +1394,7 @@ public class StructureOceanMonumentPieces
 			}
 
 			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 3, 6, 9, 6, 9, DARK_PRISMARINE, DARK_PRISMARINE, false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 4, 7, 8, 5, 8, Blocks.getBlock(Blocks.GOLD_BLOCK).getDefaultState(), Blocks.getBlock(Blocks.GOLD_BLOCK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 4, 7, 8, 5, 8, Blocks.GOLD_BLOCK.getDefaultState(), Blocks.GOLD_BLOCK.getDefaultState(), false);
 
 			for (int l = 3; l <= 6; l += 3)
 			{
@@ -1508,12 +1508,12 @@ public class StructureOceanMonumentPieces
 
 	public abstract static class Piece extends StructureComponent
 	{
-		protected static final IBlockState ROUGH_PRISMARINE = Blocks.getBlock(Blocks.PRISMARINE).getStateFromMeta(BlockPrismarine.ROUGH_META);
-		protected static final IBlockState BRICKS_PRISMARINE = Blocks.getBlock(Blocks.PRISMARINE).getStateFromMeta(BlockPrismarine.BRICKS_META);
-		protected static final IBlockState DARK_PRISMARINE = Blocks.getBlock(Blocks.PRISMARINE).getStateFromMeta(BlockPrismarine.DARK_META);
+		protected static final IBlockState ROUGH_PRISMARINE = Blocks.PRISMARINE.getStateFromMeta(BlockPrismarine.ROUGH_META);
+		protected static final IBlockState BRICKS_PRISMARINE = Blocks.PRISMARINE.getStateFromMeta(BlockPrismarine.BRICKS_META);
+		protected static final IBlockState DARK_PRISMARINE = Blocks.PRISMARINE.getStateFromMeta(BlockPrismarine.DARK_META);
 		protected static final IBlockState DOT_DECO_DATA = BRICKS_PRISMARINE;
-		protected static final IBlockState SEA_LANTERN = Blocks.getBlock(Blocks.SEA_LANTERN).getDefaultState();
-		protected static final IBlockState WATER = Blocks.getBlock(Blocks.WATER).getDefaultState();
+		protected static final IBlockState SEA_LANTERN = Blocks.SEA_LANTERN.getDefaultState();
+		protected static final IBlockState WATER = Blocks.WATER.getDefaultState();
 		protected static final int GRIDROOM_SOURCE_INDEX = getRoomIndex(2, 0, 0);
 		protected static final int GRIDROOM_TOP_CONNECT_INDEX = getRoomIndex(2, 2, 0);
 		protected static final int GRIDROOM_LEFTWING_CONNECT_INDEX = getRoomIndex(0, 1, 0);
@@ -1602,7 +1602,7 @@ public class StructureOceanMonumentPieces
 						{
 							if (this.getYWithOffset(i) >= p_181655_1_.getSeaLevel())
 							{
-								this.setBlockState(p_181655_1_, Blocks.getBlock(Blocks.AIR).getDefaultState(), j, i, k, p_181655_2_);
+								this.setBlockState(p_181655_1_, Blocks.AIR.getDefaultState(), j, i, k, p_181655_2_);
 							}
 							else
 							{
@@ -1985,7 +1985,7 @@ public class StructureOceanMonumentPieces
 					if (randomIn.nextInt(3) != 0)
 					{
 						int k = 2 + (randomIn.nextInt(4) == 0 ? 0 : 1);
-						this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, k, j, i, 3, j, Blocks.getBlock(Blocks.SPONGE).getStateFromMeta(1), Blocks.getBlock(Blocks.SPONGE).getStateFromMeta(1), false);
+						this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, k, j, i, 3, j, Blocks.SPONGE.getStateFromMeta(1), Blocks.SPONGE.getStateFromMeta(1), false);
 					}
 				}
 			}

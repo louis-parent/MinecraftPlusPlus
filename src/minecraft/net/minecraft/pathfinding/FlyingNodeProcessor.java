@@ -47,7 +47,7 @@ public class FlyingNodeProcessor extends WalkNodeProcessor
 			i = (int) this.entity.getEntityBoundingBox().minY;
 			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(MathHelper.floor(this.entity.posX), i, MathHelper.floor(this.entity.posZ));
 
-			for (Block block = this.blockaccess.getBlockState(blockpos$mutableblockpos).getBlock(); block == Blocks.getBlock(Blocks.FLOWING_WATER) || block == Blocks.getBlock(Blocks.WATER); block = this.blockaccess.getBlockState(blockpos$mutableblockpos).getBlock())
+			for (Block block = this.blockaccess.getBlockState(blockpos$mutableblockpos).getBlock(); block == Blocks.FLOWING_WATER || block == Blocks.WATER; block = this.blockaccess.getBlockState(blockpos$mutableblockpos).getBlock())
 			{
 				++i;
 				blockpos$mutableblockpos.setPos(MathHelper.floor(this.entity.posX), i, MathHelper.floor(this.entity.posZ));
@@ -340,7 +340,7 @@ public class FlyingNodeProcessor extends WalkNodeProcessor
 			Block block = blockaccessIn.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
 			PathNodeType pathnodetype1 = this.getPathNodeTypeRaw(blockaccessIn, x, y - 1, z);
 
-			if (pathnodetype1 != PathNodeType.DAMAGE_FIRE && block != Blocks.getBlock(Blocks.MAGMA) && pathnodetype1 != PathNodeType.LAVA)
+			if (pathnodetype1 != PathNodeType.DAMAGE_FIRE && block != Blocks.MAGMA && pathnodetype1 != PathNodeType.LAVA)
 			{
 				if (pathnodetype1 == PathNodeType.DAMAGE_CACTUS)
 				{

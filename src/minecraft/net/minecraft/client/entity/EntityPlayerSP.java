@@ -816,7 +816,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 	{
 		Item item = stack.getItem();
 
-		if (item == Items.getItem(Items.WRITABLE_BOOK))
+		if (item == Items.WRITABLE_BOOK)
 		{
 			this.mc.displayGuiScreen(new GuiScreenBook(this, stack, true));
 		}
@@ -1091,7 +1091,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		{
 			ItemStack itemstack = this.getItemStackFromSlot(EntityArmorSlot.CHEST);
 
-			if (itemstack.getItem() == Items.getItem(Items.ELYTRA) && ItemElytra.isBroken(itemstack))
+			if (itemstack.getItem() == Items.ELYTRA && ItemElytra.isBroken(itemstack))
 			{
 				this.connection.sendPacket(new CPacketEntityAction(this, CPacketEntityAction.Action.START_FALL_FLYING));
 			}

@@ -1,6 +1,5 @@
 package net.minecraft.entity.passive;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -46,7 +45,7 @@ public class EntityPig extends EntityAnimal
 {
 	private static final DataParameter<Boolean> SADDLED = EntityDataManager.<Boolean>createKey(EntityPig.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> field_191520_bx = EntityDataManager.<Integer>createKey(EntityPig.class, DataSerializers.VARINT);
-	private static HashSet<Item> temptationItems;
+	private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.CARROT, Items.POTATO, Items.BEETROOT);
 	private boolean boosting;
 	private int boostTime;
 	private int totalBoostTime;
@@ -63,8 +62,8 @@ public class EntityPig extends EntityAnimal
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
 		this.tasks.addTask(3, new EntityAIMate(this, 1.0D));
-		this.tasks.addTask(4, new EntityAITempt(this, 1.2D, Items.getItem(Items.CARROT_ON_A_STICK), false));
-		this.tasks.addTask(4, new EntityAITempt(this, 1.2D, false, getTemptationItems()));
+		this.tasks.addTask(4, new EntityAITempt(this, 1.2D, Items.CARROT_ON_A_STICK, false));
+		this.tasks.addTask(4, new EntityAITempt(this, 1.2D, false, TEMPTATION_ITEMS));
 		this.tasks.addTask(5, new EntityAIFollowParent(this, 1.1D));
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -109,7 +108,7 @@ public class EntityPig extends EntityAnimal
 		else
 		{
 			EntityPlayer entityplayer = (EntityPlayer) entity;
-			return entityplayer.getHeldItemMainhand().getItem() == Items.getItem(Items.CARROT_ON_A_STICK) || entityplayer.getHeldItemOffhand().getItem() == Items.getItem(Items.CARROT_ON_A_STICK);
+			return entityplayer.getHeldItemMainhand().getItem() == Items.CARROT_ON_A_STICK || entityplayer.getHeldItemOffhand().getItem() == Items.CARROT_ON_A_STICK;
 		}
 	}
 
@@ -190,7 +189,7 @@ public class EntityPig extends EntityAnimal
 		{
 			ItemStack itemstack = player.getHeldItem(hand);
 
-			if (itemstack.getItem() == Items.getItem(Items.NAME_TAG))
+			if (itemstack.getItem() == Items.NAME_TAG)
 			{
 				itemstack.interactWithEntity(player, this, hand);
 				return true;
@@ -204,7 +203,7 @@ public class EntityPig extends EntityAnimal
 
 				return true;
 			}
-			else if (itemstack.getItem() == Items.getItem(Items.SADDLE))
+			else if (itemstack.getItem() == Items.SADDLE)
 			{
 				itemstack.interactWithEntity(player, this, hand);
 				return true;
@@ -232,7 +231,7 @@ public class EntityPig extends EntityAnimal
 		{
 			if (this.getSaddled())
 			{
-				this.dropItem(Items.getItem(Items.SADDLE), 1);
+				this.dropItem(Items.SADDLE, 1);
 			}
 		}
 	}
@@ -276,7 +275,7 @@ public class EntityPig extends EntityAnimal
 		if (!this.world.isRemote && !this.isDead)
 		{
 			EntityPigZombie entitypigzombie = new EntityPigZombie(this.world);
-			entitypigzombie.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.getItem(Items.GOLDEN_SWORD)));
+			entitypigzombie.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
 			entitypigzombie.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
 			entitypigzombie.setNoAI(this.isAIDisabled());
 
@@ -381,14 +380,6 @@ public class EntityPig extends EntityAnimal
 	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
-		return getTemptationItems().contains(stack.getItem());
-	}
-
-	public static Set<Item> getTemptationItems()
-	{
-	if (temptationItems == null) {
-		temptationItems = Sets.newHashSet(Items.getItem(Items.CARROT), Items.getItem(Items.POTATO), Items.getItem(Items.BEETROOT));
-	}
-		return temptationItems;
+		return TEMPTATION_ITEMS.contains(stack.getItem());
 	}
 }

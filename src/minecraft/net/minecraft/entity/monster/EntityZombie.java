@@ -390,11 +390,11 @@ public class EntityZombie extends EntityMob
 
 			if (i == 0)
 			{
-				this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.getItem(Items.IRON_SWORD)));
+				this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
 			}
 			else
 			{
-				this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.getItem(Items.IRON_SHOVEL)));
+				this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.IRON_SHOVEL));
 			}
 		}
 	}
@@ -487,7 +487,7 @@ public class EntityZombie extends EntityMob
 	@Override
 	protected boolean canEquipItem(ItemStack stack)
 	{
-		return stack.getItem() == Items.getItem(Items.EGG) && this.isChild() && this.isRiding() ? false : super.canEquipItem(stack);
+		return stack.getItem() == Items.EGG && this.isChild() && this.isRiding() ? false : super.canEquipItem(stack);
 	}
 
 	@Override
@@ -550,7 +550,7 @@ public class EntityZombie extends EntityMob
 
 			if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31 && this.rand.nextFloat() < 0.25F)
 			{
-				this.setItemStackToSlot(EntityArmorSlot.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.getBlock(Blocks.LIT_PUMPKIN) : Blocks.getBlock(Blocks.PUMPKIN)));
+				this.setItemStackToSlot(EntityArmorSlot.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
 				this.inventoryArmorDropChances[EntityArmorSlot.HEAD.getIndex()] = 0.0F;
 			}
 		}
@@ -641,7 +641,7 @@ public class EntityZombie extends EntityMob
 
 	protected ItemStack func_190732_dj()
 	{
-		return new ItemStack(Items.getItem(Items.SKULL), 1, 2);
+		return new ItemStack(Items.SKULL, 1, 2);
 	}
 
 	class GroupData implements IEntityLivingData

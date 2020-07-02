@@ -99,12 +99,12 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
 
 			if (block == this)
 			{
-				worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.AIR).getDefaultState(), 2);
+				worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
 			}
 
 			if (block1 == this)
 			{
-				worldIn.setBlockState(blockpos1, Blocks.getBlock(Blocks.AIR).getDefaultState(), 3);
+				worldIn.setBlockState(blockpos1, Blocks.AIR.getDefaultState(), 3);
 
 				if (!flag)
 				{
@@ -136,7 +136,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
 	{
 		if (state.getValue(HALF) == BlockDoublePlant.EnumBlockHalf.UPPER)
 		{
-			return Items.getItem(Items.AIR);
+			return Items.EMPTY_ITEM;
 		}
 		else
 		{
@@ -144,11 +144,11 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
 
 			if (blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.FERN)
 			{
-				return Items.getItem(Items.AIR);
+				return Items.EMPTY_ITEM;
 			}
 			else if (blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.GRASS)
 			{
-				return rand.nextInt(8) == 0 ? Items.getItem(Items.WHEAT_SEEDS) : Items.getItem(Items.AIR);
+				return rand.nextInt(8) == 0 ? Items.WHEAT_SEEDS : Items.EMPTY_ITEM;
 			}
 			else
 			{
@@ -187,7 +187,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
-		if (worldIn.isRemote || stack.getItem() != Items.getItem(Items.SHEARS) || state.getValue(HALF) != BlockDoublePlant.EnumBlockHalf.LOWER || !this.onHarvest(worldIn, pos, state, player))
+		if (worldIn.isRemote || stack.getItem() != Items.SHEARS || state.getValue(HALF) != BlockDoublePlant.EnumBlockHalf.LOWER || !this.onHarvest(worldIn, pos, state, player))
 		{
 			super.harvestBlock(worldIn, player, pos, state, te, stack);
 		}
@@ -217,7 +217,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
 					{
 						worldIn.setBlockToAir(pos.down());
 					}
-					else if (!player.getHeldItemMainhand().isNotValid() && player.getHeldItemMainhand().getItem() == Items.getItem(Items.SHEARS))
+					else if (!player.getHeldItemMainhand().isNotValid() && player.getHeldItemMainhand().getItem() == Items.SHEARS)
 					{
 						this.onHarvest(worldIn, pos, iblockstate, player);
 						worldIn.setBlockToAir(pos.down());
@@ -231,7 +231,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
 		}
 		else if (worldIn.getBlockState(pos.up()).getBlock() == this)
 		{
-			worldIn.setBlockState(pos.up(), Blocks.getBlock(Blocks.AIR).getDefaultState(), 2);
+			worldIn.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 2);
 		}
 
 		super.onBlockHarvested(worldIn, pos, state, player);
@@ -249,7 +249,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
 		{
 			player.addStat(StatList.getBlockStats(this));
 			int i = (blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.GRASS ? BlockTallGrass.EnumType.GRASS : BlockTallGrass.EnumType.FERN).getMeta();
-			spawnAsEntity(worldIn, pos, new ItemStack(Blocks.getBlock(Blocks.TALLGRASS), 2, i));
+			spawnAsEntity(worldIn, pos, new ItemStack(Blocks.TALLGRASS, 2, i));
 			return true;
 		}
 	}

@@ -29,7 +29,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 {
 	private static final Logger LOGGER = LogManager.getLogger();
 	public static final ResourceLocation LOCATION_MISSING_TEXTURE = new ResourceLocation("missingno");
-	public static final ResourceLocation LOCATION_BLOCKS_TEXTURE = new ResourceLocation("textures/atlas/Blocks.getBlock(blocks.png)");
+	public static final ResourceLocation LOCATION_BLOCKS_TEXTURE = new ResourceLocation("textures/atlas/blocks.png");
 	private final List<TextureAtlasSprite> listAnimatedSprites;
 	private final Map<String, TextureAtlasSprite> mapRegisteredSprites;
 	private final Map<String, TextureAtlasSprite> mapUploadedSprites;

@@ -67,23 +67,23 @@ public enum ToolMaterial implements IToolMaterial
 	{
 		if (this == WOOD)
 		{
-			return Item.getItemFromBlock(Blocks.getBlock(Blocks.PLANKS));
+			return Item.getItemFromBlock(Blocks.PLANKS);
 		}
 		else if (this == STONE)
 		{
-			return Item.getItemFromBlock(Blocks.getBlock(Blocks.COBBLESTONE));
+			return Item.getItemFromBlock(Blocks.COBBLESTONE);
 		}
 		else if (this == GOLD)
 		{
-			return Items.getItem(Items.OLD_GOLD_INGOT);
+			return Items.OLD_GOLD_INGOT;
 		}
 		else if (this == IRON)
 		{
-			return Items.getItem(Items.OLD_IRON_INGOT);
+			return Items.OLD_IRON_INGOT;
 		}
 		else
 		{
-			return this == DIAMOND ? Items.getItem(Items.OLD_DIAMOND) : null;
+			return this == DIAMOND ? Items.OLD_DIAMOND : null;
 		}
 	}
 }

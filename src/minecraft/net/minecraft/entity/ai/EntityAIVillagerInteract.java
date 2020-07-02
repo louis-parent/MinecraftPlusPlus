@@ -63,18 +63,18 @@ public class EntityAIVillagerInteract extends EntityAIWatchClosest2
 					{
 						Item item = itemstack.getItem();
 
-						if ((item == Items.getItem(Items.BREAD) || item == Items.getItem(Items.POTATO) || item == Items.getItem(Items.CARROT) || item == Items.getItem(Items.BEETROOT)) && itemstack.getStackSize() > 3)
+						if ((item == Items.BREAD || item == Items.POTATO || item == Items.CARROT || item == Items.BEETROOT) && itemstack.getStackSize() > 3)
 						{
 							int l = itemstack.getStackSize() / 2;
 							itemstack.decreaseStackSize(l);
 							itemstack1 = new ItemStack(item, l, itemstack.getMetadata());
 						}
-						else if (item == Items.getItem(Items.WHEAT) && itemstack.getStackSize() > 5)
+						else if (item == Items.WHEAT && itemstack.getStackSize() > 5)
 						{
 							int j = itemstack.getStackSize() / 2 / 3 * 3;
 							int k = j / 3;
 							itemstack.decreaseStackSize(j);
-							itemstack1 = new ItemStack(Items.getItem(Items.BREAD), k, 0);
+							itemstack1 = new ItemStack(Items.BREAD, k, 0);
 						}
 
 						if (itemstack.isNotValid())

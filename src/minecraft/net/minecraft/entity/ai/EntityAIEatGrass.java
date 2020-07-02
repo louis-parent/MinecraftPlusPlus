@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class EntityAIEatGrass extends EntityAIBase
 {
-	private static final Predicate<IBlockState> IS_TALL_GRASS = BlockStateMatcher.forBlock(Blocks.getBlock(Blocks.TALLGRASS)).where(BlockTallGrass.TYPE, Predicates.equalTo(BlockTallGrass.EnumType.GRASS));
+	private static final Predicate<IBlockState> IS_TALL_GRASS = BlockStateMatcher.forBlock(Blocks.TALLGRASS).where(BlockTallGrass.TYPE, Predicates.equalTo(BlockTallGrass.EnumType.GRASS));
 
 	/** The entity owner of this AITask */
 	private final EntityLiving grassEaterEntity;
@@ -52,7 +52,7 @@ public class EntityAIEatGrass extends EntityAIBase
 			}
 			else
 			{
-				return this.entityWorld.getBlockState(blockpos.down()).getBlock() == Blocks.getBlock(Blocks.GRASS);
+				return this.entityWorld.getBlockState(blockpos.down()).getBlock() == Blocks.GRASS;
 			}
 		}
 	}
@@ -119,12 +119,12 @@ public class EntityAIEatGrass extends EntityAIBase
 			{
 				BlockPos blockpos1 = blockpos.down();
 
-				if (this.entityWorld.getBlockState(blockpos1).getBlock() == Blocks.getBlock(Blocks.GRASS))
+				if (this.entityWorld.getBlockState(blockpos1).getBlock() == Blocks.GRASS)
 				{
 					if (this.entityWorld.getGameRules().getBoolean("mobGriefing"))
 					{
-						this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(Blocks.getBlock(Blocks.GRASS)));
-						this.entityWorld.setBlockState(blockpos1, Blocks.getBlock(Blocks.DIRT).getDefaultState(), 2);
+						this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(Blocks.GRASS));
+						this.entityWorld.setBlockState(blockpos1, Blocks.DIRT.getDefaultState(), 2);
 					}
 
 					this.grassEaterEntity.eatGrassBonus();

@@ -34,7 +34,7 @@ public class ItemBlockSpecial extends Item
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
 		Block block = iblockstate.getBlock();
 
-		if (block == Blocks.getBlock(Blocks.SNOW_LAYER) && iblockstate.getValue(BlockSnow.LAYERS).intValue() < 1)
+		if (block == Blocks.SNOW_LAYER && iblockstate.getValue(BlockSnow.LAYERS).intValue() < 1)
 		{
 			hand = EnumFacing.UP;
 		}

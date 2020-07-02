@@ -87,7 +87,7 @@ public class ItemBoat extends Item
 			else
 			{
 				Block block = itemStackIn.getBlockState(raytraceresult.getBlockPos()).getBlock();
-				boolean flag1 = block == Blocks.getBlock(Blocks.WATER) || block == Blocks.getBlock(Blocks.FLOWING_WATER);
+				boolean flag1 = block == Blocks.WATER || block == Blocks.FLOWING_WATER;
 				EntityBoat entityboat = new EntityBoat(itemStackIn, raytraceresult.hitVec.xCoord, flag1 ? raytraceresult.hitVec.yCoord - 0.12D : raytraceresult.hitVec.yCoord, raytraceresult.hitVec.zCoord);
 				entityboat.setBoatType(this.type);
 				entityboat.rotationYaw = worldIn.rotationYaw;

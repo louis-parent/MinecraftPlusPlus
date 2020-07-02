@@ -108,7 +108,7 @@ public class BlockTNT extends Block
 		if (!itemstack.isNotValid() && itemstack.getItem().canSetFire())
 		{
 			this.explode(world, pos, state.withProperty(EXPLODE, Boolean.valueOf(true)), player);
-			world.setBlockState(pos, Blocks.getBlock(Blocks.AIR).getDefaultState(), 11);
+			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 
 			if (itemstack.getItem().isDamageable())
 			{

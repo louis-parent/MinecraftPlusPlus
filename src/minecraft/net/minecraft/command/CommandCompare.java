@@ -96,7 +96,7 @@ public class CommandCompare extends CommandBase
 								boolean flag1 = false;
 								IBlockState iblockstate = world.getBlockState(blockpos$mutableblockpos);
 
-								if (!flag || iblockstate.getBlock() != Blocks.getBlock(Blocks.AIR))
+								if (!flag || iblockstate.getBlock() != Blocks.AIR)
 								{
 									if (iblockstate == world.getBlockState(blockpos$mutableblockpos1))
 									{

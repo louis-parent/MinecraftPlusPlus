@@ -32,18 +32,9 @@ public class ToolSet implements ISet
 	protected DynamicAxe axe;
 	protected DynamicShovel shovel;
 	protected DynamicHoe hoe;
-	
-	public ToolSet(ToolSet set)
+
+	public ToolSet()
 	{
-		this.rng = set.rng;
-		this.name = set.name;
-		this.material = set.material;
-		
-		this.sword = set.sword;
-		this.pickaxe = set.pickaxe;
-		this.axe = set.axe;
-		this.shovel = set.shovel;
-		this.hoe = set.hoe;
 	}
 
 	public ToolSet(Random rand, String name, IToolMaterial material)

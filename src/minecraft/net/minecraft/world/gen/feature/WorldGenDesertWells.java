@@ -16,10 +16,10 @@ import net.minecraft.world.World;
 
 public class WorldGenDesertWells extends WorldGenerator
 {
-	private static final BlockStateMatcher IS_SAND = BlockStateMatcher.forBlock(Blocks.getBlock(Blocks.SAND)).where(BlockSand.VARIANT, Predicates.equalTo(BlockSand.EnumType.SAND));
-	private final IBlockState sandSlab = Blocks.getBlock(Blocks.STONE_SLAB).getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.SAND).withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM);
-	private final IBlockState sandstone = Blocks.getBlock(Blocks.SANDSTONE).getDefaultState();
-	private final IBlockState water = Blocks.getBlock(Blocks.FLOWING_WATER).getDefaultState();
+	private static final BlockStateMatcher IS_SAND = BlockStateMatcher.forBlock(Blocks.SAND).where(BlockSand.VARIANT, Predicates.equalTo(BlockSand.EnumType.SAND));
+	private final IBlockState sandSlab = Blocks.STONE_SLAB.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.SAND).withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM);
+	private final IBlockState sandstone = Blocks.SANDSTONE.getDefaultState();
+	private final IBlockState water = Blocks.FLOWING_WATER.getDefaultState();
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)

@@ -202,7 +202,7 @@ public class ContainerBrewingStand extends Container
 
 		public static boolean isValidBrewingFuel(ItemStack itemStackIn)
 		{
-			return itemStackIn.getItem() == Items.getItem(Items.BLAZE_POWDER);
+			return itemStackIn.getItem() == Items.BLAZE_POWDER;
 		}
 
 		@Override
@@ -268,7 +268,7 @@ public class ContainerBrewingStand extends Container
 		public static boolean canHoldPotion(ItemStack stack)
 		{
 			Item item = stack.getItem();
-			return item == Items.getItem(Items.POTIONITEM) || item == Items.getItem(Items.SPLASH_POTION) || item == Items.getItem(Items.LINGERING_POTION) || item == Items.getItem(Items.GLASS_BOTTLE);
+			return item == Items.POTIONITEM || item == Items.SPLASH_POTION || item == Items.LINGERING_POTION || item == Items.GLASS_BOTTLE;
 		}
 	}
 }

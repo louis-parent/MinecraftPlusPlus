@@ -47,6 +47,6 @@ public class EnchantmentDigging extends Enchantment
 	@Override
 	public boolean canApply(ItemStack stack)
 	{
-		return stack.getItem() == Items.getItem(Items.SHEARS) ? true : super.canApply(stack);
+		return stack.getItem() == Items.SHEARS ? true : super.canApply(stack);
 	}
 }

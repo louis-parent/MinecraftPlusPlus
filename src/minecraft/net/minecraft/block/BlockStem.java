@@ -72,7 +72,7 @@ public class BlockStem extends BlockBush implements IGrowable
 	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
-		return state.getBlock() == Blocks.getBlock(Blocks.FARMLAND);
+		return state.getBlock() == Blocks.FARMLAND;
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class BlockStem extends BlockBush implements IGrowable
 					pos = pos.offset(EnumFacing.Plane.HORIZONTAL.random(rand));
 					Block block = worldIn.getBlockState(pos.down()).getBlock();
 
-					if (worldIn.getBlockState(pos).getBlock().blockMaterial == Material.AIR && (block == Blocks.getBlock(Blocks.FARMLAND) || block == Blocks.getBlock(Blocks.DIRT) || block == Blocks.getBlock(Blocks.GRASS)))
+					if (worldIn.getBlockState(pos).getBlock().blockMaterial == Material.AIR && (block == Blocks.FARMLAND || block == Blocks.DIRT || block == Blocks.GRASS))
 					{
 						worldIn.setBlockState(pos, this.crop.getDefaultState());
 					}
@@ -151,13 +151,13 @@ public class BlockStem extends BlockBush implements IGrowable
 	@Nullable
 	protected Item getSeedItem()
 	{
-		if (this.crop == Blocks.getBlock(Blocks.PUMPKIN))
+		if (this.crop == Blocks.PUMPKIN)
 		{
-			return Items.getItem(Items.PUMPKIN_SEEDS);
+			return Items.PUMPKIN_SEEDS;
 		}
 		else
 		{
-			return this.crop == Blocks.getBlock(Blocks.MELON_BLOCK) ? Items.getItem(Items.MELON_SEEDS) : null;
+			return this.crop == Blocks.MELON_BLOCK ? Items.MELON_SEEDS : null;
 		}
 	}
 
@@ -167,7 +167,7 @@ public class BlockStem extends BlockBush implements IGrowable
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.AIR);
+		return Items.EMPTY_ITEM;
 	}
 
 	@Override

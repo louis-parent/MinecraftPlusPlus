@@ -77,9 +77,9 @@ public class EntityRabbit extends EntityAnimal
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityRabbit.AIPanic(this, 2.2D));
 		this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
-		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, Items.getItem(Items.CARROT), false));
-		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, Items.getItem(Items.GOLDEN_CARROT), false));
-		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, Item.getItemFromBlock(Blocks.getBlock(Blocks.YELLOW_FLOWER)), false));
+		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, Items.CARROT, false));
+		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, Items.GOLDEN_CARROT, false));
+		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, Item.getItemFromBlock(Blocks.YELLOW_FLOWER), false));
 		this.tasks.addTask(4, new EntityRabbit.AIAvoidEntity(this, EntityPlayer.class, 8.0F, 2.2D, 2.2D));
 		this.tasks.addTask(4, new EntityRabbit.AIAvoidEntity(this, EntityWolf.class, 10.0F, 2.2D, 2.2D));
 		this.tasks.addTask(4, new EntityRabbit.AIAvoidEntity(this, EntityMob.class, 4.0F, 2.2D, 2.2D));
@@ -400,7 +400,7 @@ public class EntityRabbit extends EntityAnimal
 
 	private boolean isRabbitBreedingItem(Item itemIn)
 	{
-		return itemIn == Items.getItem(Items.CARROT) || itemIn == Items.getItem(Items.GOLDEN_CARROT) || itemIn == Item.getItemFromBlock(Blocks.getBlock(Blocks.YELLOW_FLOWER));
+		return itemIn == Items.CARROT || itemIn == Items.GOLDEN_CARROT || itemIn == Item.getItemFromBlock(Blocks.YELLOW_FLOWER);
 	}
 
 	@Override
@@ -524,7 +524,7 @@ public class EntityRabbit extends EntityAnimal
 
 	protected void createEatingParticles()
 	{
-		BlockCarrot blockcarrot = (BlockCarrot) Blocks.getBlock(Blocks.CARROTS);
+		BlockCarrot blockcarrot = (BlockCarrot) Blocks.CARROTS;
 		IBlockState iblockstate = blockcarrot.withAge(blockcarrot.getMaxAge());
 		this.world.spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.0D, 0.0D, 0.0D, Block.getStateId(iblockstate));
 		this.carrotTicks = 40;
@@ -649,7 +649,7 @@ public class EntityRabbit extends EntityAnimal
 
 					if (integer.intValue() == 0)
 					{
-						world.setBlockState(blockpos, Blocks.getBlock(Blocks.AIR).getDefaultState(), 2);
+						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
 						world.destroyBlock(blockpos, true);
 					}
 					else
@@ -671,7 +671,7 @@ public class EntityRabbit extends EntityAnimal
 		{
 			Block block = worldIn.getBlockState(pos).getBlock();
 
-			if (block == Blocks.getBlock(Blocks.FARMLAND) && this.wantsToRaid && !this.canRaid)
+			if (block == Blocks.FARMLAND && this.wantsToRaid && !this.canRaid)
 			{
 				pos = pos.up();
 				IBlockState iblockstate = worldIn.getBlockState(pos);

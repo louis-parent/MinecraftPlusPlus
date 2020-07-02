@@ -165,13 +165,13 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 			}
 		}
 	}
-	
+
 	private void func_193003_g(boolean p_193003_1_)
 	{
 		List<RecipeList> list = RecipeBookClient.field_194086_e.get(this.field_191913_x.func_191764_e());
-		list.forEach((recipeList) ->
+		list.forEach((p_193944_1_) ->
 		{
-			recipeList.func_194210_a(this.field_193965_u, this.craftingMatrix.getWidth(), this.craftingMatrix.getHeight(), this.field_193964_s);
+			p_193944_1_.func_194210_a(this.field_193965_u, this.craftingMatrix.getWidth(), this.craftingMatrix.getHeight(), this.field_193964_s);
 		});
 		List<RecipeList> list1 = Lists.newArrayList(list);
 		list1.removeIf((p_193952_0_) ->

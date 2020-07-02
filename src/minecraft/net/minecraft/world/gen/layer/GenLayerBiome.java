@@ -7,10 +7,10 @@ import net.minecraft.world.gen.ChunkGeneratorSettings;
 
 public class GenLayerBiome extends GenLayer
 {
-	private Biome[] warmBiomes = new Biome[] { Biomes.getBiome(Biomes.DESERT), Biomes.getBiome(Biomes.DESERT), Biomes.getBiome(Biomes.DESERT), Biomes.getBiome(Biomes.SAVANNA), Biomes.getBiome(Biomes.SAVANNA), Biomes.getBiome(Biomes.PLAINS) };
-	private final Biome[] mediumBiomes = new Biome[] { Biomes.getBiome(Biomes.FOREST), Biomes.getBiome(Biomes.ROOFED_FOREST), Biomes.getBiome(Biomes.EXTREME_HILLS), Biomes.getBiome(Biomes.PLAINS), Biomes.getBiome(Biomes.BIRCH_FOREST), Biomes.getBiome(Biomes.SWAMPLAND) };
-	private final Biome[] coldBiomes = new Biome[] { Biomes.getBiome(Biomes.FOREST), Biomes.getBiome(Biomes.EXTREME_HILLS), Biomes.getBiome(Biomes.TAIGA), Biomes.getBiome(Biomes.PLAINS) };
-	private final Biome[] iceBiomes = new Biome[] { Biomes.getBiome(Biomes.ICE_PLAINS), Biomes.getBiome(Biomes.ICE_PLAINS), Biomes.getBiome(Biomes.ICE_PLAINS), Biomes.getBiome(Biomes.COLD_TAIGA) };
+	private Biome[] warmBiomes = new Biome[] { Biomes.DESERT, Biomes.DESERT, Biomes.DESERT, Biomes.SAVANNA, Biomes.SAVANNA, Biomes.PLAINS };
+	private final Biome[] mediumBiomes = new Biome[] { Biomes.FOREST, Biomes.ROOFED_FOREST, Biomes.EXTREME_HILLS, Biomes.PLAINS, Biomes.BIRCH_FOREST, Biomes.SWAMPLAND };
+	private final Biome[] coldBiomes = new Biome[] { Biomes.FOREST, Biomes.EXTREME_HILLS, Biomes.TAIGA, Biomes.PLAINS };
+	private final Biome[] iceBiomes = new Biome[] { Biomes.ICE_PLAINS, Biomes.ICE_PLAINS, Biomes.ICE_PLAINS, Biomes.COLD_TAIGA };
 	private final ChunkGeneratorSettings settings;
 
 	public GenLayerBiome(long p_i45560_1_, GenLayer p_i45560_3_, WorldType p_i45560_4_, ChunkGeneratorSettings p_i45560_5_)
@@ -20,7 +20,7 @@ public class GenLayerBiome extends GenLayer
 
 		if (p_i45560_4_ == WorldType.DEFAULT_1_1)
 		{
-			this.warmBiomes = new Biome[] { Biomes.getBiome(Biomes.DESERT), Biomes.getBiome(Biomes.FOREST), Biomes.getBiome(Biomes.EXTREME_HILLS), Biomes.getBiome(Biomes.SWAMPLAND), Biomes.getBiome(Biomes.PLAINS), Biomes.getBiome(Biomes.TAIGA) };
+			this.warmBiomes = new Biome[] { Biomes.DESERT, Biomes.FOREST, Biomes.EXTREME_HILLS, Biomes.SWAMPLAND, Biomes.PLAINS, Biomes.TAIGA };
 			this.settings = null;
 		}
 		else
@@ -57,7 +57,7 @@ public class GenLayerBiome extends GenLayer
 				{
 					aint1[j + i * areaWidth] = k;
 				}
-				else if (k == Biome.getIdForBiome(Biomes.getBiome(Biomes.MUSHROOM_ISLAND)))
+				else if (k == Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND))
 				{
 					aint1[j + i * areaWidth] = k;
 				}
@@ -67,11 +67,11 @@ public class GenLayerBiome extends GenLayer
 					{
 						if (this.nextInt(3) == 0)
 						{
-							aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.MESA_CLEAR_ROCK));
+							aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.MESA_CLEAR_ROCK);
 						}
 						else
 						{
-							aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.MESA_ROCK));
+							aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.MESA_ROCK);
 						}
 					}
 					else
@@ -83,7 +83,7 @@ public class GenLayerBiome extends GenLayer
 				{
 					if (l > 0)
 					{
-						aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.JUNGLE));
+						aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.JUNGLE);
 					}
 					else
 					{
@@ -94,7 +94,7 @@ public class GenLayerBiome extends GenLayer
 				{
 					if (l > 0)
 					{
-						aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.REDWOOD_TAIGA));
+						aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.REDWOOD_TAIGA);
 					}
 					else
 					{
@@ -107,7 +107,7 @@ public class GenLayerBiome extends GenLayer
 				}
 				else
 				{
-					aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.MUSHROOM_ISLAND));
+					aint1[j + i * areaWidth] = Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND);
 				}
 			}
 		}

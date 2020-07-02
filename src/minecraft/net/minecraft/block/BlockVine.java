@@ -147,7 +147,7 @@ public class BlockVine extends Block
 	public boolean func_193395_a(World p_193395_1_, BlockPos p_193395_2_, EnumFacing p_193395_3_)
 	{
 		Block block = p_193395_1_.getBlockState(p_193395_2_.up()).getBlock();
-		return this.func_193396_c(p_193395_1_, p_193395_2_.offset(p_193395_3_.getOpposite()), p_193395_3_) && (block == Blocks.getBlock(Blocks.AIR) || block == Blocks.getBlock(Blocks.VINE) || this.func_193396_c(p_193395_1_, p_193395_2_.up(), EnumFacing.UP));
+		return this.func_193396_c(p_193395_1_, p_193395_2_.offset(p_193395_3_.getOpposite()), p_193395_3_) && (block == Blocks.AIR || block == Blocks.VINE || this.func_193396_c(p_193395_1_, p_193395_2_.up(), EnumFacing.UP));
 	}
 
 	private boolean func_193396_c(World p_193396_1_, BlockPos p_193396_2_, EnumFacing p_193396_3_)
@@ -158,7 +158,7 @@ public class BlockVine extends Block
 
 	protected static boolean func_193397_e(Block p_193397_0_)
 	{
-		return p_193397_0_ instanceof BlockShulkerBox || p_193397_0_ == Blocks.getBlock(Blocks.BEACON) || p_193397_0_ == Blocks.getBlock(Blocks.CAULDRON) || p_193397_0_ == Blocks.getBlock(Blocks.GLASS) || p_193397_0_ == Blocks.getBlock(Blocks.STAINED_GLASS) || p_193397_0_ == Blocks.getBlock(Blocks.PISTON) || p_193397_0_ == Blocks.getBlock(Blocks.STICKY_PISTON) || p_193397_0_ == Blocks.getBlock(Blocks.PISTON_HEAD) || p_193397_0_ == Blocks.getBlock(Blocks.TRAPDOOR);
+		return p_193397_0_ instanceof BlockShulkerBox || p_193397_0_ == Blocks.BEACON || p_193397_0_ == Blocks.CAULDRON || p_193397_0_ == Blocks.GLASS || p_193397_0_ == Blocks.STAINED_GLASS || p_193397_0_ == Blocks.PISTON || p_193397_0_ == Blocks.STICKY_PISTON || p_193397_0_ == Blocks.PISTON_HEAD || p_193397_0_ == Blocks.TRAPDOOR;
 	}
 
 	private boolean recheckGrownSides(World worldIn, BlockPos pos, IBlockState state)
@@ -374,7 +374,7 @@ public class BlockVine extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.AIR);
+		return Items.EMPTY_ITEM;
 	}
 
 	/**
@@ -389,10 +389,10 @@ public class BlockVine extends Block
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
-		if (!worldIn.isRemote && stack.getItem() == Items.getItem(Items.SHEARS))
+		if (!worldIn.isRemote && stack.getItem() == Items.SHEARS)
 		{
 			player.addStat(StatList.getBlockStats(this));
-			spawnAsEntity(worldIn, pos, new ItemStack(Blocks.getBlock(Blocks.VINE), 1, 0));
+			spawnAsEntity(worldIn, pos, new ItemStack(Blocks.VINE, 1, 0));
 		}
 		else
 		{

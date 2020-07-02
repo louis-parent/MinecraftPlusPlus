@@ -21,11 +21,11 @@ public class WorldGenLiquids extends WorldGenerator
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position)
 	{
-		if (worldIn.getBlockState(position.up()).getBlock() != Blocks.getBlock(Blocks.STONE))
+		if (worldIn.getBlockState(position.up()).getBlock() != Blocks.STONE)
 		{
 			return false;
 		}
-		else if (worldIn.getBlockState(position.down()).getBlock() != Blocks.getBlock(Blocks.STONE))
+		else if (worldIn.getBlockState(position.down()).getBlock() != Blocks.STONE)
 		{
 			return false;
 		}
@@ -33,7 +33,7 @@ public class WorldGenLiquids extends WorldGenerator
 		{
 			IBlockState iblockstate = worldIn.getBlockState(position);
 
-			if (iblockstate.getMaterial() != Material.AIR && iblockstate.getBlock() != Blocks.getBlock(Blocks.STONE))
+			if (iblockstate.getMaterial() != Material.AIR && iblockstate.getBlock() != Blocks.STONE)
 			{
 				return false;
 			}
@@ -41,22 +41,22 @@ public class WorldGenLiquids extends WorldGenerator
 			{
 				int i = 0;
 
-				if (worldIn.getBlockState(position.west()).getBlock() == Blocks.getBlock(Blocks.STONE))
+				if (worldIn.getBlockState(position.west()).getBlock() == Blocks.STONE)
 				{
 					++i;
 				}
 
-				if (worldIn.getBlockState(position.east()).getBlock() == Blocks.getBlock(Blocks.STONE))
+				if (worldIn.getBlockState(position.east()).getBlock() == Blocks.STONE)
 				{
 					++i;
 				}
 
-				if (worldIn.getBlockState(position.north()).getBlock() == Blocks.getBlock(Blocks.STONE))
+				if (worldIn.getBlockState(position.north()).getBlock() == Blocks.STONE)
 				{
 					++i;
 				}
 
-				if (worldIn.getBlockState(position.south()).getBlock() == Blocks.getBlock(Blocks.STONE))
+				if (worldIn.getBlockState(position.south()).getBlock() == Blocks.STONE)
 				{
 					++i;
 				}

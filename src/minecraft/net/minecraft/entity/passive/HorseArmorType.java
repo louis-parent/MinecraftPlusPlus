@@ -61,17 +61,17 @@ public enum HorseArmorType
 
 	public static HorseArmorType getByItem(Item itemIn)
 	{
-		if (itemIn == Items.getItem(Items.IRON_HORSE_ARMOR))
+		if (itemIn == Items.IRON_HORSE_ARMOR)
 		{
 			return IRON;
 		}
-		else if (itemIn == Items.getItem(Items.GOLDEN_HORSE_ARMOR))
+		else if (itemIn == Items.GOLDEN_HORSE_ARMOR)
 		{
 			return GOLD;
 		}
 		else
 		{
-			return itemIn == Items.getItem(Items.DIAMOND_HORSE_ARMOR) ? DIAMOND : NONE;
+			return itemIn == Items.DIAMOND_HORSE_ARMOR ? DIAMOND : NONE;
 		}
 	}
 

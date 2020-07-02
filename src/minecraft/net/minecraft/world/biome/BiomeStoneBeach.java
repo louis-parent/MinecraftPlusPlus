@@ -1,6 +1,5 @@
 package net.minecraft.world.biome;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 
 public class BiomeStoneBeach extends Biome
@@ -9,21 +8,11 @@ public class BiomeStoneBeach extends Biome
 	{
 		super(properties);
 		this.spawnableCreatureList.clear();
+		this.topBlock = Blocks.STONE.getDefaultState();
+		this.fillerBlock = Blocks.STONE.getDefaultState();
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.deadBushPerChunk = 0;
 		this.theBiomeDecorator.reedsPerChunk = 0;
 		this.theBiomeDecorator.cactiPerChunk = 0;
-	}
-	
-	@Override
-	public IBlockState getTopBlock()
-	{
-		return Blocks.getBlock(Blocks.STONE).getDefaultState();
-	}
-	
-	@Override
-	public IBlockState getFillerBlock()
-	{
-		return Blocks.getBlock(Blocks.STONE).getDefaultState();
 	}
 }

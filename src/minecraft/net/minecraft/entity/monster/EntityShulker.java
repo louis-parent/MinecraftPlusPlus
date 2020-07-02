@@ -252,7 +252,7 @@ public class EntityShulker extends EntityGolem implements IMob
 
 			if (iblockstate.getMaterial() != Material.AIR)
 			{
-				if (iblockstate.getBlock() == Blocks.getBlock(Blocks.PISTON_EXTENSION))
+				if (iblockstate.getBlock() == Blocks.PISTON_EXTENSION)
 				{
 					EnumFacing enumfacing = iblockstate.getValue(BlockDirectional.FACING);
 
@@ -266,7 +266,7 @@ public class EntityShulker extends EntityGolem implements IMob
 						this.tryTeleportToNewPosition();
 					}
 				}
-				else if (iblockstate.getBlock() == Blocks.getBlock(Blocks.PISTON_HEAD))
+				else if (iblockstate.getBlock() == Blocks.PISTON_HEAD)
 				{
 					EnumFacing enumfacing3 = iblockstate.getValue(BlockDirectional.FACING);
 

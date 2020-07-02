@@ -22,7 +22,7 @@ public class BlockClay extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.CLAY_BALL);
+		return Items.CLAY_BALL;
 	}
 
 	/**

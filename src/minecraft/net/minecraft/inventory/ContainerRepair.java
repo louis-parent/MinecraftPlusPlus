@@ -112,7 +112,7 @@ public class ContainerRepair extends Container
 				ContainerRepair.this.maximumCost = 0;
 				IBlockState iblockstate = worldIn.getBlockState(blockPosIn);
 
-				if (!p_190901_1_.capabilities.isCreativeMode && !worldIn.isRemote && iblockstate.getBlock() == Blocks.getBlock(Blocks.ANVIL) && p_190901_1_.getRNG().nextFloat() < 0.12F)
+				if (!p_190901_1_.capabilities.isCreativeMode && !worldIn.isRemote && iblockstate.getBlock() == Blocks.ANVIL && p_190901_1_.getRNG().nextFloat() < 0.12F)
 				{
 					int l = iblockstate.getValue(BlockAnvil.DAMAGE).intValue();
 					++l;
@@ -192,7 +192,7 @@ public class ContainerRepair extends Container
 
 			if (!itemstack2.isNotValid())
 			{
-				boolean flag = itemstack2.getItem() == Items.getItem(Items.ENCHANTED_BOOK) && !ItemEnchantedBook.getEnchantments(itemstack2).hasNoTags();
+				boolean flag = itemstack2.getItem() == Items.ENCHANTED_BOOK && !ItemEnchantedBook.getEnchantments(itemstack2).hasNoTags();
 
 				if (itemstack1.isItemStackDamageable() && itemstack1.getItem().getIsRepairable(itemstack, itemstack2))
 				{
@@ -259,7 +259,7 @@ public class ContainerRepair extends Container
 							j2 = i2 == j2 ? j2 + 1 : Math.max(j2, i2);
 							boolean flag1 = enchantment1.canApply(itemstack);
 
-							if (this.thePlayer.capabilities.isCreativeMode || itemstack.getItem() == Items.getItem(Items.ENCHANTED_BOOK))
+							if (this.thePlayer.capabilities.isCreativeMode || itemstack.getItem() == Items.ENCHANTED_BOOK)
 							{
 								flag1 = true;
 							}
@@ -423,7 +423,7 @@ public class ContainerRepair extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn)
 	{
-		if (this.theWorld.getBlockState(this.selfPosition).getBlock() != Blocks.getBlock(Blocks.ANVIL))
+		if (this.theWorld.getBlockState(this.selfPosition).getBlock() != Blocks.ANVIL)
 		{
 			return false;
 		}

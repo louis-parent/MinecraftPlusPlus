@@ -70,7 +70,7 @@ public class EntitySmallFireball extends EntityFireball
 
 					if (this.world.isAirBlock(blockpos))
 					{
-						this.world.setBlockState(blockpos, Blocks.getBlock(Blocks.FIRE).getDefaultState());
+						this.world.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
 					}
 				}
 			}

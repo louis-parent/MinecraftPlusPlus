@@ -191,7 +191,7 @@ public class FlatGeneratorInfo
 				}
 			}
 
-			if (block == Blocks.getBlock(Blocks.AIR))
+			if (block == Blocks.AIR)
 			{
 				j = 0;
 			}
@@ -261,7 +261,7 @@ public class FlatGeneratorInfo
 				{
 					flatgeneratorinfo.getFlatLayers().addAll(list);
 					flatgeneratorinfo.updateLayers();
-					int k = Biome.getIdForBiome(Biomes.getBiome(Biomes.PLAINS));
+					int k = Biome.getIdForBiome(Biomes.PLAINS);
 
 					if (i > 0 && astring.length > j)
 					{
@@ -322,10 +322,10 @@ public class FlatGeneratorInfo
 	public static FlatGeneratorInfo getDefaultFlatGenerator()
 	{
 		FlatGeneratorInfo flatgeneratorinfo = new FlatGeneratorInfo();
-		flatgeneratorinfo.setBiome(Biome.getIdForBiome(Biomes.getBiome(Biomes.PLAINS)));
-		flatgeneratorinfo.getFlatLayers().add(new FlatLayerInfo(1, Blocks.getBlock(Blocks.BEDROCK)));
-		flatgeneratorinfo.getFlatLayers().add(new FlatLayerInfo(2, Blocks.getBlock(Blocks.DIRT)));
-		flatgeneratorinfo.getFlatLayers().add(new FlatLayerInfo(1, Blocks.getBlock(Blocks.GRASS)));
+		flatgeneratorinfo.setBiome(Biome.getIdForBiome(Biomes.PLAINS));
+		flatgeneratorinfo.getFlatLayers().add(new FlatLayerInfo(1, Blocks.BEDROCK));
+		flatgeneratorinfo.getFlatLayers().add(new FlatLayerInfo(2, Blocks.DIRT));
+		flatgeneratorinfo.getFlatLayers().add(new FlatLayerInfo(1, Blocks.GRASS));
 		flatgeneratorinfo.updateLayers();
 		flatgeneratorinfo.getWorldFeatures().put("village", Maps.newHashMap());
 		return flatgeneratorinfo;

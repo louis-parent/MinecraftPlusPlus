@@ -201,13 +201,13 @@ public class RenderManager
 		this.entityRenderMap.put(EntityLeashKnot.class, new RenderLeashKnot(this));
 		this.entityRenderMap.put(EntityTippedArrow.class, new RenderTippedArrow(this));
 		this.entityRenderMap.put(EntitySpectralArrow.class, new RenderSpectralArrow(this));
-		this.entityRenderMap.put(EntitySnowball.class, new RenderSnowball(this, Items.getItem(Items.SNOWBALL), itemRendererIn));
-		this.entityRenderMap.put(EntityEnderPearl.class, new RenderSnowball(this, Items.getItem(Items.ENDER_PEARL), itemRendererIn));
-		this.entityRenderMap.put(EntityEnderEye.class, new RenderSnowball(this, Items.getItem(Items.ENDER_EYE), itemRendererIn));
-		this.entityRenderMap.put(EntityEgg.class, new RenderSnowball(this, Items.getItem(Items.EGG), itemRendererIn));
+		this.entityRenderMap.put(EntitySnowball.class, new RenderSnowball(this, Items.SNOWBALL, itemRendererIn));
+		this.entityRenderMap.put(EntityEnderPearl.class, new RenderSnowball(this, Items.ENDER_PEARL, itemRendererIn));
+		this.entityRenderMap.put(EntityEnderEye.class, new RenderSnowball(this, Items.ENDER_EYE, itemRendererIn));
+		this.entityRenderMap.put(EntityEgg.class, new RenderSnowball(this, Items.EGG, itemRendererIn));
 		this.entityRenderMap.put(EntityPotion.class, new RenderPotion(this, itemRendererIn));
-		this.entityRenderMap.put(EntityExpBottle.class, new RenderSnowball(this, Items.getItem(Items.EXPERIENCE_BOTTLE), itemRendererIn));
-		this.entityRenderMap.put(EntityFireworkRocket.class, new RenderSnowball(this, Items.getItem(Items.FIREWORKS), itemRendererIn));
+		this.entityRenderMap.put(EntityExpBottle.class, new RenderSnowball(this, Items.EXPERIENCE_BOTTLE, itemRendererIn));
+		this.entityRenderMap.put(EntityFireworkRocket.class, new RenderSnowball(this, Items.FIREWORKS, itemRendererIn));
 		this.entityRenderMap.put(EntityLargeFireball.class, new RenderFireball(this, 2.0F));
 		this.entityRenderMap.put(EntitySmallFireball.class, new RenderFireball(this, 0.5F));
 		this.entityRenderMap.put(EntityDragonFireball.class, new RenderDragonFireball(this));
@@ -286,7 +286,7 @@ public class RenderManager
 			IBlockState iblockstate = worldIn.getBlockState(new BlockPos(livingPlayerIn));
 			Block block = iblockstate.getBlock();
 
-			if (block == Blocks.getBlock(Blocks.BED))
+			if (block == Blocks.BED)
 			{
 				int i = iblockstate.getValue(BlockHorizontal.FACING).getHorizontalIndex();
 				this.playerViewY = i * 90 + 180;

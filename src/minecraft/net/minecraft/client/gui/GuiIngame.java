@@ -66,6 +66,7 @@ public class GuiIngame extends Gui
 	private static final ResourceLocation PUMPKIN_BLUR_TEX_PATH = new ResourceLocation("textures/misc/pumpkinblur.png");
 	private final Random rand = new Random();
 	private final Minecraft mc;
+	private final RenderItem itemRenderer;
 
 	/** ChatGUI instance that retains all previous chat data */
 	private final GuiNewChat persistantChatGUI;
@@ -124,6 +125,7 @@ public class GuiIngame extends Gui
 	public GuiIngame(Minecraft mcIn)
 	{
 		this.mc = mcIn;
+		this.itemRenderer = mcIn.getRenderItem();
 		this.overlayDebug = new GuiOverlayDebug(mcIn);
 		this.spectatorGui = new GuiSpectator(mcIn);
 		this.persistantChatGUI = new GuiNewChat(mcIn);
@@ -175,7 +177,7 @@ public class GuiIngame extends Gui
 
 		ItemStack itemstack = this.mc.player.inventory.armorItemInSlot(3);
 
-		if (this.mc.gameSettings.thirdPersonView == 0 && itemstack.getItem() == Item.getItemFromBlock(Blocks.getBlock(Blocks.PUMPKIN)))
+		if (this.mc.gameSettings.thirdPersonView == 0 && itemstack.getItem() == Item.getItemFromBlock(Blocks.PUMPKIN))
 		{
 			this.renderPumpkinOverlay(scaledresolution);
 		}
@@ -1152,7 +1154,7 @@ public class GuiIngame extends Gui
 		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, timeInPortal);
 		this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-		TextureAtlasSprite textureatlassprite = this.mc.getBlockRenderDispatcher().getBlockModelShapes().getTexture(Blocks.getBlock(Blocks.PORTAL).getDefaultState());
+		TextureAtlasSprite textureatlassprite = this.mc.getBlockRendererDispatcher().getBlockModelShapes().getTexture(Blocks.PORTAL.getDefaultState());
 		float f = textureatlassprite.getMinU();
 		float f1 = textureatlassprite.getMinV();
 		float f2 = textureatlassprite.getMaxU();
@@ -1186,14 +1188,14 @@ public class GuiIngame extends Gui
 				GlStateManager.translate((-(p_184044_1_ + 8)), (-(p_184044_2_ + 12)), 0.0F);
 			}
 
-			this.getItemRenderer().renderItemAndEffectIntoGUI(player, stack, p_184044_1_, p_184044_2_);
+			this.itemRenderer.renderItemAndEffectIntoGUI(player, stack, p_184044_1_, p_184044_2_);
 
 			if (f > 0.0F)
 			{
 				GlStateManager.popMatrix();
 			}
 
-			this.getItemRenderer().renderItemOverlays(this.mc.fontRendererObj, stack, p_184044_1_, p_184044_2_);
+			this.itemRenderer.renderItemOverlays(this.mc.fontRendererObj, stack, p_184044_1_, p_184044_2_);
 		}
 	}
 
@@ -1355,10 +1357,5 @@ public class GuiIngame extends Gui
 	public GuiBossOverlay getBossOverlay()
 	{
 		return this.overlayBoss;
-	}
-
-	public RenderItem getItemRenderer()
-	{
-		return mc.getRenderItem();
 	}
 }

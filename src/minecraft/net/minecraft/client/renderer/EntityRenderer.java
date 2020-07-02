@@ -651,7 +651,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 				IBlockState iblockstate = this.mc.world.getBlockState(blockpos);
 				Block block = iblockstate.getBlock();
 
-				if (block == Blocks.getBlock(Blocks.BED))
+				if (block == Blocks.BED)
 				{
 					int j = iblockstate.getValue(BlockHorizontal.FACING).getHorizontalIndex();
 					GlStateManager.rotate(j * 90, 0.0F, 1.0F, 0.0F);
@@ -1571,7 +1571,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 					double d4 = this.random.nextDouble();
 					AxisAlignedBB axisalignedbb = iblockstate.getBoundingBox(world, blockpos2);
 
-					if (iblockstate.getMaterial() != Material.LAVA && iblockstate.getBlock() != Blocks.getBlock(Blocks.MAGMA))
+					if (iblockstate.getMaterial() != Material.LAVA && iblockstate.getBlock() != Blocks.MAGMA)
 					{
 						if (iblockstate.getMaterial() != Material.AIR)
 						{

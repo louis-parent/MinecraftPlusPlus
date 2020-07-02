@@ -141,13 +141,13 @@ public abstract class EntityMob extends EntityCreature implements IMob
 				ItemStack itemstack = this.getHeldItemMainhand();
 				ItemStack itemstack1 = entityplayer.isHandActive() ? entityplayer.getActiveItemStack() : ItemStack.EMPTY_ITEM_STACK;
 
-				if (!itemstack.isNotValid() && !itemstack1.isNotValid() && itemstack.getItem() instanceof ItemAxe && itemstack1.getItem() == Items.getItem(Items.SHIELD))
+				if (!itemstack.isNotValid() && !itemstack1.isNotValid() && itemstack.getItem() instanceof ItemAxe && itemstack1.getItem() == Items.SHIELD)
 				{
 					float f1 = 0.25F + EnchantmentHelper.getEfficiencyModifier(this) * 0.05F;
 
 					if (this.rand.nextFloat() < f1)
 					{
-						entityplayer.getCooldownTracker().setCooldown(Items.getItem(Items.SHIELD), 100);
+						entityplayer.getCooldownTracker().setCooldown(Items.SHIELD, 100);
 						this.world.setEntityState(entityplayer, (byte) 30);
 					}
 				}

@@ -36,11 +36,11 @@ public class BlockRedstoneLight extends Block
 		{
 			if (this.isOn && !worldIn.isBlockPowered(pos))
 			{
-				worldIn.setBlockState(pos, Blocks.getBlock(Blocks.REDSTONE_LAMP).getDefaultState(), 2);
+				worldIn.setBlockState(pos, Blocks.REDSTONE_LAMP.getDefaultState(), 2);
 			}
 			else if (!this.isOn && worldIn.isBlockPowered(pos))
 			{
-				worldIn.setBlockState(pos, Blocks.getBlock(Blocks.LIT_REDSTONE_LAMP).getDefaultState(), 2);
+				worldIn.setBlockState(pos, Blocks.LIT_REDSTONE_LAMP.getDefaultState(), 2);
 			}
 		}
 	}
@@ -62,7 +62,7 @@ public class BlockRedstoneLight extends Block
 			}
 			else if (!this.isOn && worldIn.isBlockPowered(pos))
 			{
-				worldIn.setBlockState(pos, Blocks.getBlock(Blocks.LIT_REDSTONE_LAMP).getDefaultState(), 2);
+				worldIn.setBlockState(pos, Blocks.LIT_REDSTONE_LAMP.getDefaultState(), 2);
 			}
 		}
 	}
@@ -74,7 +74,7 @@ public class BlockRedstoneLight extends Block
 		{
 			if (this.isOn && !worldIn.isBlockPowered(pos))
 			{
-				worldIn.setBlockState(pos, Blocks.getBlock(Blocks.REDSTONE_LAMP).getDefaultState(), 2);
+				worldIn.setBlockState(pos, Blocks.REDSTONE_LAMP.getDefaultState(), 2);
 			}
 		}
 	}
@@ -85,18 +85,18 @@ public class BlockRedstoneLight extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(Blocks.getBlock(Blocks.REDSTONE_LAMP));
+		return Item.getItemFromBlock(Blocks.REDSTONE_LAMP);
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Blocks.getBlock(Blocks.REDSTONE_LAMP));
+		return new ItemStack(Blocks.REDSTONE_LAMP);
 	}
 
 	@Override
 	protected ItemStack getSilkTouchDrop(IBlockState state)
 	{
-		return new ItemStack(Blocks.getBlock(Blocks.REDSTONE_LAMP));
+		return new ItemStack(Blocks.REDSTONE_LAMP);
 	}
 }

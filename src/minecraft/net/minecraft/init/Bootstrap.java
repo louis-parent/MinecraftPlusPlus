@@ -91,9 +91,9 @@ public class Bootstrap
 		return alreadyRegistered;
 	}
 
-	public static void registerDispenserBehaviors()
+	static void registerDispenserBehaviors()
 	{
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.ARROW), new BehaviorProjectileDispense()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.ARROW, new BehaviorProjectileDispense()
 		{
 			@Override
 			protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn)
@@ -103,7 +103,7 @@ public class Bootstrap
 				return entitytippedarrow;
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.TIPPED_ARROW), new BehaviorProjectileDispense()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.TIPPED_ARROW, new BehaviorProjectileDispense()
 		{
 			@Override
 			protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn)
@@ -114,7 +114,7 @@ public class Bootstrap
 				return entitytippedarrow;
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.SPECTRAL_ARROW), new BehaviorProjectileDispense()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.SPECTRAL_ARROW, new BehaviorProjectileDispense()
 		{
 			@Override
 			protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn)
@@ -124,7 +124,7 @@ public class Bootstrap
 				return entityarrow;
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.EGG), new BehaviorProjectileDispense()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.EGG, new BehaviorProjectileDispense()
 		{
 			@Override
 			protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn)
@@ -132,7 +132,7 @@ public class Bootstrap
 				return new EntityEgg(worldIn, position.getX(), position.getY(), position.getZ());
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.SNOWBALL), new BehaviorProjectileDispense()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.SNOWBALL, new BehaviorProjectileDispense()
 		{
 			@Override
 			protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn)
@@ -140,7 +140,7 @@ public class Bootstrap
 				return new EntitySnowball(worldIn, position.getX(), position.getY(), position.getZ());
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.EXPERIENCE_BOTTLE), new BehaviorProjectileDispense()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.EXPERIENCE_BOTTLE, new BehaviorProjectileDispense()
 		{
 			@Override
 			protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn)
@@ -160,7 +160,7 @@ public class Bootstrap
 				return super.getProjectileVelocity() * 1.25F;
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.SPLASH_POTION), new IBehaviorDispenseItem()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.SPLASH_POTION, new IBehaviorDispenseItem()
 		{
 			@Override
 			public ItemStack dispense(IBlockSource source, final ItemStack stack)
@@ -187,7 +187,7 @@ public class Bootstrap
 				}).dispense(source, stack);
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.LINGERING_POTION), new IBehaviorDispenseItem()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.LINGERING_POTION, new IBehaviorDispenseItem()
 		{
 			@Override
 			public ItemStack dispense(IBlockSource source, final ItemStack stack)
@@ -214,7 +214,7 @@ public class Bootstrap
 				}).dispense(source, stack);
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.SPAWN_EGG), new BehaviorDefaultDispenseItem()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.SPAWN_EGG, new BehaviorDefaultDispenseItem()
 		{
 			@Override
 			public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
@@ -235,7 +235,7 @@ public class Bootstrap
 				return stack;
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.FIREWORKS), new BehaviorDefaultDispenseItem()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.FIREWORKS, new BehaviorDefaultDispenseItem()
 		{
 			@Override
 			public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
@@ -256,7 +256,7 @@ public class Bootstrap
 				source.getWorld().playEvent(1004, source.getBlockPos(), 0);
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.FIRE_CHARGE), new BehaviorDefaultDispenseItem()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.FIRE_CHARGE, new BehaviorDefaultDispenseItem()
 		{
 			@Override
 			public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
@@ -282,12 +282,12 @@ public class Bootstrap
 				source.getWorld().playEvent(1018, source.getBlockPos(), 0);
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.BOAT), new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.OAK));
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.SPRUCE_BOAT), new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.SPRUCE));
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.BIRCH_BOAT), new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.BIRCH));
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.JUNGLE_BOAT), new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.JUNGLE));
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.DARK_OAK_BOAT), new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.DARK_OAK));
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.ACACIA_BOAT), new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.ACACIA));
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.BOAT, new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.OAK));
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.SPRUCE_BOAT, new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.SPRUCE));
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.BIRCH_BOAT, new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.BIRCH));
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.JUNGLE_BOAT, new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.JUNGLE));
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.DARK_OAK_BOAT, new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.DARK_OAK));
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.ACACIA_BOAT, new Bootstrap.BehaviorDispenseBoat(EntityBoat.Type.ACACIA));
 		IBehaviorDispenseItem ibehaviordispenseitem = new BehaviorDefaultDispenseItem()
 		{
 			private final BehaviorDefaultDispenseItem dispenseBehavior = new BehaviorDefaultDispenseItem();
@@ -297,12 +297,12 @@ public class Bootstrap
 			{
 				ItemBucket itembucket = (ItemBucket) stack.getItem();
 				BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().getValue(BlockDispenser.FACING));
-				return itembucket.tryPlaceContainedLiquid((EntityPlayer) null, source.getWorld(), blockpos) ? new ItemStack(Items.getItem(Items.BUCKET)) : this.dispenseBehavior.dispense(source, stack);
+				return itembucket.tryPlaceContainedLiquid((EntityPlayer) null, source.getWorld(), blockpos) ? new ItemStack(Items.BUCKET) : this.dispenseBehavior.dispense(source, stack);
 			}
 		};
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.LAVA_BUCKET), ibehaviordispenseitem);
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.WATER_BUCKET), ibehaviordispenseitem);
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.BUCKET), new BehaviorDefaultDispenseItem()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.LAVA_BUCKET, ibehaviordispenseitem);
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.WATER_BUCKET, ibehaviordispenseitem);
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.BUCKET, new BehaviorDefaultDispenseItem()
 		{
 			private final BehaviorDefaultDispenseItem dispenseBehavior = new BehaviorDefaultDispenseItem();
 
@@ -318,7 +318,7 @@ public class Bootstrap
 
 				if (Material.WATER.equals(material) && block instanceof BlockLiquid && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0)
 				{
-					item = Items.getItem(Items.WATER_BUCKET);
+					item = Items.WATER_BUCKET;
 				}
 				else
 				{
@@ -327,7 +327,7 @@ public class Bootstrap
 						return super.dispenseStack(source, stack);
 					}
 
-					item = Items.getItem(Items.LAVA_BUCKET);
+					item = Items.LAVA_BUCKET;
 				}
 
 				world.setBlockToAir(blockpos);
@@ -348,7 +348,7 @@ public class Bootstrap
 				}
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.FLINT_AND_STEEL), new Bootstrap.BehaviorDispenseOptional()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.FLINT_AND_STEEL, new Bootstrap.BehaviorDispenseOptional()
 		{
 			@Override
 			protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
@@ -359,16 +359,16 @@ public class Bootstrap
 
 				if (world.isAirBlock(blockpos))
 				{
-					world.setBlockState(blockpos, Blocks.getBlock(Blocks.FIRE).getDefaultState());
+					world.setBlockState(blockpos, Blocks.FIRE.getDefaultState());
 
 					if (stack.attemptDamageItem(1, world.rand, (EntityPlayerMP) null))
 					{
 						stack.setStackSize(0);
 					}
 				}
-				else if (world.getBlockState(blockpos).getBlock() == Blocks.getBlock(Blocks.TNT))
+				else if (world.getBlockState(blockpos).getBlock() == Blocks.TNT)
 				{
-					Blocks.getBlock(Blocks.TNT).onBlockDestroyedByPlayer(world, blockpos, Blocks.getBlock(Blocks.TNT).getDefaultState().withProperty(BlockTNT.EXPLODE, Boolean.valueOf(true)));
+					Blocks.TNT.onBlockDestroyedByPlayer(world, blockpos, Blocks.TNT.getDefaultState().withProperty(BlockTNT.EXPLODE, Boolean.valueOf(true)));
 					world.setBlockToAir(blockpos);
 				}
 				else
@@ -379,7 +379,7 @@ public class Bootstrap
 				return stack;
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.DYE), new Bootstrap.BehaviorDispenseOptional()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.DYE, new Bootstrap.BehaviorDispenseOptional()
 		{
 			@Override
 			protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
@@ -411,7 +411,7 @@ public class Bootstrap
 				}
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Item.getItemFromBlock(Blocks.getBlock(Blocks.TNT)), new BehaviorDefaultDispenseItem()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Item.getItemFromBlock(Blocks.TNT), new BehaviorDefaultDispenseItem()
 		{
 			@Override
 			protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
@@ -425,7 +425,7 @@ public class Bootstrap
 				return stack;
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.getItem(Items.SKULL), new Bootstrap.BehaviorDispenseOptional()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.SKULL, new Bootstrap.BehaviorDispenseOptional()
 		{
 			@Override
 			protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
@@ -433,7 +433,7 @@ public class Bootstrap
 				World world = source.getWorld();
 				EnumFacing enumfacing = source.getBlockState().getValue(BlockDispenser.FACING);
 				BlockPos blockpos = source.getBlockPos().offset(enumfacing);
-				BlockSkull blockskull = (BlockSkull) Blocks.getBlock(Blocks.SKULL);
+				BlockSkull blockskull = Blocks.SKULL;
 				this.field_190911_b = true;
 
 				if (world.isAirBlock(blockpos) && blockskull.canDispenserPlace(world, blockpos, stack))
@@ -476,7 +476,7 @@ public class Bootstrap
 							}
 
 							((TileEntitySkull) tileentity).setSkullRotation(enumfacing.getOpposite().getHorizontalIndex() * 4);
-							((BlockSkull) Blocks.getBlock(Blocks.SKULL)).checkWitherSpawn(world, blockpos, (TileEntitySkull) tileentity);
+							Blocks.SKULL.checkWitherSpawn(world, blockpos, (TileEntitySkull) tileentity);
 						}
 
 						stack.decreaseStackSize(1);
@@ -490,14 +490,14 @@ public class Bootstrap
 				return stack;
 			}
 		});
-		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Item.getItemFromBlock(Blocks.getBlock(Blocks.PUMPKIN)), new Bootstrap.BehaviorDispenseOptional()
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Item.getItemFromBlock(Blocks.PUMPKIN), new Bootstrap.BehaviorDispenseOptional()
 		{
 			@Override
 			protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
 			{
 				World world = source.getWorld();
 				BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().getValue(BlockDispenser.FACING));
-				BlockPumpkin blockpumpkin = (BlockPumpkin) Blocks.getBlock(Blocks.PUMPKIN);
+				BlockPumpkin blockpumpkin = (BlockPumpkin) Blocks.PUMPKIN;
 				this.field_190911_b = true;
 
 				if (world.isAirBlock(blockpos) && blockpumpkin.canDispenserPlace(world, blockpos))
@@ -539,12 +539,30 @@ public class Bootstrap
 			alreadyRegistered = true;
 			redirectOutputToLog();
 
-			SoundEvent.registerSounds();			
-			
+			SoundEvent.registerSounds();
+
+			ModBootstrap.preBootstrap();
+
+			Block.registerBlocks();
+			BlockFire.init();
 			Potion.registerPotions();
 			Enchantment.registerEnchantments();
+			Item.registerItems();
 			PotionType.registerPotionTypes();
+			PotionHelper.init();
 			EntityList.init();
+			Biome.registerBiomes();
+			registerDispenserBehaviors();
+
+			ModBootstrap.postBootstrap();
+
+			if (!CraftingManager.buildAllRecipes())
+			{
+				field_194219_b = true;
+				LOGGER.error("Errors with built-in recipes!");
+			}
+
+			StatList.init();
 
 			if (LOGGER.isDebugEnabled())
 			{

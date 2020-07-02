@@ -97,7 +97,7 @@ public class BlockTorch extends Block
 	private boolean canPlaceOn(World worldIn, BlockPos pos)
 	{
 		Block block = worldIn.getBlockState(pos).getBlock();
-		boolean flag = block == Blocks.getBlock(Blocks.END_GATEWAY) || block == Blocks.getBlock(Blocks.LIT_PUMPKIN);
+		boolean flag = block == Blocks.END_GATEWAY || block == Blocks.LIT_PUMPKIN;
 
 		if (worldIn.getBlockState(pos).isFullyOpaque())
 		{
@@ -105,7 +105,7 @@ public class BlockTorch extends Block
 		}
 		else
 		{
-			boolean flag1 = block instanceof BlockFence || block == Blocks.getBlock(Blocks.GLASS) || block == Blocks.getBlock(Blocks.COBBLESTONE_WALL) || block == Blocks.getBlock(Blocks.STAINED_GLASS);
+			boolean flag1 = block instanceof BlockFence || block == Blocks.GLASS || block == Blocks.COBBLESTONE_WALL || block == Blocks.STAINED_GLASS;
 			return flag1 && !flag;
 		}
 	}

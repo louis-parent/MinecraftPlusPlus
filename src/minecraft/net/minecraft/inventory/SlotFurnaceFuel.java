@@ -29,6 +29,6 @@ public class SlotFurnaceFuel extends Slot
 
 	public static boolean isBucket(ItemStack stack)
 	{
-		return stack.getItem() == Items.getItem(Items.BUCKET);
+		return stack.getItem() == Items.BUCKET;
 	}
 }

@@ -2,7 +2,6 @@ package net.minecraft.world.gen.feature;
 
 import java.util.Random;
 
-import net.minecraft.block.BlockCactus;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -22,9 +21,9 @@ public class WorldGenCactus extends WorldGenerator
 
 				for (int k = 0; k < j; ++k)
 				{
-					if (((BlockCactus) Blocks.getBlock(Blocks.CACTUS)).canBlockStay(worldIn, blockpos))
+					if (Blocks.CACTUS.canBlockStay(worldIn, blockpos))
 					{
-						worldIn.setBlockState(blockpos.up(k), Blocks.getBlock(Blocks.CACTUS).getDefaultState(), 2);
+						worldIn.setBlockState(blockpos.up(k), Blocks.CACTUS.getDefaultState(), 2);
 					}
 				}
 			}

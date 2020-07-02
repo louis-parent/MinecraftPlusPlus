@@ -2,7 +2,6 @@ package net.minecraft.world.gen.feature;
 
 import java.util.Random;
 
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -23,9 +22,9 @@ public class WorldGenDeadBush extends WorldGenerator
 		{
 			BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-			if (worldIn.isAirBlock(blockpos) && ((BlockBush) Blocks.getBlock(Blocks.DEADBUSH)).canBlockStay(worldIn, blockpos, Blocks.getBlock(Blocks.DEADBUSH).getDefaultState()))
+			if (worldIn.isAirBlock(blockpos) && Blocks.DEADBUSH.canBlockStay(worldIn, blockpos, Blocks.DEADBUSH.getDefaultState()))
 			{
-				worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.DEADBUSH).getDefaultState(), 2);
+				worldIn.setBlockState(blockpos, Blocks.DEADBUSH.getDefaultState(), 2);
 			}
 		}
 

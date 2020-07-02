@@ -45,7 +45,7 @@ public class EntityTippedArrow extends EntityArrow
 
 	public void setPotionEffect(ItemStack stack)
 	{
-		if (stack.getItem() == Items.getItem(Items.TIPPED_ARROW))
+		if (stack.getItem() == Items.TIPPED_ARROW)
 		{
 			this.potion = PotionUtils.getPotionFromItem(stack);
 			Collection<PotionEffect> collection = PotionUtils.getFullEffectsFromItem(stack);
@@ -69,7 +69,7 @@ public class EntityTippedArrow extends EntityArrow
 				this.func_191507_d(i);
 			}
 		}
-		else if (stack.getItem() == Items.getItem(Items.ARROW))
+		else if (stack.getItem() == Items.ARROW)
 		{
 			this.potion = PotionTypes.EMPTY;
 			this.customPotionEffects.clear();
@@ -249,11 +249,11 @@ public class EntityTippedArrow extends EntityArrow
 	{
 		if (this.customPotionEffects.isEmpty() && this.potion == PotionTypes.EMPTY)
 		{
-			return new ItemStack(Items.getItem(Items.ARROW));
+			return new ItemStack(Items.ARROW);
 		}
 		else
 		{
-			ItemStack itemstack = new ItemStack(Items.getItem(Items.TIPPED_ARROW));
+			ItemStack itemstack = new ItemStack(Items.TIPPED_ARROW);
 			PotionUtils.addPotionToItemStack(itemstack, this.potion);
 			PotionUtils.appendEffects(itemstack, this.customPotionEffects);
 

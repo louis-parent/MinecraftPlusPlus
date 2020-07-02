@@ -37,7 +37,7 @@ public class BlockMobSpawner extends BlockContainer
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.AIR);
+		return Items.EMPTY_ITEM;
 	}
 
 	/**

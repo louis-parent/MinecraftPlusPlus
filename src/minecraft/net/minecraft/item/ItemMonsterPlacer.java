@@ -77,7 +77,7 @@ public class ItemMonsterPlacer extends Item
 			IBlockState iblockstate = playerIn.getBlockState(worldIn);
 			Block block = iblockstate.getBlock();
 
-			if (block == Blocks.getBlock(Blocks.MOB_SPAWNER))
+			if (block == Blocks.MOB_SPAWNER)
 			{
 				TileEntity tileentity = playerIn.getTileEntity(worldIn);
 

@@ -8,23 +8,54 @@ import net.minecraft.item.Rarity;
 
 public class MetalToolSet extends ToolSet
 {
+	private ToolSet tools;
 	private Item nugget;
 
 	public MetalToolSet(ToolSet tools, Item nugget)
 	{
-		super(tools);
+		this.tools = tools;
 		this.nugget = nugget;
+	}
+
+	@Override
+	public void register()
+	{
+		this.tools.register();
 	}
 
 	@Override
 	public void addRecipes()
 	{
-		super.addRecipes();
+		this.tools.addRecipes();
 
-		new FurnaceRecipe(this.sword, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.pickaxe, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.axe, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.shovel, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.hoe, this.nugget.getAsStack(), 0);
+		new FurnaceRecipe(this.tools.sword, this.nugget.getAsStack(), 0);
+		new FurnaceRecipe(this.tools.pickaxe, this.nugget.getAsStack(), 0);
+		new FurnaceRecipe(this.tools.axe, this.nugget.getAsStack(), 0);
+		new FurnaceRecipe(this.tools.shovel, this.nugget.getAsStack(), 0);
+		new FurnaceRecipe(this.tools.hoe, this.nugget.getAsStack(), 0);
+	}
+
+	@Override
+	public void setRarity(Rarity rarity)
+	{
+		this.tools.setRarity(rarity);
+	}
+
+	@Override
+	public void registerItemColors(ItemColors itemColors)
+	{
+		this.tools.registerItemColors(itemColors);
+	}
+
+	@Override
+	public void setupEffects()
+	{
+		this.tools.setupEffects();
+	}
+
+	@Override
+	public void registerBlockColors(BlockColors blockColors)
+	{
+		this.tools.registerBlockColors(blockColors);
 	}
 }

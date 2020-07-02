@@ -20,7 +20,7 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Item.getItemFromBlock(Blocks.getBlock(Blocks.BRICK_BLOCK)));
+			return new ItemStack(Item.getItemFromBlock(Blocks.BRICK_BLOCK));
 		}
 	};
 	public static final CreativeTabs DECORATIONS = new CreativeTabs(1, "decorations")
@@ -28,7 +28,7 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Item.getItemFromBlock(Blocks.getBlock(Blocks.DOUBLE_PLANT)), 1, BlockDoublePlant.EnumPlantType.PAEONIA.getMeta());
+			return new ItemStack(Item.getItemFromBlock(Blocks.DOUBLE_PLANT), 1, BlockDoublePlant.EnumPlantType.PAEONIA.getMeta());
 		}
 	};
 	public static final CreativeTabs REDSTONE = new CreativeTabs(2, "redstone")
@@ -36,7 +36,7 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Items.getItem(Items.REDSTONE));
+			return new ItemStack(Items.REDSTONE);
 		}
 	};
 	public static final CreativeTabs TRANSPORTATION = new CreativeTabs(3, "transportation")
@@ -44,7 +44,7 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Item.getItemFromBlock(Blocks.getBlock(Blocks.GOLDEN_RAIL)));
+			return new ItemStack(Item.getItemFromBlock(Blocks.GOLDEN_RAIL));
 		}
 	};
 	public static final CreativeTabs MISC = new CreativeTabs(6, "misc")
@@ -52,7 +52,7 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Items.getItem(Items.LAVA_BUCKET));
+			return new ItemStack(Items.LAVA_BUCKET);
 		}
 	};
 	public static final CreativeTabs SEARCH = (new CreativeTabs(5, "search")
@@ -60,7 +60,7 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Items.getItem(Items.COMPASS));
+			return new ItemStack(Items.COMPASS);
 		}
 	}).setBackgroundImageName("item_search.png");
 	public static final CreativeTabs FOOD = new CreativeTabs(7, "food")
@@ -68,7 +68,7 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Items.getItem(Items.APPLE));
+			return new ItemStack(Items.APPLE);
 		}
 	};
 	public static final CreativeTabs TOOLS = (new CreativeTabs(8, "tools")
@@ -76,7 +76,7 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Items.getItem(Items.IRON_AXE));
+			return new ItemStack(Items.IRON_AXE);
 		}
 	}).setRelevantEnchantmentTypes(new EnumEnchantmentType[] { EnumEnchantmentType.ALL, EnumEnchantmentType.DIGGER, EnumEnchantmentType.FISHING_ROD, EnumEnchantmentType.BREAKABLE });
 	public static final CreativeTabs COMBAT = (new CreativeTabs(9, "combat")
@@ -84,7 +84,7 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Items.getItem(Items.GOLDEN_SWORD));
+			return new ItemStack(Items.GOLDEN_SWORD);
 		}
 	}).setRelevantEnchantmentTypes(new EnumEnchantmentType[] { EnumEnchantmentType.ALL, EnumEnchantmentType.ARMOR, EnumEnchantmentType.ARMOR_FEET, EnumEnchantmentType.ARMOR_HEAD, EnumEnchantmentType.ARMOR_LEGS, EnumEnchantmentType.ARMOR_CHEST, EnumEnchantmentType.BOW, EnumEnchantmentType.WEAPON, EnumEnchantmentType.WEARABLE, EnumEnchantmentType.BREAKABLE });
 	public static final CreativeTabs BREWING = new CreativeTabs(10, "brewing")
@@ -92,16 +92,16 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return PotionUtils.addPotionToItemStack(new ItemStack(Items.getItem(Items.POTIONITEM)), PotionTypes.WATER);
+			return PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER);
 		}
 	};
 	public static final CreativeTabs MATERIALS = MISC;
-	public static final CreativeTabs HOTBAR = new CreativeTabs(4, "hotbar")
+	public static final CreativeTabs field_192395_m = new CreativeTabs(4, "hotbar")
 	{
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Blocks.getBlock(Blocks.BOOKSHELF));
+			return new ItemStack(Blocks.BOOKSHELF);
 		}
 
 		@Override
@@ -111,7 +111,7 @@ public abstract class CreativeTabs
 		}
 
 		@Override
-		public boolean isTabInLastColumn()
+		public boolean func_192394_m()
 		{
 			return true;
 		}
@@ -121,7 +121,7 @@ public abstract class CreativeTabs
 		@Override
 		public ItemStack getTabIconItem()
 		{
-			return new ItemStack(Item.getItemFromBlock(Blocks.getBlock(Blocks.CHEST)));
+			return new ItemStack(Item.getItemFromBlock(Blocks.CHEST));
 		}
 	}).setBackgroundImageName("inventory.png").setNoScrollbar().setNoTitle();
 	private final int tabIndex;
@@ -134,11 +134,13 @@ public abstract class CreativeTabs
 	/** Whether to draw the title in the foreground of the creative GUI */
 	private boolean drawTitle = true;
 	private EnumEnchantmentType[] enchantmentTypes = new EnumEnchantmentType[0];
+	private ItemStack iconItemStack;
 
 	public CreativeTabs(int index, String label)
 	{
 		this.tabIndex = index;
 		this.tabLabel = label;
+		this.iconItemStack = ItemStack.EMPTY_ITEM_STACK;
 		CREATIVE_TAB_ARRAY[index] = this;
 	}
 
@@ -162,7 +164,12 @@ public abstract class CreativeTabs
 
 	public ItemStack getIconItemStack()
 	{
-		return this.getTabIconItem();
+		if (this.iconItemStack.isNotValid())
+		{
+			this.iconItemStack = this.getTabIconItem();
+		}
+
+		return this.iconItemStack;
 	}
 
 	public abstract ItemStack getTabIconItem();
@@ -216,7 +223,7 @@ public abstract class CreativeTabs
 		return this.tabIndex < 6;
 	}
 
-	public boolean isTabInLastColumn()
+	public boolean func_192394_m()
 	{
 		return this.getTabColumn() == 5;
 	}

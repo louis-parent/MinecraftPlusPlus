@@ -421,7 +421,7 @@ public class EntityArmorStand extends EntityLivingBase
 	{
 		ItemStack itemstack = player.getHeldItem(stack);
 
-		if (!this.hasMarker() && itemstack.getItem() != Items.getItem(Items.NAME_TAG))
+		if (!this.hasMarker() && itemstack.getItem() != Items.NAME_TAG)
 		{
 			if (!this.world.isRemote && !player.isSpectator())
 			{
@@ -666,7 +666,7 @@ public class EntityArmorStand extends EntityLivingBase
 	{
 		if (this.world instanceof WorldServer)
 		{
-			((WorldServer) this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + this.height / 1.5D, this.posZ, 10, (double) (this.width / 4.0F), (double) (this.height / 4.0F), (double) (this.width / 4.0F), 0.05D, Block.getStateId(Blocks.getBlock(Blocks.PLANKS).getDefaultState()));
+			((WorldServer) this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + this.height / 1.5D, this.posZ, 10, (double) (this.width / 4.0F), (double) (this.height / 4.0F), (double) (this.width / 4.0F), 0.05D, Block.getStateId(Blocks.PLANKS.getDefaultState()));
 		}
 	}
 
@@ -688,7 +688,7 @@ public class EntityArmorStand extends EntityLivingBase
 
 	private void dropBlock()
 	{
-		Block.spawnAsEntity(this.world, new BlockPos(this), new ItemStack(Items.getItem(Items.ARMOR_STAND)));
+		Block.spawnAsEntity(this.world, new BlockPos(this), new ItemStack(Items.ARMOR_STAND));
 		this.dropContents();
 	}
 

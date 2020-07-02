@@ -31,7 +31,7 @@ public class ItemShears extends Item
 		}
 
 		Block block = state.getBlock();
-		return state.getMaterial() != Material.LEAVES && block != Blocks.getBlock(Blocks.WEB) && block != Blocks.getBlock(Blocks.TALLGRASS) && block != Blocks.getBlock(Blocks.VINE) && block != Blocks.getBlock(Blocks.TRIPWIRE) && block != Blocks.getBlock(Blocks.WOOL) ? super.onBlockDestroyed(stack, worldIn, state, pos, entityLiving) : true;
+		return state.getMaterial() != Material.LEAVES && block != Blocks.WEB && block != Blocks.TALLGRASS && block != Blocks.VINE && block != Blocks.TRIPWIRE && block != Blocks.WOOL ? super.onBlockDestroyed(stack, worldIn, state, pos, entityLiving) : true;
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class ItemShears extends Item
 	public boolean canHarvestBlock(IBlockState blockIn)
 	{
 		Block block = blockIn.getBlock();
-		return block == Blocks.getBlock(Blocks.WEB) || block == Blocks.getBlock(Blocks.REDSTONE_WIRE) || block == Blocks.getBlock(Blocks.TRIPWIRE);
+		return block == Blocks.WEB || block == Blocks.REDSTONE_WIRE || block == Blocks.TRIPWIRE;
 	}
 
 	@Override
@@ -49,9 +49,9 @@ public class ItemShears extends Item
 	{
 		Block block = state.getBlock();
 
-		if (block != Blocks.getBlock(Blocks.WEB) && state.getMaterial() != Material.LEAVES)
+		if (block != Blocks.WEB && state.getMaterial() != Material.LEAVES)
 		{
-			return block == Blocks.getBlock(Blocks.WOOL) ? 5.0F : super.getStrVsBlock(stack, state);
+			return block == Blocks.WOOL ? 5.0F : super.getStrVsBlock(stack, state);
 		}
 		else
 		{

@@ -129,7 +129,7 @@ public class BlockPane extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return !this.canDrop ? Items.getItem(Items.AIR) : super.getItemDropped(state, rand, fortune);
+		return !this.canDrop ? Items.EMPTY_ITEM : super.getItemDropped(state, rand, fortune);
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class BlockPane extends Block
 
 	protected static boolean func_193394_e(Block p_193394_0_)
 	{
-		return p_193394_0_ instanceof BlockShulkerBox || p_193394_0_ instanceof BlockLeaves || p_193394_0_ == Blocks.getBlock(Blocks.BEACON) || p_193394_0_ == Blocks.getBlock(Blocks.CAULDRON) || p_193394_0_ == Blocks.getBlock(Blocks.GLOWSTONE) || p_193394_0_ == Blocks.getBlock(Blocks.ICE) || p_193394_0_ == Blocks.getBlock(Blocks.SEA_LANTERN) || p_193394_0_ == Blocks.getBlock(Blocks.PISTON) || p_193394_0_ == Blocks.getBlock(Blocks.STICKY_PISTON) || p_193394_0_ == Blocks.getBlock(Blocks.PISTON_HEAD) || p_193394_0_ == Blocks.getBlock(Blocks.MELON_BLOCK) || p_193394_0_ == Blocks.getBlock(Blocks.PUMPKIN) || p_193394_0_ == Blocks.getBlock(Blocks.LIT_PUMPKIN) || p_193394_0_ == Blocks.getBlock(Blocks.BARRIER);
+		return p_193394_0_ instanceof BlockShulkerBox || p_193394_0_ instanceof BlockLeaves || p_193394_0_ == Blocks.BEACON || p_193394_0_ == Blocks.CAULDRON || p_193394_0_ == Blocks.GLOWSTONE || p_193394_0_ == Blocks.ICE || p_193394_0_ == Blocks.SEA_LANTERN || p_193394_0_ == Blocks.PISTON || p_193394_0_ == Blocks.STICKY_PISTON || p_193394_0_ == Blocks.PISTON_HEAD || p_193394_0_ == Blocks.MELON_BLOCK || p_193394_0_ == Blocks.PUMPKIN || p_193394_0_ == Blocks.LIT_PUMPKIN || p_193394_0_ == Blocks.BARRIER;
 	}
 
 	@Override

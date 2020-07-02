@@ -140,10 +140,10 @@ public class BlockFlowerPot extends BlockContainer
 	{
 		Block block = Block.getBlockFromItem(p_190951_1_.getItem());
 
-		if (block != Blocks.getBlock(Blocks.YELLOW_FLOWER) && block != Blocks.getBlock(Blocks.RED_FLOWER) && block != Blocks.getBlock(Blocks.CACTUS) && block != Blocks.getBlock(Blocks.BROWN_MUSHROOM) && block != Blocks.getBlock(Blocks.RED_MUSHROOM) && block != Blocks.getBlock(Blocks.SAPLING) && block != Blocks.getBlock(Blocks.DEADBUSH))
+		if (block != Blocks.YELLOW_FLOWER && block != Blocks.RED_FLOWER && block != Blocks.CACTUS && block != Blocks.BROWN_MUSHROOM && block != Blocks.RED_MUSHROOM && block != Blocks.SAPLING && block != Blocks.DEADBUSH)
 		{
 			int i = p_190951_1_.getMetadata();
-			return block == Blocks.getBlock(Blocks.TALLGRASS) && i == BlockTallGrass.EnumType.FERN.getMeta();
+			return block == Blocks.TALLGRASS && i == BlockTallGrass.EnumType.FERN.getMeta();
 		}
 		else
 		{
@@ -166,7 +166,7 @@ public class BlockFlowerPot extends BlockContainer
 			}
 		}
 
-		return new ItemStack(Items.getItem(Items.FLOWER_POT));
+		return new ItemStack(Items.FLOWER_POT);
 	}
 
 	@Override
@@ -230,7 +230,7 @@ public class BlockFlowerPot extends BlockContainer
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.FLOWER_POT);
+		return Items.FLOWER_POT;
 	}
 
 	@Nullable
@@ -253,62 +253,62 @@ public class BlockFlowerPot extends BlockContainer
 		switch (meta)
 		{
 			case 1:
-				block = Blocks.getBlock(Blocks.RED_FLOWER);
+				block = Blocks.RED_FLOWER;
 				i = BlockFlower.EnumFlowerType.POPPY.getMeta();
 				break;
 
 			case 2:
-				block = Blocks.getBlock(Blocks.YELLOW_FLOWER);
+				block = Blocks.YELLOW_FLOWER;
 				break;
 
 			case 3:
-				block = Blocks.getBlock(Blocks.SAPLING);
+				block = Blocks.SAPLING;
 				i = BlockPlanks.EnumType.OAK.getMetadata();
 				break;
 
 			case 4:
-				block = Blocks.getBlock(Blocks.SAPLING);
+				block = Blocks.SAPLING;
 				i = BlockPlanks.EnumType.SPRUCE.getMetadata();
 				break;
 
 			case 5:
-				block = Blocks.getBlock(Blocks.SAPLING);
+				block = Blocks.SAPLING;
 				i = BlockPlanks.EnumType.BIRCH.getMetadata();
 				break;
 
 			case 6:
-				block = Blocks.getBlock(Blocks.SAPLING);
+				block = Blocks.SAPLING;
 				i = BlockPlanks.EnumType.JUNGLE.getMetadata();
 				break;
 
 			case 7:
-				block = Blocks.getBlock(Blocks.RED_MUSHROOM);
+				block = Blocks.RED_MUSHROOM;
 				break;
 
 			case 8:
-				block = Blocks.getBlock(Blocks.BROWN_MUSHROOM);
+				block = Blocks.BROWN_MUSHROOM;
 				break;
 
 			case 9:
-				block = Blocks.getBlock(Blocks.CACTUS);
+				block = Blocks.CACTUS;
 				break;
 
 			case 10:
-				block = Blocks.getBlock(Blocks.DEADBUSH);
+				block = Blocks.DEADBUSH;
 				break;
 
 			case 11:
-				block = Blocks.getBlock(Blocks.TALLGRASS);
+				block = Blocks.TALLGRASS;
 				i = BlockTallGrass.EnumType.FERN.getMeta();
 				break;
 
 			case 12:
-				block = Blocks.getBlock(Blocks.SAPLING);
+				block = Blocks.SAPLING;
 				i = BlockPlanks.EnumType.ACACIA.getMetadata();
 				break;
 
 			case 13:
-				block = Blocks.getBlock(Blocks.SAPLING);
+				block = Blocks.SAPLING;
 				i = BlockPlanks.EnumType.DARK_OAK.getMetadata();
 		}
 
@@ -351,7 +351,7 @@ public class BlockFlowerPot extends BlockContainer
 				int i = tileentityflowerpot.getFlowerPotData();
 				Block block = Block.getBlockFromItem(item);
 
-				if (block == Blocks.getBlock(Blocks.SAPLING))
+				if (block == Blocks.SAPLING)
 				{
 					switch (BlockPlanks.EnumType.byMetadata(i))
 					{
@@ -383,7 +383,7 @@ public class BlockFlowerPot extends BlockContainer
 							blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.EMPTY;
 					}
 				}
-				else if (block == Blocks.getBlock(Blocks.TALLGRASS))
+				else if (block == Blocks.TALLGRASS)
 				{
 					switch (i)
 					{
@@ -399,11 +399,11 @@ public class BlockFlowerPot extends BlockContainer
 							blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.EMPTY;
 					}
 				}
-				else if (block == Blocks.getBlock(Blocks.YELLOW_FLOWER))
+				else if (block == Blocks.YELLOW_FLOWER)
 				{
 					blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.DANDELION;
 				}
-				else if (block == Blocks.getBlock(Blocks.RED_FLOWER))
+				else if (block == Blocks.RED_FLOWER)
 				{
 					switch (BlockFlower.EnumFlowerType.getType(BlockFlower.EnumFlowerColor.RED, i))
 					{
@@ -447,19 +447,19 @@ public class BlockFlowerPot extends BlockContainer
 							blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.EMPTY;
 					}
 				}
-				else if (block == Blocks.getBlock(Blocks.RED_MUSHROOM))
+				else if (block == Blocks.RED_MUSHROOM)
 				{
 					blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.MUSHROOM_RED;
 				}
-				else if (block == Blocks.getBlock(Blocks.BROWN_MUSHROOM))
+				else if (block == Blocks.BROWN_MUSHROOM)
 				{
 					blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.MUSHROOM_BROWN;
 				}
-				else if (block == Blocks.getBlock(Blocks.DEADBUSH))
+				else if (block == Blocks.DEADBUSH)
 				{
 					blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.DEAD_BUSH;
 				}
-				else if (block == Blocks.getBlock(Blocks.CACTUS))
+				else if (block == Blocks.CACTUS)
 				{
 					blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.CACTUS;
 				}

@@ -92,7 +92,7 @@ public class EntityAIBeg extends EntityAIBase
 		{
 			ItemStack itemstack = player.getHeldItem(enumhand);
 
-			if (this.theWolf.isTamed() && itemstack.getItem() == Items.getItem(Items.BONE))
+			if (this.theWolf.isTamed() && itemstack.getItem() == Items.BONE)
 			{
 				return true;
 			}

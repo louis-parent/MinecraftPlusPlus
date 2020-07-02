@@ -75,7 +75,7 @@ public class ItemDye extends Item
 				IBlockState iblockstate = playerIn.getBlockState(worldIn);
 				Block block = iblockstate.getBlock();
 
-				if (block == Blocks.getBlock(Blocks.LOG) && iblockstate.getValue(BlockOldLog.VARIANT) == BlockPlanks.EnumType.JUNGLE)
+				if (block == Blocks.LOG && iblockstate.getValue(BlockOldLog.VARIANT) == BlockPlanks.EnumType.JUNGLE)
 				{
 					if (hand == EnumFacing.DOWN || hand == EnumFacing.UP)
 					{
@@ -86,7 +86,7 @@ public class ItemDye extends Item
 
 					if (playerIn.isAirBlock(worldIn))
 					{
-						IBlockState iblockstate1 = Blocks.getBlock(Blocks.COCOA).onBlockPlaced(playerIn, worldIn, hand, facing, hitX, hitY, 0, stack);
+						IBlockState iblockstate1 = Blocks.COCOA.onBlockPlaced(playerIn, worldIn, hand, facing, hitX, hitY, 0, stack);
 						playerIn.setBlockState(worldIn, iblockstate1, 10);
 
 						if (!stack.capabilities.isCreativeMode)

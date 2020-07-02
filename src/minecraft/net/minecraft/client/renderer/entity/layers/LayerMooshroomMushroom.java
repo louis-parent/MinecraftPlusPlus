@@ -22,7 +22,7 @@ public class LayerMooshroomMushroom implements LayerRenderer<EntityMooshroom>
 	{
 		if (!entitylivingbaseIn.isChild() && !entitylivingbaseIn.isInvisible())
 		{
-			BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRenderDispatcher();
+			BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
 			this.mooshroomRenderer.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			GlStateManager.enableCull();
 			GlStateManager.cullFace(GlStateManager.CullFace.FRONT);
@@ -32,13 +32,13 @@ public class LayerMooshroomMushroom implements LayerRenderer<EntityMooshroom>
 			GlStateManager.rotate(42.0F, 0.0F, 1.0F, 0.0F);
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-			blockrendererdispatcher.renderBlockBrightness(Blocks.getBlock(Blocks.RED_MUSHROOM).getDefaultState(), 1.0F);
+			blockrendererdispatcher.renderBlockBrightness(Blocks.RED_MUSHROOM.getDefaultState(), 1.0F);
 			GlStateManager.popMatrix();
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(0.1F, 0.0F, -0.6F);
 			GlStateManager.rotate(42.0F, 0.0F, 1.0F, 0.0F);
 			GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-			blockrendererdispatcher.renderBlockBrightness(Blocks.getBlock(Blocks.RED_MUSHROOM).getDefaultState(), 1.0F);
+			blockrendererdispatcher.renderBlockBrightness(Blocks.RED_MUSHROOM.getDefaultState(), 1.0F);
 			GlStateManager.popMatrix();
 			GlStateManager.popMatrix();
 			GlStateManager.pushMatrix();
@@ -47,7 +47,7 @@ public class LayerMooshroomMushroom implements LayerRenderer<EntityMooshroom>
 			GlStateManager.translate(0.0F, 0.7F, -0.2F);
 			GlStateManager.rotate(12.0F, 0.0F, 1.0F, 0.0F);
 			GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-			blockrendererdispatcher.renderBlockBrightness(Blocks.getBlock(Blocks.RED_MUSHROOM).getDefaultState(), 1.0F);
+			blockrendererdispatcher.renderBlockBrightness(Blocks.RED_MUSHROOM.getDefaultState(), 1.0F);
 			GlStateManager.popMatrix();
 			GlStateManager.cullFace(GlStateManager.CullFace.BACK);
 			GlStateManager.disableCull();

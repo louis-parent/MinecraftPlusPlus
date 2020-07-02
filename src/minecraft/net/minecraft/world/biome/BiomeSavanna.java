@@ -34,7 +34,7 @@ public class BiomeSavanna extends Biome
 	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return rand.nextInt(5) > 0 ? SAVANNA_TREE : getTreeFeature();
+		return rand.nextInt(5) > 0 ? SAVANNA_TREE : TREE_FEATURE;
 	}
 
 	@Override

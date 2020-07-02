@@ -19,7 +19,7 @@ public class ItemAxe extends ItemTool
 	{
 		if (EFFECTIVE_ON == null)
 		{
-			EFFECTIVE_ON = Sets.newHashSet(Blocks.getBlock(Blocks.PLANKS), Blocks.getBlock(Blocks.BOOKSHELF), Blocks.getBlock(Blocks.LOG), Blocks.getBlock(Blocks.LOG2), Blocks.getBlock(Blocks.CHEST), Blocks.getBlock(Blocks.PUMPKIN), Blocks.getBlock(Blocks.LIT_PUMPKIN), Blocks.getBlock(Blocks.MELON_BLOCK), Blocks.getBlock(Blocks.LADDER), Blocks.getBlock(Blocks.WOODEN_BUTTON), Blocks.getBlock(Blocks.WOODEN_PRESSURE_PLATE));
+			EFFECTIVE_ON = Sets.newHashSet(Blocks.PLANKS, Blocks.BOOKSHELF, Blocks.LOG, Blocks.LOG2, Blocks.CHEST, Blocks.PUMPKIN, Blocks.LIT_PUMPKIN, Blocks.MELON_BLOCK, Blocks.LADDER, Blocks.WOODEN_BUTTON, Blocks.WOODEN_PRESSURE_PLATE);
 		}
 
 		return EFFECTIVE_ON;

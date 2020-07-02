@@ -59,7 +59,7 @@ public class BlockCocoa extends BlockHorizontal implements IGrowable
 	{
 		pos = pos.offset(state.getValue(FACING));
 		IBlockState iblockstate = worldIn.getBlockState(pos);
-		return iblockstate.getBlock() == Blocks.getBlock(Blocks.LOG) && iblockstate.getValue(BlockOldLog.VARIANT) == BlockPlanks.EnumType.JUNGLE;
+		return iblockstate.getBlock() == Blocks.LOG && iblockstate.getValue(BlockOldLog.VARIANT) == BlockPlanks.EnumType.JUNGLE;
 	}
 
 	@Override
@@ -163,7 +163,7 @@ public class BlockCocoa extends BlockHorizontal implements IGrowable
 
 	private void dropBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
-		worldIn.setBlockState(pos, Blocks.getBlock(Blocks.AIR).getDefaultState(), 3);
+		worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
 		this.dropBlockAsItem(worldIn, pos, state, 0);
 	}
 
@@ -183,14 +183,14 @@ public class BlockCocoa extends BlockHorizontal implements IGrowable
 
 		for (int k = 0; k < j; ++k)
 		{
-			spawnAsEntity(worldIn, pos, new ItemStack(Items.getItem(Items.DYE), 1, EnumDyeColor.BROWN.getDyeDamage()));
+			spawnAsEntity(worldIn, pos, new ItemStack(Items.DYE, 1, EnumDyeColor.BROWN.getDyeDamage()));
 		}
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Items.getItem(Items.DYE), 1, EnumDyeColor.BROWN.getDyeDamage());
+		return new ItemStack(Items.DYE, 1, EnumDyeColor.BROWN.getDyeDamage());
 	}
 
 	/**

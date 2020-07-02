@@ -24,7 +24,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.BlockPortal;
 import net.minecraft.block.BlockWall;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
@@ -1097,7 +1096,7 @@ public abstract class Entity implements ICommandSender
 				double d16 = this.posY - d11;
 				double d17 = this.posZ - d1;
 
-				if (block != Blocks.getBlock(Blocks.LADDER))
+				if (block != Blocks.LADDER)
 				{
 					d16 = 0.0D;
 				}
@@ -1251,9 +1250,9 @@ public abstract class Entity implements ICommandSender
 	{
 		SoundType soundtype = blockIn.getSoundType();
 
-		if (this.world.getBlockState(pos.up()).getBlock() == Blocks.getBlock(Blocks.SNOW_LAYER))
+		if (this.world.getBlockState(pos.up()).getBlock() == Blocks.SNOW_LAYER)
 		{
-			soundtype = Blocks.getBlock(Blocks.SNOW_LAYER).getSoundType();
+			soundtype = Blocks.SNOW_LAYER.getSoundType();
 			this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
 		}
 		else if (!blockIn.getDefaultState().getMaterial().isLiquid())
@@ -2305,7 +2304,7 @@ public abstract class Entity implements ICommandSender
 
 	/**
 	 * Returns a boundingBox used to collide the entity with other entities and
-	 * Blocks.getBlock(blocks.) This enables the entity to be pushable on contact, like boats or
+	 * blocks. This enables the entity to be pushable on contact, like boats or
 	 * minecarts.
 	 */
 	public AxisAlignedBB getCollisionBox(Entity entityIn)
@@ -2513,7 +2512,7 @@ public abstract class Entity implements ICommandSender
 			if (!this.world.isRemote && !pos.equals(this.lastPortalPos))
 			{
 				this.lastPortalPos = new BlockPos(pos);
-				BlockPattern.PatternHelper blockpattern$patternhelper = ((BlockPortal) Blocks.getBlock(Blocks.PORTAL)).createPatternHelper(this.world, this.lastPortalPos);
+				BlockPattern.PatternHelper blockpattern$patternhelper = Blocks.PORTAL.createPatternHelper(this.world, this.lastPortalPos);
 				double d0 = blockpattern$patternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? (double) blockpattern$patternhelper.getFrontTopLeft().getZ() : (double) blockpattern$patternhelper.getFrontTopLeft().getX();
 				double d1 = blockpattern$patternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? this.posZ : this.posX;
 				d1 = Math.abs(MathHelper.pct(d1 - (blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE ? 1 : 0), d0, d0 - blockpattern$patternhelper.getWidth()));

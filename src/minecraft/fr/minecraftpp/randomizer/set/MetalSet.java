@@ -73,14 +73,14 @@ public class MetalSet extends MaterialSet
 	protected void setupIron()
 	{
 		super.setupIron();
-		Variant.getInstance().addVariant(Items.getItem(Items.IRON_NUGGET), this.nugget);
+		Variant.getInstance().addVariant(Items.IRON_NUGGET, this.nugget);
 	}
 	
 	@Override
 	protected void setupGold()
 	{
 		super.setupGold();
-		Variant.getInstance().addVariant(Items.getItem(Items.GOLD_NUGGET), this.nugget);
+		Variant.getInstance().addVariant(Items.GOLD_NUGGET, this.nugget);
 	}
 
 	/*

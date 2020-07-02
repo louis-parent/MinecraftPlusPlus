@@ -33,7 +33,7 @@ public class ItemEndCrystal extends Item
 	{
 		IBlockState iblockstate = playerIn.getBlockState(worldIn);
 
-		if (iblockstate.getBlock() != Blocks.getBlock(Blocks.OBSIDIAN) && iblockstate.getBlock() != Blocks.getBlock(Blocks.BEDROCK))
+		if (iblockstate.getBlock() != Blocks.OBSIDIAN && iblockstate.getBlock() != Blocks.BEDROCK)
 		{
 			return EnumActionResult.FAIL;
 		}

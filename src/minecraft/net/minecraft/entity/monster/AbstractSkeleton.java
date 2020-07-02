@@ -185,7 +185,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
 		super.setEquipmentBasedOnDifficulty(difficulty);
-		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.getItem(Items.BOW)));
+		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.BOW));
 	}
 
 	@Override
@@ -210,7 +210,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 
 			if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31 && this.rand.nextFloat() < 0.25F)
 			{
-				this.setItemStackToSlot(EntityArmorSlot.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.getBlock(Blocks.LIT_PUMPKIN) : Blocks.getBlock(Blocks.PUMPKIN)));
+				this.setItemStackToSlot(EntityArmorSlot.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
 				this.inventoryArmorDropChances[EntityArmorSlot.HEAD.getIndex()] = 0.0F;
 			}
 		}
@@ -229,7 +229,7 @@ public abstract class AbstractSkeleton extends EntityMob implements IRangedAttac
 			this.tasks.removeTask(this.aiArrowAttack);
 			ItemStack itemstack = this.getHeldItemMainhand();
 
-			if (itemstack.getItem() == Items.getItem(Items.BOW))
+			if (itemstack.getItem() == Items.BOW)
 			{
 				int i = 20;
 

@@ -35,7 +35,7 @@ public class WorldGeneratorBonusChest extends WorldGenerator
 
 				if (worldIn.isAirBlock(blockpos) && worldIn.getBlockState(blockpos.down()).isFullyOpaque())
 				{
-					worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.CHEST).getDefaultState(), 2);
+					worldIn.setBlockState(blockpos, Blocks.CHEST.getDefaultState(), 2);
 					TileEntity tileentity = worldIn.getTileEntity(blockpos);
 
 					if (tileentity instanceof TileEntityChest)
@@ -50,22 +50,22 @@ public class WorldGeneratorBonusChest extends WorldGenerator
 
 					if (worldIn.isAirBlock(blockpos2) && worldIn.getBlockState(blockpos2.down()).isFullyOpaque())
 					{
-						worldIn.setBlockState(blockpos2, Blocks.getBlock(Blocks.TORCH).getDefaultState(), 2);
+						worldIn.setBlockState(blockpos2, Blocks.TORCH.getDefaultState(), 2);
 					}
 
 					if (worldIn.isAirBlock(blockpos1) && worldIn.getBlockState(blockpos1.down()).isFullyOpaque())
 					{
-						worldIn.setBlockState(blockpos1, Blocks.getBlock(Blocks.TORCH).getDefaultState(), 2);
+						worldIn.setBlockState(blockpos1, Blocks.TORCH.getDefaultState(), 2);
 					}
 
 					if (worldIn.isAirBlock(blockpos3) && worldIn.getBlockState(blockpos3.down()).isFullyOpaque())
 					{
-						worldIn.setBlockState(blockpos3, Blocks.getBlock(Blocks.TORCH).getDefaultState(), 2);
+						worldIn.setBlockState(blockpos3, Blocks.TORCH.getDefaultState(), 2);
 					}
 
 					if (worldIn.isAirBlock(blockpos4) && worldIn.getBlockState(blockpos4.down()).isFullyOpaque())
 					{
-						worldIn.setBlockState(blockpos4, Blocks.getBlock(Blocks.TORCH).getDefaultState(), 2);
+						worldIn.setBlockState(blockpos4, Blocks.TORCH.getDefaultState(), 2);
 					}
 
 					return true;

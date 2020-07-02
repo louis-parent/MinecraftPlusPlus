@@ -2,7 +2,6 @@ package net.minecraft.world.gen.feature;
 
 import java.util.Random;
 
-import net.minecraft.block.BlockReed;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -27,9 +26,9 @@ public class WorldGenReed extends WorldGenerator
 
 					for (int k = 0; k < j; ++k)
 					{
-						if (((BlockReed) Blocks.getBlock(Blocks.REEDS)).canBlockStay(worldIn, blockpos))
+						if (Blocks.REEDS.canBlockStay(worldIn, blockpos))
 						{
-							worldIn.setBlockState(blockpos.up(k), Blocks.getBlock(Blocks.REEDS).getDefaultState(), 2);
+							worldIn.setBlockState(blockpos.up(k), Blocks.REEDS.getDefaultState(), 2);
 						}
 					}
 				}

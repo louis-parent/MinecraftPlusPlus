@@ -44,7 +44,7 @@ public class BlockCrops extends BlockBush implements IGrowable
 	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
-		return state.getBlock() == Blocks.getBlock(Blocks.FARMLAND);
+		return state.getBlock() == Blocks.FARMLAND;
 	}
 
 	protected PropertyInteger getAgeProperty()
@@ -123,7 +123,7 @@ public class BlockCrops extends BlockBush implements IGrowable
 				float f1 = 0.0F;
 				IBlockState iblockstate = worldIn.getBlockState(blockpos.add(i, 0, j));
 
-				if (iblockstate.getBlock() == Blocks.getBlock(Blocks.FARMLAND))
+				if (iblockstate.getBlock() == Blocks.FARMLAND)
 				{
 					f1 = 1.0F;
 
@@ -174,12 +174,12 @@ public class BlockCrops extends BlockBush implements IGrowable
 
 	protected Item getSeed()
 	{
-		return Items.getItem(Items.WHEAT_SEEDS);
+		return Items.WHEAT_SEEDS;
 	}
 
 	protected Item getCrop()
 	{
-		return Items.getItem(Items.WHEAT);
+		return Items.WHEAT;
 	}
 
 	/**

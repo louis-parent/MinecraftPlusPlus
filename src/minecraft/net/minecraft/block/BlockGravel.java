@@ -22,7 +22,7 @@ public class BlockGravel extends BlockFalling
 			fortune = 3;
 		}
 
-		return rand.nextInt(10 - fortune * 3) == 0 ? Items.getItem(Items.FLINT) : super.getItemDropped(state, rand, fortune);
+		return rand.nextInt(10 - fortune * 3) == 0 ? Items.FLINT : super.getItemDropped(state, rand, fortune);
 	}
 
 	/**

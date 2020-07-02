@@ -462,7 +462,7 @@ public class EntityWolf extends EntityTameable
 						return true;
 					}
 				}
-				else if (itemstack.getItem() == Items.getItem(Items.DYE))
+				else if (itemstack.getItem() == Items.DYE)
 				{
 					EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(itemstack.getMetadata());
 
@@ -488,7 +488,7 @@ public class EntityWolf extends EntityTameable
 				this.setAttackTarget((EntityLivingBase) null);
 			}
 		}
-		else if (itemstack.getItem() == Items.getItem(Items.BONE) && !this.isAngry())
+		else if (itemstack.getItem() == Items.BONE && !this.isAngry())
 		{
 			if (!player.capabilities.isCreativeMode)
 			{

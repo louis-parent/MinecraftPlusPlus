@@ -30,7 +30,7 @@ import net.minecraft.world.gen.structure.WoodlandMansion;
 
 public class ChunkGeneratorOverworld implements IChunkGenerator
 {
-	protected static final IBlockState STONE = Blocks.getBlock(Blocks.STONE).getDefaultState();
+	protected static final IBlockState STONE = Blocks.STONE.getDefaultState();
 	private final Random rand;
 	private final NoiseGeneratorOctaves minLimitPerlinNoise;
 	private final NoiseGeneratorOctaves maxLimitPerlinNoise;
@@ -45,7 +45,7 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
 	private final double[] heightMap;
 	private final float[] biomeWeights;
 	private ChunkGeneratorSettings settings;
-	private IBlockState oceanBlock = Blocks.getBlock(Blocks.WATER).getDefaultState();
+	private IBlockState oceanBlock = Blocks.WATER.getDefaultState();
 	private double[] depthBuffer = new double[256];
 	private final MapGenBase caveGenerator = new MapGenCaves();
 	private final MapGenStronghold strongholdGenerator = new MapGenStronghold();
@@ -89,7 +89,7 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
 		if (p_i46668_5_ != null)
 		{
 			this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(p_i46668_5_).build();
-			this.oceanBlock = this.settings.useLavaOceans ? Blocks.getBlock(Blocks.LAVA).getDefaultState() : Blocks.getBlock(Blocks.WATER).getDefaultState();
+			this.oceanBlock = this.settings.useLavaOceans ? Blocks.LAVA.getDefaultState() : Blocks.WATER.getDefaultState();
 			worldIn.setSeaLevel(this.settings.seaLevel);
 		}
 	}
@@ -183,11 +183,10 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
 	{
 		this.rand.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
-		// TODO
-		//this.setBlocksInChunk(x, z, chunkprimer);
-		//this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-		// this.replaceBiomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
-		
+		this.setBlocksInChunk(x, z, chunkprimer);
+		this.biomesForGeneration = this.worldObj.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+		this.replaceBiomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
+
 		if (this.settings.useCaves)
 		{
 			this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
@@ -230,15 +229,14 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
 				this.field_191060_C.generate(this.worldObj, x, z, chunkprimer);
 			}
 		}
-		
-		
+
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
 		byte[] abyte = chunk.getBiomeArray();
 
-		/*for (int i = 0; i < abyte.length; ++i)
+		for (int i = 0; i < abyte.length; ++i)
 		{
 			abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
-		}*/
+		}
 
 		chunk.generateSkylightMap();
 		return chunk;
@@ -409,12 +407,12 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
 			}
 		}
 
-		if (biome != Biomes.getBiome(Biomes.DESERT) && biome != Biomes.getBiome(Biomes.DESERT_HILLS) && this.settings.useWaterLakes && !flag && this.rand.nextInt(this.settings.waterLakeChance) == 0)
+		if (biome != Biomes.DESERT && biome != Biomes.DESERT_HILLS && this.settings.useWaterLakes && !flag && this.rand.nextInt(this.settings.waterLakeChance) == 0)
 		{
 			int i1 = this.rand.nextInt(16) + 8;
 			int j1 = this.rand.nextInt(256);
 			int k1 = this.rand.nextInt(16) + 8;
-			(new WorldGenLakes(Blocks.getBlock(Blocks.WATER))).generate(this.worldObj, this.rand, blockpos.add(i1, j1, k1));
+			(new WorldGenLakes(Blocks.WATER)).generate(this.worldObj, this.rand, blockpos.add(i1, j1, k1));
 		}
 
 		if (!flag && this.rand.nextInt(this.settings.lavaLakeChance / 10) == 0 && this.settings.useLavaLakes)
@@ -425,7 +423,7 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
 
 			if (l2 < this.worldObj.getSeaLevel() || this.rand.nextInt(this.settings.lavaLakeChance / 8) == 0)
 			{
-				(new WorldGenLakes(Blocks.getBlock(Blocks.LAVA))).generate(this.worldObj, this.rand, blockpos.add(i2, l2, k3));
+				(new WorldGenLakes(Blocks.LAVA)).generate(this.worldObj, this.rand, blockpos.add(i2, l2, k3));
 			}
 		}
 
@@ -453,12 +451,12 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
 
 				if (this.worldObj.canBlockFreezeWater(blockpos2))
 				{
-					this.worldObj.setBlockState(blockpos2, Blocks.getBlock(Blocks.ICE).getDefaultState(), 2);
+					this.worldObj.setBlockState(blockpos2, Blocks.ICE.getDefaultState(), 2);
 				}
 
 				if (this.worldObj.canSnowAt(blockpos1, true))
 				{
-					this.worldObj.setBlockState(blockpos1, Blocks.getBlock(Blocks.SNOW_LAYER).getDefaultState(), 2);
+					this.worldObj.setBlockState(blockpos1, Blocks.SNOW_LAYER.getDefaultState(), 2);
 				}
 			}
 		}

@@ -58,7 +58,7 @@ public class ShapelessRecipe extends ModAbstractRecipe
 				}
 				else
 				{
-					match &= item == Items.getItem(Items.AIR);
+					match &= item == Items.EMPTY_ITEM;
 				}
 			}
 		}

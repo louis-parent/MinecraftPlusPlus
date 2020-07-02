@@ -106,7 +106,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 				{
 					ItemStack itemstack = p_apply_1_.getItemStackFromSlot(EntityArmorSlot.HEAD);
 
-					if (itemstack.getItem() == Items.getItem(Items.SKULL))
+					if (itemstack.getItem() == Items.SKULL)
 					{
 						int i = itemstack.getItemDamage();
 						boolean flag = EntityAINearestAttackableTarget.this.taskOwner instanceof EntitySkeleton && i == 0;

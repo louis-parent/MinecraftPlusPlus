@@ -44,7 +44,7 @@ public class ItemFireball extends Item
 				if (playerIn.getBlockState(worldIn).getMaterial() == Material.AIR)
 				{
 					playerIn.playSound((EntityPlayer) null, worldIn, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, (itemRand.nextFloat() - itemRand.nextFloat()) * 0.2F + 1.0F);
-					playerIn.setBlockState(worldIn, Blocks.getBlock(Blocks.FIRE).getDefaultState());
+					playerIn.setBlockState(worldIn, Blocks.FIRE.getDefaultState());
 				}
 
 				if (!stack.capabilities.isCreativeMode)

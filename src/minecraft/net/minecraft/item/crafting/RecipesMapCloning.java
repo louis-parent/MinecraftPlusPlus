@@ -23,7 +23,7 @@ public class RecipesMapCloning implements IRecipe
 
 			if (!itemstack1.isNotValid())
 			{
-				if (itemstack1.getItem() == Items.getItem(Items.FILLED_MAP))
+				if (itemstack1.getItem() == Items.FILLED_MAP)
 				{
 					if (!itemstack.isNotValid())
 					{
@@ -34,7 +34,7 @@ public class RecipesMapCloning implements IRecipe
 				}
 				else
 				{
-					if (itemstack1.getItem() != Items.getItem(Items.MAP))
+					if (itemstack1.getItem() != Items.MAP)
 					{
 						return false;
 					}
@@ -62,7 +62,7 @@ public class RecipesMapCloning implements IRecipe
 
 			if (!itemstack1.isNotValid())
 			{
-				if (itemstack1.getItem() == Items.getItem(Items.FILLED_MAP))
+				if (itemstack1.getItem() == Items.FILLED_MAP)
 				{
 					if (!itemstack.isNotValid())
 					{
@@ -73,7 +73,7 @@ public class RecipesMapCloning implements IRecipe
 				}
 				else
 				{
-					if (itemstack1.getItem() != Items.getItem(Items.MAP))
+					if (itemstack1.getItem() != Items.MAP)
 					{
 						return ItemStack.EMPTY_ITEM_STACK;
 					}
@@ -85,7 +85,7 @@ public class RecipesMapCloning implements IRecipe
 
 		if (!itemstack.isNotValid() && i >= 1)
 		{
-			ItemStack itemstack2 = new ItemStack(Items.getItem(Items.FILLED_MAP), i + 1, itemstack.getMetadata());
+			ItemStack itemstack2 = new ItemStack(Items.FILLED_MAP, i + 1, itemstack.getMetadata());
 
 			if (itemstack.hasDisplayName())
 			{

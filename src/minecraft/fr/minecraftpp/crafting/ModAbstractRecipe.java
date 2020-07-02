@@ -19,8 +19,8 @@ public abstract class ModAbstractRecipe implements IRecipe
 
 	public ModAbstractRecipe(ItemStack stack)
 	{
-		this.recipeResult = stack;
 		ModCraftingManager.register(this);
+		this.recipeResult = stack;
 	}
 
 	@Override

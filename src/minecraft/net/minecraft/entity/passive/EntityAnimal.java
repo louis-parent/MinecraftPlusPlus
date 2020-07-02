@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 {
-	protected Block spawnableBlock = Blocks.getBlock(Blocks.GRASS);
+	protected Block spawnableBlock = Blocks.GRASS;
 	private int inLove;
 	private UUID playerInLove;
 
@@ -176,7 +176,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 	 */
 	public boolean isBreedingItem(ItemStack stack)
 	{
-		return stack.getItem() == Items.getItem(Items.WHEAT);
+		return stack.getItem() == Items.WHEAT;
 	}
 
 	@Override

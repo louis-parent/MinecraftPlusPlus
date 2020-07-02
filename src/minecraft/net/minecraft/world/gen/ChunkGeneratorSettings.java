@@ -850,7 +850,7 @@ public class ChunkGeneratorSettings
 
 				if (chunkgeneratorsettings$factory.fixedBiome < 38 && chunkgeneratorsettings$factory.fixedBiome >= -1)
 				{
-					if (chunkgeneratorsettings$factory.fixedBiome >= Biome.getIdForBiome(Biomes.getBiome(Biomes.HELL)))
+					if (chunkgeneratorsettings$factory.fixedBiome >= Biome.getIdForBiome(Biomes.HELL))
 					{
 						chunkgeneratorsettings$factory.fixedBiome += 2;
 					}

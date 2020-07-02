@@ -32,7 +32,7 @@ public class ItemBanner extends ItemBlock
 {
 	public ItemBanner()
 	{
-		super(Blocks.getBlock(Blocks.STANDING_BANNER));
+		super(Blocks.STANDING_BANNER);
 		this.maxStackSize = 16;
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 		this.setHasSubtypes(true);
@@ -53,7 +53,7 @@ public class ItemBanner extends ItemBlock
 			worldIn = worldIn.offset(hand);
 			ItemStack itemstack = stack.getHeldItem(pos);
 
-			if (stack.canPlayerEdit(worldIn, hand, itemstack) && Blocks.getBlock(Blocks.STANDING_BANNER).canPlaceBlockAt(playerIn, worldIn))
+			if (stack.canPlayerEdit(worldIn, hand, itemstack) && Blocks.STANDING_BANNER.canPlaceBlockAt(playerIn, worldIn))
 			{
 				if (playerIn.isRemote)
 				{
@@ -66,11 +66,11 @@ public class ItemBanner extends ItemBlock
 					if (hand == EnumFacing.UP)
 					{
 						int i = MathHelper.floor((stack.rotationYaw + 180.0F) * 16.0F / 360.0F + 0.5D) & 15;
-						playerIn.setBlockState(worldIn, Blocks.getBlock(Blocks.STANDING_BANNER).getDefaultState().withProperty(BlockStandingSign.ROTATION, Integer.valueOf(i)), 3);
+						playerIn.setBlockState(worldIn, Blocks.STANDING_BANNER.getDefaultState().withProperty(BlockStandingSign.ROTATION, Integer.valueOf(i)), 3);
 					}
 					else
 					{
-						playerIn.setBlockState(worldIn, Blocks.getBlock(Blocks.WALL_BANNER).getDefaultState().withProperty(BlockWallSign.FACING, hand), 3);
+						playerIn.setBlockState(worldIn, Blocks.WALL_BANNER.getDefaultState().withProperty(BlockWallSign.FACING, hand), 3);
 					}
 
 					TileEntity tileentity = playerIn.getTileEntity(worldIn);
@@ -159,7 +159,7 @@ public class ItemBanner extends ItemBlock
 
 	public static ItemStack func_190910_a(EnumDyeColor p_190910_0_, @Nullable NBTTagList p_190910_1_)
 	{
-		ItemStack itemstack = new ItemStack(Items.getItem(Items.BANNER), 1, p_190910_0_.getDyeDamage());
+		ItemStack itemstack = new ItemStack(Items.BANNER, 1, p_190910_0_.getDyeDamage());
 
 		if (p_190910_1_ != null && !p_190910_1_.hasNoTags())
 		{

@@ -23,7 +23,7 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
 	@Override
 	public void doRender(EntityTNTPrimed entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
-		BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRenderDispatcher();
+		BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
 		GlStateManager.pushMatrix();
 		GlStateManager.translate((float) x, (float) y + 0.5F, (float) z);
 
@@ -41,14 +41,14 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
 		this.bindEntityTexture(entity);
 		GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
 		GlStateManager.translate(-0.5F, -0.5F, 0.5F);
-		blockrendererdispatcher.renderBlockBrightness(Blocks.getBlock(Blocks.TNT).getDefaultState(), entity.getBrightness());
+		blockrendererdispatcher.renderBlockBrightness(Blocks.TNT.getDefaultState(), entity.getBrightness());
 		GlStateManager.translate(0.0F, 0.0F, 1.0F);
 
 		if (this.renderOutlines)
 		{
 			GlStateManager.enableColorMaterial();
 			GlStateManager.enableOutlineMode(this.getTeamColor(entity));
-			blockrendererdispatcher.renderBlockBrightness(Blocks.getBlock(Blocks.TNT).getDefaultState(), 1.0F);
+			blockrendererdispatcher.renderBlockBrightness(Blocks.TNT.getDefaultState(), 1.0F);
 			GlStateManager.disableOutlineMode();
 			GlStateManager.disableColorMaterial();
 		}
@@ -61,7 +61,7 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
 			GlStateManager.color(1.0F, 1.0F, 1.0F, f2);
 			GlStateManager.doPolygonOffset(-3.0F, -3.0F);
 			GlStateManager.enablePolygonOffset();
-			blockrendererdispatcher.renderBlockBrightness(Blocks.getBlock(Blocks.TNT).getDefaultState(), 1.0F);
+			blockrendererdispatcher.renderBlockBrightness(Blocks.TNT.getDefaultState(), 1.0F);
 			GlStateManager.doPolygonOffset(0.0F, 0.0F);
 			GlStateManager.disablePolygonOffset();
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

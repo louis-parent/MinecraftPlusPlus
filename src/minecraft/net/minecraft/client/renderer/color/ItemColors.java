@@ -38,7 +38,7 @@ public class ItemColors
 			{
 				return tintIndex > 0 ? -1 : ((ItemArmor) stack.getItem()).getColor(stack);
 			}
-		}, Items.getItem(Items.LEATHER_HELMET), Items.getItem(Items.LEATHER_CHESTPLATE), Items.getItem(Items.LEATHER_LEGGINGS), Items.getItem(Items.LEATHER_BOOTS));
+		}, Items.LEATHER_HELMET, Items.LEATHER_CHESTPLATE, Items.LEATHER_LEGGINGS, Items.LEATHER_BOOTS);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
 			@Override
@@ -47,7 +47,7 @@ public class ItemColors
 				BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = BlockDoublePlant.EnumPlantType.byMetadata(stack.getMetadata());
 				return blockdoubleplant$enumplanttype != BlockDoublePlant.EnumPlantType.GRASS && blockdoubleplant$enumplanttype != BlockDoublePlant.EnumPlantType.FERN ? -1 : ColorizerGrass.getGrassColor(0.5D, 1.0D);
 			}
-		}, Blocks.getBlock(Blocks.DOUBLE_PLANT));
+		}, Blocks.DOUBLE_PLANT);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
 			@Override
@@ -94,7 +94,7 @@ public class ItemColors
 					}
 				}
 			}
-		}, Items.getItem(Items.FIREWORK_CHARGE));
+		}, Items.FIREWORK_CHARGE);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
 			@Override
@@ -102,7 +102,7 @@ public class ItemColors
 			{
 				return tintIndex > 0 ? -1 : PotionUtils.func_190932_c(stack);
 			}
-		}, Items.getItem(Items.POTIONITEM), Items.getItem(Items.SPLASH_POTION), Items.getItem(Items.LINGERING_POTION));
+		}, Items.POTIONITEM, Items.SPLASH_POTION, Items.LINGERING_POTION);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
 			@Override
@@ -119,7 +119,7 @@ public class ItemColors
 					return tintIndex == 0 ? entitylist$entityegginfo.primaryColor : entitylist$entityegginfo.secondaryColor;
 				}
 			}
-		}, Items.getItem(Items.SPAWN_EGG));
+		}, Items.SPAWN_EGG);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
 			@Override
@@ -128,7 +128,7 @@ public class ItemColors
 				IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
 				return colors.colorMultiplier(iblockstate, (IBlockAccess) null, (BlockPos) null, tintIndex);
 			}
-		}, Blocks.getBlock(Blocks.GRASS), Blocks.getBlock(Blocks.TALLGRASS), Blocks.getBlock(Blocks.VINE), Blocks.getBlock(Blocks.LEAVES), Blocks.getBlock(Blocks.LEAVES2), Blocks.getBlock(Blocks.WATERLILY));
+		}, Blocks.GRASS, Blocks.TALLGRASS, Blocks.VINE, Blocks.LEAVES, Blocks.LEAVES2, Blocks.WATERLILY);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
 			@Override
@@ -136,7 +136,7 @@ public class ItemColors
 			{
 				return tintIndex == 0 ? PotionUtils.func_190932_c(stack) : -1;
 			}
-		}, Items.getItem(Items.TIPPED_ARROW));
+		}, Items.TIPPED_ARROW);
 		itemcolors.registerItemColorHandler(new IItemColor()
 		{
 			@Override
@@ -144,7 +144,7 @@ public class ItemColors
 			{
 				return tintIndex == 0 ? -1 : ItemMap.func_190907_h(stack);
 			}
-		}, Items.getItem(Items.FILLED_MAP));
+		}, Items.FILLED_MAP);
 		return itemcolors;
 	}
 

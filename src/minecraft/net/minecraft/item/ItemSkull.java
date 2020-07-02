@@ -66,7 +66,7 @@ public class ItemSkull extends Item
 
 			ItemStack itemstack = stack.getHeldItem(pos);
 
-			if (stack.canPlayerEdit(worldIn, hand, itemstack) && Blocks.getBlock(Blocks.SKULL).canPlaceBlockAt(playerIn, worldIn))
+			if (stack.canPlayerEdit(worldIn, hand, itemstack) && Blocks.SKULL.canPlaceBlockAt(playerIn, worldIn))
 			{
 				if (playerIn.isRemote)
 				{
@@ -74,7 +74,7 @@ public class ItemSkull extends Item
 				}
 				else
 				{
-					playerIn.setBlockState(worldIn, Blocks.getBlock(Blocks.SKULL).getDefaultState().withProperty(BlockSkull.FACING, hand), 11);
+					playerIn.setBlockState(worldIn, Blocks.SKULL.getDefaultState().withProperty(BlockSkull.FACING, hand), 11);
 					int i = 0;
 
 					if (hand == EnumFacing.UP)
@@ -114,7 +114,7 @@ public class ItemSkull extends Item
 						}
 
 						tileentityskull.setSkullRotation(i);
-						((BlockSkull) Blocks.getBlock(Blocks.SKULL)).checkWitherSpawn(playerIn, worldIn, tileentityskull);
+						Blocks.SKULL.checkWitherSpawn(playerIn, worldIn, tileentityskull);
 					}
 
 					if (stack instanceof EntityPlayerMP)

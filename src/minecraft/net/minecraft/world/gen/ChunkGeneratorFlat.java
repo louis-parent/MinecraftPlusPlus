@@ -83,12 +83,12 @@ public class ChunkGeneratorFlat implements IChunkGenerator
 
 		if (this.flatWorldGenInfo.getWorldFeatures().containsKey("lake"))
 		{
-			this.waterLakeGenerator = new WorldGenLakes(Blocks.getBlock(Blocks.WATER));
+			this.waterLakeGenerator = new WorldGenLakes(Blocks.WATER);
 		}
 
 		if (this.flatWorldGenInfo.getWorldFeatures().containsKey("lava_lake"))
 		{
-			this.lavaLakeGenerator = new WorldGenLakes(Blocks.getBlock(Blocks.LAVA));
+			this.lavaLakeGenerator = new WorldGenLakes(Blocks.LAVA);
 		}
 
 		this.hasDungeons = this.flatWorldGenInfo.getWorldFeatures().containsKey("dungeon");
@@ -102,14 +102,14 @@ public class ChunkGeneratorFlat implements IChunkGenerator
 			{
 				IBlockState iblockstate = flatlayerinfo.getLayerMaterial();
 
-				if (iblockstate.getBlock() != Blocks.getBlock(Blocks.AIR))
+				if (iblockstate.getBlock() != Blocks.AIR)
 				{
 					flag = false;
 					this.cachedBlockIDs[i] = iblockstate;
 				}
 			}
 
-			if (flatlayerinfo.getLayerMaterial().getBlock() == Blocks.getBlock(Blocks.AIR))
+			if (flatlayerinfo.getLayerMaterial().getBlock() == Blocks.AIR)
 			{
 				k += flatlayerinfo.getLayerCount();
 			}
@@ -121,7 +121,7 @@ public class ChunkGeneratorFlat implements IChunkGenerator
 		}
 
 		worldIn.setSeaLevel(j);
-		this.hasDecoration = flag && this.flatWorldGenInfo.getBiome() != Biome.getIdForBiome(Biomes.getBiome(Biomes.VOID)) ? false : this.flatWorldGenInfo.getWorldFeatures().containsKey("decoration");
+		this.hasDecoration = flag && this.flatWorldGenInfo.getBiome() != Biome.getIdForBiome(Biomes.VOID) ? false : this.flatWorldGenInfo.getWorldFeatures().containsKey("decoration");
 	}
 
 	@Override

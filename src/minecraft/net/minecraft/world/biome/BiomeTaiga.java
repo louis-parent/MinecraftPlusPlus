@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockTallGrass;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Blocks;
@@ -22,14 +21,12 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeTaiga extends Biome
 {
-	private static WorldGenTaiga1 PINE_GENERATOR;
-	private static WorldGenTaiga2 SPRUCE_GENERATOR;
-	private static WorldGenMegaPineTree MEGA_PINE_GENERATOR;
-	private static WorldGenMegaPineTree MEGA_SPRUCE_GENERATOR;
-	private static WorldGenBlockBlob FOREST_ROCK_GENERATOR;
+	private static final WorldGenTaiga1 PINE_GENERATOR = new WorldGenTaiga1();
+	private static final WorldGenTaiga2 SPRUCE_GENERATOR = new WorldGenTaiga2(false);
+	private static final WorldGenMegaPineTree MEGA_PINE_GENERATOR = new WorldGenMegaPineTree(false, false);
+	private static final WorldGenMegaPineTree MEGA_SPRUCE_GENERATOR = new WorldGenMegaPineTree(false, true);
+	private static final WorldGenBlockBlob FOREST_ROCK_GENERATOR = new WorldGenBlockBlob(Blocks.MOSSY_COBBLESTONE, 0);
 	private final BiomeTaiga.Type type;
-	
-	private double noiseVal;
 
 	public BiomeTaiga(BiomeTaiga.Type typeIn, Biome.BiomeProperties properties)
 	{
@@ -57,11 +54,11 @@ public class BiomeTaiga extends Biome
 	{
 		if ((this.type == BiomeTaiga.Type.MEGA || this.type == BiomeTaiga.Type.MEGA_SPRUCE) && rand.nextInt(3) == 0)
 		{
-			return this.type != BiomeTaiga.Type.MEGA_SPRUCE && rand.nextInt(13) != 0 ? getMEGA_PINE_GENERATOR() : getMegaSpruceGenerator();
+			return this.type != BiomeTaiga.Type.MEGA_SPRUCE && rand.nextInt(13) != 0 ? MEGA_PINE_GENERATOR : MEGA_SPRUCE_GENERATOR;
 		}
 		else
 		{
-			return rand.nextInt(3) == 0 ? getPineGenerator() : getSpruceGenerator();
+			return rand.nextInt(3) == 0 ? PINE_GENERATOR : SPRUCE_GENERATOR;
 		}
 	}
 
@@ -86,7 +83,7 @@ public class BiomeTaiga extends Biome
 				int k = rand.nextInt(16) + 8;
 				int l = rand.nextInt(16) + 8;
 				BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
-				getFOREST_ROCK_GENERATOR().generate(worldIn, rand, blockpos);
+				FOREST_ROCK_GENERATOR.generate(worldIn, rand, blockpos);
 			}
 		}
 
@@ -108,83 +105,20 @@ public class BiomeTaiga extends Biome
 	{
 		if (this.type == BiomeTaiga.Type.MEGA || this.type == BiomeTaiga.Type.MEGA_SPRUCE)
 		{
-			this.noiseVal = noiseVal;
+			this.topBlock = Blocks.GRASS.getDefaultState();
+			this.fillerBlock = Blocks.DIRT.getDefaultState();
+
+			if (noiseVal > 1.75D)
+			{
+				this.topBlock = Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT);
+			}
+			else if (noiseVal > -0.95D)
+			{
+				this.topBlock = Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL);
+			}
 		}
 
 		this.generateBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
-	}
-	
-	@Override
-	public IBlockState getFillerBlock()
-	{
-		return Blocks.getBlock(Blocks.DIRT).getDefaultState();
-	}
-	
-	@Override
-	public IBlockState getTopBlock()
-	{
-		if (noiseVal > 1.75D)
-		{
-			return Blocks.getBlock(Blocks.DIRT).getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT);
-		}
-		else if (noiseVal > -0.95D)
-		{
-			return Blocks.getBlock(Blocks.DIRT).getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL);
-		}
-		else
-		{
-			return Blocks.getBlock(Blocks.GRASS).getDefaultState();
-		}
-	}
-
-	public static WorldGenTaiga1 getPineGenerator()
-	{
-		if(PINE_GENERATOR == null)
-		{
-			PINE_GENERATOR = new WorldGenTaiga1();
-		}
-		
-		return PINE_GENERATOR;
-	}
-
-	public static WorldGenTaiga2 getSpruceGenerator()
-	{
-		if(SPRUCE_GENERATOR == null)
-		{
-			SPRUCE_GENERATOR = new WorldGenTaiga2(false);
-		}
-		
-		return SPRUCE_GENERATOR;
-	}
-
-	public static WorldGenMegaPineTree getMEGA_PINE_GENERATOR()
-	{
-		if(MEGA_PINE_GENERATOR == null)
-		{
-			MEGA_PINE_GENERATOR = new WorldGenMegaPineTree(false, false);
-		}
-		
-		return MEGA_PINE_GENERATOR;
-	}
-
-	public static WorldGenMegaPineTree getMegaSpruceGenerator()
-	{
-		if(MEGA_SPRUCE_GENERATOR == null)
-		{
-			MEGA_SPRUCE_GENERATOR = new WorldGenMegaPineTree(false, true);
-		}
-		
-		return MEGA_SPRUCE_GENERATOR;
-	}
-
-	public static WorldGenBlockBlob getFOREST_ROCK_GENERATOR()
-	{
-		if(FOREST_ROCK_GENERATOR == null)
-		{
-			FOREST_ROCK_GENERATOR = new WorldGenBlockBlob(Blocks.getBlock(Blocks.MOSSY_COBBLESTONE), 0);
-		}
-		
-		return FOREST_ROCK_GENERATOR;
 	}
 
 	public static enum Type

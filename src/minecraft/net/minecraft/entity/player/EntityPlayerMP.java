@@ -1054,7 +1054,7 @@ public class EntityPlayerMP extends EntityPlayer implements IContainerListener
 	{
 		Item item = stack.getItem();
 
-		if (item == Items.getItem(Items.WRITTEN_BOOK))
+		if (item == Items.WRITTEN_BOOK)
 		{
 			PacketBuffer packetbuffer = new PacketBuffer(Unpooled.buffer());
 			packetbuffer.writeEnumValue(hand);

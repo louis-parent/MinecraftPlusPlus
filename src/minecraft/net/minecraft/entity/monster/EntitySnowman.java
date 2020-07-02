@@ -134,9 +134,9 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 				k = MathHelper.floor(this.posZ + (l / 2 % 2 * 2 - 1) * 0.25F);
 				BlockPos blockpos = new BlockPos(i, j, k);
 
-				if (this.world.getBlockState(blockpos).getMaterial() == Material.AIR && this.world.getBiome(blockpos).getFloatTemperature(blockpos) < 0.8F && Blocks.getBlock(Blocks.SNOW_LAYER).canPlaceBlockAt(this.world, blockpos))
+				if (this.world.getBlockState(blockpos).getMaterial() == Material.AIR && this.world.getBiome(blockpos).getFloatTemperature(blockpos) < 0.8F && Blocks.SNOW_LAYER.canPlaceBlockAt(this.world, blockpos))
 				{
-					this.world.setBlockState(blockpos, Blocks.getBlock(Blocks.SNOW_LAYER).getDefaultState());
+					this.world.setBlockState(blockpos, Blocks.SNOW_LAYER.getDefaultState());
 				}
 			}
 		}
@@ -181,7 +181,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 
-		if (itemstack.getItem() == Items.getItem(Items.SHEARS) && this.isPumpkinEquipped() && !this.world.isRemote)
+		if (itemstack.getItem() == Items.SHEARS && this.isPumpkinEquipped() && !this.world.isRemote)
 		{
 			this.setPumpkinEquipped(false);
 			itemstack.damageItem(1, player);

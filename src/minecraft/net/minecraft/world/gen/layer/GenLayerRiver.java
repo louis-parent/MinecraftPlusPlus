@@ -42,7 +42,7 @@ public class GenLayerRiver extends GenLayer
 				}
 				else
 				{
-					aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.RIVER));
+					aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(Biomes.RIVER);
 				}
 			}
 		}

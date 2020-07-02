@@ -727,7 +727,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 		if ("Notch".equals(this.getName()))
 		{
-			this.dropItem(new ItemStack(Items.getItem(Items.APPLE), 1), true, false);
+			this.dropItem(new ItemStack(Items.APPLE, 1), true, false);
 		}
 
 		if (!this.world.getGameRules().getBoolean("keepInventory") && !this.isSpectator())
@@ -1143,7 +1143,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	@Override
 	protected void damageShield(float damage)
 	{
-		if (damage >= 3.0F && this.activeItemStack.getItem() == Items.getItem(Items.SHIELD))
+		if (damage >= 3.0F && this.activeItemStack.getItem() == Items.SHIELD)
 		{
 			int i = 1 + MathHelper.floor(damage);
 			this.activeItemStack.damageItem(i, this);
@@ -1546,7 +1546,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 		if (this.rand.nextFloat() < f)
 		{
-			this.getCooldownTracker().setCooldown(Items.getItem(Items.SHIELD), 100);
+			this.getCooldownTracker().setCooldown(Items.SHIELD, 100);
 			this.resetActiveHand();
 			this.world.setEntityState(this, (byte) 30);
 		}
@@ -1716,7 +1716,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 		this.setSize(0.6F, 1.8F);
 		IBlockState iblockstate = this.world.getBlockState(this.bedLocation);
 
-		if (this.bedLocation != null && iblockstate.getBlock() == Blocks.getBlock(Blocks.BED))
+		if (this.bedLocation != null && iblockstate.getBlock() == Blocks.BED)
 		{
 			this.world.setBlockState(this.bedLocation, iblockstate.withProperty(BlockBed.OCCUPIED, Boolean.valueOf(false)), 4);
 			BlockPos blockpos = BlockBed.getSafeExitLocation(this.world, this.bedLocation, 0);
@@ -1746,7 +1746,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 
 	private boolean isInBed()
 	{
-		return this.world.getBlockState(this.bedLocation).getBlock() == Blocks.getBlock(Blocks.BED);
+		return this.world.getBlockState(this.bedLocation).getBlock() == Blocks.BED;
 	}
 
 	@Nullable
@@ -1758,7 +1758,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	{
 		Block block = worldIn.getBlockState(bedLocation).getBlock();
 
-		if (block != Blocks.getBlock(Blocks.BED))
+		if (block != Blocks.BED)
 		{
 			if (!forceSpawn)
 			{
@@ -2747,7 +2747,7 @@ public abstract class EntityPlayer extends EntityLivingBase
 	}
 
 	/**
-	 * Can the player use command Blocks.getBlock(blocks.) It checks if the player is on Creative
+	 * Can the player use command blocks. It checks if the player is on Creative
 	 * mode and has permissions (is he OP)
 	 */
 	public boolean canUseCommandBlock()

@@ -39,7 +39,7 @@ public class ItemSword extends ItemTool
 	{
 		Block block = state.getBlock();
 
-		if (block == Blocks.getBlock(Blocks.WEB))
+		if (block == Blocks.WEB)
 		{
 			return 15.0F;
 		}
@@ -91,7 +91,7 @@ public class ItemSword extends ItemTool
 	@Override
 	public boolean canHarvestBlock(IBlockState blockIn)
 	{
-		return blockIn.getBlock() == Blocks.getBlock(Blocks.WEB);
+		return blockIn.getBlock() == Blocks.WEB;
 	}
 
 	/**

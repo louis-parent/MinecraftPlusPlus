@@ -158,7 +158,7 @@ public class EntityVindicator extends AbstractIllager
 	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
-		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.getItem(Items.IRON_AXE)));
+		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.IRON_AXE));
 	}
 
 	@Override

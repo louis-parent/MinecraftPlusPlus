@@ -42,7 +42,7 @@ public class DebugRendererHeightMap implements DebugRenderer.IDebugRenderer
 		{
 			int i = world.getHeight(blockpos1.getX(), blockpos1.getZ());
 
-			if (world.getBlockState(blockpos1.add(0, i, 0).down()) == Blocks.getBlock(Blocks.AIR).getDefaultState())
+			if (world.getBlockState(blockpos1.add(0, i, 0).down()) == Blocks.AIR.getDefaultState())
 			{
 				RenderGlobal.addChainedFilledBoxVertices(bufferbuilder, blockpos1.getX() + 0.25F - d0, i - d1, blockpos1.getZ() + 0.25F - d2, blockpos1.getX() + 0.75F - d0, i + 0.09375D - d1, blockpos1.getZ() + 0.75F - d2, 0.0F, 0.0F, 1.0F, 0.5F);
 			}

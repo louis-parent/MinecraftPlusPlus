@@ -4,7 +4,6 @@ import java.util.Random;
 
 import fr.minecraftpp.manager.ModManager;
 import net.minecraft.block.BlockSilverfish;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityLlama;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -17,11 +16,9 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeHills extends Biome
 {
-	private WorldGenerator theWorldGenerator;
+	private final WorldGenerator theWorldGenerator = new WorldGenMinable(Blocks.MONSTER_EGG.getDefaultState().withProperty(BlockSilverfish.VARIANT, BlockSilverfish.EnumType.STONE), 9);
 	private final WorldGenTaiga2 spruceGenerator = new WorldGenTaiga2(false);
 	private final BiomeHills.Type type;
-	
-	private double noiseVal;
 
 	protected BiomeHills(BiomeHills.Type p_i46710_1_, Biome.BiomeProperties properties)
 	{
@@ -55,9 +52,9 @@ public class BiomeHills extends Biome
 			int i1 = rand.nextInt(16);
 			BlockPos blockpos = pos.add(k, l, i1);
 
-			if (worldIn.getBlockState(blockpos).getBlock() == Blocks.getBlock(Blocks.STONE) && ModManager.IS_VANILLA_ENABLED)
+			if (worldIn.getBlockState(blockpos).getBlock() == Blocks.STONE && ModManager.IS_VANILLA_ENABLED)
 			{
-				worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.EMERALD_ORE).getDefaultState(), 2);
+				worldIn.setBlockState(blockpos, Blocks.EMERALD_ORE.getDefaultState(), 2);
 			}
 		}
 
@@ -66,59 +63,28 @@ public class BiomeHills extends Biome
 			int k1 = rand.nextInt(16);
 			int l1 = rand.nextInt(64);
 			int i2 = rand.nextInt(16);
-			this.getTheWorldGenerator().generate(worldIn, rand, pos.add(k1, l1, i2));
+			this.theWorldGenerator.generate(worldIn, rand, pos.add(k1, l1, i2));
 		}
 	}
 
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
 	{
-		this.noiseVal = noiseVal;
-		this.generateBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
-	}
-	
-	@Override
-	public IBlockState getFillerBlock()
-	{
-		if((noiseVal < -1.0D || noiseVal > 2.0D) && this.type == BiomeHills.Type.MUTATED)
-		{
-			return Blocks.getBlock(Blocks.GRAVEL).getDefaultState();
-		}
-		else if(noiseVal > 1.0D && this.type != BiomeHills.Type.EXTRA_TREES)
-		{
-			return Blocks.getBlock(Blocks.STONE).getDefaultState();
-		}
-		else
-		{
-			return Blocks.getBlock(Blocks.DIRT).getDefaultState();
-		}
-	}
-	
-	@Override
-	public IBlockState getTopBlock()
-	{
-		if((noiseVal < -1.0D || noiseVal > 2.0D) && this.type == BiomeHills.Type.MUTATED)
-		{
-			return Blocks.getBlock(Blocks.GRAVEL).getDefaultState();
-		}
-		else if(noiseVal > 1.0D && this.type != BiomeHills.Type.EXTRA_TREES)
-		{
-			return Blocks.getBlock(Blocks.STONE).getDefaultState();
-		}
-		else
-		{
-			return Blocks.getBlock(Blocks.GRASS).getDefaultState();
-		}
-	}
+		this.topBlock = Blocks.GRASS.getDefaultState();
+		this.fillerBlock = Blocks.DIRT.getDefaultState();
 
-	public WorldGenerator getTheWorldGenerator()
-	{
-		if(theWorldGenerator == null)
+		if ((noiseVal < -1.0D || noiseVal > 2.0D) && this.type == BiomeHills.Type.MUTATED)
 		{
-			theWorldGenerator = new WorldGenMinable(Blocks.getBlock(Blocks.MONSTER_EGG).getDefaultState().withProperty(BlockSilverfish.VARIANT, BlockSilverfish.EnumType.STONE), 9);
+			this.topBlock = Blocks.GRAVEL.getDefaultState();
+			this.fillerBlock = Blocks.GRAVEL.getDefaultState();
 		}
-		
-		return theWorldGenerator;
+		else if (noiseVal > 1.0D && this.type != BiomeHills.Type.EXTRA_TREES)
+		{
+			this.topBlock = Blocks.STONE.getDefaultState();
+			this.fillerBlock = Blocks.STONE.getDefaultState();
+		}
+
+		this.generateBiomeTerrain(worldIn, rand, chunkPrimerIn, x, z, noiseVal);
 	}
 
 	public static enum Type

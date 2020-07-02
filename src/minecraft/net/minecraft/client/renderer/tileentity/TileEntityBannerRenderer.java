@@ -19,7 +19,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEnti
 	public void func_192841_a(TileEntityBanner p_192841_1_, double p_192841_2_, double p_192841_4_, double p_192841_6_, float p_192841_8_, int p_192841_9_, float p_192841_10_)
 	{
 		boolean flag = p_192841_1_.getWorld() != null;
-		boolean flag1 = !flag || p_192841_1_.getBlockType() == Blocks.getBlock(Blocks.STANDING_BANNER);
+		boolean flag1 = !flag || p_192841_1_.getBlockType() == Blocks.STANDING_BANNER;
 		int i = flag ? p_192841_1_.getBlockMetadata() : 0;
 		long j = flag ? p_192841_1_.getWorld().getTotalWorldTime() : 0L;
 		GlStateManager.pushMatrix();

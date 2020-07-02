@@ -5,7 +5,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
@@ -289,7 +288,7 @@ public abstract class StructureComponent
 		int j = this.getYWithOffset(y);
 		int k = this.getZWithOffset(x, z);
 		BlockPos blockpos = new BlockPos(i, j, k);
-		return !boundingboxIn.isVecInside(blockpos) ? Blocks.getBlock(Blocks.AIR).getDefaultState() : worldIn.getBlockState(blockpos);
+		return !boundingboxIn.isVecInside(blockpos) ? Blocks.AIR.getDefaultState() : worldIn.getBlockState(blockpos);
 	}
 
 	protected int func_189916_b(World p_189916_1_, int p_189916_2_, int p_189916_3_, int p_189916_4_, StructureBoundingBox p_189916_5_)
@@ -313,7 +312,7 @@ public abstract class StructureComponent
 			{
 				for (int k = minZ; k <= maxZ; ++k)
 				{
-					this.setBlockState(worldIn, Blocks.getBlock(Blocks.AIR).getDefaultState(), j, i, k, structurebb);
+					this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), j, i, k, structurebb);
 				}
 			}
 		}
@@ -447,7 +446,7 @@ public abstract class StructureComponent
 		{
 			while (!worldIn.isAirBlock(blockpos) && blockpos.getY() < 255)
 			{
-				worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.AIR).getDefaultState(), 2);
+				worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
 				blockpos = blockpos.up();
 			}
 		}
@@ -484,11 +483,11 @@ public abstract class StructureComponent
 
 	protected boolean func_191080_a(World p_191080_1_, StructureBoundingBox p_191080_2_, Random p_191080_3_, BlockPos p_191080_4_, ResourceLocation p_191080_5_, @Nullable IBlockState p_191080_6_)
 	{
-		if (p_191080_2_.isVecInside(p_191080_4_) && p_191080_1_.getBlockState(p_191080_4_).getBlock() != Blocks.getBlock(Blocks.CHEST))
+		if (p_191080_2_.isVecInside(p_191080_4_) && p_191080_1_.getBlockState(p_191080_4_).getBlock() != Blocks.CHEST)
 		{
 			if (p_191080_6_ == null)
 			{
-				p_191080_6_ = ((BlockChest) Blocks.getBlock(Blocks.CHEST)).correctFacing(p_191080_1_, p_191080_4_, Blocks.getBlock(Blocks.CHEST).getDefaultState());
+				p_191080_6_ = Blocks.CHEST.correctFacing(p_191080_1_, p_191080_4_, Blocks.CHEST.getDefaultState());
 			}
 
 			p_191080_1_.setBlockState(p_191080_4_, p_191080_6_, 2);
@@ -511,9 +510,9 @@ public abstract class StructureComponent
 	{
 		BlockPos blockpos = new BlockPos(this.getXWithOffset(p_189419_4_, p_189419_6_), this.getYWithOffset(p_189419_5_), this.getZWithOffset(p_189419_4_, p_189419_6_));
 
-		if (p_189419_2_.isVecInside(blockpos) && p_189419_1_.getBlockState(blockpos).getBlock() != Blocks.getBlock(Blocks.DISPENSER))
+		if (p_189419_2_.isVecInside(blockpos) && p_189419_1_.getBlockState(blockpos).getBlock() != Blocks.DISPENSER)
 		{
-			this.setBlockState(p_189419_1_, Blocks.getBlock(Blocks.DISPENSER).getDefaultState().withProperty(BlockDispenser.FACING, p_189419_7_), p_189419_4_, p_189419_5_, p_189419_6_, p_189419_2_);
+			this.setBlockState(p_189419_1_, Blocks.DISPENSER.getDefaultState().withProperty(BlockDispenser.FACING, p_189419_7_), p_189419_4_, p_189419_5_, p_189419_6_, p_189419_2_);
 			TileEntity tileentity = p_189419_1_.getTileEntity(blockpos);
 
 			if (tileentity instanceof TileEntityDispenser)
@@ -583,7 +582,7 @@ public abstract class StructureComponent
 
 	public abstract static class BlockSelector
 	{
-		protected IBlockState blockstate = Blocks.getBlock(Blocks.AIR).getDefaultState();
+		protected IBlockState blockstate = Blocks.AIR.getDefaultState();
 
 		public abstract void selectBlocks(Random rand, int x, int y, int z, boolean p_75062_5_);
 

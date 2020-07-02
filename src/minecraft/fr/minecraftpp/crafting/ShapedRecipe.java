@@ -21,7 +21,7 @@ public class ShapedRecipe extends ModAbstractRecipe
 
 	public ShapedRecipe(Item result)
 	{
-		super(result);
+		this(result.getAsStack());
 	}
 
 	public ShapedRecipe(Blueprint blueprint, ItemStack result)

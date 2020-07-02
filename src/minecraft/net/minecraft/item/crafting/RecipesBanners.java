@@ -27,7 +27,7 @@ public class RecipesBanners
 			{
 				ItemStack itemstack = inv.getStackInSlot(i);
 
-				if (itemstack.getItem() == Items.getItem(Items.BANNER))
+				if (itemstack.getItem() == Items.BANNER)
 				{
 					if (flag)
 					{
@@ -62,7 +62,7 @@ public class RecipesBanners
 			{
 				ItemStack itemstack1 = inv.getStackInSlot(i);
 
-				if (!itemstack1.isNotValid() && itemstack1.getItem() == Items.getItem(Items.BANNER))
+				if (!itemstack1.isNotValid() && itemstack1.getItem() == Items.BANNER)
 				{
 					itemstack = itemstack1.copy();
 					itemstack.setStackSize(1);
@@ -80,7 +80,7 @@ public class RecipesBanners
 				{
 					ItemStack itemstack2 = inv.getStackInSlot(j);
 
-					if (itemstack2.getItem() == Items.getItem(Items.DYE))
+					if (itemstack2.getItem() == Items.DYE)
 					{
 						k = itemstack2.getMetadata();
 						break;
@@ -151,9 +151,9 @@ public class RecipesBanners
 						{
 							ItemStack itemstack = p_190933_1_.getStackInSlot(i);
 
-							if (!itemstack.isNotValid() && itemstack.getItem() != Items.getItem(Items.BANNER))
+							if (!itemstack.isNotValid() && itemstack.getItem() != Items.BANNER)
 							{
-								if (itemstack.getItem() == Items.getItem(Items.DYE))
+								if (itemstack.getItem() == Items.DYE)
 								{
 									if (flag2)
 									{
@@ -191,9 +191,9 @@ public class RecipesBanners
 							int i1 = k % 3;
 							ItemStack itemstack1 = p_190933_1_.getStackInSlot(k);
 
-							if (!itemstack1.isNotValid() && itemstack1.getItem() != Items.getItem(Items.BANNER))
+							if (!itemstack1.isNotValid() && itemstack1.getItem() != Items.BANNER)
 							{
-								if (itemstack1.getItem() != Items.getItem(Items.DYE))
+								if (itemstack1.getItem() != Items.DYE)
 								{
 									flag = false;
 									break;
@@ -262,7 +262,7 @@ public class RecipesBanners
 
 				if (!itemstack2.isNotValid())
 				{
-					if (itemstack2.getItem() != Items.getItem(Items.BANNER))
+					if (itemstack2.getItem() != Items.BANNER)
 					{
 						return false;
 					}

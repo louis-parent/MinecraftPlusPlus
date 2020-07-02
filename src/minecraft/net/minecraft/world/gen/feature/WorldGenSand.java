@@ -12,7 +12,7 @@ public class WorldGenSand extends WorldGenerator
 {
 	private final Block block;
 
-	/** The maximum radius used when generating a patch of Blocks.getBlock(blocks.) */
+	/** The maximum radius used when generating a patch of blocks. */
 	private final int radius;
 
 	public WorldGenSand(Block p_i45462_1_, int p_i45462_2_)
@@ -47,7 +47,7 @@ public class WorldGenSand extends WorldGenerator
 							BlockPos blockpos = new BlockPos(k, k1, l);
 							Block block = worldIn.getBlockState(blockpos).getBlock();
 
-							if (block == Blocks.getBlock(Blocks.DIRT) || block == Blocks.getBlock(Blocks.GRASS))
+							if (block == Blocks.DIRT || block == Blocks.GRASS)
 							{
 								worldIn.setBlockState(blockpos, this.block.getDefaultState(), 2);
 							}

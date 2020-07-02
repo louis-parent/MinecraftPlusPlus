@@ -15,6 +15,9 @@ import net.minecraft.world.World;
 
 public class WorldGenTaiga1 extends WorldGenAbstractTree
 {
+	private static final IBlockState TRUNK = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
+	private static final IBlockState LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+
 	public WorldGenTaiga1()
 	{
 		super(false);
@@ -74,7 +77,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 			{
 				Block block = worldIn.getBlockState(position.down()).getBlock();
 
-				if ((block == Blocks.getBlock(Blocks.GRASS) || block == Blocks.getBlock(Blocks.DIRT)) && position.getY() < 256 - i - 1)
+				if ((block == Blocks.GRASS || block == Blocks.DIRT) && position.getY() < 256 - i - 1)
 				{
 					this.setDirtAt(worldIn, position.down());
 					int k2 = 0;
@@ -95,7 +98,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 
 									if (!worldIn.getBlockState(blockpos).isFullBlock())
 									{
-										this.setBlockAndNotifyAdequately(worldIn, blockpos, getLeaf());
+										this.setBlockAndNotifyAdequately(worldIn, blockpos, LEAF);
 									}
 								}
 							}
@@ -117,7 +120,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 
 						if (material == Material.AIR || material == Material.LEAVES)
 						{
-							this.setBlockAndNotifyAdequately(worldIn, position.up(i3), getTrunk());
+							this.setBlockAndNotifyAdequately(worldIn, position.up(i3), TRUNK);
 						}
 					}
 
@@ -133,15 +136,5 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 		{
 			return false;
 		}
-	}
-
-	public static IBlockState getTrunk()
-	{
-		return Blocks.getBlock(Blocks.LOG).getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
-	}
-
-	public static IBlockState getLeaf()
-	{
-		return Blocks.getBlock(Blocks.LEAVES).getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 	}
 }

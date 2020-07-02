@@ -84,7 +84,7 @@ public class ParticleFallingDust extends Particle
 		{
 			IBlockState iblockstate = Block.getStateById(p_178902_15_[0]);
 
-			if (iblockstate.getBlock() != Blocks.getBlock(Blocks.AIR) && iblockstate.getRenderType() == EnumBlockRenderType.INVISIBLE)
+			if (iblockstate.getBlock() != Blocks.AIR && iblockstate.getRenderType() == EnumBlockRenderType.INVISIBLE)
 			{
 				return null;
 			}

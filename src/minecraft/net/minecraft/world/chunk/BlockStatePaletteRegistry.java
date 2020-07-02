@@ -21,7 +21,7 @@ public class BlockStatePaletteRegistry implements IBlockStatePalette
 	public IBlockState getBlockState(int indexKey)
 	{
 		IBlockState iblockstate = Block.BLOCK_STATE_IDS.getByValue(indexKey);
-		return iblockstate == null ? Blocks.getBlock(Blocks.AIR).getDefaultState() : iblockstate;
+		return iblockstate == null ? Blocks.AIR.getDefaultState() : iblockstate;
 	}
 
 	@Override

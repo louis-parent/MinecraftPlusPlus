@@ -33,9 +33,4 @@ public class OreRegistry
 			blockOre.decorate(decorator, world, rand);
 		}
 	}
-
-	public static void resetRegistry()
-	{
-		ORES.clear();
-	}
 }

@@ -98,7 +98,7 @@ public class BlockSnow extends Block
 		IBlockState iblockstate = worldIn.getBlockState(pos.down());
 		Block block = iblockstate.getBlock();
 
-		if (block != Blocks.getBlock(Blocks.ICE) && block != Blocks.getBlock(Blocks.PACKED_ICE) && block != Blocks.getBlock(Blocks.BARRIER))
+		if (block != Blocks.ICE && block != Blocks.PACKED_ICE && block != Blocks.BARRIER)
 		{
 			BlockFaceShape blockfaceshape = iblockstate.func_193401_d(worldIn, pos.down(), EnumFacing.UP);
 			return blockfaceshape == BlockFaceShape.SOLID || iblockstate.getMaterial() == Material.LEAVES || block == this && iblockstate.getValue(LAYERS).intValue() == 8;
@@ -138,7 +138,7 @@ public class BlockSnow extends Block
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
 	{
-		spawnAsEntity(worldIn, pos, new ItemStack(Items.getItem(Items.SNOWBALL), state.getValue(LAYERS).intValue() + 1, 0));
+		spawnAsEntity(worldIn, pos, new ItemStack(Items.SNOWBALL, state.getValue(LAYERS).intValue() + 1, 0));
 		worldIn.setBlockToAir(pos);
 		player.addStat(StatList.getBlockStats(this));
 	}
@@ -149,7 +149,7 @@ public class BlockSnow extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.SNOWBALL);
+		return Items.SNOWBALL;
 	}
 
 	/**

@@ -25,11 +25,11 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockModelRenderer
 {
-	private final Minecraft mc;
+	private final BlockColors blockColors;
 
-	public BlockModelRenderer(Minecraft minecraft)
+	public BlockModelRenderer(BlockColors blockColorsIn)
 	{
-		this.mc = minecraft;
+		this.blockColors = blockColorsIn;
 	}
 
 	public boolean renderModel(IBlockAccess blockAccessIn, IBakedModel modelIn, IBlockState blockStateIn, BlockPos blockPosIn, BufferBuilder buffer, boolean checkSides)
@@ -130,7 +130,7 @@ public class BlockModelRenderer
 
 			if (bakedquad.hasTintIndex())
 			{
-				int k = this.getBlockColors().colorMultiplier(stateIn, blockAccessIn, posIn, bakedquad.getTintIndex());
+				int k = this.blockColors.colorMultiplier(stateIn, blockAccessIn, posIn, bakedquad.getTintIndex());
 
 				if (EntityRenderer.anaglyphEnable)
 				{
@@ -256,7 +256,7 @@ public class BlockModelRenderer
 
 			if (bakedquad.hasTintIndex())
 			{
-				int k = this.getBlockColors().colorMultiplier(stateIn, blockAccessIn, posIn, bakedquad.getTintIndex());
+				int k = this.blockColors.colorMultiplier(stateIn, blockAccessIn, posIn, bakedquad.getTintIndex());
 
 				if (EntityRenderer.anaglyphEnable)
 				{
@@ -295,7 +295,7 @@ public class BlockModelRenderer
 	{
 		Block block = state.getBlock();
 		GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
-		int i = this.getBlockColors().colorMultiplier(state, (IBlockAccess) null, (BlockPos) null, 0);
+		int i = this.blockColors.colorMultiplier(state, (IBlockAccess) null, (BlockPos) null, 0);
 
 		if (EntityRenderer.anaglyphEnable)
 		{
@@ -339,11 +339,6 @@ public class BlockModelRenderer
 			bufferbuilder.putNormal(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 			tessellator.draw();
 		}
-	}
-
-	public BlockColors getBlockColors()
-	{
-		return mc.getBlockColors();
 	}
 
 	class AmbientOcclusionFace

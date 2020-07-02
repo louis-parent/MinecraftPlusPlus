@@ -117,7 +117,7 @@ public class ChunkLoader
 			for (int i3 = 0; i3 < 16; ++i3)
 			{
 				blockpos$mutableblockpos.setPos(converterData.x << 4 | l2, 0, converterData.z << 4 | i3);
-				abyte[i3 << 4 | l2] = (byte) (Biome.getIdForBiome(provider.getBiome(blockpos$mutableblockpos, Biomes.getBiome(Biomes.DEFAULT))) & 255);
+				abyte[i3 << 4 | l2] = (byte) (Biome.getIdForBiome(provider.getBiome(blockpos$mutableblockpos, Biomes.DEFAULT)) & 255);
 			}
 		}
 

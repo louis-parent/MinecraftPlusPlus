@@ -51,7 +51,7 @@ public class BlockCommandBlock extends BlockContainer
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		TileEntityCommandBlock tileentitycommandblock = new TileEntityCommandBlock();
-		tileentitycommandblock.setAuto(this == Blocks.getBlock(Blocks.CHAIN_COMMAND_BLOCK));
+		tileentitycommandblock.setAuto(this == Blocks.CHAIN_COMMAND_BLOCK);
 		return tileentitycommandblock;
 	}
 
@@ -215,7 +215,7 @@ public class BlockCommandBlock extends BlockContainer
 				if (nbttagcompound == null || !nbttagcompound.hasKey("BlockEntityTag", 10))
 				{
 					commandblockbaselogic.setTrackOutput(worldIn.getGameRules().getBoolean("sendCommandFeedback"));
-					tileentitycommandblock.setAuto(this == Blocks.getBlock(Blocks.CHAIN_COMMAND_BLOCK));
+					tileentitycommandblock.setAuto(this == Blocks.CHAIN_COMMAND_BLOCK);
 				}
 
 				if (tileentitycommandblock.getMode() == TileEntityCommandBlock.Mode.SEQUENCE)
@@ -314,7 +314,7 @@ public class BlockCommandBlock extends BlockContainer
 			iblockstate = p_193386_0_.getBlockState(blockpos$mutableblockpos);
 			Block block = iblockstate.getBlock();
 
-			if (block != Blocks.getBlock(Blocks.CHAIN_COMMAND_BLOCK))
+			if (block != Blocks.CHAIN_COMMAND_BLOCK)
 			{
 				break;
 			}

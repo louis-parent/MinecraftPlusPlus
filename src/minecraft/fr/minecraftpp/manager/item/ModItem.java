@@ -58,12 +58,7 @@ public class ModItem extends Item
 
 		if (ModManager.IS_VANILLA_ENABLED)
 		{
-			enchantable.add(new ItemStack(Items.getItem(Items.DYE), 1, EnumDyeColor.BLUE.getDyeDamage()));
+			enchantable.add(new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getDyeDamage()));
 		}
-	}
-	
-	public static void resetRegistry()
-	{
-		REGISTRY.clear();
 	}
 }

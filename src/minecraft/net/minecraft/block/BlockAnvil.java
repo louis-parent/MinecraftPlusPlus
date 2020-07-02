@@ -226,7 +226,7 @@ public class BlockAnvil extends BlockFalling
 		@Override
 		public ITextComponent getDisplayName()
 		{
-			return new TextComponentTranslation(Blocks.getBlock(Blocks.ANVIL).getUnlocalizedName() + ".name", new Object[0]);
+			return new TextComponentTranslation(Blocks.ANVIL.getUnlocalizedName() + ".name", new Object[0]);
 		}
 
 		@Override

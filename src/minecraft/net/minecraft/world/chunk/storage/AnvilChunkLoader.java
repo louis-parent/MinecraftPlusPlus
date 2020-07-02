@@ -209,7 +209,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 	{
 		DataOutputStream dataoutputstream = RegionFileCache.getChunkOutputStream(this.chunkSaveLocation, pos.chunkXPos, pos.chunkZPos);
 		CompressedStreamTools.write(compound, dataoutputstream);
-		//dataoutputstream.close();
+		dataoutputstream.close();
 	}
 
 	/**

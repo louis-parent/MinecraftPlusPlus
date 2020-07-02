@@ -142,7 +142,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 					ItemStack itemstack = this.getHeldItemMainhand();
 					this.setItemStackToSlot(EntityHandSlot.MAINHAND, ItemStack.EMPTY_ITEM_STACK);
 
-					if (itemstack.getItem() == Items.getItem(Items.POTIONITEM))
+					if (itemstack.getItem() == Items.POTIONITEM)
 					{
 						List<PotionEffect> list = PotionUtils.getEffectsFromStack(itemstack);
 
@@ -181,7 +181,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 
 				if (potiontype != null)
 				{
-					this.setItemStackToSlot(EntityHandSlot.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(Items.getItem(Items.POTIONITEM)), potiontype));
+					this.setItemStackToSlot(EntityHandSlot.MAINHAND, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), potiontype));
 					this.witchAttackTimer = this.getHeldItemMainhand().getMaxItemUseDuration();
 					this.setAggressive(true);
 					this.world.playSound((EntityPlayer) null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_WITCH_DRINK, this.getSoundCategory(), 1.0F, 0.8F + this.rand.nextFloat() * 0.4F);
@@ -276,7 +276,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 				potiontype = PotionTypes.WEAKNESS;
 			}
 
-			EntityPotion entitypotion = new EntityPotion(this.world, this, PotionUtils.addPotionToItemStack(new ItemStack(Items.getItem(Items.SPLASH_POTION)), potiontype));
+			EntityPotion entitypotion = new EntityPotion(this.world, this, PotionUtils.addPotionToItemStack(new ItemStack(Items.SPLASH_POTION), potiontype));
 			entitypotion.rotationPitch -= -20.0F;
 			entitypotion.setThrowableHeading(d1, d2 + f * 0.2F, d3, 0.75F, 8.0F);
 			this.world.playSound((EntityPlayer) null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_WITCH_THROW, this.getSoundCategory(), 1.0F, 0.8F + this.rand.nextFloat() * 0.4F);

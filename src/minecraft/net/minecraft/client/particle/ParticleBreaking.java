@@ -33,7 +33,7 @@ public class ParticleBreaking extends Particle
 		this.particleRed = 1.0F;
 		this.particleGreen = 1.0F;
 		this.particleBlue = 1.0F;
-		this.particleGravity = Blocks.getBlock(Blocks.SNOW).blockParticleGravity;
+		this.particleGravity = Blocks.SNOW.blockParticleGravity;
 		this.particleScale /= 2.0F;
 	}
 
@@ -95,7 +95,7 @@ public class ParticleBreaking extends Particle
 		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
-			return new ParticleBreaking(worldIn, xCoordIn, yCoordIn, zCoordIn, Items.getItem(Items.SLIME_BALL));
+			return new ParticleBreaking(worldIn, xCoordIn, yCoordIn, zCoordIn, Items.SLIME_BALL);
 		}
 	}
 
@@ -104,7 +104,7 @@ public class ParticleBreaking extends Particle
 		@Override
 		public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
 		{
-			return new ParticleBreaking(worldIn, xCoordIn, yCoordIn, zCoordIn, Items.getItem(Items.SNOWBALL));
+			return new ParticleBreaking(worldIn, xCoordIn, yCoordIn, zCoordIn, Items.SNOWBALL);
 		}
 	}
 }

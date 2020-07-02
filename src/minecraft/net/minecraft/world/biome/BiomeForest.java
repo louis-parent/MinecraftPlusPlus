@@ -56,7 +56,7 @@ public class BiomeForest extends Biome
 		}
 		else if (this.type != BiomeForest.Type.BIRCH && rand.nextInt(5) != 0)
 		{
-			return rand.nextInt(10) == 0 ? getBIG_TREE_FEATURE() : getTreeFeature();
+			return rand.nextInt(10) == 0 ? BIG_TREE_FEATURE : TREE_FEATURE;
 		}
 		else
 		{

@@ -1,6 +1,5 @@
 package net.minecraft.world.biome;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
 
@@ -14,6 +13,8 @@ public class BiomeEnd extends Biome
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 4, 4));
+		this.topBlock = Blocks.DIRT.getDefaultState();
+		this.fillerBlock = Blocks.DIRT.getDefaultState();
 		this.theBiomeDecorator = new BiomeEndDecorator();
 	}
 
@@ -24,18 +25,5 @@ public class BiomeEnd extends Biome
 	public int getSkyColorByTemp(float currentTemperature)
 	{
 		return 0;
-	}
-	
-	
-	@Override
-	public IBlockState getTopBlock()
-	{
-		return Blocks.getBlock(Blocks.DIRT).getDefaultState();
-	}
-
-	@Override
-	public IBlockState getFillerBlock()
-	{
-		return Blocks.getBlock(Blocks.DIRT).getDefaultState();
 	}
 }

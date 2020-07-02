@@ -41,7 +41,7 @@ public class BlockColors
 				BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = state.getValue(BlockDoublePlant.VARIANT);
 				return worldIn != null && pos != null && (blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.GRASS || blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.FERN) ? BiomeColorHelper.getGrassColorAtPos(worldIn, state.getValue(BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.UPPER ? pos.down() : pos) : -1;
 			}
-		}, Blocks.getBlock(Blocks.DOUBLE_PLANT));
+		}, Blocks.DOUBLE_PLANT);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -67,7 +67,7 @@ public class BlockColors
 					return -1;
 				}
 			}
-		}, Blocks.getBlock(Blocks.FLOWER_POT));
+		}, Blocks.FLOWER_POT);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -75,7 +75,7 @@ public class BlockColors
 			{
 				return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D);
 			}
-		}, Blocks.getBlock(Blocks.GRASS));
+		}, Blocks.GRASS);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -96,7 +96,7 @@ public class BlockColors
 					return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
 				}
 			}
-		}, Blocks.getBlock(Blocks.LEAVES));
+		}, Blocks.LEAVES);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -104,7 +104,7 @@ public class BlockColors
 			{
 				return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
 			}
-		}, Blocks.getBlock(Blocks.LEAVES2));
+		}, Blocks.LEAVES2);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -112,7 +112,7 @@ public class BlockColors
 			{
 				return worldIn != null && pos != null ? BiomeColorHelper.getWaterColorAtPos(worldIn, pos) : -1;
 			}
-		}, Blocks.getBlock(Blocks.WATER), Blocks.getBlock(Blocks.FLOWING_WATER));
+		}, Blocks.WATER, Blocks.FLOWING_WATER);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -120,7 +120,7 @@ public class BlockColors
 			{
 				return BlockRedstoneWire.colorMultiplier(state.getValue(BlockRedstoneWire.POWER).intValue());
 			}
-		}, Blocks.getBlock(Blocks.REDSTONE_WIRE));
+		}, Blocks.REDSTONE_WIRE);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -128,7 +128,7 @@ public class BlockColors
 			{
 				return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : -1;
 			}
-		}, Blocks.getBlock(Blocks.REEDS));
+		}, Blocks.REEDS);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -140,7 +140,7 @@ public class BlockColors
 				int l = i * 4;
 				return j << 16 | k << 8 | l;
 			}
-		}, Blocks.getBlock(Blocks.MELON_STEM), Blocks.getBlock(Blocks.PUMPKIN_STEM));
+		}, Blocks.MELON_STEM, Blocks.PUMPKIN_STEM);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -155,7 +155,7 @@ public class BlockColors
 					return state.getValue(BlockTallGrass.TYPE) == BlockTallGrass.EnumType.DEAD_BUSH ? 16777215 : ColorizerGrass.getGrassColor(0.5D, 1.0D);
 				}
 			}
-		}, Blocks.getBlock(Blocks.TALLGRASS));
+		}, Blocks.TALLGRASS);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -163,7 +163,7 @@ public class BlockColors
 			{
 				return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
 			}
-		}, Blocks.getBlock(Blocks.VINE));
+		}, Blocks.VINE);
 		blockcolors.registerBlockColorHandler(new IBlockColor()
 		{
 			@Override
@@ -171,7 +171,7 @@ public class BlockColors
 			{
 				return worldIn != null && pos != null ? 2129968 : 7455580;
 			}
-		}, Blocks.getBlock(Blocks.WATERLILY));
+		}, Blocks.WATERLILY);
 		return blockcolors;
 	}
 

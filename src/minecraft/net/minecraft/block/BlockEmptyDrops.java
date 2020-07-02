@@ -29,6 +29,6 @@ public class BlockEmptyDrops extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.AIR);
+		return Items.EMPTY_ITEM;
 	}
 }

@@ -121,7 +121,7 @@ public class EntityBoat extends Entity
 
 	/**
 	 * Returns a boundingBox used to collide the entity with other entities and
-	 * Blocks.getBlock(blocks.) This enables the entity to be pushable on contact, like boats or
+	 * blocks. This enables the entity to be pushable on contact, like boats or
 	 * minecarts.
 	 */
 	public AxisAlignedBB getCollisionBox(Entity entityIn)
@@ -228,22 +228,22 @@ public class EntityBoat extends Entity
 		{
 			case OAK:
 			default:
-				return Items.getItem(Items.BOAT);
+				return Items.BOAT;
 
 			case SPRUCE:
-				return Items.getItem(Items.SPRUCE_BOAT);
+				return Items.SPRUCE_BOAT;
 
 			case BIRCH:
-				return Items.getItem(Items.BIRCH_BOAT);
+				return Items.BIRCH_BOAT;
 
 			case JUNGLE:
-				return Items.getItem(Items.JUNGLE_BOAT);
+				return Items.JUNGLE_BOAT;
 
 			case ACACIA:
-				return Items.getItem(Items.ACACIA_BOAT);
+				return Items.ACACIA_BOAT;
 
 			case DARK_OAK:
-				return Items.getItem(Items.DARK_OAK_BOAT);
+				return Items.DARK_OAK_BOAT;
 		}
 	}
 
@@ -933,12 +933,12 @@ public class EntityBoat extends Entity
 						{
 							for (int i = 0; i < 3; ++i)
 							{
-								this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.getBlock(Blocks.PLANKS)), 1, this.getBoatType().getMetadata()), 0.0F);
+								this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.PLANKS), 1, this.getBoatType().getMetadata()), 0.0F);
 							}
 
 							for (int j = 0; j < 2; ++j)
 							{
-								this.dropItemWithOffset(Items.getItem(Items.STICK), 1, 0.0F);
+								this.dropItemWithOffset(Items.STICK, 1, 0.0F);
 							}
 						}
 					}

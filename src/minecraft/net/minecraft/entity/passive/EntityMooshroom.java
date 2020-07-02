@@ -23,7 +23,7 @@ public class EntityMooshroom extends EntityCow
 	{
 		super(worldIn);
 		this.setSize(0.9F, 1.4F);
-		this.spawnableBlock = Blocks.getBlock(Blocks.MYCELIUM);
+		this.spawnableBlock = Blocks.MYCELIUM;
 	}
 
 	public static void registerFixesMooshroom(DataFixer fixer)
@@ -36,22 +36,22 @@ public class EntityMooshroom extends EntityCow
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 
-		if (itemstack.getItem() == Items.getItem(Items.BOWL) && this.getGrowingAge() >= 0 && !player.capabilities.isCreativeMode)
+		if (itemstack.getItem() == Items.BOWL && this.getGrowingAge() >= 0 && !player.capabilities.isCreativeMode)
 		{
 			itemstack.decreaseStackSize(1);
 
 			if (itemstack.isNotValid())
 			{
-				player.setHeldItem(hand, new ItemStack(Items.getItem(Items.MUSHROOM_STEW)));
+				player.setHeldItem(hand, new ItemStack(Items.MUSHROOM_STEW));
 			}
-			else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.getItem(Items.MUSHROOM_STEW))))
+			else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.MUSHROOM_STEW)))
 			{
-				player.dropItem(new ItemStack(Items.getItem(Items.MUSHROOM_STEW)), false);
+				player.dropItem(new ItemStack(Items.MUSHROOM_STEW), false);
 			}
 
 			return true;
 		}
-		else if (itemstack.getItem() == Items.getItem(Items.SHEARS) && this.getGrowingAge() >= 0)
+		else if (itemstack.getItem() == Items.SHEARS && this.getGrowingAge() >= 0)
 		{
 			this.setDead();
 			this.world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, this.posX, this.posY + this.height / 2.0F, this.posZ, 0.0D, 0.0D, 0.0D);
@@ -72,7 +72,7 @@ public class EntityMooshroom extends EntityCow
 
 				for (int i = 0; i < 5; ++i)
 				{
-					this.world.spawnEntityInWorld(new EntityItem(this.world, this.posX, this.posY + this.height, this.posZ, new ItemStack(Blocks.getBlock(Blocks.RED_MUSHROOM))));
+					this.world.spawnEntityInWorld(new EntityItem(this.world, this.posX, this.posY + this.height, this.posZ, new ItemStack(Blocks.RED_MUSHROOM)));
 				}
 
 				itemstack.damageItem(1, player);

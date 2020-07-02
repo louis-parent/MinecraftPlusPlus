@@ -155,7 +155,7 @@ public class EntityFallingBlock extends Entity
 			if (!this.world.isRemote)
 			{
 				BlockPos blockpos1 = new BlockPos(this);
-				boolean flag = this.fallTile.getBlock() == Blocks.getBlock(Blocks.CONCRETE_POWDER);
+				boolean flag = this.fallTile.getBlock() == Blocks.field_192444_dS;
 				boolean flag1 = flag && this.world.getBlockState(blockpos1).getMaterial() == Material.WATER;
 				double d0 = this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ;
 
@@ -196,7 +196,7 @@ public class EntityFallingBlock extends Entity
 					this.motionZ *= 0.699999988079071D;
 					this.motionY *= -0.5D;
 
-					if (iblockstate.getBlock() != Blocks.getBlock(Blocks.PISTON_EXTENSION))
+					if (iblockstate.getBlock() != Blocks.PISTON_EXTENSION)
 					{
 						this.setDead();
 
@@ -263,7 +263,7 @@ public class EntityFallingBlock extends Entity
 			if (i > 0)
 			{
 				List<Entity> list = Lists.newArrayList(this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox()));
-				boolean flag = block == Blocks.getBlock(Blocks.ANVIL);
+				boolean flag = block == Blocks.ANVIL;
 				DamageSource damagesource = flag ? DamageSource.anvil : DamageSource.fallingBlock;
 
 				for (Entity entity : list)
@@ -299,7 +299,7 @@ public class EntityFallingBlock extends Entity
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
-		Block block = this.fallTile != null ? this.fallTile.getBlock() : Blocks.getBlock(Blocks.AIR);
+		Block block = this.fallTile != null ? this.fallTile.getBlock() : Blocks.AIR;
 		ResourceLocation resourcelocation = Block.REGISTRY.getNameForObject(block);
 		compound.setString("Block", resourcelocation == null ? "" : resourcelocation.toString());
 		compound.setByte("Data", (byte) block.getMetaFromState(this.fallTile));
@@ -345,7 +345,7 @@ public class EntityFallingBlock extends Entity
 			this.fallHurtAmount = compound.getFloat("FallHurtAmount");
 			this.fallHurtMax = compound.getInteger("FallHurtMax");
 		}
-		else if (block == Blocks.getBlock(Blocks.ANVIL))
+		else if (block == Blocks.ANVIL)
 		{
 			this.hurtEntities = true;
 		}
@@ -362,7 +362,7 @@ public class EntityFallingBlock extends Entity
 
 		if (block == null || block.getDefaultState().getMaterial() == Material.AIR)
 		{
-			this.fallTile = Blocks.getBlock(Blocks.SAND).getDefaultState();
+			this.fallTile = Blocks.SAND.getDefaultState();
 		}
 	}
 

@@ -436,7 +436,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 
 	public static boolean canDestroyBlock(Block blockIn)
 	{
-		return blockIn != Blocks.getBlock(Blocks.BEDROCK) && blockIn != Blocks.getBlock(Blocks.END_PORTAL) && blockIn != Blocks.getBlock(Blocks.END_PORTAL_FRAME) && blockIn != Blocks.getBlock(Blocks.COMMAND_BLOCK) && blockIn != Blocks.getBlock(Blocks.REPEATING_COMMAND_BLOCK) && blockIn != Blocks.getBlock(Blocks.CHAIN_COMMAND_BLOCK) && blockIn != Blocks.getBlock(Blocks.BARRIER) && blockIn != Blocks.getBlock(Blocks.STRUCTURE_BLOCK) && blockIn != Blocks.getBlock(Blocks.STRUCTURE_VOID) && blockIn != Blocks.getBlock(Blocks.PISTON_EXTENSION) && blockIn != Blocks.getBlock(Blocks.END_GATEWAY);
+		return blockIn != Blocks.BEDROCK && blockIn != Blocks.END_PORTAL && blockIn != Blocks.END_PORTAL_FRAME && blockIn != Blocks.COMMAND_BLOCK && blockIn != Blocks.REPEATING_COMMAND_BLOCK && blockIn != Blocks.CHAIN_COMMAND_BLOCK && blockIn != Blocks.BARRIER && blockIn != Blocks.STRUCTURE_BLOCK && blockIn != Blocks.STRUCTURE_VOID && blockIn != Blocks.PISTON_EXTENSION && blockIn != Blocks.END_GATEWAY;
 	}
 
 	/**
@@ -635,7 +635,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 	@Override
 	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
 	{
-		EntityItem entityitem = this.dropItem(Items.getItem(Items.NETHER_STAR), 1);
+		EntityItem entityitem = this.dropItem(Items.NETHER_STAR, 1);
 
 		if (entityitem != null)
 		{

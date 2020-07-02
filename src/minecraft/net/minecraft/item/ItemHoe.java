@@ -51,22 +51,22 @@ public class ItemHoe extends ItemTool
 
 			if (hand != EnumFacing.DOWN && playerIn.getBlockState(worldIn.up()).getMaterial() == Material.AIR)
 			{
-				if (block == Blocks.getBlock(Blocks.GRASS) || block == Blocks.getBlock(Blocks.GRASS_PATH))
+				if (block == Blocks.GRASS || block == Blocks.GRASS_PATH)
 				{
-					this.setBlock(itemstack, stack, playerIn, worldIn, Blocks.getBlock(Blocks.FARMLAND).getDefaultState());
+					this.setBlock(itemstack, stack, playerIn, worldIn, Blocks.FARMLAND.getDefaultState());
 					return EnumActionResult.SUCCESS;
 				}
 
-				if (block == Blocks.getBlock(Blocks.DIRT))
+				if (block == Blocks.DIRT)
 				{
 					switch (iblockstate.getValue(BlockDirt.VARIANT))
 					{
 						case DIRT:
-							this.setBlock(itemstack, stack, playerIn, worldIn, Blocks.getBlock(Blocks.FARMLAND).getDefaultState());
+							this.setBlock(itemstack, stack, playerIn, worldIn, Blocks.FARMLAND.getDefaultState());
 							return EnumActionResult.SUCCESS;
 
 						case COARSE_DIRT:
-							this.setBlock(itemstack, stack, playerIn, worldIn, Blocks.getBlock(Blocks.DIRT).getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+							this.setBlock(itemstack, stack, playerIn, worldIn, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
 							return EnumActionResult.SUCCESS;
 					}
 				}

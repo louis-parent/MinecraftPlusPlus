@@ -51,7 +51,7 @@ public class EnchantRandomly extends LootFunction
 
 			for (Enchantment enchantment1 : Enchantment.REGISTRY)
 			{
-				if (stack.getItem() == Items.getItem(Items.BOOK) || enchantment1.canApply(stack))
+				if (stack.getItem() == Items.BOOK || enchantment1.canApply(stack))
 				{
 					list.add(enchantment1);
 				}
@@ -72,9 +72,9 @@ public class EnchantRandomly extends LootFunction
 
 		int i = MathHelper.getInt(rand, enchantment.getMinLevel(), enchantment.getMaxLevel());
 
-		if (stack.getItem() == Items.getItem(Items.BOOK))
+		if (stack.getItem() == Items.BOOK)
 		{
-			stack = new ItemStack(Items.getItem(Items.ENCHANTED_BOOK));
+			stack = new ItemStack(Items.ENCHANTED_BOOK);
 			ItemEnchantedBook.addEnchantment(stack, new EnchantmentData(enchantment, i));
 		}
 		else

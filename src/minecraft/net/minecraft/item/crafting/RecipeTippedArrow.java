@@ -33,12 +33,12 @@ public class RecipeTippedArrow implements IRecipe
 
 					if (i == 1 && j == 1)
 					{
-						if (item != Items.getItem(Items.LINGERING_POTION))
+						if (item != Items.LINGERING_POTION)
 						{
 							return false;
 						}
 					}
-					else if (item != Items.getItem(Items.ARROW))
+					else if (item != Items.ARROW)
 					{
 						return false;
 					}
@@ -61,13 +61,13 @@ public class RecipeTippedArrow implements IRecipe
 	{
 		ItemStack itemstack = inv.getStackInRowAndColumn(1, 1);
 
-		if (itemstack.getItem() != Items.getItem(Items.LINGERING_POTION))
+		if (itemstack.getItem() != Items.LINGERING_POTION)
 		{
 			return ItemStack.EMPTY_ITEM_STACK;
 		}
 		else
 		{
-			ItemStack itemstack1 = new ItemStack(Items.getItem(Items.TIPPED_ARROW), 8);
+			ItemStack itemstack1 = new ItemStack(Items.TIPPED_ARROW, 8);
 			PotionUtils.addPotionToItemStack(itemstack1, PotionUtils.getPotionFromItem(itemstack));
 			PotionUtils.appendEffects(itemstack1, PotionUtils.getFullEffectsFromItem(itemstack));
 			return itemstack1;

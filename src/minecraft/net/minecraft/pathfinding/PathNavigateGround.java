@@ -108,7 +108,7 @@ public class PathNavigateGround extends PathNavigate
 			Block block = this.worldObj.getBlockState(new BlockPos(MathHelper.floor(this.theEntity.posX), i, MathHelper.floor(this.theEntity.posZ))).getBlock();
 			int j = 0;
 
-			while (block == Blocks.getBlock(Blocks.FLOWING_WATER) || block == Blocks.getBlock(Blocks.WATER))
+			while (block == Blocks.FLOWING_WATER || block == Blocks.WATER)
 			{
 				++i;
 				block = this.worldObj.getBlockState(new BlockPos(MathHelper.floor(this.theEntity.posX), i, MathHelper.floor(this.theEntity.posZ))).getBlock();

@@ -498,7 +498,7 @@ public class WoodlandMansionPieces
 			if (p_186175_1_.startsWith("Chest"))
 			{
 				Rotation rotation = this.placeSettings.getRotation();
-				IBlockState iblockstate = Blocks.getBlock(Blocks.CHEST).getDefaultState();
+				IBlockState iblockstate = Blocks.CHEST.getDefaultState();
 
 				if ("ChestWest".equals(p_186175_1_))
 				{
@@ -525,7 +525,7 @@ public class WoodlandMansionPieces
 				entityevoker.enablePersistence();
 				entityevoker.moveToBlockPosAndAngles(p_186175_2_, 0.0F, 0.0F);
 				p_186175_3_.spawnEntityInWorld(entityevoker);
-				p_186175_3_.setBlockState(p_186175_2_, Blocks.getBlock(Blocks.AIR).getDefaultState(), 2);
+				p_186175_3_.setBlockState(p_186175_2_, Blocks.AIR.getDefaultState(), 2);
 			}
 			else if ("Warrior".equals(p_186175_1_))
 			{
@@ -534,7 +534,7 @@ public class WoodlandMansionPieces
 				entityvindicator.moveToBlockPosAndAngles(p_186175_2_, 0.0F, 0.0F);
 				entityvindicator.onInitialSpawn(p_186175_3_.getDifficultyForLocation(new BlockPos(entityvindicator)), (IEntityLivingData) null);
 				p_186175_3_.spawnEntityInWorld(entityvindicator);
-				p_186175_3_.setBlockState(p_186175_2_, Blocks.getBlock(Blocks.AIR).getDefaultState(), 2);
+				p_186175_3_.setBlockState(p_186175_2_, Blocks.AIR.getDefaultState(), 2);
 			}
 		}
 	}

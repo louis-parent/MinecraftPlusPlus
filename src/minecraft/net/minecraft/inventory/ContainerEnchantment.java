@@ -85,7 +85,7 @@ public class ContainerEnchantment extends Container
 			@Override
 			public boolean isItemValid(ItemStack stack)
 			{
-				return isItemStackEnchantable(stack) || stack.getItem() == Items.getItem(Items.CARROT);
+				return isItemStackEnchantable(stack) || stack.getItem() == Items.CARROT;
 			}
 		});
 
@@ -187,34 +187,34 @@ public class ContainerEnchantment extends Container
 						{
 							if ((j != 0 || k != 0) && this.worldPointer.isAirBlock(this.position.add(k, 0, j)) && this.worldPointer.isAirBlock(this.position.add(k, 1, j)))
 							{
-								if (this.worldPointer.getBlockState(this.position.add(k * 2, 0, j * 2)).getBlock() == Blocks.getBlock(Blocks.BOOKSHELF))
+								if (this.worldPointer.getBlockState(this.position.add(k * 2, 0, j * 2)).getBlock() == Blocks.BOOKSHELF)
 								{
 									++l;
 								}
 
-								if (this.worldPointer.getBlockState(this.position.add(k * 2, 1, j * 2)).getBlock() == Blocks.getBlock(Blocks.BOOKSHELF))
+								if (this.worldPointer.getBlockState(this.position.add(k * 2, 1, j * 2)).getBlock() == Blocks.BOOKSHELF)
 								{
 									++l;
 								}
 
 								if (k != 0 && j != 0)
 								{
-									if (this.worldPointer.getBlockState(this.position.add(k * 2, 0, j)).getBlock() == Blocks.getBlock(Blocks.BOOKSHELF))
+									if (this.worldPointer.getBlockState(this.position.add(k * 2, 0, j)).getBlock() == Blocks.BOOKSHELF)
 									{
 										++l;
 									}
 
-									if (this.worldPointer.getBlockState(this.position.add(k * 2, 1, j)).getBlock() == Blocks.getBlock(Blocks.BOOKSHELF))
+									if (this.worldPointer.getBlockState(this.position.add(k * 2, 1, j)).getBlock() == Blocks.BOOKSHELF)
 									{
 										++l;
 									}
 
-									if (this.worldPointer.getBlockState(this.position.add(k, 0, j * 2)).getBlock() == Blocks.getBlock(Blocks.BOOKSHELF))
+									if (this.worldPointer.getBlockState(this.position.add(k, 0, j * 2)).getBlock() == Blocks.BOOKSHELF)
 									{
 										++l;
 									}
 
-									if (this.worldPointer.getBlockState(this.position.add(k, 1, j * 2)).getBlock() == Blocks.getBlock(Blocks.BOOKSHELF))
+									if (this.worldPointer.getBlockState(this.position.add(k, 1, j * 2)).getBlock() == Blocks.BOOKSHELF)
 									{
 										++l;
 									}
@@ -291,11 +291,11 @@ public class ContainerEnchantment extends Container
 				if (!list.isEmpty())
 				{
 					player.func_192024_a(itemstack, i);
-					boolean flag = itemstack.getItem() == Items.getItem(Items.BOOK);
+					boolean flag = itemstack.getItem() == Items.BOOK;
 
 					if (flag)
 					{
-						itemstack = new ItemStack(Items.getItem(Items.ENCHANTED_BOOK));
+						itemstack = new ItemStack(Items.ENCHANTED_BOOK);
 						this.tableInventory.setInventorySlotContents(0, itemstack);
 					}
 
@@ -350,7 +350,7 @@ public class ContainerEnchantment extends Container
 		this.rand.setSeed(this.xpSeed + p_178148_2_);
 		List<EnchantmentData> list = EnchantmentHelper.buildEnchantmentList(this.rand, stack, p_178148_3_, false);
 
-		if (stack.getItem() == Items.getItem(Items.BOOK) && list.size() > 1)
+		if (stack.getItem() == Items.BOOK && list.size() > 1)
 		{
 			list.remove(this.rand.nextInt(list.size()));
 		}
@@ -384,7 +384,7 @@ public class ContainerEnchantment extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn)
 	{
-		if (this.worldPointer.getBlockState(this.position).getBlock() != Blocks.getBlock(Blocks.ENCHANTING_TABLE))
+		if (this.worldPointer.getBlockState(this.position).getBlock() != Blocks.ENCHANTING_TABLE)
 		{
 			return false;
 		}
@@ -470,6 +470,6 @@ public class ContainerEnchantment extends Container
 
 	private boolean isItemStackEnchantable(ItemStack itemstack)
 	{
-		return (itemstack.getItem() == Items.getItem(Items.DYE) && EnumDyeColor.byDyeDamage(itemstack.getMetadata()) == EnumDyeColor.BLUE) || itemstack.getItem().allowEnchanting();
+		return (itemstack.getItem() == Items.DYE && EnumDyeColor.byDyeDamage(itemstack.getMetadata()) == EnumDyeColor.BLUE) || itemstack.getItem().allowEnchanting();
 	}
 }

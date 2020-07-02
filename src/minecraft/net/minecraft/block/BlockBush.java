@@ -49,7 +49,7 @@ public class BlockBush extends Block
 	 */
 	protected boolean canSustainBush(IBlockState state)
 	{
-		return state.getBlock() == Blocks.getBlock(Blocks.GRASS) || state.getBlock() == Blocks.getBlock(Blocks.DIRT) || state.getBlock() == Blocks.getBlock(Blocks.FARMLAND);
+		return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND;
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class BlockBush extends Block
 		if (!this.canBlockStay(worldIn, pos, state))
 		{
 			this.dropBlockAsItem(worldIn, pos, state, 0);
-			worldIn.setBlockState(pos, Blocks.getBlock(Blocks.AIR).getDefaultState(), 3);
+			worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
 		}
 	}
 

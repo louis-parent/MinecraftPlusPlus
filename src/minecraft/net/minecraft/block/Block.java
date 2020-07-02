@@ -63,8 +63,8 @@ public class Block
 
 	/** ResourceLocation for the Air block */
 	private static final ResourceLocation AIR_ID = new ResourceLocation("air");
-	public static RegistryNamespacedDefaultedByKey<ResourceLocation, Block> REGISTRY;
-	public static ObjectIntIdentityMap<IBlockState> BLOCK_STATE_IDS;
+	public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Block> REGISTRY = new RegistryNamespacedDefaultedByKey<ResourceLocation, Block>(AIR_ID);
+	public static final ObjectIntIdentityMap<IBlockState> BLOCK_STATE_IDS = new ObjectIntIdentityMap<IBlockState>();
 	public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 	@Nullable
 	public static final AxisAlignedBB NULL_AABB = null;
@@ -149,7 +149,7 @@ public class Block
 
 	public static Block getBlockFromItem(@Nullable Item itemIn)
 	{
-		return itemIn instanceof ItemBlock ? ((ItemBlock) itemIn).getBlock() : Blocks.getBlock(Blocks.AIR);
+		return itemIn instanceof ItemBlock ? ((ItemBlock) itemIn).getBlock() : Blocks.AIR;
 	}
 
 	@Nullable
@@ -370,12 +370,12 @@ public class Block
 
 	protected static boolean func_193384_b(Block block)
 	{
-		return block instanceof BlockShulkerBox || block instanceof BlockLeaves || block instanceof BlockTrapDoor || block == Blocks.getBlock(Blocks.BEACON) || block == Blocks.getBlock(Blocks.CAULDRON) || block == Blocks.getBlock(Blocks.GLASS) || block == Blocks.getBlock(Blocks.GLOWSTONE) || block == Blocks.getBlock(Blocks.ICE) || block == Blocks.getBlock(Blocks.SEA_LANTERN) || block == Blocks.getBlock(Blocks.STAINED_GLASS);
+		return block instanceof BlockShulkerBox || block instanceof BlockLeaves || block instanceof BlockTrapDoor || block == Blocks.BEACON || block == Blocks.CAULDRON || block == Blocks.GLASS || block == Blocks.GLOWSTONE || block == Blocks.ICE || block == Blocks.SEA_LANTERN || block == Blocks.STAINED_GLASS;
 	}
 
 	protected static boolean func_193382_c(Block block)
 	{
-		return func_193384_b(block) || block == Blocks.getBlock(Blocks.PISTON) || block == Blocks.getBlock(Blocks.STICKY_PISTON) || block == Blocks.getBlock(Blocks.PISTON_HEAD);
+		return func_193384_b(block) || block == Blocks.PISTON || block == Blocks.STICKY_PISTON || block == Blocks.PISTON_HEAD;
 	}
 
 	@Deprecated
@@ -758,7 +758,7 @@ public class Block
 				{
 					Item item = this.getItemDropped(state, world.rand, fortune);
 
-					if (item != Items.getItem(Items.AIR))
+					if (item != Items.EMPTY_ITEM)
 					{
 						spawnAsEntity(world, pos, new ItemStack(item, 1, this.damageDropped(state)));
 					}
@@ -1272,9 +1272,6 @@ public class Block
 
 	public static void registerBlocks()
 	{
-		REGISTRY = new RegistryNamespacedDefaultedByKey<ResourceLocation, Block>(AIR_ID);
-		BLOCK_STATE_IDS = new ObjectIntIdentityMap<IBlockState>();
-		
 		registerBlock(0, AIR_ID, (new BlockAir()).setUnlocalizedName("air"));
 		registerBlock(1, "stone", (new BlockStone()).setHardness(1.5F).setResistance(10.0F).setSoundType(SoundType.STONE).setUnlocalizedName("stone"));
 		registerBlock(2, "grass", (new BlockGrass()).setHardness(0.6F).setSoundType(SoundType.PLANT).setUnlocalizedName("grass"));

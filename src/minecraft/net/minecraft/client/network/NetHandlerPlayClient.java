@@ -1178,7 +1178,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
 				if (entity == this.gameController.player)
 				{
-					this.gameController.entityRenderer.func_190565_a(new ItemStack(Items.getItem(Items.TOTEM)));
+					this.gameController.entityRenderer.func_190565_a(new ItemStack(Items.TOTEM));
 				}
 			}
 			else
@@ -2146,7 +2146,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 			EnumHand enumhand = packetIn.getBufferData().readEnumValue(EnumHand.class);
 			ItemStack itemstack = enumhand == EnumHand.OFF_HAND ? this.gameController.player.getHeldItemOffhand() : this.gameController.player.getHeldItemMainhand();
 
-			if (itemstack.getItem() == Items.getItem(Items.WRITTEN_BOOK))
+			if (itemstack.getItem() == Items.WRITTEN_BOOK)
 			{
 				this.gameController.displayGuiScreen(new GuiScreenBook(this.gameController.player, itemstack, false));
 			}

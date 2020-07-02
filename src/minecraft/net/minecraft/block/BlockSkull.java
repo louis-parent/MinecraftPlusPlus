@@ -52,7 +52,7 @@ public class BlockSkull extends BlockContainer
 		@Override
 		public boolean apply(@Nullable BlockWorldState p_apply_1_)
 		{
-			return p_apply_1_.getBlockState() != null && p_apply_1_.getBlockState().getBlock() == Blocks.getBlock(Blocks.SKULL) && p_apply_1_.getTileEntity() instanceof TileEntitySkull && ((TileEntitySkull) p_apply_1_.getTileEntity()).getSkullType() == 1;
+			return p_apply_1_.getBlockState() != null && p_apply_1_.getBlockState().getBlock() == Blocks.SKULL && p_apply_1_.getTileEntity() instanceof TileEntitySkull && ((TileEntitySkull) p_apply_1_.getTileEntity()).getSkullType() == 1;
 		}
 	};
 	protected static final AxisAlignedBB DEFAULT_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.5D, 0.75D);
@@ -154,7 +154,7 @@ public class BlockSkull extends BlockContainer
 			i = ((TileEntitySkull) tileentity).getSkullType();
 		}
 
-		return new ItemStack(Items.getItem(Items.SKULL), 1, i);
+		return new ItemStack(Items.SKULL, 1, i);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class BlockSkull extends BlockContainer
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.SKULL);
+		return Items.SKULL;
 	}
 
 	public boolean canDispenserPlace(World worldIn, BlockPos pos, ItemStack stack)
@@ -252,7 +252,7 @@ public class BlockSkull extends BlockContainer
 					for (int k = 0; k < blockpattern.getThumbLength(); ++k)
 					{
 						BlockWorldState blockworldstate1 = blockpattern$patternhelper.translateOffset(j, k, 0);
-						worldIn.setBlockState(blockworldstate1.getPos(), Blocks.getBlock(Blocks.AIR).getDefaultState(), 2);
+						worldIn.setBlockState(blockworldstate1.getPos(), Blocks.AIR.getDefaultState(), 2);
 					}
 				}
 
@@ -280,7 +280,7 @@ public class BlockSkull extends BlockContainer
 					for (int j1 = 0; j1 < blockpattern.getThumbLength(); ++j1)
 					{
 						BlockWorldState blockworldstate2 = blockpattern$patternhelper.translateOffset(i1, j1, 0);
-						worldIn.notifyNeighborsRespectDebug(blockworldstate2.getPos(), Blocks.getBlock(Blocks.AIR), false);
+						worldIn.notifyNeighborsRespectDebug(blockworldstate2.getPos(), Blocks.AIR, false);
 					}
 				}
 			}
@@ -343,7 +343,7 @@ public class BlockSkull extends BlockContainer
 	{
 		if (this.witherBasePattern == null)
 		{
-			this.witherBasePattern = FactoryBlockPattern.start().aisle("   ", "###", "~#~").where('#', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.getBlock(Blocks.SOUL_SAND)))).where('~', BlockWorldState.hasState(BlockMaterialMatcher.forMaterial(Material.AIR))).build();
+			this.witherBasePattern = FactoryBlockPattern.start().aisle("   ", "###", "~#~").where('#', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.SOUL_SAND))).where('~', BlockWorldState.hasState(BlockMaterialMatcher.forMaterial(Material.AIR))).build();
 		}
 
 		return this.witherBasePattern;
@@ -353,7 +353,7 @@ public class BlockSkull extends BlockContainer
 	{
 		if (this.witherPattern == null)
 		{
-			this.witherPattern = FactoryBlockPattern.start().aisle("^^^", "###", "~#~").where('#', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.getBlock(Blocks.SOUL_SAND)))).where('^', IS_WITHER_SKELETON).where('~', BlockWorldState.hasState(BlockMaterialMatcher.forMaterial(Material.AIR))).build();
+			this.witherPattern = FactoryBlockPattern.start().aisle("^^^", "###", "~#~").where('#', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.SOUL_SAND))).where('^', IS_WITHER_SKELETON).where('~', BlockWorldState.hasState(BlockMaterialMatcher.forMaterial(Material.AIR))).build();
 		}
 
 		return this.witherPattern;

@@ -261,7 +261,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 
 		if (raytraceresult != null)
 		{
-			if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && this.world.getBlockState(raytraceresult.getBlockPos()).getBlock() == Blocks.getBlock(Blocks.PORTAL))
+			if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && this.world.getBlockState(raytraceresult.getBlockPos()).getBlock() == Blocks.PORTAL)
 			{
 				this.setPortal(raytraceresult.getBlockPos());
 			}

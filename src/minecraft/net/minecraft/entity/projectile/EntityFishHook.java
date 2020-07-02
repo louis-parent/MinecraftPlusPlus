@@ -279,8 +279,8 @@ public class EntityFishHook extends Entity
 	{
 		ItemStack itemstack = this.angler.getHeldItemMainhand();
 		ItemStack itemstack1 = this.angler.getHeldItemOffhand();
-		boolean flag = itemstack.getItem() == Items.getItem(Items.FISHING_ROD);
-		boolean flag1 = itemstack1.getItem() == Items.getItem(Items.FISHING_ROD);
+		boolean flag = itemstack.getItem() == Items.FISHING_ROD;
+		boolean flag1 = itemstack1.getItem() == Items.FISHING_ROD;
 
 		if (!this.angler.isDead && this.angler.isEntityAlive() && (flag || flag1) && this.getDistanceSqToEntity(this.angler) <= 1024.0D)
 		{
@@ -428,7 +428,7 @@ public class EntityFishHook extends Entity
 				double d2 = this.posZ + f2 * this.ticksCatchableDelay * 0.1F;
 				Block block = worldserver.getBlockState(new BlockPos(d0, d1 - 1.0D, d2)).getBlock();
 
-				if (block == Blocks.getBlock(Blocks.WATER) || block == Blocks.getBlock(Blocks.FLOWING_WATER))
+				if (block == Blocks.WATER || block == Blocks.FLOWING_WATER)
 				{
 					if (this.rand.nextFloat() < 0.15F)
 					{
@@ -478,7 +478,7 @@ public class EntityFishHook extends Entity
 				double d6 = this.posZ + MathHelper.cos(f6) * f7 * 0.1F;
 				Block block1 = worldserver.getBlockState(new BlockPos((int) d4, (int) d5 - 1, (int) d6)).getBlock();
 
-				if (block1 == Blocks.getBlock(Blocks.WATER) || block1 == Blocks.getBlock(Blocks.FLOWING_WATER))
+				if (block1 == Blocks.WATER || block1 == Blocks.FLOWING_WATER)
 				{
 					worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
 				}
@@ -550,7 +550,7 @@ public class EntityFishHook extends Entity
 					this.angler.world.spawnEntityInWorld(new EntityXPOrb(this.angler.world, this.angler.posX, this.angler.posY + 0.5D, this.angler.posZ + 0.5D, this.rand.nextInt(6) + 1));
 					Item item = itemstack.getItem();
 
-					if (item == Items.getItem(Items.FISH) || item == Items.getItem(Items.COOKED_FISH))
+					if (item == Items.FISH || item == Items.COOKED_FISH)
 					{
 						this.angler.addStat(StatList.FISH_CAUGHT, 1);
 					}

@@ -102,7 +102,7 @@ public class BlockEndRod extends BlockDirectional
 	{
 		IBlockState iblockstate = worldIn.getBlockState(pos.offset(facing.getOpposite()));
 
-		if (iblockstate.getBlock() == Blocks.getBlock(Blocks.END_ROD))
+		if (iblockstate.getBlock() == Blocks.END_ROD)
 		{
 			EnumFacing enumfacing = iblockstate.getValue(FACING);
 

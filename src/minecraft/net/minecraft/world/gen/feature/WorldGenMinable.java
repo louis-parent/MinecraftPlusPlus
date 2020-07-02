@@ -102,7 +102,7 @@ public class WorldGenMinable extends WorldGenerator
 		@Override
 		public boolean apply(IBlockState state)
 		{
-			if (state != null && state.getBlock() == Blocks.getBlock(Blocks.STONE))
+			if (state != null && state.getBlock() == Blocks.STONE)
 			{
 				BlockStone.EnumType blockstone$enumtype = state.getValue(BlockStone.VARIANT);
 				return blockstone$enumtype.canOreGenerateIn();

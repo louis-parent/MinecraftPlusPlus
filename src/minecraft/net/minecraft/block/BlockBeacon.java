@@ -153,7 +153,7 @@ public class BlockBeacon extends BlockContainer
 
 					IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-					if (iblockstate.getBlock() == Blocks.getBlock(Blocks.BEACON))
+					if (iblockstate.getBlock() == Blocks.BEACON)
 					{
 						((WorldServer) worldIn).addScheduledTask(new Runnable()
 						{
@@ -165,7 +165,7 @@ public class BlockBeacon extends BlockContainer
 								if (tileentity instanceof TileEntityBeacon)
 								{
 									((TileEntityBeacon) tileentity).updateBeacon();
-									worldIn.addBlockEvent(blockpos, Blocks.getBlock(Blocks.BEACON), 1, 0);
+									worldIn.addBlockEvent(blockpos, Blocks.BEACON, 1, 0);
 								}
 							}
 						});

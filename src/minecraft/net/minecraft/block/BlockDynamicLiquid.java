@@ -120,7 +120,7 @@ public class BlockDynamicLiquid extends BlockLiquid
 		{
 			if (this.blockMaterial == Material.LAVA && worldIn.getBlockState(pos.down()).getMaterial() == Material.WATER)
 			{
-				worldIn.setBlockState(pos.down(), Blocks.getBlock(Blocks.STONE).getDefaultState());
+				worldIn.setBlockState(pos.down(), Blocks.STONE.getDefaultState());
 				this.triggerMixEffects(worldIn, pos.down());
 				return;
 			}
@@ -258,7 +258,7 @@ public class BlockDynamicLiquid extends BlockLiquid
 	{
 		Block block = worldIn.getBlockState(pos).getBlock();
 
-		if (!(block instanceof BlockDoor) && block != Blocks.getBlock(Blocks.STANDING_SIGN) && block != Blocks.getBlock(Blocks.LADDER) && block != Blocks.getBlock(Blocks.REEDS))
+		if (!(block instanceof BlockDoor) && block != Blocks.STANDING_SIGN && block != Blocks.LADDER && block != Blocks.REEDS)
 		{
 			return block.blockMaterial != Material.PORTAL && block.blockMaterial != Material.STRUCTURE_VOID ? block.blockMaterial.blocksMovement() : true;
 		}

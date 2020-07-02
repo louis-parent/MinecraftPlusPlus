@@ -9,7 +9,7 @@ public class RenderPotion extends RenderSnowball<EntityPotion>
 {
 	public RenderPotion(RenderManager renderManagerIn, RenderItem itemRendererIn)
 	{
-		super(renderManagerIn, Items.getItem(Items.POTIONITEM), itemRendererIn);
+		super(renderManagerIn, Items.POTIONITEM, itemRendererIn);
 	}
 
 	@Override

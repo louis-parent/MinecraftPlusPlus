@@ -24,7 +24,7 @@ public class LayerIronGolemFlower implements LayerRenderer<EntityIronGolem>
 	{
 		if (entitylivingbaseIn.getHoldRoseTick() != 0)
 		{
-			BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRenderDispatcher();
+			BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
 			GlStateManager.enableRescaleNormal();
 			GlStateManager.pushMatrix();
 			GlStateManager.rotate(5.0F + 180.0F * ((ModelIronGolem) this.ironGolemRenderer.getMainModel()).ironGolemRightArm.rotateAngleX / (float) Math.PI, 1.0F, 0.0F, 0.0F);
@@ -38,7 +38,7 @@ public class LayerIronGolemFlower implements LayerRenderer<EntityIronGolem>
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j, k);
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			this.ironGolemRenderer.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-			blockrendererdispatcher.renderBlockBrightness(Blocks.getBlock(Blocks.RED_FLOWER).getDefaultState(), 1.0F);
+			blockrendererdispatcher.renderBlockBrightness(Blocks.RED_FLOWER.getDefaultState(), 1.0F);
 			GlStateManager.popMatrix();
 			GlStateManager.disableRescaleNormal();
 		}

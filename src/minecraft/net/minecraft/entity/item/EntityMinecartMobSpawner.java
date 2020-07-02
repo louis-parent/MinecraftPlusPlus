@@ -80,7 +80,7 @@ public class EntityMinecartMobSpawner extends EntityMinecart
 	@Override
 	public IBlockState getDefaultDisplayTile()
 	{
-		return Blocks.getBlock(Blocks.MOB_SPAWNER).getDefaultState();
+		return Blocks.MOB_SPAWNER.getDefaultState();
 	}
 
 	/**

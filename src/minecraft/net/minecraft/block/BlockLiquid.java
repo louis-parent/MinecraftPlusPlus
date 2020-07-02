@@ -181,7 +181,7 @@ public abstract class BlockLiquid extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.AIR);
+		return Items.EMPTY_ITEM;
 	}
 
 	/**
@@ -406,14 +406,14 @@ public abstract class BlockLiquid extends Block
 
 				if (integer.intValue() == 0)
 				{
-					worldIn.setBlockState(pos, Blocks.getBlock(Blocks.OBSIDIAN).getDefaultState());
+					worldIn.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState());
 					this.triggerMixEffects(worldIn, pos);
 					return true;
 				}
 
 				if (integer.intValue() <= 4)
 				{
-					worldIn.setBlockState(pos, Blocks.getBlock(Blocks.COBBLESTONE).getDefaultState());
+					worldIn.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState());
 					this.triggerMixEffects(worldIn, pos);
 					return true;
 				}
@@ -464,11 +464,11 @@ public abstract class BlockLiquid extends Block
 	{
 		if (materialIn == Material.WATER)
 		{
-			return (BlockDynamicLiquid) Blocks.getBlock(Blocks.FLOWING_WATER);
+			return Blocks.FLOWING_WATER;
 		}
 		else if (materialIn == Material.LAVA)
 		{
-			return (BlockDynamicLiquid) Blocks.getBlock(Blocks.FLOWING_LAVA);
+			return Blocks.FLOWING_LAVA;
 		}
 		else
 		{
@@ -480,11 +480,11 @@ public abstract class BlockLiquid extends Block
 	{
 		if (materialIn == Material.WATER)
 		{
-			return (BlockStaticLiquid) Blocks.getBlock(Blocks.WATER);
+			return Blocks.WATER;
 		}
 		else if (materialIn == Material.LAVA)
 		{
-			return (BlockStaticLiquid) Blocks.getBlock(Blocks.LAVA);
+			return Blocks.LAVA;
 		}
 		else
 		{

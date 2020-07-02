@@ -145,7 +145,7 @@ public class TileEntityStructure extends TileEntity
 			BlockPos blockpos = this.getPos();
 			IBlockState iblockstate = this.world.getBlockState(blockpos);
 
-			if (iblockstate.getBlock() == Blocks.getBlock(Blocks.STRUCTURE_BLOCK))
+			if (iblockstate.getBlock() == Blocks.STRUCTURE_BLOCK)
 			{
 				this.world.setBlockState(blockpos, iblockstate.withProperty(BlockStructure.MODE, this.mode), 2);
 			}
@@ -267,7 +267,7 @@ public class TileEntityStructure extends TileEntity
 		this.mode = modeIn;
 		IBlockState iblockstate = this.world.getBlockState(this.getPos());
 
-		if (iblockstate.getBlock() == Blocks.getBlock(Blocks.STRUCTURE_BLOCK))
+		if (iblockstate.getBlock() == Blocks.STRUCTURE_BLOCK)
 		{
 			this.world.setBlockState(this.getPos(), iblockstate.withProperty(BlockStructure.MODE, modeIn), 2);
 		}
@@ -385,7 +385,7 @@ public class TileEntityStructure extends TileEntity
 		{
 			IBlockState iblockstate = this.world.getBlockState(blockpos$mutableblockpos);
 
-			if (iblockstate.getBlock() == Blocks.getBlock(Blocks.STRUCTURE_BLOCK))
+			if (iblockstate.getBlock() == Blocks.STRUCTURE_BLOCK)
 			{
 				TileEntity tileentity = this.world.getTileEntity(blockpos$mutableblockpos);
 
@@ -469,7 +469,7 @@ public class TileEntityStructure extends TileEntity
 			MinecraftServer minecraftserver = this.world.getMinecraftServer();
 			TemplateManager templatemanager = worldserver.getStructureTemplateManager();
 			Template template = templatemanager.getTemplate(minecraftserver, new ResourceLocation(this.name));
-			template.takeBlocksFromWorld(this.world, blockpos, this.size, !this.ignoreEntities, Blocks.getBlock(Blocks.STRUCTURE_VOID));
+			template.takeBlocksFromWorld(this.world, blockpos, this.size, !this.ignoreEntities, Blocks.STRUCTURE_VOID);
 			template.setAuthor(this.author);
 			return !p_189712_1_ || templatemanager.writeTemplate(minecraftserver, new ResourceLocation(this.name));
 		}

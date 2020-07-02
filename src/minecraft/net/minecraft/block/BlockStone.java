@@ -53,7 +53,7 @@ public class BlockStone extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return state.getValue(VARIANT) == BlockStone.EnumType.STONE ? Item.getItemFromBlock(Blocks.getBlock(Blocks.COBBLESTONE)) : Item.getItemFromBlock(Blocks.getBlock(Blocks.STONE));
+		return state.getValue(VARIANT) == BlockStone.EnumType.STONE ? Item.getItemFromBlock(Blocks.COBBLESTONE) : Item.getItemFromBlock(Blocks.STONE);
 	}
 
 	/**

@@ -23,7 +23,7 @@ public class Blueprint
 	{
 		setAttributes(matrixWidth, matrixHeight);
 
-		this.setAllItems(Items.getItem(Items.AIR));
+		this.setAllItems(Items.EMPTY_ITEM);
 	}
 
 	public Blueprint(Item[][] itemMatrix)
@@ -71,8 +71,8 @@ public class Blueprint
 				}
 				else
 				{
-					this.matrix[i][j] = Items.getItem(Items.AIR);
-					this.symmetryMatrix[i][this.height - j - 1] = Items.getItem(Items.AIR);
+					this.matrix[i][j] = Items.EMPTY_ITEM;
+					this.symmetryMatrix[i][this.height - j - 1] = Items.EMPTY_ITEM;
 				}
 			}
 		}
@@ -206,7 +206,7 @@ public class Blueprint
 			for (int j = originJ; j < originJ + this.height; j++)
 			{
 				match &= craftShape[i][j] == matrix[i - originI][j - originJ];
-				craftShape[i][j] = Items.getItem(Items.AIR);
+				craftShape[i][j] = Items.EMPTY_ITEM;
 			}
 		}
 
@@ -221,7 +221,7 @@ public class Blueprint
 		{
 			for (int j = 0; j < craftShape[i].length; j++)
 			{
-				isEmpty &= craftShape[i][j] == Items.getItem(Items.AIR);
+				isEmpty &= craftShape[i][j] == Items.EMPTY_ITEM;
 			}
 		}
 

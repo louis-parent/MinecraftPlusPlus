@@ -179,13 +179,13 @@ public abstract class GenLayer
 
 			if (biome != null && biome1 != null)
 			{
-				if (biome != Biomes.getBiome(Biomes.MESA_ROCK) && biome != Biomes.getBiome(Biomes.MESA_CLEAR_ROCK))
+				if (biome != Biomes.MESA_ROCK && biome != Biomes.MESA_CLEAR_ROCK)
 				{
 					return biome == biome1 || biome.getBiomeClass() == biome1.getBiomeClass();
 				}
 				else
 				{
-					return biome1 == Biomes.getBiome(Biomes.MESA_ROCK) || biome1 == Biomes.getBiome(Biomes.MESA_CLEAR_ROCK);
+					return biome1 == Biomes.MESA_ROCK || biome1 == Biomes.MESA_CLEAR_ROCK;
 				}
 			}
 			else
@@ -201,7 +201,7 @@ public abstract class GenLayer
 	protected static boolean isBiomeOceanic(int p_151618_0_)
 	{
 		Biome biome = Biome.getBiome(p_151618_0_);
-		return biome == Biomes.getBiome(Biomes.OCEAN) || biome == Biomes.getBiome(Biomes.DEEP_OCEAN) || biome == Biomes.getBiome(Biomes.FROZEN_OCEAN);
+		return biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN || biome == Biomes.FROZEN_OCEAN;
 	}
 
 	/**

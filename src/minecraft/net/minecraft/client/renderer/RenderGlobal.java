@@ -25,7 +25,6 @@ import com.google.gson.JsonSyntaxException;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockEnderChest;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockSign;
 import net.minecraft.block.BlockSkull;
 import net.minecraft.block.SoundType;
@@ -107,6 +106,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
 	/** The RenderEngine instance used by RenderGlobal */
 	private final TextureManager renderEngine;
+	private final RenderManager renderManager;
 	private WorldClient theWorld;
 	private Set<RenderChunk> chunksToUpdate = Sets.<RenderChunk>newLinkedHashSet();
 	private List<RenderGlobal.ContainerLocalRenderInformation> renderInfos = Lists.<RenderGlobal.ContainerLocalRenderInformation>newArrayListWithCapacity(69696);
@@ -179,6 +179,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 	public RenderGlobal(Minecraft mcIn)
 	{
 		this.mc = mcIn;
+		this.renderManager = mcIn.getRenderManager();
 		this.renderEngine = mcIn.getTextureManager();
 		this.renderEngine.bindTexture(FORCEFIELD_TEXTURES);
 		GlStateManager.glTexParameteri(3553, 10242, 10497);
@@ -475,7 +476,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 		this.frustumUpdatePosChunkX = Integer.MIN_VALUE;
 		this.frustumUpdatePosChunkY = Integer.MIN_VALUE;
 		this.frustumUpdatePosChunkZ = Integer.MIN_VALUE;
-		this.getRenderManager().set(worldClientIn);
+		this.renderManager.set(worldClientIn);
 		this.theWorld = worldClientIn;
 
 		if (worldClientIn != null)
@@ -516,8 +517,8 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 			}
 
 			this.displayListEntitiesDirty = true;
-			((BlockLeaves) Blocks.getBlock(Blocks.LEAVES)).setGraphicsLevel(this.mc.gameSettings.fancyGraphics);
-			((BlockLeaves) Blocks.getBlock(Blocks.LEAVES2)).setGraphicsLevel(this.mc.gameSettings.fancyGraphics);
+			Blocks.LEAVES.setGraphicsLevel(this.mc.gameSettings.fancyGraphics);
+			Blocks.LEAVES2.setGraphicsLevel(this.mc.gameSettings.fancyGraphics);
 			this.renderDistanceChunks = this.mc.gameSettings.renderDistanceChunks;
 			boolean flag = this.vboEnabled;
 			this.vboEnabled = OpenGlHelper.useVbo();
@@ -598,7 +599,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 			double d2 = renderViewEntity.prevPosZ + (renderViewEntity.posZ - renderViewEntity.prevPosZ) * partialTicks;
 			this.theWorld.theProfiler.startSection("prepare");
 			TileEntityRendererDispatcher.instance.prepare(this.theWorld, this.mc.getTextureManager(), this.mc.fontRendererObj, this.mc.getRenderViewEntity(), this.mc.objectMouseOver, partialTicks);
-			this.getRenderManager().cacheActiveRenderInfo(this.theWorld, this.mc.fontRendererObj, this.mc.getRenderViewEntity(), this.mc.pointedEntity, this.mc.gameSettings, partialTicks);
+			this.renderManager.cacheActiveRenderInfo(this.theWorld, this.mc.fontRendererObj, this.mc.getRenderViewEntity(), this.mc.pointedEntity, this.mc.gameSettings, partialTicks);
 			this.countEntitiesTotal = 0;
 			this.countEntitiesRendered = 0;
 			this.countEntitiesHidden = 0;
@@ -609,7 +610,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 			TileEntityRendererDispatcher.staticPlayerX = d3;
 			TileEntityRendererDispatcher.staticPlayerY = d4;
 			TileEntityRendererDispatcher.staticPlayerZ = d5;
-			this.getRenderManager().setRenderPosition(d3, d4, d5);
+			this.renderManager.setRenderPosition(d3, d4, d5);
 			this.mc.entityRenderer.enableLightmap();
 			this.theWorld.theProfiler.endStartSection("global");
 			List<Entity> list = this.theWorld.getLoadedEntityList();
@@ -622,7 +623,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
 				if (entity1.isInRangeToRender3d(d0, d1, d2))
 				{
-					this.getRenderManager().renderEntityStatic(entity1, partialTicks, false);
+					this.renderManager.renderEntityStatic(entity1, partialTicks, false);
 				}
 			}
 
@@ -640,7 +641,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 				{
 					for (Entity entity2 : classinheritancemultimap)
 					{
-						boolean flag = this.getRenderManager().shouldRender(entity2, camera, d0, d1, d2) || entity2.isRidingOrBeingRiddenBy(this.mc.player);
+						boolean flag = this.renderManager.shouldRender(entity2, camera, d0, d1, d2) || entity2.isRidingOrBeingRiddenBy(this.mc.player);
 
 						if (flag)
 						{
@@ -649,14 +650,14 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 							if ((entity2 != this.mc.getRenderViewEntity() || this.mc.gameSettings.thirdPersonView != 0 || flag1) && (entity2.posY < 0.0D || entity2.posY >= 256.0D || this.theWorld.isBlockLoaded(blockpos$pooledmutableblockpos.setPos(entity2))))
 							{
 								++this.countEntitiesRendered;
-								this.getRenderManager().renderEntityStatic(entity2, partialTicks, false);
+								this.renderManager.renderEntityStatic(entity2, partialTicks, false);
 
 								if (this.isOutlineActive(entity2, entity, camera))
 								{
 									list1.add(entity2);
 								}
 
-								if (this.getRenderManager().isRenderMultipass(entity2))
+								if (this.renderManager.isRenderMultipass(entity2))
 								{
 									list2.add(entity2);
 								}
@@ -672,7 +673,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 			{
 				for (Entity entity3 : list2)
 				{
-					this.getRenderManager().renderMultipass(entity3, partialTicks);
+					this.renderManager.renderMultipass(entity3, partialTicks);
 				}
 			}
 
@@ -688,14 +689,14 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 					GlStateManager.disableFog();
 					this.entityOutlineFramebuffer.bindFramebuffer(false);
 					RenderHelper.disableStandardItemLighting();
-					this.getRenderManager().setRenderOutlines(true);
+					this.renderManager.setRenderOutlines(true);
 
 					for (int j = 0; j < list1.size(); ++j)
 					{
-						this.getRenderManager().renderEntityStatic(list1.get(j), partialTicks, false);
+						this.renderManager.renderEntityStatic(list1.get(j), partialTicks, false);
 					}
 
-					this.getRenderManager().setRenderOutlines(false);
+					this.renderManager.setRenderOutlines(false);
 					RenderHelper.enableStandardItemLighting();
 					GlStateManager.depthMask(false);
 					this.entityOutlineShader.loadShaderGroup(partialTicks);
@@ -1955,7 +1956,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 						{
 							int i = destroyblockprogress.getPartialBlockDamage();
 							TextureAtlasSprite textureatlassprite = this.destroyBlockIcons[i];
-							BlockRendererDispatcher blockrendererdispatcher = this.mc.getBlockRenderDispatcher();
+							BlockRendererDispatcher blockrendererdispatcher = this.mc.getBlockRendererDispatcher();
 							blockrendererdispatcher.renderBlockDamage(iblockstate, blockpos, textureatlassprite, this.theWorld);
 						}
 					}
@@ -2519,7 +2520,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
 				for (int i1 = 0; i1 < 8; ++i1)
 				{
-					this.spawnParticle(EnumParticleTypes.ITEM_CRACK, d6, d7, d9, random.nextGaussian() * 0.15D, random.nextDouble() * 0.2D, random.nextGaussian() * 0.15D, Item.getIdFromItem(Items.getItem(Items.SPLASH_POTION)));
+					this.spawnParticle(EnumParticleTypes.ITEM_CRACK, d6, d7, d9, random.nextGaussian() * 0.15D, random.nextDouble() * 0.2D, random.nextGaussian() * 0.15D, Item.getIdFromItem(Items.SPLASH_POTION));
 				}
 
 				float f5 = (data >> 16 & 255) / 255.0F;
@@ -2554,7 +2555,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
 				for (int j = 0; j < 8; ++j)
 				{
-					this.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, d1, d2, random.nextGaussian() * 0.15D, random.nextDouble() * 0.2D, random.nextGaussian() * 0.15D, Item.getIdFromItem(Items.getItem(Items.ENDER_EYE)));
+					this.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, d1, d2, random.nextGaussian() * 0.15D, random.nextDouble() * 0.2D, random.nextGaussian() * 0.15D, Item.getIdFromItem(Items.ENDER_EYE));
 				}
 
 				for (double d11 = 0.0D; d11 < (Math.PI * 2D); d11 += 0.15707963267948966D)
@@ -2649,11 +2650,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 			this.setTileEntities.removeAll(tileEntitiesToRemove);
 			this.setTileEntities.addAll(tileEntitiesToAdd);
 		}
-	}
-
-	public RenderManager getRenderManager()
-	{
-		return mc.getRenderManager();
 	}
 
 	class ContainerLocalRenderInformation

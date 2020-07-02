@@ -65,6 +65,6 @@ public class TileEntityBed extends TileEntity
 
 	public ItemStack func_193049_f()
 	{
-		return new ItemStack(Items.getItem(Items.BED), 1, this.field_193053_a.getMetadata());
+		return new ItemStack(Items.BED, 1, this.field_193053_a.getMetadata());
 	}
 }

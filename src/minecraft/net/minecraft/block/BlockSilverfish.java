@@ -40,7 +40,7 @@ public class BlockSilverfish extends Block
 	public static boolean canContainSilverfish(IBlockState blockState)
 	{
 		Block block = blockState.getBlock();
-		return blockState == Blocks.getBlock(Blocks.STONE).getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE) || block == Blocks.getBlock(Blocks.COBBLESTONE) || block == Blocks.getBlock(Blocks.STONEBRICK);
+		return blockState == Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE) || block == Blocks.COBBLESTONE || block == Blocks.STONEBRICK;
 	}
 
 	@Override
@@ -49,22 +49,22 @@ public class BlockSilverfish extends Block
 		switch (state.getValue(VARIANT))
 		{
 			case COBBLESTONE:
-				return new ItemStack(Blocks.getBlock(Blocks.COBBLESTONE));
+				return new ItemStack(Blocks.COBBLESTONE);
 
 			case STONEBRICK:
-				return new ItemStack(Blocks.getBlock(Blocks.STONEBRICK));
+				return new ItemStack(Blocks.STONEBRICK);
 
 			case MOSSY_STONEBRICK:
-				return new ItemStack(Blocks.getBlock(Blocks.STONEBRICK), 1, BlockStoneBrick.EnumType.MOSSY.getMetadata());
+				return new ItemStack(Blocks.STONEBRICK, 1, BlockStoneBrick.EnumType.MOSSY.getMetadata());
 
 			case CRACKED_STONEBRICK:
-				return new ItemStack(Blocks.getBlock(Blocks.STONEBRICK), 1, BlockStoneBrick.EnumType.CRACKED.getMetadata());
+				return new ItemStack(Blocks.STONEBRICK, 1, BlockStoneBrick.EnumType.CRACKED.getMetadata());
 
 			case CHISELED_STONEBRICK:
-				return new ItemStack(Blocks.getBlock(Blocks.STONEBRICK), 1, BlockStoneBrick.EnumType.CHISELED.getMetadata());
+				return new ItemStack(Blocks.STONEBRICK, 1, BlockStoneBrick.EnumType.CHISELED.getMetadata());
 
 			default:
-				return new ItemStack(Blocks.getBlock(Blocks.STONE));
+				return new ItemStack(Blocks.STONE);
 		}
 	}
 
@@ -133,7 +133,7 @@ public class BlockSilverfish extends Block
 			@Override
 			public IBlockState getModelBlock()
 			{
-				return Blocks.getBlock(Blocks.STONE).getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE);
+				return Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE);
 			}
 		},
 		COBBLESTONE(1, "cobblestone", "cobble")
@@ -141,7 +141,7 @@ public class BlockSilverfish extends Block
 			@Override
 			public IBlockState getModelBlock()
 			{
-				return Blocks.getBlock(Blocks.COBBLESTONE).getDefaultState();
+				return Blocks.COBBLESTONE.getDefaultState();
 			}
 		},
 		STONEBRICK(2, "stone_brick", "brick")
@@ -149,7 +149,7 @@ public class BlockSilverfish extends Block
 			@Override
 			public IBlockState getModelBlock()
 			{
-				return Blocks.getBlock(Blocks.STONEBRICK).getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.DEFAULT);
+				return Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.DEFAULT);
 			}
 		},
 		MOSSY_STONEBRICK(3, "mossy_brick", "mossybrick")
@@ -157,7 +157,7 @@ public class BlockSilverfish extends Block
 			@Override
 			public IBlockState getModelBlock()
 			{
-				return Blocks.getBlock(Blocks.STONEBRICK).getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY);
+				return Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY);
 			}
 		},
 		CRACKED_STONEBRICK(4, "cracked_brick", "crackedbrick")
@@ -165,7 +165,7 @@ public class BlockSilverfish extends Block
 			@Override
 			public IBlockState getModelBlock()
 			{
-				return Blocks.getBlock(Blocks.STONEBRICK).getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CRACKED);
+				return Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CRACKED);
 			}
 		},
 		CHISELED_STONEBRICK(5, "chiseled_brick", "chiseledbrick")
@@ -173,7 +173,7 @@ public class BlockSilverfish extends Block
 			@Override
 			public IBlockState getModelBlock()
 			{
-				return Blocks.getBlock(Blocks.STONEBRICK).getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CHISELED);
+				return Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CHISELED);
 			}
 		};
 

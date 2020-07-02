@@ -21,6 +21,6 @@ public class ItemSoup extends ItemFood
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
 	{
 		super.onItemUseFinish(stack, worldIn, entityLiving);
-		return new ItemStack(Items.getItem(Items.BOWL));
+		return new ItemStack(Items.BOWL);
 	}
 }

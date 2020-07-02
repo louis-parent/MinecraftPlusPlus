@@ -58,7 +58,6 @@ import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
-import fr.minecraftpp.init.ModBootstrap;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -548,17 +547,17 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 		this.mcResourcePackRepository = new ResourcePackRepository(this.fileResourcepacks, new File(this.mcDataDir, "server-resource-packs"), this.mcDefaultResourcePack, this.metadataSerializer_, this.gameSettings);
 		this.mcResourceManager = new SimpleReloadableResourceManager(this.metadataSerializer_);
 		this.mcLanguageManager = new LanguageManager(this.metadataSerializer_, this.gameSettings.language);
-		this.getMcResourceManager().registerReloadListener(this.mcLanguageManager);
+		this.mcResourceManager.registerReloadListener(this.mcLanguageManager);
 		this.refreshResources();
-		this.renderEngine = new TextureManager(this.getMcResourceManager());
-		this.getMcResourceManager().registerReloadListener(this.getRenderEngine());
-		this.drawSplashScreen(this.getRenderEngine());
-		this.skinManager = new SkinManager(this.getRenderEngine(), new File(this.fileAssets, "skins"), this.sessionService);
+		this.renderEngine = new TextureManager(this.mcResourceManager);
+		this.mcResourceManager.registerReloadListener(this.renderEngine);
+		this.drawSplashScreen(this.renderEngine);
+		this.skinManager = new SkinManager(this.renderEngine, new File(this.fileAssets, "skins"), this.sessionService);
 		this.saveLoader = new AnvilSaveConverter(new File(this.mcDataDir, "saves"), this.dataFixer);
-		this.mcSoundHandler = new SoundHandler(this.getMcResourceManager(), this.gameSettings);
-		this.getMcResourceManager().registerReloadListener(this.mcSoundHandler);
+		this.mcSoundHandler = new SoundHandler(this.mcResourceManager, this.gameSettings);
+		this.mcResourceManager.registerReloadListener(this.mcSoundHandler);
 		this.mcMusicTicker = new MusicTicker(this);
-		this.fontRendererObj = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii.png"), this.getRenderEngine(), false);
+		this.fontRendererObj = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii.png"), this.renderEngine, false);
 
 		if (this.gameSettings.language != null)
 		{
@@ -566,11 +565,11 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 			this.fontRendererObj.setBidiFlag(this.mcLanguageManager.isCurrentLanguageBidirectional());
 		}
 
-		this.standardGalacticFontRenderer = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii_sga.png"), this.getRenderEngine(), false);
-		this.getMcResourceManager().registerReloadListener(this.fontRendererObj);
-		this.getMcResourceManager().registerReloadListener(this.standardGalacticFontRenderer);
-		this.getMcResourceManager().registerReloadListener(new GrassColorReloadListener());
-		this.getMcResourceManager().registerReloadListener(new FoliageColorReloadListener());
+		this.standardGalacticFontRenderer = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii_sga.png"), this.renderEngine, false);
+		this.mcResourceManager.registerReloadListener(this.fontRendererObj);
+		this.mcResourceManager.registerReloadListener(this.standardGalacticFontRenderer);
+		this.mcResourceManager.registerReloadListener(new GrassColorReloadListener());
+		this.mcResourceManager.registerReloadListener(new FoliageColorReloadListener());
 		this.mouseHelper = new MouseHelper();
 		this.checkGLError("Pre startup");
 		GlStateManager.enableTexture2D();
@@ -587,21 +586,27 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 		this.checkGLError("Startup");
 		this.textureMapBlocks = new TextureMap("textures");
 		this.textureMapBlocks.setMipmapLevels(this.gameSettings.mipmapLevels);
-		this.getRenderEngine().loadTickableTexture(TextureMap.LOCATION_BLOCKS_TEXTURE, this.textureMapBlocks);
-		this.getRenderEngine().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+		this.renderEngine.loadTickableTexture(TextureMap.LOCATION_BLOCKS_TEXTURE, this.textureMapBlocks);
+		this.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		this.textureMapBlocks.setBlurMipmapDirect(false, this.gameSettings.mipmapLevels > 0);
 		this.modelManager = new ModelManager(this.textureMapBlocks);
-		this.getMcResourceManager().registerReloadListener(this.getModelManager());
+		this.mcResourceManager.registerReloadListener(this.modelManager);
+		this.blockColors = BlockColors.init();
+		this.itemColors = ItemColors.init(this.blockColors);
+		this.renderItem = new RenderItem(this.renderEngine, this.modelManager, this.itemColors);
+		this.renderManager = new RenderManager(this.renderEngine, this.renderItem);
 		this.itemRenderer = new ItemRenderer(this);
-		this.entityRenderer = new EntityRenderer(this, this.getMcResourceManager());
-		this.getMcResourceManager().registerReloadListener(this.entityRenderer);
-		this.blockRenderDispatcher = new BlockRendererDispatcher(this);
-		this.getMcResourceManager().registerReloadListener(this.getBlockRenderDispatcher());
+		this.mcResourceManager.registerReloadListener(this.renderItem);
+		this.entityRenderer = new EntityRenderer(this, this.mcResourceManager);
+		this.mcResourceManager.registerReloadListener(this.entityRenderer);
+		this.blockRenderDispatcher = new BlockRendererDispatcher(this.modelManager.getBlockModelShapes(), this.blockColors);
+		this.mcResourceManager.registerReloadListener(this.blockRenderDispatcher);
 		this.renderGlobal = new RenderGlobal(this);
-		this.getMcResourceManager().registerReloadListener(this.renderGlobal);
-		this.getMcResourceManager().registerReloadListener(this.field_193995_ae);
+		this.mcResourceManager.registerReloadListener(this.renderGlobal);
+		this.func_193986_ar();
+		this.mcResourceManager.registerReloadListener(this.field_193995_ae);
 		GlStateManager.viewport(0, 0, this.displayWidth, this.displayHeight);
-		this.effectRenderer = new ParticleManager(this.world, this.getRenderEngine());
+		this.effectRenderer = new ParticleManager(this.world, this.renderEngine);
 		this.checkGLError("Post startup");
 		this.ingameGUI = new GuiIngame(this);
 
@@ -614,7 +619,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 			this.displayGuiScreen(new GuiMainMenu());
 		}
 
-		this.getRenderEngine().deleteTexture(this.mojangLogo);
+		this.renderEngine.deleteTexture(this.mojangLogo);
 		this.mojangLogo = null;
 		this.loadingScreen = new LoadingScreenRenderer(this);
 		this.debugRenderer = new DebugRenderer(this);
@@ -637,7 +642,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 		this.renderGlobal.makeEntityOutlineShader();
 	}
 
-	public void func_193986_ar()
+	private void func_193986_ar()
 	{
 		SearchTree<ItemStack> searchtree = new SearchTree<ItemStack>((p_193988_0_) ->
 		{
@@ -667,7 +672,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 				return !p_193994_0_.isEmpty();
 			}).collect(Collectors.toList());
 		}, (p_193991_0_) ->
-		{			
+		{
 			return (List) p_193991_0_.func_192711_b().stream().map((p_193992_0_) ->
 			{
 				return Item.REGISTRY.getNameForObject(p_193992_0_.getRecipeOutput().getItem());
@@ -878,7 +883,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 
 		try
 		{
-			this.getMcResourceManager().reloadResources(list);
+			this.mcResourceManager.reloadResources(list);
 		}
 		catch (RuntimeException runtimeexception)
 		{
@@ -886,7 +891,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 			list.clear();
 			list.addAll(this.defaultResourcePacks);
 			this.mcResourcePackRepository.setRepositories(Collections.emptyList());
-			this.getMcResourceManager().reloadResources(list);
+			this.mcResourceManager.reloadResources(list);
 			this.gameSettings.resourcePacks.clear();
 			this.gameSettings.incompatibleResourcePacks.clear();
 			this.gameSettings.saveOptions();
@@ -1842,7 +1847,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 
 		if (this.world != null)
 		{
-			this.getRenderEngine().tick();
+			this.renderEngine.tick();
 		}
 
 		if (this.currentScreen == null && this.player != null)
@@ -2144,8 +2149,8 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 		}
 		else if (p_184122_1_ == 48)
 		{
-			boolean flag1 = !this.getRenderManager().isDebugBoundingBox();
-			this.getRenderManager().setDebugBoundingBox(flag1);
+			boolean flag1 = !this.renderManager.isDebugBoundingBox();
+			this.renderManager.setDebugBoundingBox(flag1);
 			this.func_190521_a(flag1 ? "debug.show_hitboxes.on" : "debug.show_hitboxes.off");
 			return true;
 		}
@@ -2454,8 +2459,6 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 	 */
 	public void launchIntegratedServer(String folderName, String worldName, @Nullable WorldSettings worldSettingsIn)
 	{
-		ModBootstrap.redo(this);
-		
 		this.loadWorld((WorldClient) null);
 		System.gc();
 		ISaveHandler isavehandler = this.saveLoader.getSaveLoader(folderName, false);
@@ -2739,11 +2742,11 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 
 				if (this.objectMouseOver.entityHit instanceof EntityPainting)
 				{
-					itemstack = new ItemStack(Items.getItem(Items.PAINTING));
+					itemstack = new ItemStack(Items.PAINTING);
 				}
 				else if (this.objectMouseOver.entityHit instanceof EntityLeashKnot)
 				{
-					itemstack = new ItemStack(Items.getItem(Items.LEAD));
+					itemstack = new ItemStack(Items.LEAD);
 				}
 				else if (this.objectMouseOver.entityHit instanceof EntityItemFrame)
 				{
@@ -2752,7 +2755,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 
 					if (itemstack1.isNotValid())
 					{
-						itemstack = new ItemStack(Items.getItem(Items.ITEM_FRAME));
+						itemstack = new ItemStack(Items.ITEM_FRAME);
 					}
 					else
 					{
@@ -2767,27 +2770,27 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 					switch (entityminecart.getType())
 					{
 						case FURNACE:
-							item1 = Items.getItem(Items.FURNACE_MINECART);
+							item1 = Items.FURNACE_MINECART;
 							break;
 
 						case CHEST:
-							item1 = Items.getItem(Items.CHEST_MINECART);
+							item1 = Items.CHEST_MINECART;
 							break;
 
 						case TNT:
-							item1 = Items.getItem(Items.TNT_MINECART);
+							item1 = Items.TNT_MINECART;
 							break;
 
 						case HOPPER:
-							item1 = Items.getItem(Items.HOPPER_MINECART);
+							item1 = Items.HOPPER_MINECART;
 							break;
 
 						case COMMAND_BLOCK:
-							item1 = Items.getItem(Items.COMMAND_BLOCK_MINECART);
+							item1 = Items.COMMAND_BLOCK_MINECART;
 							break;
 
 						default:
-							item1 = Items.getItem(Items.MINECART);
+							item1 = Items.MINECART;
 					}
 
 					itemstack = new ItemStack(item1);
@@ -2798,11 +2801,11 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 				}
 				else if (this.objectMouseOver.entityHit instanceof EntityArmorStand)
 				{
-					itemstack = new ItemStack(Items.getItem(Items.ARMOR_STAND));
+					itemstack = new ItemStack(Items.ARMOR_STAND);
 				}
 				else if (this.objectMouseOver.entityHit instanceof EntityEnderCrystal)
 				{
-					itemstack = new ItemStack(Items.getItem(Items.END_CRYSTAL));
+					itemstack = new ItemStack(Items.END_CRYSTAL);
 				}
 				else
 				{
@@ -2813,7 +2816,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 						return;
 					}
 
-					itemstack = new ItemStack(Items.getItem(Items.SPAWN_EGG));
+					itemstack = new ItemStack(Items.SPAWN_EGG);
 					ItemMonsterPlacer.applyEntityIdToItemStack(itemstack, resourcelocation);
 				}
 			}
@@ -2868,7 +2871,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 	{
 		NBTTagCompound nbttagcompound = te.writeToNBT(new NBTTagCompound());
 
-		if (stack.getItem() == Items.getItem(Items.SKULL) && nbttagcompound.hasKey("Owner"))
+		if (stack.getItem() == Items.SKULL && nbttagcompound.hasKey("Owner"))
 		{
 			NBTTagCompound nbttagcompound2 = nbttagcompound.getCompoundTag("Owner");
 			NBTTagCompound nbttagcompound3 = new NBTTagCompound();
@@ -3333,12 +3336,12 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 
 	public TextureManager getTextureManager()
 	{
-		return this.getRenderEngine();
+		return this.renderEngine;
 	}
 
 	public IResourceManager getResourceManager()
 	{
-		return this.getMcResourceManager();
+		return this.mcResourceManager;
 	}
 
 	public ResourcePackRepository getResourcePackRepository()
@@ -3492,7 +3495,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 		return Thread.currentThread() == this.mcThread;
 	}
 
-	public BlockRendererDispatcher getBlockRenderDispatcher()
+	public BlockRendererDispatcher getBlockRendererDispatcher()
 	{
 		return this.blockRenderDispatcher;
 	}
@@ -3582,45 +3585,5 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 	public Tutorial func_193032_ao()
 	{
 		return this.field_193035_aW;
-	}
-
-	public ModelManager getModelManager()
-	{
-		return modelManager;
-	}
-
-	public IReloadableResourceManager getMcResourceManager()
-	{
-		return mcResourceManager;
-	}
-
-	public void setBlockColors(BlockColors blockColors)
-	{
-		this.blockColors = blockColors;
-	}
-
-	public ItemColors getItemColors()
-	{
-		return itemColors;
-	}
-
-	public void setItemColors(ItemColors itemColors)
-	{
-		this.itemColors = itemColors;
-	}
-
-	public void setRenderItem(RenderItem renderItem)
-	{
-		this.renderItem = renderItem;
-	}
-
-	public TextureManager getRenderEngine()
-	{
-		return renderEngine;
-	}
-
-	public void setRenderManager(RenderManager renderManager)
-	{
-		this.renderManager = renderManager;
 	}
 }

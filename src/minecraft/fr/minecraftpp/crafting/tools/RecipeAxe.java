@@ -17,6 +17,6 @@ public class RecipeAxe extends RecipeEquipment
 	@Override
 	protected Blueprint getBlueprint()
 	{
-		return new Blueprint(new Item[][] { { this.material, this.material, Items.getItem(Items.AIR) }, { this.material, Items.getItem(Items.STICK), Items.getItem(Items.AIR) }, { Items.getItem(Items.AIR), Items.getItem(Items.STICK), Items.getItem(Items.AIR) } });
+		return new Blueprint(new Item[][] { { this.material, this.material, Items.EMPTY_ITEM }, { this.material, Items.STICK, Items.EMPTY_ITEM }, { Items.EMPTY_ITEM, Items.STICK, Items.EMPTY_ITEM } });
 	}
 }

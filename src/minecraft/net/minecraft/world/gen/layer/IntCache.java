@@ -73,14 +73,6 @@ public class IntCache
 		inUseLargeArrays.clear();
 		inUseSmallArrays.clear();
 	}
-	
-	public static void clear()
-	{
-		freeLargeArrays.clear();
-		freeSmallArrays.clear();
-		inUseLargeArrays.clear();
-		inUseSmallArrays.clear();
-	}
 
 	/**
 	 * Gets a human-readable string that indicates the sizes of all the cache

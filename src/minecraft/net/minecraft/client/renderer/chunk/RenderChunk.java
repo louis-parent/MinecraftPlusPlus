@@ -153,7 +153,7 @@ public class RenderChunk
 		{
 			++renderChunksUpdated;
 			boolean[] aboolean = new boolean[BlockRenderLayer.values().length];
-			BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRenderDispatcher();
+			BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
 
 			for (BlockPos.MutableBlockPos blockpos$mutableblockpos : BlockPos.getAllInBoxMutable(blockpos, blockpos1))
 			{

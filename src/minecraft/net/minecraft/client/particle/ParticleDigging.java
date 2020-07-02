@@ -20,7 +20,7 @@ public class ParticleDigging extends Particle
 	{
 		super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
 		this.sourceState = state;
-		this.setParticleTexture(Minecraft.getMinecraft().getBlockRenderDispatcher().getBlockModelShapes().getTexture(state));
+		this.setParticleTexture(Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(state));
 		this.particleGravity = state.getBlock().blockParticleGravity;
 		this.particleRed = 0.6F;
 		this.particleGreen = 0.6F;
@@ -36,7 +36,7 @@ public class ParticleDigging extends Particle
 	{
 		this.sourcePos = pos;
 
-		if (this.sourceState.getBlock() == Blocks.getBlock(Blocks.GRASS))
+		if (this.sourceState.getBlock() == Blocks.GRASS)
 		{
 			return this;
 		}
@@ -52,7 +52,7 @@ public class ParticleDigging extends Particle
 		this.sourcePos = new BlockPos(this.posX, this.posY, this.posZ);
 		Block block = this.sourceState.getBlock();
 
-		if (block == Blocks.getBlock(Blocks.GRASS))
+		if (block == Blocks.GRASS)
 		{
 			return this;
 		}

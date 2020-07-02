@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -48,11 +47,11 @@ public class RenderItemFrame extends Render<EntityItemFrame>
 		GlStateManager.translate(d0 + 0.5D, d1 + 0.5D, d2 + 0.5D);
 		GlStateManager.rotate(180.0F - entity.rotationYaw, 0.0F, 1.0F, 0.0F);
 		this.renderManager.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-		BlockRendererDispatcher blockrendererdispatcher = this.mc.getBlockRenderDispatcher();
+		BlockRendererDispatcher blockrendererdispatcher = this.mc.getBlockRendererDispatcher();
 		ModelManager modelmanager = blockrendererdispatcher.getBlockModelShapes().getModelManager();
 		IBakedModel ibakedmodel;
 
-		if (entity.getDisplayedItem().getItem() == Items.getItem(Items.FILLED_MAP))
+		if (entity.getDisplayedItem().getItem() == Items.FILLED_MAP)
 		{
 			ibakedmodel = modelmanager.getModel(this.mapModel);
 		}
@@ -105,7 +104,7 @@ public class RenderItemFrame extends Render<EntityItemFrame>
 		{
 			GlStateManager.pushMatrix();
 			GlStateManager.disableLighting();
-			boolean flag = itemstack.getItem() == Items.getItem(Items.FILLED_MAP);
+			boolean flag = itemstack.getItem() == Items.FILLED_MAP;
 			int i = flag ? itemFrame.getRotation() % 4 * 2 : itemFrame.getRotation();
 			GlStateManager.rotate(i * 360.0F / 8.0F, 0.0F, 0.0F, 1.0F);
 
@@ -116,7 +115,7 @@ public class RenderItemFrame extends Render<EntityItemFrame>
 				float f = 0.0078125F;
 				GlStateManager.scale(0.0078125F, 0.0078125F, 0.0078125F);
 				GlStateManager.translate(-64.0F, -64.0F, 0.0F);
-				MapData mapdata = ((ItemMap) Items.getItem(Items.FILLED_MAP)).getMapData(itemstack, itemFrame.world);
+				MapData mapdata = Items.FILLED_MAP.getMapData(itemstack, itemFrame.world);
 				GlStateManager.translate(0.0F, 0.0F, -1.0F);
 
 				if (mapdata != null)

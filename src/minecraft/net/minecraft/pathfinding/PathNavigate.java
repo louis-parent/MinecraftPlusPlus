@@ -418,7 +418,7 @@ public abstract class PathNavigate
 				IBlockState iblockstate = this.worldObj.getBlockState(new BlockPos(pathpoint.xCoord, pathpoint.yCoord, pathpoint.zCoord));
 				Block block = iblockstate.getBlock();
 
-				if (block == Blocks.getBlock(Blocks.CAULDRON))
+				if (block == Blocks.CAULDRON)
 				{
 					this.currentPath.setPoint(i, pathpoint.cloneMove(pathpoint.xCoord, pathpoint.yCoord + 1, pathpoint.zCoord));
 

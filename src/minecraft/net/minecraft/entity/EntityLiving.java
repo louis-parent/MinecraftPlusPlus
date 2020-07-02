@@ -1147,19 +1147,19 @@ public abstract class EntityLiving extends EntityLivingBase
 
 	public static EntityEquipmentSlot getSlotForItemStack(ItemStack stack)
 	{
-		if (stack.getItem() != Item.getItemFromBlock(Blocks.getBlock(Blocks.PUMPKIN)) && stack.getItem() != Items.getItem(Items.SKULL))
+		if (stack.getItem() != Item.getItemFromBlock(Blocks.PUMPKIN) && stack.getItem() != Items.SKULL)
 		{
 			if (stack.getItem() instanceof ItemArmor)
 			{
 				return ((ItemArmor) stack.getItem()).armorType;
 			}
-			else if (stack.getItem() == Items.getItem(Items.ELYTRA))
+			else if (stack.getItem() == Items.ELYTRA)
 			{
 				return EntityArmorSlot.CHEST;
 			}
 			else
 			{
-				return stack.getItem() == Items.getItem(Items.SHIELD) ? EntityHandSlot.OFFHAND : EntityHandSlot.MAINHAND;
+				return stack.getItem() == Items.SHIELD ? EntityHandSlot.OFFHAND : EntityHandSlot.MAINHAND;
 			}
 		}
 		else
@@ -1178,89 +1178,89 @@ public abstract class EntityLiving extends EntityLivingBase
 				case HEAD:
 					if (chance == 0)
 					{
-						return Items.getItem(Items.LEATHER_HELMET);
+						return Items.LEATHER_HELMET;
 					}
 					else if (chance == 1)
 					{
-						return Items.getItem(Items.GOLDEN_HELMET);
+						return Items.GOLDEN_HELMET;
 					}
 					else if (chance == 2)
 					{
-						return Items.getItem(Items.CHAINMAIL_HELMET);
+						return Items.CHAINMAIL_HELMET;
 					}
 					else if (chance == 3)
 					{
-						return Items.getItem(Items.IRON_HELMET);
+						return Items.IRON_HELMET;
 					}
 					else if (chance == 4)
 					{
-						return Items.getItem(Items.DIAMOND_HELMET);
+						return Items.DIAMOND_HELMET;
 					}
 
 				case CHEST:
 					if (chance == 0)
 					{
-						return Items.getItem(Items.LEATHER_CHESTPLATE);
+						return Items.LEATHER_CHESTPLATE;
 					}
 					else if (chance == 1)
 					{
-						return Items.getItem(Items.GOLDEN_CHESTPLATE);
+						return Items.GOLDEN_CHESTPLATE;
 					}
 					else if (chance == 2)
 					{
-						return Items.getItem(Items.CHAINMAIL_CHESTPLATE);
+						return Items.CHAINMAIL_CHESTPLATE;
 					}
 					else if (chance == 3)
 					{
-						return Items.getItem(Items.IRON_CHESTPLATE);
+						return Items.IRON_CHESTPLATE;
 					}
 					else if (chance == 4)
 					{
-						return Items.getItem(Items.DIAMOND_CHESTPLATE);
+						return Items.DIAMOND_CHESTPLATE;
 					}
 
 				case LEGS:
 					if (chance == 0)
 					{
-						return Items.getItem(Items.LEATHER_LEGGINGS);
+						return Items.LEATHER_LEGGINGS;
 					}
 					else if (chance == 1)
 					{
-						return Items.getItem(Items.GOLDEN_LEGGINGS);
+						return Items.GOLDEN_LEGGINGS;
 					}
 					else if (chance == 2)
 					{
-						return Items.getItem(Items.CHAINMAIL_LEGGINGS);
+						return Items.CHAINMAIL_LEGGINGS;
 					}
 					else if (chance == 3)
 					{
-						return Items.getItem(Items.IRON_LEGGINGS);
+						return Items.IRON_LEGGINGS;
 					}
 					else if (chance == 4)
 					{
-						return Items.getItem(Items.DIAMOND_LEGGINGS);
+						return Items.DIAMOND_LEGGINGS;
 					}
 
 				case FEET:
 					if (chance == 0)
 					{
-						return Items.getItem(Items.LEATHER_BOOTS);
+						return Items.LEATHER_BOOTS;
 					}
 					else if (chance == 1)
 					{
-						return Items.getItem(Items.GOLDEN_BOOTS);
+						return Items.GOLDEN_BOOTS;
 					}
 					else if (chance == 2)
 					{
-						return Items.getItem(Items.CHAINMAIL_BOOTS);
+						return Items.CHAINMAIL_BOOTS;
 					}
 					else if (chance == 3)
 					{
-						return Items.getItem(Items.IRON_BOOTS);
+						return Items.IRON_BOOTS;
 					}
 					else if (chance == 4)
 					{
-						return Items.getItem(Items.DIAMOND_BOOTS);
+						return Items.DIAMOND_BOOTS;
 					}
 
 				default:
@@ -1383,7 +1383,7 @@ public abstract class EntityLiving extends EntityLivingBase
 		{
 			ItemStack itemstack = player.getHeldItem(stack);
 
-			if (itemstack.getItem() == Items.getItem(Items.LEAD) && this.canBeLeashedTo(player))
+			if (itemstack.getItem() == Items.LEAD && this.canBeLeashedTo(player))
 			{
 				this.setLeashedToEntity(player, true);
 				itemstack.decreaseStackSize(1);
@@ -1438,7 +1438,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
 			if (!this.world.isRemote && dropLead)
 			{
-				this.dropItem(Items.getItem(Items.LEAD), 1);
+				this.dropItem(Items.LEAD, 1);
 			}
 
 			if (!this.world.isRemote && sendPacket && this.world instanceof WorldServer)

@@ -144,7 +144,7 @@ public class BlockRedstoneTorch extends BlockTorch
 		{
 			if (flag)
 			{
-				worldIn.setBlockState(pos, Blocks.getBlock(Blocks.UNLIT_REDSTONE_TORCH).getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
+				worldIn.setBlockState(pos, Blocks.UNLIT_REDSTONE_TORCH.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
 
 				if (this.isBurnedOut(worldIn, pos, true))
 				{
@@ -164,7 +164,7 @@ public class BlockRedstoneTorch extends BlockTorch
 		}
 		else if (!flag && !this.isBurnedOut(worldIn, pos, false))
 		{
-			worldIn.setBlockState(pos, Blocks.getBlock(Blocks.REDSTONE_TORCH).getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, Blocks.REDSTONE_TORCH.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
 		}
 	}
 
@@ -198,7 +198,7 @@ public class BlockRedstoneTorch extends BlockTorch
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(Blocks.getBlock(Blocks.REDSTONE_TORCH));
+		return Item.getItemFromBlock(Blocks.REDSTONE_TORCH);
 	}
 
 	/**
@@ -237,13 +237,13 @@ public class BlockRedstoneTorch extends BlockTorch
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Blocks.getBlock(Blocks.REDSTONE_TORCH));
+		return new ItemStack(Blocks.REDSTONE_TORCH);
 	}
 
 	@Override
 	public boolean isAssociatedBlock(Block other)
 	{
-		return other == Blocks.getBlock(Blocks.UNLIT_REDSTONE_TORCH) || other == Blocks.getBlock(Blocks.REDSTONE_TORCH);
+		return other == Blocks.UNLIT_REDSTONE_TORCH || other == Blocks.REDSTONE_TORCH;
 	}
 
 	static class Toggle

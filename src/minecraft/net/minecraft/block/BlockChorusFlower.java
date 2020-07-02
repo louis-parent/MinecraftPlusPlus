@@ -42,7 +42,7 @@ public class BlockChorusFlower extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.AIR);
+		return Items.EMPTY_ITEM;
 	}
 
 	@Override
@@ -67,11 +67,11 @@ public class BlockChorusFlower extends Block
 					IBlockState iblockstate = worldIn.getBlockState(pos.down());
 					Block block = iblockstate.getBlock();
 
-					if (block == Blocks.getBlock(Blocks.END_STONE))
+					if (block == Blocks.END_STONE)
 					{
 						flag = true;
 					}
-					else if (block == Blocks.getBlock(Blocks.CHORUS_PLANT))
+					else if (block == Blocks.CHORUS_PLANT)
 					{
 						int j = 1;
 
@@ -79,9 +79,9 @@ public class BlockChorusFlower extends Block
 						{
 							Block block1 = worldIn.getBlockState(pos.down(j + 1)).getBlock();
 
-							if (block1 != Blocks.getBlock(Blocks.CHORUS_PLANT))
+							if (block1 != Blocks.CHORUS_PLANT)
 							{
-								if (block1 == Blocks.getBlock(Blocks.END_STONE))
+								if (block1 == Blocks.END_STONE)
 								{
 									flag1 = true;
 								}
@@ -111,7 +111,7 @@ public class BlockChorusFlower extends Block
 
 					if (flag && areAllNeighborsEmpty(worldIn, blockpos, (EnumFacing) null) && worldIn.isAirBlock(pos.up(2)))
 					{
-						worldIn.setBlockState(pos, Blocks.getBlock(Blocks.CHORUS_PLANT).getDefaultState(), 2);
+						worldIn.setBlockState(pos, Blocks.CHORUS_PLANT.getDefaultState(), 2);
 						this.placeGrownFlower(worldIn, blockpos, i);
 					}
 					else if (i < 4)
@@ -138,7 +138,7 @@ public class BlockChorusFlower extends Block
 
 						if (flag2)
 						{
-							worldIn.setBlockState(pos, Blocks.getBlock(Blocks.CHORUS_PLANT).getDefaultState(), 2);
+							worldIn.setBlockState(pos, Blocks.CHORUS_PLANT.getDefaultState(), 2);
 						}
 						else
 						{
@@ -221,7 +221,7 @@ public class BlockChorusFlower extends Block
 		IBlockState iblockstate = worldIn.getBlockState(pos.down());
 		Block block = iblockstate.getBlock();
 
-		if (block != Blocks.getBlock(Blocks.CHORUS_PLANT) && block != Blocks.getBlock(Blocks.END_STONE))
+		if (block != Blocks.CHORUS_PLANT && block != Blocks.END_STONE)
 		{
 			if (iblockstate.getMaterial() == Material.AIR)
 			{
@@ -232,7 +232,7 @@ public class BlockChorusFlower extends Block
 					IBlockState iblockstate1 = worldIn.getBlockState(pos.offset(enumfacing));
 					Block block1 = iblockstate1.getBlock();
 
-					if (block1 == Blocks.getBlock(Blocks.CHORUS_PLANT))
+					if (block1 == Blocks.CHORUS_PLANT)
 					{
 						++i;
 					}
@@ -300,7 +300,7 @@ public class BlockChorusFlower extends Block
 
 	public static void generatePlant(World worldIn, BlockPos pos, Random rand, int p_185603_3_)
 	{
-		worldIn.setBlockState(pos, Blocks.getBlock(Blocks.CHORUS_PLANT).getDefaultState(), 2);
+		worldIn.setBlockState(pos, Blocks.CHORUS_PLANT.getDefaultState(), 2);
 		growTreeRecursive(worldIn, pos, rand, pos, p_185603_3_, 0);
 	}
 
@@ -322,7 +322,7 @@ public class BlockChorusFlower extends Block
 				return;
 			}
 
-			worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.CHORUS_PLANT).getDefaultState(), 2);
+			worldIn.setBlockState(blockpos, Blocks.CHORUS_PLANT.getDefaultState(), 2);
 		}
 
 		boolean flag = false;
@@ -344,7 +344,7 @@ public class BlockChorusFlower extends Block
 				if (Math.abs(blockpos1.getX() - p_185601_3_.getX()) < p_185601_4_ && Math.abs(blockpos1.getZ() - p_185601_3_.getZ()) < p_185601_4_ && worldIn.isAirBlock(blockpos1) && worldIn.isAirBlock(blockpos1.down()) && areAllNeighborsEmpty(worldIn, blockpos1, enumfacing.getOpposite()))
 				{
 					flag = true;
-					worldIn.setBlockState(blockpos1, Blocks.getBlock(Blocks.CHORUS_PLANT).getDefaultState(), 2);
+					worldIn.setBlockState(blockpos1, Blocks.CHORUS_PLANT.getDefaultState(), 2);
 					growTreeRecursive(worldIn, blockpos1, rand, p_185601_3_, p_185601_4_, p_185601_5_ + 1);
 				}
 			}
@@ -352,7 +352,7 @@ public class BlockChorusFlower extends Block
 
 		if (!flag)
 		{
-			worldIn.setBlockState(p_185601_1_.up(i), Blocks.getBlock(Blocks.CHORUS_FLOWER).getDefaultState().withProperty(AGE, Integer.valueOf(5)), 2);
+			worldIn.setBlockState(p_185601_1_.up(i), Blocks.CHORUS_FLOWER.getDefaultState().withProperty(AGE, Integer.valueOf(5)), 2);
 		}
 	}
 

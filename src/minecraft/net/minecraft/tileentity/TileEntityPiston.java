@@ -140,7 +140,7 @@ public class TileEntityPiston extends TileEntity implements ITickable
 
 	private IBlockState func_190606_j()
 	{
-		return !this.isExtending() && this.shouldPistonHeadBeRendered() ? Blocks.getBlock(Blocks.PISTON_HEAD).getDefaultState().withProperty(BlockPistonExtension.TYPE, this.pistonState.getBlock() == Blocks.getBlock(Blocks.STICKY_PISTON) ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT).withProperty(BlockDirectional.FACING, this.pistonState.getValue(BlockDirectional.FACING)) : this.pistonState;
+		return !this.isExtending() && this.shouldPistonHeadBeRendered() ? Blocks.PISTON_HEAD.getDefaultState().withProperty(BlockPistonExtension.TYPE, this.pistonState.getBlock() == Blocks.STICKY_PISTON ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT).withProperty(BlockDirectional.FACING, this.pistonState.getValue(BlockDirectional.FACING)) : this.pistonState;
 	}
 
 	private void moveCollidedEntities(float p_184322_1_)
@@ -157,7 +157,7 @@ public class TileEntityPiston extends TileEntity implements ITickable
 
 			if (!list1.isEmpty())
 			{
-				boolean flag = this.pistonState.getBlock() == Blocks.getBlock(Blocks.SLIME_BLOCK);
+				boolean flag = this.pistonState.getBlock() == Blocks.SLIME_BLOCK;
 
 				for (int i = 0; i < list1.size(); ++i)
 				{
@@ -339,7 +339,7 @@ public class TileEntityPiston extends TileEntity implements ITickable
 			this.world.removeTileEntity(this.pos);
 			this.invalidate();
 
-			if (this.world.getBlockState(this.pos).getBlock() == Blocks.getBlock(Blocks.PISTON_EXTENSION))
+			if (this.world.getBlockState(this.pos).getBlock() == Blocks.PISTON_EXTENSION)
 			{
 				this.world.setBlockState(this.pos, this.pistonState, 3);
 				this.world.func_190524_a(this.pos, this.pistonState.getBlock(), this.pos);
@@ -360,7 +360,7 @@ public class TileEntityPiston extends TileEntity implements ITickable
 			this.world.removeTileEntity(this.pos);
 			this.invalidate();
 
-			if (this.world.getBlockState(this.pos).getBlock() == Blocks.getBlock(Blocks.PISTON_EXTENSION))
+			if (this.world.getBlockState(this.pos).getBlock() == Blocks.PISTON_EXTENSION)
 			{
 				this.world.setBlockState(this.pos, this.pistonState, 3);
 				this.world.func_190524_a(this.pos, this.pistonState.getBlock(), this.pos);
@@ -424,7 +424,7 @@ public class TileEntityPiston extends TileEntity implements ITickable
 
 			if (this.shouldPistonHeadBeRendered())
 			{
-				iblockstate = Blocks.getBlock(Blocks.PISTON_HEAD).getDefaultState().withProperty(BlockDirectional.FACING, this.pistonFacing).withProperty(BlockPistonExtension.SHORT, Boolean.valueOf(this.extending != 1.0F - this.progress < 0.25F));
+				iblockstate = Blocks.PISTON_HEAD.getDefaultState().withProperty(BlockDirectional.FACING, this.pistonFacing).withProperty(BlockPistonExtension.SHORT, Boolean.valueOf(this.extending != 1.0F - this.progress < 0.25F));
 			}
 			else
 			{

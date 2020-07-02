@@ -152,15 +152,15 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 4, 5, 4, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 4, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 1, 4, 4, 1, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 3, 4, 4, 3, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 0, 5, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 4, 3, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 4, 1, 4, 4, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 3, 4, 3, 4, 4, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 4, 5, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 4, 5, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 1, 4, 4, 1, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 3, 4, 4, 3, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 0, 5, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 4, 3, 5, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 4, 1, 4, 4, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 3, 4, 3, 4, 4, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			if (this.chest && structureBoundingBoxIn.isVecInside(new BlockPos(this.getXWithOffset(3, 3), this.getYWithOffset(2), this.getZWithOffset(3, 3))))
 			{
@@ -168,13 +168,13 @@ public class StructureNetherBridgePieces
 				this.generateChest(worldIn, structureBoundingBoxIn, randomIn, 3, 2, 3, LootTableList.CHESTS_NETHER_BRIDGE);
 			}
 
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int i = 0; i <= 4; ++i)
 			{
 				for (int j = 0; j <= 4; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, j, structureBoundingBoxIn);
 				}
 			}
 
@@ -227,15 +227,15 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 4, 5, 4, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 0, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 1, 0, 4, 1, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 3, 0, 4, 3, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 4, 5, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 4, 4, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 4, 1, 4, 4, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 3, 4, 3, 4, 4, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 4, 5, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 0, 5, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 1, 0, 4, 1, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 3, 0, 4, 3, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 4, 5, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 4, 4, 5, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 4, 1, 4, 4, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 3, 4, 3, 4, 4, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			if (this.chest && structureBoundingBoxIn.isVecInside(new BlockPos(this.getXWithOffset(1, 3), this.getYWithOffset(2), this.getZWithOffset(1, 3))))
 			{
@@ -243,13 +243,13 @@ public class StructureNetherBridgePieces
 				this.generateChest(worldIn, structureBoundingBoxIn, randomIn, 1, 2, 3, LootTableList.CHESTS_NETHER_BRIDGE);
 			}
 
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int i = 0; i <= 4; ++i)
 			{
 				for (int j = 0; j <= 4; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, j, structureBoundingBoxIn);
 				}
 			}
 
@@ -285,15 +285,15 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			IBlockState iblockstate = Blocks.getBlock(Blocks.NETHER_BRICK_STAIRS).getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
+			IBlockState iblockstate = Blocks.NETHER_BRICK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
 
 			for (int i = 0; i <= 9; ++i)
 			{
 				int j = Math.max(1, 7 - i);
 				int k = Math.min(Math.max(j + 5, 14 - i), 13);
 				int l = i;
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, i, 4, j, i, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, j + 1, i, 3, k - 1, i, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, i, 4, j, i, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, j + 1, i, 3, k - 1, i, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 
 				if (i <= 6)
 				{
@@ -302,19 +302,19 @@ public class StructureNetherBridgePieces
 					this.setBlockState(worldIn, iblockstate, 3, j + 1, i, structureBoundingBoxIn);
 				}
 
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, k, i, 4, k, i, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, j + 1, i, 0, k - 1, i, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, j + 1, i, 4, k - 1, i, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, k, i, 4, k, i, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, j + 1, i, 0, k - 1, i, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, j + 1, i, 4, k - 1, i, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 				if ((i & 1) == 0)
 				{
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, j + 2, i, 0, j + 3, i, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, j + 2, i, 4, j + 3, i, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, j + 2, i, 0, j + 3, i, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, j + 2, i, 4, j + 3, i, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
 				}
 
 				for (int i1 = 0; i1 <= 4; ++i1)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i1, -1, l, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i1, -1, l, structureBoundingBoxIn);
 				}
 			}
 
@@ -359,31 +359,31 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 8, 1, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 8, 5, 8, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 8, 6, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 2, 5, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 2, 0, 8, 5, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 0, 1, 4, 0, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 3, 0, 7, 4, 0, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 4, 8, 2, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 4, 2, 2, 4, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 1, 4, 7, 2, 4, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 8, 8, 3, 8, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 6, 0, 3, 7, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 3, 6, 8, 3, 7, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 4, 0, 5, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 3, 4, 8, 5, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 5, 2, 5, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 3, 5, 7, 5, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 4, 5, 1, 5, 5, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 4, 5, 7, 5, 5, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 8, 1, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 8, 5, 8, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 8, 6, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 2, 5, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 2, 0, 8, 5, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 0, 1, 4, 0, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 3, 0, 7, 4, 0, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 4, 8, 2, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 4, 2, 2, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 1, 4, 7, 2, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 8, 8, 3, 8, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 6, 0, 3, 7, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 3, 6, 8, 3, 7, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 4, 0, 5, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 3, 4, 8, 5, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 5, 2, 5, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 3, 5, 7, 5, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 4, 5, 1, 5, 5, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 4, 5, 7, 5, 5, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
 
 			for (int i = 0; i <= 5; ++i)
 			{
 				for (int j = 0; j <= 8; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), j, -1, i, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), j, -1, i, structureBoundingBoxIn);
 				}
 			}
 
@@ -419,21 +419,21 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 4, 5, 4, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 0, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 4, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 1, 0, 4, 1, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 3, 0, 4, 3, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 1, 4, 4, 1, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 3, 4, 4, 3, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 4, 5, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 0, 5, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 4, 5, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 1, 0, 4, 1, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 3, 0, 4, 3, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 1, 4, 4, 1, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 3, 4, 4, 3, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int i = 0; i <= 4; ++i)
 			{
 				for (int j = 0; j <= 4; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, j, structureBoundingBoxIn);
 				}
 			}
 
@@ -471,30 +471,30 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 6, 1, 6, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 6, 7, 6, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 1, 6, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 6, 1, 6, 6, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 2, 0, 6, 6, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 2, 6, 6, 6, 6, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 0, 6, 1, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 5, 0, 6, 6, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 2, 0, 6, 6, 1, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 2, 5, 6, 6, 6, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 6, 0, 4, 6, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 0, 4, 5, 0, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 6, 6, 4, 6, 6, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 6, 4, 5, 6, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 2, 0, 6, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 2, 0, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 6, 2, 6, 6, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 5, 2, 6, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 6, 1, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 6, 7, 6, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 1, 6, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 6, 1, 6, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 2, 0, 6, 6, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 2, 6, 6, 6, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 0, 6, 1, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 5, 0, 6, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 2, 0, 6, 6, 1, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 2, 5, 6, 6, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 6, 0, 4, 6, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 0, 4, 5, 0, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 6, 6, 4, 6, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 6, 4, 5, 6, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 2, 0, 6, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 2, 0, 5, 4, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 6, 2, 6, 6, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 5, 2, 6, 5, 4, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
 
 			for (int i = 0; i <= 6; ++i)
 			{
 				for (int j = 0; j <= 6; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, j, structureBoundingBoxIn);
 				}
 			}
 
@@ -532,19 +532,19 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 4, 5, 4, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 0, 5, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 4, 5, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 4, 0, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 4, 4, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 4, 5, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 0, 5, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 4, 5, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 4, 0, 5, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 4, 4, 5, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int i = 0; i <= 4; ++i)
 			{
 				for (int j = 0; j <= 4; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, j, structureBoundingBoxIn);
 				}
 			}
 
@@ -597,43 +597,43 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 3, 0, 11, 4, 18, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 7, 18, 4, 11, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 0, 10, 7, 18, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 8, 18, 7, 10, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 5, 0, 7, 5, 7, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 5, 11, 7, 5, 18, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 0, 11, 5, 7, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 11, 11, 5, 18, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 7, 7, 5, 7, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 7, 18, 5, 7, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 11, 7, 5, 11, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 11, 18, 5, 11, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 2, 0, 11, 2, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 2, 13, 11, 2, 18, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 0, 0, 11, 1, 3, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 0, 15, 11, 1, 18, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 3, 0, 11, 4, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 7, 18, 4, 11, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 0, 10, 7, 18, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 8, 18, 7, 10, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 5, 0, 7, 5, 7, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 5, 11, 7, 5, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 0, 11, 5, 7, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 11, 11, 5, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 7, 7, 5, 7, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 7, 18, 5, 7, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 11, 7, 5, 11, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 11, 18, 5, 11, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 2, 0, 11, 2, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 2, 13, 11, 2, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 0, 0, 11, 1, 3, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 0, 15, 11, 1, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int i = 7; i <= 11; ++i)
 			{
 				for (int j = 0; j <= 2; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, j, structureBoundingBoxIn);
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, 18 - j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, 18 - j, structureBoundingBoxIn);
 				}
 			}
 
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 7, 5, 2, 11, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 13, 2, 7, 18, 2, 11, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 7, 3, 1, 11, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 15, 0, 7, 18, 1, 11, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 7, 5, 2, 11, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 13, 2, 7, 18, 2, 11, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 7, 3, 1, 11, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 15, 0, 7, 18, 1, 11, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int k = 0; k <= 2; ++k)
 			{
 				for (int l = 7; l <= 11; ++l)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), k, -1, l, structureBoundingBoxIn);
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), 18 - k, -1, l, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), k, -1, l, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), 18 - k, -1, l, structureBoundingBoxIn);
 				}
 			}
 
@@ -687,19 +687,19 @@ public class StructureNetherBridgePieces
 				for (int j = 3; j <= 4; ++j)
 				{
 					int k = random.nextInt(8);
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, j, 0, i, j, k, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, j, 0, i, j, k, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 				}
 			}
 
 			int l = random.nextInt(8);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 0, 5, l, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 0, 5, l, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 			l = random.nextInt(8);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 5, 0, 4, 5, l, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 5, 0, 4, 5, l, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int i1 = 0; i1 <= 4; ++i1)
 			{
 				int k1 = random.nextInt(5);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, i1, 2, 0, i1, 2, k1, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, i1, 2, 0, i1, 2, k1, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 			}
 
 			for (int j1 = 0; j1 <= 4; ++j1)
@@ -707,7 +707,7 @@ public class StructureNetherBridgePieces
 				for (int l1 = 0; l1 <= 1; ++l1)
 				{
 					int i2 = random.nextInt(3);
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, j1, l1, 0, j1, l1, i2, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, j1, l1, 0, j1, l1, i2, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 				}
 			}
 
@@ -743,59 +743,59 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 0, 12, 4, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 12, 13, 12, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 1, 12, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 0, 12, 12, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 11, 4, 12, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 11, 10, 12, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 9, 11, 7, 12, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 0, 4, 12, 1, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 0, 10, 12, 1, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 9, 0, 7, 12, 1, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 11, 2, 10, 12, 10, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 8, 0, 7, 8, 0, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 0, 12, 4, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 12, 13, 12, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 1, 12, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 0, 12, 12, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 11, 4, 12, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 11, 10, 12, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 9, 11, 7, 12, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 0, 4, 12, 1, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 0, 10, 12, 1, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 9, 0, 7, 12, 1, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 11, 2, 10, 12, 10, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 8, 0, 7, 8, 0, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
 
 			for (int i = 1; i <= 11; i += 2)
 			{
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, 10, 0, i, 11, 0, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, 10, 12, i, 11, 12, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 10, i, 0, 11, i, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 12, 10, i, 12, 11, i, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, 13, 0, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, 13, 12, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), 0, 13, i, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), 12, 13, i, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), i + 1, 13, 0, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), i + 1, 13, 12, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 0, 13, i + 1, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 12, 13, i + 1, structureBoundingBoxIn);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, 10, 0, i, 11, 0, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, 10, 12, i, 11, 12, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 10, i, 0, 11, i, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 12, 10, i, 12, 11, i, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, 13, 0, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, 13, 12, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK.getDefaultState(), 0, 13, i, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK.getDefaultState(), 12, 13, i, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), i + 1, 13, 0, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), i + 1, 13, 12, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 0, 13, i + 1, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 12, 13, i + 1, structureBoundingBoxIn);
 			}
 
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 0, 13, 0, structureBoundingBoxIn);
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 0, 13, 12, structureBoundingBoxIn);
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 0, 13, 0, structureBoundingBoxIn);
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 12, 13, 0, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 0, 13, 0, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 0, 13, 12, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 0, 13, 0, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 12, 13, 0, structureBoundingBoxIn);
 
 			for (int k = 3; k <= 9; k += 2)
 			{
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 7, k, 1, 8, k, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 7, k, 11, 8, k, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 7, k, 1, 8, k, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 7, k, 11, 8, k, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
 			}
 
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 8, 2, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 4, 12, 2, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 0, 0, 8, 1, 3, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 0, 9, 8, 1, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 4, 3, 1, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 0, 4, 12, 1, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 8, 2, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 4, 12, 2, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 0, 0, 8, 1, 3, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 0, 9, 8, 1, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 4, 3, 1, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 0, 4, 12, 1, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int l = 4; l <= 8; ++l)
 			{
 				for (int j = 0; j <= 2; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), l, -1, j, structureBoundingBoxIn);
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), l, -1, 12 - j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), l, -1, j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), l, -1, 12 - j, structureBoundingBoxIn);
 				}
 			}
 
@@ -803,15 +803,15 @@ public class StructureNetherBridgePieces
 			{
 				for (int j1 = 4; j1 <= 8; ++j1)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i1, -1, j1, structureBoundingBoxIn);
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), 12 - i1, -1, j1, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i1, -1, j1, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), 12 - i1, -1, j1, structureBoundingBoxIn);
 				}
 			}
 
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 5, 5, 7, 5, 7, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 1, 6, 6, 4, 6, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), 6, 0, 6, structureBoundingBoxIn);
-			IBlockState iblockstate = Blocks.getBlock(Blocks.FLOWING_LAVA).getDefaultState();
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 5, 5, 7, 5, 7, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 1, 6, 6, 4, 6, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK.getDefaultState(), 6, 0, 6, structureBoundingBoxIn);
+			IBlockState iblockstate = Blocks.FLOWING_LAVA.getDefaultState();
 			this.setBlockState(worldIn, iblockstate, 6, 5, 6, structureBoundingBoxIn);
 			BlockPos blockpos = new BlockPos(this.getXWithOffset(6, 6), this.getYWithOffset(5), this.getZWithOffset(6, 6));
 
@@ -853,46 +853,46 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 0, 12, 4, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 12, 13, 12, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 1, 12, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 0, 12, 12, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 11, 4, 12, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 11, 10, 12, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 9, 11, 7, 12, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 0, 4, 12, 1, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 0, 10, 12, 1, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 9, 0, 7, 12, 1, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 11, 2, 10, 12, 10, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 0, 12, 4, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 12, 13, 12, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 1, 12, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 5, 0, 12, 12, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 11, 4, 12, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 11, 10, 12, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 9, 11, 7, 12, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 0, 4, 12, 1, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 0, 10, 12, 1, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 9, 0, 7, 12, 1, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 11, 2, 10, 12, 10, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int i = 1; i <= 11; i += 2)
 			{
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, 10, 0, i, 11, 0, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, 10, 12, i, 11, 12, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 10, i, 0, 11, i, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 12, 10, i, 12, 11, i, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, 13, 0, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, 13, 12, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), 0, 13, i, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), 12, 13, i, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), i + 1, 13, 0, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), i + 1, 13, 12, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 0, 13, i + 1, structureBoundingBoxIn);
-				this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 12, 13, i + 1, structureBoundingBoxIn);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, 10, 0, i, 11, 0, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, 10, 12, i, 11, 12, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 10, i, 0, 11, i, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 12, 10, i, 12, 11, i, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, 13, 0, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, 13, 12, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK.getDefaultState(), 0, 13, i, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK.getDefaultState(), 12, 13, i, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), i + 1, 13, 0, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), i + 1, 13, 12, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 0, 13, i + 1, structureBoundingBoxIn);
+				this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 12, 13, i + 1, structureBoundingBoxIn);
 			}
 
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 0, 13, 0, structureBoundingBoxIn);
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 0, 13, 12, structureBoundingBoxIn);
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 0, 13, 0, structureBoundingBoxIn);
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 12, 13, 0, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 0, 13, 0, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 0, 13, 12, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 0, 13, 0, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 12, 13, 0, structureBoundingBoxIn);
 
 			for (int j1 = 3; j1 <= 9; j1 += 2)
 			{
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 7, j1, 1, 8, j1, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 7, j1, 11, 8, j1, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 7, j1, 1, 8, j1, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+				this.fillWithBlocks(worldIn, structureBoundingBoxIn, 11, 7, j1, 11, 8, j1, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
 			}
 
-			IBlockState iblockstate = Blocks.getBlock(Blocks.NETHER_BRICK_STAIRS).getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
+			IBlockState iblockstate = Blocks.NETHER_BRICK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
 
 			for (int j = 0; j <= 6; ++j)
 			{
@@ -905,16 +905,16 @@ public class StructureNetherBridgePieces
 
 				if (k >= 5 && k <= 8)
 				{
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 5, k, 7, j + 4, k, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 5, k, 7, j + 4, k, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 				}
 				else if (k >= 9 && k <= 10)
 				{
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 8, k, 7, j + 4, k, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 8, k, 7, j + 4, k, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 				}
 
 				if (j >= 1)
 				{
-					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 6 + j, k, 7, 9 + j, k, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
+					this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 6 + j, k, 7, 9 + j, k, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
 				}
 			}
 
@@ -923,15 +923,15 @@ public class StructureNetherBridgePieces
 				this.setBlockState(worldIn, iblockstate, k1, 12, 11, structureBoundingBoxIn);
 			}
 
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 6, 7, 5, 7, 7, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 6, 7, 7, 7, 7, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 13, 12, 7, 13, 12, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 2, 3, 5, 3, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 9, 3, 5, 10, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 4, 2, 5, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 5, 2, 10, 5, 3, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 5, 9, 10, 5, 10, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 10, 5, 4, 10, 5, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 6, 7, 5, 7, 7, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 6, 7, 7, 7, 7, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 13, 12, 7, 13, 12, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 2, 3, 5, 3, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 9, 3, 5, 10, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 4, 2, 5, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 5, 2, 10, 5, 3, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 5, 9, 10, 5, 10, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 10, 5, 4, 10, 5, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 			IBlockState iblockstate1 = iblockstate.withProperty(BlockStairs.FACING, EnumFacing.EAST);
 			IBlockState iblockstate2 = iblockstate.withProperty(BlockStairs.FACING, EnumFacing.WEST);
 			this.setBlockState(worldIn, iblockstate2, 4, 5, 2, structureBoundingBoxIn);
@@ -942,23 +942,23 @@ public class StructureNetherBridgePieces
 			this.setBlockState(worldIn, iblockstate1, 8, 5, 3, structureBoundingBoxIn);
 			this.setBlockState(worldIn, iblockstate1, 8, 5, 9, structureBoundingBoxIn);
 			this.setBlockState(worldIn, iblockstate1, 8, 5, 10, structureBoundingBoxIn);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 4, 4, 4, 4, 8, Blocks.getBlock(Blocks.SOUL_SAND).getDefaultState(), Blocks.getBlock(Blocks.SOUL_SAND).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 4, 4, 9, 4, 8, Blocks.getBlock(Blocks.SOUL_SAND).getDefaultState(), Blocks.getBlock(Blocks.SOUL_SAND).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 5, 4, 4, 5, 8, Blocks.getBlock(Blocks.NETHER_WART).getDefaultState(), Blocks.getBlock(Blocks.NETHER_WART).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 4, 9, 5, 8, Blocks.getBlock(Blocks.NETHER_WART).getDefaultState(), Blocks.getBlock(Blocks.NETHER_WART).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 8, 2, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 4, 12, 2, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 0, 0, 8, 1, 3, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 0, 9, 8, 1, 12, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 4, 3, 1, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 0, 4, 12, 1, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 4, 4, 4, 4, 8, Blocks.SOUL_SAND.getDefaultState(), Blocks.SOUL_SAND.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 4, 4, 9, 4, 8, Blocks.SOUL_SAND.getDefaultState(), Blocks.SOUL_SAND.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 5, 4, 4, 5, 8, Blocks.NETHER_WART.getDefaultState(), Blocks.NETHER_WART.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 8, 5, 4, 9, 5, 8, Blocks.NETHER_WART.getDefaultState(), Blocks.NETHER_WART.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 0, 8, 2, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 4, 12, 2, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 0, 0, 8, 1, 3, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 0, 9, 8, 1, 12, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 4, 3, 1, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 0, 4, 12, 1, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int l1 = 4; l1 <= 8; ++l1)
 			{
 				for (int i1 = 0; i1 <= 2; ++i1)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), l1, -1, i1, structureBoundingBoxIn);
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), l1, -1, 12 - i1, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), l1, -1, i1, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), l1, -1, 12 - i1, structureBoundingBoxIn);
 				}
 			}
 
@@ -966,8 +966,8 @@ public class StructureNetherBridgePieces
 			{
 				for (int j2 = 4; j2 <= 8; ++j2)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i2, -1, j2, structureBoundingBoxIn);
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), 12 - i2, -1, j2, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i2, -1, j2, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), 12 - i2, -1, j2, structureBoundingBoxIn);
 				}
 			}
 
@@ -1228,31 +1228,31 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 6, 1, 6, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 6, 10, 6, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 1, 8, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 2, 0, 6, 8, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 1, 0, 8, 6, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 2, 1, 6, 8, 6, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 6, 5, 8, 6, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 2, 0, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 3, 2, 6, 5, 2, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 3, 4, 6, 5, 4, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), 5, 2, 5, structureBoundingBoxIn);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 5, 4, 3, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 2, 5, 3, 4, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 2, 5, 2, 5, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 5, 1, 6, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 7, 1, 5, 7, 4, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 8, 2, 6, 8, 4, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 6, 0, 4, 8, 0, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 0, 4, 5, 0, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 6, 1, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 6, 10, 6, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 1, 8, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 2, 0, 6, 8, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 1, 0, 8, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 2, 1, 6, 8, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 6, 5, 8, 6, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 2, 0, 5, 4, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 3, 2, 6, 5, 2, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 3, 4, 6, 5, 4, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK.getDefaultState(), 5, 2, 5, structureBoundingBoxIn);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 5, 4, 3, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 2, 5, 3, 4, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 2, 5, 2, 5, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 5, 1, 6, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 7, 1, 5, 7, 4, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 8, 2, 6, 8, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 6, 0, 4, 8, 0, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 0, 4, 5, 0, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
 
 			for (int i = 0; i <= 6; ++i)
 			{
 				for (int j = 0; j <= 6; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, j, structureBoundingBoxIn);
 				}
 			}
 
@@ -1320,32 +1320,32 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 0, 4, 4, 18, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 5, 0, 3, 7, 18, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 0, 5, 18, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 5, 0, 4, 5, 18, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 4, 2, 5, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 13, 4, 2, 18, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 3, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 15, 4, 1, 18, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 0, 4, 4, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 5, 0, 3, 7, 18, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 0, 5, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 5, 0, 4, 5, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 4, 2, 5, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 13, 4, 2, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 3, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 15, 4, 1, 18, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
 
 			for (int i = 0; i <= 4; ++i)
 			{
 				for (int j = 0; j <= 2; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, j, structureBoundingBoxIn);
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, 18 - j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, 18 - j, structureBoundingBoxIn);
 				}
 			}
 
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 1, 1, 0, 4, 1, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 4, 0, 4, 4, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 14, 0, 4, 14, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 1, 17, 0, 4, 17, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 1, 1, 4, 4, 1, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 4, 4, 4, 4, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 14, 4, 4, 14, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 1, 17, 4, 4, 17, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 1, 1, 0, 4, 1, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 4, 0, 4, 4, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 14, 0, 4, 14, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 1, 17, 0, 4, 17, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 1, 1, 4, 4, 1, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 4, 4, 4, 4, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 14, 4, 4, 14, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 1, 17, 4, 4, 17, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
 			return true;
 		}
 	}
@@ -1388,24 +1388,24 @@ public class StructureNetherBridgePieces
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 6, 7, 7, Blocks.getBlock(Blocks.AIR).getDefaultState(), Blocks.getBlock(Blocks.AIR).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 0, 0, 5, 1, 7, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 1, 5, 2, 7, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 2, 5, 3, 7, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 4, 3, 5, 4, 7, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 0, 1, 4, 2, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 2, 0, 5, 4, 2, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 5, 2, 1, 5, 3, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 5, 2, 5, 5, 3, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 3, 0, 5, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 5, 3, 6, 5, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 5, 8, 5, 5, 8, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), false);
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 1, 6, 3, structureBoundingBoxIn);
-			this.setBlockState(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), 5, 6, 3, structureBoundingBoxIn);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 3, 0, 6, 8, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 6, 3, 6, 6, 8, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 6, 8, 5, 7, 8, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
-			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 8, 8, 4, 8, 8, Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), Blocks.getBlock(Blocks.NETHER_BRICK_FENCE).getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 2, 0, 6, 7, 7, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 0, 0, 5, 1, 7, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 1, 5, 2, 7, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 2, 5, 3, 7, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 4, 3, 5, 4, 7, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 0, 1, 4, 2, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 2, 0, 5, 4, 2, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 5, 2, 1, 5, 3, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 5, 2, 5, 5, 3, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 3, 0, 5, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 5, 3, 6, 5, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 5, 8, 5, 5, 8, Blocks.NETHER_BRICK.getDefaultState(), Blocks.NETHER_BRICK.getDefaultState(), false);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 1, 6, 3, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.NETHER_BRICK_FENCE.getDefaultState(), 5, 6, 3, structureBoundingBoxIn);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 3, 0, 6, 8, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 6, 3, 6, 6, 8, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 6, 8, 5, 7, 8, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 8, 8, 4, 8, 8, Blocks.NETHER_BRICK_FENCE.getDefaultState(), Blocks.NETHER_BRICK_FENCE.getDefaultState(), false);
 
 			if (!this.hasSpawner)
 			{
@@ -1414,7 +1414,7 @@ public class StructureNetherBridgePieces
 				if (structureBoundingBoxIn.isVecInside(blockpos))
 				{
 					this.hasSpawner = true;
-					worldIn.setBlockState(blockpos, Blocks.getBlock(Blocks.MOB_SPAWNER).getDefaultState(), 2);
+					worldIn.setBlockState(blockpos, Blocks.MOB_SPAWNER.getDefaultState(), 2);
 					TileEntity tileentity = worldIn.getTileEntity(blockpos);
 
 					if (tileentity instanceof TileEntityMobSpawner)
@@ -1428,7 +1428,7 @@ public class StructureNetherBridgePieces
 			{
 				for (int j = 0; j <= 6; ++j)
 				{
-					this.replaceAirAndLiquidDownwards(worldIn, Blocks.getBlock(Blocks.NETHER_BRICK).getDefaultState(), i, -1, j, structureBoundingBoxIn);
+					this.replaceAirAndLiquidDownwards(worldIn, Blocks.NETHER_BRICK.getDefaultState(), i, -1, j, structureBoundingBoxIn);
 				}
 			}
 

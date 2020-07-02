@@ -112,13 +112,13 @@ public class BlockCauldron extends Block
 			int i = state.getValue(LEVEL).intValue();
 			Item item = itemstack.getItem();
 
-			if (item == Items.getItem(Items.WATER_BUCKET))
+			if (item == Items.WATER_BUCKET)
 			{
 				if (i < 3 && !worldIn.isRemote)
 				{
 					if (!playerIn.capabilities.isCreativeMode)
 					{
-						playerIn.setHeldItem(hand, new ItemStack(Items.getItem(Items.BUCKET)));
+						playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
 					}
 
 					playerIn.addStat(StatList.CAULDRON_FILLED);
@@ -128,7 +128,7 @@ public class BlockCauldron extends Block
 
 				return true;
 			}
-			else if (item == Items.getItem(Items.BUCKET))
+			else if (item == Items.BUCKET)
 			{
 				if (i == 3 && !worldIn.isRemote)
 				{
@@ -138,11 +138,11 @@ public class BlockCauldron extends Block
 
 						if (itemstack.isNotValid())
 						{
-							playerIn.setHeldItem(hand, new ItemStack(Items.getItem(Items.WATER_BUCKET)));
+							playerIn.setHeldItem(hand, new ItemStack(Items.WATER_BUCKET));
 						}
-						else if (!playerIn.inventory.addItemStackToInventory(new ItemStack(Items.getItem(Items.WATER_BUCKET))))
+						else if (!playerIn.inventory.addItemStackToInventory(new ItemStack(Items.WATER_BUCKET)))
 						{
-							playerIn.dropItem(new ItemStack(Items.getItem(Items.WATER_BUCKET)), false);
+							playerIn.dropItem(new ItemStack(Items.WATER_BUCKET), false);
 						}
 					}
 
@@ -153,13 +153,13 @@ public class BlockCauldron extends Block
 
 				return true;
 			}
-			else if (item == Items.getItem(Items.GLASS_BOTTLE))
+			else if (item == Items.GLASS_BOTTLE)
 			{
 				if (i > 0 && !worldIn.isRemote)
 				{
 					if (!playerIn.capabilities.isCreativeMode)
 					{
-						ItemStack itemstack3 = PotionUtils.addPotionToItemStack(new ItemStack(Items.getItem(Items.POTIONITEM)), PotionTypes.WATER);
+						ItemStack itemstack3 = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER);
 						playerIn.addStat(StatList.CAULDRON_USED);
 						itemstack.decreaseStackSize(1);
 
@@ -183,13 +183,13 @@ public class BlockCauldron extends Block
 
 				return true;
 			}
-			else if (item == Items.getItem(Items.POTIONITEM) && PotionUtils.getPotionFromItem(itemstack) == PotionTypes.WATER)
+			else if (item == Items.POTIONITEM && PotionUtils.getPotionFromItem(itemstack) == PotionTypes.WATER)
 			{
 				if (i < 3 && !worldIn.isRemote)
 				{
 					if (!playerIn.capabilities.isCreativeMode)
 					{
-						ItemStack itemstack2 = new ItemStack(Items.getItem(Items.GLASS_BOTTLE));
+						ItemStack itemstack2 = new ItemStack(Items.GLASS_BOTTLE);
 						playerIn.addStat(StatList.CAULDRON_USED);
 						playerIn.setHeldItem(hand, itemstack2);
 
@@ -293,13 +293,13 @@ public class BlockCauldron extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Items.getItem(Items.CAULDRON);
+		return Items.CAULDRON;
 	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(Items.getItem(Items.CAULDRON));
+		return new ItemStack(Items.CAULDRON);
 	}
 
 	@Override

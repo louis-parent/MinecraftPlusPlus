@@ -23,7 +23,7 @@ public class ContainerHorseInventory extends Container
 			@Override
 			public boolean isItemValid(ItemStack stack)
 			{
-				return stack.getItem() == Items.getItem(Items.SADDLE) && !this.getHasStack() && horse.func_190685_dA();
+				return stack.getItem() == Items.SADDLE && !this.getHasStack() && horse.func_190685_dA();
 			}
 
 			@Override

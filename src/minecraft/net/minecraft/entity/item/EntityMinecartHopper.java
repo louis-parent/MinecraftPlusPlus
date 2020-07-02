@@ -46,7 +46,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 	@Override
 	public IBlockState getDefaultDisplayTile()
 	{
-		return Blocks.getBlock(Blocks.HOPPER).getDefaultState();
+		return Blocks.HOPPER.getDefaultState();
 	}
 
 	@Override
@@ -201,7 +201,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 
 		if (this.world.getGameRules().getBoolean("doEntityDrops"))
 		{
-			this.dropItemWithOffset(Item.getItemFromBlock(Blocks.getBlock(Blocks.HOPPER)), 1, 0.0F);
+			this.dropItemWithOffset(Item.getItemFromBlock(Blocks.HOPPER), 1, 0.0F);
 		}
 	}
 

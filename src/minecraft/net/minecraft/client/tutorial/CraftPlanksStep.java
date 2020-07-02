@@ -41,7 +41,7 @@ public class CraftPlanksStep implements ITutorialStep
 
 				if (entityplayersp != null)
 				{
-					if (entityplayersp.inventory.hasItemStack(new ItemStack(Blocks.getBlock(Blocks.PLANKS))))
+					if (entityplayersp.inventory.hasItemStack(new ItemStack(Blocks.PLANKS)))
 					{
 						this.field_193288_c.func_193292_a(TutorialSteps.NONE);
 						return;
@@ -76,7 +76,7 @@ public class CraftPlanksStep implements ITutorialStep
 	@Override
 	public void func_193252_a(ItemStack p_193252_1_)
 	{
-		if (p_193252_1_.getItem() == Item.getItemFromBlock(Blocks.getBlock(Blocks.PLANKS)))
+		if (p_193252_1_.getItem() == Item.getItemFromBlock(Blocks.PLANKS))
 		{
 			this.field_193288_c.func_193292_a(TutorialSteps.NONE);
 		}
@@ -84,7 +84,7 @@ public class CraftPlanksStep implements ITutorialStep
 
 	public static boolean func_194071_a(EntityPlayerSP p_194071_0_)
 	{
-		StatBase statbase = StatList.getCraftStats(Item.getItemFromBlock(Blocks.getBlock(Blocks.PLANKS)));
+		StatBase statbase = StatList.getCraftStats(Item.getItemFromBlock(Blocks.PLANKS));
 		return statbase != null && p_194071_0_.getStatFileWriter().readStat(statbase) > 0;
 	}
 }

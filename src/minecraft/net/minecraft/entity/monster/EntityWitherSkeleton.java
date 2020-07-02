@@ -82,7 +82,7 @@ public class EntityWitherSkeleton extends AbstractSkeleton
 			if (entitycreeper.getPowered() && entitycreeper.isAIEnabled())
 			{
 				entitycreeper.incrementDroppedSkulls();
-				this.entityDropItem(new ItemStack(Items.getItem(Items.SKULL), 1, 1), 0.0F);
+				this.entityDropItem(new ItemStack(Items.SKULL, 1, 1), 0.0F);
 			}
 		}
 	}
@@ -93,7 +93,7 @@ public class EntityWitherSkeleton extends AbstractSkeleton
 	@Override
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
 	{
-		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.getItem(Items.STONE_SWORD)));
+		this.setItemStackToSlot(EntityHandSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
 	}
 
 	/**

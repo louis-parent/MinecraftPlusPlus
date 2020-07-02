@@ -30,7 +30,7 @@ public class LayerElytra implements LayerRenderer<EntityLivingBase>
 	{
 		ItemStack itemstack = entitylivingbaseIn.getItemStackFromSlot(EntityArmorSlot.CHEST);
 
-		if (itemstack.getItem() == Items.getItem(Items.ELYTRA))
+		if (itemstack.getItem() == Items.ELYTRA)
 		{
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.enableBlend();

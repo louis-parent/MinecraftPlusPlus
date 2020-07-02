@@ -24,10 +24,4 @@ public class ModCraftingManager
 			CraftingManager.registerRecipe("DynRecipe" + i, recipeList.get(i));
 		}
 	}
-
-	public static void resetRegistry()
-	{
-		recipeList.clear();
-	}
-
 }

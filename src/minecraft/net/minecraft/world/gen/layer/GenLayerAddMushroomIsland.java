@@ -39,7 +39,7 @@ public class GenLayerAddMushroomIsland extends GenLayer
 
 				if (k2 == 0 && k1 == 0 && l1 == 0 && i2 == 0 && j2 == 0 && this.nextInt(100) == 0)
 				{
-					aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(Biomes.getBiome(Biomes.MUSHROOM_ISLAND));
+					aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(Biomes.MUSHROOM_ISLAND);
 				}
 				else
 				{

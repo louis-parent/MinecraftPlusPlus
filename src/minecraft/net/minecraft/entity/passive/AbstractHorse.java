@@ -455,9 +455,9 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		{
 			SoundType soundtype = blockIn.getSoundType();
 
-			if (this.world.getBlockState(pos.up()).getBlock() == Blocks.getBlock(Blocks.SNOW_LAYER))
+			if (this.world.getBlockState(pos.up()).getBlock() == Blocks.SNOW_LAYER)
 			{
-				soundtype = Blocks.getBlock(Blocks.SNOW_LAYER).getSoundType();
+				soundtype = Blocks.SNOW_LAYER.getSoundType();
 			}
 
 			if (this.isBeingRidden() && this.field_190688_bE)
@@ -548,30 +548,30 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		int j = 0;
 		Item item = p_190678_2_.getItem();
 
-		if (item == Items.getItem(Items.WHEAT))
+		if (item == Items.WHEAT)
 		{
 			f = 2.0F;
 			i = 20;
 			j = 3;
 		}
-		else if (item == Items.getItem(Items.SUGAR))
+		else if (item == Items.SUGAR)
 		{
 			f = 1.0F;
 			i = 30;
 			j = 3;
 		}
-		else if (item == Item.getItemFromBlock(Blocks.getBlock(Blocks.HAY_BLOCK)))
+		else if (item == Item.getItemFromBlock(Blocks.HAY_BLOCK))
 		{
 			f = 20.0F;
 			i = 180;
 		}
-		else if (item == Items.getItem(Items.APPLE))
+		else if (item == Items.APPLE)
 		{
 			f = 3.0F;
 			i = 60;
 			j = 3;
 		}
-		else if (item == Items.getItem(Items.GOLDEN_CARROT))
+		else if (item == Items.GOLDEN_CARROT)
 		{
 			f = 4.0F;
 			i = 60;
@@ -583,7 +583,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 				this.setInLove(p_190678_1_);
 			}
 		}
-		else if (item == Items.getItem(Items.GOLDEN_APPLE))
+		else if (item == Items.GOLDEN_APPLE)
 		{
 			f = 10.0F;
 			i = 240;
@@ -715,7 +715,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 
 			if (this.func_190684_dE())
 			{
-				if (!this.isEatingHaystack() && !this.isBeingRidden() && this.rand.nextInt(300) == 0 && this.world.getBlockState(new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY) - 1, MathHelper.floor(this.posZ))).getBlock() == Blocks.getBlock(Blocks.GRASS))
+				if (!this.isEatingHaystack() && !this.isBeingRidden() && this.rand.nextInt(300) == 0 && this.world.getBlockState(new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY) - 1, MathHelper.floor(this.posZ))).getBlock() == Blocks.GRASS)
 				{
 					this.setEatingHaystack(true);
 				}
@@ -1068,7 +1068,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 		{
 			ItemStack itemstack = new ItemStack(compound.getCompoundTag("SaddleItem"));
 
-			if (itemstack.getItem() == Items.getItem(Items.SADDLE))
+			if (itemstack.getItem() == Items.SADDLE)
 			{
 				this.horseChest.setInventorySlotContents(0, itemstack);
 			}
@@ -1298,7 +1298,7 @@ public abstract class AbstractHorse extends EntityAnimal implements IInventoryCh
 
 		if (i >= 0 && i < 2 && i < this.horseChest.getSizeInventory())
 		{
-			if (i == 0 && itemStackIn.getItem() != Items.getItem(Items.SADDLE))
+			if (i == 0 && itemStackIn.getItem() != Items.SADDLE)
 			{
 				return false;
 			}

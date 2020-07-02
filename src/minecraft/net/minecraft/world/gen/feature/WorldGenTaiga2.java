@@ -15,6 +15,9 @@ import net.minecraft.world.World;
 
 public class WorldGenTaiga2 extends WorldGenAbstractTree
 {
+	private static final IBlockState TRUNK = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
+	private static final IBlockState LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+
 	public WorldGenTaiga2(boolean p_i2025_1_)
 	{
 		super(p_i2025_1_);
@@ -75,7 +78,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 			{
 				Block block = worldIn.getBlockState(position.down()).getBlock();
 
-				if ((block == Blocks.getBlock(Blocks.GRASS) || block == Blocks.getBlock(Blocks.DIRT) || block == Blocks.getBlock(Blocks.FARMLAND)) && position.getY() < 256 - i - 1)
+				if ((block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND) && position.getY() < 256 - i - 1)
 				{
 					this.setDirtAt(worldIn, position.down());
 					int i3 = rand.nextInt(2);
@@ -100,7 +103,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
 									if (!worldIn.getBlockState(blockpos).isFullBlock())
 									{
-										this.setBlockAndNotifyAdequately(worldIn, blockpos, getLeaf());
+										this.setBlockAndNotifyAdequately(worldIn, blockpos, LEAF);
 									}
 								}
 							}
@@ -131,7 +134,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
 						if (material1 == Material.AIR || material1 == Material.LEAVES)
 						{
-							this.setBlockAndNotifyAdequately(worldIn, position.up(k4), getTrunk());
+							this.setBlockAndNotifyAdequately(worldIn, position.up(k4), TRUNK);
 						}
 					}
 
@@ -147,15 +150,5 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 		{
 			return false;
 		}
-	}
-
-	public static IBlockState getTrunk()
-	{
-		return Blocks.getBlock(Blocks.LOG).getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
-	}
-
-	public static IBlockState getLeaf()
-	{
-		return Blocks.getBlock(Blocks.LEAVES).getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 	}
 }

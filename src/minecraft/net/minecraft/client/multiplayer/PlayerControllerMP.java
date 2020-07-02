@@ -177,7 +177,7 @@ public class PlayerControllerMP
 			{
 				world.playEvent(2001, pos, Block.getStateId(iblockstate));
 				block.onBlockHarvested(world, pos, iblockstate, this.mc.player);
-				boolean flag = world.setBlockState(pos, Blocks.getBlock(Blocks.AIR).getDefaultState(), 11);
+				boolean flag = world.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
 
 				if (flag)
 				{

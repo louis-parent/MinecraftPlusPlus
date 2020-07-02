@@ -39,7 +39,7 @@ public class ItemSign extends Item
 			worldIn = worldIn.offset(hand);
 			ItemStack itemstack = stack.getHeldItem(pos);
 
-			if (stack.canPlayerEdit(worldIn, hand, itemstack) && Blocks.getBlock(Blocks.STANDING_SIGN).canPlaceBlockAt(playerIn, worldIn))
+			if (stack.canPlayerEdit(worldIn, hand, itemstack) && Blocks.STANDING_SIGN.canPlaceBlockAt(playerIn, worldIn))
 			{
 				if (playerIn.isRemote)
 				{
@@ -52,11 +52,11 @@ public class ItemSign extends Item
 					if (hand == EnumFacing.UP)
 					{
 						int i = MathHelper.floor((stack.rotationYaw + 180.0F) * 16.0F / 360.0F + 0.5D) & 15;
-						playerIn.setBlockState(worldIn, Blocks.getBlock(Blocks.STANDING_SIGN).getDefaultState().withProperty(BlockStandingSign.ROTATION, Integer.valueOf(i)), 11);
+						playerIn.setBlockState(worldIn, Blocks.STANDING_SIGN.getDefaultState().withProperty(BlockStandingSign.ROTATION, Integer.valueOf(i)), 11);
 					}
 					else
 					{
-						playerIn.setBlockState(worldIn, Blocks.getBlock(Blocks.WALL_SIGN).getDefaultState().withProperty(BlockWallSign.FACING, hand), 11);
+						playerIn.setBlockState(worldIn, Blocks.WALL_SIGN.getDefaultState().withProperty(BlockWallSign.FACING, hand), 11);
 					}
 
 					TileEntity tileentity = playerIn.getTileEntity(worldIn);

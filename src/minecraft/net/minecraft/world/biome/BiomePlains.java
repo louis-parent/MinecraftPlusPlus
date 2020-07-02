@@ -114,6 +114,6 @@ public class BiomePlains extends Biome
 	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand)
 	{
-		return rand.nextInt(3) == 0 ? getBIG_TREE_FEATURE() : getTreeFeature();
+		return rand.nextInt(3) == 0 ? BIG_TREE_FEATURE : TREE_FEATURE;
 	}
 }

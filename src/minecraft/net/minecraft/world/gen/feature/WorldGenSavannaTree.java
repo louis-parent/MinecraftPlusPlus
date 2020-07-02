@@ -16,6 +16,9 @@ import net.minecraft.world.World;
 
 public class WorldGenSavannaTree extends WorldGenAbstractTree
 {
+	private static final IBlockState TRUNK = Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.ACACIA);
+	private static final IBlockState LEAF = Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+
 	public WorldGenSavannaTree(boolean doBlockNotify)
 	{
 		super(doBlockNotify);
@@ -72,7 +75,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 			{
 				Block block = worldIn.getBlockState(position.down()).getBlock();
 
-				if ((block == Blocks.getBlock(Blocks.GRASS) || block == Blocks.getBlock(Blocks.DIRT)) && position.getY() < 256 - i - 1)
+				if ((block == Blocks.GRASS || block == Blocks.DIRT) && position.getY() < 256 - i - 1)
 				{
 					this.setDirtAt(worldIn, position.down());
 					EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
@@ -203,7 +206,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
 	private void placeLogAt(World worldIn, BlockPos pos)
 	{
-		this.setBlockAndNotifyAdequately(worldIn, pos, getTrunk());
+		this.setBlockAndNotifyAdequately(worldIn, pos, TRUNK);
 	}
 
 	private void placeLeafAt(World worldIn, BlockPos pos)
@@ -212,17 +215,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
 		if (material == Material.AIR || material == Material.LEAVES)
 		{
-			this.setBlockAndNotifyAdequately(worldIn, pos, getLeaf());
+			this.setBlockAndNotifyAdequately(worldIn, pos, LEAF);
 		}
-	}
-
-	public static IBlockState getTrunk()
-	{
-		return Blocks.getBlock(Blocks.LOG2).getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.ACACIA);
-	}
-
-	public static IBlockState getLeaf()
-	{
-		return Blocks.getBlock(Blocks.LEAVES2).getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 	}
 }

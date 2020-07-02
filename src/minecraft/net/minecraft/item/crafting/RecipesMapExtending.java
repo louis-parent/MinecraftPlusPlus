@@ -2,7 +2,6 @@ package net.minecraft.item.crafting;
 
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
@@ -14,7 +13,7 @@ public class RecipesMapExtending extends ShapedRecipes
 {
 	public RecipesMapExtending()
 	{
-		super("", 3, 3, NonNullList.getInstanceWith(Ingredient.INGREDIENT_AIR, Ingredient.getIngredientFromItems(Items.getItem(Items.PAPER)), Ingredient.getIngredientFromItems(Items.getItem(Items.PAPER)), Ingredient.getIngredientFromItems(Items.getItem(Items.PAPER)), Ingredient.getIngredientFromItems(Items.getItem(Items.PAPER)), Ingredient.getIngredientFromFilledMap(Items.getItem(Items.FILLED_MAP)), Ingredient.getIngredientFromItems(Items.getItem(Items.PAPER)), Ingredient.getIngredientFromItems(Items.getItem(Items.PAPER)), Ingredient.getIngredientFromItems(Items.getItem(Items.PAPER)), Ingredient.getIngredientFromItems(Items.getItem(Items.PAPER))), new ItemStack(Items.getItem(Items.MAP)));
+		super("", 3, 3, NonNullList.getInstanceWith(Ingredient.INGREDIENT_AIR, Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromFilledMap(Items.FILLED_MAP), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER), Ingredient.getIngredientFromItems(Items.PAPER)), new ItemStack(Items.MAP));
 	}
 
 	/**
@@ -35,7 +34,7 @@ public class RecipesMapExtending extends ShapedRecipes
 			{
 				ItemStack itemstack1 = inv.getStackInSlot(i);
 
-				if (itemstack1.getItem() == Items.getItem(Items.FILLED_MAP))
+				if (itemstack1.getItem() == Items.FILLED_MAP)
 				{
 					itemstack = itemstack1;
 				}
@@ -47,7 +46,7 @@ public class RecipesMapExtending extends ShapedRecipes
 			}
 			else
 			{
-				MapData mapdata = ((ItemMap) Items.getItem(Items.FILLED_MAP)).getMapData(itemstack, worldIn);
+				MapData mapdata = Items.FILLED_MAP.getMapData(itemstack, worldIn);
 
 				if (mapdata == null)
 				{
@@ -93,7 +92,7 @@ public class RecipesMapExtending extends ShapedRecipes
 		{
 			ItemStack itemstack1 = inv.getStackInSlot(i);
 
-			if (itemstack1.getItem() == Items.getItem(Items.FILLED_MAP))
+			if (itemstack1.getItem() == Items.FILLED_MAP)
 			{
 				itemstack = itemstack1;
 			}

@@ -10,7 +10,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public class MapGenCavesHell extends MapGenBase
 {
-	protected static final IBlockState AIR = Blocks.getBlock(Blocks.AIR).getDefaultState();
+	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
 
 	protected void addRoom(long p_180705_1_, int p_180705_3_, int p_180705_4_, ChunkPrimer p_180705_5_, double p_180705_6_, double p_180705_8_, double p_180705_10_)
 	{
@@ -137,7 +137,7 @@ public class MapGenCavesHell extends MapGenBase
 								{
 									IBlockState iblockstate = p_180704_5_.getBlockState(j1, l1, k1);
 
-									if (iblockstate.getBlock() == Blocks.getBlock(Blocks.FLOWING_LAVA) || iblockstate.getBlock() == Blocks.getBlock(Blocks.LAVA))
+									if (iblockstate.getBlock() == Blocks.FLOWING_LAVA || iblockstate.getBlock() == Blocks.LAVA)
 									{
 										flag2 = true;
 									}
@@ -169,7 +169,7 @@ public class MapGenCavesHell extends MapGenBase
 									{
 										IBlockState iblockstate1 = p_180704_5_.getBlockState(i3, i2, j3);
 
-										if (iblockstate1.getBlock() == Blocks.getBlock(Blocks.NETHERRACK) || iblockstate1.getBlock() == Blocks.getBlock(Blocks.DIRT) || iblockstate1.getBlock() == Blocks.getBlock(Blocks.GRASS))
+										if (iblockstate1.getBlock() == Blocks.NETHERRACK || iblockstate1.getBlock() == Blocks.DIRT || iblockstate1.getBlock() == Blocks.GRASS)
 										{
 											p_180704_5_.setBlockState(i3, i2, j3, AIR);
 										}

@@ -351,7 +351,7 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
 				{
 					return I18n.format("gui.all");
 				}
-				else if ((int) p_175330_2_ >= Biome.getIdForBiome(Biomes.getBiome(Biomes.HELL)))
+				else if ((int) p_175330_2_ >= Biome.getIdForBiome(Biomes.HELL))
 				{
 					Biome biome1 = Biome.getBiomeForId((int) p_175330_2_ + 2);
 					return biome1 != null ? biome1.getBiomeName() : "?";

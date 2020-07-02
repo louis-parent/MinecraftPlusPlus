@@ -92,7 +92,7 @@ public class BlockFarmland extends Block
 
 	private void func_190970_b(World p_190970_1_, BlockPos p_190970_2_)
 	{
-		IBlockState iblockstate = Blocks.getBlock(Blocks.DIRT).getDefaultState();
+		IBlockState iblockstate = Blocks.DIRT.getDefaultState();
 		p_190970_1_.setBlockState(p_190970_2_, iblockstate);
 		AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(p_190970_1_, p_190970_2_).offset(p_190970_2_);
 
@@ -167,7 +167,7 @@ public class BlockFarmland extends Block
 			case EAST:
 				IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 				Block block = iblockstate.getBlock();
-				return !iblockstate.isOpaqueCube() && block != Blocks.getBlock(Blocks.FARMLAND) && block != Blocks.getBlock(Blocks.GRASS_PATH);
+				return !iblockstate.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH;
 
 			default:
 				return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
@@ -180,7 +180,7 @@ public class BlockFarmland extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Blocks.getBlock(Blocks.DIRT).getItemDropped(Blocks.getBlock(Blocks.DIRT).getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
+		return Blocks.DIRT.getItemDropped(Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT), rand, fortune);
 	}
 
 	/**

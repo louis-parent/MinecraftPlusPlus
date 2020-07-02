@@ -97,7 +97,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 
 		if (!source.isExplosion() && this.world.getGameRules().getBoolean("doEntityDrops"))
 		{
-			this.entityDropItem(new ItemStack(Blocks.getBlock(Blocks.FURNACE), 1), 0.0F);
+			this.entityDropItem(new ItemStack(Blocks.FURNACE, 1), 0.0F);
 		}
 	}
 
@@ -212,6 +212,6 @@ public class EntityMinecartFurnace extends EntityMinecart
 	@Override
 	public IBlockState getDefaultDisplayTile()
 	{
-		return (this.isMinecartPowered() ? Blocks.getBlock(Blocks.LIT_FURNACE) : Blocks.getBlock(Blocks.FURNACE)).getDefaultState().withProperty(BlockFurnace.FACING, EnumFacing.NORTH);
+		return (this.isMinecartPowered() ? Blocks.LIT_FURNACE : Blocks.FURNACE).getDefaultState().withProperty(BlockFurnace.FACING, EnumFacing.NORTH);
 	}
 }

@@ -141,7 +141,7 @@ public class EntityItemFrame extends EntityHanging
 
 			if (p_146065_2_)
 			{
-				this.entityDropItem(new ItemStack(Items.getItem(Items.ITEM_FRAME)), 0.0F);
+				this.entityDropItem(new ItemStack(Items.ITEM_FRAME), 0.0F);
 			}
 
 			if (!itemstack.isNotValid() && this.rand.nextFloat() < this.itemDropChance)
@@ -161,7 +161,7 @@ public class EntityItemFrame extends EntityHanging
 	{
 		if (!stack.isNotValid())
 		{
-			if (stack.getItem() == Items.getItem(Items.FILLED_MAP))
+			if (stack.getItem() == Items.FILLED_MAP)
 			{
 				MapData mapdata = ((ItemMap) stack.getItem()).getMapData(stack, this.world);
 				mapdata.mapDecorations.remove("frame-" + this.getEntityId());
@@ -200,7 +200,7 @@ public class EntityItemFrame extends EntityHanging
 
 		if (p_174864_2_ && this.hangingPosition != null)
 		{
-			this.world.updateComparatorOutputLevel(this.hangingPosition, Blocks.getBlock(Blocks.AIR));
+			this.world.updateComparatorOutputLevel(this.hangingPosition, Blocks.AIR);
 		}
 	}
 
@@ -237,7 +237,7 @@ public class EntityItemFrame extends EntityHanging
 
 		if (p_174865_2_ && this.hangingPosition != null)
 		{
-			this.world.updateComparatorOutputLevel(this.hangingPosition, Blocks.getBlock(Blocks.AIR));
+			this.world.updateComparatorOutputLevel(this.hangingPosition, Blocks.AIR);
 		}
 	}
 

@@ -26,7 +26,12 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class BiomeJungle extends Biome
 {
 	private final boolean isEdge;
-	
+	private static final IBlockState JUNGLE_LOG = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
+	private static final IBlockState JUNGLE_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+
+	/** The block state for the Oak leaf */
+	private static final IBlockState OAK_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+
 	public BiomeJungle(boolean isEdgeIn, Biome.BiomeProperties properties)
 	{
 		super(properties);
@@ -58,15 +63,15 @@ public class BiomeJungle extends Biome
 	{
 		if (rand.nextInt(10) == 0)
 		{
-			return getBIG_TREE_FEATURE();
+			return BIG_TREE_FEATURE;
 		}
 		else if (rand.nextInt(2) == 0)
 		{
-			return new WorldGenShrub(getJungleLog(), getOakLeaf());
+			return new WorldGenShrub(JUNGLE_LOG, OAK_LEAF);
 		}
 		else
 		{
-			return !this.isEdge && rand.nextInt(3) == 0 ? new WorldGenMegaJungle(false, 10, 20, getJungleLog(), getJungleLeaf()) : new WorldGenTrees(false, 4 + rand.nextInt(7), getJungleLog(), getJungleLeaf(), true);
+			return !this.isEdge && rand.nextInt(3) == 0 ? new WorldGenMegaJungle(false, 10, 20, JUNGLE_LOG, JUNGLE_LEAF) : new WorldGenTrees(false, 4 + rand.nextInt(7), JUNGLE_LOG, JUNGLE_LEAF, true);
 		}
 	}
 
@@ -96,20 +101,5 @@ public class BiomeJungle extends Biome
 			int i1 = rand.nextInt(16) + 8;
 			worldgenvines.generate(worldIn, rand, pos.add(k, 128, i1));
 		}
-	}
-
-	public static IBlockState getJungleLog()
-	{
-		return Blocks.getBlock(Blocks.LOG).getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-	}
-
-	public static IBlockState getJungleLeaf()
-	{
-		return Blocks.getBlock(Blocks.LEAVES).getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-	}
-
-	public static IBlockState getOakLeaf()
-	{
-		return Blocks.getBlock(Blocks.LEAVES).getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 	}
 }

@@ -28,7 +28,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 public class StructureEndCityPieces
 {
 	private static final PlacementSettings OVERWRITE = (new PlacementSettings()).setIgnoreEntities(true);
-	private static final PlacementSettings INSERT = (new PlacementSettings()).setIgnoreEntities(true).setReplacedBlock(Blocks.getBlock(Blocks.AIR));
+	private static final PlacementSettings INSERT = (new PlacementSettings()).setIgnoreEntities(true).setReplacedBlock(Blocks.AIR);
 	private static final StructureEndCityPieces.IGenerator HOUSE_TOWER_GENERATOR = new StructureEndCityPieces.IGenerator()
 	{
 		@Override
@@ -357,7 +357,7 @@ public class StructureEndCityPieces
 			else if (p_186175_1_.startsWith("Elytra"))
 			{
 				EntityItemFrame entityitemframe = new EntityItemFrame(p_186175_3_, p_186175_2_, this.rotation.rotate(EnumFacing.SOUTH));
-				entityitemframe.setDisplayedItem(new ItemStack(Items.getItem(Items.ELYTRA)));
+				entityitemframe.setDisplayedItem(new ItemStack(Items.ELYTRA));
 				p_186175_3_.spawnEntityInWorld(entityitemframe);
 			}
 		}

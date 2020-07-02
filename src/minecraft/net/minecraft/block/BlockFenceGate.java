@@ -65,7 +65,7 @@ public class BlockFenceGate extends BlockHorizontal
 	{
 		EnumFacing.Axis enumfacing$axis = state.getValue(FACING).getAxis();
 
-		if (enumfacing$axis == EnumFacing.Axis.Z && (worldIn.getBlockState(pos.west()).getBlock() == Blocks.getBlock(Blocks.COBBLESTONE_WALL) || worldIn.getBlockState(pos.east()).getBlock() == Blocks.getBlock(Blocks.COBBLESTONE_WALL)) || enumfacing$axis == EnumFacing.Axis.X && (worldIn.getBlockState(pos.north()).getBlock() == Blocks.getBlock(Blocks.COBBLESTONE_WALL) || worldIn.getBlockState(pos.south()).getBlock() == Blocks.getBlock(Blocks.COBBLESTONE_WALL)))
+		if (enumfacing$axis == EnumFacing.Axis.Z && (worldIn.getBlockState(pos.west()).getBlock() == Blocks.COBBLESTONE_WALL || worldIn.getBlockState(pos.east()).getBlock() == Blocks.COBBLESTONE_WALL) || enumfacing$axis == EnumFacing.Axis.X && (worldIn.getBlockState(pos.north()).getBlock() == Blocks.COBBLESTONE_WALL || worldIn.getBlockState(pos.south()).getBlock() == Blocks.COBBLESTONE_WALL))
 		{
 			state = state.withProperty(IN_WALL, Boolean.valueOf(true));
 		}

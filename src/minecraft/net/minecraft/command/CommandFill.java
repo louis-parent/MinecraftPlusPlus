@@ -156,7 +156,7 @@ public class CommandFill extends CommandBase
 								{
 									if ("hollow".equals(args[8]))
 									{
-										world.setBlockState(blockpos4, Blocks.getBlock(Blocks.AIR).getDefaultState(), 2);
+										world.setBlockState(blockpos4, Blocks.AIR.getDefaultState(), 2);
 										list.add(blockpos4);
 									}
 
