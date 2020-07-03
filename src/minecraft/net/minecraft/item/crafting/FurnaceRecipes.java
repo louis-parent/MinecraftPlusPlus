@@ -51,8 +51,7 @@ public class FurnaceRecipes
 		this.addSmelting(Items.CLAY_BALL, new ItemStack(Items.BRICK), 0.3F);
 		this.addSmeltingRecipeForBlock(Blocks.CLAY, new ItemStack(Blocks.HARDENED_CLAY), 0.35F);
 		this.addSmeltingRecipeForBlock(Blocks.CACTUS, new ItemStack(Items.DYE, 1, EnumDyeColor.GREEN.getDyeDamage()), 0.2F);
-		this.addSmeltingRecipeForBlock(Blocks.LOG, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL), 1, 1), 0.15F);
-		this.addSmeltingRecipeForBlock(Blocks.LOG2, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL), 1, 1), 0.15F);
+
 		this.addSmeltingRecipeForBlock(Blocks.EMERALD_ORE, new ItemStack(Items.EMERALD), 1.0F);
 		this.addSmelting(Items.POTATO, new ItemStack(Items.BAKED_POTATO), 0.35F);
 		this.addSmeltingRecipeForBlock(Blocks.NETHERRACK, new ItemStack(Items.NETHERBRICK), 0.1F);
@@ -114,7 +113,13 @@ public class FurnaceRecipes
 
 		/**
 		 * MOD FURNACE RECIPES
-		 */
+		 
+		this.addSmeltingRecipeForBlock(Blocks.LOG, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL), 1, 1), 0.15F);
+		this.addSmeltingRecipeForBlock(Blocks.LOG2, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL), 1, 1), 0.15F);
+		*/
+		this.addSmeltingRecipeForBlock(Blocks.LOG, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL)), 0.15F);
+		this.addSmeltingRecipeForBlock(Blocks.LOG2, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL)), 0.15F);
+		
 		ModFurnaceRecipes.furnaceRecipes(this);
 	}
 
