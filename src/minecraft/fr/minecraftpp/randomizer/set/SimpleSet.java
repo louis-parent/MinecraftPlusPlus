@@ -106,8 +106,8 @@ public class SimpleSet implements ISet
 		this.setupWalkDamage();
 		this.setupFireable();
 
-		this.setRarity(this.rarity);
 		this.setupProperties();
+		this.setRarity(this.rarity);
 	}
 
 	@Override
@@ -418,6 +418,7 @@ public class SimpleSet implements ISet
 	protected void setupGold()
 	{
 		this.setHarvestLevel(HarvestLevel.IRON);
+		this.rarity = this.rarity.next();
 		this.setVariant(Items.OLD_GOLD_INGOT, Blocks.GOLD_BLOCK);
 	}
 

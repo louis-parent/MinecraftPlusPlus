@@ -157,10 +157,10 @@ public class Pretreatment
 		List<String> allCertainProperties = Arrays.asList(new String[] { OreProperties.REDSTONE + "", OreProperties.BEACON + "1", OreProperties.CURRENCY + "", OreProperties.BLUEDYE + "", OreProperties.FUEL + "1", OreProperties.ENCHANT_CURRENCY + "1", OreProperties.MATERIAL + "1" });
 		str += allDiffFrom(allCertainProperties);
 		
-		List<String> materialAndCurency = getAllVariablesFrom(OreProperties.MATERIAL);
-		materialAndCurency.addAll(getAllVariablesFrom(OreProperties.METAL));
-		materialAndCurency.add(OreProperties.CURRENCY.toString());
-		str += allDiffFrom(materialAndCurency);
+		List<String> materialAndCurrency = getAllVariablesFrom(OreProperties.MATERIAL);
+		materialAndCurrency.addAll(getAllVariablesFrom(OreProperties.METAL));
+		materialAndCurrency.add(OreProperties.CURRENCY.toString());
+		str += allDiffFrom(materialAndCurrency);
 
 		return str;
 	}
