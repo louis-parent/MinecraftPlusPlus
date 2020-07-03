@@ -14,10 +14,6 @@ public class Pretreatment
 	private final int NUMBER_OF_ORES;
 
 	private List<String> variables;
-	
-	public static void main(String[] args) {
-		System.out.println(new Pretreatment(new Random(), 7));
-	}
 
 	public Pretreatment(Random rand, int numberOfOres)
 	{
@@ -37,21 +33,20 @@ public class Pretreatment
 		this.variables.add(OreProperties.GOLD + "");
 		this.variables.add(OreProperties.DIAMOND + "");
 		this.variables.add(OreProperties.FUEL + "1");
-		this.variables.add(OreProperties.BEACON + "1");
-		this.variables.add(OreProperties.BEACON + "2");
 		this.variables.add(OreProperties.ENCHANT_CURRENCY + "1");
 	}
 
 	private void addRandomVariables(Random rand)
 	{
-		addSpecificVariables(OreProperties.FUEL, rand.nextInt(3));
-		addSpecificVariables(OreProperties.ENCHANT_CURRENCY, rand.nextInt(3));
+		addSpecificVariables(OreProperties.FUEL, rand.nextInt(2));
+		addSpecificVariables(OreProperties.ENCHANT_CURRENCY, rand.nextInt(2));
 		addMaterialVariables(rand);
 
 		int nbOfMaterial = getAllVariablesFrom(OreProperties.MATERIAL).size();
 		nbOfMaterial += getAllVariablesFrom(OreProperties.METAL).size();
 		
-		addSpecificVariables(OreProperties.BEACON, Math.max(0, rand.nextInt(6 - nbOfMaterial)) + nbOfMaterial);
+		addSpecificVariables(OreProperties.BEACON, Math.max(0, rand.nextInt(5 - nbOfMaterial)) + nbOfMaterial);
+		System.out.println("STOP");
 	}
 
 	private void addSpecificVariables(OreProperties name, int quantity)
@@ -66,9 +61,9 @@ public class Pretreatment
 
 	private void addMaterialVariables(Random rand)
 	{
-		int numberOfMaterials = 2 + rand.nextInt(3);
-		int numberOfMetals = 1 + rand.nextInt(numberOfMaterials - 1);
-		addSpecificVariables(OreProperties.MATERIAL, numberOfMaterials - numberOfMetals);
+		int numberOfMetals = 1 + rand.nextInt(3);
+		int numberOfMaterials = Math.max(3 - numberOfMetals, rand.nextInt(5 - numberOfMetals));
+		addSpecificVariables(OreProperties.MATERIAL, numberOfMaterials);
 		addSpecificVariables(OreProperties.METAL, numberOfMetals);
 
 	}
@@ -201,7 +196,7 @@ public class Pretreatment
 		str += variablesIsBetween(OreProperties.COAL, OreProperties.FUEL);
 		
 		
-		boolean containsMetal = getAllVariablesFrom(OreProperties.METAL).size() > 0;
+		boolean containsMetal = getAllVariablesFrom(OreProperties.METAL).size() > 1;
 		
 		if (containsMetal) {
 			str += variablesIsBetween(OreProperties.IRON, OreProperties.MATERIAL, OreProperties.METAL);

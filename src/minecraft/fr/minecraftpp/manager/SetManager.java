@@ -16,7 +16,7 @@ import net.minecraft.client.renderer.color.ItemColors;
 
 public class SetManager
 {
-	private static final int NUMBER_OF_ORES = 7;
+	private static final int NUMBER_OF_ORES = 8;
 
 	private static List<ISet> sets = new ArrayList<ISet>();
 
