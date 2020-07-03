@@ -31,7 +31,7 @@ public class MppConfig
 	
 	public static MppConfig init()
 	{
-		File config = new File("MppConfig.txt");
+		File config = new File("MppConfig.mpp");
 		
 		try
 		{

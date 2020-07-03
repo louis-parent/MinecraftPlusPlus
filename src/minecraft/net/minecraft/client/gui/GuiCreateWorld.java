@@ -274,7 +274,7 @@ public class GuiCreateWorld extends GuiScreen
 				 */
 				File save = new File(new File(mc.mcDataDir, "saves"), this.saveDirName);
 				save.mkdirs();
-				save = new File(save, "mppSeed.txt");
+				save = new File(save, "mppSeed.mpp");
 				save.createNewFile();
 
 				BufferedWriter writer = new BufferedWriter(new FileWriter(save));

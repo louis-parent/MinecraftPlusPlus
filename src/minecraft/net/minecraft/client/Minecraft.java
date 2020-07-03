@@ -2479,7 +2479,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 			worldSettingsIn = new WorldSettings(worldinfo);
 		}
 
-		File mppSeed = new File(new File(new File(this.mcDataDir, "saves"), folderName), "mppSeed.txt");
+		File mppSeed = new File(new File(new File(this.mcDataDir, "saves"), folderName), "mppSeed.mpp");
 		
 		try
 		{

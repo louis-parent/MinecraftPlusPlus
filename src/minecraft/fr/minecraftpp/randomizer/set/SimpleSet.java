@@ -14,10 +14,10 @@ import fr.minecraftpp.crafting.item.RecipeDecompact;
 import fr.minecraftpp.enumeration.FlammabilityOf;
 import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.generation.OreRarity;
+import fr.minecraftpp.init.WordGen;
 import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.food.Food;
 import fr.minecraftpp.manager.ModManager;
-import fr.minecraftpp.util.nameGenerator.Word;
 import fr.minecraftpp.variant.Variant;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -65,7 +65,7 @@ public class SimpleSet implements ISet
 	public SimpleSet(Random rand, OreRarity oreRarity)
 	{
 		this.rng = rand;
-		this.name = Word.getWord(rand);
+		this.name = WordGen.getWord();
 
 		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng), Color.getRandomColorImproved(this.rng));
 		HarvestLevel randomHarvestLevel = HarvestLevel.getRandomHarvestLevel(this.rng);

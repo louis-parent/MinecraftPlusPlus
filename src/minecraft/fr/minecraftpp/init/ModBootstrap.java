@@ -8,7 +8,8 @@ public class ModBootstrap
 
 	public static void preBootstrap()
 	{
-		MppConfig config = MppConfig.init();		
+		MppConfig config = MppConfig.init();
+		WordGen.init(config.getSeed());
 		SetManager.generateOre(config.getSeed());
 		SetManager.register();
 	}

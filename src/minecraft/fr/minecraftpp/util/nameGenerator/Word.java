@@ -1,197 +1,116 @@
 package fr.minecraftpp.util.nameGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Word
 {
-	private List<Syllable> syllables;
-	private Random rand;
 
-	private Word()
+	private List<Character> symbols;
+	
+	public Word()
 	{
-		this.syllables = new ArrayList<>();
+		this.symbols = new ArrayList<Character>();
 	}
 
-	public Word(Random rand, int size)
+	public Word(Character symbol)
+	{
+		this();
+		this.symbols.add(symbol);
+	}
+	
+	@SafeVarargs
+	public Word(Character ... tag)
 	{
 		this();
 		
-		
-		this.rand = rand;
-		int choix;
-		int pos = 0;
-		
-		do {
-			choix = this.rand.nextInt(3) + 2;
-			pos++;
-			
-			if (size - choix >= 0) {
-				switch (choix)
-				{
-					case 2:
-						syllables.add(new ShortSyllable(this.rand, pos));
-						break;
-					case 3:
-						syllables.add(new AverageSyllable(this.rand, pos));
-						break;
-					case 4:
-						syllables.add(new LongSyllable(this.rand, pos));
-						break;
-					default:
-				}
-				size -= choix;
-			}
-		} while (size > 1 && pos < 3);
+		for (Character symbol : tag) {
+			this.symbols.add(symbol);
+		}
 	}
 
-	public Word(Random rand)
+	public Word(Word word)
 	{
-		this(rand, rand.nextInt(5) + 5);
+		this();
+		
+		for (Character symbol : word.symbols) {
+			this.symbols.add(symbol);
+		}
+	}
+
+	public int length()
+	{
+		return this.symbols.size();
+	}
+
+	public Character getLast()
+	{
+		return this.symbols.get(this.symbols.size() - 1);
+	}
+
+	public Character getFirst()
+	{
+		return this.symbols.get(0);
+	}
+
+	public Word getAllButFirst()
+	{
+		Word newWord = new Word();
+		
+		for (int i = 1; i < this.symbols.size(); i++) {
+			newWord.addUnsafely(this.symbols.get(i));
+		}
+		
+		return newWord;
+	}
+
+	private void addUnsafely(Character symbol)
+	{
+		this.symbols.add(symbol);
+	}
+
+	public Word add(Character symbol)
+	{
+		Word newWord = new Word(this);
+		
+		newWord.addUnsafely(symbol);
+		
+		return newWord;
+	}
+
+	public Character get(int i)
+	{
+		return this.symbols.get(i);
+	}
+
+	public Word set(int index, Character symbol)
+	{
+		Word newWord = new Word(this);
+		
+		newWord.symbols.set(index, symbol);
+		
+		return newWord;
 	}
 	
-	public static String getWord(Random rand) {
-		return new Word(rand) + "";
-	}
-
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		String str = "";
-
-		for (Syllable syl : this.syllables)
-		{
-			str += syl.getString();
+		
+		for (Character symbol : this.symbols) {
+			str += symbol.toString();
 		}
-
+		
 		return str;
 	}
-
-	protected static String getConsonant(Random rand)
-	{
-		if (rand.nextBoolean())
-		{
-			return getStrongConsonant(rand);
-		}
-		else
-		{
-			return getTransitionConsonant(rand);
-		}
-	}
-
-	protected static String getTransitionConsonant(Random rand)
-	{
-		int choix = rand.nextInt(13);
-		switch (choix)
-		{
-			case 0:
-				return "c";
-			case 1:
-				return "d";
-			case 2:
-				return "g";
-			case 3:
-				return "h";
-			case 4:
-				return "k";
-			case 5:
-				return "l";
-			case 6:
-				return "m";
-			case 7:
-				return "n";
-			case 8:
-				return "p";
-			case 9:
-				return "r";
-			case 10:
-				return "s";
-			case 11:
-				return "t";
-			case 12:
-				return "v";
-			default:
-				return "";
-		}
-	}
-
-	protected static String getStrongConsonant(Random rand)
-	{
-		int choix = rand.nextInt(6);
-		switch (choix)
-		{
-			case 0:
-				return "b";
-			case 1:
-				return "f";
-			case 2:
-				return "j";
-			case 3:
-				return "z";
-			case 4:
-				return "w";
-			case 5:
-				return "x";
-			default:
-				return "";
-		}
-	}
-
-	protected static String getVowel(Random rand)
-	{
-		if (rand.nextBoolean())
-		{
-			return getLongVowel(rand);
-		}
-		else
-		{
-			return getShortVowel(rand);
-		}
-	}
 	
-	protected static String getLongVowel(Random rand) {
-		int choix = rand.nextInt(8);
-		switch (choix)
-		{
-			case 0:
-				return "au";
-			case 1:
-				return "eu";
-			case 2:
-				return "ou";
-			case 3:
-				return "ai";
-			case 4:
-				return "ei";
-			case 5:
-				return "oi";
-			case 6:
-				return "ee";
-			case 7:
-				return "oo";
-			default:
-				return "";
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj.getClass().equals(Word.class)) {
+			return ((Word) obj).symbols.equals(this.symbols);
+		} else {
+			return false;
 		}
 	}
-	
-	protected static String getShortVowel(Random rand) {
-		int choix = rand.nextInt(6);
-		switch (choix)
-		{
-			case 0:
-				return "a";
-			case 1:
-				return "e";
-			case 2:
-				return "i";
-			case 3:
-				return "o";
-			case 4:
-				return "u";
-			case 5:
-				return "y";
-			default:
-				return "";
-		}
-	}
+
 }
