@@ -204,8 +204,8 @@ public class BlockRedstoneOre extends BlockOre
 	@Override
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
 	{
-		if(ModManager.IS_VANILLA_ENABLED)
-		{			
+		if (ModManager.IS_VANILLA_ENABLED)
+		{
 			ChunkGeneratorSettings settings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
 			decorator.uniformOreGeneration(world, rand, settings.redstoneCount, new WorldGenMinable(this.getDefaultState(), settings.redstoneSize), settings.redstoneMinHeight, settings.redstoneMaxHeight);
 		}

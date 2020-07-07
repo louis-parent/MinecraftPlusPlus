@@ -9,7 +9,6 @@ import java.util.Random;
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.input.Keyboard;
 
-import fr.minecraftpp.anotation.Mod;
 import fr.minecraftpp.init.MppConfig;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ChatAllowedCharacters;
@@ -268,7 +267,7 @@ public class GuiCreateWorld extends GuiScreen
 				{
 					worldsettings.enableCommands();
 				}
-				
+
 				/*
 				 * Mod: Minecraftpp
 				 */
@@ -280,7 +279,7 @@ public class GuiCreateWorld extends GuiScreen
 				BufferedWriter writer = new BufferedWriter(new FileWriter(save));
 				writer.write("" + MppConfig.getCurrentConfig().getSeed());
 				writer.close();
-				
+
 				this.mc.launchIntegratedServer(this.saveDirName, this.worldNameField.getText().trim(), worldsettings);
 			}
 			else if (button.id == 3)

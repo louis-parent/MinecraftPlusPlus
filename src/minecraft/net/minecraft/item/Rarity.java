@@ -4,12 +4,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public enum Rarity
 {
-	COMMON(TextFormatting.WHITE, "Common"), 
-	FAMILIAR(TextFormatting.GREEN, "Familiar"), 
-	UNCOMMON(TextFormatting.YELLOW, "Uncommon"), 
-	RARE(TextFormatting.AQUA, "Rare"), 
-	EPIC(TextFormatting.LIGHT_PURPLE, "Epic"), 
-	LEGENDARY(TextFormatting.DARK_RED, "Legendary");
+	COMMON(TextFormatting.WHITE, "Common"), FAMILIAR(TextFormatting.GREEN, "Familiar"), UNCOMMON(TextFormatting.YELLOW, "Uncommon"), RARE(TextFormatting.AQUA, "Rare"), EPIC(TextFormatting.LIGHT_PURPLE, "Epic"), LEGENDARY(TextFormatting.DARK_RED, "Legendary");
 
 	/**
 	 * A decimal representation of the hex color codes of a the color assigned

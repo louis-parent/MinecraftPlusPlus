@@ -43,7 +43,7 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 
 	private int fuelAmount;
 	private Rarity rarity;
-	
+
 	private DamageSource damageSource;
 
 	public DynamicBlock(String typeName, int textureId, DynamicItem item, HarvestLevel harvestLevel)
@@ -57,7 +57,7 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 		this.TEXTURE_ID = textureId;
 
 		this.item = item;
-		
+
 		this.harvestLevel = harvestLevel.getHarvestLevel();
 
 		this.hasGravity = false;

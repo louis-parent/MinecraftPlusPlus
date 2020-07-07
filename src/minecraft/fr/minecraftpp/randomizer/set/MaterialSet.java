@@ -68,7 +68,7 @@ public class MaterialSet extends SimpleSet
 		this.tools.registerItemColors(itemColors);
 		this.armors.registerItemColors(itemColors);
 	}
-	
+
 	@Override
 	protected void setupIron()
 	{
@@ -77,7 +77,7 @@ public class MaterialSet extends SimpleSet
 		this.tools.setVariant(Items.IRON_SWORD, Items.IRON_PICKAXE, Items.IRON_AXE, Items.IRON_SHOVEL, Items.IRON_HOE);
 		this.armors.setVariant(Items.IRON_HELMET, Items.IRON_CHESTPLATE, Items.IRON_LEGGINGS, Items.IRON_BOOTS);
 	}
-	
+
 	@Override
 	protected void setupGold()
 	{
@@ -86,7 +86,7 @@ public class MaterialSet extends SimpleSet
 		this.tools.setVariant(Items.GOLDEN_SWORD, Items.GOLDEN_PICKAXE, Items.GOLDEN_AXE, Items.GOLDEN_SHOVEL, Items.GOLDEN_HOE);
 		this.armors.setVariant(Items.GOLDEN_HELMET, Items.GOLDEN_CHESTPLATE, Items.GOLDEN_LEGGINGS, Items.GOLDEN_BOOTS);
 	}
-	
+
 	@Override
 	protected void setupDiamond()
 	{

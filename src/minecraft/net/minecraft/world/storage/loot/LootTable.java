@@ -64,7 +64,7 @@ public class LootTable
 		for (ItemStack stack : list)
 		{
 			Item item = instance.getRandomVariantOf(stack.getItem());
-			
+
 			if (item == stack.getItem())
 			{
 				finalList.add(stack);

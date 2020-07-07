@@ -68,7 +68,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
 	public TileEntityBeacon()
 	{
-		if(ModManager.IS_VANILLA_ENABLED)
+		if (ModManager.IS_VANILLA_ENABLED)
 		{
 			paymentItems.addAll(Arrays.asList(Items.OLD_IRON_INGOT, Items.OLD_GOLD_INGOT, Items.EMERALD, Items.OLD_DIAMOND));
 		}

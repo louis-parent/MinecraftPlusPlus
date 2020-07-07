@@ -68,14 +68,14 @@ public class MetalSet extends MaterialSet
 		super.registerItemColors(itemColors);
 		itemColors.registerItemColorHandler(new DynamicColor(this.nugget), this.nugget);
 	}
-	
+
 	@Override
 	protected void setupIron()
 	{
 		super.setupIron();
 		Variant.getInstance().addVariant(Items.IRON_NUGGET, this.nugget);
 	}
-	
+
 	@Override
 	protected void setupGold()
 	{

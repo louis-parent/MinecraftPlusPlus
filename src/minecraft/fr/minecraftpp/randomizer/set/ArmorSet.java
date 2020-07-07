@@ -101,7 +101,7 @@ public class ArmorSet implements ISet
 	public void setVariant(ItemArmor helmetVariant, ItemArmor chestplateVariant, ItemArmor leggingsVariant, ItemArmor bootsVariant)
 	{
 		Variant variant = Variant.getInstance();
-		
+
 		variant.addVariant(helmetVariant, this.helmet);
 		variant.addVariant(chestplateVariant, this.chestplate);
 		variant.addVariant(leggingsVariant, this.leggings);

@@ -113,13 +113,16 @@ public class FurnaceRecipes
 
 		/**
 		 * MOD FURNACE RECIPES
-		 
-		this.addSmeltingRecipeForBlock(Blocks.LOG, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL), 1, 1), 0.15F);
-		this.addSmeltingRecipeForBlock(Blocks.LOG2, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL), 1, 1), 0.15F);
-		*/
+		 * 
+		 * this.addSmeltingRecipeForBlock(Blocks.LOG, new
+		 * ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL),
+		 * 1, 1), 0.15F); this.addSmeltingRecipeForBlock(Blocks.LOG2, new
+		 * ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL),
+		 * 1, 1), 0.15F);
+		 */
 		this.addSmeltingRecipeForBlock(Blocks.LOG, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL)), 0.15F);
 		this.addSmeltingRecipeForBlock(Blocks.LOG2, new ItemStack(Variant.getInstance().getRandomVariantOf(Items.OLD_COAL)), 0.15F);
-		
+
 		ModFurnaceRecipes.furnaceRecipes(this);
 	}
 

@@ -28,9 +28,9 @@ public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 	private final String ID;
 	private final int TEXTURE_ID;
 	protected DynamicItem item;
- 
+
 	private OreRarity oreRarity;
-	
+
 	private int harvestLevel;
 	private Rarity rarity;
 
@@ -46,7 +46,7 @@ public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 		this.item = item;
 
 		this.oreRarity = rarity;
-		
+
 		this.harvestLevel = harvestLevel.getHarvestLevel();
 
 		this.rarity = Rarity.COMMON;
@@ -137,12 +137,12 @@ public class DynamicOre extends BlockOre implements IDynamicBlock, IColored
 	{
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
-	
+
 	public void setHarvestLevel(HarvestLevel harvestLevel)
 	{
 		this.harvestLevel = harvestLevel.getHarvestLevel();
 	}
-	
+
 	@Override
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
 	{

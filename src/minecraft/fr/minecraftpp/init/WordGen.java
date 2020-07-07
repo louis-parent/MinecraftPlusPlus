@@ -10,7 +10,7 @@ import fr.minecraftpp.util.nameGenerator.Tree;
 public class WordGen
 {
 	private static Tree tree;
-	
+
 	public static void init(long seed)
 	{
 		tree = importTree(new Random(seed));
@@ -18,7 +18,7 @@ public class WordGen
 
 	private static Tree importTree(Random rand)
 	{
-		Tree tree = new Tree(rand, new Character[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}, '$', '#');
+		Tree tree = new Tree(rand, new Character[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' }, '$', '#');
 
 		try
 		{
@@ -30,11 +30,12 @@ public class WordGen
 		{
 			e.printStackTrace();
 		}
-		
+
 		return tree;
 	}
-	
-	public static String getWord() {
+
+	public static String getWord()
+	{
 		return tree.makeWord().toString();
 	}
 }

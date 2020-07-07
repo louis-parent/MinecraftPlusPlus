@@ -26,7 +26,7 @@ public class IntegerWeightedProbabilisticMap extends WeightedProbabilisticMap<In
 
 			sum += value;
 		}
-		
+
 		this.weight = sum;
 	}
 

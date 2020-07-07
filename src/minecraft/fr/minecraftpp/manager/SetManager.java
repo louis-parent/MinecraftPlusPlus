@@ -23,7 +23,7 @@ public class SetManager
 	public static void generateOre(long seed)
 	{
 		Random r = new Random(seed);
-		
+
 		Variant.initInstance(r);
 
 		Map<Integer, List<OreProperties>> sortedSolution = getSortedSolution(Backtrack.generateSolution(r, NUMBER_OF_ORES));

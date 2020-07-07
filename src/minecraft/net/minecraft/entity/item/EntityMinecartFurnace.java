@@ -4,7 +4,6 @@ import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -159,7 +158,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 	{
 		ItemStack itemstack = player.getHeldItem(stack);
 		int burnTime = itemstack.getItem().getBurnTime();
-		
+
 		if (burnTime > 0 && this.fuel + burnTime <= 32000)
 		{
 			if (!player.capabilities.isCreativeMode)

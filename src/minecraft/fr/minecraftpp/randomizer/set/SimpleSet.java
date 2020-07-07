@@ -346,8 +346,8 @@ public class SimpleSet implements ISet
 		{
 			this.setupIron();
 		}
-		
-		if (this.isGold) 
+
+		if (this.isGold)
 		{
 			this.setupGold();
 		}

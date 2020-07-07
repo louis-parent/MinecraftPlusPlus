@@ -3,7 +3,6 @@ package net.minecraft.client;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -2480,73 +2479,76 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 		}
 
 		File mppSeed = new File(new File(new File(this.mcDataDir, "saves"), folderName), "mppSeed.mpp");
-		
+
 		try
 		{
 			BufferedReader reader = new BufferedReader(new FileReader(mppSeed));
 			long seed = Long.parseLong(reader.readLine());
 			reader.close();
-			
-			if (seed != MppConfig.getCurrentConfig().getSeed()) {
+
+			if (seed != MppConfig.getCurrentConfig().getSeed())
+			{
 				System.err.println("The save is not the same Minecraft++ seed as the current game. To play with this save, please change the seed to \"" + seed + "\" in MppConfig.txt and reload the game.");
-			} else {
-				
-			
-			try
-			{
-				YggdrasilAuthenticationService yggdrasilauthenticationservice = new YggdrasilAuthenticationService(this.proxy, UUID.randomUUID().toString());
-				MinecraftSessionService minecraftsessionservice = yggdrasilauthenticationservice.createMinecraftSessionService();
-				GameProfileRepository gameprofilerepository = yggdrasilauthenticationservice.createProfileRepository();
-				PlayerProfileCache playerprofilecache = new PlayerProfileCache(gameprofilerepository, new File(this.mcDataDir, MinecraftServer.USER_CACHE_FILE.getName()));
-				TileEntitySkull.setProfileCache(playerprofilecache);
-				TileEntitySkull.setSessionService(minecraftsessionservice);
-				PlayerProfileCache.setOnlineMode(false);
-				this.theIntegratedServer = new IntegratedServer(this, folderName, worldName, worldSettingsIn, yggdrasilauthenticationservice, minecraftsessionservice, gameprofilerepository, playerprofilecache);
-				this.theIntegratedServer.startServerThread();
-				this.integratedServerIsRunning = true;
 			}
-			catch (Throwable throwable)
+			else
 			{
-				CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Starting integrated server");
-				CrashReportCategory crashreportcategory = crashreport.makeCategory("Starting integrated server");
-				crashreportcategory.addCrashSection("Level ID", folderName);
-				crashreportcategory.addCrashSection("Level Name", worldName);
-				throw new ReportedException(crashreport);
-			}
-
-			this.loadingScreen.displaySavingString(I18n.format("menu.loadingLevel"));
-
-			while (!this.theIntegratedServer.serverIsInRunLoop())
-			{
-				String s = this.theIntegratedServer.getUserMessage();
-
-				if (s != null)
-				{
-					this.loadingScreen.displayLoadingString(I18n.format(s));
-				}
-				else
-				{
-					this.loadingScreen.displayLoadingString("");
-				}
 
 				try
 				{
-					Thread.sleep(200L);
+					YggdrasilAuthenticationService yggdrasilauthenticationservice = new YggdrasilAuthenticationService(this.proxy, UUID.randomUUID().toString());
+					MinecraftSessionService minecraftsessionservice = yggdrasilauthenticationservice.createMinecraftSessionService();
+					GameProfileRepository gameprofilerepository = yggdrasilauthenticationservice.createProfileRepository();
+					PlayerProfileCache playerprofilecache = new PlayerProfileCache(gameprofilerepository, new File(this.mcDataDir, MinecraftServer.USER_CACHE_FILE.getName()));
+					TileEntitySkull.setProfileCache(playerprofilecache);
+					TileEntitySkull.setSessionService(minecraftsessionservice);
+					PlayerProfileCache.setOnlineMode(false);
+					this.theIntegratedServer = new IntegratedServer(this, folderName, worldName, worldSettingsIn, yggdrasilauthenticationservice, minecraftsessionservice, gameprofilerepository, playerprofilecache);
+					this.theIntegratedServer.startServerThread();
+					this.integratedServerIsRunning = true;
 				}
-				catch (InterruptedException var10)
+				catch (Throwable throwable)
 				{
-					;
+					CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Starting integrated server");
+					CrashReportCategory crashreportcategory = crashreport.makeCategory("Starting integrated server");
+					crashreportcategory.addCrashSection("Level ID", folderName);
+					crashreportcategory.addCrashSection("Level Name", worldName);
+					throw new ReportedException(crashreport);
 				}
-			}
 
-			this.displayGuiScreen(new GuiScreenWorking());
-			SocketAddress socketaddress = this.theIntegratedServer.getNetworkSystem().addLocalEndpoint();
-			NetworkManager networkmanager = NetworkManager.provideLocalClient(socketaddress);
-			networkmanager.setNetHandler(new NetHandlerLoginClient(networkmanager, this, (GuiScreen) null));
-			networkmanager.sendPacket(new C00Handshake(335, socketaddress.toString(), 0, EnumConnectionState.LOGIN));
-			networkmanager.sendPacket(new CPacketLoginStart(this.getSession().getProfile()));
-			this.myNetworkManager = networkmanager;
-		}}
+				this.loadingScreen.displaySavingString(I18n.format("menu.loadingLevel"));
+
+				while (!this.theIntegratedServer.serverIsInRunLoop())
+				{
+					String s = this.theIntegratedServer.getUserMessage();
+
+					if (s != null)
+					{
+						this.loadingScreen.displayLoadingString(I18n.format(s));
+					}
+					else
+					{
+						this.loadingScreen.displayLoadingString("");
+					}
+
+					try
+					{
+						Thread.sleep(200L);
+					}
+					catch (InterruptedException var10)
+					{
+						;
+					}
+				}
+
+				this.displayGuiScreen(new GuiScreenWorking());
+				SocketAddress socketaddress = this.theIntegratedServer.getNetworkSystem().addLocalEndpoint();
+				NetworkManager networkmanager = NetworkManager.provideLocalClient(socketaddress);
+				networkmanager.setNetHandler(new NetHandlerLoginClient(networkmanager, this, (GuiScreen) null));
+				networkmanager.sendPacket(new C00Handshake(335, socketaddress.toString(), 0, EnumConnectionState.LOGIN));
+				networkmanager.sendPacket(new CPacketLoginStart(this.getSession().getProfile()));
+				this.myNetworkManager = networkmanager;
+			}
+		}
 		catch (NumberFormatException | IOException e)
 		{
 			System.err.println("mppSeed.txt missing or corrupted");

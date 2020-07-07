@@ -1,7 +1,6 @@
 package fr.minecraftpp.randomizer.backtrack;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -44,7 +43,7 @@ public class Pretreatment
 
 		int nbOfMaterial = getAllVariablesFrom(OreProperties.MATERIAL).size();
 		nbOfMaterial += getAllVariablesFrom(OreProperties.METAL).size();
-		
+
 		addSpecificVariables(OreProperties.BEACON, Math.max(0, rand.nextInt(5 - nbOfMaterial)) + nbOfMaterial);
 	}
 
@@ -145,7 +144,7 @@ public class Pretreatment
 		nonMetalGroup.add(OreProperties.REDSTONE.toString());
 		nonMetalGroup.add(OreProperties.BLUEDYE.toString());
 		str += allDiffFrom(nonMetalGroup);
-		
+
 		List<String> vanillaGroup = new ArrayList<String>();
 		vanillaGroup.add(OreProperties.COAL.toString());
 		vanillaGroup.add(OreProperties.IRON.toString());
@@ -154,7 +153,7 @@ public class Pretreatment
 		vanillaGroup.add(OreProperties.REDSTONE.toString());
 		vanillaGroup.add(OreProperties.CURRENCY.toString());
 		str += allDiffFrom(vanillaGroup);
-		
+
 		List<String> materialAndCurrency = getAllVariablesFrom(OreProperties.MATERIAL);
 		materialAndCurrency.addAll(getAllVariablesFrom(OreProperties.METAL));
 		materialAndCurrency.add(OreProperties.CURRENCY.toString());
@@ -192,18 +191,20 @@ public class Pretreatment
 		String str = allVariablesMustBeAssigned();
 
 		str += variablesIsBetween(OreProperties.COAL, OreProperties.FUEL);
-		
-		
+
 		boolean containsMetal = getAllVariablesFrom(OreProperties.METAL).size() > 1;
-		
-		if (containsMetal) {
+
+		if (containsMetal)
+		{
 			str += variablesIsBetween(OreProperties.IRON, OreProperties.MATERIAL, OreProperties.METAL);
 			str += variablesIsBetween(OreProperties.DIAMOND, OreProperties.MATERIAL, OreProperties.METAL);
-		} else {			
+		}
+		else
+		{
 			str += variablesIsBetween(OreProperties.IRON, OreProperties.MATERIAL);
 			str += variablesIsBetween(OreProperties.DIAMOND, OreProperties.MATERIAL);
 		}
-		
+
 		str += variablesIsBetween(OreProperties.GOLD, OreProperties.METAL);
 
 		return str;
@@ -216,14 +217,14 @@ public class Pretreatment
 		str += toStringAllVariables(this.variables);
 
 		str += toStringIntension();
-		
+
 		return str;
 	}
 
 	private String toStringAllVariables(List<String> vars)
 	{
 		String str = "";
-		
+
 		for (int i = 0; i < vars.size(); i++)
 		{
 			String var = vars.get(i);
@@ -244,11 +245,11 @@ public class Pretreatment
 	private String toStringIntension()
 	{
 		String str = "";
-		
+
 		for (int i = 1; i < NUMBER_OF_ORES + 1; i++)
 		{
 			str += toStringAllVariablesEqualTo(this.variables, i + "");
-			
+
 			if (i < NUMBER_OF_ORES)
 			{
 				str += " && ";
@@ -258,7 +259,7 @@ public class Pretreatment
 				str += "\n";
 			}
 		}
-		
+
 		return str;
 	}
 
@@ -269,14 +270,14 @@ public class Pretreatment
 		for (int j = 0; j < vars.size(); j++)
 		{
 			String var = vars.get(j);
-			str += "($" + var + " == " + value + ")"; 
+			str += "($" + var + " == " + value + ")";
 
 			if (j < vars.size() - 1)
 			{
 				str += " || ";
 			}
 		}
-		
+
 		str += ")";
 		return str;
 	}
@@ -286,19 +287,20 @@ public class Pretreatment
 		String str = "inten\n";
 
 		List<String> multipleTypeVars = new ArrayList<String>();
-		for (OreProperties type : types) {
+		for (OreProperties type : types)
+		{
 			multipleTypeVars.addAll(getAllVariablesFrom(type));
 		}
-		
+
 		List<String> vars = getAllVariablesFrom(uniqueType);
 		vars.addAll(multipleTypeVars);
-		
+
 		str += toStringAllVariables(vars);
-		
+
 		str += toStringAllVariablesEqualTo(multipleTypeVars, "$" + uniqueType.toString());
-		
+
 		str += "\n";
-		
+
 		return str;
 	}
 }

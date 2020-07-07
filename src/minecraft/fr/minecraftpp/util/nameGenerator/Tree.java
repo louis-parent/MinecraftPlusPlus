@@ -1,4 +1,4 @@
-	package fr.minecraftpp.util.nameGenerator;
+package fr.minecraftpp.util.nameGenerator;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

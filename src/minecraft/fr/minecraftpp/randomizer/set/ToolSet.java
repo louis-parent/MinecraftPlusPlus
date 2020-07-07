@@ -95,7 +95,7 @@ public class ToolSet implements ISet
 	{
 		return this.name;
 	}
-	
+
 	@Override
 	public void setupEffects()
 	{
@@ -109,7 +109,7 @@ public class ToolSet implements ISet
 	public void setVariant(Item swordVariant, Item pickaxeVariant, Item axeVariant, Item shovelVariant, Item hoeVariant)
 	{
 		Variant variant = Variant.getInstance();
-		
+
 		variant.addVariant(swordVariant, this.sword);
 		variant.addVariant(pickaxeVariant, this.pickaxe);
 		variant.addVariant(axeVariant, this.axe);

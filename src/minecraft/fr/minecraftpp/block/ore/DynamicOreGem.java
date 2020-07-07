@@ -148,7 +148,7 @@ public class DynamicOreGem extends DynamicOre
 	{
 		return (this.maxDropped + this.minDropped) / 2;
 	}
-	
+
 	public void increaseDrop()
 	{
 		this.minDropped *= 2;

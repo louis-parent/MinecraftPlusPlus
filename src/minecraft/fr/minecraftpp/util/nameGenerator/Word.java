@@ -7,7 +7,7 @@ public class Word
 {
 
 	private List<Character> symbols;
-	
+
 	public Word()
 	{
 		this.symbols = new ArrayList<Character>();
@@ -18,13 +18,14 @@ public class Word
 		this();
 		this.symbols.add(symbol);
 	}
-	
+
 	@SafeVarargs
-	public Word(Character ... tag)
+	public Word(Character... tag)
 	{
 		this();
-		
-		for (Character symbol : tag) {
+
+		for (Character symbol : tag)
+		{
 			this.symbols.add(symbol);
 		}
 	}
@@ -32,8 +33,9 @@ public class Word
 	public Word(Word word)
 	{
 		this();
-		
-		for (Character symbol : word.symbols) {
+
+		for (Character symbol : word.symbols)
+		{
 			this.symbols.add(symbol);
 		}
 	}
@@ -56,11 +58,12 @@ public class Word
 	public Word getAllButFirst()
 	{
 		Word newWord = new Word();
-		
-		for (int i = 1; i < this.symbols.size(); i++) {
+
+		for (int i = 1; i < this.symbols.size(); i++)
+		{
 			newWord.addUnsafely(this.symbols.get(i));
 		}
-		
+
 		return newWord;
 	}
 
@@ -72,9 +75,9 @@ public class Word
 	public Word add(Character symbol)
 	{
 		Word newWord = new Word(this);
-		
+
 		newWord.addUnsafely(symbol);
-		
+
 		return newWord;
 	}
 
@@ -86,29 +89,34 @@ public class Word
 	public Word set(int index, Character symbol)
 	{
 		Word newWord = new Word(this);
-		
+
 		newWord.symbols.set(index, symbol);
-		
+
 		return newWord;
 	}
-	
+
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		String str = "";
-		
-		for (Character symbol : this.symbols) {
+
+		for (Character symbol : this.symbols)
+		{
 			str += symbol.toString();
 		}
-		
+
 		return str;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj)
 	{
-		if (obj.getClass().equals(Word.class)) {
+		if (obj.getClass().equals(Word.class))
+		{
 			return ((Word) obj).symbols.equals(this.symbols);
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}

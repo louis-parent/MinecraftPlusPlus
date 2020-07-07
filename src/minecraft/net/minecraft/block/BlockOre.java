@@ -154,10 +154,10 @@ public class BlockOre extends Block
 
 	public void decorate(BiomeDecorator decorator, World world, Random rand)
 	{
-		if(ModManager.IS_VANILLA_ENABLED)
+		if (ModManager.IS_VANILLA_ENABLED)
 		{
 			ChunkGeneratorSettings settings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
-	
+
 			if (this == Blocks.LAPIS_ORE)
 			{
 				decorator.spreadOreGeneration(world, rand, settings.lapisCount, new WorldGenMinable(this.getDefaultState(), settings.lapisSize), settings.lapisCenterHeight, settings.lapisSpread);

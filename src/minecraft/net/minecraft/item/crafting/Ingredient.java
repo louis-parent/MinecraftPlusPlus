@@ -25,15 +25,15 @@ public class Ingredient implements Predicate<ItemStack>
 			return stack.isNotValid();
 		}
 	};
-	
+
 	private final List<ItemStack> stacks;
 	private IntList field_194140_c;
 
 	private Ingredient(ItemStack... stacks)
 	{
 		this.stacks = new ArrayList<ItemStack>();
-		
-		for(ItemStack stack : stacks)
+
+		for (ItemStack stack : stacks)
 		{
 			this.stacks.addAll(Variant.getInstance().getAllStackVariantsWithoutOriginalOf(stack.getItem()));
 			this.stacks.add(stack);

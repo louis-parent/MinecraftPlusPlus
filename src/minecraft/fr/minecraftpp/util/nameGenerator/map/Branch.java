@@ -90,7 +90,7 @@ public class Branch extends WeightedProbabilisticMap<Character>
 
 			sum += value;
 		}
-		
+
 		this.weight = sum;
 	}
 }

@@ -100,11 +100,11 @@ public abstract class ContinuedFraction
 	/*
 	 * From apache.commons.math3.util.precision
 	 */
-	
-    private static final int POSITIVE_ZERO_FLOAT_BITS   = Float.floatToRawIntBits(+0.0f);
-    private static final int NEGATIVE_ZERO_FLOAT_BITS   = Float.floatToRawIntBits(-0.0f);
-    private static final int SGN_MASK_FLOAT = 0x80000000;
-    
+
+	private static final int POSITIVE_ZERO_FLOAT_BITS = Float.floatToRawIntBits(+0.0f);
+	private static final int NEGATIVE_ZERO_FLOAT_BITS = Float.floatToRawIntBits(-0.0f);
+	private static final int SGN_MASK_FLOAT = 0x80000000;
+
 	public static boolean equals(double x, double y, double eps)
 	{
 		return equals(x, y, 1) || Math.abs(y - x) <= eps;

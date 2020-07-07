@@ -10,7 +10,7 @@ public class InitialBranch extends Branch
 		super(getnewWord(tree), tree);
 	}
 
-	private static  Word getnewWord(Tree tree)
+	private static Word getnewWord(Tree tree)
 	{
 		Character start = tree.getStart();
 		Word word = new Word(start);
