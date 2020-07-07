@@ -18,7 +18,7 @@ public class ModBootstrap
 	{
 
 		SetManager.setupEffects();
-		SetManager.generateRecipes();
+		//TODOTEMP SetManager.generateRecipes();
 
 		ModItem.addEnchantable();
 	}

@@ -114,7 +114,6 @@ public class SimpleSet implements ISet
 	public void register()
 	{
 		ModManager.registerDynamic(this.item);
-
 		ModManager.registerDynamic(this.block);
 		ModManager.registerDynamic(this.ore);
 	}

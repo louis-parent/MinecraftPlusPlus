@@ -60,7 +60,7 @@ public class CraftingManager
 			/**
 			 * MOD Minecraftpp
 			 */
-			ModCraftingManager.registerRecipes();
+			//TODOTEMP ModCraftingManager.registerRecipes();
 
 			return buildAllRecipesFromFiles();
 		}

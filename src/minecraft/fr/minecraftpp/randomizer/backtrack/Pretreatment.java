@@ -46,7 +46,6 @@ public class Pretreatment
 		nbOfMaterial += getAllVariablesFrom(OreProperties.METAL).size();
 		
 		addSpecificVariables(OreProperties.BEACON, Math.max(0, rand.nextInt(5 - nbOfMaterial)) + nbOfMaterial);
-		System.out.println("STOP");
 	}
 
 	private void addSpecificVariables(OreProperties name, int quantity)
@@ -152,10 +151,9 @@ public class Pretreatment
 		vanillaGroup.add(OreProperties.IRON.toString());
 		vanillaGroup.add(OreProperties.GOLD.toString());
 		vanillaGroup.add(OreProperties.DIAMOND.toString());
+		vanillaGroup.add(OreProperties.REDSTONE.toString());
+		vanillaGroup.add(OreProperties.CURRENCY.toString());
 		str += allDiffFrom(vanillaGroup);
-
-		List<String> allCertainProperties = Arrays.asList(new String[] { OreProperties.REDSTONE + "", OreProperties.BEACON + "1", OreProperties.CURRENCY + "", OreProperties.BLUEDYE + "", OreProperties.FUEL + "1", OreProperties.ENCHANT_CURRENCY + "1", OreProperties.MATERIAL + "1" });
-		str += allDiffFrom(allCertainProperties);
 		
 		List<String> materialAndCurrency = getAllVariablesFrom(OreProperties.MATERIAL);
 		materialAndCurrency.addAll(getAllVariablesFrom(OreProperties.METAL));
