@@ -77,6 +77,20 @@ public class Variant
 		return stacks;
 	}
 	
+	public List<ItemStack> getAllStackVariantsWithoutOriginalOf(Item original)
+	{
+		List<ItemStack> stacks = new ArrayList<ItemStack>();
+		
+		for(Item item : this.getAllVariantsOf(original))
+		{
+			if (!item.equals(original)) {
+				stacks.add(item.getAsStack());
+			}
+		}
+		
+		return stacks;
+	}
+	
 	public static void initInstance(Random rand)
 	{
 		instance = new Variant(rand);

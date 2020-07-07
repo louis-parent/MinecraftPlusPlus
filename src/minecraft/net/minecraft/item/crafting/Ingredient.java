@@ -35,7 +35,8 @@ public class Ingredient implements Predicate<ItemStack>
 		
 		for(ItemStack stack : stacks)
 		{
-			this.stacks.addAll(Variant.getInstance().getAllStackVariantsOf(stack.getItem()));
+			this.stacks.addAll(Variant.getInstance().getAllStackVariantsWithoutOriginalOf(stack.getItem()));
+			this.stacks.add(stack);
 		}
 	}
 
@@ -55,7 +56,7 @@ public class Ingredient implements Predicate<ItemStack>
 		{
 			for (ItemStack itemstack : this.stacks)
 			{
-				if (stack.getItem() == itemstack.getItem())
+				if (itemstack.getItem() == stack.getItem())
 				{
 					int i = itemstack.getMetadata();
 
