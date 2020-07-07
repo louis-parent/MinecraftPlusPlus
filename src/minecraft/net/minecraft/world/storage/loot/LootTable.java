@@ -57,15 +57,24 @@ public class LootTable
 		/*
 		 * Mod minecraftpp
 		 */
-		
+
 		List<ItemStack> finalList = Lists.<ItemStack>newArrayList();
 		Variant instance = Variant.getInstance();
-		
-		for (ItemStack stack : list) {
+
+		for (ItemStack stack : list)
+		{
 			Item item = instance.getRandomVariantOf(stack.getItem());
-			finalList.add(item.getAsStack());
+			
+			if (item == stack.getItem())
+			{
+				finalList.add(stack);
+			}
+			else
+			{
+				finalList.add(item.getAsStack());
+			}
 		}
-		
+
 		return finalList;
 	}
 

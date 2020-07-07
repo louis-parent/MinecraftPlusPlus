@@ -626,7 +626,19 @@ public abstract class EntityLiving extends EntityLivingBase
 
 			for (ItemStack itemstack : loottable.generateLootForPools(this.deathLootTableSeed == 0L ? this.rand : new Random(this.deathLootTableSeed), lootcontext$builder.build()))
 			{
-				ItemStack finalItemStack = itemstack; //Variant.getInstance().getRandomVariantOf(itemstack.getItem()).getAsStack();
+				Item item = Variant.getInstance().getRandomVariantOf(itemstack.getItem());
+
+				ItemStack finalItemStack;
+
+				if (item == itemstack.getItem())
+				{
+					finalItemStack = itemstack;
+				}
+				else
+				{
+					finalItemStack = item.getAsStack();
+				}
+
 				this.entityDropItem(finalItemStack, 0.0F);
 			}
 
