@@ -43,7 +43,7 @@ import net.minecraft.util.text.Style;
 
 public class AdvancementManager
 {
-	private static final Logger field_192782_a = LogManager.getLogger();
+	private static final Logger LOGGER = LogManager.getLogger();
 	private static final Gson field_192783_b = (new GsonBuilder()).registerTypeHierarchyAdapter(Advancement.Builder.class, new JsonDeserializer<Advancement.Builder>()
 	{
 		@Override
@@ -111,7 +111,7 @@ public class AdvancementManager
 
 						if (advancement$builder == null)
 						{
-							field_192782_a.error("Couldn't load custom advancement " + resourcelocation + " from " + file1 + " as it's empty or null");
+							LOGGER.error("Couldn't load custom advancement " + resourcelocation + " from " + file1 + " as it's empty or null");
 						}
 						else
 						{
@@ -120,12 +120,12 @@ public class AdvancementManager
 					}
 					catch (IllegalArgumentException | JsonParseException jsonparseexception)
 					{
-						field_192782_a.error("Parsing error loading custom advancement " + resourcelocation, jsonparseexception);
+						LOGGER.error("Parsing error loading custom advancement " + resourcelocation, jsonparseexception);
 						this.field_193768_e = true;
 					}
 					catch (IOException ioexception)
 					{
-						field_192782_a.error("Couldn't read custom advancement " + resourcelocation + " from " + file1, ioexception);
+						LOGGER.error("Couldn't read custom advancement " + resourcelocation + " from " + file1, ioexception);
 						this.field_193768_e = true;
 					}
 				}
@@ -155,7 +155,7 @@ public class AdvancementManager
 				{
 					if (!"jar".equals(uri.getScheme()))
 					{
-						field_192782_a.error("Unsupported scheme " + uri + " trying to list all built-in advancements (NYI?)");
+						LOGGER.error("Unsupported scheme " + uri + " trying to list all built-in advancements (NYI?)");
 						this.field_193768_e = true;
 						return;
 					}
@@ -188,12 +188,12 @@ public class AdvancementManager
 							}
 							catch (JsonParseException jsonparseexception)
 							{
-								field_192782_a.error("Parsing error loading built-in advancement " + resourcelocation, jsonparseexception);
+								LOGGER.error("Parsing error loading built-in advancement " + resourcelocation, jsonparseexception);
 								this.field_193768_e = true;
 							}
 							catch (IOException ioexception)
 							{
-								field_192782_a.error("Couldn't read advancement " + resourcelocation + " from " + path1, ioexception);
+								LOGGER.error("Couldn't read advancement " + resourcelocation + " from " + path1, ioexception);
 								this.field_193768_e = true;
 							}
 							finally
@@ -207,12 +207,12 @@ public class AdvancementManager
 				return;
 			}
 
-			field_192782_a.error("Couldn't find .mcassetsroot");
+			LOGGER.error("Couldn't find .mcassetsroot");
 			this.field_193768_e = true;
 		}
 		catch (IOException | URISyntaxException urisyntaxexception)
 		{
-			field_192782_a.error("Couldn't get a list of all built-in advancement files", urisyntaxexception);
+			LOGGER.error("Couldn't get a list of all built-in advancement files", urisyntaxexception);
 			this.field_193768_e = true;
 			return;
 		}

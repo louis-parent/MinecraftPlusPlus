@@ -70,7 +70,8 @@ public class SimpleSet implements ISet
 		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng), Color.getRandomColorImproved(this.rng));
 		HarvestLevel randomHarvestLevel = HarvestLevel.getRandomHarvestLevel(this.rng);
 		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng), this.item, randomHarvestLevel);
-		this.ore = new DynamicOreGem(this.name, DynamicOre.getRandomTextureId(this.rng), oreRarity, this.item, randomHarvestLevel, this.rng.nextInt(2), this.rng.nextInt(3) + 2);
+		
+		generateOre(oreRarity, randomHarvestLevel);
 
 		this.isBlueDye = false;
 		this.isRedstone = false;
@@ -88,6 +89,11 @@ public class SimpleSet implements ISet
 		this.oreColor = new DynamicColor(this.ore);
 
 		this.rarity = Rarity.COMMON;
+	}
+
+	protected void generateOre(OreRarity oreRarity, HarvestLevel randomHarvestLevel)
+	{
+		this.ore = new DynamicOreGem(this.name, DynamicOre.getRandomTextureId(this.rng), oreRarity, this.item, randomHarvestLevel, this.rng.nextInt(2), this.rng.nextInt(3) + 2);
 	}
 
 	@Override

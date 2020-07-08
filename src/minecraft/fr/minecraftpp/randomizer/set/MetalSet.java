@@ -3,6 +3,7 @@ package fr.minecraftpp.randomizer.set;
 import java.util.Random;
 
 import fr.minecraftpp.block.ore.DynamicOre;
+import fr.minecraftpp.block.ore.DynamicOreGem;
 import fr.minecraftpp.color.DynamicColor;
 import fr.minecraftpp.crafting.item.RecipeCompact;
 import fr.minecraftpp.crafting.item.RecipeDecompact;
@@ -23,7 +24,6 @@ public class MetalSet extends MaterialSet
 	{
 		super(rand, oreRarity);
 
-		this.ore = new DynamicOre(this.name, DynamicOre.getRandomTextureId(this.rng), oreRarity, HarvestLevel.getRandomHarvestLevel(this.rng), this.item);
 		this.item.setUnlocalizedName(this.name + "Ingot");
 
 		this.nugget = new DynamicNugget(this.name, this.item);
@@ -74,6 +74,12 @@ public class MetalSet extends MaterialSet
 	{
 		super.setupIron();
 		Variant.getInstance().addVariant(Items.IRON_NUGGET, this.nugget);
+	}
+
+	@Override
+	protected void generateOre(OreRarity oreRarity, HarvestLevel randomHarvestLevel)
+	{
+		this.ore = new DynamicOre(this.name, DynamicOre.getRandomTextureId(this.rng), oreRarity, HarvestLevel.getRandomHarvestLevel(this.rng), this.item);
 	}
 
 	@Override

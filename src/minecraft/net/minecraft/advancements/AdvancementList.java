@@ -19,11 +19,11 @@ import net.minecraft.util.ResourceLocation;
 
 public class AdvancementList
 {
-	private static final Logger field_192091_a = LogManager.getLogger();
-	private final Map<ResourceLocation, Advancement> field_192092_b = Maps.<ResourceLocation, Advancement>newHashMap();
+	private static final Logger LOGGER = LogManager.getLogger();
+	private final Map<ResourceLocation, Advancement> advancementsList = Maps.<ResourceLocation, Advancement>newHashMap();
 	private final Set<Advancement> field_192093_c = Sets.<Advancement>newLinkedHashSet();
 	private final Set<Advancement> field_192094_d = Sets.<Advancement>newLinkedHashSet();
-	private AdvancementList.Listener field_192095_e;
+	private AdvancementList.Listener listener;
 
 	private void func_192090_a(Advancement p_192090_1_)
 	{
@@ -32,25 +32,25 @@ public class AdvancementList
 			this.func_192090_a(advancement);
 		}
 
-		field_192091_a.info("Forgot about advancement " + p_192090_1_.func_192067_g());
-		this.field_192092_b.remove(p_192090_1_.func_192067_g());
+		LOGGER.info("Forgot about advancement " + p_192090_1_.func_192067_g());
+		this.advancementsList.remove(p_192090_1_.func_192067_g());
 
 		if (p_192090_1_.func_192070_b() == null)
 		{
 			this.field_192093_c.remove(p_192090_1_);
 
-			if (this.field_192095_e != null)
+			if (this.listener != null)
 			{
-				this.field_192095_e.func_191928_b(p_192090_1_);
+				this.listener.func_191928_b(p_192090_1_);
 			}
 		}
 		else
 		{
 			this.field_192094_d.remove(p_192090_1_);
 
-			if (this.field_192095_e != null)
+			if (this.listener != null)
 			{
-				this.field_192095_e.func_191929_d(p_192090_1_);
+				this.listener.func_191929_d(p_192090_1_);
 			}
 		}
 	}
@@ -59,11 +59,11 @@ public class AdvancementList
 	{
 		for (ResourceLocation resourcelocation : p_192085_1_)
 		{
-			Advancement advancement = this.field_192092_b.get(resourcelocation);
+			Advancement advancement = this.advancementsList.get(resourcelocation);
 
 			if (advancement == null)
 			{
-				field_192091_a.warn("Told to remove advancement " + resourcelocation + " but I don't know what that is");
+				LOGGER.warn("Told to remove advancement " + resourcelocation + " but I don't know what that is");
 			}
 			else
 			{
@@ -74,7 +74,7 @@ public class AdvancementList
 
 	public void func_192083_a(Map<ResourceLocation, Advancement.Builder> p_192083_1_)
 	{
-		Function<ResourceLocation, Advancement> function = Functions.<ResourceLocation, Advancement>forMap(this.field_192092_b, null);
+		Function<ResourceLocation, Advancement> function = Functions.<ResourceLocation, Advancement>forMap(this.advancementsList, null);
 		label42:
 
 		while (!p_192083_1_.isEmpty())
@@ -91,7 +91,7 @@ public class AdvancementList
 				if (advancement$builder.func_192058_a(function))
 				{
 					Advancement advancement = advancement$builder.func_192056_a(resourcelocation);
-					this.field_192092_b.put(resourcelocation, advancement);
+					this.advancementsList.put(resourcelocation, advancement);
 					flag = true;
 					iterator.remove();
 
@@ -99,18 +99,18 @@ public class AdvancementList
 					{
 						this.field_192093_c.add(advancement);
 
-						if (this.field_192095_e != null)
+						if (this.listener != null)
 						{
-							this.field_192095_e.func_191931_a(advancement);
+							this.listener.func_191931_a(advancement);
 						}
 					}
 					else
 					{
 						this.field_192094_d.add(advancement);
 
-						if (this.field_192095_e != null)
+						if (this.listener != null)
 						{
-							this.field_192095_e.func_191932_c(advancement);
+							this.listener.func_191932_c(advancement);
 						}
 					}
 				}
@@ -128,23 +128,23 @@ public class AdvancementList
 					}
 
 					Entry<ResourceLocation, Advancement.Builder> entry1 = iterator.next();
-					field_192091_a.error("Couldn't load advancement " + entry1.getKey() + ": " + entry1.getValue());
+					LOGGER.error("Couldn't load advancement " + entry1.getKey() + ": " + entry1.getValue());
 				}
 			}
 		}
 
-		field_192091_a.info("Loaded " + this.field_192092_b.size() + " advancements");
+		LOGGER.info("Loaded " + this.advancementsList.size() + " advancements");
 	}
 
 	public void func_192087_a()
 	{
-		this.field_192092_b.clear();
+		this.advancementsList.clear();
 		this.field_192093_c.clear();
 		this.field_192094_d.clear();
 
-		if (this.field_192095_e != null)
+		if (this.listener != null)
 		{
-			this.field_192095_e.func_191930_a();
+			this.listener.func_191930_a();
 		}
 	}
 
@@ -155,18 +155,18 @@ public class AdvancementList
 
 	public Iterable<Advancement> func_192089_c()
 	{
-		return this.field_192092_b.values();
+		return this.advancementsList.values();
 	}
 
 	@Nullable
 	public Advancement func_192084_a(ResourceLocation p_192084_1_)
 	{
-		return this.field_192092_b.get(p_192084_1_);
+		return this.advancementsList.get(p_192084_1_);
 	}
 
 	public void func_192086_a(@Nullable AdvancementList.Listener p_192086_1_)
 	{
-		this.field_192095_e = p_192086_1_;
+		this.listener = p_192086_1_;
 
 		if (p_192086_1_ != null)
 		{
