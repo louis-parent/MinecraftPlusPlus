@@ -79,7 +79,7 @@ public class MetalSet extends MaterialSet
 	@Override
 	protected void generateOre(OreRarity oreRarity, HarvestLevel randomHarvestLevel)
 	{
-		this.ore = new DynamicOre(this.name, DynamicOre.getRandomTextureId(this.rng), oreRarity, HarvestLevel.getRandomHarvestLevel(this.rng), this.item);
+		this.ore = new DynamicOre(this.name, DynamicOre.getRandomTextureId(this.rng), oreRarity, HarvestLevel.values()[this.tier + 1], this.item);
 	}
 
 	@Override

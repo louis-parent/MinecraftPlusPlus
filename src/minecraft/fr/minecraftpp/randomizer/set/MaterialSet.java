@@ -2,6 +2,8 @@ package fr.minecraftpp.randomizer.set;
 
 import java.util.Random;
 
+import fr.minecraftpp.block.ore.DynamicOre;
+import fr.minecraftpp.block.ore.DynamicOreGem;
 import fr.minecraftpp.enumeration.HarvestLevel;
 import fr.minecraftpp.generation.OreRarity;
 import fr.minecraftpp.item.material.DynamicMaterial;
@@ -18,11 +20,16 @@ public class MaterialSet extends SimpleSet
 	protected ToolSet tools;
 	protected ArmorSet armors;
 
+	protected int tier;
+
 	public MaterialSet(Random rand, OreRarity oreRarity)
 	{
 		super(rand, oreRarity);
 
 		this.material = new DynamicMaterial(DynamicMaterial.getRandomTextureID(this.rng), this.item);
+		this.setupTier();
+		this.setupMaterial();
+
 		this.tools = new ToolSet(this.rng, this.name, this.material);
 		this.armors = new ArmorSet(this.rng, this.name, this.material);
 	}
@@ -31,7 +38,6 @@ public class MaterialSet extends SimpleSet
 	public void setupEffects()
 	{
 		super.setupEffects();
-		this.setupMaterial();
 
 		this.tools.setupEffects();
 		this.armors.setupEffects();
@@ -105,22 +111,49 @@ public class MaterialSet extends SimpleSet
 	{
 	}
 
-	private void setupMaterial()
+	private void setupTier()
 	{
-		this.material.setArmorDurabilityFactor(this.rng.nextInt(35) + 5);
-		this.material.setArmorDamageReduction(this.getRandomArmorDamageReduction());
-		this.material.setToughness(this.rng.nextFloat() * 2);
-		this.material.setToolMaxUse(this.getRandomToolDurability());
-		this.material.setEfficiencyOnProperMaterial((this.rng.nextFloat() * 10) + 4);
-		this.material.setToolAttackDamage(this.getRandomToolAttackDamage());
-		this.material.setToolAttackSpeed(this.getRandomToolAttackSpeed());
-		this.material.setHarvestLevel(HarvestLevel.getRandomHarvestLevel(this.rng));
-		this.material.setEnchantability(this.rng.nextInt(18) + 8);
+		if (this.isGold || this.isIron)
+		{
+			this.tier = 1;
+		}
+		else if (this.isDiamond)
+		{
+			this.tier = 2;
+		}
+		else
+		{
+			this.tier = this.rng.nextInt(3);
+		}
 	}
 
-	private int[] getRandomArmorDamageReduction()
+	@Override
+	protected void generateOre(OreRarity oreRarity, HarvestLevel randomHarvestLevel)
 	{
-		float factor = (this.rng.nextInt(25) / 10.0F) + 1;
+		this.ore = new DynamicOreGem(this.name, DynamicOre.getRandomTextureId(this.rng), oreRarity, this.item, HarvestLevel.values()[this.tier + 1], this.rng.nextInt(2), this.rng.nextInt(3) + 2);
+	}
+
+	private void setupMaterial()
+	{
+		this.material.setArmorDurabilityFactor(this.getGeneratedArmorDurabilityFactor());
+		this.material.setArmorDamageReduction(this.getGeneratedArmorDamageReduction());
+		this.material.setToughness(this.getGeneratedToughness());
+		this.material.setToolMaxUse(this.getGeneratedToolDurability());
+		this.material.setEfficiencyOnProperMaterial(this.getGeneratedEfficiency());
+		this.material.setToolAttackDamage(this.getGeneratedToolAttackDamage());
+		this.material.setToolAttackSpeed(this.getGeneratedToolAttackSpeed());
+		this.material.setHarvestLevel(this.getGeneratedHarvestLevel());
+		this.material.setEnchantability(this.getGeneratedEnchantability());
+	}
+
+	private int getGeneratedArmorDurabilityFactor()
+	{
+		return (this.tier + 1) * (this.rng.nextInt(9) + 5);
+	}
+
+	private int[] getGeneratedArmorDamageReduction()
+	{
+		float factor = (((8 * this.tier) + this.rng.nextInt(10)) / 10.0F) + 1;
 
 		int[] result = new int[BASE_ARMOR_DAMAGE_REDUCTION.length];
 
@@ -132,21 +165,41 @@ public class MaterialSet extends SimpleSet
 		return result;
 	}
 
-	private int getRandomToolDurability()
+	private float getGeneratedToughness()
 	{
-		double power = (this.rng.nextDouble() * 7) + 4;
+		return this.rng.nextFloat() * this.tier;
+	}
+
+	private int getGeneratedToolDurability()
+	{
+		double power = (this.rng.nextDouble() * this.rng.nextInt((this.tier * 3) + 2)) + 4;
 		return (int) Math.round(Math.pow(2, power));
 	}
 
-	private float[] getRandomToolAttackDamage()
+	private float getGeneratedEfficiency()
 	{
-		float gradient = this.rng.nextInt(3) + 1;
-		return new float[] { gradient, gradient, 8.0F, gradient, 0.0F };
+		return (this.rng.nextFloat() * this.rng.nextInt((this.tier * 5) + 2)) + 4;
 	}
 
-	private float[] getRandomToolAttackSpeed()
+	private float[] getGeneratedToolAttackDamage()
 	{
-		float axeSpeed = (this.rng.nextInt(4) / 10) - 3.2F;
+		float gradient = this.rng.nextInt(3) + this.tier;
+		return new float[] { gradient, gradient, 6.0F + this.tier, gradient, 0.0F };
+	}
+
+	private float[] getGeneratedToolAttackSpeed()
+	{
+		float axeSpeed = (this.rng.nextInt(this.tier + 3) / 10) - 3.2F;
 		return new float[] { 0.0F, 0.0F, axeSpeed, 0.0F, 0.0F };
+	}
+
+	private HarvestLevel getGeneratedHarvestLevel()
+	{
+		return HarvestLevel.values()[this.tier + 1];
+	}
+
+	private int getGeneratedEnchantability()
+	{
+		return this.rng.nextInt(18) + 8;
 	}
 }

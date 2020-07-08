@@ -53,9 +53,9 @@ public class SimpleSet implements ISet
 	private boolean isEnchantCurrency;
 
 	private boolean isCoal;
-	private boolean isIron;
-	private boolean isGold;
-	private boolean isDiamond;
+	protected boolean isIron;
+	protected boolean isGold;
+	protected boolean isDiamond;
 
 	private DynamicColor blockColor;
 	private DynamicColor oreColor;
@@ -71,7 +71,7 @@ public class SimpleSet implements ISet
 		HarvestLevel randomHarvestLevel = HarvestLevel.getRandomHarvestLevel(this.rng);
 		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng), this.item, randomHarvestLevel);
 		
-		generateOre(oreRarity, randomHarvestLevel);
+		this.generateOre(oreRarity, randomHarvestLevel);
 
 		this.isBlueDye = false;
 		this.isRedstone = false;
