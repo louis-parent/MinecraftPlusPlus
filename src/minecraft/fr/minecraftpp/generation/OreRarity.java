@@ -7,8 +7,8 @@ import fr.minecraftpp.enumeration.OreProperties;
 
 public class OreRarity
 {
-	private static final int DEFAULT_VEIN_AMOUNT = 20;
-	private static final int DEFAULT_VEIN_DENSITY = 20;
+	private static final int DEFAULT_VEIN_AMOUNT = 15;
+	private static final int DEFAULT_VEIN_DENSITY = 18;
 	private static final int DEFAULT_HEIGHT = 128;
 
 	private static final int MIN_VEIN_AMOUNT = 1;
