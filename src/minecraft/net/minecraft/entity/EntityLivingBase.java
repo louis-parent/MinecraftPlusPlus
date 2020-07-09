@@ -1543,8 +1543,17 @@ public abstract class EntityLivingBase extends Entity
 	 */
 	public int getTotalArmorValue()
 	{
-		IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.ARMOR);
-		return MathHelper.floor(iattributeinstance.getAttributeValue());
+		Iterable<ItemStack> armor = this.getArmorInventoryList();
+		
+		int sum = 0;
+		
+		for (ItemStack item : armor) {
+			if (ItemArmor.class.isAssignableFrom(item.getItem().getClass())) {
+				sum += ((ItemArmor) item.getItem()).getDamageReduceAmount();
+				System.out.println(sum);
+			}
+		}
+		return sum;
 	}
 
 	protected void damageArmor(float damage)

@@ -751,13 +751,13 @@ public abstract class EntityLiving extends EntityLivingBase
 				ItemArmor itemarmor = (ItemArmor) itemstack.getItem();
 				ItemArmor itemarmor1 = (ItemArmor) itemstack1.getItem();
 
-				if (itemarmor.damageReduceAmount == itemarmor1.damageReduceAmount)
+				if (itemarmor.getDamageReduceAmount() == itemarmor1.getDamageReduceAmount())
 				{
 					flag = itemstack.getMetadata() > itemstack1.getMetadata() || itemstack.hasTagCompound() && !itemstack1.hasTagCompound();
 				}
 				else
 				{
-					flag = itemarmor.damageReduceAmount > itemarmor1.damageReduceAmount;
+					flag = itemarmor.getDamageReduceAmount() > itemarmor1.getDamageReduceAmount();
 				}
 			}
 			else

@@ -40,10 +40,6 @@ public abstract class ItemArmor extends Item
 
 	public final EntityArmorSlot armorType;
 
-	/** Holds the amount of damage that the armor reduces at full durability. */
-	public final int damageReduceAmount;
-	public final float toughness;
-
 	/** The EnumIArmorMaterial used for this ItemArmor */
 	private final IArmorMaterial material;
 
@@ -76,9 +72,7 @@ public abstract class ItemArmor extends Item
 	{
 		this.material = material;
 		this.armorType = equipmentSlot;
-		this.damageReduceAmount = material.getDamageReductionAmount(equipmentSlot);
 		this.setMaxDamage(material.getDurability(equipmentSlot));
-		this.toughness = material.getToughness();
 		this.maxStackSize = 1;
 		this.setCreativeTab(CreativeTabs.COMBAT);
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, DISPENSER_BEHAVIOR);
@@ -239,10 +233,20 @@ public abstract class ItemArmor extends Item
 
 		if (equipmentSlot == this.armorType)
 		{
-			multimap.put(SharedMonsterAttributes.ARMOR.getAttributeUnlocalizedName(), new AttributeModifier(equipmentSlot.getModifierUUID(), "Armor modifier", this.damageReduceAmount, 0));
-			multimap.put(SharedMonsterAttributes.ARMOR_TOUGHNESS.getAttributeUnlocalizedName(), new AttributeModifier(equipmentSlot.getModifierUUID(), "Armor toughness", this.toughness, 0));
+			multimap.put(SharedMonsterAttributes.ARMOR.getAttributeUnlocalizedName(), new AttributeModifier(equipmentSlot.getModifierUUID(), "Armor modifier", this.getDamageReduceAmount(), 0));
+			multimap.put(SharedMonsterAttributes.ARMOR_TOUGHNESS.getAttributeUnlocalizedName(), new AttributeModifier(equipmentSlot.getModifierUUID(), "Armor toughness", this.getToughness(), 0));
 		}
 
 		return multimap;
+	}
+
+	public int getDamageReduceAmount()
+	{
+		return this.material.getDamageReductionAmount(this.armorType);
+	}
+
+	public float getToughness()
+	{
+		return this.material.getToughness();
 	}
 }

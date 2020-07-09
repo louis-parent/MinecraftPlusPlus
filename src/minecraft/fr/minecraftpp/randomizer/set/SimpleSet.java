@@ -243,12 +243,11 @@ public class SimpleSet implements ISet
 	{
 		if (this.rng.nextInt(7) == 0)
 		{
-			int n = this.rng.nextInt(20) + 1;
 
-			float amountFrac = 0.5F + (1 / (this.rng.nextInt(10) + 1));
-			float saturationFrac = 0.5F + (1 / (this.rng.nextInt(10) + 1));
+			int amount = 1 + this.rng.nextInt(5) + this.rng.nextInt(2) == 0 ? this.rng.nextInt(5) : 0;
+			float saturation = Math.max(0, amount - ((2 * this.rng.nextFloat()) - 1));
 
-			this.item.setFood(new Food((int) (n * amountFrac), n * saturationFrac, this.rng.nextInt(5) == 0));
+			this.item.setFood(new Food(amount, saturation, this.rng.nextInt(5) == 0));
 		}
 	}
 

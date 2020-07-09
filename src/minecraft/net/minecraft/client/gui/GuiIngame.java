@@ -831,7 +831,7 @@ public class GuiIngame extends Gui
 			int j2 = j1 - (l1 - 1) * i2 - 10;
 			int k2 = j1 - 10;
 			int l2 = k1;
-			int i3 = entityplayer.getTotalArmorValue();
+			int totalArmorValue = entityplayer.getTotalArmorValue();
 			int j3 = -1;
 
 			if (entityplayer.isPotionActive(MobEffects.REGENERATION))
@@ -843,21 +843,21 @@ public class GuiIngame extends Gui
 
 			for (int k3 = 0; k3 < 10; ++k3)
 			{
-				if (i3 > 0)
+				if (totalArmorValue > 0)
 				{
 					int l3 = l + k3 * 8;
 
-					if (k3 * 2 + 1 < i3)
+					if (k3 * 2 + 1 < totalArmorValue)
 					{
 						this.drawTexturedModalRect(l3, j2, 34, 9, 9, 9);
 					}
 
-					if (k3 * 2 + 1 == i3)
+					if (k3 * 2 + 1 == totalArmorValue)
 					{
 						this.drawTexturedModalRect(l3, j2, 25, 9, 9, 9);
 					}
 
-					if (k3 * 2 + 1 > i3)
+					if (k3 * 2 + 1 > totalArmorValue)
 					{
 						this.drawTexturedModalRect(l3, j2, 16, 9, 9, 9);
 					}
