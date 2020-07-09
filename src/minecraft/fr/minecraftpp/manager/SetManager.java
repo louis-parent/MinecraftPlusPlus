@@ -10,6 +10,7 @@ import fr.minecraftpp.enumeration.OreProperties;
 import fr.minecraftpp.randomizer.backtrack.Backtrack;
 import fr.minecraftpp.randomizer.set.ISet;
 import fr.minecraftpp.randomizer.set.SetFactory;
+import fr.minecraftpp.randomizer.set.SimpleSet;
 import fr.minecraftpp.variant.Variant;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
@@ -18,7 +19,7 @@ public class SetManager
 {
 	private static final int NUMBER_OF_ORES = 7;
 
-	private static List<ISet> sets = new ArrayList<ISet>();
+	private static List<SimpleSet> sets = new ArrayList<SimpleSet>();
 
 	public static void generateOre(long seed)
 	{
@@ -31,11 +32,6 @@ public class SetManager
 		for (List<OreProperties> properties : sortedSolution.values())
 		{
 			sets.add(SetFactory.generateSet(properties, r));
-		}
-
-		for (int i = 0; i < sets.size(); i++)
-		{
-			System.out.println(sets.get(i).getSetName() + ": " + sortedSolution.values().toArray()[i]);
 		}
 	}
 
@@ -97,5 +93,20 @@ public class SetManager
 		}
 
 		return sortedSolution;
+	}
+	
+	public static String getInfoString() {
+		String str = "";
+		
+		for (int i = 0; i < sets.size(); i++)
+		{
+			str += sets.get(i).getSetInfo();
+			
+			if (i != sets.size() - 1) {
+				str += "\n";
+			}
+		}
+		
+		return str;
 	}
 }

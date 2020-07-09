@@ -59,7 +59,7 @@ import net.minecraft.world.World;
 
 public class Block
 {
-	public static final float BLOCK_SLIPERNESS = 0.6F;
+	public static final float BLOCK_SLIPPERINESS = 0.6F;
 
 	/** ResourceLocation for the Air block */
 	private static final ResourceLocation AIR_ID = new ResourceLocation("air");
@@ -197,7 +197,7 @@ public class Block
 		return true;
 	}
 
-	@Deprecated
+	//@Deprecated
 	public int getLightOpacity(IBlockState state)
 	{
 		return this.lightOpacity;
@@ -213,7 +213,7 @@ public class Block
 		return this.translucent;
 	}
 
-	@Deprecated
+	//@Deprecated
 	public int getLightValue(IBlockState state)
 	{
 		return this.lightValue;
@@ -313,7 +313,7 @@ public class Block
 		this.enableStats = true;
 		this.blockSoundType = SoundType.STONE;
 		this.blockParticleGravity = 1.0F;
-		this.slipperiness = BLOCK_SLIPERNESS;
+		this.slipperiness = BLOCK_SLIPPERINESS;
 		this.blockMaterial = blockMaterial;
 		this.blockMapColor = blockMapColor;
 		this.blockState = this.createBlockState();
@@ -321,6 +321,10 @@ public class Block
 		this.fullBlock = this.getDefaultState().isOpaqueCube();
 		this.lightOpacity = this.fullBlock ? 255 : 0;
 		this.translucent = !blockMaterial.blocksLight();
+	}
+	
+	public float getSlipperiness() {
+		return this.slipperiness;
 	}
 
 	protected Block(Material materialIn)

@@ -67,7 +67,7 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 		this.walkDamage = 0;
 		this.flammability = FlammabilityOf.STONE;
 		this.accelaration = 1;
-		this.slipperiness = Block.BLOCK_SLIPERNESS;
+		this.slipperiness = Block.BLOCK_SLIPPERINESS;
 		this.setHardness(5.0F);
 		this.setResistance(10.0F);
 
@@ -214,6 +214,20 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	{
 		return this.isBeaconBase;
 	}
+	
+	public float getWalkDamage() {
+		return this.walkDamage;
+	}
+
+	public boolean isAbsorbing()
+	{
+		return this.isAbsorbing;
+	}
+
+	public boolean hasGravity()
+	{
+		return this.hasGravity;
+	}
 
 	public void setBeaconBase(boolean isBeaconBase)
 	{
@@ -297,5 +311,9 @@ public class DynamicBlock extends Block implements IDynamicBlock, IFalling, IAbs
 	public void setHarvestLevel(HarvestLevel harvestLevel)
 	{
 		this.harvestLevel = harvestLevel.getHarvestLevel();
+	}
+	
+	public HarvestLevel getHarvestLevel() {
+		return HarvestLevel.values()[this.harvestLevel];
 	}
 }

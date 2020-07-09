@@ -95,4 +95,23 @@ public class Food implements IFood
 		this.potionEffect = effect;
 		this.potionProbability = probability;
 	}
+	
+	@Override
+	public String getFoodInfo()
+	{
+		String str = "food{";
+		
+		str += "amount=" + this.amount + ", ";
+		str += "saturation=" + this.saturation;
+		
+		if (this.isWolfFood) {
+			str += ", wolf food";
+		}
+		
+		if (this.isAlwaysEdible) {
+			str += ", always edible";
+		}
+		
+		return str + "}";
+	}
 }

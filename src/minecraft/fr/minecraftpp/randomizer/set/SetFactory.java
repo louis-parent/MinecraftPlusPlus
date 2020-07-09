@@ -9,7 +9,7 @@ import fr.minecraftpp.generation.OreRarity;
 public class SetFactory
 {
 
-	public static ISet generateSet(List<OreProperties> properties, Random rand)
+	public static SimpleSet generateSet(List<OreProperties> properties, Random rand)
 	{
 		SimpleSet newSet = createProperSet(properties, rand);
 

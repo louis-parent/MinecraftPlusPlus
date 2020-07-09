@@ -1,10 +1,13 @@
 package fr.minecraftpp.randomizer.backtrack.engine;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 import fr.minecraftpp.randomizer.backtrack.Backtrack;
 import fr.minecraftpp.randomizer.backtrack.engine.constraints.Constraint;
+import net.minecraft.util.LoggingPrintStream;
 
 public class CSP
 {
@@ -24,8 +27,10 @@ public class CSP
 
 	public Assignment searchSolution()
 	{
+		System.setErr(new PrintStream(new ByteArrayOutputStream()));
 		assignment.clear();
 		Assignment sol = backtrack();
+		System.setErr(new LoggingPrintStream("STDERR", System.err));
 		return sol;
 	}
 

@@ -1,5 +1,6 @@
 package net.minecraft.command;
 
+import fr.minecraftpp.command.CommandMppInfo;
 import net.minecraft.command.server.CommandBanIp;
 import net.minecraft.command.server.CommandBanPlayer;
 import net.minecraft.command.server.CommandBroadcast;
@@ -114,6 +115,11 @@ public class ServerCommandManager extends CommandHandler implements ICommandList
 		}
 
 		CommandBase.setCommandListener(this);
+		
+		/**
+		 * Mpp mod
+		 */
+		this.registerCommand(new CommandMppInfo());
 	}
 
 	/**

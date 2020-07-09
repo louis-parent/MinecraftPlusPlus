@@ -103,4 +103,9 @@ public interface IFood
 			return new NotFood();
 		}
 	}
+
+	default public String getFoodInfo()
+	{
+		return "";
+	}
 }

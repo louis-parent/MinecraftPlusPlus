@@ -87,4 +87,17 @@ public class NotFood implements IFood
 	public void foodUseStatEffect(EntityPlayer entityplayer)
 	{
 	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj.getClass().equals(NotFood.class))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

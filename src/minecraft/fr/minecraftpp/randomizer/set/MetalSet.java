@@ -106,4 +106,10 @@ public class MetalSet extends MaterialSet
 	public void setRedstone()
 	{
 	}
+	
+	@Override
+	protected String getSetTypeInfo()
+	{
+		return "Metal";
+	}
 }

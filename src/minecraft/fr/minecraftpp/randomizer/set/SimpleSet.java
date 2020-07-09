@@ -1,5 +1,7 @@
 package fr.minecraftpp.randomizer.set;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import fr.minecraftpp.block.DynamicBlock;
@@ -17,6 +19,7 @@ import fr.minecraftpp.generation.OreRarity;
 import fr.minecraftpp.init.WordGen;
 import fr.minecraftpp.item.DynamicItem;
 import fr.minecraftpp.item.food.Food;
+import fr.minecraftpp.item.food.NotFood;
 import fr.minecraftpp.manager.ModManager;
 import fr.minecraftpp.variant.Variant;
 import net.minecraft.block.Block;
@@ -70,7 +73,7 @@ public class SimpleSet implements ISet
 		this.item = new DynamicItem(this.name, DynamicItem.getRandomTextureId(this.rng), Color.getRandomColorImproved(this.rng));
 		HarvestLevel randomHarvestLevel = HarvestLevel.getRandomHarvestLevel(this.rng);
 		this.block = new DynamicBlock(this.name, DynamicBlock.getRandomTextureId(this.rng), this.item, randomHarvestLevel);
-		
+
 		this.generateOre(oreRarity, randomHarvestLevel);
 
 		this.isBlueDye = false;
@@ -287,7 +290,7 @@ public class SimpleSet implements ISet
 	{
 		if (this.rng.nextInt(15) == 0)
 		{
-			this.block.slipperiness = Block.BLOCK_SLIPERNESS + (this.rng.nextInt(5) / 10) - 0.2F;
+			this.block.slipperiness = Block.BLOCK_SLIPPERINESS + (this.rng.nextInt(5) / 10) - 0.2F;
 		}
 	}
 
@@ -443,5 +446,161 @@ public class SimpleSet implements ISet
 	{
 		Variant.getInstance().addVariant(original, this.item);
 		Variant.getInstance().addVariant(Item.getItemFromBlock(originalBlock), Item.getItemFromBlock(this.block));
+	}
+
+	public String getSetInfo()
+	{
+		String str = this.name + " : ";
+
+		str += this.rarity.rarityName + " " + getSetTypeInfo() + "; ";
+		
+		str += getBasicAttributesInfo() + "; ";
+		
+		str += getDetailedAttributesInfo() + "; ";
+		
+		str += getHarvestLevelInfo();
+
+		return str;
+	}
+
+	protected String getSetTypeInfo()
+	{
+		return "Simple";
+	}
+
+	private String getBasicAttributesInfo()
+	{
+		List<String> attributes = new ArrayList<String>();
+
+		if (this.isBlueDye)
+		{
+			attributes.add("bluedye");
+		}
+
+		if (this.isRedstone)
+		{
+			attributes.add("redstone");
+		}
+
+		if (this.isCurrency)
+		{
+			attributes.add("currency");
+		}
+
+		if (this.isBeacon)
+		{
+			attributes.add("beacon");
+		}
+
+		if (this.isEnchantCurrency)
+		{
+			attributes.add("enchant");
+		}
+
+		if (this.isCoal)
+		{
+			attributes.add("coal");
+		}
+		else if (this.isFuel)
+		{
+			attributes.add("fuel");
+		}
+
+		if (this.isIron)
+		{
+			attributes.add("iron");
+		}
+
+		if (this.isGold)
+		{
+			attributes.add("gold");
+		}
+
+		if (this.isDiamond)
+		{
+			attributes.add("diamond");
+		}
+
+		String str = "";
+
+		for (int i = 0; i < attributes.size(); i++)
+		{
+			str += attributes.get(i);
+
+			if (i != attributes.size() - 1)
+			{
+				str += ", ";
+			}
+		}
+
+		return str;
+	}
+
+	private String getDetailedAttributesInfo()
+	{
+		List<String> attributes = new ArrayList<String>();
+		
+		if (this.item.hasEffect(null)) {
+			attributes.add("shiny");
+		}
+		
+		if (this.item.canSetFire()) {
+			attributes.add("burns");
+		}
+		
+		if (!this.item.getFood().equals(new NotFood())) {
+			attributes.add(this.item.getFood().getFoodInfo());
+		}
+		
+		if (this.block.hasGravity()) {
+			attributes.add("falls");
+		}
+		
+		if (this.block.getLightValue(null) != 0) {
+			attributes.add("glow{" + this.block.getLightValue(null) + "}");
+		}
+		
+		if (this.block.getLightOpacity(null) != 255) {
+			attributes.add("opacity{" + Math.round((this.block.getLightOpacity(null) / 255.0) * 100.0) + "%}");
+		}
+		
+		if (this.block.isAbsorbing()) {
+			attributes.add("absorbs");
+		}
+		
+		if (this.block.getSlipperiness() != Block.BLOCK_SLIPPERINESS) {
+			attributes.add("slipperiness{" + (this.block.getSlipperiness() - Block.BLOCK_SLIPPERINESS) + "}");
+		}
+		
+		if (this.block.getAcceleration() != 1) {
+			attributes.add("acceleration{x" + this.block.getAcceleration() + "}");
+		}
+		
+		if (this.block.getWalkDamage() != 0) {
+			attributes.add("walk damage{" + this.block.getWalkDamage() + "}");
+		}
+		
+		if (this.block.getFlammability() != FlammabilityOf.STONE) {
+			attributes.add("flammablility of " + this.block.getFlammability().toString().toLowerCase());
+		}
+
+		String str = "";
+
+		for (int i = 0; i < attributes.size(); i++)
+		{
+			str += attributes.get(i);
+
+			if (i != attributes.size() - 1)
+			{
+				str += ", ";
+			}
+		}
+
+		return str;
+	}
+	
+	protected String getHarvestLevelInfo()
+	{
+		return "needs " + this.block.getHarvestLevel().name().toLowerCase() + " to harvest";
 	}
 }

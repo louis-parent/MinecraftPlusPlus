@@ -202,4 +202,16 @@ public class MaterialSet extends SimpleSet
 	{
 		return this.rng.nextInt(18) + 8;
 	}
+
+	@Override
+	protected String getSetTypeInfo()
+	{
+		return "Material";
+	}
+	
+	@Override
+	protected String getHarvestLevelInfo()
+	{
+		return super.getHarvestLevelInfo() + ", can harvest like " + HarvestLevel.values()[this.material.getHarvestLevel()].name().toLowerCase();
+	}
 }
