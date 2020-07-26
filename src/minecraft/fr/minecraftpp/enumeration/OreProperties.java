@@ -4,7 +4,7 @@ import java.util.List;
 
 public enum OreProperties
 {
-	EMPTY("EMPTY", OreProperties.UNDEFINED_TIER, 0), BLUEDYE("bluedye", OreProperties.UNDEFINED_TIER, 0), CURRENCY("currency", OreProperties.UNDEFINED_TIER, 5), BEACON("beacon", OreProperties.UNDEFINED_TIER, 2), FUEL("fuel", OreProperties.UNDEFINED_TIER, 1), MATERIAL("material", OreProperties.UNDEFINED_TIER, 1), METAL("metal", OreProperties.UNDEFINED_TIER, 0), COAL("coal", 0, 0), IRON("iron", 1, 1), GOLD("gold", 2, 2), ENCHANT_CURRENCY("enchant", 2, 3), REDSTONE("redstone", 3, 5), DIAMOND("diamond", 3, 3);
+	EMPTY("EMPTY", OreProperties.UNDEFINED_TIER, 0), BLUEDYE("bluedye", OreProperties.UNDEFINED_TIER, 1), CURRENCY("currency", OreProperties.UNDEFINED_TIER, 0), BEACON("beacon", OreProperties.UNDEFINED_TIER, 0), FUEL("fuel", OreProperties.UNDEFINED_TIER, 0), MATERIAL("material", OreProperties.UNDEFINED_TIER, 0), METAL("metal", OreProperties.UNDEFINED_TIER, 0), COAL("coal", 0, 7), IRON("iron", 1, 5), GOLD("gold", 2, 3), ENCHANT_CURRENCY("enchant", 2, 1), REDSTONE("redstone", 3, 5), DIAMOND("diamond", 3, 1);
 
 	public static final int UNDEFINED_TIER = -1;
 
@@ -24,7 +24,7 @@ public enum OreProperties
 		return this.tier;
 	}
 
-	public int getRarity()
+	public int getUsefullness()
 	{
 		return this.rarity;
 	}

@@ -64,6 +64,8 @@ public class SimpleSet implements ISet
 	private DynamicColor oreColor;
 
 	private Rarity rarity;
+	
+	private OreRarity oreRarity;
 
 	public SimpleSet(Random rand, OreRarity oreRarity)
 	{
@@ -92,6 +94,8 @@ public class SimpleSet implements ISet
 		this.oreColor = new DynamicColor(this.ore);
 
 		this.rarity = Rarity.COMMON;
+		
+		this.oreRarity = oreRarity;
 	}
 
 	protected void generateOre(OreRarity oreRarity, HarvestLevel randomHarvestLevel)
@@ -601,6 +605,6 @@ public class SimpleSet implements ISet
 	
 	protected String getHarvestLevelInfo()
 	{
-		return "needs " + this.block.getHarvestLevel().name().toLowerCase() + " to harvest";
+		return "[level: " + this.oreRarity.getMaxHeight() + ", frequency: " + this.oreRarity.getVeinAmount() + "-" + this.oreRarity.getVeinDensity() + "], needs " + this.block.getHarvestLevel().name().toLowerCase() + " to harvest";
 	}
 }

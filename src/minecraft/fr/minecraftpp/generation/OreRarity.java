@@ -7,28 +7,32 @@ import fr.minecraftpp.enumeration.OreProperties;
 
 public class OreRarity
 {
-	private static final int DEFAULT_VEIN_AMOUNT = 15;
-	private static final int DEFAULT_VEIN_DENSITY = 18;
-	private static final int DEFAULT_HEIGHT = 128;
+	private static final int MAX_VEIN_AMOUNT = 20;
+	private static final int MAX_VEIN_DENSITY = 20;
+	private static final int MAX_HEIGHT = 128;
 
-	private static final int MIN_VEIN_AMOUNT = 1;
-	private static final int MIN_VEIN_DENSITY = 5;
-	private static final int MIN_HEIGHT = 8;
+	private static final int DEFAULT_VEIN_AMOUNT = 1;
+	private static final int DEFAULT_VEIN_DENSITY = 5;
+	private static final int DEFAULT_HEIGHT = 16;
 
 	private int veinAmount;
 	private int veinDensity;
 	private int maxHeight;
+	
+	private Random rand;
 
-	private OreRarity()
+	private OreRarity(Random rand)
 	{
-		this(DEFAULT_VEIN_AMOUNT, DEFAULT_VEIN_DENSITY, DEFAULT_HEIGHT);
+		this(DEFAULT_VEIN_AMOUNT, DEFAULT_VEIN_DENSITY, DEFAULT_HEIGHT, rand);
 	}
 
-	private OreRarity(int veinAmount, int veinDensity, int maxHeight)
+	private OreRarity(int veinAmount, int veinDensity, int maxHeight, Random rand)
 	{
 		this.veinAmount = veinAmount;
 		this.veinDensity = veinDensity;
 		this.maxHeight = maxHeight;
+		
+		this.rand = rand;
 	}
 
 	public int getVeinAmount()
@@ -57,51 +61,63 @@ public class OreRarity
 
 	private static OreRarity getForTier(int tier, Random rand)
 	{
-		OreRarity rarity = new OreRarity();
+		OreRarity rarity = new OreRarity(rand);
 
 		if (tier == OreProperties.UNDEFINED_TIER)
 		{
 			tier = rand.nextInt(4);
 		}
 
-		rarity.setMaxHeight((int) (DEFAULT_HEIGHT * Math.pow(2, -tier)));
+		rarity.setMaxHeight((int) (MAX_HEIGHT * Math.pow(2, -tier)));
 		return rarity;
 	}
 
 	public void setVeinAmount(int veinAmount)
 	{
-		this.veinAmount = Math.max(veinAmount, MIN_VEIN_AMOUNT);
+		this.veinAmount = Math.min(veinAmount, MAX_VEIN_AMOUNT);
 	}
 
 	public void setVeinDensity(int veinDensity)
 	{
-		this.veinDensity = Math.max(veinDensity, MIN_VEIN_DENSITY);
+		this.veinDensity = Math.min(veinDensity, MAX_VEIN_DENSITY);
 	}
 
 	private void setMaxHeight(int height)
 	{
-		this.maxHeight = Math.max(height, MIN_HEIGHT);
+		this.maxHeight = Math.min(height, MAX_HEIGHT);
 	}
 
 	private void applyProperties(List<OreProperties> properties)
 	{
 		for (OreProperties oreProperties : properties)
 		{
-			this.increase(oreProperties.getRarity());
+			this.decreaseRarity(oreProperties.getUsefullness());
 		}
+		
+		int bonus = 0;
+		
+		int generatedInt = this.rand.nextInt(12) + 1;
+
+		bonus += generatedInt > 6 ? 1 : 0;
+		bonus += generatedInt > 9 ? 1 : 0;
+		bonus += generatedInt == 12 ? 1 : 0;
+		
+		this.decreaseRarity(bonus);
 	}
 
-	private void increase(int times)
+	private void decreaseRarity(int times)
 	{
 		for (int i = 0; i < times; i++)
 		{
-			this.increase();
+			this.decreaseRarity();
 		}
 	}
 
-	private void increase()
+	private void decreaseRarity()
 	{
-		this.setVeinAmount(this.getVeinAmount() - 3);
-		this.setVeinDensity(this.getVeinDensity() - 2);
+		int maxIncrease = 4;
+		int separation = this.rand.nextInt(maxIncrease + 1);
+		this.setVeinAmount(this.getVeinAmount() + separation);
+		this.setVeinDensity(this.getVeinDensity() + (maxIncrease - separation));
 	}
 }

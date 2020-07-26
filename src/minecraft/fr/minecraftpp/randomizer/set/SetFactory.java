@@ -21,19 +21,20 @@ public class SetFactory
 	private static SimpleSet createProperSet(List<OreProperties> properties, Random rand)
 	{
 		SimpleSet newSet;
+		
 		if (properties.contains(OreProperties.METAL))
 		{
 			newSet = new MetalSet(rand, OreRarity.getRarityFrom(properties, rand));
 		}
 		else if (properties.contains(OreProperties.MATERIAL))
 		{
-
 			newSet = new MaterialSet(rand, OreRarity.getRarityFrom(properties, rand));
 		}
 		else
 		{
 			newSet = new SimpleSet(rand, OreRarity.getRarityFrom(properties, rand));
 		}
+		
 		return newSet;
 	}
 
