@@ -28,10 +28,10 @@ public class MetalArmorSet extends ArmorSet
 	{
 		this.armors.addRecipes();
 
-		new FurnaceRecipe(this.armors.helmet, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.armors.chestplate, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.armors.leggings, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.armors.boots, this.nugget.getAsStack(), 0);
+		new FurnaceRecipe(this.armors.helmet, this.nugget.getAsStack(), 0.1F);
+		new FurnaceRecipe(this.armors.chestplate, this.nugget.getAsStack(), 0.1F);
+		new FurnaceRecipe(this.armors.leggings, this.nugget.getAsStack(), 0.1F);
+		new FurnaceRecipe(this.armors.boots, this.nugget.getAsStack(), 0.1F);
 	}
 
 	@Override

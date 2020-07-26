@@ -136,7 +136,7 @@ public class SimpleSet implements ISet
 	{
 		new RecipeCompact(this.item, this.block);
 		new RecipeDecompact(this.block, this.item);
-		new FurnaceRecipe(this.ore, this.item.getAsStack(), (this.rng.nextInt(12) + 1) / 10);
+		new FurnaceRecipe(this.ore, this.item.getAsStack(), (this.rarity.ordinal() + 1) * 0.15F);
 
 		if (this.isBlueDye)
 		{

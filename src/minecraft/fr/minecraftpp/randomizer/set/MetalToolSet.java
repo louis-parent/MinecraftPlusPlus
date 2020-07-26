@@ -28,11 +28,11 @@ public class MetalToolSet extends ToolSet
 	{
 		this.tools.addRecipes();
 
-		new FurnaceRecipe(this.tools.sword, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.tools.pickaxe, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.tools.axe, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.tools.shovel, this.nugget.getAsStack(), 0);
-		new FurnaceRecipe(this.tools.hoe, this.nugget.getAsStack(), 0);
+		new FurnaceRecipe(this.tools.sword, this.nugget.getAsStack(), 0.1F);
+		new FurnaceRecipe(this.tools.pickaxe, this.nugget.getAsStack(), 0.1F);
+		new FurnaceRecipe(this.tools.axe, this.nugget.getAsStack(), 0.1F);
+		new FurnaceRecipe(this.tools.shovel, this.nugget.getAsStack(), 0.1F);
+		new FurnaceRecipe(this.tools.hoe, this.nugget.getAsStack(), 0.1F);
 	}
 
 	@Override
