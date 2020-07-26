@@ -278,6 +278,7 @@ public class GuiCreateWorld extends GuiScreen
 
 				BufferedWriter writer = new BufferedWriter(new FileWriter(save));
 				writer.write("" + MppConfig.getCurrentConfig().getSeed());
+				writer.write("\nPlease never change this seed, it will break the save. Change the seed in the MppConfig file in your .minecraft folder instead.");
 				writer.close();
 
 				this.mc.launchIntegratedServer(this.saveDirName, this.worldNameField.getText().trim(), worldsettings);

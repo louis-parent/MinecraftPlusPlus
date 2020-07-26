@@ -1,7 +1,11 @@
 package net.minecraft.client.gui;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +17,7 @@ import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import fr.minecraftpp.init.MppConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.renderer.GlStateManager;
@@ -70,42 +75,65 @@ public class GuiListWorldSelectionEntry implements GuiListExtended.IGuiListEntry
 		{
 			s = I18n.format("selectWorld.world") + " " + (p_192634_1_ + 1);
 		}
-
-		if (this.worldSummary.requiresConversion())
+		
+		try
 		{
-			s2 = I18n.format("selectWorld.conversion") + " " + s2;
-		}
-		else
-		{
-			s2 = I18n.format("gameMode." + this.worldSummary.getEnumGameType().getName());
+			File mppSeed = new File(new File(new File(Minecraft.getMinecraft().mcDataDir, "saves"), this.worldSummary.getFileName()), "mppSeed.mpp");
 
-			if (this.worldSummary.isHardcoreModeEnabled())
+			BufferedReader reader = new BufferedReader(new FileReader(mppSeed));
+			long seed = Long.parseLong(reader.readLine());
+			reader.close();
+			
+			if (seed == MppConfig.getCurrentConfig().getSeed())
 			{
-				s2 = TextFormatting.DARK_RED + I18n.format("gameMode.hardcore") + TextFormatting.RESET;
-			}
-
-			if (this.worldSummary.getCheatsEnabled())
-			{
-				s2 = s2 + ", " + I18n.format("selectWorld.cheats");
-			}
-
-			String s3 = this.worldSummary.getVersionName();
-
-			if (this.worldSummary.markVersionInList())
-			{
-				if (this.worldSummary.askToOpenWorld())
+				s2 = TextFormatting.GREEN + "Valid Mpp Seed" + TextFormatting.RESET + ", ";
+				
+				if (this.worldSummary.requiresConversion())
 				{
-					s2 = s2 + ", " + I18n.format("selectWorld.version") + " " + TextFormatting.RED + s3 + TextFormatting.RESET;
+					s2 += I18n.format("selectWorld.conversion") + " " + s2;
 				}
 				else
 				{
-					s2 = s2 + ", " + I18n.format("selectWorld.version") + " " + TextFormatting.ITALIC + s3 + TextFormatting.RESET;
+					s2 += I18n.format("gameMode." + this.worldSummary.getEnumGameType().getName());
+
+					if (this.worldSummary.isHardcoreModeEnabled())
+					{
+						s2 += TextFormatting.DARK_RED + I18n.format("gameMode.hardcore") + TextFormatting.RESET;
+					}
+
+					if (this.worldSummary.getCheatsEnabled())
+					{
+						s2 += ", " + I18n.format("selectWorld.cheats");
+					}
+
+					String s3 = this.worldSummary.getVersionName();
+
+					if (this.worldSummary.markVersionInList())
+					{
+						if (this.worldSummary.askToOpenWorld())
+						{
+							s2 += ", " + I18n.format("selectWorld.version") + " " + TextFormatting.RED + s3 + TextFormatting.RESET;
+						}
+						else
+						{
+							s2 += ", " + I18n.format("selectWorld.version") + " " + TextFormatting.ITALIC + s3 + TextFormatting.RESET;
+						}
+					}
+					else
+					{
+						s2 += ", " + I18n.format("selectWorld.version") + " " + s3;
+					}
 				}
 			}
 			else
 			{
-				s2 = s2 + ", " + I18n.format("selectWorld.version") + " " + s3;
+				s1 = TextFormatting.DARK_RED + "Wrong Mpp Seed or Vanilla save, change the seed in" + TextFormatting.RESET;
+				s2 = TextFormatting.DARK_RED + "the MppConfig file with the mppSeed in the save folder" + TextFormatting.RESET;
 			}
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 
 		this.client.fontRendererObj.drawString(s, p_192634_2_ + 32 + 3, p_192634_3_ + 1, 16777215);
