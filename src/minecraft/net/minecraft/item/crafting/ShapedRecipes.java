@@ -15,6 +15,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
+import fr.minecraftpp.crafting.item.IronNuggetRecipe;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,10 +28,10 @@ import net.minecraft.world.World;
 public class ShapedRecipes implements IRecipe
 {
 	/** How many horizontal slots this recipe is wide. */
-	private final int recipeWidth;
+	protected final int recipeWidth;
 
 	/** How many vertical slots this recipe uses. */
-	private final int recipeHeight;
+	protected final int recipeHeight;
 	private final NonNullList<Ingredient> recipeItems;
 
 	/** Is the ItemStack that you get when craft the recipe. */
@@ -97,7 +99,7 @@ public class ShapedRecipes implements IRecipe
 	/**
 	 * Checks if the region of a crafting inventory is match for the recipe.
 	 */
-	private boolean checkMatch(InventoryCrafting inventory, int width, int height, boolean checkSymetry)
+	protected boolean checkMatch(InventoryCrafting inventory, int width, int height, boolean checkSymetry)
 	{
 		for (int i = 0; i < 3; ++i)
 		{
@@ -156,8 +158,20 @@ public class ShapedRecipes implements IRecipe
 		int width = pattern[0].length();
 		int height = pattern.length;
 		NonNullList<Ingredient> nonnulllist = buildPatternWithItems(pattern, map, width, height);
-		ItemStack itemstack = getResult(JsonUtils.getJsonObject(json, "result"), true);
-		return new ShapedRecipes(group, width, height, nonnulllist, itemstack);
+		ItemStack result = getResult(JsonUtils.getJsonObject(json, "result"), true);
+
+		ShapedRecipes recipe;
+		
+		if (result.getItem().equals(Items.IRON_NUGGET))
+		{
+			recipe = new IronNuggetRecipe(group, width, height, nonnulllist, result);
+		}
+		else
+		{
+			recipe = new ShapedRecipes(group, width, height, nonnulllist, result);
+		}
+		
+		return recipe;
 	}
 
 	private static NonNullList<Ingredient> buildPatternWithItems(String[] pattern, Map<String, Ingredient> keyMap, int width, int height)

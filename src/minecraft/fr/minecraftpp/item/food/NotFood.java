@@ -42,31 +42,31 @@ public class NotFood implements IFood
 	}
 
 	@Override
-	public int getHealAmount(ItemStack stack)
+	public int getFoodAmount(ItemStack stack)
 	{
 		return 0;
 	}
 
 	@Override
-	public float getSaturationModifier(ItemStack stack)
+	public float getSaturationAmount(ItemStack stack)
 	{
 		return 0;
 	}
 
 	@Override
-	public boolean isWolfsFavoriteMeat()
+	public boolean isEdibleByWolf()
 	{
 		return false;
 	}
 
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack)
+	public int getItemUseDuration(ItemStack stack)
 	{
 		return 0;
 	}
 
 	@Override
-	public boolean isAlawaysEdible()
+	public boolean isAlwaysEdible()
 	{
 		return false;
 	}

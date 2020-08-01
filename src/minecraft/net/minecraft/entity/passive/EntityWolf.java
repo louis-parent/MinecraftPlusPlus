@@ -451,14 +451,14 @@ public class EntityWolf extends EntityTameable
 				{
 					IFood itemfood = IFood.getFoodFromItem(itemstack.getItem());
 
-					if (itemfood.isWolfsFavoriteMeat() && this.dataManager.get(DATA_HEALTH_ID).floatValue() < 20.0F)
+					if (itemfood.isEdibleByWolf() && this.dataManager.get(DATA_HEALTH_ID).floatValue() < 20.0F)
 					{
 						if (!player.capabilities.isCreativeMode)
 						{
 							itemstack.decreaseStackSize(1);
 						}
 
-						this.heal(itemfood.getHealAmount(itemstack));
+						this.heal(itemfood.getFoodAmount(itemstack));
 						return true;
 					}
 				}
@@ -554,7 +554,7 @@ public class EntityWolf extends EntityTameable
 	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
-		return IFood.getFoodFromItem(stack.getItem()).isWolfsFavoriteMeat();
+		return IFood.getFoodFromItem(stack.getItem()).isEdibleByWolf();
 	}
 
 	/**

@@ -12,6 +12,7 @@ import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntComparators;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.client.util.RecipeItemHelper;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -32,7 +33,7 @@ public class Ingredient implements Predicate<ItemStack>
 	private Ingredient(ItemStack... stacks)
 	{
 		this.stacks = new ArrayList<ItemStack>();
-
+		
 		for (ItemStack stack : stacks)
 		{
 			this.stacks.addAll(Variant.getInstance().getAllStackVariantsWithoutOriginalOf(stack.getItem()));

@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer.entity;
 
+import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.util.List;
 
@@ -314,7 +315,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 			GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_ALPHA, 7681);
 			GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_ALPHA, OpenGlHelper.GL_PREVIOUS);
 			GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);
-			this.brightnessBuffer.position(0);
+			((Buffer) this.brightnessBuffer).position(0);
 
 			if (flag1)
 			{
@@ -335,7 +336,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 				this.brightnessBuffer.put(1.0F - f1);
 			}
 
-			this.brightnessBuffer.flip();
+			((Buffer) this.brightnessBuffer).flip();
 			GlStateManager.glTexEnv(8960, 8705, this.brightnessBuffer);
 			GlStateManager.setActiveTexture(OpenGlHelper.GL_TEXTURE2);
 			GlStateManager.enableTexture2D();

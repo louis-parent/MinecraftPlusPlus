@@ -44,31 +44,31 @@ public class Food implements IFood
 	}
 
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack)
+	public int getItemUseDuration(ItemStack stack)
 	{
 		return this.useDuration;
 	}
 
 	@Override
-	public int getHealAmount(ItemStack stack)
+	public int getFoodAmount(ItemStack stack)
 	{
 		return this.amount;
 	}
 
 	@Override
-	public float getSaturationModifier(ItemStack stack)
+	public float getSaturationAmount(ItemStack stack)
 	{
 		return this.saturation;
 	}
 
 	@Override
-	public boolean isWolfsFavoriteMeat()
+	public boolean isEdibleByWolf()
 	{
 		return this.isWolfFood;
 	}
 
 	@Override
-	public boolean isAlawaysEdible()
+	public boolean isAlwaysEdible()
 	{
 		return this.isAlwaysEdible;
 	}

@@ -2,6 +2,7 @@ package net.minecraft.client.shader;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.util.Map;
 
@@ -67,7 +68,7 @@ public class ShaderLoader
 				byte[] abyte = IOUtils.toByteArray(new BufferedInputStream(iresource.getInputStream()));
 				ByteBuffer bytebuffer = BufferUtils.createByteBuffer(abyte.length);
 				bytebuffer.put(abyte);
-				bytebuffer.position(0);
+				((Buffer) bytebuffer).position(0);
 				int i = OpenGlHelper.glCreateShader(type.getShaderMode());
 				OpenGlHelper.glShaderSource(i, bytebuffer);
 				OpenGlHelper.glCompileShader(i);

@@ -56,7 +56,7 @@ public interface IFood
 	{
 		ItemStack itemstack = player.getHeldItem(hand);
 
-		if (player.canEat(this.isAlawaysEdible()))
+		if (player.canEat(this.isAlwaysEdible()))
 		{
 			player.setActiveHand(hand);
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
@@ -72,15 +72,15 @@ public interface IFood
 		return true;
 	}
 
-	public abstract int getHealAmount(ItemStack stack);
+	public abstract int getFoodAmount(ItemStack stack);
 
-	public abstract float getSaturationModifier(ItemStack stack);
+	public abstract float getSaturationAmount(ItemStack stack);
 
-	public abstract boolean isWolfsFavoriteMeat();
+	public abstract boolean isEdibleByWolf();
 
-	public abstract int getMaxItemUseDuration(ItemStack stack);
+	public abstract int getItemUseDuration(ItemStack stack);
 
-	public abstract boolean isAlawaysEdible();
+	public abstract boolean isAlwaysEdible();
 
 	public abstract PotionEffect getPotionEffect();
 
@@ -104,7 +104,7 @@ public interface IFood
 		}
 	}
 
-	default public String getFoodInfo()
+	public default String getFoodInfo()
 	{
 		return "";
 	}

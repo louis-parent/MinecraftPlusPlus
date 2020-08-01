@@ -101,7 +101,7 @@ public class ItemBow extends Item
 					itemstack = new ItemStack(Items.ARROW);
 				}
 
-				int i = this.getMaxItemUseDuration(stack) - timeLeft;
+				int i = this.getItemUseDuration(stack) - timeLeft;
 				float f = getArrowVelocity(i);
 
 				if (f >= 0.1D)
@@ -186,7 +186,7 @@ public class ItemBow extends Item
 	 * How long it takes to use or consume an item
 	 */
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack)
+	public int getItemUseDuration(ItemStack stack)
 	{
 		return 72000;
 	}

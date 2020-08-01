@@ -127,13 +127,14 @@ public class GuiListWorldSelectionEntry implements GuiListExtended.IGuiListEntry
 			}
 			else
 			{
-				s1 = TextFormatting.DARK_RED + "Wrong Mpp Seed or Vanilla save, change the seed in" + TextFormatting.RESET;
-				s2 = TextFormatting.DARK_RED + "the MppConfig file with the mppSeed in the save folder" + TextFormatting.RESET;
+				s1 = TextFormatting.DARK_RED + "Wrong Mpp Seed, change the seed in the MppConfig" + TextFormatting.RESET;
+				s2 = TextFormatting.DARK_RED + "file with the mppSeed in the save folder" + TextFormatting.RESET;
 			}
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			s1 = TextFormatting.DARK_RED + "This is a Vanilla world, please do not open it" + TextFormatting.RESET;
+			s2 = TextFormatting.DARK_RED + "or it will not be playable in Vanilla anymore." + TextFormatting.RESET;
 		}
 
 		this.client.fontRendererObj.drawString(s, p_192634_2_ + 32 + 3, p_192634_3_ + 1, 16777215);

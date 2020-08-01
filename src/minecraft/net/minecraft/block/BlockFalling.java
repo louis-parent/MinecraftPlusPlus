@@ -59,4 +59,9 @@ public class BlockFalling extends Block implements IFalling
 	{
 		return this;
 	}
+
+	public int getDustColor(IBlockState state)
+	{
+		return -16777216;
+	}
 }

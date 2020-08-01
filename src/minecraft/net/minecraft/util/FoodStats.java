@@ -1,5 +1,7 @@
 package net.minecraft.util;
 
+import java.lang.reflect.Method;
+
 import fr.minecraftpp.item.food.IFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -32,7 +34,7 @@ public class FoodStats
 
 	public void addStats(IFood food, ItemStack stack)
 	{
-		this.addStats(food.getHealAmount(stack), food.getSaturationModifier(stack));
+		this.addStats(food.getFoodAmount(stack), food.getSaturationAmount(stack));
 	}
 
 	/**

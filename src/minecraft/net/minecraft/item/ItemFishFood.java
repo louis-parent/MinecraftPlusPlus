@@ -23,14 +23,14 @@ public class ItemFishFood extends ItemFood
 	}
 
 	@Override
-	public int getHealAmount(ItemStack stack)
+	public int getFoodAmount(ItemStack stack)
 	{
 		ItemFishFood.FishType itemfishfood$fishtype = ItemFishFood.FishType.byItemStack(stack);
 		return this.cooked && itemfishfood$fishtype.canCook() ? itemfishfood$fishtype.getCookedHealAmount() : itemfishfood$fishtype.getUncookedHealAmount();
 	}
 
 	@Override
-	public float getSaturationModifier(ItemStack stack)
+	public float getSaturationAmount(ItemStack stack)
 	{
 		ItemFishFood.FishType itemfishfood$fishtype = ItemFishFood.FishType.byItemStack(stack);
 		return this.cooked && itemfishfood$fishtype.canCook() ? itemfishfood$fishtype.getCookedSaturationModifier() : itemfishfood$fishtype.getUncookedSaturationModifier();

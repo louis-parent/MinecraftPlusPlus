@@ -114,9 +114,9 @@ public class DynamicItem extends Item implements IDynamicItem, IColored
 	}
 
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack)
+	public int getItemUseDuration(ItemStack stack)
 	{
-		return this.food.getMaxItemUseDuration(stack);
+		return this.food.getItemUseDuration(stack);
 	}
 
 	@Override

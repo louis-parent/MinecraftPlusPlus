@@ -602,7 +602,7 @@ public final class ItemStack
 
 	public int getMaxItemUseDuration()
 	{
-		return this.getItem().getMaxItemUseDuration(this);
+		return this.getItem().getItemUseDuration(this);
 	}
 
 	public EnumAction getItemUseAction()

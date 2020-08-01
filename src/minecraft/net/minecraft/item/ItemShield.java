@@ -74,7 +74,7 @@ public class ItemShield extends Item
 	 * How long it takes to use or consume an item
 	 */
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack)
+	public int getItemUseDuration(ItemStack stack)
 	{
 		return 72000;
 	}

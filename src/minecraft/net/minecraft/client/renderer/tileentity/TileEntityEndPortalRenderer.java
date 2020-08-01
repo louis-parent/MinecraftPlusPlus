@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer.tileentity;
 
+import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.util.Random;
 
@@ -205,9 +206,9 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
 
 	private FloatBuffer getBuffer(float p_147525_1_, float p_147525_2_, float p_147525_3_, float p_147525_4_)
 	{
-		this.buffer.clear();
+		((Buffer) this.buffer).clear();
 		this.buffer.put(p_147525_1_).put(p_147525_2_).put(p_147525_3_).put(p_147525_4_);
-		this.buffer.flip();
+		((Buffer) this.buffer).flip();
 		return this.buffer;
 	}
 }

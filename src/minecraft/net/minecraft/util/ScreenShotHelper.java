@@ -2,6 +2,7 @@ package net.minecraft.util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.Buffer;
 import java.nio.IntBuffer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -99,7 +100,7 @@ public class ScreenShotHelper
 
 		GlStateManager.glPixelStorei(3333, 1);
 		GlStateManager.glPixelStorei(3317, 1);
-		pixelBuffer.clear();
+		((Buffer) pixelBuffer).clear();
 
 		if (OpenGlHelper.isFramebufferEnabled())
 		{

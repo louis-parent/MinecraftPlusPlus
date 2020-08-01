@@ -1,5 +1,6 @@
 package net.minecraft.client.shader;
 
+import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
@@ -97,14 +98,14 @@ public class ShaderUniform
 
 	public void set(float p_148090_1_)
 	{
-		this.uniformFloatBuffer.position(0);
+		((Buffer) this.uniformFloatBuffer).position(0);
 		this.uniformFloatBuffer.put(0, p_148090_1_);
 		this.markDirty();
 	}
 
 	public void set(float p_148087_1_, float p_148087_2_)
 	{
-		this.uniformFloatBuffer.position(0);
+		((Buffer) this.uniformFloatBuffer).position(0);
 		this.uniformFloatBuffer.put(0, p_148087_1_);
 		this.uniformFloatBuffer.put(1, p_148087_2_);
 		this.markDirty();
@@ -112,7 +113,7 @@ public class ShaderUniform
 
 	public void set(float p_148095_1_, float p_148095_2_, float p_148095_3_)
 	{
-		this.uniformFloatBuffer.position(0);
+		((Buffer) this.uniformFloatBuffer).position(0);
 		this.uniformFloatBuffer.put(0, p_148095_1_);
 		this.uniformFloatBuffer.put(1, p_148095_2_);
 		this.uniformFloatBuffer.put(2, p_148095_3_);
@@ -121,18 +122,18 @@ public class ShaderUniform
 
 	public void set(float p_148081_1_, float p_148081_2_, float p_148081_3_, float p_148081_4_)
 	{
-		this.uniformFloatBuffer.position(0);
+		((Buffer) this.uniformFloatBuffer).position(0);
 		this.uniformFloatBuffer.put(p_148081_1_);
 		this.uniformFloatBuffer.put(p_148081_2_);
 		this.uniformFloatBuffer.put(p_148081_3_);
 		this.uniformFloatBuffer.put(p_148081_4_);
-		this.uniformFloatBuffer.flip();
+		((Buffer) this.uniformFloatBuffer).flip();
 		this.markDirty();
 	}
 
 	public void setSafe(float p_148092_1_, float p_148092_2_, float p_148092_3_, float p_148092_4_)
 	{
-		this.uniformFloatBuffer.position(0);
+		((Buffer) this.uniformFloatBuffer).position(0);
 
 		if (this.uniformType >= 4)
 		{
@@ -192,16 +193,16 @@ public class ShaderUniform
 		}
 		else
 		{
-			this.uniformFloatBuffer.position(0);
+			((Buffer) this.uniformFloatBuffer).position(0);
 			this.uniformFloatBuffer.put(p_148097_1_);
-			this.uniformFloatBuffer.position(0);
+			((Buffer) this.uniformFloatBuffer).position(0);
 			this.markDirty();
 		}
 	}
 
 	public void set(float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23, float m30, float m31, float m32, float m33)
 	{
-		this.uniformFloatBuffer.position(0);
+		((Buffer) this.uniformFloatBuffer).position(0);
 		this.uniformFloatBuffer.put(0, m00);
 		this.uniformFloatBuffer.put(1, m01);
 		this.uniformFloatBuffer.put(2, m02);

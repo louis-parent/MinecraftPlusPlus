@@ -206,7 +206,7 @@ public class EntityFallingBlock extends Entity
 							{
 								if (block instanceof BlockFalling)
 								{
-									((BlockFalling) block).onEndFalling(this.world, blockpos1, this.fallTile, iblockstate);
+									((IFalling) block).onEndFalling(this.world, blockpos1, this.fallTile, iblockstate);
 								}
 
 								if (this.tileEntityData != null && block instanceof ITileEntityProvider)

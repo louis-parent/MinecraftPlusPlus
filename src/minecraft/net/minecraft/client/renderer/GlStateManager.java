@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer;
 
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -642,7 +643,7 @@ public class GlStateManager
 
 	public static FloatBuffer quatToGlMatrix(FloatBuffer p_187418_0_, Quaternion p_187418_1_)
 	{
-		p_187418_0_.clear();
+		((Buffer) p_187418_0_).clear();
 		float f = p_187418_1_.x * p_187418_1_.x;
 		float f1 = p_187418_1_.x * p_187418_1_.y;
 		float f2 = p_187418_1_.x * p_187418_1_.z;
@@ -668,7 +669,7 @@ public class GlStateManager
 		p_187418_0_.put(0.0F);
 		p_187418_0_.put(0.0F);
 		p_187418_0_.put(1.0F);
-		p_187418_0_.rewind();
+		((Buffer) p_187418_0_).rewind();
 		return p_187418_0_;
 	}
 

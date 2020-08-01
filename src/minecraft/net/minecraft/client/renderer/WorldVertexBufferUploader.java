@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer;
 
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class WorldVertexBufferUploader
 				VertexFormatElement.EnumUsage vertexformatelement$enumusage = vertexformatelement.getUsage();
 				int k = vertexformatelement.getType().getGlConstant();
 				int l = vertexformatelement.getIndex();
-				bytebuffer.position(vertexformat.getOffset(j));
+				((Buffer) bytebuffer).position(vertexformat.getOffset(j));
 
 				switch (vertexformatelement$enumusage)
 				{

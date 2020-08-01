@@ -3137,7 +3137,7 @@ public abstract class EntityLivingBase extends Entity
 			}
 			else
 			{
-				return item.getMaxItemUseDuration(this.activeItemStack) - this.activeItemStackUseCount >= 5;
+				return item.getItemUseDuration(this.activeItemStack) - this.activeItemStackUseCount >= 5;
 			}
 		}
 		else

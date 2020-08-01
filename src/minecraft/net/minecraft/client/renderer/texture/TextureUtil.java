@@ -3,6 +3,7 @@ package net.minecraft.client.renderer.texture;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.Buffer;
 import java.nio.IntBuffer;
 
 import javax.imageio.ImageIO;
@@ -292,9 +293,9 @@ public class TextureUtil
 			aint = updateAnaglyph(p_110994_0_);
 		}
 
-		DATA_BUFFER.clear();
+		((Buffer) DATA_BUFFER).clear();
 		DATA_BUFFER.put(aint, p_110994_1_, p_110994_2_);
-		DATA_BUFFER.position(0).limit(p_110994_2_);
+		((Buffer) DATA_BUFFER).position(0).limit(p_110994_2_);
 	}
 
 	static void bindTexture(int p_94277_0_)

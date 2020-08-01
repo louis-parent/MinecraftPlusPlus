@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer;
 
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -53,17 +54,17 @@ public class BufferBuilder
 			int i = this.byteBuffer.capacity();
 			int j = i + MathHelper.roundUp(p_181670_1_, 2097152);
 			LOGGER.debug("Needed to grow BufferBuilder buffer: Old size {} bytes, new size {} bytes.", Integer.valueOf(i), Integer.valueOf(j));
-			int k = this.rawIntBuffer.position();
+			int k = ((Buffer) this.rawIntBuffer).position();
 			ByteBuffer bytebuffer = GLAllocation.createDirectByteBuffer(j);
-			this.byteBuffer.position(0);
+			((Buffer) this.byteBuffer).position(0);
 			bytebuffer.put(this.byteBuffer);
-			bytebuffer.rewind();
+			((Buffer) bytebuffer).rewind();
 			this.byteBuffer = bytebuffer;
 			this.rawFloatBuffer = this.byteBuffer.asFloatBuffer().asReadOnlyBuffer();
 			this.rawIntBuffer = this.byteBuffer.asIntBuffer();
-			this.rawIntBuffer.position(k);
+			((Buffer) this.rawIntBuffer).position(k);
 			this.rawShortBuffer = this.byteBuffer.asShortBuffer();
-			this.rawShortBuffer.position(k << 1);
+			((Buffer) this.rawShortBuffer).position(k << 1);
 		}
 	}
 
@@ -102,25 +103,25 @@ public class BufferBuilder
 
 			if (j1 != i1)
 			{
-				this.rawIntBuffer.limit(j1 * l + l);
-				this.rawIntBuffer.position(j1 * l);
+				((Buffer) this.rawIntBuffer).limit(j1 * l + l);
+				((Buffer) this.rawIntBuffer).position(j1 * l);
 				this.rawIntBuffer.get(aint);
 				int k1 = j1;
 
 				for (int l1 = ainteger[j1].intValue(); k1 != i1; l1 = ainteger[l1].intValue())
 				{
-					this.rawIntBuffer.limit(l1 * l + l);
-					this.rawIntBuffer.position(l1 * l);
+					((Buffer) this.rawIntBuffer).limit(l1 * l + l);
+					((Buffer) this.rawIntBuffer).position(l1 * l);
 					IntBuffer intbuffer = this.rawIntBuffer.slice();
-					this.rawIntBuffer.limit(k1 * l + l);
-					this.rawIntBuffer.position(k1 * l);
+					((Buffer) this.rawIntBuffer).limit(k1 * l + l);
+					((Buffer) this.rawIntBuffer).position(k1 * l);
 					this.rawIntBuffer.put(intbuffer);
 					bitset.set(k1);
 					k1 = l1;
 				}
 
-				this.rawIntBuffer.limit(i1 * l + l);
-				this.rawIntBuffer.position(i1 * l);
+				((Buffer) this.rawIntBuffer).limit(i1 * l + l);
+				((Buffer) this.rawIntBuffer).position(i1 * l);
 				this.rawIntBuffer.put(aint);
 			}
 
@@ -130,13 +131,13 @@ public class BufferBuilder
 
 	public BufferBuilder.State getVertexState()
 	{
-		this.rawIntBuffer.rewind();
+		((Buffer) this.rawIntBuffer).rewind();
 		int i = this.getBufferSize();
-		this.rawIntBuffer.limit(i);
+		((Buffer) this.rawIntBuffer).limit(i);
 		int[] aint = new int[i];
 		this.rawIntBuffer.get(aint);
-		this.rawIntBuffer.limit(this.rawIntBuffer.capacity());
-		this.rawIntBuffer.position(i);
+		((Buffer) this.rawIntBuffer).limit(this.rawIntBuffer.capacity());
+		((Buffer) this.rawIntBuffer).position(i);
 		return new BufferBuilder.State(aint, new VertexFormat(this.vertexFormat));
 	}
 
@@ -167,7 +168,7 @@ public class BufferBuilder
 
 	public void setVertexState(BufferBuilder.State state)
 	{
-		this.rawIntBuffer.clear();
+		((Buffer) this.rawIntBuffer).clear();
 		this.growBuffer(state.getRawBuffer().length * 4);
 		this.rawIntBuffer.put(state.getRawBuffer());
 		this.vertexCount = state.getVertexCount();
@@ -195,7 +196,7 @@ public class BufferBuilder
 			this.vertexFormat = format;
 			this.vertexFormatElement = format.getElement(this.vertexFormatIndex);
 			this.noColor = false;
-			this.byteBuffer.limit(this.byteBuffer.capacity());
+			((Buffer) this.byteBuffer).limit(this.byteBuffer.capacity());
 		}
 	}
 
@@ -454,7 +455,7 @@ public class BufferBuilder
 	public void addVertexData(int[] vertexData)
 	{
 		this.growBuffer(vertexData.length * 4);
-		this.rawIntBuffer.position(this.getBufferSize());
+		((Buffer) this.rawIntBuffer).position(this.getBufferSize());
 		this.rawIntBuffer.put(vertexData);
 		this.vertexCount += vertexData.length / this.vertexFormat.getIntegerSize();
 	}
@@ -581,8 +582,8 @@ public class BufferBuilder
 		else
 		{
 			this.isDrawing = false;
-			this.byteBuffer.position(0);
-			this.byteBuffer.limit(this.getBufferSize() * 4);
+			((Buffer) this.byteBuffer).position(0);
+			((Buffer) this.byteBuffer).limit(this.getBufferSize() * 4);
 		}
 	}
 

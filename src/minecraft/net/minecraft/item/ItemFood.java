@@ -76,25 +76,25 @@ public class ItemFood extends Item implements IFood
 	}
 
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack)
+	public int getItemUseDuration(ItemStack stack)
 	{
 		return 32;
 	}
 
 	@Override
-	public int getHealAmount(ItemStack stack)
+	public int getFoodAmount(ItemStack stack)
 	{
 		return this.healAmount;
 	}
 
 	@Override
-	public float getSaturationModifier(ItemStack stack)
+	public float getSaturationAmount(ItemStack stack)
 	{
 		return this.saturationModifier;
 	}
 
 	@Override
-	public boolean isWolfsFavoriteMeat()
+	public boolean isEdibleByWolf()
 	{
 		return this.isWolfsFavoriteMeat;
 	}
@@ -117,7 +117,7 @@ public class ItemFood extends Item implements IFood
 	}
 
 	@Override
-	public boolean isAlawaysEdible()
+	public boolean isAlwaysEdible()
 	{
 		return this.alwaysEdible;
 	}
